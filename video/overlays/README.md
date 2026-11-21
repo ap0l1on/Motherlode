@@ -1,0 +1,5 @@
+# Overlays
+
+Light leaks, grain, dust and frame overlays.
+
+Part of [Video](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
