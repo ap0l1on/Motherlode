@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Office and Adobe temp files
+~$*
+*.tmp
+Adobe Premiere Pro Auto-Save/
+Adobe After Effects Auto-Save/
+
+# Web projects
+node_modules/
