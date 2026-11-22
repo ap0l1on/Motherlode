@@ -5,10 +5,10 @@ Product renders.
 
 Part of [3D](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="aqua-concentric-core/"><img src="aqua-concentric-core/preview.gif" width="260" alt="Aqua concentric core"></a><br><a href="aqua-concentric-core/"><b>Aqua concentric core</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="aqua-concentric-core/"><img src="aqua-concentric-core/preview.gif" width="260" alt="Aqua concentric core"></a><br><a href="aqua-concentric-core/"><b>Aqua concentric core</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ruby-wing-coupe/"><img src="ruby-wing-coupe/preview.gif" width="260" alt="Ruby wing coupe"></a><br><a href="ruby-wing-coupe/"><b>Ruby wing coupe</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

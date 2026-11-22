@@ -9,7 +9,7 @@
 | [Scenes](scenes/) | Full 3D scenes |
 | [Characters](characters/) | 3D characters · **1 design** |
 | [Rigs](rigs/) | Rigged characters ready to animate |
-| [Product renders](product-renders/) | Product renders · **1 design** |
+| [Product renders](product-renders/) | Product renders · **2 designs** |
 | [Isometric rooms](isometric-rooms/) | Isometric rooms and dioramas |
 | [Abstract](abstract/) | Abstract 3D art · **2 designs** |
 | [3D text](3d-text/) | 3D lettering and type · **1 design** |
