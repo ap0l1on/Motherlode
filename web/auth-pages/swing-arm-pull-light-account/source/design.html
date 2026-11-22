@@ -239,9 +239,27 @@ function light(on){manual();set.classList.add('manual');set.classList.toggle('of
 toggle.onclick=()=>light((parseFloat(getComputedStyle(set).getPropertyValue('--lit'))||0)<.5);panel.addEventListener('focusin',()=>light(true));
 function switchForm(on){light(true);register=on;panel.querySelector('h1').textContent=on?'Sign up':panel.dataset.heading;panel.querySelector('.submit').textContent=on?'Create account':'Sign in';const foot=panel.querySelector('[data-action=mode]');if(foot)foot.textContent=on?'Sign in':'Create an account'}
 panel.dataset.heading=panel.querySelector('h1').textContent;all('[data-action=mode]').forEach(b=>b.addEventListener('click',()=>switchForm(!register)));
-play(set,[[0,{'--lit':0}],[duration*0.15,{'--lit':0}],[duration*0.26,{'--lit':1}],[duration*0.9,{'--lit':1}],[duration,{'--lit':0}]]);$('.login-tab').onclick=()=>switchForm(false);let hue=0;toggle.addEventListener('dblclick',()=>{light(true);hue=(hue+1)%4;set.style.setProperty('--glow',['var(--accent)','var(--reflection)','var(--signal)','var(--leaf)'][hue])});play(set,[[0,{'--glow':'var(--accent)'}],[duration*.43,{'--glow':'var(--accent)'}],[duration*.52,{'--glow':'var(--reflection)'}],[duration*.65,{'--glow':'var(--signal)'}],[duration*.77,{'--glow':'var(--leaf)'}],[duration*.9,{'--glow':'var(--wall)'}],[duration,{'--glow':'var(--accent)'}]]);
+play(set,[[0,{'--lit':0}],[duration*0.15,{'--lit':0}],[duration*0.26,{'--lit':1}],[duration*0.9,{'--lit':1}],[duration,{'--lit':0}]]);$('.login-tab').onclick=()=>switchForm(false);let hue=0;toggle.addEventListener('dblclick',()=>{light(true);hue=(hue+1)%4;set.style.setProperty('--glow',['var(--accent)','var(--reflection)','var(--signal)','var(--leaf)'][hue])});
+const glowSteps = [[0,'accent'],[.43,'accent'],[.52,'reflection'],[.65,'signal'],[.77,'leaf'],[.9,'wall'],[1,'accent']];
+let glowAnimation;
+function refreshLampColors() {
+  if (root.dataset.mode === 'manual' || (reduced && !frozen)) return;
+  const palette = getComputedStyle(document.documentElement);
+  const frames = glowSteps.map(([offset, color]) => ({
+    offset, '--glow':palette.getPropertyValue('--' + color).trim()
+  }));
+  if (glowAnimation) {
+    glowAnimation.effect.setKeyframes(frames);
+  } else {
+    glowAnimation = set.animate(frames, { duration:duration * 1000, iterations:Infinity, easing:'linear' });
+    previewAnimations.push(glowAnimation);
+  }
+}
 </script><script>
-  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  const pick = () => {
+    document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    refreshLampColors();
+  };
   pick();
   addEventListener("hashchange", pick);
   const t = new URLSearchParams(location.search).get("t");
