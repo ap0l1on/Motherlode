@@ -3,4 +3,12 @@
 
 Full 3D scenes.
 
-Part of [3D](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [3D](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="sky-blue-butterfly-flight/"><img src="sky-blue-butterfly-flight/preview.gif" width="260" alt="Sky-blue butterfly flight"></a><br><a href="sky-blue-butterfly-flight/"><b>Sky-blue butterfly flight</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
