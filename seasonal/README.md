@@ -26,6 +26,6 @@ Holidays, seasons and moments in the year.
 | [Spring](spring/) | Spring designs |
 | [Summer](summer/) | Summer designs |
 | [Autumn](autumn/) | Autumn designs |
-| [Winter](winter/) | Winter designs |
+| [Winter](winter/) | Winter designs · **1 design** |
 
 Each design gets its own folder inside a category. See [Adding a design](../README.md#adding-a-design).
