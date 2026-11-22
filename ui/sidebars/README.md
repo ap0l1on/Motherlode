@@ -5,10 +5,10 @@ Sidebars.
 
 Part of [UI](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="apricot-workspace-sidebar/"><img src="apricot-workspace-sidebar/preview.gif" width="260" alt="Apricot workspace sidebar"></a><br><a href="apricot-workspace-sidebar/"><b>Apricot workspace sidebar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="curved-crystal-sidebar/"><img src="curved-crystal-sidebar/preview.gif" width="260" alt="Curved crystal sidebar"></a><br><a href="curved-crystal-sidebar/"><b>Curved crystal sidebar</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="apricot-workspace-sidebar/"><img src="apricot-workspace-sidebar/preview.gif" width="260" alt="Apricot workspace sidebar"></a><br><a href="apricot-workspace-sidebar/"><b>Apricot workspace sidebar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="curved-crystal-sidebar/"><img src="curved-crystal-sidebar/preview.gif" width="260" alt="Curved crystal sidebar"></a><br><a href="curved-crystal-sidebar/"><b>Curved crystal sidebar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="violet-signal-sidebar/"><img src="violet-signal-sidebar/preview.gif" width="260" alt="Violet signal sidebar"></a><br><a href="violet-signal-sidebar/"><b>Violet signal sidebar</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
