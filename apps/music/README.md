@@ -3,4 +3,12 @@
 
 Music streaming and players.
 
-Part of [Apps](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Apps](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="soft-clay-record-player/"><img src="soft-clay-record-player/preview.gif" width="260" alt="Soft clay record player"></a><br><a href="soft-clay-record-player/"><b>Soft clay record player</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

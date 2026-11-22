@@ -28,7 +28,7 @@ Whole apps, sorted by what they do.
 | [Language learning](language-learning/) | Language learning apps |
 | [Education](education/) | Learning and course apps |
 | [Kids](kids/) | Apps for kids |
-| [Music](music/) | Music streaming and players |
+| [Music](music/) | Music streaming and players · **1 design** |
 | [Video streaming](video-streaming/) | Video and TV streaming |
 | [Podcasts](podcasts/) | Podcast apps |
 | [Camera](camera/) | Camera apps |
