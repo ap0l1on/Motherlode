@@ -25,7 +25,7 @@ Building blocks: components, kits and design systems.
 | [Accordions](accordions/) | Accordions |
 | [Tabs](tabs/) | Tabs |
 | [Segmented controls](segmented-controls/) | Segmented controls |
-| [Navbars](navbars/) | Top navigation bars · **2 designs** |
+| [Navbars](navbars/) | Top navigation bars · **3 designs** |
 | [Tab bars](tab-bars/) | Bottom tab bars · **11 designs** |
 | [Sidebars](sidebars/) | Sidebars · **5 designs** |
 | [Breadcrumbs](breadcrumbs/) | Breadcrumbs |
