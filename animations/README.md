@@ -23,7 +23,7 @@ Animation for screens, the web and beyond.
 | [Shaders](shaders/) | WebGL and shader effects |
 | [GIFs](gifs/) | GIFs |
 | [2D animation](2d-animation/) | 2D animation |
-| [3D animation](3d-animation/) | 3D animation |
+| [3D animation](3d-animation/) | 3D animation · **1 design** |
 | [Character animation](character-animation/) | Character animation |
 | [Frame-by-frame](frame-by-frame/) | Frame-by-frame animation |
 | [Stop motion](stop-motion/) | Stop motion |
