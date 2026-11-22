@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x446">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8.8">
+  <meta name="motherlode:still" content="3.5">
+  <title>Opalescent particle globe</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010104; --shade: #203953; --middle: #6b56a5; --bright: #dc73e1; --highlight: #e0d9c7; --leaf: #72c8bc; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 446px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 446" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Opalescent particle globe</title>
+    <desc id="description">A violet and blue globe turns inside irregular rings of mint and ivory stardust. The outer orbits alternate between circular and edge-on views.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 8.8 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const cx=288,cy=222,rad=107,defs=element("defs",{}),globe=element("g",{});
+    const primary=radial(defs,"core",[[0,"shade",.82],[.62,"middle",.32],[.88,"bright",.54],[.96,"bright",.66],[1,"highlight",.89]]);
+    const wash=element("linearGradient",{id:"sky-glow",x1:"10%",y1:"2%",x2:"83%",y2:"94%"},defs);
+    [[0,"bright",.73],[.4,"middle",.08],[.75,"leaf",.28],[1,"bright",.84]].forEach(([offset,col,a])=>
+      element("stop",{offset,"stop-color":"var(--"+col+")","stop-opacity":a},wash));
+    element("circle",{cx,cy,r:rad,fill:primary},globe);
+    element("circle",{cx,cy,r:rad,fill:"url(#sky-glow)",opacity:.61},globe);
+    const grains=[[],[],[],[]];
+    for(let i=0;i<22500;i++){
+      const z=2*random()-1,a=tau*random(),s=Math.sqrt(1-z*z),x=rad*s*Math.cos(a),y=rad*z;
+      const shade=(x-y*.45)/rad, tone=shade>.49?2:shade<-.52?1:i%11===0?3:0;
+      grains[tone].push("M"+(cx+x).toFixed(1)+" "+(cy+y).toFixed(1)+"h.11");
+    }
+    grains.forEach((g,i)=>line(globe,g.join(""),["shade","bright","leaf","highlight"][i],.87,i===3?.94:.88));
+    const outer=element("g",{});outer.style.transformOrigin=cx+"px "+cy+"px";
+    for(let k=0;k<4;k++){
+      const parts=[[],[],[]];
+      for(let i=0;i<7900;i++){
+        const a=tau*random(),r=142+6*Math.sin(a*3+.8*k)+(random()-.5)*12,
+          x=r*Math.cos(a),y=(.80+.052*k)*r*Math.sin(a);
+        const tilt=.04+k*.16,px=cx+Math.cos(tilt)*x-Math.sin(tilt)*y,py=cy+Math.sin(tilt)*x+Math.cos(tilt)*y;
+        parts[(Math.cos(a+k)>.16?0:Math.sin(a)>.28?1:2)].push("M"+px.toFixed(1)+" "+py.toFixed(1)+"h.08");
+      }
+      const wrap=element("g",{},outer);parts.forEach((path,i)=>line(wrap,path.join(""),["leaf","highlight","middle"][i],.82,.78));
+      wrap.style.transformOrigin=cx+"px "+cy+"px";
+      wrap.animate(Array.from({length:37},(_,i)=>{const a=tau*i/36,ss=.06+.91*Math.abs(Math.cos(a+k*1.06));
+        return {transform:"rotate("+(Math.sin(a+k)*59+k*17)+"deg) scaleY("+ss+")"};}),{duration,iterations:Infinity,easing:"linear"});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
