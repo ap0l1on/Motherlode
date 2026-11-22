@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x378"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="13.5"><meta name="motherlode:still" content="8.5">
+<title>Constellation creature ecosystem</title><style>
+:root, [data-colorway="original"] {
+  --bg: #030505; --ink: #d7e4df; --shadow: #030607; --paper: #eeeef5; --ash: #111918;
+  --metal: #3d4a49; --edge: #9ba9a5; --a: #7ad6c6; --b: #b36a76; --c: #e7cfb2; --d: #8299d8; --e: #65c6a3; --f: #5084d0;
+  --monitor-main: #d7e4df; --monitor-sub: #9ba9a5; --monitor-title: #7ad6c6;
+}
+[data-colorway="light"] {
+  --bg: #edf2f7; --ink: #202b3d; --shadow: #29374d; --paper: #ffffff; --ash: #b8c7d5;
+  --metal: #8193a6; --edge: #dae7f1; --a: #267385; --b: #854d6d; --c: #ae702e; --d: #7462a1; --e: #459773; --f: #6482c3;
+  --monitor-main: #202b3d; --monitor-sub: #202b3d; --monitor-title: #202b3d;
+}
+[data-colorway="dark"] {
+  --bg: #111722; --ink: #edf3ff; --shadow: #030610; --paper: #ffffff; --ash: #293243;
+  --metal: #546078; --edge: #97a7bf; --a: #65deef; --b: #fa987d; --c: #f6cd7d; --d: #c497ff; --e: #87e4ae; --f: #91acff;
+  --monitor-main: #edf3ff; --monitor-sub: #97a7bf; --monitor-title: #65deef;
+}
+[data-colorway="mono"] {
+  --bg: #161616; --ink: #f6f6f6; --shadow: #030303; --paper: #ffffff; --ash: #313131;
+  --metal: #686868; --edge: #a2a2a2; --a: #f6f6f6; --b: #aaaaaa; --c: #d6d6d6; --d: #777777; --e: #929292; --f: #bdbdbd;
+  --monitor-main: #f6f6f6; --monitor-sub: #a2a2a2; --monitor-title: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #082a39; --ink: #e4fbff; --shadow: #03121e; --paper: #f3feff; --ash: #245066;
+  --metal: #34758b; --edge: #83bac9; --a: #74f5eb; --b: #6eb2f3; --c: #e0f4bb; --d: #b1b2ef; --e: #6be5b1; --f: #6ca8d2;
+  --monitor-main: #e4fbff; --monitor-sub: #f3feff; --monitor-title: #74f5eb;
+}
+[data-colorway="matcha"] {
+  --bg: #21382b; --ink: #f6f7dd; --shadow: #132218; --paper: #ffffed; --ash: #4f6749;
+  --metal: #6f8965; --edge: #a9bf89; --a: #dde87b; --b: #cda076; --c: #e9cf89; --d: #a7a9cd; --e: #90d687; --f: #80b9a9;
+  --monitor-main: #f6f7dd; --monitor-sub: #ffffed; --monitor-title: #dde87b;
+}
+[data-colorway="sunset"] {
+  --bg: #47243e; --ink: #fff5e6; --shadow: #241127; --paper: #fff7df; --ash: #74415d;
+  --metal: #976982; --edge: #d59ba2; --a: #ffba80; --b: #f27987; --c: #ffe19c; --d: #d699df; --e: #f4ab7b; --f: #ae96d7;
+  --monitor-main: #fff5e6; --monitor-sub: #fff7df; --monitor-title: #ffba80;
+}
+[data-colorway="berry"] {
+  --bg: #33243c; --ink: #fff1fb; --shadow: #211426; --paper: #fff2fb; --ash: #593950;
+  --metal: #854b71; --edge: #c792b2; --a: #f3a1d6; --b: #bd90e8; --c: #ffd09e; --d: #d4acf6; --e: #d8bea3; --f: #ac9cd2;
+  --monitor-main: #fff1fb; --monitor-sub: #fff2fb; --monitor-title: #f3a1d6;
+}
+@font-face{font-family:'Inter';src:url('fonts/inter.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:576px;height:378px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Inter',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+@property --scene-time{syntax:"<number>";inherits:false;initial-value:0}@property --control-x{syntax:"<number>";inherits:false;initial-value:0}@property --control-y{syntax:"<number>";inherits:false;initial-value:0}@property --choice{syntax:"<number>";inherits:false;initial-value:0}#render,#render>canvas{display:block;position:absolute;inset:0;width:100%;height:100%}#render[data-painted]{background-image:paint(motherlode-scene)}#render[data-painted]>canvas{display:none}aside{position:absolute;right:-4px;top:1px;width:99px;background:color-mix(in srgb,var(--ash) 94%,transparent);border:1px solid color-mix(in srgb,var(--edge) 27%,transparent);padding:5px 5px 7px;border-radius:2px;font-size:5px;color:var(--ink);line-height:1.27}h1,h2{margin:0 0 5px;font-weight:700}h1{font-size:5.8px;letter-spacing:.85px;color:var(--a)}h2{font-size:4.6px;letter-spacing:.35px;margin-top:6px}.facts{display:grid;grid-template-columns:1fr 1fr;row-gap:3px}.facts span{color:var(--edge)}.facts b{display:block;color:var(--ink)}aside label{display:flex;align-items:center;justify-content:space-between;gap:2px;min-height:11px}aside input[type=range]{width:34px;height:4px;accent-color:var(--e);margin:0}aside select,aside button{font-family:inherit;font-size:4.8px;background:var(--ash);color:var(--ink);border:1px solid var(--metal);border-radius:2px;padding:2px 4px;line-height:1.2}aside select{width:100%}#spawn{display:flex;width:100%;justify-content:space-between;margin-top:4px;border-color:var(--e);color:var(--ink)}.caption{margin-top:4px;color:var(--edge)}.actions{display:flex;gap:4px;margin-top:5px}.actions button{flex:1;font-size:4.3px}#extinct{border-color:var(--b)}
+aside,aside b,aside select,aside button{color:var(--monitor-main)}aside h1{color:var(--monitor-title)}.facts span,.caption{color:var(--monitor-sub)}
+</style></head><body><main aria-label="Constellation creature ecosystem"><div id="render" aria-hidden="true"><canvas width="576" height="378"></canvas></div>
+<aside><h1>ECOSYSTEM MONITOR</h1><div class="facts"><span>Population<b id="pop">14</b></span><span>Food count<b>1,084</b></span><span>Avg energy<b>648</b></span><span>Schema<b>6</b></span></div><h2>DESIGN PRESET TO SPAWN</h2><label><select id="species"><option>Builder</option><option>Grazer</option><option>Drifter</option></select></label><button id="spawn">Spawn <b>＋</b></button><div class="caption">Brush size</div><h2>ECOSYSTEM PARAMETERS</h2><label>Food rate<input id="food" type="range" min="0" max="100" value="58"></label><label>Mutation rate<input id="mutation" type="range" min="0" max="100" value="44"></label><label>Physics / Gravity<input id="gravity" type="range" min="0" max="100" value="36"></label><div class="actions"><button id="extinct">EXTINCT</button><button id="reset">RESET</button></div></aside>
+<script type="text/plain" id="drawing">
+const tau = Math.PI * 2;
+const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+const smooth = v => { v=clamp(v); return v*v*(3-2*v); };
+const lerp = (a,b,t) => a+(b-a)*t;
+function channels(col) {
+  const s=String(col).trim(); if(s.startsWith('#')){const h=s.slice(1);return (h.length===3?[...h].map(c=>c+c):h.match(/../g)).slice(0,3).map(v=>parseInt(v,16));}
+  const values=s.match(/[.0-9]+/g)||[0,0,0];return values.slice(0,3).map(Number);
+}
+function mix(a,b,t){const f=channels(a),s=channels(b);return 'rgb('+f.map((v,i)=>Math.round(lerp(v,s[i],clamp(t)))).join(',')+')';}
+function alpha(col,a){return 'rgba('+channels(col).join(',')+','+clamp(a)+')';}
+function ellipse(c,x,y,rx,ry,fill,rot=0){if(rx<=0||ry<=0)return;c.beginPath();c.ellipse(x,y,rx,ry,rot,0,tau);c.fillStyle=fill;c.fill();}
+function polygon(c,pts,fill,stroke,width=1){if(!pts.length)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}}
+function stroke(c,pts,col,width=1){if(pts.length<2)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.strokeStyle=col;c.lineWidth=width;c.stroke();}
+function glow(c,x,y,r,stops,aspect=1) {if(r<=0)return;c.save();c.translate(x,y);c.scale(1,aspect);let g=c.createRadialGradient(0,0,0,0,0,r);for(const [v,col] of stops)g.addColorStop(v,col);ellipse(c,0,0,r,r,g);c.restore();}
+function segment(t,points){if(t<=points[0][0])return points[0][1];for(let i=1;i<points.length;i++){if(t<=points[i][0])return lerp(points[i-1][1],points[i][1],smooth((t-points[i-1][0])/(points[i][0]-points[i-1][0])));}return points.at(-1)[1];}
+function number(i){const s=Math.sin(i*127.1+311.7)*43758.5453123;return s-Math.floor(s);}
+function rotate(v,axis,a){const [x,y,z]=v,s=Math.sin(a),c=Math.cos(a);if(axis==='x')return [x,y*c-z*s,y*s+z*c];if(axis==='y')return [x*c+z*s,y,-x*s+z*c];return [x*c-y*s,x*s+y*c,z];}
+function project(v,yaw,pitch,x,y,scale,eye=0){const q=rotate(rotate(v,'y',yaw),'x',pitch),k=eye?eye/(eye-q[2]):1;return [x+q[0]*k*scale,y+q[1]*k*scale,q[2]];}
+
+function draw(c,w,h,t,p,ctrl){
+ c.fillStyle=p.bg;c.fillRect(0,0,w,h);
+ const amount=Math.floor(ctrl[2]/10), type=Math.floor(ctrl[2])%10;const spin=t*.11,feel=ctrl[1]*.50;
+ for(let i=0;i<1200;i++){const z=number(i*3+3),x=(number(i*7+22)*w+Math.sin(spin*.33+z)*z*15+w)%w,y=(number(i*3+2)*h+t*(z-.55)*.9+h)%h;const a=.14+Math.pow(number(i+4),2)*.80;c.fillStyle=alpha(i%8?p.paper:p.a,a);const sz=.22+z*1.45;c.fillRect(x,y,sz,sz);}
+ const wire=(x,y,s,rot,col,op=1)=>{const v=[[-1,-.7,-.3],[.87,-.35,-.55],[.65,.48,.55],[-.74,.80,.48],[.11,-.10,1.2]].map(q=>project(q,rot,-.25+Math.sin(rot*.7)*.28,x,y,s));
+  for(const [a,b] of [[0,1],[1,2],[2,3],[3,0],[0,4],[1,4],[2,4],[3,4]]){stroke(c,[v[a],v[b]],alpha(col,op*.18),s*.24);stroke(c,[v[a],v[b]],alpha(col,op*.8),Math.max(.65,s*.068));}};
+ const centerX=segment(t,[[0,266],[1,269],[3,251],[4.5,280],[5.45,521],[13.5,521]]);
+ const centerY=segment(t,[[0,199],[1,204],[3,211],[4.5,194],[5.45,321],[13.5,315]]);
+ wire(centerX,centerY,14+4*Math.sin(t*.57),t*.71,p.a,.94);
+ const species=amount?Math.min(20,amount+3):Math.floor(segment(t,[[0,0],[1,0],[2.8,2],[4.5,3],[6,6],[8.6,9],[13.5,14]]));
+ function creature(x,y,r,n,phase,col,wireOnly){
+  const vs=[];for(let j=0;j<12;j++){const az=(j*.61803398875+n*.13)*tau,el=Math.asin((j+.5)/6-1),k=.62+.49*number(n*100+j);let q=rotate(rotate([k*Math.cos(el)*Math.cos(az),k*Math.sin(el),k*Math.cos(el)*Math.sin(az)],'x',phase*.6),'y',phase);
+    vs.push([x+q[0]*r,y+q[1]*r,q[2]]);}
+  if(!wireOnly)glow(c,x,y,r*1.4,[[0,alpha(col,.88)],[.3,alpha(col,.68)],[.66,alpha(col,.24)],[1,alpha(col,0)]]);
+  for(let j=0;j<20;j++){const points=[vs[j%12],vs[(j*3+2)%12],vs[(j*7+6)%12]];const depth=(points[0][2]+points[1][2]+points[2][2])/3;
+   polygon(c,points,alpha(mix(col,p.paper,clamp(depth*.55+.18)),wireOnly?.043:.25+.20*clamp(depth)),alpha(col,wireOnly?.22:.34),wireOnly?.7:.55);}
+ }
+ for(let n=0;n<species;n++){const nu=number(n*13+47),nv=number(n*11+38),bright=n%3!==0;
+  const x=75+nu*415+Math.sin(t*(.26+.21*nu)+n)*32,y=46+nv*259+Math.cos(t*.37+n*.8)*34;
+  const dist=(n%4===0?25:16)*(1+feel*.36),col=n<3&&t<5?p.paper:(type===1?p.a:type===2?p.b:n%4<2?p.f:n%4===2?p.paper:p.b);
+  creature(x,y,dist*(.67+.43*nu),n,t*(.7+.6*nv),col,!bright);
+  if(n%4===0){for(let j=1;j<5;j++){wire(x-j*(1.2+nv*2),y+j*.7,dist*(1-j*.09),t*.8+j*.25,col,.13-j*.02);}}
+ }
+ if(t>10.1){const cs=clamp((t-10.1)*2);for(let i=0;i<5;i++){c.beginPath();c.ellipse(348+Math.sin(t*.77)*22+i*2.5,145-i*2,10+i,14+i,-.6,0,tau);c.strokeStyle=alpha(p.edge,cs*(.5-i*.06));c.lineWidth=.7;c.stroke();}}
+}
+</script></main>
+<script>
+const stage = document.querySelector('main');
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+const motion = [];
+function animate(target, keys, options = {}) {
+  if (typeof target === 'string') target = document.querySelector(target);
+  const list = keys.map(([time, value]) => ({ offset: time / duration, ...value }));
+  const effect = target.animate(list, { duration: duration * 1000, iterations: Infinity, fill: 'both', easing: 'linear', ...options });
+  motion.push(effect);
+  return effect;
+}
+function hold(seconds) {
+  for (const effect of motion) { effect.pause(); effect.currentTime = Math.max(0,Math.min(duration - .001,seconds)) * 1000; }
+}
+function replay() {
+  for (const effect of motion) { effect.currentTime = 0; effect.play(); }
+}
+function bind(element, callback) {
+  element.addEventListener('click', callback);
+  element.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); callback(event); }
+  });
+}
+
+const picture = document.querySelector('#render');
+const source = document.querySelector('#drawing').textContent;
+const names = ['bg','ink','shadow','paper','ash','metal','edge','a','b','c','d','e','f',];
+const clock = animate(picture, [[0,{'--scene-time':0}],[duration,{'--scene-time':duration}]]);
+const props = ['--scene-time','--control-x','--control-y','--choice', ...names.map(v=>'--'+v)];
+const readColors = getter => Object.fromEntries(names.map(name=>[name,String(getter('--'+name)).trim()]));
+const readControls = getter => ['--control-x','--control-y','--choice'].map(name=>Number(String(getter(name)).trim()) || 0);
+const paintFallback = new Function(source+';return draw;')();
+const fallback = () => {
+  const styles = getComputedStyle(picture), get = key=>styles.getPropertyValue(key), ctx=picture.querySelector('canvas').getContext('2d');
+  ctx.save();paintFallback(ctx,576,378,Number(get('--scene-time'))||0,readColors(get),readControls(get));ctx.restore();
+};
+document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';
+fallback();
+if (CSS.paintWorklet) {
+  const definition = source + '\nregisterPaint("motherlode-scene",class { static get inputProperties() { return '+JSON.stringify(props)+'; } paint(ctx,size,styles) { const colors = {}; for(const key of '+JSON.stringify(names)+') colors[key]=String(styles.get("--"+key)).trim(); const controls=["--control-x","--control-y","--choice"].map(key=>Number(String(styles.get(key)).trim())||0); draw(ctx,size.width,size.height,Number(String(styles.get("--scene-time")).trim())||0,colors,controls); } });';
+  const url=URL.createObjectURL(new Blob([definition],{type:'text/javascript'}));
+  CSS.paintWorklet.addModule(url).then(()=>{picture.dataset.painted='';URL.revokeObjectURL(url);}).catch(()=>{URL.revokeObjectURL(url);setInterval(fallback,1000/24);});
+} else { setInterval(fallback,1000/24); }
+let births=0;const species=document.querySelector('#species');function update(){picture.style.setProperty('--choice',births*10+species.selectedIndex);document.querySelector('#pop').textContent=14+births;}document.querySelector('#spawn').onclick=()=>{births=Math.min(18,births+1);update();};document.querySelector('#extinct').onclick=()=>{births=0;hold(.2);update();};document.querySelector('#reset').onclick=()=>{births=0;species.selectedIndex=0;update();replay();};species.onchange=update;for(const id of ['food','mutation','gravity'])document.querySelector('#'+id).oninput=e=>picture.style.setProperty(id==='food'?'--control-x':'--control-y',e.target.value/100);
+
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>

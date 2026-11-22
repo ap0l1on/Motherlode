@@ -6,7 +6,7 @@
 | Category | What goes in it |
 | --- | --- |
 | [Models](models/) | 3D models |
-| [Scenes](scenes/) | Full 3D scenes · **2 designs** |
+| [Scenes](scenes/) | Full 3D scenes · **3 designs** |
 | [Characters](characters/) | 3D characters · **2 designs** |
 | [Rigs](rigs/) | Rigged characters ready to animate |
 | [Product renders](product-renders/) | Product renders · **2 designs** |

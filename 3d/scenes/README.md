@@ -5,10 +5,10 @@ Full 3D scenes.
 
 Part of [3D](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="orbital-horizon-explorer/"><img src="orbital-horizon-explorer/preview.gif" width="260" alt="Orbital horizon explorer"></a><br><a href="orbital-horizon-explorer/"><b>Orbital horizon explorer</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="sky-blue-butterfly-flight/"><img src="sky-blue-butterfly-flight/preview.gif" width="260" alt="Sky-blue butterfly flight"></a><br><a href="sky-blue-butterfly-flight/"><b>Sky-blue butterfly flight</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="constellation-creature-ecosystem/"><img src="constellation-creature-ecosystem/preview.gif" width="260" alt="Constellation creature ecosystem"></a><br><a href="constellation-creature-ecosystem/"><b>Constellation creature ecosystem</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="orbital-horizon-explorer/"><img src="orbital-horizon-explorer/preview.gif" width="260" alt="Orbital horizon explorer"></a><br><a href="orbital-horizon-explorer/"><b>Orbital horizon explorer</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="sky-blue-butterfly-flight/"><img src="sky-blue-butterfly-flight/preview.gif" width="260" alt="Sky-blue butterfly flight"></a><br><a href="sky-blue-butterfly-flight/"><b>Sky-blue butterfly flight</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
