@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x846">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="3.8333333333">
+<meta name="motherlode:still" content="1.67">
+<title>Pastel language studio</title>
+<style>
+:root, [data-colorway="original"] {
+  --outer: #d3c9e8; --bg: #e9e7f8; --paper: #fffefe; --soft: #f4f1f9; --ink: #242232; --muted: #565263; --rail: #191823; --nav: #fffaff; --accent: #b6acd9; --pale: #ded8ef; --deep: #6d6699; --on-accent: #272337; --blue: #a4c4e3; --copper: #d7abbf; --mint: #b4d9b6; --gold: #ddcba3;
+  --photo-filter: saturate(.88);
+  --detail-verb-ink: #464250;
+}
+[data-colorway="light"] {
+  --outer: #f6f4f1; --bg: #f6f2ec; --paper: #fffdfa; --soft: #f3eee8; --ink: #2a2421; --muted: #62584e; --rail: #45372e; --nav: #fff8ed; --accent: #c89974; --pale: #f0ddc5; --deep: #865c42; --on-accent: #2e1d13; --blue: #7d92a3; --copper: #b47367; --mint: #72917a; --gold: #afa06c;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #423b34;
+  --detail-verb-ink: #342f29; --detail-adjective-ink: #443d36; --detail-phrasal-verb-ink: #423b34;
+}
+[data-colorway="dark"] {
+  --outer: #0d1119; --bg: #1c202b; --paper: #2a3040; --soft: #363b4b; --ink: #f5effa; --muted: #d1c9d6; --rail: #11151d; --nav: #f6f2ff; --accent: #bd9eec; --pale: #564867; --deep: #846ba5; --on-accent: #261b35; --blue: #8dace3; --copper: #e8a1a1; --mint: #95cdb4; --gold: #d5c187;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #1f1e20; --ink-caption-ink: #201f20;
+  --detail-verb-ink: #060606; --detail-adjective-ink: #0f0e0f; --detail-phrasal-verb-ink: #19181a; --detail-bring-up-ink: #3b393c; --detail-elaborate-ink: #fcfbfe;
+}
+[data-colorway="mono"] {
+  --outer: #f8f8f8; --bg: #eaeaea; --paper: #fdfdfd; --soft: #eeeeee; --ink: #1c1c1c; --muted: #535353; --rail: #202020; --nav: #fafafa; --accent: #a6a6a6; --pale: #d8d8d8; --deep: #777777; --on-accent: #191919; --blue: #858585; --copper: #999999; --mint: #ababab; --gold: #bdbdbd;
+  --photo-filter: grayscale(1);
+  --muted-caption-ink: #3a3a3a;
+  --detail-verb-ink: #373737; --detail-adjective-ink: #383838; --detail-phrasal-verb-ink: #474747;
+}
+[data-colorway="lagoon"] {
+  --outer: #e5f1ed; --bg: #e6efec; --paper: #f7fcf9; --soft: #dfebe7; --ink: #172e2a; --muted: #415b52; --rail: #183b37; --nav: #f0fbf5; --accent: #66b8aa; --pale: #c3e8df; --deep: #337b70; --on-accent: #103c34; --blue: #78a6b5; --copper: #b58b77; --mint: #83b696; --gold: #c6b47b;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #374c45;
+  --detail-verb-ink: #2a3b35; --detail-adjective-ink: #334841; --detail-phrasal-verb-ink: #374d46;
+}
+[data-colorway="apricot"] {
+  --outer: #f6e9df; --bg: #f6ecdf; --paper: #fff9f1; --soft: #f2e6d8; --ink: #33251c; --muted: #66503d; --rail: #49362a; --nav: #fff5e7; --accent: #eaa873; --pale: #f2d3b1; --deep: #a76d42; --on-accent: #3f2511; --blue: #859faa; --copper: #ba7c68; --mint: #8fac85; --gold: #c4a36a;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #534131;
+  --detail-verb-ink: #3d3025; --detail-adjective-ink: #513f30; --detail-phrasal-verb-ink: #544232;
+}
+[data-colorway="cobalt"] {
+  --outer: #e4eaf5; --bg: #e9edf9; --paper: #fafbff; --soft: #e5e9f6; --ink: #1c2744; --muted: #465372; --rail: #1f2b49; --nav: #edf4ff; --accent: #84a0e5; --pale: #cdd9f3; --deep: #526fb5; --on-accent: #152745; --blue: #8196bc; --copper: #b386a4; --mint: #85aca7; --gold: #bead77;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #38425b;
+  --detail-verb-ink: #2e364a; --detail-adjective-ink: #364058; --detail-phrasal-verb-ink: #3a455f;
+}
+[data-colorway="orchid"] {
+  --outer: #f0e5ee; --bg: #f4edf5; --paper: #fffbfe; --soft: #eee3ee; --ink: #34283b; --muted: #615067; --rail: #402c42; --nav: #fbf3fc; --accent: #ca96c2; --pale: #ebd0e6; --deep: #8d628b; --on-accent: #3a1d37; --blue: #9c93be; --copper: #c18491; --mint: #8bb3a1; --gold: #bfad89;
+  --photo-filter: saturate(.88);
+  --muted-caption-ink: #4e4052;
+  --detail-verb-ink: #3d3241; --detail-adjective-ink: #4a3d4e; --detail-phrasal-verb-ink: #524458;
+}
+:root {--edge:color-mix(in srgb,var(--ink) 8%,transparent);--shadow:color-mix(in srgb,var(--ink) 11%,transparent);--faint:color-mix(in srgb,var(--muted) 19%,var(--paper));--ink-accent:color-mix(in srgb,var(--ink) 65%,var(--deep));--skin:color-mix(in srgb,var(--paper) 66%,var(--copper));--hair:color-mix(in srgb,var(--ink) 79%,var(--copper));--portrait-bg-0:color-mix(in srgb,var(--pale) 64%,var(--copper));--portrait-bg-1:color-mix(in srgb,var(--paper) 67%,var(--mint));--portrait-bg-2:color-mix(in srgb,var(--paper) 63%,var(--blue));}
+@font-face {font-family:'Outfit';src:url('fonts/outfit-latin.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:block;}
+* {box-sizing:border-box;} html,body {width:1440px;height:846px;overflow:hidden;margin:0;}
+body {font-family:'Outfit',sans-serif;background:var(--outer);}
+#art {display:block;width:1440px;height:846px;font-family:'Outfit',sans-serif;}
+.screen,.active-mark {opacity:0;visibility:hidden;} .bar-grow {transform-box:fill-box;transform-origin:center bottom;}
+.action {cursor:pointer;} .action:focus-visible {outline:1px solid var(--accent);outline-offset:1px;}
+
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) .ink-muted-caption { fill: var(--muted-caption-ink); }
+[data-colorway="dark"] .ink-ink-caption { fill: var(--ink-caption-ink); }
+
+:is([data-colorway="original"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="mono"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) #art > g.screen[data-panel="\31 "] > g.enter:nth-of-type(4) > text[x="\33 63"][y="\31 20"] { fill: var(--detail-verb-ink) !important; }
+:is([data-colorway="light"], [data-colorway="dark"], [data-colorway="mono"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) #art > g.screen[data-panel="\31 "] > g.enter:nth-of-type(2) > text[x="\31 75"][y="\31 20"] { fill: var(--detail-adjective-ink) !important; }
+:is([data-colorway="light"], [data-colorway="dark"], [data-colorway="mono"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) #art > g.screen[data-panel="\31 "] > g.enter:nth-of-type(3) > text[x="\32 69"][y="\31 20"] { fill: var(--detail-phrasal-verb-ink) !important; }
+[data-colorway="dark"] #art > g.screen[data-panel="\31 "] > g.enter:nth-of-type(3) > text[x="\32 70"][y="\31 67"] { fill: var(--detail-bring-up-ink) !important; }
+[data-colorway="dark"] #art > g.screen[data-panel="\31 "] > g.enter:nth-of-type(4) > text[x="\33 64"][y="\31 67"] { fill: var(--detail-elaborate-ink) !important; }
+</style></head><body>
+<svg id="art" role="group" aria-label="Pastel language studio" viewBox="0 0 576 338" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs><symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h6l3 2 3-2h6v15h-6l-3 2-3-2H3z M12 6v15"/></symbol>
+<symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3z M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M2 12h20M12 2q-8 10 0 20 8-10 0-20"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8 M5.5 10v10h5v-6h3v6h5V10"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3l4 5-2.5 3q2.3 3.8 5.6 5.7l3-2.6 5 3.7-2.2 3.1q-1.5 1-4.8-.6C8 17.4 4.8 13.9 2.9 8.7q-1-2.5.4-3.8z"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M15.6 15.6 21 21"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3 6 0 .8 2.6 2 .9 2.5-.8 2 4-2 1.7v2l2 1.7-2 4-2.5-.7-2 .9L15 22H9l-.8-2.7-2-.9-2.5.7-2-4 2-1.7v-2L1.7 9.7l2-4 2.5.8 2-.9z M12 9a3.2 3.2 0 1 0 0 6.4A3.2 3.2 0 0 0 12 9"/></symbol>
+
+<linearGradient id="lavender" x1="0" y1="0" x2="1" y2=".8"><stop offset="0" stop-color="var(--pale)" stop-opacity="1"/><stop offset="0.45" stop-color="var(--bg)" stop-opacity="1"/><stop offset="1" stop-color="var(--blue)" stop-opacity="0.52"/></linearGradient><linearGradient id="pink" x1="0" y1="0" x2="1" y2=".8"><stop offset="0" stop-color="var(--copper)" stop-opacity="0.27"/><stop offset="0.6" stop-color="var(--pale)" stop-opacity="0.1"/><stop offset="1" stop-color="var(--blue)" stop-opacity="0.32"/></linearGradient></defs>
+<rect x="0" y="0" width="576" height="338" rx="0" fill="var(--outer)"/><rect x="23" y="3" width="530" height="320" rx="14" fill="url(#lavender)"/><rect x="23" y="3" width="530" height="320" rx="14" fill="url(#pink)"/><g class="action" role="button" tabindex="0" aria-label="Replay language learning" data-replay="">
+<rect x="39" y="12" width="19" height="19" rx="5" fill="var(--rail)"/><rect x="44" y="16.6" width="9" height="9" rx="2" fill="none" stroke="var(--nav)" stroke-width="1.5"/><rect x="47" y="19.6" width="3" height="3" rx="0.5" fill="var(--nav)"/>
+</g><rect x="181" y="10" width="176" height="22" rx="10" fill="var(--paper)" opacity="0.83"/><rect x="183" y="13" width="45" height="16" rx="8" fill="var(--rail)"/><text x="205.5" y="22.436" font-size="4.35" font-weight="600" fill="var(--nav)" text-anchor="middle">Dashboard</text><text x="240" y="23" font-size="4.35" font-weight="510" fill="var(--muted)">Speaking             Progress             Courses</text><rect x="478" y="11" width="60" height="20" rx="10" fill="var(--paper)" opacity="0.65"/><svg x="486" y="18" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><svg x="505" y="17" width="6.2" height="6.2" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bell"/></svg><g>
+<circle cx="527" cy="21" r="7.7" fill="var(--paper)"/><circle cx="527" cy="21" r="7.15" fill="var(--portrait-bg-2)"/><path d="M521.225 25.851 Q527 20.692 532.775 25.851 Q527 29.47 521.225 25.851Z" fill="var(--mint)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="527" cy="19.537" r="2.849" fill="var(--skin)"/><path d="M524.074 19.922 q-0.385 -4.774 4.466 -3.465 q1.694 0.539 1.54 3.157 q-2.31 -0.462 -2.926 -1.848 q-0.77 1.386 -3.08 2.156Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><rect x="39" y="85" width="19" height="119" rx="8" fill="var(--paper)" opacity="0.86"/><g class="action" role="button" tabindex="0" aria-label="Dashboard" data-view="0">
+<rect x="40" y="88" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="93" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"/></svg><g class="active-mark" data-highlight="0">
+<circle cx="48.5" cy="96" r="8.3" fill="var(--rail)"/><svg x="45.5" y="93" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"/></svg>
+</g>
+</g><rect x="40" y="107.7" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="112.7" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-globe"/></svg><rect x="40" y="127.4" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="132.4" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg><g class="action" role="button" tabindex="0" aria-label="Word library" data-view="1">
+<rect x="40" y="147.1" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="152.1" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg><g class="active-mark" data-highlight="1">
+<circle cx="48.5" cy="155.1" r="8.3" fill="var(--rail)"/><svg x="45.5" y="152.1" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg>
+</g>
+</g><rect x="40" y="166.8" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="171.8" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg><rect x="40" y="186.5" width="17" height="16" rx="7" fill="transparent"/><svg x="46" y="191.5" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-settings"/></svg><circle cx="49" cy="258" r="8.6" fill="var(--rail)"/><svg x="46" y="255" width="5.6" height="5.6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-plus"/></svg><svg x="46" y="275" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg><g class="screen" data-panel="0" aria-label="Learning dashboard">
+<text x="73" y="61" font-size="19.1" font-weight="520" fill="var(--ink)">Dashboard</text><rect x="73" y="73" width="133" height="276" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="81" y="86" font-size="6.15" font-weight="595" fill="var(--ink)">Select a course</text><text x="81" y="95" font-size="4.45" font-weight="495" fill="var(--muted)">Your learning today</text><rect x="81" y="107" width="115" height="16" rx="7" fill="var(--soft)"/><text x="88" y="117" font-size="4.15" font-weight="495" fill="var(--muted)">Search</text><circle cx="190" cy="114" r="7.8" fill="var(--rail)"/><svg x="187" y="111" width="5.6" height="5.6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><g class="enter" data-lag="0.03">
+<rect x="81" y="129" width="117" height="67" rx="6" fill="var(--pale)" opacity="0.72"/><text x="88" y="145" font-size="8.35" font-weight="545" fill="var(--ink)">Speak with Confidence</text><text x="88" y="154" font-size="4.15" font-weight="470" fill="var(--ink)">Learn how to speak English clearly and</text><text x="88" y="159.1" font-size="4.15" font-weight="470" fill="var(--ink)">confidently in everyday situations.</text><rect x="88" y="176" width="12" height="12" rx="3.72" fill="var(--rail)"/><svg x="91" y="179" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg><text x="104" y="184" font-size="4.05" font-weight="495" fill="var(--muted)">27 Apr 2026</text><g>
+<circle cx="173" cy="183" r="5.4" fill="var(--paper)"/><circle cx="173" cy="183" r="4.85" fill="var(--portrait-bg-0)"/><path d="M168.95 186.402 Q173 182.784 177.05 186.402 Q173 188.94 168.95 186.402Z" fill="var(--accent)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="173" cy="181.974" r="1.998" fill="var(--skin)"/><path d="M170.948 182.244 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><g>
+<circle cx="183" cy="183" r="5.4" fill="var(--paper)"/><circle cx="183" cy="183" r="4.85" fill="var(--portrait-bg-1)"/><path d="M178.95 186.402 Q183 182.784 187.05 186.402 Q183 188.94 178.95 186.402Z" fill="var(--copper)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="183" cy="181.974" r="1.998" fill="var(--skin)"/><path d="M180.948 182.244 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+</g><g class="enter" data-lag="0.07">
+<rect x="81" y="200.6" width="117" height="67" rx="6" fill="var(--blue)" opacity="0.72"/><text x="88" y="216.6" font-size="8.35" font-weight="545" fill="var(--ink)" class="ink-ink-caption">Master the Basics</text><text x="88" y="225.6" font-size="4.15" font-weight="470" fill="var(--ink)" class="ink-ink-caption">Build strong foundations with applied</text><text x="88" y="230.7" font-size="4.15" font-weight="470" fill="var(--ink)" class="ink-ink-caption">confidently in everyday situations.</text><rect x="88" y="247.6" width="12" height="12" rx="3.72" fill="var(--rail)"/><svg x="91" y="250.6" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg><text x="104" y="255.6" font-size="4.05" font-weight="495" fill="var(--muted)" class="ink-muted-caption">30 Apr 2026</text><g>
+<circle cx="173" cy="254.6" r="5.4" fill="var(--paper)"/><circle cx="173" cy="254.6" r="4.85" fill="var(--portrait-bg-1)"/><path d="M168.95 258.002 Q173 254.384 177.05 258.002 Q173 260.54 168.95 258.002Z" fill="var(--copper)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="173" cy="253.574" r="1.998" fill="var(--skin)"/><path d="M170.948 253.844 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><g>
+<circle cx="183" cy="254.6" r="5.4" fill="var(--paper)"/><circle cx="183" cy="254.6" r="4.85" fill="var(--portrait-bg-2)"/><path d="M178.95 258.002 Q183 254.384 187.05 258.002 Q183 260.54 178.95 258.002Z" fill="var(--mint)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="183" cy="253.574" r="1.998" fill="var(--skin)"/><path d="M180.948 253.844 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+</g><g class="enter" data-lag="0.11">
+<rect x="81" y="272.2" width="117" height="67" rx="6" fill="var(--mint)" opacity="0.72"/><text x="88" y="288.2" font-size="8.35" font-weight="545" fill="var(--ink)" class="ink-ink-caption">Sound Like a Native</text><text x="88" y="297.2" font-size="4.15" font-weight="470" fill="var(--ink)" class="ink-ink-caption">Improve your pronunciation and intonation</text><text x="88" y="302.3" font-size="4.15" font-weight="470" fill="var(--ink)" class="ink-ink-caption">confidently in everyday situations.</text><rect x="88" y="319.2" width="12" height="12" rx="3.72" fill="var(--rail)"/><svg x="91" y="322.2" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-calendar"/></svg><text x="104" y="327.2" font-size="4.05" font-weight="495" fill="var(--muted)" class="ink-muted-caption">9 May 2026</text><g>
+<circle cx="173" cy="326.2" r="5.4" fill="var(--paper)"/><circle cx="173" cy="326.2" r="4.85" fill="var(--portrait-bg-2)"/><path d="M168.95 329.602 Q173 325.984 177.05 329.602 Q173 332.14 168.95 329.602Z" fill="var(--mint)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="173" cy="325.174" r="1.998" fill="var(--skin)"/><path d="M170.948 325.444 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><g>
+<circle cx="183" cy="326.2" r="5.4" fill="var(--paper)"/><circle cx="183" cy="326.2" r="4.85" fill="var(--portrait-bg-0)"/><path d="M178.95 329.602 Q183 325.984 187.05 329.602 Q183 332.14 178.95 329.602Z" fill="var(--gold)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="183" cy="325.174" r="1.998" fill="var(--skin)"/><path d="M180.948 325.444 q-0.27 -3.348 3.132 -2.43 q1.188 0.378 1.08 2.214 q-1.62 -0.324 -2.052 -1.296 q-0.54 0.972 -2.16 1.512Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g>
+</g><g class="enter" data-lag="0.09">
+<rect x="212" y="73" width="325" height="133" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="220" y="86" font-size="6.15" font-weight="595" fill="var(--ink)">Performance Chart</text><text x="220" y="95" font-size="4.45" font-weight="495" fill="var(--muted)">Your learning performance</text><text x="221" y="109" font-size="4.45" font-weight="495" fill="var(--muted)">◈  Theory     ✧  Practice     ▲  Lesson</text><text x="527" y="89" font-size="4.15" font-weight="515" fill="var(--muted)" text-anchor="end">Weekly  ⌄</text><path d="M221 173C234 163 235 178 251 171S264 175 278 167S299 162 311 159S332 147 347 150S368 156 384 146S409 136 432 129S459 136 473 131S489 143 497 135L511 125 L511 184H221Z" fill="var(--deep)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" opacity=".07"/><path d="M221 173C234 163 235 178 251 171S264 175 278 167S299 162 311 159S332 147 347 150S368 156 384 146S409 136 432 129S459 136 473 131S489 143 497 135L511 125" fill="none" stroke="var(--deep)" stroke-width="0.78" stroke-linecap="round" stroke-linejoin="round" class="draw" pathLength="100" stroke-dasharray="100"/><path d="M221 177C234 167 235 182 251 175S264 179 278 171S299 166 311 163S332 151 347 154S368 160 384 150S409 140 432 133S459 140 473 135S489 147 497 139L511 129 L511 184H221Z" fill="var(--copper)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" opacity=".07"/><path d="M221 177C234 167 235 182 251 175S264 179 278 171S299 166 311 163S332 151 347 154S368 160 384 150S409 140 432 133S459 140 473 135S489 147 497 139L511 129" fill="none" stroke="var(--copper)" stroke-width="0.78" stroke-linecap="round" stroke-linejoin="round" class="draw" pathLength="100" stroke-dasharray="100"/><path d="M221 181C234 171 235 186 251 179S264 183 278 175S299 170 311 167S332 155 347 158S368 164 384 154S409 144 432 137S459 144 473 139S489 151 497 143L511 133 L511 184H221Z" fill="var(--blue)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" opacity=".07"/><path d="M221 181C234 171 235 186 251 179S264 183 278 175S299 170 311 167S332 155 347 158S368 164 384 154S409 144 432 137S459 144 473 139S489 151 497 143L511 133" fill="none" stroke="var(--blue)" stroke-width="0.78" stroke-linecap="round" stroke-linejoin="round" class="draw" pathLength="100" stroke-dasharray="100"/><text x="237.125" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Jan</text><text x="273.375" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Feb</text><text x="309.625" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Mar</text><text x="345.875" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Apr</text><text x="382.125" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">May</text><text x="418.375" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Jun</text><text x="454.625" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Jul</text><text x="490.875" y="197" font-size="3.9" font-weight="460" fill="var(--muted)" text-anchor="middle">Aug</text><rect x="212" y="212" width="164" height="139" rx="7" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="220" y="225" font-size="6.15" font-weight="595" fill="var(--ink)">Homework</text><text x="220" y="234" font-size="4.45" font-weight="495" fill="var(--muted)">Daily plan for the next week</text><rect x="379" y="212" width="158" height="139" rx="7" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="387" y="225" font-size="6.15" font-weight="595" fill="var(--ink)">Friends Score</text><text x="387" y="234" font-size="4.45" font-weight="495" fill="var(--muted)">Updated today</text><rect x="220" y="246" width="16" height="16" rx="4.96" fill="var(--rail)"/><svg x="224" y="250" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg><text x="242" y="254" font-size="4.4" font-weight="495" fill="var(--muted)">Learn 10 new words today</text><rect x="241" y="259" width="77" height="1.6" rx="1" fill="var(--soft)"/><rect x="241" y="259" width="49" height="1.6" rx="1" fill="var(--mint)"/><text x="365" y="258" font-size="7.35" font-weight="560" fill="var(--ink)" text-anchor="end">57%</text><g>
+<circle cx="394" cy="254" r="6.5" fill="var(--paper)"/><circle cx="394" cy="254" r="5.95" fill="var(--portrait-bg-0)"/><path d="M389.125 258.095 Q394 253.74 398.875 258.095 Q394 261.15 389.125 258.095Z" fill="var(--accent)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="394" cy="252.765" r="2.405" fill="var(--skin)"/><path d="M391.53 253.09 q-0.325 -4.03 3.77 -2.925 q1.43 0.455 1.3 2.665 q-1.95 -0.39 -2.47 -1.56 q-0.65 1.17 -2.6 1.82Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><text x="406" y="254" font-size="4.8" font-weight="555" fill="var(--ink)">Mara Coleman</text><text x="406" y="259" font-size="3.8" font-weight="495" fill="var(--muted)">Level 4</text><text x="528" y="258" font-size="8.65" font-weight="525" fill="var(--ink)" text-anchor="end">10,230</text><rect x="220" y="270" width="16" height="16" rx="4.96" fill="var(--rail)"/><svg x="224" y="274" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg><text x="242" y="278" font-size="4.4" font-weight="495" fill="var(--muted)">Do 1 grammar task</text><rect x="241" y="283" width="77" height="1.6" rx="1" fill="var(--soft)"/><rect x="241" y="283" width="42" height="1.6" rx="1" fill="var(--mint)"/><text x="365" y="282" font-size="7.35" font-weight="560" fill="var(--ink)" text-anchor="end">38%</text><g>
+<circle cx="394" cy="278" r="6.5" fill="var(--paper)"/><circle cx="394" cy="278" r="5.95" fill="var(--portrait-bg-1)"/><path d="M389.125 282.095 Q394 277.74 398.875 282.095 Q394 285.15 389.125 282.095Z" fill="var(--copper)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="394" cy="276.765" r="2.405" fill="var(--skin)"/><path d="M391.53 277.09 q-0.325 -4.03 3.77 -2.925 q1.43 0.455 1.3 2.665 q-1.95 -0.39 -2.47 -1.56 q-0.65 1.17 -2.6 1.82Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><text x="406" y="278" font-size="4.8" font-weight="555" fill="var(--ink)">Lee Ritter</text><text x="406" y="283" font-size="3.8" font-weight="495" fill="var(--muted)">Level 5</text><text x="528" y="282" font-size="8.65" font-weight="525" fill="var(--ink)" text-anchor="end">9,658</text><rect x="220" y="294" width="16" height="16" rx="4.96" fill="var(--rail)"/><svg x="224" y="298" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg><text x="242" y="302" font-size="4.4" font-weight="495" fill="var(--muted)">Listen to one conversation</text><rect x="241" y="307" width="77" height="1.6" rx="1" fill="var(--soft)"/><rect x="241" y="307" width="35" height="1.6" rx="1" fill="var(--mint)"/><text x="365" y="306" font-size="7.35" font-weight="560" fill="var(--ink)" text-anchor="end">26%</text><g>
+<circle cx="394" cy="302" r="6.5" fill="var(--paper)"/><circle cx="394" cy="302" r="5.95" fill="var(--portrait-bg-2)"/><path d="M389.125 306.095 Q394 301.74 398.875 306.095 Q394 309.15 389.125 306.095Z" fill="var(--mint)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="394" cy="300.765" r="2.405" fill="var(--skin)"/><path d="M391.53 301.09 q-0.325 -4.03 3.77 -2.925 q1.43 0.455 1.3 2.665 q-1.95 -0.39 -2.47 -1.56 q-0.65 1.17 -2.6 1.82Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><text x="406" y="302" font-size="4.8" font-weight="555" fill="var(--ink)">Jade Evans</text><text x="406" y="307" font-size="3.8" font-weight="495" fill="var(--muted)">Level 6</text><text x="528" y="306" font-size="8.65" font-weight="525" fill="var(--ink)" text-anchor="end">8,532</text><rect x="220" y="318" width="16" height="16" rx="4.96" fill="var(--rail)"/><svg x="224" y="322" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-book"/></svg><text x="242" y="326" font-size="4.4" font-weight="495" fill="var(--muted)">Practice pronunciation</text><rect x="241" y="331" width="77" height="1.6" rx="1" fill="var(--soft)"/><rect x="241" y="331" width="28" height="1.6" rx="1" fill="var(--mint)"/><text x="365" y="330" font-size="7.35" font-weight="560" fill="var(--ink)" text-anchor="end">67%</text><g>
+<circle cx="394" cy="326" r="6.5" fill="var(--paper)"/><circle cx="394" cy="326" r="5.95" fill="var(--portrait-bg-0)"/><path d="M389.125 330.095 Q394 325.74 398.875 330.095 Q394 333.15 389.125 330.095Z" fill="var(--gold)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="394" cy="324.765" r="2.405" fill="var(--skin)"/><path d="M391.53 325.09 q-0.325 -4.03 3.77 -2.925 q1.43 0.455 1.3 2.665 q-1.95 -0.39 -2.47 -1.56 q-0.65 1.17 -2.6 1.82Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><text x="406" y="326" font-size="4.8" font-weight="555" fill="var(--ink)">Nico Hale</text><text x="406" y="331" font-size="3.8" font-weight="495" fill="var(--muted)">Level 7</text><text x="528" y="330" font-size="8.65" font-weight="525" fill="var(--ink)" text-anchor="end">7,982</text>
+</g>
+</g><g class="screen" data-panel="1" aria-label="Word library">
+<text x="73" y="61" font-size="19.35" font-weight="520" fill="var(--ink)">Word library</text><g class="enter" data-lag="0.1">
+<rect x="74" y="106" width="88" height="76" rx="6" fill="var(--pale)" opacity="0.64"/><text x="81" y="120" font-size="4.25" font-weight="500" fill="var(--muted)">Adjective</text><circle cx="149" cy="119" r="3.7" fill="var(--rail)"/><text x="82" y="167" font-size="9.7" font-weight="555" fill="var(--ink)">Resilient</text><circle cx="148" cy="169" r="6.8" fill="var(--rail)"/><svg x="145.8" y="166.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-play"/></svg>
+</g><g class="enter" data-lag="0.15">
+<rect x="168" y="106" width="88" height="76" rx="6" fill="var(--blue)" opacity="0.64"/><text x="175" y="120" font-size="4.25" font-weight="500" fill="var(--muted)">Adjective</text><circle cx="243" cy="119" r="3.7" fill="var(--rail)"/><text x="176" y="167" font-size="9.7" font-weight="555" fill="var(--ink)">Meticulous</text><circle cx="242" cy="169" r="6.8" fill="var(--rail)"/><svg x="239.8" y="166.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-play"/></svg>
+</g><g class="enter" data-lag="0.2">
+<rect x="262" y="106" width="88" height="76" rx="6" fill="var(--mint)" opacity="0.64"/><text x="269" y="120" font-size="4.25" font-weight="500" fill="var(--muted)">Phrasal verb</text><circle cx="337" cy="119" r="3.7" fill="var(--rail)"/><text x="270" y="167" font-size="9.7" font-weight="555" fill="var(--ink)">Bring up</text><circle cx="336" cy="169" r="6.8" fill="var(--rail)"/><svg x="333.8" y="166.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-play"/></svg>
+</g><g class="enter" data-lag="0.25">
+<rect x="356" y="106" width="88" height="76" rx="6" fill="var(--copper)" opacity="0.64"/><text x="363" y="120" font-size="4.25" font-weight="500" fill="var(--muted)">Verb</text><circle cx="431" cy="119" r="3.7" fill="var(--rail)"/><text x="364" y="167" font-size="9.7" font-weight="555" fill="var(--ink)">Elaborate</text><circle cx="430" cy="169" r="6.8" fill="var(--rail)"/><svg x="427.8" y="166.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-play"/></svg>
+</g>
+</g><g aria-label="Fluente theme">
+<rect x="251" y="312" width="76" height="18" rx="9" fill="var(--rail)"/><rect x="253" y="314" width="37" height="14" rx="7" fill="var(--paper)"/><text x="271.5" y="322.551" font-size="4.7" font-weight="600" fill="var(--ink)" text-anchor="middle">●  Fluente</text><text x="308" y="323" font-size="4.4" font-weight="500" fill="var(--nav)" text-anchor="middle">✦  Ember</text>
+</g>
+</svg>
+<script>
+const duration=3.8333333333, moments=[1.67, 3.76], windows=[[0.08, 3.28], [3.45, 3.8333333333]], navWindows=[[0, 3.3], [3.3, 3.8333333333]];
+
+function track(el, keys) {
+  return el.animate(keys.map(([t,properties])=>({...properties,offset:Math.min(1,Math.max(0,t/duration))})),{duration:duration*1000,iterations:Infinity,fill:'both'});
+}
+function enter(el,t,len,a,b,ease='cubic-bezier(.2,.7,.25,1)') {
+  return track(el,[[0,a],[t,{...a,easing:ease}],[t+len,b],[duration,b]]);
+}
+function windowFor(el,start,end,fade=.18,first=false) {
+  const hidden={visibility:'hidden',opacity:0};
+  const shown={visibility:'visible',opacity:1};
+  const keys=[[0,hidden]];
+  if(start>0)keys.push([start-.001,hidden]);
+  keys.push([start,{visibility:'visible',opacity:first?1:0}],[start+fade,shown],[Math.max(start+fade,end-fade),shown]);
+  if(end<duration)keys.push([end,hidden],[duration,hidden]);else keys.push([end,shown]);
+  return track(el,keys);
+}
+function prepareNumber(el,start) {
+  const ns='http://www.w3.org/2000/svg', value=Number(el.dataset.counter), steps=16;
+  const formatter=new Intl.NumberFormat('en-US',{minimumFractionDigits:+el.dataset.digits,maximumFractionDigits:+el.dataset.digits});
+  const parent=document.createElementNS(ns,'g'); parent.setAttribute('aria-label',el.textContent);
+  el.replaceWith(parent);
+  const t=start+Number(el.dataset.delay), len=Number(el.dataset.length);
+  for(let i=0;i<=steps;i++) {
+    const step=el.cloneNode(false); step.removeAttribute('data-counter'); step.setAttribute('aria-hidden','true');
+    step.textContent=el.dataset.prefix+formatter.format(value*(1-(1-i/steps)**2))+el.dataset.suffix;
+    parent.append(step);
+    const a=Math.min(duration,t+len*i/steps), b=Math.min(duration,t+len*(i+1)/steps);
+    const off={opacity:0}, on={opacity:1};
+    const frames=i===0?[[0,on],[Math.max(0,b-.0001),on],[b,off],[duration,off]]:i===steps?[[0,off],[Math.max(0,a-.0001),off],[a,on],[duration,on]]:[[0,off],[Math.max(0,a-.0001),off],[a,on],[Math.max(a,b-.0001),on],[b,off],[duration,off]];
+    track(step,frames);
+  }
+}
+for(const pan of document.querySelectorAll('[data-panel]')) {
+  const i=Number(pan.dataset.panel),[start,end]=windows[i];
+  windowFor(pan,start,end,Math.min(.19,(end-start)/3));
+  pan.querySelectorAll('.enter').forEach(el=>enter(el,start+Number(el.dataset.lag),.28,{opacity:0,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}));
+  pan.querySelectorAll('[data-counter]').forEach(el=>prepareNumber(el,start));
+  pan.querySelectorAll('.bar-grow').forEach(el=>enter(el,start+.25+Number(el.dataset.lag||0),.60,{transform:'scaleY(0)'},{transform:'scaleY(1)'}));
+  pan.querySelectorAll('.draw').forEach((el,n)=>enter(el,start+.30+n*.035,.8,{strokeDashoffset:'100'},{strokeDashoffset:'0'}));
+}
+for(const mark of document.querySelectorAll('[data-highlight]')){const i=+mark.dataset.highlight;windowFor(mark,navWindows[i][0],navWindows[i][1],.025,i===0);}
+function selectView(i) { for(const a of document.getAnimations()){a.pause();a.currentTime=moments[i]*1000;} }
+function activate(el,fn){el.addEventListener('click',fn);el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn();}});}
+for(const control of document.querySelectorAll('[data-view]')) activate(control,()=>selectView(+control.dataset.view));
+for(const control of document.querySelectorAll('[data-replay]')) activate(control,()=>{for(const a of document.getAnimations()){a.currentTime=0;a.play();}});
+if(!location.search&&matchMedia('(prefers-reduced-motion:reduce)').matches)selectView(0);
+
+
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body></html>

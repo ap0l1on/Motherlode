@@ -22,7 +22,7 @@ Dashboards for every kind of data.
 | [Customer support](customer-support/) | Tickets and help desks |
 | [Healthcare](healthcare/) | Patients, clinics and medical data · **1 design** |
 | [Fitness](fitness/) | Workouts and health tracking · **1 design** |
-| [Education](education/) | Schools, courses and learning platforms |
+| [Education](education/) | Schools, courses and learning platforms · **1 design** |
 | [Student portals](student-portals/) | Student and parent portals |
 | [Social media](social-media/) | Social media stats and scheduling |
 | [Smart home](smart-home/) | Smart home and IoT controls |

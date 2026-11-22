@@ -3,4 +3,12 @@
 
 Schools, courses and learning platforms.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="pastel-language-studio/"><img src="pastel-language-studio/preview.gif" width="260" alt="Pastel language studio"></a><br><a href="pastel-language-studio/"><b>Pastel language studio</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
