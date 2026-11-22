@@ -26,7 +26,7 @@ Whole apps, sorted by what they do.
 | [Fitness](fitness/) | Workout and training apps |
 | [Meditation](meditation/) | Meditation and wellbeing |
 | [Language learning](language-learning/) | Language learning apps |
-| [Education](education/) | Learning and course apps |
+| [Education](education/) | Learning and course apps · **1 design** |
 | [Kids](kids/) | Apps for kids |
 | [Music](music/) | Music streaming and players · **1 design** |
 | [Video streaming](video-streaming/) | Video and TV streaming |

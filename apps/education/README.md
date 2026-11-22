@@ -3,4 +3,12 @@
 
 Learning and course apps.
 
-Part of [Apps](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Apps](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="midnight-code-kitchen/"><img src="midnight-code-kitchen/preview.gif" width="260" alt="Midnight code kitchen"></a><br><a href="midnight-code-kitchen/"><b>Midnight code kitchen</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
