@@ -5,10 +5,10 @@ Progress bars and rings.
 
 Part of [UI](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="cobalt-outlined-progress/"><img src="cobalt-outlined-progress/preview.gif" width="260" alt="Cobalt outlined progress"></a><br><a href="cobalt-outlined-progress/"><b>Cobalt outlined progress</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="cobalt-outlined-progress/"><img src="cobalt-outlined-progress/preview.gif" width="260" alt="Cobalt outlined progress"></a><br><a href="cobalt-outlined-progress/"><b>Cobalt outlined progress</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="folded-cobalt-progress-ribbon/"><img src="folded-cobalt-progress-ribbon/preview.gif" width="260" alt="Folded cobalt progress ribbon"></a><br><a href="folded-cobalt-progress-ribbon/"><b>Folded cobalt progress ribbon</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
