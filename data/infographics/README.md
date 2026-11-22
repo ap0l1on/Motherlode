@@ -5,10 +5,10 @@ Infographics.
 
 Part of [Data](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="home-and-landing-field-guide/"><img src="home-and-landing-field-guide/preview.png" width="260" alt="Home and landing field guide"></a><br><a href="home-and-landing-field-guide/"><b>Home and landing field guide</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="home-and-landing-field-guide/"><img src="home-and-landing-field-guide/preview.png" width="260" alt="Home and landing field guide"></a><br><a href="home-and-landing-field-guide/"><b>Home and landing field guide</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="seven-layer-network-card/"><img src="seven-layer-network-card/preview.png" width="260" alt="Seven-layer network card"></a><br><a href="seven-layer-network-card/"><b>Seven-layer network card</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
