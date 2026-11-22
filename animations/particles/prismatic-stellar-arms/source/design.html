@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="464x260">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13">
+  <meta name="motherlode:still" content="5">
+  <title>Prismatic stellar arms</title>
+  <style>
+:root, [data-colorway="original"] { --background: #03040b; --shade: #7961e7; --middle: #f1a1c7; --bright: #84deed; --highlight: #fffafd; --leaf: #e3ae5b; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 464px; height: 260px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 464 260" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Prismatic stellar arms</title>
+    <desc id="description">Five luminous strands unfurl around a white point of light and flatten into a bright, edge-on spiral.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{});
+    const glow=radial(defs,"hot-core",[[0,"highlight",1],[.064,"highlight",1],[.17,"highlight",.63],[.48,"bright",.14],[1,"shade",0]]);
+    const group=element("g",{});
+    const sky=[[],[],[]];for(let i=0;i<3000;i++){
+      const k=Math.min(2,Math.floor(random()**2.8*3));sky[k].push("M"+(random()*464).toFixed(1)+" "+(random()*260).toFixed(1)+"h.05");
+    }
+    sky.forEach((s,i)=>line(drawing,s.join(""),"highlight",[.55,.87,1.8][i],[.3,.58,.96][i]));
+    drawing.append(group);
+    const spiral=element("g",{},group);
+    const shades=["bright","middle","leaf","highlight","shade"];
+    for(let arm=0;arm<5;arm++){
+      const pts=[],grains=[],phase=arm*tau/5;
+      for(let j=0;j<=160;j++){
+        const u=j/160,r=195*u,theta=phase+5.35*Math.sqrt(u)+.16*Math.sin(u*14+phase)+.065*Math.sin(u*47+phase);
+        const x=r*Math.cos(theta),y=r*Math.sin(theta);pts.push([x,y]);
+        for(let k=0;k<15;k++){
+          const s=2.4+7.6*u;grains.push("M"+(x+(random()-random())*s).toFixed(1)+" "+(y+(random()-random())*s).toFixed(1)+"h.1");
+        }
+      }
+      line(spiral,pointsPath(pts),shades[arm],9,.27);
+      line(spiral,pointsPath(pts),shades[arm],2.75,.92);
+      line(spiral,grains.join(""),shades[arm],1.67,.9);
+    }
+    element("circle",{r:104,fill:glow},spiral);
+    const poses=[[0,.055,.92,0],[.12,.20,.91,.2],[.27,.97,.69,1.05],[.47,1.22,.34,2.2],
+      [.71,1.48,.31,3.5],[.87,2.08,.22,4.65],[.94,2.48,.19,5.3],[1,.055,.92,tau]];
+    spiral.animate(poses.map(([offset,scale,incline,angle])=>({offset,
+      transform:"matrix("+[scale*Math.cos(angle),scale*incline*Math.sin(angle),-scale*Math.sin(angle),
+        scale*incline*Math.cos(angle),232,130].join(",")+")"})),{duration,iterations:Infinity});
+    const burst=element("circle",{cx:232,cy:130,r:124,fill:glow});
+    burst.animate([{offset:0,opacity:.2},{offset:.22,opacity:0},{offset:.63,opacity:0},{offset:.92,opacity:1},{offset:1,opacity:.2}],{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
