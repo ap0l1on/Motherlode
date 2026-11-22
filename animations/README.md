@@ -29,7 +29,7 @@ Animation for screens, the web and beyond.
 | [Stop motion](stop-motion/) | Stop motion |
 | [Claymation](claymation/) | Claymation |
 | [Pixel animation](pixel-animation/) | Pixel art animation |
-| [Motion graphics](motion-graphics/) | Motion graphics · **10 designs** |
+| [Motion graphics](motion-graphics/) | Motion graphics · **11 designs** |
 | [Liquid motion](liquid-motion/) | Liquid and fluid motion |
 | [Morphing](morphing/) | Shape morphing |
 | [Particles](particles/) | Particle effects · **6 designs** |

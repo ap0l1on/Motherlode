@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="524x943">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="12">
+  <meta name="motherlode:still" content="10.5">
+  <title>Jade four-point filament</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010202; --shade: #163333; --middle: #398b85; --bright: #59cfbf; --highlight: #8cebe4; --leaf: #317d83; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 524px; height: 943px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 524 943" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Jade four-point filament</title>
+    <desc id="description">Fine jade threads draw four gently hooked points on a tall black field. A bright rim traces each newly formed curve.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 12 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx = 267, cy = 557;
+    const whole = element("g", {transform: "translate(" + cx + " " + cy + ")"});
+    for (let arm = 0; arm < 4; arm++) {
+      const part = element("g", {transform: "rotate(" + arm * 90 + ")"}, whole);
+      for (let row = 0; row < 37; row++) {
+        const u = row / 36, angle = u * Math.PI * .51;
+        const x = 21 - 51 * Math.sin(angle), y = -137 + 56 * (1 - Math.cos(angle));
+        const gx = -24 + 49 * (1 - u), gy = 18 + 21 * u;
+        const endX = 137 - 55 * (1 - Math.cos(angle)), endY = 21 - 51 * Math.sin(angle);
+        const d = "M" + x + " " + y + " C" + x + " " + (-42 + 28 * u) + " " + gx + " " + gy
+          + " " + endX + " " + endY;
+        const path = line(part, d, row % 6 ? "bright" : "highlight", row % 7 ? .66 : .95, .85);
+        path.setAttribute("pathLength", 1);
+        path.setAttribute("stroke-dasharray", "1 1");
+        const at = .015 + .77 * (1 - u);
+        path.animate([{offset: 0, strokeDashoffset: 1}, {offset: at, strokeDashoffset: 1},
+          {offset: at + .13, strokeDashoffset: 0}, {offset: .985, strokeDashoffset: 0},
+          {offset: 1, strokeDashoffset: 1}], {duration, iterations: Infinity});
+      }
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
