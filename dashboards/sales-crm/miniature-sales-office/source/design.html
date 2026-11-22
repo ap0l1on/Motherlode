@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x736">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6.875">
+<meta name="motherlode:still" content="0.49">
+<title>Miniature sales office</title>
+<style>
+:root, [data-colorway="original"] {
+  --outer: #f1eff2; --bg: #f1eff2; --paper: #ffffff; --soft: #f4f4f4; --ink: #202020; --muted: #4a4a4d; --rail: #171719; --nav: #fffafa; --accent: #e2754c; --pale: #f2d9d0; --deep: #a6482e; --on-accent: #32170f; --blue: #829bba; --copper: #ba7490; --mint: #8fb698; --gold: #c7a672;
+  --photo-filter: saturate(.88);
+  --floor-ink: #525050;
+  --detail-l-ink: #2e2d2d;
+}
+[data-colorway="light"] {
+  --outer: #f6f4f1; --bg: #f6f2ec; --paper: #fffdfa; --soft: #f3eee8; --ink: #2a2421; --muted: #62584e; --rail: #45372e; --nav: #fff8ed; --accent: #c89974; --pale: #f0ddc5; --deep: #865c42; --on-accent: #2e1d13; --blue: #7d92a3; --copper: #b47367; --mint: #72917a; --gold: #afa06c;
+  --photo-filter: saturate(.88);
+  --floor-ink: #524f4c;
+  --detail-l-ink: #262524;
+}
+[data-colorway="dark"] {
+  --outer: #0d1119; --bg: #1c202b; --paper: #2a3040; --soft: #363b4b; --ink: #f5effa; --muted: #d1c9d6; --rail: #11151d; --nav: #f6f2ff; --accent: #bd9eec; --pale: #564867; --deep: #846ba5; --on-accent: #261b35; --blue: #8dace3; --copper: #e8a1a1; --mint: #95cdb4; --gold: #d5c187;
+  --photo-filter: saturate(.88);
+  --floor-ink: #515054;
+  --detail-l-ink: #3e3c40;
+}
+[data-colorway="mono"] {
+  --outer: #f8f8f8; --bg: #eaeaea; --paper: #fdfdfd; --soft: #eeeeee; --ink: #1c1c1c; --muted: #535353; --rail: #202020; --nav: #fafafa; --accent: #a6a6a6; --pale: #d8d8d8; --deep: #777777; --on-accent: #191919; --blue: #858585; --copper: #999999; --mint: #ababab; --gold: #bdbdbd;
+  --photo-filter: grayscale(1);
+  --floor-ink: #505050;
+  --detail-l-ink: #191919;
+}
+[data-colorway="lagoon"] {
+  --outer: #e5f1ed; --bg: #e6efec; --paper: #f7fcf9; --soft: #dfebe7; --ink: #172e2a; --muted: #415b52; --rail: #183b37; --nav: #f0fbf5; --accent: #66b8aa; --pale: #c3e8df; --deep: #337b70; --on-accent: #103c34; --blue: #78a6b5; --copper: #b58b77; --mint: #83b696; --gold: #c6b47b;
+  --photo-filter: saturate(.88);
+  --floor-ink: #4d504e;
+  --detail-l-ink: #323533;
+}
+[data-colorway="apricot"] {
+  --outer: #f6e9df; --bg: #f6ecdf; --paper: #fff9f1; --soft: #f2e6d8; --ink: #33251c; --muted: #66503d; --rail: #49362a; --nav: #fff5e7; --accent: #eaa873; --pale: #f2d3b1; --deep: #a76d42; --on-accent: #3f2511; --blue: #859faa; --copper: #ba7c68; --mint: #8fac85; --gold: #c4a36a;
+  --photo-filter: saturate(.88);
+  --floor-ink: #54514c;
+  --detail-l-ink: #33312e;
+}
+[data-colorway="cobalt"] {
+  --outer: #e4eaf5; --bg: #e9edf9; --paper: #fafbff; --soft: #e5e9f6; --ink: #1c2744; --muted: #465372; --rail: #1f2b49; --nav: #edf4ff; --accent: #84a0e5; --pale: #cdd9f3; --deep: #526fb5; --on-accent: #152745; --blue: #8196bc; --copper: #b386a4; --mint: #85aca7; --gold: #bead77;
+  --photo-filter: saturate(.88);
+  --floor-ink: #4e5154;
+  --detail-l-ink: #2b2c2e;
+}
+[data-colorway="orchid"] {
+  --outer: #f0e5ee; --bg: #f4edf5; --paper: #fffbfe; --soft: #eee3ee; --ink: #34283b; --muted: #615067; --rail: #402c42; --nav: #fbf3fc; --accent: #ca96c2; --pale: #ebd0e6; --deep: #8d628b; --on-accent: #3a1d37; --blue: #9c93be; --copper: #c18491; --mint: #8bb3a1; --gold: #bfad89;
+  --photo-filter: saturate(.88);
+  --floor-ink: #535053;
+  --detail-l-ink: #302e30;
+}
+:root {--edge:color-mix(in srgb,var(--ink) 8%,transparent);--shadow:color-mix(in srgb,var(--ink) 11%,transparent);--faint:color-mix(in srgb,var(--muted) 19%,var(--paper));--ink-accent:color-mix(in srgb,var(--ink) 65%,var(--deep));--skin:color-mix(in srgb,var(--paper) 66%,var(--copper));--hair:color-mix(in srgb,var(--ink) 79%,var(--copper));--portrait-bg-0:color-mix(in srgb,var(--pale) 64%,var(--copper));--portrait-bg-1:color-mix(in srgb,var(--paper) 67%,var(--mint));--portrait-bg-2:color-mix(in srgb,var(--paper) 63%,var(--blue));}
+@font-face {font-family:'Inter';src:url('fonts/inter-latin.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:block;}
+* {box-sizing:border-box;} html,body {width:1440px;height:736px;overflow:hidden;margin:0;}
+body {font-family:'Inter',sans-serif;background:var(--outer);}
+#art {display:block;width:1440px;height:736px;font-family:'Inter',sans-serif;}
+.screen,.active-mark {opacity:0;visibility:hidden;} .bar-grow {transform-box:fill-box;transform-origin:center bottom;}
+.action {cursor:pointer;} .action:focus-visible {outline:1px solid var(--accent);outline-offset:1px;}
+.floor{transform-origin:0 0;}.figure-world{filter:var(--photo-filter);}
+
+:is([data-colorway="original"], [data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) .ink-floor { fill: var(--floor-ink); }
+
+:is([data-colorway="original"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="mono"], [data-colorway="lagoon"], [data-colorway="apricot"], [data-colorway="cobalt"], [data-colorway="orchid"]) #art > g.profile-overlay > text[x="\39 9"][y="\38 8"] { fill: var(--detail-l-ink) !important; }
+</style></head><body>
+<svg id="art" role="group" aria-label="Miniature sales office" viewBox="0 0 576 294" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs><symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M14 2 5 14h6l-1 8 9-13h-6z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h17 M8 14v-3m5 3V7m5 7v-5"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20m5-16q-2-2-5-2c-7 0-7 8-.3 8 7 0 7 8 .3 8-3 0-5-2-6-3"/></symbol>
+<symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 2q4-4 8-1t7 0v9q-4 3-7 0t-8 1"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M2 12h20M12 2q-8 10 0 20 8-10 0-20"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8 M5.5 10v10h5v-6h3v6h5V10"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 7.5 13 5q3.5-3.5 6.8-.2t-.4 6.6l-3 3 M13.5 16.5 11 19q-3.7 3.4-6.7.3t.3-6.8l3-3 M8.5 15.5l7-7"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 12h16"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M15.6 15.6 21 21"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9 M4 21v-1a8 8 0 0 1 16 0v1"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M2 21v-2a7 7 0 0 1 14 0v2 M16 5a3.5 3.5 0 0 1 0 7m1 2a5 5 0 0 1 5 5v1"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 13h4l3-8 4 15 3-11 2 4h4"/></symbol>
+
+<clipPath id="world"><rect x="52" y="35" width="506" height="264" rx="7" fill="var(--paper)"/></clipPath></defs>
+<rect x="0" y="0" width="576" height="294" rx="0" fill="var(--bg)"/><g clip-path="url(#world)">
+<g class="floor">
+<image x="52" y="29" width="481" height="249" preserveAspectRatio="none" href="images/sales-floor.webp" class="figure-world"/><g class="action" role="button" tabindex="0" aria-label="Inspect Daniel" data-view="1">
+<rect x="138" y="109" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="150" y="113.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Daniel</text><rect x="139" y="117" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Jade" data-view="1">
+<rect x="192" y="109" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="204" y="113.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Jade</text><rect x="193" y="117" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Sophie" data-view="1">
+<rect x="246" y="111" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="258" y="115.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Sophie</text><rect x="247" y="119" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Ryan" data-view="1">
+<rect x="293" y="112" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="305" y="116.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Ryan</text><rect x="294" y="120" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Grace" data-view="1">
+<rect x="137" y="147" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="149" y="151.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Grace</text><rect x="138" y="155" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Leo" data-view="1">
+<rect x="190" y="147" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="202" y="151.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Leo</text><rect x="191" y="155" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Mia" data-view="1">
+<rect x="239" y="148" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="251" y="152.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Mia</text><rect x="240" y="156" width="24" height="22" rx="4" fill="transparent"/>
+</g><g class="action" role="button" tabindex="0" aria-label="Inspect Max" data-view="1">
+<rect x="289" y="148" width="24" height="6.7" rx="3.35" fill="var(--paper)"/><text x="301" y="152.604" font-size="3.8" font-weight="600" fill="var(--ink)" text-anchor="middle">Max</text><rect x="290" y="156" width="24" height="22" rx="4" fill="transparent"/>
+</g><text x="159" y="65" font-size="6.35" font-weight="590" fill="var(--nav)">$432,850</text><text x="360" y="64" font-size="3.65" font-weight="540" fill="var(--nav)" class="ink-floor">Q4</text><g opacity=".8">
+<rect x="275" y="89" width="39" height="7.4" rx="3.7" fill="var(--rail)"/><text x="294.5" y="93.954" font-size="3.8" font-weight="600" fill="var(--nav)" text-anchor="middle">Team performance</text>
+</g><g class="action" role="button" tabindex="0" aria-label="Open stand-up meeting" data-view="4">
+<rect x="392" y="179" width="95" height="59" rx="9" fill="transparent"/>
+</g>
+</g>
+</g><g class="action" role="button" tabindex="0" aria-label="Replay the sales floor" data-replay="">
+<circle cx="62" cy="16" r="6.7" fill="var(--accent)"/><svg x="58.7" y="12.8" width="6.6" height="6.6" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"/></svg><text x="72" y="19" font-size="6" font-weight="635" fill="var(--ink)">Cove HQ</text>
+</g><rect x="114" y="7" width="158" height="18" rx="9" fill="var(--paper)"/><svg x="121" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-dollar"/></svg><svg x="141" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-flag"/></svg><svg x="161" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chart"/></svg><svg x="181" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-user"/></svg><svg x="201" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-globe"/></svg><svg x="221" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-wave"/></svg><svg x="241" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg><svg x="261" y="13" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-link"/></svg><rect x="441" y="8" width="47" height="17" rx="9" fill="var(--paper)"/><svg x="448" y="13" width="5.7" height="5.7" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><svg x="464" y="13" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bell"/></svg><rect x="495" y="7" width="59" height="18" rx="9" fill="var(--paper)"/><circle cx="505" cy="15.5" r="6.8" fill="var(--rail)"/><text x="505" y="17" font-size="4.5" font-weight="610" fill="var(--nav)" text-anchor="middle">A</text><text x="516" y="15" font-size="5.1" font-weight="570" fill="var(--ink)">Admin</text><text x="516" y="21" font-size="3.9" font-weight="495" fill="var(--muted)">Sales Manager</text><rect x="25" y="40" width="20" height="134" rx="9" fill="var(--paper)"/><g class="action" role="button" tabindex="0" aria-label="View entire office" data-view="0">
+<circle cx="35" cy="50" r="8" fill="var(--rail)"/><svg x="32" y="47" width="5.7" height="5.7" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-grid"/></svg>
+</g><svg x="32" y="67" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-flag"/></svg><svg x="32" y="86" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-users"/></svg><svg x="32" y="105" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-user"/></svg><svg x="32" y="124" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chart"/></svg><svg x="32" y="143" width="5.8" height="5.8" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-grid"/></svg><rect x="57" y="40" width="96" height="29" rx="6" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="65" y="53" font-size="7.3" font-weight="600" fill="var(--ink)">Good evening, Admin</text><text x="65" y="62" font-size="4.1" font-weight="495" fill="var(--muted)">●  9 active reps  ·  1 working from home</text><rect x="362" y="40" width="185" height="21" rx="10" fill="var(--paper)"/><g class="action" role="button" tabindex="0" aria-label="Ask the sales assistant" data-view="3">
+<text x="371" y="53" font-size="5" font-weight="560" fill="var(--ink)">✦  Ask Cove</text>
+</g><rect x="411" y="44" width="46" height="13" rx="6.5" fill="var(--rail)"/><text x="434" y="52.002" font-size="4.55" font-weight="600" fill="var(--nav)" text-anchor="middle">+  New deal</text><g class="action" role="button" tabindex="0" aria-label="Open stand-up" data-view="4">
+<text x="470" y="53" font-size="4.95" font-weight="560" fill="var(--ink)">♙  Stand-up</text>
+</g><svg x="534" y="47" width="5.3" height="5.3" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-link"/></svg><rect x="530" y="159" width="17" height="37" rx="8" fill="var(--paper)"/><g class="action" role="button" tabindex="0" aria-label="Zoom in" data-view="1">
+<svg x="535" y="168" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-plus"/></svg>
+</g><g class="action" role="button" tabindex="0" aria-label="Zoom out" data-view="0">
+<svg x="535" y="182" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-minus"/></svg>
+</g><g class="profile-overlay">
+<rect x="85" y="70" width="103" height="165" rx="6" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><circle cx="99" cy="86" r="7.5" fill="var(--blue)"/><text x="99" y="88" font-size="5.5" font-weight="610" fill="var(--nav)" text-anchor="middle">L</text><text x="112" y="84" font-size="6.7" font-weight="580" fill="var(--ink)">Leo</text><text x="112" y="92" font-size="4.1" font-weight="495" fill="var(--muted)">Sales rep · 3 days</text><text x="91" y="105" font-size="4.35" font-weight="495" fill="var(--muted)">● Working</text><text x="91" y="125" font-size="6.55" font-weight="575" fill="var(--ink)">$43,000</text><text x="144" y="125" font-size="6.55" font-weight="575" fill="var(--ink)">134%</text><text x="91" y="118" font-size="3.7" font-weight="495" fill="var(--muted)">Revenue</text><text x="144" y="118" font-size="3.7" font-weight="495" fill="var(--muted)">Target</text><text x="91" y="148" font-size="6.55" font-weight="575" fill="var(--ink)">0</text><text x="144" y="148" font-size="6.55" font-weight="575" fill="var(--ink)">281</text><text x="91" y="141" font-size="3.7" font-weight="495" fill="var(--muted)">Open calls</text><text x="144" y="141" font-size="3.7" font-weight="495" fill="var(--muted)">Calls</text><text x="91" y="162" font-size="4.35" font-weight="490" fill="var(--muted)">Note  “Cypress is two leads away from</text><text x="91" y="168" font-size="4.35" font-weight="490" fill="var(--muted)">reaching the next goal.”</text><rect x="92" y="176" width="88" height="14" rx="7" fill="var(--soft)"/><text x="136" y="184.535" font-size="4.65" font-weight="600" fill="var(--ink)" text-anchor="middle">↗  Mark next deal</text><text x="98" y="205" font-size="4.6" font-weight="550" fill="var(--ink)">Call to Cove</text><text x="155" y="205" font-size="4.6" font-weight="550" fill="var(--ink)">Coach</text><text x="96" y="222" font-size="4" font-weight="495" fill="var(--muted)">No upcoming meetings</text><g class="action" role="button" tabindex="0" aria-label="Close member profile" data-view="0">
+<text x="177" y="82" font-size="6.2" font-weight="565" fill="var(--muted)">×</text>
+</g>
+</g><g class="office-notes">
+<rect x="98" y="114" width="103" height="34" rx="5" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="104" y="122" font-size="3.55" font-weight="495" fill="var(--muted)">PROJECT UPDATE</text><text x="104" y="131" font-size="4.5" font-weight="510" fill="var(--ink)">Streamline prospect marketing</text><text x="104" y="136.6" font-size="4.5" font-weight="510" fill="var(--ink)">with the team’s shared playbook.</text><rect x="243" y="76" width="101" height="33" rx="5" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="250" y="84" font-size="3.55" font-weight="495" fill="var(--muted)">MIA  ·  HERE</text><text x="250" y="94" font-size="4.5" font-weight="510" fill="var(--ink)">Focus on closing the proposal</text><text x="250" y="99.5" font-size="4.5" font-weight="510" fill="var(--ink)">stage to reach your target.</text>
+</g><g class="coach">
+<rect x="0" y="0" width="576" height="294" rx="0" fill="var(--rail)" opacity="0.3"/><rect x="405" y="7" width="165" height="303" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><rect x="413" y="13" width="12" height="12" rx="3.72" fill="var(--pale)"/><svg x="416" y="16" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--deep)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bolt"/></svg><text x="431" y="19" font-size="6" font-weight="590" fill="var(--ink)">Cove · AI Head of</text><text x="431" y="26" font-size="6" font-weight="590" fill="var(--ink)">Sales</text><text x="502" y="26" font-size="4.05" font-weight="510" fill="var(--muted)">Auto-coach</text><g class="action" role="button" tabindex="0" aria-label="Close assistant" data-view="2">
+<text x="555" y="25" font-size="7" font-weight="560" fill="var(--muted)">×</text>
+</g><text x="416" y="51" font-size="4.95" font-weight="475" fill="var(--ink)">Hi, I’m Cove, your AI Head of Sales. I run this</text><text x="416" y="58" font-size="4.95" font-weight="475" fill="var(--ink)">office. Ask me to call a meeting, have a rep follow</text><text x="416" y="65" font-size="4.95" font-weight="475" fill="var(--ink)">up a client, assign a new lead, or coach</text><text x="416" y="72" font-size="4.95" font-weight="475" fill="var(--ink)">someone, and the team will do it.</text><text x="417" y="263" font-size="4.5" font-weight="550" fill="var(--ink)">Run the daily stand-up</text><text x="486" y="263" font-size="4.5" font-weight="550" fill="var(--ink)">Summarize the pipeline</text><text x="417" y="276" font-size="4.05" font-weight="495" fill="var(--muted)">Mia, follow up the biggest lead.       Coach Max.</text>
+</g><g class="meeting">
+<g class="action" role="button" tabindex="0" aria-label="End meeting" data-view="0">
+<rect x="456" y="43" width="51" height="16" rx="8" fill="var(--accent)"/><text x="481.5" y="52.502" font-size="4.55" font-weight="600" fill="var(--on-accent)" text-anchor="middle">▣  End meeting</text>
+</g>
+</g>
+</svg>
+<script>
+const duration=6.875, moments=[0.49, 1.5, 3.18, 4.19, 6.62], windows=[[0, 0.65], [0.8, 2.06], [2.4, 3.74], [3.77, 4.87], [5.83, 6.875]], navWindows=[[0, 0.65], [0.8, 2.06], [2.4, 3.74], [3.77, 4.87], [5.83, 6.875]];
+
+function track(el, keys) {
+  return el.animate(keys.map(([t,properties])=>({...properties,offset:Math.min(1,Math.max(0,t/duration))})),{duration:duration*1000,iterations:Infinity,fill:'both'});
+}
+function enter(el,t,len,a,b,ease='cubic-bezier(.2,.7,.25,1)') {
+  return track(el,[[0,a],[t,{...a,easing:ease}],[t+len,b],[duration,b]]);
+}
+function windowFor(el,start,end,fade=.18,first=false) {
+  const hidden={visibility:'hidden',opacity:0};
+  const shown={visibility:'visible',opacity:1};
+  const keys=[[0,hidden]];
+  if(start>0)keys.push([start-.001,hidden]);
+  keys.push([start,{visibility:'visible',opacity:first?1:0}],[start+fade,shown],[Math.max(start+fade,end-fade),shown]);
+  if(end<duration)keys.push([end,hidden],[duration,hidden]);else keys.push([end,shown]);
+  return track(el,keys);
+}
+function prepareNumber(el,start) {
+  const ns='http://www.w3.org/2000/svg', value=Number(el.dataset.counter), steps=16;
+  const formatter=new Intl.NumberFormat('en-US',{minimumFractionDigits:+el.dataset.digits,maximumFractionDigits:+el.dataset.digits});
+  const parent=document.createElementNS(ns,'g'); parent.setAttribute('aria-label',el.textContent);
+  el.replaceWith(parent);
+  const t=start+Number(el.dataset.delay), len=Number(el.dataset.length);
+  for(let i=0;i<=steps;i++) {
+    const step=el.cloneNode(false); step.removeAttribute('data-counter'); step.setAttribute('aria-hidden','true');
+    step.textContent=el.dataset.prefix+formatter.format(value*(1-(1-i/steps)**2))+el.dataset.suffix;
+    parent.append(step);
+    const a=Math.min(duration,t+len*i/steps), b=Math.min(duration,t+len*(i+1)/steps);
+    const off={opacity:0}, on={opacity:1};
+    const frames=i===0?[[0,on],[Math.max(0,b-.0001),on],[b,off],[duration,off]]:i===steps?[[0,off],[Math.max(0,a-.0001),off],[a,on],[duration,on]]:[[0,off],[Math.max(0,a-.0001),off],[a,on],[Math.max(a,b-.0001),on],[b,off],[duration,off]];
+    track(step,frames);
+  }
+}
+for(const pan of document.querySelectorAll('[data-panel]')) {
+  const i=Number(pan.dataset.panel),[start,end]=windows[i];
+  windowFor(pan,start,end,Math.min(.19,(end-start)/3));
+  pan.querySelectorAll('.enter').forEach(el=>enter(el,start+Number(el.dataset.lag),.28,{opacity:0,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}));
+  pan.querySelectorAll('[data-counter]').forEach(el=>prepareNumber(el,start));
+  pan.querySelectorAll('.bar-grow').forEach(el=>enter(el,start+.25+Number(el.dataset.lag||0),.60,{transform:'scaleY(0)'},{transform:'scaleY(1)'}));
+  pan.querySelectorAll('.draw').forEach((el,n)=>enter(el,start+.30+n*.035,.8,{strokeDashoffset:'100'},{strokeDashoffset:'0'}));
+}
+for(const mark of document.querySelectorAll('[data-highlight]')){const i=+mark.dataset.highlight;windowFor(mark,navWindows[i][0],navWindows[i][1],.025,i===0);}
+function selectView(i) { for(const a of document.getAnimations()){a.pause();a.currentTime=moments[i]*1000;} }
+function activate(el,fn){el.addEventListener('click',fn);el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn();}});}
+for(const control of document.querySelectorAll('[data-view]')) activate(control,()=>selectView(+control.dataset.view));
+for(const control of document.querySelectorAll('[data-replay]')) activate(control,()=>{for(const a of document.getAnimations()){a.currentTime=0;a.play();}});
+if(!location.search&&matchMedia('(prefers-reduced-motion:reduce)').matches)selectView(0);
+
+track(document.querySelector('.floor'),[[0,{transform:'translate(0,0) scale(1)'}],[.60,{transform:'translate(0,0) scale(1)',easing:'cubic-bezier(.32,.03,.16,1)'}],[1.21,{transform:'translate(-283px,-186px) scale(2.65)'}],[1.90,{transform:'translate(-283px,-186px) scale(2.65)',easing:'ease-in-out'}],[2.58,{transform:'translate(0,0) scale(1)'}],[5.88,{transform:'translate(0,0) scale(1)',easing:'ease-in-out'}],[6.63,{transform:'translate(-340px,-122px) scale(1.88)'}],[duration,{transform:'translate(-340px,-122px) scale(1.88)'}]]);windowFor(document.querySelector('.profile-overlay'),.83,1.99,.15);windowFor(document.querySelector('.office-notes'),2.41,5.75,.18);windowFor(document.querySelector('.coach'),3.79,4.87,.17);windowFor(document.querySelector('.meeting'),5.84,duration,.12);
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body></html>
