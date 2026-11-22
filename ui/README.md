@@ -31,7 +31,7 @@ Building blocks: components, kits and design systems.
 | [Breadcrumbs](breadcrumbs/) | Breadcrumbs |
 | [Menus](menus/) | Dropdown and context menus · **1 design** |
 | [Command palettes](command-palettes/) | Command palettes and quick search |
-| [Pagination](pagination/) | Pagination |
+| [Pagination](pagination/) | Pagination · **1 design** |
 | [Steppers](steppers/) | Steppers and progress steps |
 | [Modals](modals/) | Modals and dialogs |
 | [Drawers](drawers/) | Drawers and bottom sheets |

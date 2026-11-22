@@ -3,4 +3,12 @@
 
 Pagination.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="spring-arc-pagination/"><img src="spring-arc-pagination/preview.gif" width="260" alt="Spring arc pagination"></a><br><a href="spring-arc-pagination/"><b>Spring arc pagination</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
