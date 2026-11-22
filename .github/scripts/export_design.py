@@ -318,9 +318,29 @@ class Chrome:
             // the page changes only through these tracks. Compare their painted
             // CSS values, including pseudo-elements and custom properties.
             const key = Symbol.for('motherlode.export.heldPose');
-            const state = window[key] ||= {properties: new WeakMap(), last: null};
+            const state = window[key] ||= {properties: new WeakMap(), last: null, witness: null};
+            function painted(effect, property) {
+                const style = getComputedStyle(effect.target, effect.pseudoElement || null);
+                return property.startsWith('--') ? style.getPropertyValue(property) : style[property];
+            }
+            // A single changed painted property proves that a capture is
+            // needed. Continuous motion often changes the very same property
+            // every frame, even in a scene with hundreds of other tracks.
+            const probe = state.witness;
+            if (probe && animations[probe.index]?.effect === probe.effect) {
+                const value = painted(probe.effect, probe.property);
+                if (value !== probe.value) {
+                    probe.value = value;
+                    state.last = null;
+                    return true;
+                }
+            } else {
+                state.witness = null;
+            }
+            const last = state.last;
+            let unchanged = last !== null && last.length === animations.length;
             const values = [];
-            for (const {effect} of animations) {
+            for (const [index, {effect}] of animations.entries()) {
                 if (!effect?.target || !effect.getKeyframes) { state.last = null; return true; }
                 let props = state.properties.get(effect);
                 if (!props) {
@@ -331,17 +351,25 @@ class Chrome:
                 }
                 const style = getComputedStyle(effect.target, effect.pseudoElement || null);
                 const row = [];
-                for (const p of props) {
+                const previous = last?.[index];
+                if (previous?.effect !== effect) unchanged = false;
+                for (const [column, p] of props.entries()) {
                     const value = p.startsWith('--') ? style.getPropertyValue(p) : style[p];
                     if (value === undefined || value === '') { state.last = null; return true; }
+                    if (previous?.effect === effect && previous.row[column] !== value) {
+                        unchanged = false;
+                        if (animations.length > 32) {
+                            state.witness = {index, effect, property: p, value};
+                            state.last = null;
+                            return true;
+                        }
+                    }
                     row.push(value);
                 }
-                values.push(row);
+                values.push({effect, row});
             }
-            const signature = JSON.stringify(values);
-            const changed = signature !== state.last;
-            state.last = signature;
-            return changed;
+            state.last = values;
+            return !unchanged;
         })()""".replace("TIME", json.dumps(seconds)))
         if changed or self.previous_frame is None:
             self.capture(output)
