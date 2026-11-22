@@ -3,4 +3,12 @@
 
 Progress bars and rings.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="cobalt-outlined-progress/"><img src="cobalt-outlined-progress/preview.gif" width="260" alt="Cobalt outlined progress"></a><br><a href="cobalt-outlined-progress/"><b>Cobalt outlined progress</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
