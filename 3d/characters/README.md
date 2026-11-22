@@ -5,10 +5,10 @@
 
 Part of [3D](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="spectrum-mohawk-sculpture/"><img src="spectrum-mohawk-sculpture/preview.gif" width="260" alt="Spectrum mohawk sculpture"></a><br><a href="spectrum-mohawk-sculpture/"><b>Spectrum mohawk sculpture</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="obsidian-light-follower/"><img src="obsidian-light-follower/preview.gif" width="260" alt="Obsidian light follower"></a><br><a href="obsidian-light-follower/"><b>Obsidian light follower</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="spectrum-mohawk-sculpture/"><img src="spectrum-mohawk-sculpture/preview.gif" width="260" alt="Spectrum mohawk sculpture"></a><br><a href="spectrum-mohawk-sculpture/"><b>Spectrum mohawk sculpture</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

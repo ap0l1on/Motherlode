@@ -7,7 +7,7 @@
 | --- | --- |
 | [Models](models/) | 3D models |
 | [Scenes](scenes/) | Full 3D scenes |
-| [Characters](characters/) | 3D characters · **1 design** |
+| [Characters](characters/) | 3D characters · **2 designs** |
 | [Rigs](rigs/) | Rigged characters ready to animate |
 | [Product renders](product-renders/) | Product renders · **2 designs** |
 | [Isometric rooms](isometric-rooms/) | Isometric rooms and dioramas |
