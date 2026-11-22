@@ -15,6 +15,7 @@ every page is also saved under exports/slides/<colorway>/.
 Chrome workers use private profiles and DevTools pipes, not the user's browser.
 DevTools sets the exact viewport, waits for fonts/images and captures animation
 times deterministically. No Node, browser driver, ffmpeg or pip install needed.
+The compiled AVFoundation helper is reused from the current user's temp directory.
 CSS / Web Animations are supported; timers, canvas and video are not seekable.
 An export is staged before replacing generated files; unrelated files are kept.
 Old PNG/MP4 exports outside the current set are reported, not silently deleted.
@@ -24,6 +25,7 @@ import argparse
 import base64
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
+import hashlib
 from html.parser import HTMLParser
 import json
 import math
@@ -32,6 +34,7 @@ from pathlib import Path
 import re
 import selectors
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -397,6 +400,44 @@ def run_command(command, timeout):
         raise RuntimeError(f"{Path(command[0]).name} failed:\n{result.stderr[-5000:]}\n{result.stdout[-1000:]}")
 
 
+def video_encoder(work):
+    """Compile once per Swift source, toolchain and host OS in the user's temp directory."""
+    import fcntl
+
+    source = Path(__file__).with_name("encode_video.swift")
+    compiler = shutil.which("swiftc")
+    if not compiler:
+        raise ValueError("Animated export needs Swift / Xcode Command Line Tools on macOS")
+    version = subprocess.check_output([compiler, "--version"], stderr=subprocess.STDOUT, timeout=60)
+    identity = b"\0".join((source.read_bytes(), version, os.fsencode(compiler),
+                           os.fsencode(os.uname().release), os.fsencode(os.uname().machine),
+                           os.fsencode(os.environ.get("SDKROOT", "")),
+                           os.fsencode(os.environ.get("DEVELOPER_DIR", ""))))
+    cache = Path(tempfile.gettempdir()) / f"motherlode-encoders-{os.getuid()}"
+    try:
+        cache.mkdir(mode=0o700, exist_ok=True)
+        info = cache.lstat()
+        private_directory = (stat.S_ISDIR(info.st_mode) and info.st_uid == os.getuid()
+                             and (info.st_mode & 0o077) == 0)
+        if private_directory:
+            target = cache / hashlib.sha256(identity).hexdigest()
+            with (cache / "build.lock").open("a+b") as lock:
+                fcntl.flock(lock, fcntl.LOCK_EX)
+                if not target.is_file() or not os.access(target, os.X_OK):
+                    with tempfile.TemporaryDirectory(dir=cache) as temporary:
+                        binary = Path(temporary) / "encode_video"
+                        run_command([compiler, "-O", str(source), "-o", str(binary)], 180)
+                        binary.chmod(0o700)
+                        binary.replace(target)
+                return target
+    except OSError:
+        # A read-only or unavailable cache still permits an ordinary one-off export.
+        pass
+    target = work / "encode_video"
+    run_command([compiler, "-O", str(source), "-o", str(target)], 180)
+    return target
+
+
 def make_gif(frames, output):
     """Use a shared palette and cumulative GIF ticks to preserve loop timing."""
     paths = sorted(p for p in frames.glob("frame-*") if p.suffix in (".png", ".jpg"))
@@ -451,7 +492,7 @@ def make_grid(exports, names, output):
             thumbnail = image.convert("RGB").resize((tile_width - 24, tile_height), Image.Resampling.LANCZOS)
         grid.paste(thumbnail, (x + 12, y + 12))
         draw.text((x + 12, y + tile_height + 22), name, fill="#202020", font=font)
-    grid.save(output, optimize=True)
+    grid.save(output, compress_level=6)
 
 
 def export(folder, args):
@@ -459,17 +500,13 @@ def export(folder, args):
     chrome = args.chrome.expanduser().resolve()
     if not chrome.is_file():
         raise ValueError(f"Chrome not found: {chrome}; use --chrome PATH")
-    if design.loop and not shutil.which("swiftc"):
-        raise ValueError("Animated export needs Swift / Xcode Command Line Tools on macOS")
     print(f"{design.width}×{design.height} at {design.scale:g}×; {len(design.colorways)} colorways"
           + (f"; {design.frames} frames/loop at {FPS} fps" if design.loop else "; static"), flush=True)
     with tempfile.TemporaryDirectory(prefix=".motherlode-export-", dir=folder) as temporary:
         work = Path(temporary)
         exports = work / "exports"
         exports.mkdir()
-        encoder = work / "encode_video"
-        if design.loop:
-            run_command(["swiftc", "-O", str(Path(__file__).with_name("encode_video.swift")), "-o", str(encoder)], 180)
+        encoder = video_encoder(work) if design.loop else None
 
         def render_colorway(name):
             directory = work / name
