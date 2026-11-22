@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="481x313">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="7">
+  <meta name="motherlode:still" content="4.2">
+  <title>Amethyst dreamfield</title>
+  <style>
+:root, [data-colorway="original"] { --background: #060519; --abyss: #09072b; --indigo: #211148; --cloud: #4b2a77; --mist: #74538a; --white: #fff6fb; --pink: #ff55c7; --gold: #ffd16b; --green: #54e985; --cyan: #55d8e6; --red: #ff755f; --blue: #649aff; --lilac: #c5a5ec; --blend: screen; }
+[data-colorway="light"] { --background: #f8efe8; --abyss: #e9dce0; --indigo: #d5bfcc; --cloud: #b5a2bc; --mist: #c4acb3; --white: #453949; --pink: #aa407f; --gold: #bc8925; --green: #3c8859; --cyan: #317f91; --red: #b45544; --blue: #5267a5; --lilac: #856aa1; --blend: multiply; }
+[data-colorway="dark"] { --background: #0d0c19; --abyss: #111024; --indigo: #211c38; --cloud: #413451; --mist: #5c4c6a; --white: #f8f2f4; --pink: #d783bc; --gold: #e1bb79; --green: #7dbb8e; --cyan: #7fb9c5; --red: #c47b73; --blue: #8594ca; --lilac: #b6a4c8; --blend: screen; }
+[data-colorway="mono"] { --background: #030303; --abyss: #080808; --indigo: #171717; --cloud: #323232; --mist: #5b5b5b; --white: #ffffff; --pink: #c9c9c9; --gold: #c2c2c2; --green: #9f9f9f; --cyan: #b4b4b4; --red: #999999; --blue: #929292; --lilac: #d0d0d0; --blend: screen; }
+[data-colorway="ocean"] { --background: #04131e; --abyss: #071b29; --indigo: #112f47; --cloud: #215167; --mist: #446b73; --white: #eefcff; --pink: #a79bd9; --gold: #cfde92; --green: #68d6ac; --cyan: #87ebed; --red: #e49685; --blue: #6dacf4; --lilac: #a3bdde; --blend: screen; }
+[data-colorway="matcha"] { --background: #0c160e; --abyss: #101c15; --indigo: #243a28; --cloud: #3c5540; --mist: #638067; --white: #fffbe4; --pink: #c69eb2; --gold: #e1ca87; --green: #a2d286; --cyan: #8cc4b2; --red: #d49878; --blue: #849eaa; --lilac: #afb99c; --blend: screen; }
+[data-colorway="sunset"] { --background: #1a0b17; --abyss: #261322; --indigo: #47203b; --cloud: #764052; --mist: #945c67; --white: #fff4df; --pink: #eb82ad; --gold: #f4c77c; --green: #c9ba80; --cyan: #cea4b6; --red: #ec8c77; --blue: #aa8cb9; --lilac: #d8abbc; --blend: screen; }
+[data-colorway="iris"] { --background: #100e25; --abyss: #14112e; --indigo: #2a2050; --cloud: #4e3b71; --mist: #745987; --white: #fff2fc; --pink: #d989d7; --gold: #e3b7d0; --green: #a6b3db; --cyan: #a7c6ef; --red: #cf90b6; --blue: #9c91e7; --lilac: #c7a8eb; --blend: screen; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 481px; height: 313px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 481 313" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Amethyst dreamfield</title>
+    <desc id="description">Colored pinpoints scintillate across a purple nebula. Several four-pointed stars bloom into pink, ivory and gold flares.</desc>
+  </svg>
+  <script>
+(() => {
+
+const drawing = document.querySelector('svg');
+const ns = 'http://www.w3.org/2000/svg';
+const stageWidth = drawing.viewBox.baseVal.width, stageHeight = drawing.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content) * 1000;
+const tau = Math.PI * 2;
+function make(tag, attrs = {}, parent = drawing) {
+  const node = document.createElementNS(ns, tag);
+  for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+  parent.append(node);
+  return node;
+}
+function variable(name) { return 'var(--' + name + ')'; }
+function randomStream(seed) {
+  return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+}
+function pointString(point) { return point[0].toFixed(2) + ',' + point[1].toFixed(2); }
+function curve(points) {
+  return 'M' + pointString(points[0]) + points.slice(1).map((p,i) => {
+    const a = points[Math.max(0,i-1)], b = points[i], c = p, d = points[Math.min(points.length-1,i+2)];
+    return 'C' + pointString([b[0]+(c[0]-a[0])/6,b[1]+(c[1]-a[1])/6]) + ' ' +
+      pointString([c[0]-(d[0]-b[0])/6,c[1]-(d[1]-b[1])/6]) + ' ' + pointString(c);
+  }).join('');
+}
+function animate(node, keys, time = duration) {
+  return node.animate(keys, {duration: time, iterations: Infinity, easing: 'linear'});
+}
+function radial(parent, id, stops) {
+  const gradient = make('radialGradient',{id},parent);
+  stops.forEach(([offset,tone,opacity]) => make('stop',{offset,'stop-color':variable(tone),'stop-opacity':opacity},gradient));
+  return 'url(#'+id+')';
+}
+function mousePoint(event) {
+  const rect=drawing.getBoundingClientRect();
+  return [(event.clientX-rect.left)*stageWidth/rect.width,(event.clientY-rect.top)*stageHeight/rect.height];
+}
+
+const defs=make('defs'),rnd=randomStream(93145),cx=240,cy=155;
+function noiseGrid(seed) {
+  const gen=randomStream(seed),grid=Array.from({length:128*128},gen);
+  return function(x,y) {
+    const ix=Math.floor(x),iy=Math.floor(y),i=ix&127,j=iy&127;
+    let f=x-ix,g=y-iy;f=f*f*(3-2*f);g=g*g*(3-2*g);
+    const a=grid[j*128+i]*(1-f)+grid[j*128+((i+1)&127)]*f;
+    const b=grid[((j+1)&127)*128+i]*(1-f)+grid[((j+1)&127)*128+((i+1)&127)]*f;
+    return a*(1-g)+b*g;
+  };
+}
+const noise=noiseGrid(145);
+function nebulaMask() {
+  const canvas=document.createElement('canvas');canvas.width=254;canvas.height=166;
+  const c=canvas.getContext('2d'),frame=c.createImageData(canvas.width,canvas.height);
+  for(let y=0;y<canvas.height;y++)for(let x=0;x<canvas.width;x++){
+    const u=x/canvas.width,v=y/canvas.height;
+    const dx=noise(u*3.7+11,v*4.9), dy=noise(u*5.4+3,v*3.2+8);
+    const a=noise(u*7.2+dx*3.5,v*7.8+dy*2.9),b=noise(u*14.6+a*4,v*14.1+bump(a,dy)),c=noise(u*32+b*3.1,v*29+a*2.8),d=noise(u*81,v*85);
+    const density=Math.max(0,Math.min(1,.22+.88*(a-.32)+.68*(b-.48)+.31*(c-.45)+.12*(d-.5)));
+    const i=4*(y*canvas.width+x);frame.data[i]=frame.data[i+1]=frame.data[i+2]=255;frame.data[i+3]=Math.round(density*255);
+  }
+  function bump(a,b){return a*1.9+b;}
+  c.putImageData(frame,0,0);return canvas.toDataURL();
+}
+const cloudMask=make('mask',{id:'nebular-grain',x:-25,y:-25,width:535,height:362,maskUnits:'userSpaceOnUse','mask-type':'alpha'},defs);
+make('image',{x:-14,y:-9,width:508,height:332,preserveAspectRatio:'none',href:nebulaMask()},cloudMask);
+function grad(id,c1,c2) {
+  const g=make('linearGradient',{id,x1:'2%',y1:'0%',x2:'23%',y2:'100%'},defs);
+  [[0,c1],[.45,'indigo'],[1,c2]].forEach(([offset,color])=>make('stop',{offset,'stop-color':variable(color)},g));return 'url(#'+id+')';
+}
+make('rect',{x:-8,y:-8,width:500,height:334,fill:variable('background')});
+const parallax=make('g'),sky=make('g',{},parallax);
+make('rect',{x:-12,y:-12,width:505,height:337,fill:grad('space-depth','abyss','cloud')},sky);
+const clouds=make('g',{mask:'url(#nebular-grain)'},sky);
+make('rect',{x:-12,y:-12,width:505,height:337,fill:grad('interstellar','indigo','mist'),opacity:.80},clouds);
+const cloudGlow=radial(defs,'violet-cloud',[[0,'mist',.74],[.47,'cloud',.66],[1,'indigo',0]]);
+for(const [x,y,rx,ry,opacity] of [[-30,186,189,85,.78],[120,285,216,77,.91],[276,300,175,105,.87],[404,259,142,74,.83],[506,166,148,92,.64],[23,25,111,61,.53]])make('ellipse',{cx:x,cy:y,rx,ry,fill:cloudGlow,opacity},clouds);
+const night=radial(defs,'deep-space',[[0,'background',.78],[.59,'abyss',.44],[1,'abyss',0]]);
+make('ellipse',{cx:244,cy:40,rx:176,ry:93,fill:night},sky);
+const depths=make('g',{style:'mix-blend-mode:var(--blend)'},parallax);
+const hues=['white','white','white','lilac','pink','gold','green','cyan','red','blue'];
+function glintSymbol(tone){
+ const id='glint-'+tone;if(document.getElementById(id))return id;
+ const star=make('g',{id},defs);
+ const gas=radial(defs,'corona-'+tone,[[0,'white',.98],[.08,'white',.9],[.18,tone,.99],[.35,tone,.84],[.59,tone,.29],[.82,tone,.12],[1,tone,0]]);
+ const ray=radial(defs,'spike-'+tone,[[0,'white',1],[.12,'white',.99],[.34,tone,.97],[.63,tone,.50],[1,tone,0]]);
+ make('ellipse',{rx:1.23,ry:1.15,fill:gas},star);
+  const fog=radial(defs,'frost-'+tone,[[0,'white',.76],[.21,tone,.99],[.54,tone,.62],[1,tone,0]]);
+  make('ellipse',{rx:.50,ry:.56,fill:fog},star);
+ make('ellipse',{rx:1.52,ry:.115,fill:ray},star);make('ellipse',{rx:.105,ry:1.38,fill:ray},star);
+ make('path',{d:'M0 -1.20C.03 -.64 .075 -.34 .205 -.21C.35 -.075 .65 -.035 1.22 0C.66 .04 .34 .08 .202 .211C.075 .336 .038 .65 0 1.14C-.032 .65 -.075 .35 -.197 .209C-.32 .092 -.64 .043 -1.2 0C-.65 -.045 -.34 -.082 -.20 -.207C-.08 -.335 -.04 -.67 0 -1.20Z',fill:gas},star);
+ const needle=radial(defs,'needle-'+tone,[[0,'white',.85],[.21,tone,.95],[.59,tone,.70],[.82,tone,.31],[1,tone,0]]);
+  make('path',{d:'M-1.6 0L-.26 -.040L0 -.22L.24 -.038L1.55 0L.24 .038L0 .22L-.25 .039Z',fill:needle},star);
+  make('path',{d:'M0 -1.55L.037 -.24L.22 0L.037 .24L0 1.53L-.037 .24L-.22 0L-.038 -.24Z',fill:needle},star);
+  make('ellipse',{rx:.34,ry:.36,fill:ray},star);return id;
+}
+for(const h of new Set(hues))glintSymbol(h);
+for(let layer=0;layer<5;layer++){
+ const group=make('g',{},depths),sprites=[];
+ const strips=new Map();
+ for(let i=0;i<385;i++){
+   const x=rnd()*552-34,y=rnd()*367-27,role=hues[Math.floor(rnd()*hues.length)],level=Math.floor(rnd()*3);
+   const k=role+'|'+level;if(!strips.has(k))strips.set(k,[]);
+   strips.get(k).push('M'+x.toFixed(1)+' '+y.toFixed(1)+'h.05');
+ }
+ for(const [key,segments] of strips){
+   const [tone,level]=key.split('|');
+   make('path',{d:segments.join(''),fill:'none',stroke:variable(tone),'stroke-linecap':'round','stroke-width':.79+Number(level)*.58+layer*.085,opacity:.43+Number(level)*.24},group);
+ }
+ for(let i=0;i<70;i++) {
+   const x=rnd()*505-12,y=rnd()*345-16,r=1.10+Math.pow(rnd(),2)*5.51,tone=hues[Math.floor(rnd()*hues.length)];
+   make('use',{href:'#'+glintSymbol(tone),transform:'translate('+x+' '+y+') scale('+r+')',opacity:.67+rnd()*.33},group);
+ }
+ const phase=layer*Math.PI*.4,amp=1.5+layer*1.7;
+ group.style.transformOrigin=cx+'px '+cy+'px';
+ const frames=Array.from({length:17},(_,i)=>{const t=i/16*tau;return {offset:i/16,opacity:.77+.22*(.5+.5*Math.sin(t*2+phase)),transform:'translate('+(amp*Math.sin(t+phase))+'px,'+(amp*.72*Math.cos(t+phase))+'px) scale('+(1+.055*Math.sin(t+phase))+')'};});
+ animate(group,frames);
+}
+const feather=make('filter',{id:'optical-softness',x:'-23%',y:'-23%',width:'146%',height:'146%',primitiveUnits:'objectBoundingBox'},defs);
+make('feGaussianBlur',{stdDeviation:'.009'},feather);
+function flare(x,y,r,tone,peak,width,dx=0,dy=0) {
+ const group=make('g',{transform:'translate('+x+' '+y+')'},depths);
+ const star=make('use',{href:'#'+glintSymbol(tone),filter:'url(#optical-softness)'},group);
+ const times=new Set([0,7,peak]);for(let i=0;i<=42;i++)times.add(i/6);
+ const frames=[...times].sort((a,b)=>a-b).map(t=>{
+   const elapsed=((t-peak+10.5)%7)-3.5,power=Math.exp(-elapsed*elapsed/(width*width));
+   const s=r*(.021+.979*power);
+   return {offset:t/7,opacity:.18+.82*Math.pow(power,.45),transform:'translate('+elapsed*dx+'px,'+elapsed*dy+'px) scale('+s+')'};
+ });
+ animate(star,frames);
+}
+[
+ [238,123,50,'pink',4.2,.30,-34,17],[370,194,35,'gold',4.2,.29,-22,11],[165,217,13,'white',4.2,.34,15,8],
+ [310,185,13,'green',4.2,.35,18,6],[454,218,13,'white',4.2,.34,-15,-12],[391,269,7,'pink',4.2,.38,8,-6],
+ [293,192,30,'pink',.87,.23,-31,11],[389,151,21,'gold',.87,.26,-24,10],[42,306,15,'red',1.03,.25,17,-18],
+ [257,286,19,'white',1.49,.25,20,15],[73,300,21,'gold',1.9,.24,-23,14],[212,71,11,'green',2.05,.30,-10,11],
+ [121,285,35,'pink',2.64,.31,28,18],[237,66,23,'green',2.68,.30,-18,14],[89,68,18,'cyan',2.65,.25,19,-8],
+ [48,114,32,'green',3.15,.31,-25,18],[340,38,22,'green',3.18,.26,18,-17],[277,122,19,'cyan',3.49,.25,10,21],
+ [277,66,28,'red',5.51,.24,20,-11],[388,297,25,'gold',5.62,.27,18,17],[41,54,20,'white',5.85,.24,7,-9],
+ [202,231,16,'pink',6.22,.33,-18,13],[286,58,16,'green',6.61,.24,14,18],[66,113,12,'blue',6.75,.2,-11,6]
+].forEach(args=>flare(...args));
+const opening=make('g',{},drawing);
+make('rect',{width:stageWidth,height:stageHeight,fill:variable('background')},opening);
+animate(opening,[{offset:0,opacity:1},{offset:.026,opacity:.9},{offset:.083,opacity:0},{offset:.973,opacity:0},{offset:1,opacity:1}]);
+const seedSphere=make('g',{},drawing);const sphereHalo=radial(defs,'sphere-edge',[[0,'background',.99],[.87,'background',.98],[.95,'indigo',1],[.98,'cloud',.92],[1,'background',0]]);
+make('circle',{r:133,fill:sphereHalo},seedSphere);
+for(let i=0;i<285;i++){const a=rnd()*tau,dist=120*Math.sqrt(rnd());make('circle',{cx:Math.cos(a)*dist,cy:Math.sin(a)*dist,r:.36+rnd()*.67,fill:variable(hues[Math.floor(rnd()*hues.length)]),opacity:.33+rnd()*.50},seedSphere);}
+animate(seedSphere,[[0,1,1],[.05,.80,1],[.102,.22,.68],[.13,0,0],[.962,0,0],[1,1,1]].map(([offset,s,opacity])=>({offset,opacity,transform:'translate(240px,155px) scale('+s+')'})));
+drawing.addEventListener('pointermove',e=>{const p=mousePoint(e);parallax.setAttribute('transform','translate('+((p[0]/stageWidth-.5)*8)+' '+((p[1]/stageHeight-.5)*6)+')');});
+drawing.addEventListener('pointerleave',()=>parallax.removeAttribute('transform'));
+drawing.addEventListener('pointerdown',e=>{
+ const p=mousePoint(e),g=make('g',{transform:'translate('+p[0]+' '+p[1]+')'},depths),spark=make('use',{href:'#glint-pink'},g);
+ const a=spark.animate([{transform:'scale(1)',opacity:0},{offset:.25,transform:'scale(24)',opacity:1},{transform:'scale(3)',opacity:0}],{duration:860});a.onfinish=()=>g.remove();
+});
+
+})();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>

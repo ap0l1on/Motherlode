@@ -32,7 +32,7 @@ Animation for screens, the web and beyond.
 | [Motion graphics](motion-graphics/) | Motion graphics · **13 designs** |
 | [Liquid motion](liquid-motion/) | Liquid and fluid motion |
 | [Morphing](morphing/) | Shape morphing |
-| [Particles](particles/) | Particle effects · **7 designs** |
+| [Particles](particles/) | Particle effects · **8 designs** |
 | [Loops](loops/) | Seamless loops |
 | [Whiteboard animation](whiteboard/) | Whiteboard animation |
 | [Animated illustrations](animated-illustrations/) | Animated illustrations · **6 designs** |
