@@ -21,76 +21,202 @@
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 464px; height: 260px; overflow: hidden; background: var(--background); }
     svg { display: block; width: 100%; height: 100%; }
+  :root { --violet:var(--shade); --indigo:color-mix(in srgb,var(--shade) 72%,var(--bright)); --rose:var(--middle); --aqua:var(--bright); --gold:var(--leaf); --core:var(--highlight); --ice:color-mix(in srgb,var(--highlight) 75%,var(--bright)); }
+:root[data-colorway="original"] { --background:#040508; --violet:#A579FA; --indigo:#7367F7; --rose:#F79CCF; --aqua:#70E3E8; --gold:#FFD88A; --core:#FFFFFF; --ice:#DAEAFF; }
+
+:root[data-colorway="mono"] { filter:grayscale(1); }
   </style>
 </head>
 <body>
   <svg viewBox="0 0 464 260" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
     <title id="art-title">Prismatic stellar arms</title>
-    <desc id="description">Five luminous strands unfurl around a white point of light and flatten into a bright, edge-on spiral.</desc>
+    <desc id="description">A point of white light draws violet, cyan, pink and gold ribbons into a spiral. As the view lowers, colored bands pass across a dense field of stars.</desc>
   </svg>
   <script>
     (() => {
-    const drawing = document.querySelector("svg");
-    const duration = 13 * 1000;
 
-    function element(tag, attributes, parent = drawing) {
-      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
-      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
-      parent.append(result);
-      return result;
+    const drawing = document.querySelector('svg');
+    const ns = 'http://www.w3.org/2000/svg';
+    function add(tag, attrs={}, parent=drawing) {
+      const node=document.createElementNS(ns,tag);
+      for(const [name,value] of Object.entries(attrs)) node.setAttribute(name,value);
+      parent.append(node);
+      return node;
+    }
+    const defs=add('defs');
+    const color=name=>'var(--'+name+')';
+    function gradient(name, stops, radial=true, attrs={}) {
+      const node=add(radial?'radialGradient':'linearGradient',{id:name,...attrs},defs);
+      for(const [offset,token,opacity=1] of stops) add('stop',{offset,'stop-color':color(token),'stop-opacity':opacity},node);
+      return 'url(#'+name+')';
+    }
+    function filterBlur(name,size) {
+      const filter=add('filter',{id:name,x:'-55%',y:'-55%',width:'210%',height:'210%','color-interpolation-filters':'sRGB'},defs);
+      add('feGaussianBlur',{stdDeviation:size},filter);
+      return 'url(#'+name+')';
+    }
+    const loop=Number(document.querySelector('[name="motherlode:loop"]').content);
+    function animate(node, frames) {
+      return node.animate(frames.map(([at,props])=>({offset:at/loop,...props})),{duration:loop*1000,iterations:Infinity,fill:'both',easing:'linear'});
+    }
+    let seed=78641;
+    function rand(){seed=seed*48271%2147483647;return seed/2147483647}
+    function signed(){return rand()*2-1}
+    function bell(){return signed()+signed();}
+    const center=[236,130],tau=Math.PI*2;
+    const tokens=['violet','aqua','rose','gold','indigo'];
+    const phases=[-5.69,-3.94,-2.49,-1.18,-.21];
+    const halo=gradient('cold-core',[[0,'core'],[.14,'core',.99],[.27,'ice',.91],[.40,'ice',.48],[.62,'ice',.12],[1,'indigo',0]]);
+    const starLight=gradient('white-star',[[0,'core'],[.36,'core'],[.6,'ice',.92],[.78,'ice',.21],[1,'ice',0]]);
+    const fog=gradient('nebula',[[0,'indigo',.25],[.37,'violet',.12],[.69,'aqua',.045],[1,'aqua',0]]);
+    const blurred=filterBlur('silk-haze',2.65);
+    const faint=add('g');add('ellipse',{cx:237,cy:132,rx:248,ry:174,fill:fog},faint);
+    const backdrop=add('g'),plasma=add('g'),nearby=add('g');
+    const centerLight=add('g',{transform:'translate(236 130)'});
+    const glow=add('ellipse',{rx:52,ry:46,fill:halo},centerLight);
+    const heart=add('circle',{r:19,fill:starLight},centerLight);
+    const lens=add('g',{stroke:color('ice'),fill:'none',style:'mix-blend-mode:screen'},centerLight);
+    add('path',{d:'M-64 0H64M0 -43V43',opacity:.24,'stroke-width':.7},lens);
+    add('path',{d:'M-20 -22 20 22M-20 24 20 -24',opacity:.5,'stroke-width':.5},lens);
+    // Time, arm inner radius, angle, projected height, camera scale, ribbon width, arrival and front focus.
+    const view=[
+      [0,405,-1.7,.96,1,.6,0,0],[1.6,405,-1.7,.96,1,.6,0,0],[2.35,355,-1.2,1,1,.6,.04,0],
+      [2.95,215,-.95,1,1,.68,.58,0],[3.48,127,-.72,1,1,.82,.86,0],[3.98,54,-.42,1,1,.92,.96,0],
+      [4.5,17,-.19,.99,1,1,1,0],[5,3,0,.97,1,1.06,1,0],[5.75,2,.36,.94,1,1.14,1,.10],
+      [6.45,2,.72,.85,1,1.25,1,.18],[7.2,2,1.14,.75,1.03,1.35,1,.36],[7.85,2,1.43,.60,1.06,1.52,1,.62],
+      [8.65,2,1.85,.50,1.12,1.72,1,.88],[9.6,2,2.25,.42,1.18,1.81,1,1],
+      [10.55,2,2.61,.34,1.3,1.40,.87,1],[11.45,1,2.96,.25,1.55,.85,.6,.9],[12.4,1,3.24,.205,1.9,.53,.37,.84],
+      [12.85,1,3.36,.19,2.02,.4,.12,.76],[13,410,-1.7,.96,1,.6,0,0]];
+    const point=(x,y)=>x.toFixed(1)+' '+y.toFixed(1);
+    // Control paths describe the five separate ribbons in the upright view.
+    const upright=[
+      [[236,130],[244,123],[253,134],[244,150],[221,160],[198,167],[169,156],[151,139],[138,121],[132,102],[131,89],[143,73],[159,53],[183,46],[200,42],[215,22],[240,10],[259,12],[281,28],[304,40],[324,38],[348,31],[366,33],[381,52],[399,61],[423,64],[438,82],[457,100],[487,115]],
+      [[235,130],[225,125],[214,117],[215,105],[229,96],[247,90],[270,89],[289,94],[309,106],[311,127],[304,146],[304,171],[291,190],[267,205],[249,220],[224,230],[206,236],[176,237],[144,234],[127,225],[105,213],[84,209],[55,212],[39,203],[20,184],[0,177],[-24,164]],
+      [[237,131],[229,124],[225,116],[230,105],[246,97],[263,96],[283,101],[300,107],[316,120],[332,137],[350,155],[359,167],[351,182],[341,192],[336,209],[330,229],[323,249],[311,270],[310,285]],
+      [[236,131],[248,127],[262,137],[269,148],[261,161],[246,171],[229,187],[212,195],[196,196],[176,190],[155,183],[134,181],[111,164],[94,151],[77,138],[65,116],[57,97],[64,78],[71,54],[83,42],[96,23],[105,-3],[107,-28]],
+      [[237,131],[244,140],[232,149],[212,144],[202,135],[195,120],[198,107],[210,97],[222,80],[237,71],[252,71],[266,75],[287,76],[306,73],[324,72],[344,75],[363,82],[378,95],[389,109],[393,130],[384,148],[383,163],[393,182],[397,204],[401,227],[409,255],[427,282]]
+    ];
+    const closeRibbon=[
+      [[-24,90],[18,75],[71,64],[123,57],[177,55],[229,58],[274,65],[307,77],[331,92],[339,108],[337,123],[326,136],[306,143],[279,145],[255,140],[239,130],[234,119],[220,108],[196,99],[163,92],[132,92],[106,96],[88,106],[77,120],[74,137],[82,152],[100,171],[134,188],[176,206],[219,220],[268,230],[323,237],[381,239],[433,232],[488,215]],
+      [[-24,77],[22,65],[72,57],[126,52],[177,52],[229,55],[274,62],[310,74],[336,90],[351,106],[352,122],[340,138],[320,147],[293,149],[265,145],[242,133],[235,119],[215,108],[189,98],[158,97],[135,99],[119,106],[109,117],[104,130],[112,145],[133,160],[162,173],[201,184],[242,195],[285,202],[332,207],[376,205],[420,198],[461,184],[501,164]]
+    ];
+    function spline(nodes,q) {
+      const u=Math.min(nodes.length-1-.00001,Math.max(0,q*(nodes.length-1))),i=Math.floor(u),f=u-i;
+      const a=nodes[Math.max(0,i-1)],b=nodes[i],c=nodes[i+1],d=nodes[Math.min(i+2,nodes.length-1)];
+      return [0,1].map(axis=>.5*((2*b[axis])+(-a[axis]+c[axis])*f+(2*a[axis]-5*b[axis]+4*c[axis]-d[axis])*f*f+(-a[axis]+3*b[axis]-3*c[axis]+d[axis])*f*f*f));
+    }
+    function silkPoint(nodes,q,width,time,phase) {
+      const base=spline(nodes,q),before=spline(nodes,Math.max(0,q-.002)),after=spline(nodes,Math.min(1,q+.002));
+      const dx=after[0]-before[0],dy=after[1]-before[1],len=Math.hypot(dx,dy)||1;
+      const roll=width*(.79+.22*Math.sin(q*27+phase+time*.66))+.85*Math.sin(q*51+phase+time*.8);
+      return [base[0]-dy/len*roll,base[1]+dx/len*roll];
     }
 
-    const tau = 2 * Math.PI;
-    let seed = 77216;
-    function random() {
-      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
-      return seed / 4294967296;
+    function spiral(lane,q,side,frame,spread=0) {
+      const [,inner,turn,flat,zoom,width,,front]=frame;
+      const radius=inner+(344-inner)*Math.pow(q,1.24);
+      const wave=Math.min(1,radius/85);
+      const ripple=(Math.sin(radius*.062+lane*2.41+turn*.8)*12+Math.sin(radius*.145+lane*1.86-turn*2)*5.9+Math.sin(radius*.027+lane*1.14+turn)*7.3)*wave*(1-front*.81);
+      const prominent=(lane===1||lane===2);
+      const early=phases[lane]-1.30, late=prominent?(-4.02+(lane-1)*.18):early+.4;
+      const angle=early*(1-front)+late*front+(2.87+1.24*front)*Math.log(1+radius/19)+turn;
+      const band=(1.24+Math.pow(Math.sin(radius*.038+lane+turn),2)*4.4+q*3.7)*width*(prominent?1+front*1.05:1-front*.3);
+      const tip=side*band*(.58+Math.sin(radius*.048+lane+side*1.1+turn*.65)*.34);
+      const rad=radius+ripple+tip+spread+(lane===2?11*front:0);
+      const localAngle=angle+(.024*Math.sin(radius*.075+lane+turn)+.020*side*Math.sin(radius*.053+lane+turn+side))*wave*(1-front*.7);
+      const depth=Math.sin(localAngle)*front*(prominent?8:3);
+      const world=[center[0]+Math.cos(localAngle)*rad*zoom,center[1]+(Math.sin(localAngle)*rad*flat+depth)*zoom];
+      const time=frame[0],approach=Math.max(0,Math.min(1,(time-3.65)/1.35)),depart=Math.max(0,Math.min(1,(7.77-time)/1.64));
+      const hand=approach*depart;
+      if(hand===0)return world;
+      const native=silkPoint(upright[lane],q,side*(1.4+5.3*Math.sin(q*7+lane)**2)+spread,time,lane),dx=native[0]-center[0],dy=native[1]-center[1];
+      const a=(time-5)*.12;
+      const target=[center[0]+dx*Math.cos(a)-dy*Math.sin(a),center[1]+(dx*Math.sin(a)+dy*Math.cos(a))*(1-Math.max(0,time-5)*.054)];
+      return [world[0]*(1-hand)+target[0]*hand,world[1]*(1-hand)+target[1]*hand];
     }
-    function pointsPath(points, close = false) {
-      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    function ribbon(lane,side,frame,closeWith=null){
+      const total=101, pts=[];
+      for(let i=0;i<=total;i++)pts.push(spiral(lane,i/total,side,frame));
+      if(closeWith!==null)for(let i=total;i>=0;i--)pts.push(spiral(lane,i/total,closeWith,frame));
+      return 'M'+pts.map(p=>point(...p)).join('L')+(closeWith===null?'':'Z');
     }
-    function line(parent, data, color, width = 1, opacity = 1) {
-      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
-        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    function paths(node,fn,opacityFn) {
+      const keys=view.map(frame=>[frame[0],{d:'path("'+fn(frame)+'")',opacity:opacityFn(frame)}]);
+      animate(node,keys);
     }
-    function radial(defs, id, stops) {
-      const gradient = element("radialGradient", {id}, defs);
-      for (const [offset, color, opacity] of stops) element("stop", {
-        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
-      return "url(#" + id + ")";
-    }
-
-    const defs=element("defs",{});
-    const glow=radial(defs,"hot-core",[[0,"highlight",1],[.064,"highlight",1],[.17,"highlight",.63],[.48,"bright",.14],[1,"shade",0]]);
-    const group=element("g",{});
-    const sky=[[],[],[]];for(let i=0;i<3000;i++){
-      const k=Math.min(2,Math.floor(random()**2.8*3));sky[k].push("M"+(random()*464).toFixed(1)+" "+(random()*260).toFixed(1)+"h.05");
-    }
-    sky.forEach((s,i)=>line(drawing,s.join(""),"highlight",[.55,.87,1.8][i],[.3,.58,.96][i]));
-    drawing.append(group);
-    const spiral=element("g",{},group);
-    const shades=["bright","middle","leaf","highlight","shade"];
-    for(let arm=0;arm<5;arm++){
-      const pts=[],grains=[],phase=arm*tau/5;
-      for(let j=0;j<=160;j++){
-        const u=j/160,r=195*u,theta=phase+5.35*Math.sqrt(u)+.16*Math.sin(u*14+phase)+.065*Math.sin(u*47+phase);
-        const x=r*Math.cos(theta),y=r*Math.sin(theta);pts.push([x,y]);
-        for(let k=0;k<15;k++){
-          const s=2.4+7.6*u;grains.push("M"+(x+(random()-random())*s).toFixed(1)+" "+(y+(random()-random())*s).toFixed(1)+"h.1");
-        }
+    const sky=[[],[],[],[]];
+    for(let i=0;i<620;i++){const x=rand()*464,y=rand()*260;sky[i%4].push('M'+point(x,y)+'h.05');}
+    sky.forEach((pts,i)=>add('path',{d:pts.join(''),fill:'none',stroke:color(['ice','violet','aqua','gold'][i]),'stroke-width':i===0?1.27:.96,'stroke-linecap':'round',opacity:i===0?.81:.57},backdrop));
+    animate(backdrop,[[0,{opacity:.05}],[2,{opacity:.16}],[4,{opacity:.52}],[5,{opacity:.65}],[9,{opacity:.70}],[12.65,{opacity:.81}],[13,{opacity:.05}]]);
+    const hot=(f)=>f[6]*Math.max(.055,1-f[7]*1.29);
+    for(let lane=0;lane<5;lane++){
+      const hue=tokens[lane],strand=add('g',{},plasma);
+      const colorflow=gradient('filament-paint-'+lane,[[0,'core'],[.18,'ice'],[.35,hue],[.56,hue],[.78,lane%2?'aqua':'violet'],[1,hue]],true,{gradientUnits:'userSpaceOnUse',cx:236,cy:130,r:225});
+      const diffuse=add('path',{fill:'none',stroke:color(hue),'stroke-width':20,filter:blurred},strand);
+      paths(diffuse,f=>ribbon(lane,-.36,f),f=>hot(f)*.18);
+      const bloom=add('path',{fill:'none',stroke:color(hue),'stroke-width':6.1,filter:blurred},strand);
+      paths(bloom,f=>ribbon(lane,0,f),f=>hot(f)*.45);
+      const cloth=add('path',{fill:colorflow},strand);paths(cloth,f=>ribbon(lane,-1.22,f,1.22),f=>hot(f)*(.28+(lane===1||lane===2?f[7]*.24:.03)));
+      const strands=[[-1.85,.82,.71],[-1.1,.79,.87],[-.69,.40,.53],[-.30,.62,.49],[.08,1.05,.76],[.52,.52,.72],[.96,.59,.83],[1.73,.68,.69]];
+      for(const [side,stroke,alpha] of strands){
+        const inner=add('path',{fill:'none',stroke:side===-1.85?color(lane%2?'violet':'aqua'):side===-.30||side===.96?color('ice'):colorflow,'stroke-width':stroke,'stroke-linecap':'round'},strand);
+        paths(inner,f=>ribbon(lane,side,f),f=>hot(f)*alpha);
       }
-      line(spiral,pointsPath(pts),shades[arm],9,.27);
-      line(spiral,pointsPath(pts),shades[arm],2.75,.92);
-      line(spiral,grains.join(""),shades[arm],1.67,.9);
+      const beads=[[],[],[],[]];
+      for(let i=0;i<445;i++){
+        const q=rand(),range=5+Math.pow(rand(),1.5)*49,offset=signed()*range;
+        beads[i%4].push({q,offset,side:signed()*2.2,phase:rand()*tau});
+      }
+      beads.forEach((stars,group)=>{
+        const star=add('path',{fill:'none',stroke:color(group===3?'core':group===2?'ice':hue),'stroke-width':[1.38,.94,1.77,2.53][group],'stroke-linecap':'round'},strand);
+        paths(star,f=>stars.map(({q,offset,side,phase})=>{const v=spiral(lane,q,side,f,offset+Math.sin(f[2]+phase)*1.5);return 'M'+point(...v)+'h.25'}).join(''),f=>f[6]*[.95,.72,.88,.77][group]);
+      });
     }
-    element("circle",{r:104,fill:glow},spiral);
-    const poses=[[0,.055,.92,0],[.12,.20,.91,.2],[.27,.97,.69,1.05],[.47,1.22,.34,2.2],
-      [.71,1.48,.31,3.5],[.87,2.08,.22,4.65],[.94,2.48,.19,5.3],[1,.055,.92,tau]];
-    spiral.animate(poses.map(([offset,scale,incline,angle])=>({offset,
-      transform:"matrix("+[scale*Math.cos(angle),scale*incline*Math.sin(angle),-scale*Math.sin(angle),
-        scale*incline*Math.cos(angle),232,130].join(",")+")"})),{duration,iterations:Infinity});
-    const burst=element("circle",{cx:232,cy:130,r:124,fill:glow});
-    burst.animate([{offset:0,opacity:.2},{offset:.22,opacity:0},{offset:.63,opacity:0},{offset:.92,opacity:1},{offset:1,opacity:.2}],{duration,iterations:Infinity});
+    const brightSilk=add('g',{},plasma);
+    for(let i=0;i<2;i++){
+      const hue=i===0?'aqua':'rose',curve=closeRibbon[i],folder=add('g',{},brightSilk);
+      function drawBand(side,other=null){
+        const points=[],count=120;
+        function row(q,edge){const width=(1.4+5.9*Math.pow(q,2)+1.25*Math.sin(q*7)**2);return silkPoint(curve,q,width*edge,0,0);}
+        for(let p=0;p<=count;p++)points.push(row(p/count,side));
+        if(other!==null)for(let p=count;p>=0;p--)points.push(row(p/count,other));
+        return 'M'+points.map(v=>point(...v)).join('L')+(other===null?'':'Z');
+      }
+      add('path',{d:drawBand(0),fill:'none',stroke:color(hue),'stroke-width':10,opacity:.59,filter:blurred},folder);
+      add('path',{d:drawBand(-1.13,1.04),fill:color(hue),opacity:.76},folder);
+      for(const [side,token,width,alpha] of [[-.9,'ice',.85,.87],[-.65,hue,1.5,.81],[-.27,'core',.60,.61],[.29,hue,1.4,.96],[.72,'ice',.69,.62],[1.03,hue,.98,.73]])add('path',{d:drawBand(side),fill:'none',stroke:color(token),'stroke-width':width,opacity:alpha},folder);
+      let grains='';for(let j=0;j<360;j++){const q=rand(),band=(rand()-.5)*(6+20*rand()),p=silkPoint(curve,q,band,0,2);grains+='M'+point(...p)+'h.2';}
+      add('path',{d:grains,fill:'none',stroke:color('ice'),'stroke-width':1.2,'stroke-linecap':'round',opacity:.67},folder);
+      folder.style.transformOrigin='236px 130px';
+      animate(folder,[[0,{opacity:0,transform:'scale(.60,1.28) rotate(9deg)'}],[6.75,{opacity:0,transform:'scale(.60,1.28) rotate(9deg)'}],[7.45,{opacity:.42,transform:'scale(.76,1.16) rotate(5deg)'}],[8.5,{opacity:1,transform:'scale(1,1) rotate(0deg)'}],[9.5,{opacity:1,transform:'scale(1.10,.86) rotate(1deg)'}],[10.5,{opacity:.73,transform:'scale(1.28,.69) rotate(2deg)'}],[11.3,{opacity:.24,transform:'scale(1.58,.58) rotate(3deg)'}],[12.55,{opacity:.06,transform:'scale(2.03,.47) rotate(5deg)'}],[13,{opacity:0,transform:'scale(.60,1.28) rotate(9deg)'}]]);
+    }
+
+    // Pinpoint stars open around the seed before the outer lanes are visible.
+    const seedStars=add('g',{transform:'translate(236 130)'});
+    for(let layer=0;layer<3;layer++){
+      const pts=[];for(let i=0;i<58;i++){const a=rand()*tau,r=11+Math.pow(rand(),.64)*75;pts.push('M'+point(Math.cos(a)*r,Math.sin(a)*r*.92)+'h.23');}
+      add('path',{d:pts.join(''),fill:'none',stroke:color(layer===0?'core':'ice'),'stroke-width':[2.1,1.1,1.5][layer],'stroke-linecap':'round',opacity:[.81,.44,.54][layer]},seedStars);
+    }
+    const smallStars=seedStars.firstChild.parentElement;
+    animate(smallStars,[[0,{opacity:0,transform:'translate(236px,130px) scale(.09)'}],[1.6,{opacity:.15,transform:'translate(236px,130px) scale(.48)'}],[2.6,{opacity:.95,transform:'translate(236px,130px) scale(1)'}],[7,{opacity:.85,transform:'translate(236px,130px) scale(1.2)'}],[10,{opacity:.76,transform:'translate(236px,130px) scale(1.35,.85)'}],[12.8,{opacity:.87,transform:'translate(236px,130px) scale(2.5,1.2)'}],[13,{opacity:0,transform:'translate(236px,130px) scale(.09)'}]]);
+    for(let layer=0;layer<4;layer++){
+      const dots=[];for(let i=0;i<48;i++){const a=rand()*tau,r=65+rand()*200;dots.push('M'+point(Math.cos(a)*r,Math.sin(a)*r*.67)+'h.23');}
+      const star=add('path',{d:dots.join(''),fill:'none',stroke:color(['violet','ice','rose','aqua'][layer]),'stroke-width':[3.9,5.1,4.3,3.7][layer],'stroke-linecap':'round'},nearby);
+      animate(star,[[0,{transform:'translate(236px,130px) scale(.36)',opacity:0}],[8,{transform:'translate(236px,130px) scale(.53)',opacity:.08}],[10.3,{transform:'translate(236px,130px) scale(.79)',opacity:.26}],[11.6,{transform:'translate(236px,130px) scale(1.05)',opacity:.73}],[12.85,{transform:'translate(236px,130px) scale(1.5)',opacity:.94}],[13,{transform:'translate(236px,130px) scale(.36)',opacity:0}]]);
+    }
+    const bokeh=add('g',{},nearby);
+    const bokehInks=['rose','aqua','gold','violet','ice'];
+    const pinLights=bokehInks.map((h,i)=>gradient('bokeh-'+i,[[0,'core'],[.17,'ice'],[.38,h,.77],[.63,h,.28],[1,h,0]]));
+    for(let i=0;i<91;i++){
+      const corner=i%4===0?-1:1, x=236+corner*(86+rand()*179),y=i%5<3?34+bell()*32:183+bell()*57;
+      const r=2+Math.pow(rand(),2)*7.7;add('circle',{cx:x,cy:y,r,fill:pinLights[i%5],opacity:.59+rand()*.39},bokeh);
+    }
+    bokeh.style.transformOrigin='236px 130px';
+    animate(bokeh,[[0,{opacity:0,transform:'scale(.54)'}],[10.25,{opacity:0,transform:'scale(.54)'}],[11.35,{opacity:.53,transform:'scale(.80)'}],[12.1,{opacity:1,transform:'scale(1.05)'}],[12.8,{opacity:.96,transform:'scale(1.3)'}],[13,{opacity:0,transform:'scale(.54)'}]]);
+    const pulses=[[0,.06],[.5,.18],[1,.35],[1.6,.50],[2.4,.61],[3.7,.61],[4.5,.85],[5,1.22],[6.4,1.18],[8,1.2],[9.8,1.32],[10.7,1.72],[11.8,2.74],[12.7,3.16],[13,.06]];
+    for(const [node,factor] of [[glow,1.34],[heart,1],[lens,1.11]]) animate(node,pulses.map(([time,size])=>[time,{transform:'scale('+size*factor+')'}]));
+    animate(faint,[[0,{opacity:.12}],[3,{opacity:.46}],[5,{opacity:.83}],[10,{opacity:.66}],[12.8,{opacity:.80}],[13,{opacity:.12}]]);
+
 
     })();
   </script>

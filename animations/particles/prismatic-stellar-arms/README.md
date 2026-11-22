@@ -1,6 +1,6 @@
 # Prismatic stellar arms
 
-Five luminous strands unfurl around a white point of light and flatten into a bright, edge-on spiral.
+A point of white light draws violet, cyan, pink and gold ribbons into a spiral. As the view lowers, colored bands pass across a dense field of stars.
 
 ![Prismatic stellar arms](preview.gif)
 
@@ -25,4 +25,4 @@ Five luminous strands unfurl around a white point of light and flatten into a br
 
 ## Changing it
 
-The stellar lanes combine linework and scattered points with an independently timed central flare. Each color token lives in the palette blocks at the top of the HTML. Run `python3 .github/scripts/export_design.py animations/particles/prismatic-stellar-arms` to refresh the media.
+The first light appears alone. Tangled filaments flow inward, stars collect along them, and the camera tips down until the bright lower bands cross the foreground. A final white flare fills the center. Each color token lives in the palette blocks at the top of the HTML. Run `python3 .github/scripts/export_design.py animations/particles/prismatic-stellar-arms` to refresh the media.
