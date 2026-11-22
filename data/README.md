@@ -19,7 +19,7 @@ Charts, infographics and diagrams.
 | [Family trees](family-trees/) | Family trees |
 | [Venn diagrams](venn-diagrams/) | Venn diagrams |
 | [Architecture diagrams](architecture-diagrams/) | System and software architecture diagrams |
-| [Comparison tables](comparison-tables/) | Comparison tables |
+| [Comparison tables](comparison-tables/) | Comparison tables · **1 design** |
 | [KPI cards](kpi-cards/) | KPI cards and scorecards |
 | [Data art](data-art/) | Data art and generative visuals |
 

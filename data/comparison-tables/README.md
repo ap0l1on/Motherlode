@@ -3,4 +3,12 @@
 
 Comparison tables.
 
-Part of [Data](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Data](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="cable-spectrum-table/"><img src="cable-spectrum-table/preview.png" width="260" alt="Cable spectrum table"></a><br><a href="cable-spectrum-table/"><b>Cable spectrum table</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
