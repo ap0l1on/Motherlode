@@ -20,7 +20,7 @@ Dashboards for every kind of data.
 | [Project management](project-management/) | Projects, tasks and sprints · **2 designs** |
 | [HR](hr/) | People, hiring and payroll |
 | [Customer support](customer-support/) | Tickets and help desks |
-| [Healthcare](healthcare/) | Patients, clinics and medical data |
+| [Healthcare](healthcare/) | Patients, clinics and medical data · **1 design** |
 | [Fitness](fitness/) | Workouts and health tracking · **1 design** |
 | [Education](education/) | Schools, courses and learning platforms |
 | [Student portals](student-portals/) | Student and parent portals |

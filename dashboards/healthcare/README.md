@@ -3,4 +3,12 @@
 
 Patients, clinics and medical data.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="periwinkle-care-desk/"><img src="periwinkle-care-desk/preview.gif" width="260" alt="Periwinkle care desk"></a><br><a href="periwinkle-care-desk/"><b>Periwinkle care desk</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
