@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x475">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="15">
+  <meta name="motherlode:still" content="7">
+  <title>radial</title>
+  <style>
+:root, [data-colorway="original"] { --background: #090d1b; --shade: #294a75; --middle: #a14994; --bright: #7da7c8; --highlight: #fff5d7; --leaf: #f3b379; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 475px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 475" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">radial</title>
+    <desc id="description">A blue coordinate net bends through a magenta nebula toward a glowing mass that darkens into an event horizon.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 15 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function animatePath(node, drawAt, samples) {
+      const frames = Array.from({length: samples + 1}, (_, j) => ({d: 'path("' + drawAt(j / samples) + '")'}));
+      node.setAttribute("d", drawAt(0));
+      node.animate(frames, {duration, iterations: Infinity, easing: "linear"});
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs = element("defs", {});
+    const cloud = radial(defs, "nebula", [[0,"middle",.65],[.32,"middle",.19],[1,"shade",0]]);
+    const blueGas = radial(defs, "gas", [[0,"shade",.85],[.65,"shade",.22],[1,"middle",0]]);
+    const cloudFx=element("filter",{id:"nebula-texture",x:"-25%",y:"-25%",width:"150%",height:"150%"},defs);
+    element("feTurbulence",{type:"fractalNoise",baseFrequency:".026 .039",numOctaves:3,seed:12,result:"grain"},cloudFx);
+    element("feDisplacementMap",{in:"SourceGraphic",in2:"grain",scale:46,xChannelSelector:"R",yChannelSelector:"B"},cloudFx);
+    const clouds=element("g",{filter:"url(#nebula-texture)",opacity:.88});
+    for (let i = 0; i < 125; i++) {
+      const x = random()*590, y = 139 + 70*Math.sin(x/91) + (random()-.5)*280;
+      element("ellipse",{cx:x,cy:y,rx:19+random()*81,ry:17+random()*51,fill:i%3?cloud:blueGas},clouds);
+    }
+    const starDots = [[],[],[]];
+    for (let i=0; i<3700; i++) {
+      const k=Math.floor(random()**2.8*3);
+      starDots[k].push("M"+(random()*576).toFixed(1)+" "+(random()*475).toFixed(1)+"h.04");
+    }
+    starDots.forEach((d,i)=>line(drawing,d.join(""),i===2?"highlight":"bright",[.56,.9,1.5][i],[.51,.7,.9][i]));
+    const grid=element("g",{});
+    const stops=[[0,-.18,.69],[.21,-.04,.14],[.47,.45,.95],[.71,.77,.21],[.84,.29,.13],[1,-.18,.69]];
+    function camera(t) {
+      const i=Math.max(1,stops.findIndex(s=>s[0]>=t));
+      const a=stops[i-1],b=stops[i];
+      let f=(t-a[0])/(b[0]-a[0]); f=f*f*(3-2*f);
+      return [a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];
+    }
+    function project(x,z,t) {
+      const [yaw,pitch]=camera(t),depth=182*Math.exp(-(x*x+z*z)/13000);
+      const u=x*Math.cos(yaw)-z*Math.sin(yaw),v=x*Math.sin(yaw)+z*Math.cos(yaw);
+      const perspective=740/(790+v*.50);
+      const pan=(1-Math.cos(t*tau))*.5;
+      return [291-52*pan+u*perspective,230-39*pan+(v*Math.sin(pitch)+depth*Math.cos(pitch))*perspective];
+    }
+    for (let axis=0;axis<2;axis++) {
+      const path=line(grid,"","bright",.77,.61);
+      animatePath(path,t=>{
+        const segments=[];
+        for(let fixed=-20;fixed<=20;fixed++){
+          const pts=[];for(let i=0;i<=38;i++){
+            const free=-400+i*800/38,q=fixed*24;
+            pts.push(axis?project(free,q,t):project(q,free,t));
+          }
+          segments.push(pointsPath(pts));
+        } return segments.join("");
+      },36);
+    }
+    const halo=radial(defs,"gravity-light",[[0,"highlight",1],[.20,"highlight",1],[.32,"leaf",.97],[.48,"leaf",.76],[1,"leaf",0]]);
+    const mass=element("g",{});
+    element("circle",{r:53,fill:halo},mass);
+    const core=element("circle",{r:15.5,fill:"var(--background)"},mass);
+    core.animate([{offset:0,opacity:0},{offset:.55,opacity:0},{offset:.72,opacity:1},{offset:.88,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    const trajectory=Array.from({length:49},(_,i)=>{const p=project(0,0,i/48);return {transform:"translate("+p[0]+"px,"+p[1]+"px)"};});
+    mass.animate(trajectory,{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
