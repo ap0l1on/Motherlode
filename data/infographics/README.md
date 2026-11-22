@@ -3,4 +3,12 @@
 
 Infographics.
 
-Part of [Data](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Data](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="home-and-landing-field-guide/"><img src="home-and-landing-field-guide/preview.png" width="260" alt="Home and landing field guide"></a><br><a href="home-and-landing-field-guide/"><b>Home and landing field guide</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
