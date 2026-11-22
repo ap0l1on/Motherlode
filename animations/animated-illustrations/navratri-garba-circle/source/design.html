@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x338"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7"><meta name="motherlode:still" content="5.6">
+<title>Navratri garba circle</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #fffffd; --ink: #744811; --base: #f9f1d7; --low: #c99a36; --high: #fce5a7; --a: #c83a2a; --b: #4f9645; --c: #e5b732; --d: #814ca9; --e: #dd6a95; --f: #458eac; --g: #eb9140; --h: #704b32;
+  --happy-ink: #b58b31; --navratri-2026-ink: #b58b31;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:338px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+
+:root {--headline:var(--low)}
+[data-colorway]:not([data-colorway="original"]) {--headline:var(--ink)}
+
+[data-colorway="original"] svg > g:nth-of-type(1) > g:nth-of-type(3) > text[x="\32 88"][y="\31 08"] { fill: var(--happy-ink); }
+[data-colorway="original"] svg > g:nth-of-type(1) > g:nth-of-type(3) > text[x="\32 88"][y="\31 51"] { fill: var(--navratri-2026-ink); }
+</style>
+</head><body>
+<svg viewBox="0 0 576 338" role="img" aria-label="Seven colorful festival dancers gather around a floral rangoli beneath a hanging garland, a painted pot and a Navratri greeting." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1736947;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+rect(0,0,W,H,css('bg'));
+const festival=group(),floor=group(festival),ceiling=group(festival),title=group(festival),cast=group(festival);
+const tones=['a','b','c','d','e','f','g'];
+const floorY=247;node('ellipse',{cx:288,cy:floorY,rx:189,ry:42,fill:css('base')},floor);
+for(let ring=0;ring<3;ring++)for(let i=0;i<32;i++){
+ const a=i*tau/32,r=[35,87,160][ring],x=288+Math.cos(a)*r,y=floorY+Math.sin(a)*r*.218;
+ node('ellipse',{cx:x,cy:y,rx:7+ring*2,ry:1.65+ring*.35,fill:css(tones[(i+ring)%7]),'fill-opacity':.62,transform:'rotate('+(Math.sin(a)*13)+' '+x+' '+y+')'},floor);
+}
+const star=[];for(let i=0;i<24;i++){const a=i*tau/24,r=i%2?32:82;star.push([288+Math.cos(a)*r,floorY+Math.sin(a)*r*.21]);}
+path(shape(star,true),{fill:css('e'),'fill-opacity':.63},floor);node('ellipse',{cx:288,cy:floorY,rx:18,ry:4,fill:css('c')},floor);
+path('M-2 2Q146 18 289 5Q430 17 578 2',{stroke:css('h'),'stroke-width':1.45,fill:'none'},ceiling);
+for(let i=0;i<27;i++){const x=9+i*21.2,y=2+6.1*Math.abs(Math.sin(x*tau/W));line(x,y,x,y+8,css('h'),.65,ceiling);
+ if(i%2) {circle(x,y+9,4.6,css(i%4===1?'g':'c'),ceiling);circle(x,y+9,1.6,css('ink'),ceiling);circle(x,y+16,2.6,css('low'),ceiling);}
+ else path('M'+x+' '+(y+1)+'q-5 7 0 13q5-7 0-13Z',{fill:css(i%4?'f':'b')},ceiling);}
+const pot=group(title);line(288,8,288,32,css('h'),1.1,pot);path('M283 31h10l-2 6q14 6 15 14q1 11-9 15h-18q-9-4-8-14q1-9 15-15Z',{fill:css('g'),stroke:css('h'),'stroke-width':1.5},pot);
+for(let y=43;y<=57;y+=7){for(let i=-2;i<=2;i++)circle(288+i*5.3,y,1.3,css('high'),pot);}
+const greeting={'text-anchor':'middle','font-family':'"Chalkboard SE", "Trebuchet MS", sans-serif','font-weight':700,fill:css('headline')};
+words('Happy',288,108,{'font-size':31,...greeting},title);words('Navratri 2026',288,151,{'font-size':44,...greeting},title);
+words('શુભ નવરાત્રી',288,177,{'text-anchor':'middle','font-size':18,'font-family':'"Gujarati Sangam MN", sans-serif','font-weight':700,fill:css('ink')},title);
+const glass=gradient('face',[[0,'high',.66],[47,'high',0],[100,'h',.31]],{x2:'82%',y2:'95%'});
+for(let i=0;i<7;i++) {
+ const x=112+i*58.6, tone=tones[i],outer=group(cast), person=group(outer);
+ const y=247+Math.sin(i*1.8)*3;outer.setAttribute('transform','translate('+x+' '+y+')');
+ const rr=i===3?23:19.7;
+ for(const sign of [-1,1]) {
+  path('M'+(sign*5)+' 13Q'+sign*9+' 28 '+sign*6+' 37',{fill:'none',stroke:css('h'),'stroke-width':2.9,'stroke-linecap':'round'},person);
+  node('ellipse',{cx:sign*7+1,cy:38.3,rx:5.5,ry:2.1,fill:css(tone)},person);
+  path('M'+(sign*10)+' 6q'+(sign*7)+' 0 '+(sign*10)+' -7',{fill:'none',stroke:css('h'),'stroke-width':2.0,'stroke-linecap':'round'},person);
+  line(sign*17,-2,sign*28,-12+3*(i%3),css('low'),1.4,person);
+ }
+ path(i%2?'M-8 2Q0-4 8 2l3 22q-13 4-21 0Z':'M-8 1H8L16 24q-14 3-32 0Z',{fill:css(tone),stroke:css('h'),'stroke-width':1.1},person);
+ for(let j=-2;j<3;j++)line(j*3.8,8,j*4.6,22,css(i%2?'c':'high'),.8,person);
+ circle(0,-12,rr,css(tone),person,{stroke:css('h'),'stroke-width':1.35});circle(0,-12,rr,glass,person);
+ if(i===3){path('M-22-24q6-15 24-14q16 1 19 13q-18-4-43 1Z',{fill:css('d'),stroke:css('h'),'stroke-width':1.25},person);path('M-20-24q16-4 40-3',{fill:'none',stroke:css('c'),'stroke-width':3},person);}
+ else if(i%2===0){path('M-13-27q10-8 19-3',{stroke:css('h'),fill:'none','stroke-width':2.2},person);circle(0,-30,3.1,css('c'),person);}
+ else {path('M-16-26q17-4 32 1',{stroke:css('high'),fill:'none','stroke-width':2.2},person);}
+ for(const sign of [-1,1]){if(i===2||i===3)path('M'+(sign*7-3)+'-14q3-5 6 0',{stroke:css('h'),'stroke-width':1.7,fill:'none'},person);else {node('ellipse',{cx:sign*7,cy:-14,rx:4.1,ry:5.6,fill:css('bg')},person);circle(sign*7+.3,-13,2.2,css('h'),person);}}
+ path(i%3===0?'M-6-6q6 13 13 0Z':i%3===1?'M-3-4q4-5 7 0q0 6-4 6q-4 0-3-6Z':'M-7-6q5 9 14 0q-2 13-9 9Z',{fill:css('h')},person);circle(0,-21,1.1,css('a'),person);
+ const start=.03+i*.016,side=(i-3)*13;
+ animate(person,[{opacity:0,transform:'translate('+(-side*.72)+'px,-23px) scale(.64)'},{opacity:0,transform:'translate('+(-side*.72)+'px,-23px) scale(.64)',offset:start},{opacity:1,transform:'translate('+side*.32+'px,'+(-13+Math.cos(i)*18)+'px) scale(.87)',offset:.31},{opacity:1,transform:'translate('+(-side*.3)+'px,'+(-13+Math.sin(i)*14)+'px) scale(.91)',offset:.53},{opacity:1,transform:'translate(0,0) scale(1)',offset:.72},{opacity:1,offset:.94},{opacity:0,transform:'translate(0,2px) scale(.96)'}]);
+}
+const confetti=group();for(let i=0;i<71;i++){const x=range(0,W),y=range(15,319);rect(x,y,range(2,5),range(1,3),css(tones[i%7]),confetti,{opacity:range(.30,.71),transform:'rotate('+range(-45,45)+' '+x+' '+y+')'});}
+animate(confetti,[{opacity:0,transform:'translate(0,-19px)'},{opacity:0,offset:.5},{opacity:1,offset:.77,transform:'translate(1px,0)'},{opacity:0,transform:'translate(4px,28px)'}]);
+animate(title,[{opacity:0},{opacity:0,offset:.48},{opacity:1,offset:.70},{opacity:1,offset:.94},{opacity:0}]);
+for(const el of [floor,ceiling])animate(el,[{opacity:0},{opacity:1,offset:.15},{opacity:1,offset:.94},{opacity:0}]);
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script></body></html>
