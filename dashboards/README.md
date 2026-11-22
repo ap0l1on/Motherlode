@@ -14,7 +14,7 @@ Dashboards for every kind of data.
 | [Banking](banking/) | Banking and money management · **2 designs** |
 | [Crypto](crypto/) | Crypto portfolios and exchanges |
 | [Trading](trading/) | Stock trading and markets |
-| [E-commerce](e-commerce/) | Store sales and orders · **2 designs** |
+| [E-commerce](e-commerce/) | Store sales and orders · **3 designs** |
 | [Inventory](inventory/) | Stock and warehouses |
 | [Logistics](logistics/) | Shipping and fleet tracking |
 | [Project management](project-management/) | Projects, tasks and sprints · **2 designs** |
