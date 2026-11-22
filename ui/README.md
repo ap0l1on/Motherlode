@@ -26,7 +26,7 @@ Building blocks: components, kits and design systems.
 | [Tabs](tabs/) | Tabs |
 | [Segmented controls](segmented-controls/) | Segmented controls |
 | [Navbars](navbars/) | Top navigation bars · **1 design** |
-| [Tab bars](tab-bars/) | Bottom tab bars · **10 designs** |
+| [Tab bars](tab-bars/) | Bottom tab bars · **11 designs** |
 | [Sidebars](sidebars/) | Sidebars · **5 designs** |
 | [Breadcrumbs](breadcrumbs/) | Breadcrumbs |
 | [Menus](menus/) | Dropdown and context menus · **1 design** |
