@@ -3,4 +3,12 @@
 
 3D characters.
 
-Part of [3D](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [3D](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="spectrum-mohawk-sculpture/"><img src="spectrum-mohawk-sculpture/preview.gif" width="260" alt="Spectrum mohawk sculpture"></a><br><a href="spectrum-mohawk-sculpture/"><b>Spectrum mohawk sculpture</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
