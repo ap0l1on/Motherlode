@@ -46,7 +46,7 @@ Building blocks: components, kits and design systems.
 | [Loaders](loaders/) | Spinners and loading indicators · **5 designs** |
 | [Skeletons](skeletons/) | Skeleton loading screens |
 | [Carousels](carousels/) | Carousels · **1 design** |
-| [Galleries](galleries/) | Image galleries and lightboxes · **1 design** |
+| [Galleries](galleries/) | Image galleries and lightboxes · **2 designs** |
 | [Calendars](calendars/) | Calendar views |
 | [Kanban boards](kanban-boards/) | Kanban boards |
 | [Comment threads](comment-threads/) | Comment threads |
