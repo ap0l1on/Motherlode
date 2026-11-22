@@ -3,4 +3,12 @@
 
 Store sales and orders.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="indigo-store-desk/"><img src="indigo-store-desk/preview.gif" width="260" alt="Indigo store desk"></a><br><a href="indigo-store-desk/"><b>Indigo store desk</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
