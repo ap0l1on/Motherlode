@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="880x947"><meta name="motherlode:scale" content="2">
+
+<title>Lime command deploy</title><style>
+:root, [data-colorway="original"] {
+  --bg: #030504; --ink: #f3f4f1; --shadow: #020303; --paper: #090c0b; --ash: #111410;
+  --metal: #abaeaa; --edge: #282c27; --a: #d2f050; --b: #f28671; --c: #cddf56; --d: #7ebd87; --e: #99e37b; --f: #7cb4d2;
+}
+[data-colorway="light"] {
+  --bg: #f6f8f0; --ink: #172018; --shadow: #172019; --paper: #ffffff; --ash: #edf1e4;
+  --metal: #51614e; --edge: #d6dfcd; --a: #639629; --b: #b85f55; --c: #8ca238; --d: #689754; --e: #4c853c; --f: #397a98;
+}
+[data-colorway="dark"] {
+  --bg: #0c1113; --ink: #eff6f3; --shadow: #08100d; --paper: #141c1e; --ash: #1a2423;
+  --metal: #bbcdc5; --edge: #35423d; --a: #b3f2a3; --b: #f09889; --c: #dbd68d; --d: #88c0b5; --e: #7ad7a8; --f: #90c5dd;
+}
+[data-colorway="mono"] {
+  --bg: #101010; --ink: #f3f3f3; --shadow: #0a0a0a; --paper: #191919; --ash: #222222;
+  --metal: #bcbcbc; --edge: #414141; --a: #dddddd; --b: #ababab; --c: #cbcbcb; --d: #a0a0a0; --e: #c1c1c1; --f: #aaaaaa;
+}
+[data-colorway="ocean"] {
+  --bg: #07191c; --ink: #e0fbf7; --shadow: #031115; --paper: #102529; --ash: #132f31;
+  --metal: #adc9cb; --edge: #314c4d; --a: #88eddd; --b: #e69b94; --c: #b6dc87; --d: #75b7bb; --e: #66d9bc; --f: #8cc6ef;
+}
+[data-colorway="matcha"] {
+  --bg: #14231a; --ink: #eff6dc; --shadow: #102017; --paper: #1d2e20; --ash: #26392a;
+  --metal: #becdb6; --edge: #435140; --a: #deed8f; --b: #dea38e; --c: #e6d99a; --d: #aacb94; --e: #b2d08c; --f: #8fb5ae;
+}
+[data-colorway="sunset"] {
+  --bg: #2a1b22; --ink: #ffefe5; --shadow: #20141a; --paper: #36242b; --ash: #43272e;
+  --metal: #dec2b8; --edge: #61464b; --a: #ffc48b; --b: #eb9393; --c: #f2d38f; --d: #d5a798; --e: #f3ad99; --f: #d3a9cb;
+}
+[data-colorway="berry"] {
+  --bg: #241b2b; --ink: #fff2fb; --shadow: #17121c; --paper: #34253a; --ash: #422c44;
+  --metal: #dac0d8; --edge: #5a4159; --a: #f0addc; --b: #eea29a; --c: #e7c995; --d: #c8a0d7; --e: #df9ac1; --f: #b7b2e3;
+}
+@font-face{font-family:'Outfit';src:url('fonts/outfit.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:880px;height:947px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Outfit',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+html,body{width:100%;height:100%}main{width:100vw;height:100dvh;display:flex;flex-direction:column;background:var(--bg)}button{border:0;background:transparent}header{flex:none;background:color-mix(in srgb,var(--bg) 83%,var(--paper));border-bottom:1px solid color-mix(in srgb,var(--edge) 38%,var(--bg))}.nav-inner{max-width:1240px;height:82px;margin:auto;padding:0 49px;display:flex;align-items:center;gap:29px}.brand{font-size:21px;line-height:1;font-weight:820;letter-spacing:-.6px;white-space:nowrap}.brand em,h1 em{font-style:normal}.brand em{color:var(--a)}.brand i{font-size:24px;font-style:normal;color:var(--b);margin-left:3px}nav{margin-left:auto;display:flex;gap:26px}nav button{font-size:15px;color:var(--metal);padding:7px 0}.small-cta,.primary{color:var(--shadow);background:var(--a);font-weight:750;border-radius:999px}.small-cta{font-size:14px;line-height:1.15;padding:13px 23px}.flow{overflow:auto;scrollbar-width:thin;scrollbar-color:var(--edge) var(--bg);min-height:0;scroll-behavior:smooth}.hero{max-width:1150px;margin:auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:86px 40px 70px}.notice{font-size:13px;line-height:1.25;padding:10px 16px;color:var(--a);font-weight:590;border-radius:30px;background:color-mix(in srgb,var(--a) 9%,var(--bg));border:1px solid color-mix(in srgb,var(--a) 25%,var(--bg));margin:0}.notice i{display:inline-block;margin-right:6px;background:var(--a);width:6px;height:6px;border-radius:100%}h1{margin:31px 0 25px;font:820 clamp(48px,7.5vw,80px)/1.01 Outfit,Arial,sans-serif;letter-spacing:-2.6px}h1 em{background:linear-gradient(90deg,var(--a),var(--e));color:var(--a);background-clip:text;-webkit-text-fill-color:transparent}.lead{max-width:610px;font-size:18.8px;line-height:1.6;color:var(--metal);margin:0}.hero-actions{display:flex;align-items:center;gap:19px;margin:45px 0 69px}.primary,.secondary{font-size:15.5px;line-height:1.25;padding:20px 39px}.primary{box-shadow:0 0 30px color-mix(in srgb,var(--a) 14%,transparent)}.secondary{border:1px solid var(--edge);border-radius:999px;font-weight:700}.terminal{width:min(100%,642px);text-align:left;border-radius:13px;background:var(--paper);border:1px solid var(--edge);padding:15px 20px 18px}.lights{display:flex;gap:7px}.lights i{background:var(--b);width:11px;height:11px;border-radius:50%}.lights i:nth-child(2){background:var(--c)}.lights i:nth-child(3){background:var(--e)}.lines{margin-top:38px;font:13px/1.62 ui-monospace,SFMono-Regular,monospace;color:var(--metal)}.lines p{margin:0 0 6px}.lines b{color:var(--c)}.lines strong{color:var(--ink)}.lines span{color:var(--e)}.lines u{color:var(--f)}.features{max-width:1100px;padding:30px 45px 70px;margin:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.features article{min-height:183px;border-radius:14px;padding:27px;background:var(--paper);border:1px solid var(--edge)}.features h2{font-size:24px;margin:13px 0 10px;letter-spacing:-.5px}.features small{color:var(--a);font:600 12px ui-monospace,monospace}.features p{color:var(--metal);font-size:16px;line-height:1.6;margin:0}.speed h2{font-size:48px;color:var(--a)}@media(max-width:690px){.nav-inner{padding:0 24px;height:66px;gap:12px}.brand{font-size:18px;white-space:normal}.small-cta{font-size:12px;padding:11px 17px;margin-left:auto}nav{display:none}.hero{padding:56px 23px 36px}.notice{font-size:11px;padding:8px 13px}.hero h1{font-size:clamp(37px,8.4vw,57px);letter-spacing:-1.7px;margin:27px 0 20px}.lead{font-size:15px;line-height:1.65;max-width:390px}.hero-actions{width:100%;max-width:340px;gap:11px;flex-direction:column;margin:35px 0 49px}.hero-actions button{width:100%;font-size:14px;padding:15px}.secondary{border-color:transparent}.terminal{padding:14px}.lines{font-size:10px;margin-top:30px}.features{padding:12px 20px 40px;grid-template-columns:1fr}.features article{min-height:150px;padding:24px}.features h2{font-size:21px}.features .speed h2{font-size:41px}}
+@media(min-width:691px){.hero h1{transform:scaleX(1.13)}.lead{font-size:20.3px;line-height:1.55;max-width:590px}.hero-actions{margin-top:46px}.primary{min-width:229px}.secondary{border-color:color-mix(in srgb,var(--edge) 35%,var(--bg))}.terminal{padding-bottom:23px}}
+@media(max-width:405px){.hero{padding-top:65px}.hero h1{width:282px;max-width:100%;font-size:43px;line-height:1.04}.lead{font-size:16px;max-width:323px}.hero-actions{margin-top:37px}}
+</style></head><body><main aria-label="Lime command deploy"><header><div class="nav-inner"><div class="brand">Northline <em>Deploy</em> <i>ϟ</i></div><nav aria-label="Site navigation"><button data-to="features">Features</button><button data-to="terminal">Docs</button><button data-to="ssl">Pricing</button></nav><button data-to="terminal" class="small-cta">Deploy Free</button></div></header><div class="flow"><section class="hero"><p class="notice"><i></i> Deployments are 3x faster this week</p><h1>From code to live<br>in <em>one command.</em></h1><p class="lead">Take your project from localhost to a global edge network with a single terminal command. No config. No DevOps. Free forever for side projects.</p><div class="hero-actions"><button data-to="terminal" class="primary">Start Deploying <span>→</span></button><button data-to="terminal" class="secondary">View Demo</button></div><article class="terminal" id="terminal" aria-label="Deployment terminal preview"><div class="lights"><i></i><i></i><i></i></div><div class="lines"><p>$ <b>ship deploy --prod</b></p><p>▴ Building project...</p><p>▴ Deploying to edge network...</p><p><span>✓</span> <strong>Production:</strong> <u>demo.northline.example</u> [2.4s]</p></div></article></section><section id="features" class="features"><article><small>01</small><h2>One command. That’s the whole docs.</h2><p>From first commit to a live address, deploy a project with one command.</p></article><article class="speed"><small>02</small><h2>2.4s</h2><p>Average deploy time from command to live URL.</p></article><article><small>03</small><h2>Preview every push</h2><p>Every branch gets its own live URL. Share it, test it, break it — production stays untouched.</p></article><article id="ssl"><small>04</small><h2>Free SSL, always</h2><p>HTTPS on every deploy with zero setup. Certificates renew themselves.</p></article><article><small>05</small><h2>Instant rollbacks</h2><p>One click returns your project to its last working deploy.</p></article></section></div></main>
+<script>
+const stage=document.querySelector('main');
+function bind(element,fn){element.addEventListener('click',fn);element.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn(e);}});}
+
+document.querySelectorAll('[data-to]').forEach(link=>{link.onclick=()=>document.getElementById(link.dataset.to).scrollIntoView({block:'start',behavior:'smooth'});});
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>
