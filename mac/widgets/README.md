@@ -5,10 +5,10 @@ Mac widgets.
 
 Part of [Mac](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="soft-clay-clock/"><img src="soft-clay-clock/preview.gif" width="260" alt="Soft clay clock"></a><br><a href="soft-clay-clock/"><b>Soft clay clock</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="soft-clay-calculator/"><img src="soft-clay-calculator/preview.gif" width="260" alt="Soft clay calculator"></a><br><a href="soft-clay-calculator/"><b>Soft clay calculator</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="soft-clay-clock/"><img src="soft-clay-clock/preview.gif" width="260" alt="Soft clay clock"></a><br><a href="soft-clay-clock/"><b>Soft clay clock</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

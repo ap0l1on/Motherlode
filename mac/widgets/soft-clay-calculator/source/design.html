@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x954">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="8">
+<meta name="motherlode:still" content="4.3">
+<title>Soft clay calculator</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #DCE4EB; --surface: #DCE4EB; --ink: #293247; --muted: #465065;
+  --accent: #6558E9; --on-accent: #FFFFFF; --second: #566BDD; --third: #8E76F4;
+  --ivory: #EAEAF5; --shade: #A8B2BF; --outline: #C8D0D8; --good: #7567C9;
+  --hi: #F9FBFB; --lo: #1A2132; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+* {box-sizing:border-box}html,body{width:864px;height:954px;margin:0;overflow:hidden}main{position:relative;width:576px;height:636px;transform:scale(1.5);transform-origin:0 0;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}
+article{position:absolute;left:158px;top:117px;width:259px;height:398px;border-radius:22px;background:var(--surface);box-shadow:11px 13px 22px color-mix(in srgb,var(--shade) 58%,var(--clear)),-10px -8px 17px color-mix(in srgb,var(--hi) 88%,var(--clear));padding:22px 17px}
+.screen{height:80px;border-radius:13px;text-align:right;padding:15px 16px 0;box-shadow:inset 3px 4px 7px color-mix(in srgb,var(--shade) 61%,var(--clear)),inset -4px -4px 7px var(--hi)}.screen small{color:var(--muted);display:grid;font-size:9px;height:15px}.screen output{display:grid;margin-top:5px;font-size:25px;font-weight:790;font-variant-numeric:tabular-nums;line-height:26px}.screen span{grid-area:1 / 1}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,44px);gap:10px 11px;margin-top:15px}button{border:0;margin:0;border-radius:12px;background:var(--surface);color:var(--ink);font:700 13px Inter,sans-serif;cursor:pointer;box-shadow:3px 4px 6px color-mix(in srgb,var(--shade) 63%,var(--clear)),-4px -4px 8px var(--hi)}button.compact{font-size:10px;font-weight:570}button.operator{color:var(--second)}button.equal{color:var(--on-accent);background:linear-gradient(125deg,var(--second),var(--accent) 54%,var(--third));font-size:17px}button.wide{grid-column:span 2}button:active{box-shadow:inset 2px 3px 6px color-mix(in srgb,var(--shade) 70%,var(--clear)),inset -2px -3px 5px var(--hi)}button:focus-visible{outline:1.5px solid var(--accent);outline-offset:2px}
+</style></head><body><main><article aria-label="Calculator"><div class="screen"><small></small><output aria-live="polite"></output></div><div class="keys"></div></article></main><script>
+const keys=['AC','±','%','÷','7','8','9','×','4','5','6','−','1','2','3','+','0','.','='],pad=document.querySelector('.keys'),read=document.querySelector('output'),history=document.querySelector('small'),tour=[],stages=[[0,'0',''],[.22,'6',''],[.35,'69',''],[.47,'69','69 −'],[.62,'67','69 −'],[.76,'2','69 − 67 ='],[.91,'2','69 − 67 ='],[1,'0','']];
+let manual=false,display='0',prior=null,op='',fresh=true,previousInput='';
+function pathTracking(target,k){stages.forEach((row,i)=>{const span=document.createElement('span');span.textContent=row[k];target.append(span);tour.push(span.animate(stages.map(([offset],j)=>({offset,opacity:i===j?1:0,easing:'steps(1,end)'})),{duration:8000,iterations:Infinity}));});}
+pathTracking(read,1);pathTracking(history,2);
+for(const v of keys){const b=document.createElement('button');b.type='button';b.textContent=v;b.setAttribute('aria-label',({AC:'All clear','±':'Change sign','%':'Percent','÷':'Divide','×':'Multiply','−':'Subtract','+':'Add','=':'Equals'})[v]||v);if(['AC','±','%'].includes(v))b.className='compact';if(['÷','×','−','+'].includes(v))b.className='operator';if(v==='=')b.className='equal';if(v==='0')b.className='wide';b.onclick=()=>act(v);pad.append(b);}
+const normalize=v=>Number.isFinite(v)?String(Number(v.toPrecision(10))):'Error';
+function solve(a,b,o){return o==='+'?a+b:o==='−'?a-b:o==='×'?a*b:o==='÷'&&b!==0?a/b:NaN;}
+function act(key){if(!manual){tour.forEach(a=>a.cancel());manual=true;history.replaceChildren();read.replaceChildren();}if(key==='AC'){display='0';op='';prior=null;fresh=true;previousInput='';}else if(/^\d$/.test(key)){if(display.length<11||fresh)display=fresh||display==='0'?key:display+key;fresh=false;}else if(key==='.'){if(fresh)display='0';if(!display.includes('.'))display+='.';fresh=false;}else if(key==='±')display=normalize(-Number(display));else if(key==='%')display=normalize(Number(display)/100);else if(key==='='){if(prior!==null&&op){previousInput=prior+' '+op+' '+display+' =';display=normalize(solve(prior,Number(display),op));prior=null;op='';fresh=true;}}else{if(prior!==null&&!fresh&&op)display=normalize(solve(prior,Number(display),op));prior=Number(display);op=key;fresh=true;previousInput=display+' '+key;}
+history.textContent=previousInput;read.textContent=display;}
+addEventListener('keydown',e=>{if(e.altKey||e.ctrlKey||e.metaKey)return;const k=({'Escape':'AC','Enter':'=','/':'÷','*':'×','-':'−'})[e.key]||e.key;if(keys.includes(k)){e.preventDefault();act(k);}});if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tour.forEach(a=>{a.pause();a.currentTime=4300;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
