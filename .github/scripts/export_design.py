@@ -288,7 +288,7 @@ class Chrome:
             raise RuntimeError(f"Page script failed: {result['exceptionDetails']}")
         return result.get("result", {}).get("value")
 
-    def render(self, colorway, seconds, output, wait_ms, slide=None):
+    def render(self, colorway, seconds, output, wait_ms, slide=None, *, video_frame=False):
         # Reload every timestamp: animations with fill modes, finished promises
         # and author-supplied ?t= initialization then behave like a fresh page.
         self.previous_frame = None
@@ -331,7 +331,7 @@ class Chrome:
             raise ValueError(f"Page did not select #{colorway}; include the hash/colorway script from AGENTS.md")
         if (state["width"], state["height"]) != (self.design.width, self.design.height):
             raise RuntimeError(f"Unexpected Chrome viewport: {state}")
-        self.capture(output)
+        self.capture(output, video_frame=video_frame)
 
     def seek(self, seconds, output):
         """Seek existing CSS/WAAPI tracks in a document whose assets are ready."""
@@ -402,7 +402,7 @@ class Chrome:
             return !unchanged;
         })()""".replace("TIME", json.dumps(seconds)))
         if changed or self.previous_frame is None:
-            self.capture(output)
+            self.capture(output, video_frame=True)
         else:
             try:
                 os.link(self.previous_frame, output)
@@ -410,10 +410,13 @@ class Chrome:
                 shutil.copyfile(self.previous_frame, output)
         self.previous_frame = output
 
-    def capture(self, output):
+    def capture(self, output, *, video_frame=False):
         options = {"format": "png", "fromSurface": True, "captureBeyondViewport": False}
         if output.suffix == ".jpg":
             options.update(format="jpeg", quality=100)
+        elif video_frame:
+            # Temporary lossless frames go directly to AVFoundation and Pillow.
+            options["optimizeForSpeed"] = True
         screenshot = self.call("Page.captureScreenshot", options)
         output.write_bytes(base64.b64decode(screenshot["data"], validate=True))
         with Image.open(output) as image:
@@ -560,7 +563,7 @@ def export(folder, args):
                         if args.reuse_page:
                             browser.seek(index / FPS, path)
                         else:
-                            browser.render(name, index / FPS, path, args.wait_ms)
+                            browser.render(name, index / FPS, path, args.wait_ms, video_frame=True)
                 if design.loop:
                     run_command([str(encoder), str(frames), str(exports / f"{name}.mp4"), str(FPS)],
                                 max(120, design.frames * 2))
