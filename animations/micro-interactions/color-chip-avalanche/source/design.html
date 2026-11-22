@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x289">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="19">
+  <meta name="motherlode:still" content="2.5">
+  <title>Color chip avalanche</title>
+  <style>
+:root, [data-colorway="original"] {
+  --page: #0c0c0f; --text: #f3f0f3; --description: #cac8cf; --control: #202025; --focus: #b6acd8;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #f0f8ff; --antiquewhite: #faebd7; --aqua: #00ffff; --aquamarine: #7fffd4;
+  --azure: #f0ffff; --beige: #f5f5dc; --bisque: #ffe4c4; --black: #000000;
+  --blanchedalmond: #ffebcd; --blue: #0000ff; --blueviolet: #8a2be2; --brown: #a52a2a;
+  --burlywood: #deb887; --cadetblue: #5f9ea0; --chartreuse: #7fff00; --chocolate: #d2691e;
+  --coral: #ff7f50; --cornflowerblue: #6495ed; --cornsilk: #fff8dc; --crimson: #dc143c;
+  --cyan: #00ffff; --darkblue: #00008b; --darkcyan: #008b8b; --darkgoldenrod: #b8860b;
+  --darkgray: #a9a9a9; --darkgreen: #006400; --darkgrey: #a9a9a9; --darkkhaki: #bdb76b;
+  --darkmagenta: #8b008b; --darkolivegreen: #556b2f; --darkorange: #ff8c00; --darkorchid: #9932cc;
+  --darkred: #8b0000; --darksalmon: #e9967a; --darkseagreen: #8fbc8f; --darkslateblue: #483d8b;
+  --darkslategray: #2f4f4f; --darkslategrey: #2f4f4f; --darkturquoise: #00ced1; --darkviolet: #9400d3;
+  --deeppink: #ff1493; --deepskyblue: #00bfff; --dimgray: #696969; --dimgrey: #696969;
+  --dodgerblue: #1e90ff; --firebrick: #b22222; --floralwhite: #fffaf0; --forestgreen: #228b22;
+  --fuchsia: #ff00ff; --gainsboro: #dcdcdc; --ghostwhite: #f8f8ff; --gold: #ffd700;
+  --goldenrod: #daa520; --gray: #808080; --green: #008000; --greenyellow: #adff2f;
+  --grey: #808080; --honeydew: #f0fff0; --hotpink: #ff69b4; --indianred: #cd5c5c;
+  --indigo: #4b0082; --ivory: #fffff0; --khaki: #f0e68c; --lavender: #e6e6fa;
+  --lavenderblush: #fff0f5; --lawngreen: #7cfc00; --lemonchiffon: #fffacd; --lightblue: #add8e6;
+  --lightcoral: #f08080; --lightcyan: #e0ffff; --lightgoldenrodyellow: #fafad2; --lightgray: #d3d3d3;
+  --lightgreen: #90ee90; --lightgrey: #d3d3d3; --lightpink: #ffb6c1; --lightsalmon: #ffa07a;
+  --lightseagreen: #20b2aa; --lightskyblue: #87cefa; --lightslategray: #778899; --lightslategrey: #778899;
+  --lightsteelblue: #b0c4de; --lightyellow: #ffffe0; --lime: #00ff00; --limegreen: #32cd32;
+  --linen: #faf0e6; --magenta: #ff00ff; --maroon: #800000; --mediumaquamarine: #66cdaa;
+  --mediumblue: #0000cd; --mediumorchid: #ba55d3; --mediumpurple: #9370db; --mediumseagreen: #3cb371;
+  --mediumslateblue: #7b68ee; --mediumspringgreen: #00fa9a; --mediumturquoise: #48d1cc; --mediumvioletred: #c71585;
+  --midnightblue: #191970; --mintcream: #f5fffa; --mistyrose: #ffe4e1; --moccasin: #ffe4b5;
+  --navajowhite: #ffdead; --navy: #000080; --oldlace: #fdf5e6; --olive: #808000;
+  --olivedrab: #6b8e23; --orange: #ffa500; --orangered: #ff4500; --orchid: #da70d6;
+  --palegoldenrod: #eee8aa; --palegreen: #98fb98; --paleturquoise: #afeeee; --palevioletred: #db7093;
+  --papayawhip: #ffefd5; --peachpuff: #ffdab9; --peru: #cd853f; --pink: #ffc0cb;
+  --plum: #dda0dd; --powderblue: #b0e0e6; --purple: #800080; --rebeccapurple: #663399;
+  --red: #ff0000; --rosybrown: #bc8f8f; --royalblue: #4169e1; --saddlebrown: #8b4513;
+  --salmon: #fa8072; --sandybrown: #f4a460; --seagreen: #2e8b57; --seashell: #fff5ee;
+  --sienna: #a0522d; --silver: #c0c0c0; --skyblue: #87ceeb; --slateblue: #6a5acd;
+  --slategray: #708090; --slategrey: #708090; --snow: #fffafa; --springgreen: #00ff7f;
+  --steelblue: #4682b4; --tan: #d2b48c; --teal: #008080; --thistle: #d8bfd8;
+  --tomato: #ff6347; --turquoise: #40e0d0; --violet: #ee82ee; --wheat: #f5deb3;
+  --white: #ffffff; --whitesmoke: #f5f5f5; --yellow: #ffff00; --yellowgreen: #9acd32;
+}
+[data-colorway="light"] {
+  --page: #f8f4eb; --text: #211e2c; --description: #4e4858; --control: #e6dfd5; --focus: #47326e;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #90d9f6; --antiquewhite: #eab18c; --aqua: #18ecc6; --aquamarine: #58f1a2;
+  --azure: #90f6e4; --beige: #dfd297; --bisque: #f4a67a; --black: #453639;
+  --blanchedalmond: #f5b07f; --blue: #183eec; --blueviolet: #6c34d8; --brown: #b6344c;
+  --burlywood: #d2926a; --cadetblue: #5ca89d; --chartreuse: #a8ec18; --chocolate: #d2522a;
+  --coral: #f05040; --cornflowerblue: #519ee0; --cornsilk: #f5cb86; --crimson: #da2268;
+  --cyan: #18ecc6; --darkblue: #0f2db7; --darkcyan: #0fb799; --darkgoldenrod: #ca771b;
+  --darkgray: #a58c91; --darkgreen: #28a40d; --darkgrey: #a58c91; --darkkhaki: #bba460;
+  --darkmagenta: #990fb7; --darkolivegreen: #81913d; --darkorange: #ec6618; --darkorchid: #803cc8;
+  --darkred: #b70f2d; --darksalmon: #dc685e; --darkseagreen: #83b677; --darkslateblue: #4548a2;
+  --darkslategray: #427d72; --darkslategrey: #427d72; --darkturquoise: #12dab9; --darkviolet: #7b12db;
+  --deeppink: #ed22b4; --deepskyblue: #18ddec; --dimgray: #84686d; --dimgrey: #84686d;
+  --dodgerblue: #27afee; --firebrick: #c02e48; --floralwhite: #f6c290; --forestgreen: #45a92f;
+  --fuchsia: #c618ec; --gainsboro: #bdabae; --ghostwhite: #94a6f6; --gold: #eca518;
+  --goldenrod: #d5872d; --gray: #917479; --green: #2cb20e; --greenyellow: #c5ee30;
+  --grey: #917479; --honeydew: #a2f690; --hotpink: #f14dbc; --indianred: #c75469;
+  --indigo: #500eb3; --ivory: #f6e490; --khaki: #e2bf66; --lavender: #98a6e6;
+  --lavenderblush: #f690c4; --lawngreen: #a6ec17; --lemonchiffon: #f5d47f; --lightblue: #7fd0d5;
+  --lightcoral: #e25f77; --lightcyan: #88f5e2; --lightgoldenrodyellow: #ead989; --lightgray: #b9a6a9;
+  --lightgreen: #7fe069; --lightgrey: #b9a6a9; --lightpink: #f4739e; --lightsalmon: #f16655;
+  --lightseagreen: #2cc09d; --lightskyblue: #5ed0ec; --lightslategray: #6c91a2; --lightslategrey: #6c91a2;
+  --lightsteelblue: #85b1cd; --lightyellow: #f5e288; --lime: #3eec18; --limegreen: #55c93c;
+  --linen: #e6b198; --magenta: #c618ec; --maroon: #b20e2c; --mediumaquamarine: #5ac78e;
+  --mediumblue: #1235d8; --mediumorchid: #9d4fcc; --mediumpurple: #6e5dd1; --mediumseagreen: #41bb61;
+  --mediumslateblue: #5358e1; --mediumspringgreen: #16ec73; --mediumturquoise: #48cbae; --mediumvioletred: #cf23ae;
+  --midnightblue: #293e9c; --mintcream: #93f6b3; --mistyrose: #f58991; --moccasin: #f4ad73;
+  --navajowhite: #f3a66f; --navy: #0e2cb2; --oldlace: #efbd91; --olive: #b2940e;
+  --olivedrab: #98aa30; --orange: #ec7b18; --orangered: #ec2b18; --orchid: #c05dd0;
+  --palegoldenrod: #dec379; --palegreen: #7fee67; --paleturquoise: #7cdecc; --palevioletred: #d15d98;
+  --papayawhip: #f5b583; --peachpuff: #f49a75; --peru: #c86d43; --pink: #f478a4;
+  --plum: #bf7ace; --powderblue: #81d5cf; --purple: #940eb2; --rebeccapurple: #603cad;
+  --red: #ec183e; --rosybrown: #b67783; --royalblue: #4181d7; --saddlebrown: #ae4322;
+  --salmon: #ec535f; --sandybrown: #e6774c; --seagreen: #39a655; --seashell: #f6a78f;
+  --sienna: #b34837; --silver: #b09a9e; --skyblue: #65d0dd; --slateblue: #5358c7;
+  --slategray: #688c9d; --slategrey: #688c9d; --snow: #f695a7; --springgreen: #18ec5c;
+  --steelblue: #499ab9; --tan: #c79270; --teal: #0eb294; --thistle: #bb92c4;
+  --tomato: #ef3c41; --turquoise: #40d6ac; --violet: #ca61e0; --wheat: #e6ad7a;
+  --white: #cec0c3; --whitesmoke: #c9babd; --yellow: #ecc618; --yellowgreen: #b4c93c;
+}
+[data-colorway="dark"] {
+  --page: #131627; --text: #f5eeef; --description: #c3c6d6; --control: #292b42; --focus: #a4bffe;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #babdf7; --antiquewhite: #ebeeaf; --aqua: #2b8de7; --aquamarine: #77def0;
+  --azure: #badaf7; --beige: #d0e7b6; --bisque: #f2f4a0; --black: #3c352f;
+  --blanchedalmond: #eff5a5; --blue: #862be7; --blueviolet: #d646d6; --brown: #b9773a;
+  --burlywood: #d2d680; --cadetblue: #6789ac; --chartreuse: #2fe72b; --chocolate: #d2c237;
+  --coral: #edc85b; --cornflowerblue: #7769e0; --cornsilk: #e2f6ae; --crimson: #d95f30;
+  --cyan: #2b8de7; --darkblue: #6014b2; --darkcyan: #1466b2; --darkgoldenrod: #aaca21;
+  --darkgray: #b0a49a; --darkgreen: #119b53; --darkgrey: #b0a49a; --darkkhaki: #9ebe6f;
+  --darkmagenta: #b21466; --darkolivegreen: #4c9040; --darkorange: #e2e72b; --darkorchid: #c84ab5;
+  --darkred: #b26014; --darksalmon: #dec277; --darkseagreen: #87bda1; --darkslateblue: #8249a5;
+  --darkslategray: #43607a; --darkslategrey: #43607a; --darkturquoise: #187bdc; --darkviolet: #dd19b9;
+  --deeppink: #e93742; --deepskyblue: #2b5ee7; --dimgray: #897a6c; --dimgrey: #897a6c;
+  --dodgerblue: #3d42e9; --firebrick: #c37833; --floralwhite: #eef7ba; --forestgreen: #34a96c;
+  --fuchsia: #e72b8d; --gainsboro: #cdc6c0; --ghostwhite: #dabef8; --gold: #abe72b;
+  --goldenrod: #b5d23d; --gray: #98897c; --green: #13ac5c; --greenyellow: #5ceb47;
+  --grey: #98897c; --honeydew: #baf7d7; --hotpink: #ee696c; --indianred: #c99565;
+  --indigo: #ad13a4; --ivory: #daf7ba; --khaki: #bee481; --lavender: #d3bbec;
+  --lavenderblush: #f7c3ba; --lawngreen: #2ce729; --lemonchiffon: #d7f5a5; --lightblue: #99abdb;
+  --lightcoral: #e3ac7a; --lightcyan: #b0d5f6; --lightgoldenrodyellow: #ceeeac; --lightgray: #c8c0b9;
+  --lightgreen: #84e2b1; --lightgrey: #c8c0b9; --lightpink: #f3b697; --lightsalmon: #f0d274;
+  --lightseagreen: #3285c3; --lightskyblue: #7c8cec; --lightslategray: #7778a7; --lightslategrey: #7778a7;
+  --lightsteelblue: #9f9cd5; --lightyellow: #d5f6b0; --lime: #2be786; --limegreen: #4bc887;
+  --linen: #ecebbb; --magenta: #e72b8d; --maroon: #ac5c13; --mediumaquamarine: #6cbcc9;
+  --mediumblue: #7518d9; --mediumorchid: #cd61af; --mediumpurple: #c072d3; --mediumseagreen: #4cbcb4;
+  --mediumslateblue: #b46be1; --mediumspringgreen: #28d5e7; --mediumturquoise: #5898cb; --mediumvioletred: #d22943;
+  --midnightblue: #602c99; --mintcream: #bdf8f6; --mistyrose: #f6d9b1; --moccasin: #e9f397;
+  --navajowhite: #ebf392; --navy: #5c13ac; --oldlace: #eaf2b7; --olive: #62ac13;
+  --olivedrab: #4bab34; --orange: #d0e72b; --orangered: #e7b82b; --orchid: #d272a0;
+  --palegoldenrod: #c4e295; --palegreen: #87eeb8; --paleturquoise: #99bfe2; --palevioletred: #d38172;
+  --papayawhip: #eef6aa; --peachpuff: #f4ef99; --peru: #c8c553; --pink: #f4b89d;
+  --plum: #d491b4; --powderblue: #9bb5db; --purple: #ac1362; --rebeccapurple: #ae41b0;
+  --red: #e7862b; --rosybrown: #bda187; --royalblue: #7254d6; --saddlebrown: #ac9e26;
+  --salmon: #ebb770; --sandybrown: #e5dd66; --seagreen: #3da79f; --seashell: #f7f0b8;
+  --sienna: #b59d3c; --silver: #bdb4ab; --skyblue: #7f95e0; --slateblue: #a364c9;
+  --slategray: #7172a2; --slategrey: #7172a2; --snow: #f8dbc0; --springgreen: #2be7e3;
+  --steelblue: #565cba; --tan: #c9cd85; --teal: #1362ac; --thistle: #cfa8bc;
+  --tomato: #ecb555; --turquoise: #53a4d5; --violet: #e27bb1; --wheat: #dee999;
+  --white: #e1ddd9; --whitesmoke: #dcd7d2; --yellow: #8de72b; --yellowgreen: #62c84b;
+}
+[data-colorway="mono"] {
+  --page: #141414; --text: #f6f6f6; --description: #cccccc; --control: #292929; --focus: #d8d8d8;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #e1e1e1; --antiquewhite: #d9d9d9; --aqua: #bcbcbc; --aquamarine: #cfcfcf;
+  --azure: #e5e5e5; --beige: #dedede; --bisque: #d5d5d5; --black: #1a1a1a;
+  --blanchedalmond: #dadada; --blue: #282828; --blueviolet: #575757; --brown: #515151;
+  --burlywood: #b2b2b2; --cadetblue: #8f8f8f; --chartreuse: #c3c3c3; --chocolate: #7c7c7c;
+  --coral: #949494; --cornflowerblue: #8f8f8f; --cornsilk: #e2e2e2; --crimson: #4e4e4e;
+  --cyan: #bcbcbc; --darkblue: #222222; --darkcyan: #727272; --darkgoldenrod: #878787;
+  --darkgray: #a2a2a2; --darkgreen: #535353; --darkgrey: #a2a2a2; --darkkhaki: #aaaaaa;
+  --darkmagenta: #3a3a3a; --darkolivegreen: #696969; --darkorange: #979797; --darkorchid: #5d5d5d;
+  --darkred: #313131; --darksalmon: #a0a0a0; --darkseagreen: #a7a7a7; --darkslateblue: #515151;
+  --darkslategray: #545454; --darkslategrey: #545454; --darkturquoise: #9d9d9d; --darkviolet: #3f3f3f;
+  --deeppink: #5a5a5a; --deepskyblue: #979797; --dimgray: #6f6f6f; --dimgrey: #6f6f6f;
+  --dodgerblue: #818181; --firebrick: #4e4e4e; --floralwhite: #e4e4e4; --forestgreen: #727272;
+  --fuchsia: #545454; --gainsboro: #cccccc; --ghostwhite: #e3e3e3; --gold: #c2c2c2;
+  --goldenrod: #a0a0a0; --gray: #818181; --green: #646464; --greenyellow: #cecece;
+  --grey: #818181; --honeydew: #e5e5e5; --hotpink: #8d8d8d; --indianred: #777777;
+  --indigo: #2e2e2e; --ivory: #e7e7e7; --khaki: #d0d0d0; --lavender: #d5d5d5;
+  --lavenderblush: #dfdfdf; --lawngreen: #c1c1c1; --lemonchiffon: #e2e2e2; --lightblue: #c2c2c2;
+  --lightcoral: #949494; --lightcyan: #e3e3e3; --lightgoldenrodyellow: #e2e2e2; --lightgray: #c4c4c4;
+  --lightgreen: #c5c5c5; --lightgrey: #c4c4c4; --lightpink: #bababa; --lightsalmon: #a9a9a9;
+  --lightseagreen: #909090; --lightskyblue: #b7b7b7; --lightslategray: #868686; --lightslategrey: #868686;
+  --lightsteelblue: #b6b6b6; --lightyellow: #e6e6e6; --lime: #adadad; --limegreen: #9c9c9c;
+  --linen: #dddddd; --magenta: #545454; --maroon: #303030; --mediumaquamarine: #acacac;
+  --mediumblue: #252525; --mediumorchid: #777777; --mediumpurple: #818181; --mediumseagreen: #929292;
+  --mediumslateblue: #797979; --mediumspringgreen: #b3b3b3; --mediumturquoise: #ababab; --mediumvioletred: #505050;
+  --midnightblue: #333333; --mintcream: #e6e6e6; --mistyrose: #d7d7d7; --moccasin: #d4d4d4;
+  --navajowhite: #d0d0d0; --navy: #212121; --oldlace: #e0e0e0; --olive: #7a7a7a;
+  --olivedrab: #808080; --orange: #a5a5a5; --orangered: #6d6d6d; --orchid: #8c8c8c;
+  --palegoldenrod: #d3d3d3; --palegreen: #cecece; --paleturquoise: #cfcfcf; --palevioletred: #898989;
+  --papayawhip: #dcdcdc; --peachpuff: #cfcfcf; --peru: #8e8e8e; --pink: #c1c1c1;
+  --plum: #a9a9a9; --powderblue: #c7c7c7; --purple: #373737; --rebeccapurple: #525252;
+  --red: #454545; --rosybrown: #959595; --royalblue: #6f6f6f; --saddlebrown: #5b5b5b;
+  --salmon: #959595; --sandybrown: #a8a8a8; --seagreen: #777777; --seashell: #e1e1e1;
+  --sienna: #676767; --silver: #b5b5b5; --skyblue: #b6b6b6; --slateblue: #6c6c6c;
+  --slategray: #7f7f7f; --slategrey: #7f7f7f; --snow: #e5e5e5; --springgreen: #b5b5b5;
+  --steelblue: #7b7b7b; --tan: #aeaeae; --teal: #6b6b6b; --thistle: #bababa;
+  --tomato: #838383; --turquoise: #b2b2b2; --violet: #9c9c9c; --wheat: #cfcfcf;
+  --white: #e8e8e8; --whitesmoke: #e0e0e0; --yellow: #d9d9d9; --yellowgreen: #aeaeae;
+}
+[data-colorway="ocean"] {
+  --page: #081f2e; --text: #e8fbf9; --description: #bbd9dd; --control: #164050; --focus: #68e0dc;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #cef9ea; --antiquewhite: #c0ecf1; --aqua: #33e7dc; --aquamarine: #85e0f1;
+  --azure: #cef9f7; --beige: #c6deeb; --bisque: #b1f0f6; --black: #2b3733;
+  --blanchedalmond: #b7eff7; --blue: #33e77e; --blueviolet: #4dd780; --brown: #3cbc8e;
+  --burlywood: #8bd1d8; --cadetblue: #6caea9; --chartreuse: #338be7; --chocolate: #3dd2d0;
+  --coral: #66eddb; --cornflowerblue: #73e1b1; --cornsilk: #c1eaf8; --crimson: #37cdd9;
+  --cyan: #33e7dc; --darkblue: #15b256; --darkcyan: #15b2a8; --darkgoldenrod: #22abcd;
+  --darkgray: #a1b5ae; --darkgreen: #125a98; --darkgrey: #a1b5ae; --darkkhaki: #76a9c1;
+  --darkmagenta: #15b266; --darkolivegreen: #416990; --darkorange: #33d7e7; --darkorchid: #50c980;
+  --darkred: #15b279; --darksalmon: #82e0d2; --darkseagreen: #8faac1; --darkslateblue: #4ba76e;
+  --darkslategray: #437a77; --darkslategrey: #437a77; --darkturquoise: #1adfd1; --darkviolet: #1ae06b;
+  --deeppink: #40e9c7; --deepskyblue: #33e7bf; --dimgray: #6e8c81; --dimgrey: #6e8c81;
+  --dodgerblue: #46e9ae; --firebrick: #35c692; --floralwhite: #cef2f9; --forestgreen: #3574aa;
+  --fuchsia: #33e790; --gainsboro: #cad5d1; --ghostwhite: #d3fae3; --gold: #33b4e7;
+  --goldenrod: #44b6d3; --gray: #809b91; --green: #1465aa; --greenyellow: #519feb;
+  --grey: #809b91; --honeydew: #cee5f9; --hotpink: #77efdb; --indianred: #6dcba9;
+  --indigo: #14ac4e; --ivory: #cee9f9; --khaki: #8ecae6; --lavender: #cbf1db;
+  --lavenderblush: #cef9f7; --lawngreen: #318ae7; --lemonchiffon: #b7e3f7; --lightblue: #a5dfd3;
+  --lightcoral: #86e5c3; --lightcyan: #c3f8f5; --lightgoldenrodyellow: #bcdef1; --lightgray: #c3d0cb;
+  --lightgreen: #91bee4; --lightgrey: #c3d0cb; --lightpink: #a8ecf5; --lightsalmon: #81f0e3;
+  --lightseagreen: #34c6c2; --lightskyblue: #8aedcf; --lightslategray: #7caa99; --lightslategrey: #7caa99;
+  --lightsteelblue: #a8d9c5; --lightyellow: #c3e5f8; --lime: #3394e7; --limegreen: #5191c9;
+  --linen: #cbeff1; --magenta: #33e790; --maroon: #14aa74; --mediumaquamarine: #74becc;
+  --mediumblue: #1adc6b; --mediumorchid: #69cf95; --mediumpurple: #7bd59c; --mediumseagreen: #519fbe;
+  --mediumslateblue: #76e2a0; --mediumspringgreen: #30c5e7; --mediumturquoise: #60cdc9; --mediumvioletred: #2dd4a8;
+  --midnightblue: #2d985a; --mintcream: #d1effa; --mistyrose: #c4f8ea; --moccasin: #a8e9f5;
+  --navajowhite: #a2eaf4; --navy: #14aa53; --oldlace: #c9eef5; --olive: #1474aa;
+  --olivedrab: #3673ac; --orange: #33cbe7; --orangered: #33e7cf; --orchid: #7bd5ab;
+  --palegoldenrod: #a3d0e5; --palegreen: #95c6ef; --paleturquoise: #a6e6e2; --palevioletred: #7bd5d2;
+  --papayawhip: #bceff7; --peachpuff: #aaf3f5; --peru: #5ac5ca; --pink: #afeff6;
+  --plum: #9cd8bb; --powderblue: #a7dfd8; --purple: #14aa62; --rebeccapurple: #43b26c;
+  --red: #33e7a6; --rosybrown: #8fc1af; --royalblue: #5cd79a; --saddlebrown: #27adab;
+  --salmon: #7decce; --sandybrown: #71e4e6; --seagreen: #3f8ba9; --seashell: #ccf9f8;
+  --sienna: #3eb8ad; --silver: #b3c4be; --skyblue: #8be2cc; --slateblue: #6ccb90;
+  --slategray: #76a593; --slategrey: #76a593; --snow: #d4faec; --springgreen: #33bae7;
+  --steelblue: #5bbb9a; --tan: #8ec9d0; --teal: #14aaa1; --thistle: #b3d4c4;
+  --tomato: #61eccc; --turquoise: #5bd6d6; --violet: #87e4b7; --wheat: #a8e1ec;
+  --white: #e6ebea; --whitesmoke: #dee5e3; --yellow: #33a6e7; --yellowgreen: #518fc9;
+}
+[data-colorway="matcha"] {
+  --page: #17231c; --text: #f1f4d7; --description: #c8d2b8; --control: #304537; --focus: #c4df9d;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #f2f6df; --antiquewhite: #daeed0; --aqua: #8fd04f; --aquamarine: #b0e49b;
+  --azure: #ebf6df; --beige: #d5ebd3; --bisque: #d4efc4; --black: #323429;
+  --blanchedalmond: #d6f1ca; --blue: #d0cd4f; --blueviolet: #c7c063; --brown: #9bae4c;
+  --burlywood: #add29a; --cadetblue: #90aa75; --chartreuse: #4fd058; --chocolate: #85c053;
+  --coral: #b5dd7f; --cornflowerblue: #cdd688; --cornsilk: #d9f3d3; --crimson: #7ac54f;
+  --cyan: #8fd04f; --darkblue: #9d9a2a; --darkcyan: #639d2a; --darkgoldenrod: #58b839;
+  --darkgray: #b5b9a5; --darkgreen: #238626; --darkgrey: #b5b9a5; --darkkhaki: #89bb83;
+  --darkmagenta: #949d2a; --darkolivegreen: #4a884d; --darkorange: #7cd04f; --darkorchid: #bcb862;
+  --darkred: #869d2a; --darksalmon: #bbd694; --darkseagreen: #99c09a; --darkslateblue: #9f9b56;
+  --darkslategray: #5e7548; --darkslategrey: #5e7548; --darkturquoise: #7fc735; --darkviolet: #c8c335;
+  --deeppink: #a8d35b; --deepskyblue: #a4d04f; --dimgray: #878d6f; --dimgrey: #878d6f;
+  --dodgerblue: #bed561; --firebrick: #a0b648; --floralwhite: #e5f6df; --forestgreen: #439d46;
+  --fuchsia: #c6d04f; --gainsboro: #d9dbd1; --ghostwhite: #f8f7e4; --gold: #63d04f;
+  --goldenrod: #72c259; --gray: #989d82; --green: #28962b; --greenyellow: #6bd871;
+  --grey: #989d82; --honeydew: #dff6df; --hotpink: #c0e18e; --indianred: #b4c27d;
+  --indigo: #989128; --ivory: #e1f6df; --khaki: #a8dda1; --lavender: #f0f0da;
+  --lavenderblush: #eaf6df; --lawngreen: #4dd056; --lemonchiffon: #cff1ca; --lightblue: #cedcb3;
+  --lightcoral: #cedb99; --lightcyan: #e5f4d5; --lightgoldenrodyellow: #cfeecd; --lightgray: #d2d5c9;
+  --lightgreen: #a3dda4; --lightgrey: #d2d5c9; --lightpink: #ccedbc; --lightsalmon: #c2e498;
+  --lightseagreen: #7ab647; --lightskyblue: #d1e39f; --lightslategray: #a2a982; --lightslategrey: #a2a982;
+  --lightsteelblue: #d2d7b4; --lightyellow: #d8f4d5; --lime: #4fd052; --limegreen: #63bc65;
+  --linen: #e2f0da; --magenta: #c6d04f; --maroon: #809628; --mediumaquamarine: #95c483;
+  --mediumblue: #c5c134; --mediumorchid: #c5c479; --mediumpurple: #cdc88c; --mediumseagreen: #6db260;
+  --mediumslateblue: #d7d28a; --mediumspringgreen: #6dcf4c; --mediumturquoise: #97c171; --mediumvioletred: #9bc045;
+  --midnightblue: #8b893a; --mintcream: #e6f7e2; --mistyrose: #ebf4d6; --moccasin: #caedbb;
+  --navajowhite: #c8ecb7; --navy: #969428; --oldlace: #e0f3d9; --olive: #309628;
+  --olivedrab: #449f48; --orange: #73d04f; --orangered: #99d04f; --orchid: #c6cc8b;
+  --palegoldenrod: #b8e0b3; --palegreen: #a9e6ab; --paleturquoise: #cbe1b6; --palevioletred: #abcd8c;
+  --papayawhip: #d9f2cf; --peachpuff: #d1eebe; --peru: #8cbe6b; --pink: #d2efc2;
+  --plum: #d2d5aa; --powderblue: #ccdcb5; --purple: #8e9628; --rebeccapurple: #a7a151;
+  --red: #b6d04f; --rosybrown: #b8c099; --royalblue: #c4c970; --saddlebrown: #669d39;
+  --salmon: #c9df92; --sandybrown: #a9d986; --seagreen: #599e4c; --seashell: #e9f6de;
+  --sienna: #7fab4d; --silver: #c5c8b9; --skyblue: #c6da9d; --slateblue: #c2be7b;
+  --slategray: #9ca47c; --slategrey: #9ca47c; --snow: #f4f8e5; --springgreen: #67d04f;
+  --steelblue: #a2b269; --tan: #accc9b; --teal: #5f9628; --thistle: #d4d6bd;
+  --tomato: #bbdb79; --turquoise: #96c96f; --violet: #d6db9a; --wheat: #c6e6b9;
+  --white: #f1f2ee; --whitesmoke: #eaebe6; --yellow: #59d04f; --yellowgreen: #63bc67;
+}
+[data-colorway="sunset"] {
+  --page: #301b29; --text: #ffede5; --description: #e6cbd1; --control: #512d3e; --focus: #ffd09a;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #fbd7e3; --antiquewhite: #f4ccc8; --aqua: #ea343f; --aquamarine: #f39a8a;
+  --azure: #fbd7d9; --beige: #eed9cd; --bisque: #f8beb9; --black: #352a2e;
+  --blanchedalmond: #f8c6bf; --blue: #ea349e; --blueviolet: #d94fa6; --brown: #bf3b6a;
+  --burlywood: #db968f; --cadetblue: #b06e73; --chartreuse: #ea9134; --chocolate: #d43e40;
+  --coral: #ef6a7c; --cornflowerblue: #e477a8; --cornsilk: #f9d6c9; --crimson: #db4337;
+  --cyan: #ea343f; --darkblue: #b41371; --darkcyan: #b4131d; --darkgoldenrod: #d04320;
+  --darkgray: #b8a4ab; --darkgreen: #995010; --darkgrey: #b8a4ab; --darkkhaki: #c39179;
+  --darkmagenta: #b41361; --darkolivegreen: #926840; --darkorange: #ea4434; --darkorchid: #cb529b;
+  --darkred: #b4134d; --darksalmon: #e28694; --darkseagreen: #c4aa93; --darkslateblue: #aa4b85;
+  --darkslategray: #7a4346; --darkslategrey: #7a4346; --darkturquoise: #e31826; --darkviolet: #e51892;
+  --deeppink: #eb4163; --deepskyblue: #ea345c; --dimgray: #8d6f7a; --dimgrey: #8d6f7a;
+  --dodgerblue: #ec4884; --firebrick: #c9346a; --floralwhite: #fbddd7; --forestgreen: #ac6c34;
+  --fuchsia: #ea348c; --gainsboro: #d9cfd3; --ghostwhite: #fbdcee; --gold: #ea6734;
+  --goldenrod: #d56245; --gray: #9d828b; --green: #ac5a12; --greenyellow: #eda054;
+  --grey: #9d828b; --honeydew: #fbe7d7; --hotpink: #f17b8f; --indianred: #cd7091;
+  --indigo: #ae1273; --ivory: #fbe4d7; --khaki: #e8ae93; --lavender: #f3d3e6;
+  --lavenderblush: #fbd7d8; --lawngreen: #e99032; --lemonchiffon: #f8d1bf; --lightblue: #e2abb7;
+  --lightcoral: #e88bac; --lightcyan: #facccf; --lightgoldenrodyellow: #f3d5c4; --lightgray: #d3c7cc;
+  --lightgreen: #e7bb96; --lightgrey: #d3c7cc; --lightpink: #f7b7af; --lightsalmon: #f28794;
+  --lightseagreen: #c93236; --lightskyblue: #ef90ad; --lightslategray: #ac7e8f; --lightslategrey: #ac7e8f;
+  --lightsteelblue: #dcadc0; --lightyellow: #faddcc; --lime: #ea8834; --limegreen: #cb8a52;
+  --linen: #f3d5d3; --magenta: #ea348c; --maroon: #ac124a; --mediumaquamarine: #ce8477;
+  --mediumblue: #e1188d; --mediumorchid: #d16ba5; --mediumpurple: #d87fb7; --mediumseagreen: #c07152;
+  --mediumslateblue: #e57abc; --mediumspringgreen: #e95231; --mediumturquoise: #cf6266; --mediumvioletred: #d72d5a;
+  --midnightblue: #9a2c6c; --mintcream: #fbe2da; --mistyrose: #facdd9; --moccasin: #f7b9af;
+  --navajowhite: #f6b3a9; --navy: #ac126c; --oldlace: #f7d7d1; --olive: #ac4a12;
+  --olivedrab: #af6f35; --orange: #ea5034; --orangered: #ea344c; --orchid: #d77fa8;
+  --palegoldenrod: #e8bda8; --palegreen: #f1c39b; --paleturquoise: #e8acb0; --palevioletred: #d87f82;
+  --papayawhip: #f9ccc4; --peachpuff: #f7b3b1; --peru: #cc605b; --pink: #f7bcb6;
+  --plum: #dba1bd; --powderblue: #e2adb4; --purple: #ac125d; --rebeccapurple: #b5428b;
+  --red: #ea3475; --rosybrown: #c493a4; --royalblue: #da5e9b; --saddlebrown: #af2628;
+  --salmon: #ee819f; --sandybrown: #e97775; --seagreen: #ab5d3e; --seashell: #fbd5d6;
+  --sienna: #bb3d48; --silver: #c7b8bd; --skyblue: #e490a4; --slateblue: #cd6ea9;
+  --slategray: #a67889; --slategrey: #a67889; --snow: #fbdee8; --springgreen: #ea6234;
+  --steelblue: #bd5d7e; --tan: #d39992; --teal: #ac121b; --thistle: #d8b8c7;
+  --tomato: #ef6484; --turquoise: #d95e5e; --violet: #e68cb8; --wheat: #eeb9ae;
+  --white: #f0ecee; --whitesmoke: #eae4e6; --yellow: #ea7634; --yellowgreen: #cb8d52;
+}
+[data-colorway="iris"] {
+  --page: #201c35; --text: #f3efff; --description: #d6c8e8; --control: #3e3352; --focus: #dbc5ff;
+  --chip-dark: #000000; --chip-light: #ffffff;
+  --aliceblue: #e0d7f7; --antiquewhite: #e4c9ef; --aqua: #9743da; --aquamarine: #d591e9;
+  --azure: #e9d7f7; --beige: #eacdeb; --bisque: #e2bcf2; --black: #2d2a36;
+  --blanchedalmond: #e6c1f3; --blue: #4843da; --blueviolet: #5a5acd; --brown: #6245b4;
+  --burlywood: #c293d4; --cadetblue: #9171ac; --chartreuse: #da43c6; --chocolate: #964ac8;
+  --coral: #aa74e4; --cornflowerblue: #8f7fda; --cornsilk: #efcbf5; --crimson: #a344cd;
+  --cyan: #9743da; --darkblue: #2621a6; --darkcyan: #6b21a6; --darkgoldenrod: #a72fc1;
+  --darkgray: #a8a3b7; --darkgreen: #8e1c84; --darkgrey: #a8a3b7; --darkkhaki: #ba7dbe;
+  --darkmagenta: #3321a6; --darkolivegreen: #8c4684; --darkorange: #ad43da; --darkorchid: #5c5ac1;
+  --darkred: #4321a6; --darksalmon: #b18cda; --darkseagreen: #c094bd; --darkslateblue: #5151a3;
+  --darkslategray: #614677; --darkslategrey: #614677; --darkturquoise: #8629d1; --darkviolet: #2e2ad2;
+  --deeppink: #8a4fdc; --deepskyblue: #7f43da; --dimgray: #766e8d; --dimgrey: #766e8d;
+  --dodgerblue: #7855dd; --firebrick: #6040bd; --floralwhite: #f0d7f7; --forestgreen: #a33d9a;
+  --fuchsia: #5743da; --gainsboro: #d0cdd8; --ghostwhite: #dddcf8; --gold: #cb43da;
+  --goldenrod: #b350c9; --gray: #88819c; --green: #9f1f94; --greenyellow: #e060d1;
+  --grey: #88819c; --honeydew: #f7d7f4; --hotpink: #b083e7; --indianred: #8b76c6;
+  --indigo: #2020a0; --ivory: #f7d7f7; --khaki: #dc98e1; --lavender: #d4d3f0;
+  --lavenderblush: #ead7f7; --lawngreen: #d941c5; --lemonchiffon: #efc1f3; --lightblue: #c0addd;
+  --lightcoral: #a591df; --lightcyan: #e3cdf5; --lightgoldenrodyellow: #eec5ef; --lightgray: #c9c6d2;
+  --lightgreen: #e09bda; --lightgrey: #c9c6d2; --lightpink: #e0b3f0; --lightsalmon: #bb8ee9;
+  --lightseagreen: #8a3ebd; --lightskyblue: #af96e7; --lightslategray: #8a7faa; --lightslategrey: #8a7faa;
+  --lightsteelblue: #b7aed8; --lightyellow: #f4cdf5; --lime: #da43cd; --limegreen: #c15bb9;
+  --linen: #e6d3f0; --magenta: #5743da; --maroon: #411f9f; --mediumaquamarine: #b67cc7;
+  --mediumblue: #2f29cf; --mediumorchid: #7772c9; --mediumpurple: #8485d0; --mediumseagreen: #ae5ab7;
+  --mediumslateblue: #8281db; --mediumspringgreen: #bb40d9; --mediumturquoise: #a069c6; --mediumvioletred: #6d3ac8;
+  --midnightblue: #383491; --mintcream: #f4daf8; --mistyrose: #dbcef5; --moccasin: #e2b2f0;
+  --navajowhite: #deaeef; --navy: #241f9f; --oldlace: #ecd2f3; --olive: #9d1f9f;
+  --olivedrab: #a53e9a; --orange: #b843da; --orangered: #8c43da; --orchid: #9084d0;
+  --palegoldenrod: #dfabe2; --palegreen: #e9a0e3; --paleturquoise: #ccafe3; --palevioletred: #b184d0;
+  --papayawhip: #e9c6f4; --peachpuff: #dbb5f0; --peru: #a363c3; --pink: #e1b9f1;
+  --plum: #aba4d6; --powderblue: #c5afdd; --purple: #311f9f; --rebeccapurple: #4b4cac;
+  --red: #6a43da; --rosybrown: #a094c0; --royalblue: #7467cf; --saddlebrown: #7631a3;
+  --salmon: #a989e4; --sandybrown: #bb7dde; --seagreen: #9946a2; --seashell: #ead6f7;
+  --sienna: #7f47b1; --silver: #bab6c6; --skyblue: #b095dd; --slateblue: #7574c6;
+  --slategray: #8479a4; --slategrey: #8479a4; --snow: #e4ddf8; --springgreen: #c643da;
+  --steelblue: #7a63b6; --tan: #be95cd; --teal: #671f9f; --thistle: #bcb8d5;
+  --tomato: #9c6ee2; --turquoise: #a766ce; --violet: #9c92de; --wheat: #dcb1e8;
+  --white: #ebeaef; --whitesmoke: #e4e2e8; --yellow: #d743da; --yellowgreen: #c15bb7;
+}
+    * { box-sizing:border-box; }
+    html,body { margin:0; width:576px; height:289px; overflow:hidden; }
+    body { background:var(--page); color:var(--text); font-family:ui-rounded,"Arial Rounded MT Bold",system-ui,sans-serif; }
+    main { position:relative; width:100%; height:100%; isolation:isolate; }
+    header { position:absolute; top:15px; left:18px; z-index:2; pointer-events:none; }
+    h1 { margin:0; font-size:24px; line-height:26px; font-weight:900; letter-spacing:-.85px; }
+    p { margin:8px 0 0; font:500 8.6px/11.4px system-ui,sans-serif; color:var(--description); }
+    .controls { display:flex; gap:7px; margin-top:14px; }
+    button { pointer-events:auto; min-height:23px; border:0; border-radius:5px; background:var(--control); color:var(--text);
+      padding:6px 12px; font:800 6.6px/10px system-ui,sans-serif; letter-spacing:.65px; cursor:pointer; }
+    button:focus-visible { outline:2px solid var(--focus); outline-offset:2px; }
+    button:active { transform:translateY(1px); }
+    #gravity { display:grid; }
+    #gravity span { grid-area:1/1; }
+    #restore-label { opacity:0; }
+    svg { display:block; position:absolute; inset:0; width:100%; height:100%; touch-action:none; user-select:none; }
+    .chip { cursor:grab; }
+    .chip:active { cursor:grabbing; }
+    .chip text { pointer-events:none; font:750 8.1px system-ui,sans-serif; letter-spacing:-.05px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Color Avalanche</h1>
+      <p>Drop, throw, and explore the 140+ CSS Named<br>Colors.</p>
+      <div class="controls">
+        <button id="gravity" type="button" aria-label="Toggle zero gravity" aria-pressed="false">
+          <span id="zero-label">ZERO GRAVITY</span><span id="restore-label">RESTORE GRAVITY</span>
+        </button>
+        <button id="explode" type="button">EXPLODE</button>
+      </div>
+    </header>
+    <svg viewBox="0 0 576 289" role="img" aria-label="An interactive pile of named color chips. Drag to throw or tap to drop one."></svg>
+  </main>
+  <script>
+    (() => {
+      const field = document.querySelector("svg");
+      const gravityButton = document.querySelector("#gravity");
+      const zeroLabel = document.querySelector("#zero-label");
+      const restoreLabel = document.querySelector("#restore-label");
+      const width = 576, height = 289, radius = 10.2;
+      const seconds = 19, step = 1 / 48;
+      const names = ["AliceBlue","AntiqueWhite","Aqua","Aquamarine","Azure","Beige","Bisque","Black","BlanchedAlmond","Blue","BlueViolet","Brown","BurlyWood","CadetBlue","Chartreuse","Chocolate","Coral","CornflowerBlue","Cornsilk","Crimson","Cyan","DarkBlue","DarkCyan","DarkGoldenRod","DarkGray","DarkGreen","DarkGrey","DarkKhaki","DarkMagenta","DarkOliveGreen","DarkOrange","DarkOrchid","DarkRed","DarkSalmon","DarkSeaGreen","DarkSlateBlue","DarkSlateGray","DarkSlateGrey","DarkTurquoise","DarkViolet","DeepPink","DeepSkyBlue","DimGray","DimGrey","DodgerBlue","FireBrick","FloralWhite","ForestGreen","Fuchsia","Gainsboro","GhostWhite","Gold","GoldenRod","Gray","Green","GreenYellow","Grey","HoneyDew","HotPink","IndianRed","Indigo","Ivory","Khaki","Lavender","LavenderBlush","LawnGreen","LemonChiffon","LightBlue","LightCoral","LightCyan","LightGoldenRodYellow","LightGray","LightGreen","LightGrey","LightPink","LightSalmon","LightSeaGreen","LightSkyBlue","LightSlateGray","LightSlateGrey","LightSteelBlue","LightYellow","Lime","LimeGreen","Linen","Magenta","Maroon","MediumAquaMarine","MediumBlue","MediumOrchid","MediumPurple","MediumSeaGreen","MediumSlateBlue","MediumSpringGreen","MediumTurquoise","MediumVioletRed","MidnightBlue","MintCream","MistyRose","Moccasin","NavajoWhite","Navy","OldLace","Olive","OliveDrab","Orange","OrangeRed","Orchid","PaleGoldenRod","PaleGreen","PaleTurquoise","PaleVioletRed","PapayaWhip","PeachPuff","Peru","Pink","Plum","PowderBlue","Purple","RebeccaPurple","Red","RosyBrown","RoyalBlue","SaddleBrown","Salmon","SandyBrown","SeaGreen","SeaShell","Sienna","Silver","SkyBlue","SlateBlue","SlateGray","SlateGrey","Snow","SpringGreen","SteelBlue","Tan","Teal","Thistle","Tomato","Turquoise","Violet","Wheat","White","WhiteSmoke","Yellow","YellowGreen"];
+      const first = ["MediumSlateBlue","LemonChiffon","ForestGreen","LightSteelBlue","LightPink",
+        "RoyalBlue","DarkOrange","Aquamarine","MistyRose","LimeGreen","DarkMagenta","OldLace",
+        "DeepSkyBlue","Violet","Maroon","LightSalmon","OrangeRed","HotPink","SlateGray",
+        "Gold","Beige","LightGreen","DarkSalmon","Turquoise","Plum","CornflowerBlue","Azure",
+        "DarkSlateBlue","DarkSeaGreen","WhiteSmoke","Chocolate","YellowGreen","Aqua",
+        "Gainsboro","SeaGreen","Lavender","Blue","LightCyan","PaleGreen","Red","Wheat",
+        "Pink","DarkTurquoise","HoneyDew","MediumAquaMarine","Fuchsia","GoldenRod",
+        "LightSkyBlue","Orchid","SeaShell","CadetBlue","Crimson"];
+      const choices = [...first, ...names.filter(name => !first.includes(name))];
+      let seed = 404201;
+      function random() {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        return seed / 4294967296;
+      }
+      const clamp = (value,min,max) => Math.min(max,Math.max(min,value));
+      const bodies = [], nodes = [], timelines = [], demoLabels = [];
+      let interactive = false, gravity = true, drag = null, epoch = 0;
+      function make(tag,attributes,parent) {
+        const el = document.createElementNS("http://www.w3.org/2000/svg",tag);
+        for(const [key,value] of Object.entries(attributes)) el.setAttribute(key,String(value));
+        parent.append(el);
+        return el;
+      }
+      function setInk(node) {
+        const rgb = getComputedStyle(node.rect).fill.match(/[\d.]+/g).slice(0,3).map(x=>Number(x)/255);
+        const linear = rgb.map(v=>v<=.04045 ? v/12.92 : ((v+.055)/1.055)**2.4);
+        const brightness = .2126*linear[0]+.7152*linear[1]+.0722*linear[2];
+        const lightHasMoreContrast = 1.05/(brightness+.05) > (brightness+.05)/.05;
+        node.label.setAttribute("fill",lightHasMoreContrast ? "var(--chip-light)" : "var(--chip-dark)");
+      }
+      function addChip(name,x,y,angle) {
+        const index = bodies.length;
+        const group = make("g",{class:"chip","data-index":index},field);
+        const label = make("text",{"text-anchor":"middle",y:2.85},group);
+        label.textContent = name;
+        const span = Math.max(5.8,(label.getComputedTextLength()+18)/2-radius);
+        const total = 2*(span+radius);
+        const rect = make("rect",{x:-total/2,y:-radius,width:total,height:2*radius,
+          rx:radius,fill:"var(--"+name.toLowerCase()+")"},group);
+        group.insertBefore(rect,label);
+        nodes.push({group,rect,label});
+        bodies.push({x,y,a:angle,vx:(random()-.5)*140,vy:random()*26,
+          spin:(random()-.5)*6,span,inertia:1/(total*total/12+radius*radius),
+          cx:0,sy:0,extentX:0,extentY:0});
+        setInk(nodes[index]);
+        return index;
+      }
+      new MutationObserver(()=>nodes.forEach(setInk)).observe(document.documentElement,{
+        attributes:true,attributeFilter:["data-colorway"]
+      });
+
+      function bounds(b) {
+        b.cx=Math.cos(b.a); b.sy=Math.sin(b.a);
+        b.extentX=Math.abs(b.cx)*b.span+radius;
+        b.extentY=Math.abs(b.sy)*b.span+radius;
+      }
+      function floorAndWalls(b,gravityOn) {
+        if(b.x<b.extentX) { b.x=b.extentX; b.vx=Math.abs(b.vx)*.46; }
+        if(b.x>width-b.extentX) { b.x=width-b.extentX; b.vx=-Math.abs(b.vx)*.46; }
+        if(b.y+b.extentY<height) return;
+        b.y=height-b.extentY;
+        const contactX = (b.sy>=0 ? 1 : -1)*b.span*b.cx;
+        const down = b.vy+b.spin*contactX;
+        if(down>0) {
+          const impulse=down*1.22/(1+contactX*contactX*b.inertia);
+          b.vy-=impulse; b.spin-=impulse*contactX*b.inertia;
+        }
+        b.vx*=.88; b.spin*=.82;
+      }
+      function collide(a,b) {
+        if(Math.abs(b.x-a.x)>a.extentX+b.extentX || Math.abs(b.y-a.y)>a.extentY+b.extentY) return;
+        // Closest points on the two capsule centerlines. End caps share
+        // the same radius as the drawn pills, including during rotation.
+        const dx=a.x-b.x,dy=a.y-b.y,axis=a.cx*b.cx+a.sy*b.sy;
+        const da=dx*a.cx+dy*a.sy,db=dx*b.cx+dy*b.sy;
+        const divisor=1-axis*axis;
+        let ta=divisor>.00001 ? clamp((axis*db-da)/divisor,-a.span,a.span) : 0;
+        let tb=clamp(db+axis*ta,-b.span,b.span);
+        ta=clamp(axis*tb-da,-a.span,a.span);
+        const ax=a.x+ta*a.cx,ay=a.y+ta*a.sy,bx=b.x+tb*b.cx,by=b.y+tb*b.sy;
+        const sx=bx-ax,sy=by-ay,squared=sx*sx+sy*sy;
+        if(squared>=4*radius*radius) return;
+        const distance=Math.sqrt(squared);
+        const nx=distance>.001 ? sx/distance : -a.sy*(dy<0?1:-1);
+        const ny=distance>.001 ? sy/distance : a.cx*(dy<0?1:-1);
+        const shift=Math.max(0,2*radius-distance-.10)*.43;
+        a.x-=nx*shift; a.y-=ny*shift; b.x+=nx*shift; b.y+=ny*shift;
+        const px=(ax+bx)/2,py=(ay+by)/2;
+        const acx=px-a.x,acy=py-a.y,bcx=px-b.x,bcy=py-b.y;
+        const vx=b.vx-b.spin*bcy-a.vx+a.spin*acy,vy=b.vy+b.spin*bcx-a.vy-a.spin*acx;
+        const coming=vx*nx+vy*ny;
+        if(coming>=0) return;
+        const spinA=acx*ny-acy*nx,spinB=bcx*ny-bcy*nx;
+        const normal=-1.10*coming/(2+spinA*spinA*a.inertia+spinB*spinB*b.inertia);
+        const tangent=clamp(-(vx*(-ny)+vy*nx)*.32,-normal*.39,normal*.39);
+        const ix=nx*normal-ny*tangent,iy=ny*normal+nx*tangent;
+        a.vx-=ix; a.vy-=iy; b.vx+=ix; b.vy+=iy;
+        a.spin-=(acx*iy-acy*ix)*a.inertia; b.spin+=(bcx*iy-bcy*ix)*b.inertia;
+      }
+      function advance(model,gravityOn,held=-1) {
+        for(let i=0;i<model.length;i++) {
+          if(i===held) continue;
+          const b=model[i];
+          b.vy+=(gravityOn ? 690 : 0)*step;
+          b.vx*=gravityOn ? .9985 : .9997;
+          b.spin*=gravityOn ? .994 : .998;
+          b.x+=b.vx*step; b.y+=b.vy*step; b.a+=b.spin*step; bounds(b);
+        }
+        for(let pass=0;pass<3;pass++) {
+          for(let i=0;i<model.length;i++) {
+            if(i===held) continue;
+            const a=model[i];
+            for(let j=i+1;j<model.length;j++) if(j!==held) collide(a,model[j]);
+            floorAndWalls(a,gravityOn);
+          }
+        }
+      }
+      function burst(model,power=1,origin=width*.5,range=width,scatter=false) {
+        for(const [index,b] of model.entries()) {
+          const variation=scatter && index%5===0 ? .06 : 1;
+          const gain=variation*power*Math.exp(-.5*((b.x-origin)/range)**2);
+          b.vx+=(b.x-origin)*(.56+random()*.36)*gain;
+          b.vy-=gain*(103+random()*243);
+          b.spin+=(random()-.5)*12*gain;
+        }
+      }
+      function coordinates(b) {
+        return "translate("+b.x.toFixed(2)+"px,"+b.y.toFixed(2)+"px) rotate("+b.a.toFixed(5)+"rad)";
+      }
+      function copyState(model) { return model.map(b=>({...b})); }
+      for (let i=0;i<62;i++) {
+        addChip(choices[i],23+random()*(width-46),i<3?-12-random()*19:-49-random()*460,(random()-.5)*2.1);
+      }
+      // Bake the deterministic demonstration into seekable Web Animations.
+      // Interactive throws use the same capsule solver, sampled from the
+      // positions and velocities currently on the screen.
+      const simulation=copyState(bodies),demo=bodies.map(()=>[]);
+      const zeroIntervals=[[4.60,7.10],[11.17,15.32]];
+      const zeroAt=t=>zeroIntervals.some(([start,end])=>t>=start && t<end);
+      const total=Math.round(seconds/step);
+      for(let frame=0;frame<=total;frame++) {
+        const t=frame*step;
+        if(frame===Math.round(zeroIntervals[0][0]/step)) burst(simulation,1.24,width*.76,width*.28);
+        if(frame===Math.round(zeroIntervals[1][0]/step)) burst(simulation,1.27,width*.51,width*.74,true);
+        if(frame%2===0) {
+          for(let i=0;i<simulation.length;i++) {
+            const b=simulation[i],endShift=t>18.62 ? ((t-18.62)/.38)**2*(height+87) : 0;
+            demo[i].push({transform:coordinates({...b,y:b.y+endShift})});
+          }
+        }
+        advance(simulation,!zeroAt(t));
+      }
+      demo.forEach((frames,i)=>timelines[i]=nodes[i].group.animate(frames,{
+        duration:seconds*1000,iterations:Infinity,easing:"linear"
+      }));
+      for(const [label,inverted] of [[zeroLabel,false],[restoreLabel,true]]) {
+        const frames=[[0,false],[4.60,true],[7.10,false],[11.17,true],[15.32,false],[seconds,false]];
+        demoLabels.push(label.animate(frames.map(([t,z])=>({
+          offset:t/seconds, opacity:Number(z===inverted),easing:"steps(1,end)"
+        })),{duration:seconds*1000,iterations:Infinity}));
+      }
+
+      function matrixPose(transform) {
+        const m=new DOMMatrixReadOnly(transform==="none" ? undefined : transform);
+        return {x:m.e,y:m.f,a:Math.atan2(m.b,m.a)};
+      }
+      function visibleNow() {
+        const now=timelines.find(Boolean)?.currentTime || 0;
+        if(!interactive) gravity=!zeroAt((now/1000)%seconds);
+        for(let i=0;i<bodies.length;i++) {
+          const b=bodies[i],a=timelines[i],group=nodes[i].group;
+          const pose=matrixPose(getComputedStyle(group).transform);
+          if(a && (a.currentTime||0)>24) {
+            const saved=a.currentTime;
+            a.currentTime=saved-22;
+            const previous=matrixPose(getComputedStyle(group).transform);
+            a.currentTime=saved;
+            b.vx=clamp((pose.x-previous.x)/.022,-680,680);
+            b.vy=clamp((pose.y-previous.y)/.022,-680,680);
+            const delta=Math.atan2(Math.sin(pose.a-previous.a),Math.cos(pose.a-previous.a));
+            b.spin=clamp(delta/.022,-14,14);
+          }
+          Object.assign(b,pose); group.style.transform=coordinates(b); a?.cancel(); timelines[i]=null;
+        }
+        epoch++; interactive=true;
+        demoLabels.forEach(animation=>animation.cancel());
+        showControl();
+      }
+      function showControl() {
+        zeroLabel.style.opacity=gravity?"1":"0"; restoreLabel.style.opacity=gravity?"0":"1";
+        gravityButton.setAttribute("aria-pressed",String(!gravity));
+      }
+      function runLive(held=-1) {
+        const thisEpoch=++epoch,working=copyState(bodies),frames=bodies.map(()=>[]);
+        for(let tick=0;tick<=240;tick++) {
+          if(tick%2===0) for(let i=0;i<working.length;i++) {
+            if(i!==held) frames[i].push({transform:coordinates(working[i])});
+          }
+          advance(working,gravity,held);
+        }
+        frames.forEach((poses,i)=>{
+          if(i!==held) timelines[i]=nodes[i].group.animate(poses,{duration:5000,fill:"forwards"});
+        });
+        const final=timelines.find(Boolean);
+        if(final) final.finished.then(()=>{
+          if(thisEpoch!==epoch) return;
+          for(let i=0;i<bodies.length;i++) if(i!==held){
+            Object.assign(bodies[i],working[i]); nodes[i].group.style.transform=coordinates(bodies[i]);
+            timelines[i]?.cancel();timelines[i]=null;
+          }
+          runLive(held);
+        }).catch(()=>{});
+      }
+      gravityButton.addEventListener("click",()=>{
+        visibleNow();gravity=!gravity;showControl();
+        if(!gravity) burst(bodies,.35);
+        runLive();
+      });
+      document.querySelector("#explode").addEventListener("click",()=>{
+        visibleNow();burst(bodies,1.2);runLive();
+      });
+      function pointerPosition(e) {
+        const rect=field.getBoundingClientRect();
+        return {x:(e.clientX-rect.left)*width/rect.width,y:(e.clientY-rect.top)*height/rect.height};
+      }
+      field.addEventListener("pointerdown",e=>{
+        if(drag) return;
+        const where=pointerPosition(e),node=e.target.closest(".chip");
+        visibleNow();
+        const index=node ? Number(node.dataset.index) :
+          addChip(choices[bodies.length%choices.length],where.x,where.y,(random()-.5)*.45);
+        const b=bodies[index];
+        drag={index,id:e.pointerId,dx:b.x-where.x,dy:b.y-where.y,last:where,time:e.timeStamp};
+        b.vx=0; b.vy=0; b.spin=0; nodes[index].group.style.transform=coordinates(b);
+        field.setPointerCapture(e.pointerId); runLive(index);
+      });
+      field.addEventListener("pointermove",e=>{
+        if(!drag || e.pointerId!==drag.id) return;
+        const pos=pointerPosition(e),b=bodies[drag.index],dt=Math.max(.010,(e.timeStamp-drag.time)/1000);
+        b.x=pos.x+drag.dx; b.y=pos.y+drag.dy;
+        b.vx=clamp((pos.x-drag.last.x)/dt,-760,760);b.vy=clamp((pos.y-drag.last.y)/dt,-760,760);
+        nodes[drag.index].group.style.transform=coordinates(b);
+        drag.last=pos;drag.time=e.timeStamp;
+      });
+      function release(e) {
+        if(!drag || e.pointerId!==drag.id) return;
+        const b=bodies[drag.index],vx=b.vx,vy=b.vy;
+        visibleNow(); b.vx=vx;b.vy=vy;b.spin=clamp(vx/65,-8,8);
+        if(field.hasPointerCapture(e.pointerId)) field.releasePointerCapture(e.pointerId);
+        drag=null;runLive();
+      }
+      field.addEventListener("pointerup",release);
+      field.addEventListener("pointercancel",release);
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze(); addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>

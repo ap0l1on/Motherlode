@@ -3,4 +3,12 @@
 
 Small animations for buttons, toggles and feedback.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="color-chip-avalanche/"><img src="color-chip-avalanche/preview.gif" width="260" alt="Color chip avalanche"></a><br><a href="color-chip-avalanche/"><b>Color chip avalanche</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

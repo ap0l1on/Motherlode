@@ -5,7 +5,7 @@ Animation for screens, the web and beyond.
 
 | Category | What goes in it |
 | --- | --- |
-| [Micro-interactions](micro-interactions/) | Small animations for buttons, toggles and feedback |
+| [Micro-interactions](micro-interactions/) | Small animations for buttons, toggles and feedback · **1 design** |
 | [Hover effects](hover-effects/) | Hover effects |
 | [Page transitions](page-transitions/) | Page and screen transitions |
 | [Scroll animations](scroll-animations/) | Scroll-triggered animations |
