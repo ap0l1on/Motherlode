@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1200x756">
+<meta name="motherlode:scale" content="2">
+<title>Aqua cashback card</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #74FFED; --ink: #171F44; --muted: #284F57; --highlight: #A0FFF1;
+  --card: #171F44; --card-ink: #8EFFF0; --strip: #171F44; --strip-ink: #9CFFF0;
+  --pop: #FE81D1; --pop-ink: #361F3B; --lo: #08112A; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #E8F7F2; --ink: #1D3B3B; --muted: #3F5B56; --highlight: #FBFFF9;
+  --card: #467A75; --card-ink: #F1FFF6; --strip: #D0EAE1; --strip-ink: #234D46;
+  --pop: #F2B5CB; --pop-ink: #482536; --lo: #183030; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #102C32; --ink: #E2FCF2; --muted: #A8D1C8; --highlight: #1E4949;
+  --card: #296163; --card-ink: #E0FFF2; --strip: #0C2029; --strip-ink: #A7EED9;
+  --pop: #E9A4C7; --pop-ink: #351D2B; --lo: #030C13; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #E6E6E6; --ink: #1C1C1C; --muted: #424242; --highlight: #F8F8F8;
+  --card: #252525; --card-ink: #FAFAFA; --strip: #202020; --strip-ink: #EEEEEE;
+  --pop: #C5C5C5; --pop-ink: #212121; --lo: #080808; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="apricot"] {
+  --bg: #FFCEA7; --ink: #483134; --muted: #694A47; --highlight: #FFE4B9;
+  --card: #513945; --card-ink: #FFF0C5; --strip: #49313C; --strip-ink: #FFD09E;
+  --pop: #E99082; --pop-ink: #3A211F; --lo: #20161C; --hi: #FFFCF0;
+  --clear: transparent;
+}
+[data-colorway="cobalt"] {
+  --bg: #BFD6FF; --ink: #202F5A; --muted: #374E72; --highlight: #CFE9FF;
+  --card: #233F7B; --card-ink: #CEEAFF; --strip: #1D305F; --strip-ink: #C9E3FF;
+  --pop: #F3C572; --pop-ink: #332710; --lo: #101B38; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #B1F2DD; --ink: #163F47; --muted: #305B5B; --highlight: #D1FDE4;
+  --card: #144F59; --card-ink: #C1F7DA; --strip: #123E47; --strip-ink: #B8EBD7;
+  --pop: #F3D482; --pop-ink: #3C3012; --lo: #0C2B2F; --hi: #FFFFFF;
+  --clear: transparent;
+}
+[data-colorway="plum"] {
+  --bg: #E8C5ED; --ink: #392641; --muted: #5B4464; --highlight: #F5DAF5;
+  --card: #543659; --card-ink: #F1DBF5; --strip: #452E4D; --strip-ink: #F1D4FA;
+  --pop: #F1A9A8; --pop-ink: #432728; --lo: #24152E; --hi: #FFFAFF;
+  --clear: transparent;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: Inter, Arial, sans-serif; color: var(--ink); }
+main { width: 1200px; height: 756px; position: relative; isolation: isolate; overflow: hidden;
+  background: radial-gradient(ellipse at 84% 36%, var(--highlight), var(--clear) 60%),
+    linear-gradient(100deg, color-mix(in srgb, var(--bg) 93%, var(--muted)), var(--bg) 68%); }
+header { position: absolute; left: 54px; right: 45px; top: 34px; display: flex; align-items: center; justify-content: space-between; }
+.wordmark { display: flex; align-items: center; gap: 11px; font-weight: 720; font-size: 25px; letter-spacing: -1.2px; }
+.wordmark svg { width: 24px; height: 24px; }
+nav { position: absolute; left: 336px; display: flex; gap: 42px; color: var(--muted); font-size: 14px; font-weight: 550; }
+.account { background: var(--card); color: var(--card-ink); border-radius: 25px; height: 40px; min-width: 147px; display: grid; place-items: center; font-size: 14px; font-weight: 610; }
+h1 { position: absolute; top: 146px; left: 51px; margin: 0; font-size: 76px; transform: scaleX(1.06); transform-origin: left; line-height: 1.06; font-weight: 760; letter-spacing: -.064em; }
+.intro { position: absolute; top: 350px; left: 53px; width: 422px; margin: 0; font-size: 17.4px; line-height: 1.49; color: var(--muted); letter-spacing: -.26px; }
+.apply, .rebate { display: inline-flex; align-items: center; justify-content: center; border-radius: 40px; background: var(--pop); color: var(--pop-ink); box-shadow: 0 15px 30px color-mix(in srgb, var(--pop) 28%, var(--clear)); font-size: 16.5px; font-weight: 675; }
+.apply { position: absolute; left: 53px; top: 439px; height: 58px; min-width: 180px; }
+.card { position: absolute; left: 715px; top: 155px; width: 421px; height: 264px; padding: 29px; border-radius: 27px; transform: rotate(-9.4deg);
+  color: var(--card-ink); background:
+    radial-gradient(ellipse at 0% 3%, color-mix(in srgb, var(--card-ink) 20%, var(--clear)), var(--clear) 64%),
+    linear-gradient(116deg, color-mix(in srgb, var(--card) 92%, var(--card-ink)), var(--card) 48%, color-mix(in srgb, var(--card) 80%, var(--lo)));
+  border: 1px solid color-mix(in srgb, var(--hi) 16%, var(--clear));
+  box-shadow: 0 32px 53px -18px color-mix(in srgb, var(--lo) 55%, var(--clear)); }
+.card-name { font-size: 24px; letter-spacing: -1.2px; font-weight: 650; }
+.chip { position: absolute; left: 33px; top: 102px; width: 59px; height: 46px; border-radius: 9px; background: linear-gradient(132deg, color-mix(in srgb, var(--card-ink) 56%, var(--hi)), var(--card-ink) 53%, color-mix(in srgb, var(--card-ink) 67%, var(--card))); border: 1px solid color-mix(in srgb, var(--hi) 38%, var(--clear)); box-shadow: 0 2px 3px color-mix(in srgb, var(--lo) 32%, var(--clear)); }
+.number { position: absolute; left: 33px; bottom: 29px; color: color-mix(in srgb, var(--card-ink) 40%, var(--hi)); font-family: ui-monospace, Menlo, monospace; font-weight: 600; font-size: 19px; letter-spacing: .10em; }
+.number span { margin-right: 18px; font-size: 14px; letter-spacing: .19em; }
+.glint { position: absolute; left: 1091px; top: 98px; width: 56px; height: 56px; fill: var(--pop); }
+.rebate { position: absolute; left: 678px; top: 457px; height: 60px; min-width: 280px; gap: 11px; }
+.rebate svg { width: 19px; height: 19px; fill: currentColor; }
+footer { position: absolute; left: 0; right: 0; bottom: 0; height: 144px; display: grid; grid-template-columns: repeat(4, 1fr); padding: 0 62px 0 47px;
+  align-items: center; background: var(--strip); color: var(--strip-ink); border-top: 1px solid color-mix(in srgb, var(--hi) 12%, var(--clear)); }
+.stat { display: grid; justify-items: center; gap: 7px; }
+.stat b { font-size: 35px; letter-spacing: -.055em; font-weight: 730; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; color: color-mix(in srgb, var(--strip-ink) 76%, var(--strip)); }
+</style>
+</head>
+<body>
+<main aria-label="Debit card landing page">
+  <header><div class="wordmark"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="12" cy="12" r="3.4" fill="currentColor"/></svg>cove</div>
+    <nav aria-label="Sections"><span>Personal</span><span>Business</span><span>Rewards</span><span>Help</span></nav><span class="account">Open account</span></header>
+  <h1>Money that<br>moves with you.</h1>
+  <p class="intro">One card to spend, save and send money in 150 currencies, with zero hidden fees.</p>
+  <span class="apply">Get your card</span>
+  <div class="card" aria-label="Illustrated debit card ending in 6693"><span class="card-name">cove</span><i class="chip"></i><span class="number"><span>••••</span>6693</span></div>
+  <svg class="glint" viewBox="0 0 50 50" aria-hidden="true"><path d="M25 0C27 18 31 22 50 25C31 28 27 32 25 50C22 32 18 28 0 25C18 22 22 18 25 0Z"/></svg>
+  <span class="rebate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 0 2.5 8.9L24 12l-9.5 2.4L12 24l-2.6-9.6L0 12l9.4-3.1Z"/></svg>4% back on everything</span>
+  <footer><div class="stat"><b>0</b><span>hidden fees</span></div><div class="stat"><b>150</b><span>currencies</span></div><div class="stat"><b>4.8★</b><span>app rating</span></div><div class="stat"><b>2 min</b><span>to sign up</span></div></footer>
+</main>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
