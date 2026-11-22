@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x306">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="3">
+  <meta name="motherlode:still" content="1.15">
+  <title>Ink pixel bat</title>
+  <style>
+:root, [data-colorway="original"] { --background: #fbfbfc; --shade: #242227; --middle: #515058; --bright: #777681; --highlight: #bfbcc5; --leaf: #37333a; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 306px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 306" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Ink pixel bat</title>
+    <desc id="description">A small bat flaps on a white field, briefly dissolving into black ink pixels at its wing tips.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 3 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+
+    const cx=287,cy=152;
+    function wingShape(x, y, pose){
+      const u=Math.abs(x)/61;if(u>1)return false;
+      const folded=[0,.78,-1,-.42][pose], wingTop=-29-19*Math.sin(u*Math.PI);
+      if(u<.16)return y> -14 && y<15 - 3*Math.cos(x*.6);
+      if(u<.28 && y>-28+Math.abs(u-.22)*90 && y<8)return true;
+      const outer=Math.max(0,(u-.60)/.40), inner=Math.max(0,(.59-u)/.43);
+      const top=wingTop+29*inner+64*outer + folded*(18-44*u);
+      const lower=top+14+19*u+14*Math.abs(Math.sin(u*13))**2;
+      return y>top && y<lower;
+    }
+    for(let pose=0;pose<4;pose++){
+      const dense=[],flecks=[];for(let y=-90;y<62;y+=2.5)for(let x=-65;x<67;x+=2.5){
+        if(wingShape(x,y,pose)&&random()>.12){
+          const side=2.2+random()*1.6;dense.push("M"+(cx+x+random()).toFixed(1)+" "+(cy+y+random()).toFixed(1)+"h"+side.toFixed(1)+"v"+side.toFixed(1)+"h-"+side.toFixed(1)+"Z");
+          if(random()<.014){const fx=cx+x+(random()-.5)*24,fy=cy+y+5+random()*26;
+            flecks.push("M"+fx.toFixed(1)+" "+fy.toFixed(1)+"h2.7v2.7h-2.7Z");}
+        }
+      }
+      const g=element("g",{});element("path",{d:dense.join(""),fill:"var(--shade)"},g);
+      element("path",{d:flecks.join(""),fill:"var(--middle)",opacity:.7},g);
+      const order=[0,1,0,2,3,2], states=Array.from({length:7},(_,i)=>({offset:i/6,opacity:order[i%6]===pose?1:0,easing:"steps(1,end)"}));
+      g.animate(states,{duration:duration/5,iterations:Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
