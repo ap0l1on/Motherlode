@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x341">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="18">
+  <meta name="motherlode:still" content="16.8">
+  <title>Winter bauble etching</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010103; --shade: #403443; --middle: #797c9d; --bright: #bd7977; --highlight: #edc57a; --leaf: #648e68; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 341px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 341" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Winter bauble etching</title>
+    <desc id="description">A fine circular ornament encloses a split evergreen and a small outlined reindeer. The ring narrows to a gold point below the scene.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 18 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const trace=[];
+    for(let i=0;i<83;i++)element("circle",{cx:random()*576,cy:random()*341,r:random()*.9+.2,fill:"var(--highlight)",opacity:.13+random()*.3});
+    function add(d,tone,width=1.05){const path=line(drawing,d,tone,width,.88);trace.push(path);}
+    add("M288 327V45","bright",1.3);
+    add("M288 327C290 257 340 254 373 217C410 176 419 114 390 70C366 31 332 19 288 19C232 19 190 47 175 92C158 150 183 200 222 227C265 256 281 266 288 327","middle",1.28);
+    add("M287 69L271 97L278 96L254 120Q265 126 272 118L249 146L261 141L238 164Q253 173 264 159L246 183Q260 193 273 179Q282 194 288 214","leaf",1.3);
+    add("M286 110L269 132L278 132L258 152M231 183L230 161L219 125L214 145L219 145L201 174L215 169L203 184M199 180L192 154L181 179","middle",1.0);
+    add("M293 120C305 127 311 140 324 143C340 148 345 138 338 129C334 122 330 117 330 109L340 111Q346 121 350 122C362 122 363 131 351 137L349 150C354 157 342 168 334 173L331 209L327 210L326 177L321 178L317 212L313 210L313 175L303 180L298 204L294 201L297 176Q307 161 301 151L294 147","bright",1.25);
+    add("M337 121Q327 113 329 103M336 119Q341 112 336 98M342 121Q350 118 349 103M347 118Q355 117 354 107","bright");
+    add("M357 180L367 158L374 126L379 152L375 151L390 177L380 169L395 189","middle");
+    const crown=[];for(let i=0;i<10;i++){const a=i*tau/10-Math.PI/2,r=i%2?6.4:13.2;crown.push([288+r*Math.cos(a),53+r*Math.sin(a)]);}
+    add(pointsPath(crown,true),"highlight",1.65);
+    trace.forEach((p,i)=>{const start=.017+.78*i/trace.length;p.setAttribute("pathLength",1);p.setAttribute("stroke-dasharray","1 1");
+      p.animate([{offset:0,strokeDashoffset:1},{offset:start,strokeDashoffset:1},{offset:start+.15,strokeDashoffset:0},
+        {offset:.987,strokeDashoffset:0},{offset:1,strokeDashoffset:1}],{duration,iterations:Infinity});});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
