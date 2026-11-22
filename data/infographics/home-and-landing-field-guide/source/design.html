@@ -7,18 +7,36 @@
   <meta name="motherlode:scale" content="1">
   <title>Home and landing field guide</title>
   <style>
-:root, [data-colorway="original"] { --bg: #030e1c; --surface: #0b1f3c; --rule: #363b40; --text: #f5f3ee; --muted: #bbbfbc; --gold: #f4d34d; --violet: #994df0; --green: #66d787; --cyan: #58cce5; --red: #eb7870; --blue: #3489f7; --orange: #e9a265; --paper: #061529; --edge: #263d59; --button: #f9fbff; }
+:root, [data-colorway="original"] { --bg: #030e1c; --surface: #0b1f3c; --rule: #363b40; --text: #f5f3ee; --muted: #bbbfbc; --gold: #f4d34d; --violet: #994df0; --green: #66d787; --cyan: #58cce5; --red: #eb7870; --blue: #3489f7; --orange: #e9a265; --paper: #061529; --edge: #263d59; --button: #f9fbff;
+  --learn-button-ink: #202121; --started-button-ink: #4d4e4f; --shipment-callout-ink: #181818;
+}
 [data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --edge: #b8b9b3; --button: #faf8f1; }
-[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --edge: #43516a; --button: #101824; }
-[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --edge: #494949; --button: #111111; }
-[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --edge: #305064; --button: #061825; }
-[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --edge: #455e49; --button: #12231a; }
-[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --edge: #64493b; --button: #241710; }
-[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --edge: #504365; --button: #1a1529; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --edge: #43516a; --button: #101824;
+  --shipment-callout-ink: #222223;
+}
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --edge: #494949; --button: #111111;
+  --shipment-callout-ink: #202020;
+}
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --edge: #305064; --button: #061825;
+  --shipment-callout-ink: #232626;
+}
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --edge: #455e49; --button: #12231a;
+  --shipment-callout-ink: #242521;
+}
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --edge: #64493b; --button: #241710;
+  --shipment-callout-ink: #262421;
+}
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --edge: #504365; --button: #1a1529;
+  --shipment-callout-ink: #282629;
+}
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 1216px; height: 1472px; overflow: hidden; background: var(--bg); }
     svg { display: block; width: 100%; height: 100%; }
-  </style>
+
+[data-colorway="original"] .ink-learn-button { fill: var(--learn-button-ink); }
+[data-colorway="original"] .ink-started-button { fill: var(--started-button-ink); }
+:is([data-colorway="original"], [data-colorway="dark"], [data-colorway="mono"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="copper"], [data-colorway="iris"]) .ink-shipment-callout { fill: var(--shipment-callout-ink); }
+</style>
 </head>
 <body>
   <svg viewBox="0 0 560 677.8947" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
@@ -43,7 +61,7 @@
     <text x="10" y="95.0" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--muted)" >Practical tools and advice</text>
     <text x="10" y="101.4" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--muted)" >to grow your business.</text>
     <rect x="10" y="113" width="40" height="12" rx="4" fill="var(--blue)" stroke="none" />
-    <text x="30" y="121" font-family="Arial, sans-serif" font-size="4.9" font-weight="700" text-anchor="middle" fill="var(--button)" >Learn more</text>
+    <text x="30" y="121" font-family="Arial, sans-serif" font-size="4.9" font-weight="700" text-anchor="middle" fill="var(--button)" class="ink-learn-button" >Learn more</text>
     <rect x="109" y="51" width="64" height="74" rx="4" fill="var(--blue)" stroke="none" opacity=".48"/>
     <path d="M113 118l21-30 12 13 12-23 15 25v15z" fill="var(--cyan)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
     <path d="M113 118l26-25 25 25z" fill="var(--blue)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
@@ -141,7 +159,7 @@
     <text x="10" y="95.0" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--muted)" >Clear routes from booking</text>
     <text x="10" y="101.4" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--muted)" >to doorstep delivery.</text>
     <rect x="10" y="113" width="40" height="12" rx="4" fill="var(--green)" stroke="none" />
-    <text x="30" y="121" font-family="Arial, sans-serif" font-size="4.9" font-weight="700" text-anchor="middle" fill="var(--button)" >Get started</text>
+    <text x="30" y="121" font-family="Arial, sans-serif" font-size="4.9" font-weight="700" text-anchor="middle" fill="var(--button)" class="ink-started-button" >Get started</text>
     <rect x="109" y="51" width="64" height="74" rx="4" fill="var(--green)" stroke="none" opacity=".48"/>
     <path d="M115 89l19-4 23-23 10 1-15 25 17 6-3 3-19-3-12 17-4-1 4-19-19 2z" fill="var(--text)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".86"/>
     <text x="92" y="165" font-family="Arial, sans-serif" font-size="5.7" font-weight="650" text-anchor="middle" fill="var(--text)" >Trusted by teams worldwide</text>
@@ -199,8 +217,8 @@
     <text x="112" y="307" font-family="Arial, sans-serif" font-size="5.15" font-weight="700" text-anchor="start" fill="var(--text)" >Secure handling</text>
     <text x="112" y="315" font-family="Arial, sans-serif" font-size="4.2" font-weight="400" text-anchor="start" fill="var(--muted)" >Specialist service</text>
     <rect x="6" y="335" width="171" height="60" rx="5" fill="var(--green)" stroke="none" opacity=".65"/>
-    <text x="13" y="350" font-family="Arial, sans-serif" font-size="6.9" font-weight="700" text-anchor="start" fill="var(--text)" >Ready to ship with confidence?</text>
-    <text x="13" y="365" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--text)" >See upcoming routes and get a quote.</text>
+    <text x="13" y="350" font-family="Arial, sans-serif" font-size="6.9" font-weight="700" text-anchor="start" fill="var(--text)" class="ink-shipment-callout" >Ready to ship with confidence?</text>
+    <text x="13" y="365" font-family="Arial, sans-serif" font-size="5.2" font-weight="400" text-anchor="start" fill="var(--text)" class="ink-shipment-callout" >See upcoming routes and get a quote.</text>
     <rect x="13" y="377" width="44" height="11" rx="3" fill="var(--paper)" stroke="none" />
     <text x="35" y="385" font-family="Arial, sans-serif" font-size="5.2" font-weight="700" text-anchor="middle" fill="var(--green)" >Get started</text>
     <text x="8" y="473" font-family="Arial, sans-serif" font-size="4.6" font-weight="400" text-anchor="start" fill="var(--muted)" >Services</text>
