@@ -13,6 +13,7 @@ For a carousel, motherlode:slides declares the number of ?slide=N pages;
 every page is also saved under exports/slides/<colorway>/.
 
 Chrome workers use private profiles and DevTools pipes, not the user's browser.
+Each colorway gets a fresh browser context with separate storage.
 DevTools sets the exact viewport, waits for fonts/images and captures animation
 times deterministically. No Node, browser driver, ffmpeg or pip install needed.
 The compiled AVFoundation helper is reused from the current user's temp directory.
@@ -24,6 +25,7 @@ Old PNG/MP4 exports outside the current set are reported, not silently deleted.
 import argparse
 import base64
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
 from dataclasses import dataclass
 import hashlib
 from html.parser import HTMLParser
@@ -31,6 +33,7 @@ import json
 import math
 import os
 from pathlib import Path
+from queue import Empty, SimpleQueue
 import re
 import selectors
 import shutil
@@ -38,6 +41,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+from threading import Event
 import time
 from urllib.parse import quote, unquote, urlencode, urlsplit
 
@@ -152,9 +156,9 @@ def read_design(folder):
 
 
 class Chrome:
-    """One synchronous DevTools session; one instance per worker/colorway."""
+    """One synchronous DevTools connection per worker."""
 
-    def __init__(self, executable, directory, design, timeout):
+    def __init__(self, executable, directory, design, timeout, *, open_page=True):
         self.executable, self.directory, self.design = executable, directory, design
         self.timeout = timeout
         self.process = None
@@ -165,6 +169,7 @@ class Chrome:
         self.selector = selectors.DefaultSelector()
         self.log = None
         self.previous_frame = None
+        self.open_initial_page = open_page
 
     def __enter__(self):
         self.log = (self.directory / "chrome.log").open("wb")
@@ -178,16 +183,38 @@ class Chrome:
             self.process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                             stderr=self.log, bufsize=0)
             self.selector.register(self.process.stdout, selectors.EVENT_READ)
-            target = self.call("Target.createTarget", {"url": "about:blank"})["targetId"]
-            self.session = self.call("Target.attachToTarget", {"targetId": target, "flatten": True})["sessionId"]
-            self.call("Page.enable")
-            self.call("Emulation.setDeviceMetricsOverride", {
-                "width": self.design.width, "height": self.design.height,
-                "deviceScaleFactor": self.design.scale, "mobile": False})
+            if self.open_initial_page:
+                self.open_target()
             return self
         except BaseException:
             self.__exit__(None, None, None)
             raise
+
+    def open_target(self, context=None):
+        options = {"url": "about:blank"}
+        if context is not None:
+            options["browserContextId"] = context
+        target = self.call("Target.createTarget", options)["targetId"]
+        self.session = self.call("Target.attachToTarget", {"targetId": target, "flatten": True})["sessionId"]
+        self.call("Page.enable")
+        self.call("Emulation.setDeviceMetricsOverride", {
+            "width": self.design.width, "height": self.design.height,
+            "deviceScaleFactor": self.design.scale, "mobile": False})
+
+    @contextmanager
+    def isolated_page(self):
+        # Storage and targets belong to a fresh context for each palette. Only
+        # the Chrome process survives while the worker picks up its next job.
+        context = self.call("Target.createBrowserContext", {"disposeOnDetach": True})["browserContextId"]
+        try:
+            self.open_target(context)
+            yield self
+        finally:
+            self.session = None
+            self.events.clear()
+            self.previous_frame = None
+            if self.process.poll() is None:
+                self.call("Target.disposeBrowserContext", {"browserContextId": context})
 
     def __exit__(self, *_):
         if self.process:
@@ -506,15 +533,17 @@ def export(folder, args):
         work = Path(temporary)
         exports = work / "exports"
         exports.mkdir()
+        palettes = work / "palette-frames"
+        palettes.mkdir()
         encoder = video_encoder(work) if design.loop else None
 
-        def render_colorway(name):
-            directory = work / name
+        def render_colorway(name, worker):
+            directory = palettes / name
             directory.mkdir()
             frames = directory / "frames"
             frames.mkdir()
             try:
-                with Chrome(chrome, directory, design, args.timeout) as browser:
+                with worker.isolated_page() as browser:
                     browser.render(name, design.still, exports / f"{name}.png", args.wait_ms)
                     if design.slides > 1:
                         slide_dir = exports / "slides" / name
@@ -543,8 +572,29 @@ def export(folder, args):
             finally:
                 shutil.rmtree(directory)
 
-        with ThreadPoolExecutor(max_workers=min(args.jobs, len(design.colorways))) as pool:
-            futures = [pool.submit(render_colorway, name) for name in design.colorways]
+        remaining = SimpleQueue()
+        for name in design.colorways:
+            remaining.put(name)
+        stopped = Event()
+
+        def render_worker(index):
+            directory = work / f"browser-{index}"
+            directory.mkdir()
+            try:
+                with Chrome(chrome, directory, design, args.timeout, open_page=False) as browser:
+                    while not stopped.is_set():
+                        try:
+                            name = remaining.get_nowait()
+                        except Empty:
+                            return
+                        render_colorway(name, browser)
+            except BaseException:
+                stopped.set()
+                raise
+
+        workers = min(args.jobs, len(design.colorways))
+        with ThreadPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(render_worker, index) for index in range(workers)]
             try:
                 for future in as_completed(futures):
                     future.result()
