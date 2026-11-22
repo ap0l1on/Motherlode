@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="912x506">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="8">
+<meta name="motherlode:still" content="1.1">
+<title>Mistbound guardian pop-ups</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #16242C; --surface: #27323A; --ink: #F5F2EA; --muted: #CFD2D0;
+  --accent: #7A94A6; --on-accent: #14222A; --second: #7C604D; --third: #6F8796;
+  --ivory: #E2D7C5; --shade: #5B5050; --outline: #52616B; --good: #718978;
+  --hi: #FFFFFF; --lo: #101318; --clear: transparent; --photo: brightness(1);
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.75);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.85);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(321deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.64);
+}
+
+*{box-sizing:border-box}html,body{margin:0;width:912px;height:506px;overflow:hidden}main{position:relative;width:456px;height:253px;transform:scale(2);transform-origin:0 0;overflow:hidden;background:var(--bg);font-family:Inter,sans-serif;color:var(--ink);perspective:800px}.back{position:absolute;inset:0;background:linear-gradient(180deg,var(--clear),color-mix(in srgb,var(--surface) 40%,var(--clear)) 40%,var(--surface) 94%),url(original-ruin.webp) center/cover;filter:var(--photo)}button{position:absolute;width:91px;height:91px;bottom:34px;left:123px;isolation:isolate;border:0;padding:0;background:none;color:var(--hi);cursor:pointer}button+button{left:244px}.cover{position:absolute;inset:0;transform-origin:50% 100%;background:radial-gradient(ellipse at 86% 0,var(--accent),var(--surface) 79%);box-shadow:0 3px 7px color-mix(in srgb,var(--lo) 51%,var(--clear));overflow:hidden}.ink{position:absolute;background-image:url(original-guardian-atlas.webp);background-size:200% 100%;background-position:var(--column) center;filter:url(#key) var(--photo)}button:first-of-type{--column:0%}button:nth-of-type(2){--column:100%}.cover .ink{inset:3px 0 0}.pop{transform-origin:center bottom;left:-61px;width:214px;height:214px;bottom:3px}.name{position:absolute;bottom:-12px;left:0;right:0;padding:2px;background:var(--lo);font:750 8px/1.1 Georgia,serif;letter-spacing:2.2px;white-space:nowrap}.defs{position:absolute;width:0;height:0}button:focus-visible{outline:1px solid var(--ivory);outline-offset:3px}
+
+.back { background:var(--surface); }
+.back::before,.back::after { content:''; position:absolute; top:0; bottom:0; width:50%; background-image:linear-gradient(180deg,var(--clear),color-mix(in srgb,var(--surface) 40%,var(--clear)) 40%,var(--surface) 94%),url(original-ruin.webp); background-repeat:no-repeat; background-size:100% 100%,203% 100%; }
+.back::before {left:0; background-position:center,left center;}
+.back::after {right:0; background-position:center,right center;}
+.ink {clip-path:inset(0.4% 1%);}
+.cover::before { content:''; position:absolute; inset:0; background:linear-gradient(0deg,color-mix(in srgb,var(--surface) 55%,var(--clear)),var(--clear) 67%),url(original-ruin.webp) 100% 42%/auto 150%; filter:var(--photo); }
+:root[data-colorway="mono"] {filter:grayscale(1);}
+</style></head><body><main><div class="back"></div><svg class="defs" aria-hidden="true"><defs><filter id="key" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 -3 -3 -3 0 8.1" result="keyed"/><feComposite in="keyed" in2="SourceGraphic" operator="in"/></filter></defs></svg><button type="button" aria-label="Raise the Cinder Sentry"><span class="cover"><i class="ink"></i></span><i class="ink pop"></i><span class="name">THE SENTRY</span></button><button type="button" aria-label="Raise the Grove Warden"><span class="cover"><i class="ink"></i></span><i class="ink pop"></i><span class="name">THE WARDEN</span></button></main><script>
+
+const cards=[...document.querySelectorAll('button')],frames=[[0,-1],[.08,0],[.24,0],[.34,-1],[.42,1],[.55,1],[.64,-1],[.70,0],[.79,0],[.85,-1],[.90,1],[1,1]],tour=[];
+function props(on,kind){if(kind==='cover')return {transform:on?'perspective(200px) rotateX(49deg)':'perspective(200px) rotateX(0deg)'};if(kind==='name')return {opacity:on?1:0};return {opacity:on?1:0,transform:on?'scale(1) translateY(0)':'scale(.4) translateY(3px)'};}
+cards.forEach((b,i)=>{for(const k of ['cover','pop','name']){const el=b.querySelector('.'+k);tour.push(el.animate(frames.map(([offset,n])=>({offset,...props(n===i,k),easing:'ease-in-out'})),{duration:8000,iterations:Infinity}));}b.onpointerenter=b.onfocus=b.onclick=()=>set(i);b.onpointerleave=b.onblur=()=>set(-1);});function set(n){tour.splice(0).forEach(t=>t.cancel());cards.forEach((b,i)=>{for(const k of ['cover','pop','name']){const el=b.querySelector('.'+k);el.style.transition='all .4s ease';Object.assign(el.style,props(i===n,k));}});}if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))set(0);
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
