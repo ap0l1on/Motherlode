@@ -25,7 +25,7 @@ Websites and web pages.
 | [Docs sites](docs-sites/) | Documentation sites |
 | [Help centers](help-centers/) | Help centers and FAQs |
 | [Changelogs](changelogs/) | Changelogs and release notes |
-| [Auth pages](auth-pages/) | Sign-in, sign-up and password reset pages · **33 designs** |
+| [Auth pages](auth-pages/) | Sign-in, sign-up and password reset pages · **34 designs** |
 | [Error pages](error-pages/) | 404s, 500s and maintenance pages · **2 designs** |
 | [Coming soon](coming-soon/) | Coming soon pages |
 | [Waitlists](waitlists/) | Waitlist and early access pages |
