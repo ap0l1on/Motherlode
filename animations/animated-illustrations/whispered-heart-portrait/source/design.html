@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="493x370">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="7.8">
+  <meta name="motherlode:still" content="6.8">
+  <title>Whispered heart portrait</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010101; --shade: #3e3541; --middle: #887780; --bright: #ca8ea7; --highlight: #a799a5; --leaf: #94627a; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 493px; height: 370px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 493 370" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Whispered heart portrait</title>
+    <desc id="description">Two original continuous-line profiles lean inward on black, meeting at a tiny heart between their lips.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 7.8 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const strokes = [
+      "M118 64C142 51 174 53 193 66C199 71 203 74 200 79C184 72 166 85 155 109C142 135 122 151 121 169",
+      "M196 76C182 86 175 106 159 124C145 141 129 154 130 176C131 194 142 217 132 236C127 245 118 250 113 253",
+      "M197 82C198 96 202 111 208 120C211 125 216 130 216 134C215 137 209 138 209 142L212 148L207 152L207 157C207 162 203 166 199 171C194 177 181 174 170 170",
+      "M187 111Q196 104 205 112M189 116Q195 111 202 115",
+      "M157 155C148 168 152 180 160 190C168 202 167 213 158 222C145 236 126 238 117 252",
+      "M171 174C165 184 164 194 168 209C169 222 179 227 178 233",
+      "M109 271C120 253 135 239 152 240C167 241 181 249 194 269C205 284 221 305 236 314C241 316 246 310 253 305C271 291 277 276 287 263",
+      "M224 160C211 148 206 158 214 165C222 172 232 155 225 151C219 149 217 154 219 159C227 176 239 166 239 158C240 150 231 147 227 156",
+      "M246 161C248 166 254 169 260 168C274 166 282 158 286 146C291 130 297 133 301 120C307 92 313 91 319 102C323 112 318 126 321 139",
+      "M247 161C246 155 244 152 246 148L242 145L244 140C238 139 232 137 233 133C235 126 244 113 244 103C243 92 242 82 246 75C256 63 269 68 275 72C283 78 276 90 287 96L296 102",
+      "M239 118Q251 104 263 113M241 118Q248 114 256 113",
+      "M245 82C231 73 233 55 247 49C262 43 277 44 291 39C314 32 333 34 350 48",
+      "M286 146C278 164 284 172 294 181C303 188 306 201 304 212C303 227 315 229 326 219L351 201",
+      "M352 201C338 215 323 232 305 244C287 259 282 275 274 297C270 307 267 313 265 316C263 291 274 268 286 244C294 230 302 221 304 212"
+    ];
+    strokes.forEach((d, i) => {
+      const node = line(drawing, d, i === 7 ? "bright" : i % 3 ? "middle" : "highlight", i === 7 ? 1.18 : 1.13, .9);
+      const start = .02 + .73 * i / strokes.length;
+      node.setAttribute("pathLength", 1); node.setAttribute("stroke-dasharray", "1 1");
+      node.animate([{offset: 0, strokeDashoffset: 1}, {offset: start, strokeDashoffset: 1},
+        {offset: start + .12, strokeDashoffset: 0}, {offset: .982, strokeDashoffset: 0}, {offset: 1, strokeDashoffset: 1}],
+        {duration, iterations: Infinity});
+    });
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
