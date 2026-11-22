@@ -15,7 +15,7 @@ Websites and web pages.
 | [Blogs](blogs/) | Blogs and article pages |
 | [News sites](news-sites/) | News and magazine sites |
 | [E-commerce](e-commerce/) | Online stores · **1 design** |
-| [Product pages](product-pages/) | Product detail pages · **1 design** |
+| [Product pages](product-pages/) | Product detail pages · **2 designs** |
 | [Pricing pages](pricing-pages/) | Pricing and plan pages |
 | [About pages](about-pages/) | About pages |
 | [Contact pages](contact-pages/) | Contact pages |

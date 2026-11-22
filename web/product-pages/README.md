@@ -5,10 +5,10 @@ Product detail pages.
 
 Part of [Web](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="cherry-cola-morph/"><img src="cherry-cola-morph/preview.gif" width="260" alt="Cherry cola product morph"></a><br><a href="cherry-cola-morph/"><b>Cherry cola product morph</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="cherry-cola-morph/"><img src="cherry-cola-morph/preview.gif" width="260" alt="Cherry cola product morph"></a><br><a href="cherry-cola-morph/"><b>Cherry cola product morph</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="color-block-beetle-specimens/"><img src="color-block-beetle-specimens/preview.gif" width="260" alt="Color-block beetle specimens"></a><br><a href="color-block-beetle-specimens/"><b>Color-block beetle specimens</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
