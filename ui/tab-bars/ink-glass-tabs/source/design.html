@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x100">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="2.25">
+<meta name="motherlode:still" content="1.05">
+<title>Ink glass tabs</title>
+<style>
+  :root, [data-colorway="original"] {
+    --wall: #cdbba3; --wood: #996e4c; --recess: #391e0e;
+    --leaf: #687429; --lamp: #efae6c; --screen: #120e10;
+    --reflection: #373132; --glass: #f5f1ef; --glass-strength: 56%;
+    --type: #201b18; --well: #170b02; --selected-type: #fffaf1;
+    --paper: #fff; --black: #000; --clear: transparent;
+  }
+  [data-colorway="light"] {
+    --wall: #eddfc8; --wood: #c5a988; --recess: #75634e;
+    --leaf: #758d50; --lamp: #ffe1aa; --screen: #36383b;
+    --reflection: #626365; --glass: #fff9ed; --glass-strength: 77%;
+    --type: #352f26; --well: #463e30; --selected-type: #fff7e4;
+  }
+  [data-colorway="dark"] {
+    --wall: #625f67; --wood: #5d4b4d; --recess: #291f2a;
+    --leaf: #465a45; --lamp: #d2a27d; --screen: #0c1018;
+    --reflection: #293040; --glass: #9baec6; --glass-strength: 72%;
+    --type: #050a13; --well: #050a16; --selected-type: #f1f6ff;
+  }
+  [data-colorway="mono"] {
+    --wall: #c2c2c2; --wood: #818181; --recess: #383838;
+    --leaf: #666666; --lamp: #cecece; --screen: #131313;
+    --reflection: #393939; --glass: #f3f3f3; --glass-strength: 58%;
+    --type: #252525; --well: #101010; --selected-type: #fafafa;
+  }
+  [data-colorway="ocean"] {
+    --wall: #b7cbd0; --wood: #728f97; --recess: #304855;
+    --leaf: #47736b; --lamp: #d8ddd2; --screen: #0c1b25;
+    --reflection: #2b4653; --glass: #cae7e9; --glass-strength: 73%;
+    --type: #19373d; --well: #08232d; --selected-type: #f2ffff;
+  }
+  [data-colorway="matcha"] {
+    --wall: #d0c9a8; --wood: #8e8b64; --recess: #414331;
+    --leaf: #687740; --lamp: #e5ca93; --screen: #172019;
+    --reflection: #354238; --glass: #dae4be; --glass-strength: 71%;
+    --type: #303b23; --well: #172513; --selected-type: #faffea;
+  }
+  [data-colorway="sunset"] {
+    --wall: #e5bda5; --wood: #aa7462; --recess: #643c37;
+    --leaf: #8f7851; --lamp: #ffc58a; --screen: #251823;
+    --reflection: #51313d; --glass: #fbd5bd; --glass-strength: 74%;
+    --type: #432e2d; --well: #3b171d; --selected-type: #fff5e4;
+  }
+  [data-colorway="berry"] {
+    --wall: #d6bccf; --wood: #98758c; --recess: #513448;
+    --leaf: #736074; --lamp: #f3c2ce; --screen: #201422;
+    --reflection: #453046; --glass: #ead2e5; --glass-strength: 74%;
+    --type: #412c3a; --well: #30162e; --selected-type: #fff2ff;
+  }
+  @font-face { font-family: "DM Sans"; src: url("data:font/woff2;base64,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") format("woff2"); font-weight: 400 700; font-style: normal; font-display: block; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 576px; height: 100px; overflow: hidden; background: var(--wall); }
+  main { position: relative; width: 100%; height: 100%; isolation: isolate; }
+  .room { display: block; position: absolute; inset: 0; width: 576px; height: 100px; }
+  button { appearance: none; border: 0; padding: 0; margin: 0; background: var(--clear); color: inherit; font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 1.5px solid currentColor; outline-offset: -3px; }
+  .icon { flex: none; display: block; fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+  nav { position: absolute; font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .rail { left: 100.5px; width: 396.5px; height: 44px; --x: 4.5px; --w: 77.4px; }
+  .tab-row { position: absolute; inset: 0 4.55px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center; }
+  .tab, .label { height: 36px; border-radius: 14px; display: flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; font-size: 9.6px; line-height: 1; font-weight: 560; letter-spacing: .035px; }
+  .icon { width: 11.7px; height: 11.7px; }
+  .tab-row { color: var(--type); }
+  .active-letters { position: absolute; inset: 0; color: var(--selected-type); pointer-events: none; clip-path: inset(3.2px calc(100% - var(--x) - var(--w)) 3.2px var(--x) round 14px); }
+  .active-letters .tab-row { color: inherit; }
+  .active-letters .label { font-weight: 680; }
+  .rail:has(.tab:focus-visible)::after { content: ""; position: absolute; pointer-events: none; top: 4px; bottom: 4px; left: var(--x); width: var(--w); border-radius: 16px; outline: 1.2px solid var(--selected-type); outline-offset: -3px; }
+  @property --x { syntax: '<length>'; inherits: true; initial-value: 4.5px; }
+  @property --w { syntax: '<length>'; inherits: true; initial-value: 77.4px; }
+
+  .rail { top: 27.9px; --w: 76.2px; }
+  .ink-plate { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 3px color-mix(in srgb, var(--black) 15%, var(--clear))); }
+  .aperture { x: var(--x); width: var(--w); }
+  .tab, .label { font-weight: 590; }
+  .active-letters { clip-path: inset(4.9px calc(100% - var(--x) - var(--w)) 4.9px var(--x) round 18px); }
+</style>
+<script type="text/plain" id="font-license">Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+</script>
+</head>
+<body>
+<main>
+<svg class="room" viewBox="0 478 576 100" aria-hidden="true" focusable="false">
+  <defs>
+      <linearGradient id="wall" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="576" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 74%, var(--recess))"/>
+        <stop offset="1.2%" stop-color="var(--wall)"/>
+        <stop offset="17%" stop-color="color-mix(in srgb, var(--wall) 99%, var(--black))"/>
+        <stop offset="22%" stop-color="color-mix(in srgb, var(--wall) 88%, var(--black))"/>
+        <stop offset="26%" stop-color="color-mix(in srgb, var(--wall) 80%, var(--black))"/>
+        <stop offset="27%" stop-color="color-mix(in srgb, var(--wall) 60%, var(--black))"/>
+        <stop offset="38%" stop-color="color-mix(in srgb, var(--wall) 54%, var(--black))"/>
+        <stop offset="69%" stop-color="color-mix(in srgb, var(--wall) 56%, var(--black))"/>
+        <stop offset="91%" stop-color="color-mix(in srgb, var(--wall) 64%, var(--black))"/>
+        <stop offset="99%" stop-color="color-mix(in srgb, var(--wall) 76%, var(--black))"/>
+      </linearGradient>
+      <linearGradient id="screen" gradientUnits="userSpaceOnUse" x1="124" y1="0" x2="529" y2="0">
+        <stop offset="0%" stop-color="var(--screen)"/>
+        <stop offset="7%" stop-color="color-mix(in srgb, var(--screen) 72%, var(--reflection))"/>
+        <stop offset="10%" stop-color="color-mix(in srgb, var(--reflection) 70%, var(--screen))"/>
+        <stop offset="19%" stop-color="color-mix(in srgb, var(--reflection) 84%, var(--screen))"/>
+        <stop offset="28%" stop-color="color-mix(in srgb, var(--reflection) 72%, var(--screen))"/>
+        <stop offset="35%" stop-color="color-mix(in srgb, var(--reflection) 45%, var(--screen))"/>
+        <stop offset="56%" stop-color="color-mix(in srgb, var(--reflection) 64%, var(--screen))"/>
+        <stop offset="72%" stop-color="color-mix(in srgb, var(--reflection) 55%, var(--screen))"/>
+        <stop offset="86%" stop-color="color-mix(in srgb, var(--screen) 75%, var(--reflection))"/>
+        <stop offset="92%" stop-color="color-mix(in srgb, var(--screen) 82%, var(--black))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--screen) 45%, var(--black))"/>
+      </linearGradient>
+      <linearGradient id="shade" gradientUnits="userSpaceOnUse" x1="0" y1="397" x2="0" y2="505">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--reflection) 52%, var(--wood))" stop-opacity="0.42"/>
+        <stop offset="29%" stop-color="color-mix(in srgb, var(--reflection) 55%, var(--wood))" stop-opacity="0.31"/>
+        <stop offset="68%" stop-color="var(--screen)" stop-opacity="0"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="screen-shade" gradientUnits="userSpaceOnUse" x1="0" y1="447" x2="0" y2="560">
+        <stop offset="0%" stop-color="var(--screen)" stop-opacity="0"/>
+        <stop offset="33%" stop-color="var(--screen)" stop-opacity="0.03"/>
+        <stop offset="69%" stop-color="var(--screen)" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0.65"/>
+      </linearGradient>
+      <filter id="soft" x="-10%" y="-20%" width="120%" height="140%"><feGaussianBlur stdDeviation="2.1"/></filter>
+      <filter id="small-soft" x="-12%" y="-15%" width="124%" height="130%"><feGaussianBlur stdDeviation=".55"/></filter>
+      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".53 .7" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      <linearGradient id="tv-shadow" gradientUnits="userSpaceOnUse" x1="0" y1="566" x2="0" y2="586">
+        <stop offset="0%" stop-color="var(--screen)" stop-opacity="0.37"/>
+        <stop offset="47%" stop-color="var(--screen)" stop-opacity="0.1"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="niche" gradientUnits="userSpaceOnUse" x1="0" y1="395" x2="0" y2="498">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--recess) 86%, var(--black))"/>
+        <stop offset="3%" stop-color="color-mix(in srgb, var(--lamp) 68%, var(--wood))"/>
+        <stop offset="8%" stop-color="color-mix(in srgb, var(--wood) 66%, var(--lamp))"/>
+        <stop offset="14%" stop-color="color-mix(in srgb, var(--wood) 54%, var(--recess))"/>
+        <stop offset="27%" stop-color="var(--recess)"/>
+        <stop offset="79%" stop-color="color-mix(in srgb, var(--recess) 78%, var(--black))"/>
+        <stop offset="98%" stop-color="color-mix(in srgb, var(--recess) 70%, var(--black))"/>
+        <stop offset="100%" stop-color="var(--recess)"/>
+      </linearGradient>
+      <linearGradient id="jamb" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="96" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wood) 75%, var(--wall))"/>
+        <stop offset="3%" stop-color="color-mix(in srgb, var(--wood) 86%, var(--recess))"/>
+        <stop offset="8%" stop-color="color-mix(in srgb, var(--wood) 60%, var(--recess))"/>
+        <stop offset="10%" stop-color="color-mix(in srgb, var(--recess) 70%, var(--black))"/>
+        <stop offset="90%" stop-color="color-mix(in srgb, var(--recess) 72%, var(--black))"/>
+        <stop offset="95%" stop-color="var(--wood)"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--wood) 68%, var(--wall))"/>
+      </linearGradient>
+      <linearGradient id="ceramic" gradientUnits="userSpaceOnUse" x1="29" y1="0" x2="69" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 64%, var(--recess))"/>
+        <stop offset="9%" stop-color="color-mix(in srgb, var(--wall) 80%, var(--recess))"/>
+        <stop offset="21%" stop-color="color-mix(in srgb, var(--wall) 82%, var(--paper))"/>
+        <stop offset="38%" stop-color="color-mix(in srgb, var(--wall) 81%, var(--wood))"/>
+        <stop offset="68%" stop-color="color-mix(in srgb, var(--wall) 65%, var(--recess))"/>
+        <stop offset="95%" stop-color="color-mix(in srgb, var(--wall) 42%, var(--recess))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--wall) 35%, var(--recess))"/>
+      </linearGradient>
+      <linearGradient id="candle" gradientUnits="userSpaceOnUse" x1="71" y1="0" x2="100" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 52%, var(--screen))"/>
+        <stop offset="8%" stop-color="color-mix(in srgb, var(--wall) 41%, var(--screen))"/>
+        <stop offset="19%" stop-color="color-mix(in srgb, var(--wall) 47%, var(--screen))"/>
+        <stop offset="31%" stop-color="color-mix(in srgb, var(--screen) 66%, var(--wall))"/>
+        <stop offset="58%" stop-color="color-mix(in srgb, var(--screen) 83%, var(--recess))"/>
+        <stop offset="89%" stop-color="color-mix(in srgb, var(--recess) 70%, var(--black))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--screen) 69%, var(--recess))"/>
+      </linearGradient>
+      <linearGradient id="vase" gradientUnits="userSpaceOnUse" x1="545" y1="0" x2="581" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 60%, var(--wood))"/>
+        <stop offset="11%" stop-color="color-mix(in srgb, var(--wall) 78%, var(--paper))"/>
+        <stop offset="35%" stop-color="color-mix(in srgb, var(--wall) 95%, var(--paper))"/>
+        <stop offset="74%" stop-color="color-mix(in srgb, var(--wall) 64%, var(--wood))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--wall) 58%, var(--recess))"/>
+      </linearGradient>
+  </defs>
+  <g id="interior">
+    <rect x="0" y="340" width="576" height="348" fill="url(#wall)"/>
+    <rect x="90" y="394" width="37" height="109" fill="url(#shade)"/>
+    <rect x="124.6" y="566.2" width="405.3" height="21" fill="url(#tv-shadow)"/>
+    <path d="M93.4 501.2v62" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 61%, var(--recess))" stroke-width="1.1" opacity=".63"/>
+    <g transform="translate(0 0)">
+    <rect x="0" y="388" width="94" height="115" fill="url(#jamb)"/>
+    <rect x="6" y="395" width="82.5" height="99.5" fill="url(#niche)"/>
+    <rect x="8" y="400" width="12" height="93" fill="color-mix(in srgb, var(--recess) 63%, var(--black))" opacity=".6"/>
+    <rect x="13" y="399" width="74" height="1.3" fill="color-mix(in srgb, var(--lamp) 80%, var(--paper))" opacity=".75"/>
+    <rect x="6" y="494.2" width="82" height="7.4" fill="var(--wood)"/>
+    <rect x="5" y="500" width="87" height="1.6" fill="color-mix(in srgb, var(--wood) 65%, var(--recess))"/>
+    </g>
+    <g transform="translate(528 0)">
+    <rect x="0" y="388" width="94" height="115" fill="url(#jamb)"/>
+    <rect x="6" y="395" width="82.5" height="99.5" fill="url(#niche)"/>
+    <rect x="8" y="400" width="12" height="93" fill="color-mix(in srgb, var(--recess) 63%, var(--black))" opacity=".6"/>
+    <rect x="13" y="399" width="74" height="1.3" fill="color-mix(in srgb, var(--lamp) 80%, var(--paper))" opacity=".75"/>
+    <rect x="6" y="494.2" width="82" height="7.4" fill="var(--wood)"/>
+    <rect x="5" y="500" width="87" height="1.6" fill="color-mix(in srgb, var(--wood) 65%, var(--recess))"/>
+    </g>
+    <g filter="url(#small-soft)">
+    <path d="M30.9 464.1 Q49 462.5 67.8 464 L67 490.4 Q66.7 494.5 62.1 494.9 L36.1 494.9 Q31.6 494.4 31.2 491.5Z" fill="url(#ceramic)"/>
+    <path d="M48.1 463.6 Q47.3 443.2 46.5 435.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 60%, var(--black))" stroke-width="0.56"/>
+    <path d="M47.5 452.8 Q48.3 447.0 49.5 447.9 Q48.3 452.7 47.5 452.8Z" fill="color-mix(in srgb, var(--leaf) 62%, var(--lamp))"/>
+    <path d="M47.2 447.7 Q45.6 443.1 43.4 443.4 Q45.7 447.0 47.2 447.7Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--black))"/>
+    <path d="M46.9 443.2 Q49.0 436.7 51.9 438.5 Q48.9 444.0 46.9 443.2Z" fill="color-mix(in srgb, var(--leaf) 56%, var(--black))"/>
+    <path d="M46.7 438.7 Q43.9 431.8 40.1 433.4 Q44.0 439.1 46.7 438.7Z" fill="color-mix(in srgb, var(--leaf) 69%, var(--black))"/>
+    <path d="M47.9 462.1 Q47.1 446.1 46.4 439.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 55%, var(--black))" stroke-width="0.56"/>
+    <path d="M47.4 453.6 Q44.6 449.1 40.8 449.7 Q44.8 453.4 47.4 453.6Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M47.1 449.7 Q48.9 444.2 51.5 445.7 Q48.8 450.2 47.1 449.7Z" fill="color-mix(in srgb, var(--leaf) 76%, var(--black))"/>
+    <path d="M46.8 446.1 Q44.8 442.0 42.0 442.6 Q44.9 446.0 46.8 446.1Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--black))"/>
+    <path d="M46.6 442.6 Q49.2 436.4 52.8 437.8 Q49.1 442.9 46.6 442.6Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--black))"/>
+    <path d="M52.2 463.3 Q65.0 453.4 76.8 449.6" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 60%, var(--black))" stroke-width="0.56"/>
+    <path d="M61.6 458.1 Q65.1 453.3 69.9 454.7 Q64.9 458.7 61.6 458.1Z" fill="color-mix(in srgb, var(--leaf) 51%, var(--black))"/>
+    <path d="M66.0 455.6 Q67.2 450.8 68.9 452.7 Q67.1 456.9 66.0 455.6Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--black))"/>
+    <path d="M69.9 453.4 Q75.0 449.8 82.1 450.7 Q74.8 453.8 69.9 453.4Z" fill="color-mix(in srgb, var(--leaf) 84%, var(--black))"/>
+    <path d="M73.9 451.2 Q74.7 447.7 75.9 449.0 Q74.7 452.1 73.9 451.2Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M48.7 463.7 Q54.5 449.5 59.8 443.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 59%, var(--black))" stroke-width="0.56"/>
+    <path d="M52.9 456.2 Q52.0 450.9 50.8 452.8 Q52.1 457.4 52.9 456.2Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--black))"/>
+    <path d="M54.9 452.6 Q57.8 447.7 61.8 448.0 Q57.7 451.9 54.9 452.6Z" fill="color-mix(in srgb, var(--leaf) 74%, var(--black))"/>
+    <path d="M56.7 449.5 Q55.8 445.3 54.5 446.3 Q55.8 449.7 56.7 449.5Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M58.5 446.3 Q62.1 442.1 67.2 443.2 Q62.0 446.6 58.5 446.3Z" fill="color-mix(in srgb, var(--leaf) 45%, var(--lamp))"/>
+    <path d="M49.1 462.7 Q48.9 438.8 48.6 429.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 74%, var(--black))" stroke-width="0.56"/>
+    <path d="M48.9 450.0 Q50.8 443.0 53.5 443.9 Q50.8 449.6 48.9 450.0Z" fill="color-mix(in srgb, var(--leaf) 59%, var(--black))"/>
+    <path d="M48.8 444.1 Q46.0 437.9 42.2 438.5 Q46.2 443.4 48.8 444.1Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--black))"/>
+    <path d="M48.8 438.8 Q50.3 431.4 52.4 431.4 Q50.2 437.1 48.8 438.8Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--lamp))"/>
+    <path d="M48.7 433.4 Q46.9 426.6 44.4 426.8 Q47.0 432.1 48.7 433.4Z" fill="color-mix(in srgb, var(--leaf) 70%, var(--black))"/>
+    <path d="M50.2 464.2 Q42.0 452.9 34.3 448.6" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 60%, var(--black))" stroke-width="0.56"/>
+    <path d="M44.2 458.3 Q41.3 452.6 37.3 454.3 Q41.4 459.0 44.2 458.3Z" fill="color-mix(in srgb, var(--leaf) 55%, var(--black))"/>
+    <path d="M41.3 455.4 Q40.9 450.7 40.3 452.5 Q40.9 456.5 41.3 455.4Z" fill="color-mix(in srgb, var(--leaf) 60%, var(--lamp))"/>
+    <path d="M38.8 452.9 Q36.2 447.8 32.6 449.3 Q36.3 453.6 38.8 452.9Z" fill="color-mix(in srgb, var(--leaf) 50%, var(--black))"/>
+    <path d="M36.2 450.4 Q36.5 446.7 36.9 447.3 Q36.5 450.3 36.2 450.4Z" fill="color-mix(in srgb, var(--leaf) 83%, var(--black))"/>
+    <path d="M47.9 463.2 Q41.1 454.5 34.8 451.1" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 72%, var(--black))" stroke-width="0.56"/>
+    <path d="M43.0 458.6 Q44.2 456.1 46.0 457.0 Q44.2 459.2 43.0 458.6Z" fill="color-mix(in srgb, var(--leaf) 73%, var(--lamp))"/>
+    <path d="M40.6 456.4 Q36.7 451.5 31.4 453.1 Q36.9 457.3 40.6 456.4Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--black))"/>
+    <path d="M38.5 454.5 Q38.6 449.7 38.8 451.4 Q38.6 455.5 38.5 454.5Z" fill="color-mix(in srgb, var(--leaf) 52%, var(--black))"/>
+    <path d="M36.4 452.5 Q32.3 448.9 26.7 449.6 Q32.5 452.6 36.4 452.5Z" fill="color-mix(in srgb, var(--leaf) 73%, var(--black))"/>
+    <path d="M45.4 462.2 Q33.0 445.2 21.4 438.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 61%, var(--black))" stroke-width="0.56"/>
+    <path d="M36.3 453.2 Q31.8 448.2 25.6 449.6 Q32.0 453.7 36.3 453.2Z" fill="color-mix(in srgb, var(--leaf) 53%, var(--black))"/>
+    <path d="M32.0 448.9 Q30.9 442.8 29.4 443.6 Q31.0 448.6 32.0 448.9Z" fill="color-mix(in srgb, var(--leaf) 54%, var(--black))"/>
+    <path d="M28.2 445.2 Q23.1 440.8 16.2 441.7 Q23.4 445.3 28.2 445.2Z" fill="color-mix(in srgb, var(--leaf) 57%, var(--black))"/>
+    <path d="M24.3 441.4 Q23.1 435.0 21.5 436.8 Q23.2 442.2 24.3 441.4Z" fill="color-mix(in srgb, var(--leaf) 65%, var(--black))"/>
+    <path d="M51.6 462.9 Q50.6 445.2 49.6 438.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 72%, var(--black))" stroke-width="0.56"/>
+    <path d="M50.9 453.6 Q53.3 447.8 56.6 448.4 Q53.2 453.1 50.9 453.6Z" fill="color-mix(in srgb, var(--leaf) 65%, var(--black))"/>
+    <path d="M50.5 449.2 Q48.6 443.4 46.0 444.6 Q48.7 449.4 50.5 449.2Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--black))"/>
+    <path d="M50.2 445.2 Q51.9 439.1 54.2 440.8 Q51.8 445.9 50.2 445.2Z" fill="color-mix(in srgb, var(--leaf) 65%, var(--black))"/>
+    <path d="M49.9 441.3 Q47.7 436.5 44.7 436.9 Q47.8 440.7 49.9 441.3Z" fill="color-mix(in srgb, var(--leaf) 69%, var(--black))"/>
+    <path d="M50.1 464.6 Q64.3 458.1 77.4 455.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 74%, var(--black))" stroke-width="0.56"/>
+    <path d="M60.5 461.1 Q61.0 457.6 61.8 458.7 Q61.0 461.7 60.5 461.1Z" fill="color-mix(in srgb, var(--leaf) 73%, var(--black))"/>
+    <path d="M65.4 459.5 Q69.9 456.2 76.0 458.7 Q69.7 461.8 65.4 459.5Z" fill="color-mix(in srgb, var(--leaf) 53%, var(--black))"/>
+    <path d="M69.8 458.1 Q70.6 456.1 71.8 457.3 Q70.6 459.0 69.8 458.1Z" fill="color-mix(in srgb, var(--leaf) 76%, var(--black))"/>
+    <path d="M74.2 456.6 Q78.2 453.0 83.7 455.3 Q78.0 458.6 74.2 456.6Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--lamp))"/>
+    <path d="M48.5 464.3 Q54.8 446.7 60.7 439.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 46%, var(--black))" stroke-width="0.56"/>
+    <path d="M53.1 455.0 Q56.4 450.1 61.0 450.7 Q56.3 454.6 53.1 455.0Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--black))"/>
+    <path d="M55.3 450.6 Q54.3 444.7 52.9 445.2 Q54.4 449.9 55.3 450.6Z" fill="color-mix(in srgb, var(--leaf) 76%, var(--black))"/>
+    <path d="M57.3 446.7 Q59.9 441.5 63.6 442.7 Q59.8 447.1 57.3 446.7Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--lamp))"/>
+    <path d="M59.2 442.8 Q57.9 438.0 56.2 438.2 Q58.0 442.0 59.2 442.8Z" fill="color-mix(in srgb, var(--leaf) 51%, var(--black))"/>
+    <path d="M48.8 465.2 Q44.4 442.5 40.3 433.6" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 74%, var(--black))" stroke-width="0.56"/>
+    <path d="M45.6 453.2 Q42.4 446.0 38.1 446.5 Q42.6 452.2 45.6 453.2Z" fill="color-mix(in srgb, var(--leaf) 79%, var(--black))"/>
+    <path d="M44.0 447.5 Q45.7 440.2 48.0 440.8 Q45.6 446.7 44.0 447.5Z" fill="color-mix(in srgb, var(--leaf) 74%, var(--lamp))"/>
+    <path d="M42.7 442.5 Q40.1 435.6 36.6 436.4 Q40.2 442.0 42.7 442.5Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M41.3 437.4 Q43.3 432.3 46.0 432.6 Q43.2 436.6 41.3 437.4Z" fill="color-mix(in srgb, var(--leaf) 60%, var(--black))"/>
+    <path d="M50.5 464.4 Q66.0 457.4 80.2 454.7" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 59%, var(--black))" stroke-width="0.56"/>
+    <path d="M61.8 460.7 Q67.2 456.9 74.5 459.1 Q66.9 462.5 61.8 460.7Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--lamp))"/>
+    <path d="M67.2 458.9 Q67.8 456.0 68.7 456.8 Q67.8 459.2 67.2 458.9Z" fill="color-mix(in srgb, var(--leaf) 52%, var(--black))"/>
+    <path d="M71.9 457.4 Q76.7 454.9 83.3 455.9 Q76.5 458.1 71.9 457.4Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--black))"/>
+    <path d="M76.7 455.8 Q77.6 452.7 78.9 454.0 Q77.6 456.7 76.7 455.8Z" fill="color-mix(in srgb, var(--leaf) 53%, var(--black))"/>
+    <path d="M46.0 463.3 Q47.4 437.5 48.7 427.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 56%, var(--black))" stroke-width="0.56"/>
+    <path d="M47.0 449.7 Q45.3 443.1 42.9 443.5 Q45.4 448.7 47.0 449.7Z" fill="color-mix(in srgb, var(--leaf) 78%, var(--black))"/>
+    <path d="M47.5 443.2 Q48.8 435.2 50.6 436.1 Q48.7 442.6 47.5 443.2Z" fill="color-mix(in srgb, var(--leaf) 45%, var(--black))"/>
+    <path d="M47.9 437.5 Q46.1 430.9 43.5 431.6 Q46.2 436.9 47.9 437.5Z" fill="color-mix(in srgb, var(--leaf) 83%, var(--black))"/>
+    <path d="M48.4 431.7 Q51.4 423.7 55.6 424.2 Q51.3 430.6 48.4 431.7Z" fill="color-mix(in srgb, var(--leaf) 48%, var(--black))"/>
+    <path d="M47.0 462.8 Q54.4 441.1 61.2 432.6" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 80%, var(--black))" stroke-width="0.56"/>
+    <path d="M52.4 451.3 Q56.2 445.8 61.4 445.9 Q56.0 450.2 52.4 451.3Z" fill="color-mix(in srgb, var(--leaf) 59%, var(--black))"/>
+    <path d="M55.0 445.9 Q54.2 441.1 53.2 441.3 Q54.3 445.1 55.0 445.9Z" fill="color-mix(in srgb, var(--leaf) 83%, var(--black))"/>
+    <path d="M57.2 441.1 Q60.8 434.4 65.8 434.9 Q60.7 440.2 57.2 441.1Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M59.5 436.2 Q58.3 429.6 56.7 431.3 Q58.4 436.8 59.5 436.2Z" fill="color-mix(in srgb, var(--leaf) 51%, var(--black))"/>
+    <path d="M52.0 463.5 Q61.0 459.1 69.3 457.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 58%, var(--black))" stroke-width="0.56"/>
+    <path d="M58.6 461.2 Q58.1 459.8 57.4 461.1 Q58.1 462.5 58.6 461.2Z" fill="color-mix(in srgb, var(--leaf) 79%, var(--black))"/>
+    <path d="M61.7 460.1 Q65.8 458.2 71.5 460.0 Q65.6 462.0 61.7 460.1Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M64.4 459.1 Q64.5 456.6 64.7 458.0 Q64.5 460.3 64.4 459.1Z" fill="color-mix(in srgb, var(--leaf) 78%, var(--black))"/>
+    <path d="M67.2 458.2 Q70.4 456.5 74.8 458.1 Q70.2 459.8 67.2 458.2Z" fill="color-mix(in srgb, var(--leaf) 74%, var(--lamp))"/>
+    <path d="M51.0 464.7 Q43.4 448.4 36.5 442.1" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 75%, var(--black))" stroke-width="0.56"/>
+    <path d="M45.5 456.1 Q46.7 450.7 48.5 451.6 Q46.7 456.0 45.5 456.1Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--black))"/>
+    <path d="M42.9 452.0 Q39.2 446.7 34.1 447.0 Q39.3 451.2 42.9 452.0Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--black))"/>
+    <path d="M40.5 448.4 Q42.0 443.4 44.0 443.8 Q41.9 447.8 40.5 448.4Z" fill="color-mix(in srgb, var(--leaf) 46%, var(--lamp))"/>
+    <path d="M38.2 444.8 Q35.0 439.0 30.5 441.0 Q35.1 446.0 38.2 444.8Z" fill="color-mix(in srgb, var(--leaf) 50%, var(--black))"/>
+    <path d="M52.4 463.1 Q53.7 446.0 54.9 439.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--black))" stroke-width="0.56"/>
+    <path d="M53.4 454.1 Q51.8 448.3 49.7 448.8 Q51.9 453.3 53.4 454.1Z" fill="color-mix(in srgb, var(--leaf) 56%, var(--black))"/>
+    <path d="M53.8 449.8 Q55.2 445.9 57.1 446.2 Q55.1 449.4 53.8 449.8Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--lamp))"/>
+    <path d="M54.2 446.0 Q51.9 440.1 48.7 440.7 Q52.0 445.4 54.2 446.0Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--black))"/>
+    <path d="M54.6 442.2 Q57.6 437.4 61.8 437.5 Q57.5 441.3 54.6 442.2Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M51.9 463.0 Q41.8 447.9 32.4 442.1" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 70%, var(--black))" stroke-width="0.56"/>
+    <path d="M44.5 455.1 Q44.6 450.8 44.7 452.3 Q44.6 455.9 44.5 455.1Z" fill="color-mix(in srgb, var(--leaf) 62%, var(--lamp))"/>
+    <path d="M41.0 451.3 Q37.5 446.3 32.8 448.1 Q37.7 452.5 41.0 451.3Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--black))"/>
+    <path d="M37.9 447.9 Q38.2 441.6 38.6 443.2 Q38.1 448.6 37.9 447.9Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M34.7 444.6 Q31.4 440.6 26.8 440.9 Q31.6 444.1 34.7 444.6Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--black))"/>
+    <path d="M48.7 463.0 Q35.7 457.5 23.7 455.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 69%, var(--black))" stroke-width="0.56"/>
+    <path d="M39.2 460.1 Q35.6 457.5 30.6 458.9 Q35.8 461.2 39.2 460.1Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M34.7 458.7 Q33.8 455.1 32.6 456.4 Q33.9 459.5 34.7 458.7Z" fill="color-mix(in srgb, var(--leaf) 59%, var(--black))"/>
+    <path d="M30.7 457.5 Q26.7 454.0 21.1 456.0 Q26.8 459.2 30.7 457.5Z" fill="color-mix(in srgb, var(--leaf) 72%, var(--black))"/>
+    <path d="M26.7 456.3 Q25.4 451.6 23.7 453.9 Q25.5 458.0 26.7 456.3Z" fill="color-mix(in srgb, var(--leaf) 69%, var(--black))"/>
+    <path d="M45.9 462.8 Q54.4 451.4 62.4 447.0" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 51%, var(--black))" stroke-width="0.56"/>
+    <path d="M52.1 456.8 Q55.3 452.6 59.7 453.0 Q55.2 456.4 52.1 456.8Z" fill="color-mix(in srgb, var(--leaf) 56%, var(--black))"/>
+    <path d="M55.1 454.0 Q55.0 450.3 54.8 450.8 Q55.0 453.8 55.1 454.0Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M57.7 451.4 Q61.7 447.1 67.1 448.3 Q61.5 451.9 57.7 451.4Z" fill="color-mix(in srgb, var(--leaf) 84%, var(--black))"/>
+    <path d="M60.4 448.9 Q60.6 443.4 60.8 444.9 Q60.5 449.6 60.4 448.9Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M46.7 462.8 Q39.7 446.0 33.4 439.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 80%, var(--black))" stroke-width="0.56"/>
+    <path d="M41.6 453.9 Q37.6 449.8 32.0 450.3 Q37.8 453.6 41.6 453.9Z" fill="color-mix(in srgb, var(--leaf) 74%, var(--black))"/>
+    <path d="M39.2 449.7 Q39.3 443.9 39.5 445.3 Q39.3 450.2 39.2 449.7Z" fill="color-mix(in srgb, var(--leaf) 58%, var(--black))"/>
+    <path d="M37.1 446.0 Q33.7 441.5 29.1 441.8 Q33.9 445.4 37.1 446.0Z" fill="color-mix(in srgb, var(--leaf) 72%, var(--black))"/>
+    <path d="M35.0 442.2 Q35.9 436.7 37.2 438.3 Q35.9 443.0 35.0 442.2Z" fill="color-mix(in srgb, var(--leaf) 70%, var(--lamp))"/>
+    <path d="M45.5 463.0 Q44.3 443.5 43.3 435.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 81%, var(--black))" stroke-width="0.56"/>
+    <path d="M44.6 452.7 Q46.3 446.7 48.6 448.3 Q46.2 453.3 44.6 452.7Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--black))"/>
+    <path d="M44.2 447.8 Q41.9 441.9 38.8 441.8 Q42.1 446.5 44.2 447.8Z" fill="color-mix(in srgb, var(--leaf) 84%, var(--black))"/>
+    <path d="M43.9 443.5 Q45.0 437.5 46.6 438.8 Q45.0 443.8 43.9 443.5Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--lamp))"/>
+    <path d="M43.5 439.1 Q42.1 434.0 40.1 434.4 Q42.2 438.5 43.5 439.1Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M50.3 464.4 Q50.5 449.9 50.6 444.2" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 76%, var(--black))" stroke-width="0.56"/>
+    <path d="M50.4 456.7 Q49.0 451.2 47.1 453.2 Q49.1 458.0 50.4 456.7Z" fill="color-mix(in srgb, var(--leaf) 66%, var(--black))"/>
+    <path d="M50.5 453.1 Q52.6 448.2 55.5 450.2 Q52.5 454.5 50.5 453.1Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--lamp))"/>
+    <path d="M50.5 449.9 Q49.2 445.9 47.3 447.0 Q49.2 450.4 50.5 449.9Z" fill="color-mix(in srgb, var(--leaf) 76%, var(--black))"/>
+    <path d="M50.6 446.6 Q51.9 441.9 53.7 442.6 Q51.8 446.5 50.6 446.6Z" fill="color-mix(in srgb, var(--leaf) 62%, var(--black))"/>
+    <path d="M51.8 464.5 Q38.3 457.7 25.9 455.0" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 72%, var(--black))" stroke-width="0.56"/>
+    <path d="M41.9 460.9 Q41.7 458.9 41.4 459.5 Q41.7 461.3 41.9 460.9Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--lamp))"/>
+    <path d="M37.3 459.2 Q31.9 456.5 24.6 457.3 Q32.2 459.6 37.3 459.2Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--black))"/>
+    <path d="M33.1 457.7 Q31.7 454.0 29.7 456.0 Q31.7 459.4 33.1 457.7Z" fill="color-mix(in srgb, var(--leaf) 61%, var(--black))"/>
+    <path d="M29.0 456.1 Q24.0 452.4 17.3 453.4 Q24.3 456.5 29.0 456.1Z" fill="color-mix(in srgb, var(--leaf) 70%, var(--black))"/>
+    </g>
+    <g filter="url(#small-soft)">
+    <path d="M582.4 467.0 Q570.0 459.4 557.0 459.4 Q570.0 461.3 582.4 467.0Z" fill="color-mix(in srgb, var(--leaf) 71%, var(--lamp))"/>
+    <path d="M582.4 467.0 Q570.0 460.3 557.0 459.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M580.3 467.1 Q594.5 451.0 609.4 450.3 Q594.5 453.6 580.3 467.1Z" fill="color-mix(in srgb, var(--leaf) 68%, var(--black))"/>
+    <path d="M584.6 466.1 Q575.7 439.2 566.4 437.4 Q575.7 442.5 584.6 466.1Z" fill="color-mix(in srgb, var(--leaf) 66%, var(--black))"/>
+    <path d="M585.0 465.3 Q589.1 438.7 593.4 437.5 Q589.1 443.1 585.0 465.3Z" fill="color-mix(in srgb, var(--leaf) 65%, var(--black))"/>
+    <path d="M582.1 467.3 Q567.4 451.3 552.1 451.6 Q567.4 455.7 582.1 467.3Z" fill="color-mix(in srgb, var(--leaf) 85%, var(--black))"/>
+    <path d="M584.1 467.1 Q591.9 442.7 600.0 440.6 Q591.9 444.9 584.1 467.1Z" fill="color-mix(in srgb, var(--leaf) 39%, var(--lamp))"/>
+    <path d="M582.1 466.0 Q572.1 455.6 561.8 457.2 Q572.1 460.8 582.1 466.0Z" fill="color-mix(in srgb, var(--leaf) 86%, var(--black))"/>
+    <path d="M582.1 466.0 Q572.1 458.2 561.8 457.2" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M585.6 466.1 Q602.3 448.1 619.7 448.3 Q602.3 452.8 585.6 466.1Z" fill="color-mix(in srgb, var(--leaf) 43%, var(--black))"/>
+    <path d="M584.1 467.7 Q581.8 444.4 579.4 443.9 Q581.8 449.0 584.1 467.7Z" fill="color-mix(in srgb, var(--leaf) 37%, var(--black))"/>
+    <path d="M580.5 466.9 Q585.9 452.7 591.6 453.0 Q585.9 456.7 580.5 466.9Z" fill="color-mix(in srgb, var(--leaf) 66%, var(--black))"/>
+    <path d="M581.2 465.1 Q576.0 438.4 570.6 437.7 Q576.0 443.5 581.2 465.1Z" fill="color-mix(in srgb, var(--leaf) 38%, var(--lamp))"/>
+    <path d="M583.0 465.2 Q593.1 435.8 603.6 433.8 Q593.1 439.4 583.0 465.2Z" fill="color-mix(in srgb, var(--leaf) 50%, var(--black))"/>
+    <path d="M585.9 468.7 Q574.4 442.0 562.3 439.6 Q574.4 444.2 585.9 468.7Z" fill="color-mix(in srgb, var(--leaf) 58%, var(--black))"/>
+    <path d="M585.9 468.7 Q574.4 443.1 562.3 439.6" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M585.5 464.5 Q594.8 441.2 604.6 439.5 Q594.8 443.8 585.5 464.5Z" fill="color-mix(in srgb, var(--leaf) 50%, var(--black))"/>
+    <path d="M584.6 464.4 Q573.0 434.0 560.9 431.5 Q573.0 436.9 584.6 464.4Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M581.1 466.3 Q593.6 458.1 606.6 458.3 Q593.6 460.3 581.1 466.3Z" fill="color-mix(in srgb, var(--leaf) 55%, var(--lamp))"/>
+    <path d="M582.9 467.0 Q578.9 432.0 574.8 429.5 Q578.9 436.0 582.9 467.0Z" fill="color-mix(in srgb, var(--leaf) 78%, var(--black))"/>
+    <path d="M585.6 466.9 Q588.7 442.4 591.8 440.3 Q588.7 444.5 585.6 466.9Z" fill="color-mix(in srgb, var(--leaf) 61%, var(--black))"/>
+    <path d="M585.0 465.8 Q576.2 443.8 567.1 442.3 Q576.2 446.4 585.0 465.8Z" fill="color-mix(in srgb, var(--leaf) 42%, var(--black))"/>
+    <path d="M585.0 465.8 Q576.2 445.1 567.1 442.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M585.3 465.4 Q590.2 432.4 595.4 429.4 Q590.2 435.0 585.3 465.4Z" fill="color-mix(in srgb, var(--leaf) 72%, var(--black))"/>
+    <path d="M583.6 466.4 Q575.4 445.0 566.9 444.6 Q575.4 449.5 583.6 466.4Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--lamp))"/>
+    <path d="M582.1 464.6 Q589.9 450.9 598.0 450.9 Q589.9 454.2 582.1 464.6Z" fill="color-mix(in srgb, var(--leaf) 38%, var(--black))"/>
+    <path d="M583.7 466.9 Q566.6 445.1 548.8 444.3 Q566.6 448.8 583.7 466.9Z" fill="color-mix(in srgb, var(--leaf) 73%, var(--black))"/>
+    <path d="M583.2 468.4 Q591.6 440.9 600.3 439.9 Q591.6 445.8 583.2 468.4Z" fill="color-mix(in srgb, var(--leaf) 43%, var(--black))"/>
+    <path d="M584.6 464.3 Q573.7 449.8 562.5 449.3 Q573.7 452.4 584.6 464.3Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M584.6 464.3 Q573.7 451.1 562.5 449.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M584.9 465.5 Q588.9 439.3 593.0 438.4 Q588.9 444.1 584.9 465.5Z" fill="color-mix(in srgb, var(--leaf) 67%, var(--lamp))"/>
+    <path d="M583.6 468.6 Q566.8 455.0 549.4 455.4 Q566.8 458.9 583.6 468.6Z" fill="color-mix(in srgb, var(--leaf) 58%, var(--black))"/>
+    <path d="M584.6 468.5 Q593.3 443.1 602.4 442.5 Q593.3 448.1 584.6 468.5Z" fill="color-mix(in srgb, var(--leaf) 55%, var(--black))"/>
+    <path d="M582.5 466.4 Q579.0 443.9 575.5 442.0 Q579.0 445.9 582.5 466.4Z" fill="color-mix(in srgb, var(--leaf) 66%, var(--black))"/>
+    <path d="M581.8 464.4 Q591.7 442.2 602.0 442.1 Q591.7 447.4 581.8 464.4Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--black))"/>
+    <path d="M585.5 465.4 Q568.2 446.3 550.2 445.9 Q568.2 450.2 585.5 465.4Z" fill="color-mix(in srgb, var(--leaf) 37%, var(--lamp))"/>
+    <path d="M585.5 465.4 Q568.2 448.3 550.2 445.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M580.3 466.1 Q592.1 457.5 604.5 459.2 Q592.1 462.5 580.3 466.1Z" fill="color-mix(in srgb, var(--leaf) 63%, var(--black))"/>
+    <path d="M585.7 466.9 Q569.5 451.9 552.6 453.0 Q569.5 457.3 585.7 466.9Z" fill="color-mix(in srgb, var(--leaf) 60%, var(--black))"/>
+    <path d="M582.7 465.5 Q594.5 448.4 606.9 448.1 Q594.5 451.9 582.7 465.5Z" fill="color-mix(in srgb, var(--leaf) 82%, var(--black))"/>
+    <path d="M582.9 468.6 Q569.8 451.2 556.3 450.9 Q569.8 454.9 582.9 468.6Z" fill="color-mix(in srgb, var(--leaf) 87%, var(--black))"/>
+    <path d="M580.5 466.0 Q587.7 448.2 595.2 447.3 Q587.7 451.0 580.5 466.0Z" fill="color-mix(in srgb, var(--leaf) 73%, var(--lamp))"/>
+    <path d="M584.4 468.1 Q567.2 458.2 549.3 458.0 Q567.2 460.2 584.4 468.1Z" fill="color-mix(in srgb, var(--leaf) 44%, var(--black))"/>
+    <path d="M584.4 468.1 Q567.2 459.2 549.3 458.0" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M580.9 466.1 Q591.2 444.3 601.9 443.9 Q591.2 448.8 580.9 466.1Z" fill="color-mix(in srgb, var(--leaf) 87%, var(--black))"/>
+    <path d="M580.4 468.5 Q574.0 450.0 567.4 449.1 Q574.0 452.9 580.4 468.5Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--black))"/>
+    <path d="M583.1 468.3 Q589.0 449.4 595.2 448.4 Q589.0 452.3 583.1 468.3Z" fill="color-mix(in srgb, var(--leaf) 60%, var(--black))"/>
+    <path d="M580.0 464.9 Q567.7 449.9 554.8 450.5 Q567.7 454.5 580.0 464.9Z" fill="color-mix(in srgb, var(--leaf) 54%, var(--lamp))"/>
+    <path d="M585.5 468.8 Q592.7 449.1 600.2 449.2 Q592.7 454.1 585.5 468.8Z" fill="color-mix(in srgb, var(--leaf) 48%, var(--black))"/>
+    <path d="M583.7 468.8 Q565.7 450.7 547.0 451.3 Q565.7 456.1 583.7 468.8Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--black))"/>
+    <path d="M583.7 468.8 Q565.7 453.4 547.0 451.3" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M585.7 466.9 Q596.1 450.3 607.0 450.6 Q596.1 454.8 585.7 466.9Z" fill="color-mix(in srgb, var(--leaf) 52%, var(--black))"/>
+    <path d="M582.7 466.9 Q577.4 447.9 571.8 448.2 Q577.4 453.0 582.7 466.9Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M583.3 467.3 Q597.9 451.9 613.2 450.8 Q597.9 453.7 583.3 467.3Z" fill="color-mix(in srgb, var(--leaf) 39%, var(--lamp))"/>
+    <path d="M584.5 464.6 Q580.3 436.8 576.0 434.4 Q580.3 439.3 584.5 464.6Z" fill="color-mix(in srgb, var(--leaf) 48%, var(--black))"/>
+    <path d="M585.5 468.4 Q594.7 443.9 604.2 443.1 Q594.7 448.4 585.5 468.4Z" fill="color-mix(in srgb, var(--leaf) 69%, var(--black))"/>
+    <path d="M584 450 Q560 469 568 489 Q578 500 566 520" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 52%, var(--black))" stroke-width="1.3"/>
+    <path d="M572 452 q-13 3 -9.75 16.900000000000002 q10.4 -3 9.75 -16.900000000000002Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M571 454 l-6.76 11.049999999999999" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M563 460 q-8 3 -6.0 10.4 q6.4 -3 6.0 -10.4Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M562 462 l-4.16 6.8" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M570 472 q-10 3 -7.5 13.0 q8.0 -3 7.5 -13.0Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M569 474 l-5.2 8.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M557 478 q-9 3 -6.75 11.700000000000001 q7.2 -3 6.75 -11.700000000000001Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M556 480 l-4.68 7.6499999999999995" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M566 486 q-10 3 -7.5 13.0 q8.0 -3 7.5 -13.0Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M565 488 l-5.2 8.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M571 496 q-8 3 -6.0 10.4 q6.4 -3 6.0 -10.4Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M570 498 l-4.16 6.8" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M568 507 q-6 3 -4.5 7.800000000000001 q4.800000000000001 -3 4.5 -7.800000000000001Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M567 509 l-3.12 5.1" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M566 519 q-4 3 -3.0 5.2 q3.2 -3 3.0 -5.2Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M565 521 l-2.08 3.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    <path d="M576 526 q-7 3 -5.25 9.1 q5.6000000000000005 -3 5.25 -9.1Z" fill="color-mix(in srgb, var(--leaf) 75%, var(--recess))"/>
+    <path d="M575 528 l-3.64 5.95" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 82%, var(--lamp))" stroke-width="0.5"/>
+    </g>
+    <rect x="123.9" y="350.3" width="405.8" height="217.5" fill="color-mix(in srgb, var(--screen) 75%, var(--recess))"/>
+    <rect x="126" y="352" width="401.3" height="211.5" fill="url(#screen)"/>
+    <g filter="url(#soft)">
+    <path d="M128 472 Q149 465 173 469 L196 462 Q209 461 216 465 L301 466 Q336 466 356 472 L360 484 L417 486 L420 501 L127 519Z" fill="color-mix(in srgb, var(--screen) 71%, var(--black))" opacity=".47"/>
+    <path d="M391 447 Q409 435 417 425 Q424 423 427 417 L432 417 Q427 414 426 404 Q434 406 436 412 L447 414 Q460 412 462 398 L470 399 L467 410 Q477 399 486 403 Q481 413 474 416 Q485 413 491 418 L474 429 Q472 443 467 453 L461 452 Q461 461 458 468 L458 489 L444 489 L446 467 Q437 472 427 474 L430 461 Q419 467 411 466 Q420 455 424 450 L417 452 L416 447Z" fill="color-mix(in srgb, var(--screen) 48%, var(--black))" opacity=".30"/>
+    <path d="M145 493 Q167 483 185 483 L307 483 Q324 482 342 490 L408 499 L411 532 L142 531Z" fill="color-mix(in srgb, var(--screen) 80%, var(--black))" opacity=".69"/>
+    <path d="M408 501 L428 500 L438 507 L455 505 L471 512 L472 557 L412 560Z" fill="color-mix(in srgb, var(--screen) 70%, var(--black))" opacity=".46"/>
+    </g>
+    <rect x="125.8" y="447" width="401.6" height="117" fill="url(#screen-shade)"/>
+    <rect x="124.3" y="564" width="404.7" height="1" fill="color-mix(in srgb, var(--wall) 40%, var(--screen))"/>
+    <rect x="124.3" y="565" width="404.7" height="2.3" fill="color-mix(in srgb, var(--wall) 25%, var(--recess))"/>
+    <g filter="url(#small-soft)">
+    <path d="M72.4 588.9 L72.8 561 Q73.2 557.1 77.5 557 L97.9 557.5 Q99.8 557.9 99.9 560.5 L100.3 588.9 Q91 591 72.4 588.9Z" fill="url(#candle)"/>
+    <path d="M75 558.5 Q85 557 97.9 558.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 61%, var(--screen))" stroke-width="1"/>
+    <path d="M561.8 577.8 L555.4 555.5 M563 577.8 L562.5 555.7 M564.1 578.3 L570.7 555.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 72%, var(--screen))" stroke-width="0.8"/>
+    <path d="M546.7 601.6 L547 589 Q547.9 580 558.8 577.7 L560.1 574.3 L565.6 574.3 L567.2 577.8 Q576.5 580 578.9 588.2 L579.8 601.7 Q568.9 606.8 546.7 601.6Z" fill="url(#vase)"/>
+    <path d="M552.1 600 Q551 589 554 583 Q558 579.2 563 578" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 75%, var(--wood))" stroke-width="1.4"/>
+    </g>
+    <rect x="0" y="478" width="576" height="100" fill="var(--wall)" filter="url(#grain)" opacity=".056" style="mix-blend-mode: soft-light"/>
+  </g>
+</svg>
+<nav class="rail" aria-label="Workspace navigation">
+  <svg class="ink-plate" viewBox="0 0 396.5 44" aria-hidden="true">
+    <defs>
+      <filter id="diffuse"><feGaussianBlur stdDeviation="12.5"/></filter>
+      <clipPath id="rail-outline"><rect x=".6" y=".6" width="395.3" height="42.8" rx="21.4"/></clipPath>
+      <linearGradient id="milk" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+        <stop stop-color="color-mix(in srgb, var(--glass) calc(var(--glass-strength) + 11%), var(--clear))"/>
+        <stop offset=".55" stop-color="color-mix(in srgb, var(--glass) var(--glass-strength), var(--clear))"/>
+        <stop offset="1" stop-color="color-mix(in srgb, var(--glass) calc(var(--glass-strength) - 6%), var(--clear))"/>
+      </linearGradient>
+      <linearGradient id="bevel" x1="0" y1="0" x2="1" y2=".7" gradientUnits="objectBoundingBox">
+        <stop stop-color="var(--paper)" stop-opacity=".83"/><stop offset=".7" stop-color="var(--paper)" stop-opacity=".43"/><stop offset="1" stop-color="var(--paper)" stop-opacity=".5"/>
+      </linearGradient>
+      <mask id="cutout" x="0" y="0" width="397" height="44" maskUnits="userSpaceOnUse">
+        <rect width="397" height="44" fill="var(--paper)"/>
+        <rect class="aperture" y="5.4" height="33.3" rx="16.65" fill="var(--black)"/>
+      </mask>
+    </defs>
+    <g clip-path="url(#rail-outline)" mask="url(#cutout)"><g transform="translate(-100.5 -505.9)"><use href="#interior" filter="url(#diffuse)"/></g></g>
+    <rect class="aperture" y="5.4" height="33.3" rx="16.65" fill="color-mix(in srgb, var(--well) 52%, var(--clear))"/>
+    <rect x=".6" y=".6" width="395.3" height="42.8" rx="21.4" fill="url(#milk)" stroke="url(#bevel)" stroke-width="1.15" mask="url(#cutout)"/>
+    <rect class="aperture" y="5.4" height="33.3" rx="16.65" fill="none" stroke="var(--paper)" stroke-opacity=".22" stroke-width=".65"/>
+  </svg>
+  <div class="tab-row tabs">
+    <button type="button" class="tab" aria-label="User" aria-pressed="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.3" r="3.9"/><path d="M4.2 20.4c.6-4.2 3.2-7.4 7.8-7.4s7.2 3.2 7.8 7.4"/></svg><span>User</span></button>
+    <button type="button" class="tab" aria-label="Overview" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.1" y="3.1" width="7" height="7" rx="1.7"/><rect x="13.9" y="3.1" width="7" height="7" rx="1.7"/><rect x="3.1" y="13.9" width="7" height="7" rx="1.7"/><rect x="13.9" y="13.9" width="7" height="7" rx="1.7"/></svg><span>Overview</span></button>
+    <button type="button" class="tab" aria-label="Projects" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.9 6.5A1.6 1.6 0 0 1 4.5 4.9h4.4l2.4 2.5h8.1c1 0 1.7.7 1.7 1.7v8.7c0 1-.7 1.8-1.7 1.8H4.5c-.9 0-1.6-.8-1.6-1.8z"/></svg><span>Projects</span></button>
+    <button type="button" class="tab" aria-label="Alerts" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 10.6c0-4-2-6.5-6.2-6.5s-6.2 2.5-6.2 6.5c0 3.5-.7 5.2-2.2 6.4h16.8c-1.5-1.2-2.2-2.9-2.2-6.4Z M10.1 20a2.1 2.1 0 0 0 3.8 0"/></svg><span>Alerts</span></button>
+    <button type="button" class="tab" aria-label="Settings" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 7.2h8.1m5.2 0h4.3M3.2 16.8h3.9m5.2 0h8.5"/><circle cx="14" cy="7.2" r="2.6"/><circle cx="9.7" cy="16.8" r="2.6"/></svg><span>Settings</span></button>
+  </div>
+  <div class="active-letters" aria-hidden="true"><div class="tab-row">
+    <span class="label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7.3" r="3.9"/><path d="M4.2 20.4c.6-4.2 3.2-7.4 7.8-7.4s7.2 3.2 7.8 7.4"/></svg><span>User</span></span>
+    <span class="label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.1" y="3.1" width="7" height="7" rx="1.7"/><rect x="13.9" y="3.1" width="7" height="7" rx="1.7"/><rect x="3.1" y="13.9" width="7" height="7" rx="1.7"/><rect x="13.9" y="13.9" width="7" height="7" rx="1.7"/></svg><span>Overview</span></span>
+    <span class="label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.9 6.5A1.6 1.6 0 0 1 4.5 4.9h4.4l2.4 2.5h8.1c1 0 1.7.7 1.7 1.7v8.7c0 1-.7 1.8-1.7 1.8H4.5c-.9 0-1.6-.8-1.6-1.8z"/></svg><span>Projects</span></span>
+    <span class="label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 10.6c0-4-2-6.5-6.2-6.5s-6.2 2.5-6.2 6.5c0 3.5-.7 5.2-2.2 6.4h16.8c-1.5-1.2-2.2-2.9-2.2-6.4Z M10.1 20a2.1 2.1 0 0 0 3.8 0"/></svg><span>Alerts</span></span>
+    <span class="label"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.2 7.2h8.1m5.2 0h4.3M3.2 16.8h3.9m5.2 0h8.5"/><circle cx="14" cy="7.2" r="2.6"/><circle cx="9.7" cy="16.8" r="2.6"/></svg><span>Settings</span></span>
+  </div></div>
+</nav>
+</main>
+<script>
+  const nav = document.querySelector('nav');
+  const tabs = [...nav.querySelectorAll('.tab')];
+  const stillTime = new URLSearchParams(location.search).get('t');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loop = Number(document.querySelector('[name="motherlode:loop"]').content);
+  let selected = 0;
+  let motion;
+  let announcement;
+
+  const between = (a, b, amount) => a + (b - a) * amount;
+  const pixels = value => `${value}px`;
+
+  const stops = [[.33, .99, 1], [1.50, 2.16, 0]];
+  const liveDuration = .66;
+  function pose(index) {
+    return { '--x': pixels(4.7 + index * 77.48), '--w': '76.2px' };
+  }
+  function travel(from, to) {
+    const a = parseFloat(pose(from)['--x']);
+    const b = parseFloat(pose(to)['--x']);
+    const stretch = Math.min(30, 16.5 * Math.sqrt(Math.abs(to - from)));
+    const curve = [[0, 0, 0], [.12, .035, .4], [.27, .25, 1], [.43, .55, .9],
+      [.62, .80, .55], [.80, .94, .23], [1, 1, 0]];
+    return curve.map(([offset, distance, opening]) => ({ offset,
+      '--x': pixels(between(a, b, distance) - (b < a ? stretch * opening : 0)),
+      '--w': pixels(76.2 + stretch * opening) }));
+  }
+
+  function mark(index) {
+    selected = index;
+    tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === index)));
+  }
+  function choose(index) {
+    clearTimeout(announcement);
+    const previous = selected;
+    const destination = pose(index);
+    const computed = getComputedStyle(nav);
+    const current = Object.fromEntries(Object.keys(destination).map(key => [key, computed.getPropertyValue(key).trim()]));
+    motion?.cancel();
+    for (const [key, value] of Object.entries(destination)) nav.style.setProperty(key, value);
+    mark(index);
+    if (reduced || previous === index) return;
+    const frames = travel(previous, index);
+    frames[0] = { ...current, offset: 0 };
+    motion = nav.animate(frames, { duration: liveDuration * 1000, easing: 'linear' });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => choose(index));
+    tab.addEventListener('focus', () => { if (tab.matches(':focus-visible')) choose(index); });
+    tab.addEventListener('keydown', event => {
+      const next = { ArrowRight: (index + 1) % tabs.length, ArrowLeft: (index - 1 + tabs.length) % tabs.length,
+        Home: 0, End: tabs.length - 1 }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      tabs[next].focus();
+    });
+  });
+
+  if (!reduced || stillTime !== null) {
+    const frames = [{ ...pose(0), offset: 0 }];
+    let previous = 0;
+    for (const [start, end, next, drag] of stops) {
+      for (const step of travel(previous, next, drag)) {
+        frames.push({ ...step, offset: between(start, end, step.offset) / loop });
+      }
+      // Restore the resting shape between gestures.
+      frames.push({ ...pose(next), offset: (end + .0001) / loop });
+      previous = next;
+    }
+    frames.push({ ...pose(0), offset: 1 });
+    motion = nav.animate(frames, { duration: loop * 1000, iterations: Infinity, easing: 'linear' });
+    // Only the accessibility state uses a timer. Every visible frame is seekable.
+    function syncSelection() {
+      const time = (stillTime === null ? Number(motion.currentTime) / 1000 : Number(stillTime)) % loop;
+      const changes = stops.map(([a, b, state]) => ({ time: between(a, b, .6), state }));
+      mark(changes.filter(change => change.time <= time).at(-1)?.state ?? 0);
+      if (stillTime === null) {
+        const next = changes.find(change => change.time > time)?.time ?? loop + changes[0].time;
+        announcement = setTimeout(syncSelection, Math.max(16, (next - time) * 1000 + 3));
+      }
+    }
+    syncSelection();
+  }
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
