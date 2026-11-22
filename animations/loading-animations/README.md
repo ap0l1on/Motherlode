@@ -5,10 +5,10 @@ Loading animations.
 
 Part of [Animations](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="dune-gallop-loader/"><img src="dune-gallop-loader/preview.gif" width="260" alt="Dune gallop loader"></a><br><a href="dune-gallop-loader/"><b>Dune gallop loader</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="blue-line-bicycle/"><img src="blue-line-bicycle/preview.gif" width="260" alt="Blue line bicycle"></a><br><a href="blue-line-bicycle/"><b>Blue line bicycle</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="dune-gallop-loader/"><img src="dune-gallop-loader/preview.gif" width="260" alt="Dune gallop loader"></a><br><a href="dune-gallop-loader/"><b>Dune gallop loader</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
