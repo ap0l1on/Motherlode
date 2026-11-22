@@ -3,4 +3,12 @@
 
 Vertical templates for Shorts, Reels and TikTok.
 
-Part of [Video](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Video](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="pocket-electronics-index/"><img src="pocket-electronics-index/preview.gif" width="260" alt="Pocket electronics index"></a><br><a href="pocket-electronics-index/"><b>Pocket electronics index</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

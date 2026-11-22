@@ -17,7 +17,7 @@ Video templates and motion graphics.
 | [Transitions](transitions/) | Scene transitions |
 | [Overlays](overlays/) | Light leaks, grain, dust and frame overlays |
 | [Glitch effects](glitch-effects/) | Glitch and distortion effects |
-| [Shorts](shorts/) | Vertical templates for Shorts, Reels and TikTok |
+| [Shorts](shorts/) | Vertical templates for Shorts, Reels and TikTok · **1 design** |
 | [Explainers](explainers/) | Explainer video scenes |
 | [Product demos](product-demos/) | Product demo videos |
 | [Promos](promos/) | Promo videos |
