@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x366">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13">
+  <meta name="motherlode:still" content="6.3">
+  <title>Amber orbital disk</title>
+  <style>
+:root, [data-colorway="original"] { --background: #07040a; --shade: #3a1826; --middle: #8f4043; --bright: #e58d58; --highlight: #fff0b5; --leaf: #524767; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 366px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 366" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Amber orbital disk</title>
+    <desc id="description">Two narrow copper arms spiral into a bright amber core while the camera dips to the edge of the galactic disk.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const cx=289,cy=181,defs=element("defs",{}),camera=element("g",{transform:"translate("+cx+" "+cy+")"}),disk=element("g",{},camera);
+    const core=radial(defs,"core-halo",[[0,"highlight",1],[.07,"highlight",1],[.17,"bright",.96],[.40,"middle",.47],[1,"shade",0]]);
+    const dust=radial(defs,"stellar-dust",[[0,"bright",.29],[.23,"middle",.25],[1,"shade",0]]);
+    element("ellipse",{rx:188,ry:178,fill:dust},disk);
+    const field=[[],[]];
+    for(let k=0;k<7600;k++){const x=random()*576,y=random()*366;field[k%2].push("M"+x.toFixed(1)+" "+y.toFixed(1)+"h.10");}
+    field.forEach((p,i)=>drawing.insertBefore(line(drawing,p.join(""),i?"shade":"middle",i?.96:.72,i?.46:.21),camera));
+    const scatter=[[],[],[],[]],colors=["shade","middle","bright","highlight"];
+    function normal(){return Math.sqrt(-2*Math.log(Math.max(.00001,random())))*Math.cos(tau*random());}
+    for(let k=0;k<56000;k++){
+      const r=6+Math.pow(random(),.74)*365,arm=Math.floor(random()*2);
+      const a=arm*Math.PI+4.18*Math.log(1+r/29)+normal()*(random()<.71?.073:.45);
+      const radius=r+normal()*(1.5+.021*r),x=radius*Math.cos(a),y=radius*Math.sin(a);
+      const b=random();let tone=b>.95?2:b>.44?1:0;if(r<37&&b>.57)tone=3;
+      scatter[tone].push("M"+x.toFixed(1)+" "+y.toFixed(1)+"h.12");
+    }
+    scatter.forEach((p,i)=>line(disk,p.join(""),colors[i],i===3?1.75:1.28,i?.97:.85));
+    element("ellipse",{rx:87,ry:87,fill:core},disk);
+    const frames=Array.from({length:58},(_,i)=>{const t=i/57,tilt=.19+.65*(.5+.5*Math.cos(tau*t)),r=tau*(.03+.085*(1-Math.cos(tau*t))+.041*Math.sin(tau*t));
+      const co=Math.cos(r),si=Math.sin(r);return{transform:"matrix("+[co,si*tilt,-si,co*tilt,0,0].join(",")+")"};});
+    disk.animate(frames,{duration,iterations:Infinity,easing:"linear"});
+    const flare=radial(defs,"steady-core",[[0,"highlight",1],[.16,"highlight",.98],[.42,"bright",.71],[1,"middle",0]]);
+    const center=element("ellipse",{cx,cy,rx:33,ry:22,fill:flare});
+    center.animate([{opacity:.89},{opacity:1},{opacity:.89}],{duration:duration/2,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
