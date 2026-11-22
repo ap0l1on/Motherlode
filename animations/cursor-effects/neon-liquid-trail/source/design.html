@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x301">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="14">
+  <meta name="motherlode:still" content="4.5">
+  <title>Neon liquid trail</title>
+  <style>
+:root, [data-colorway="original"] { --background: #050315; --shade: #201345; --middle: #b144ed; --bright: #40bbf3; --highlight: #d8f6ff; --leaf: #dc7ef6; --label: #40bbf3; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 301px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 301" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Neon liquid trail</title>
+    <desc id="description">Three tilted electric rings trail blue and violet sparks underneath a small, widely spaced heading.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 14 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{});
+    const fog=radial(defs,"halo",[[0,"middle",.58],[.22,"shade",.40],[1,"shade",0]]);
+    const ringGlow=radial(defs,"spark",[[0,"highlight",1],[.28,"bright",.87],[1,"middle",0]]);
+    const base=element("text",{x:288,y:16,"text-anchor":"middle",fill:"var(--label)","font-family":"system-ui, sans-serif","font-size":13,"font-weight":650,"letter-spacing":3.8});base.textContent="NEON LIQUID";
+    const tag=element("text",{x:288,y:32,"text-anchor":"middle",fill:"var(--label)","font-family":"monospace","font-size":6.6,"letter-spacing":2.1});tag.textContent="3D ELECTRIC MOUSE EXPERIENCE";
+    const field=element("g",{});
+    const head=element("g",{},field);
+    element("circle",{r:99,fill:fog},head);
+    for(let i=0;i<3;i++)element("ellipse",{rx:19+i*10,ry:33+i*13,fill:"none",
+      stroke:"var(--"+(i%2?"middle":"bright")+")","stroke-width":1.1+i*.38,
+      opacity:.8,transform:"rotate(-32)"},head);
+    element("circle",{r:14,fill:ringGlow},head);
+    const route = [[330,200],[360,128],[255,126],[222,122],[303,86],[336,104],[249,158],[351,179],[387,204],[366,203],[297,200],[213,185],[324,128],[282,95],[276,173],[351,248],[219,221],[321,146],[276,92],[249,140],[384,146],[489,131],[462,173],[254,185],[192,140],[360,131],[465,173],[243,218],[330,200]];
+    function pos(t){
+      const at=((t%1+1)%1)*(route.length-1), index=Math.floor(at), f=at-index;
+      const a=route[index], b=route[index+1]||route[0];
+      return [a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f];
+    }
+    function position(node,delay,dx,dy){
+      const f=Array.from({length:63},(_,i)=>{const p=pos(i/62-delay);
+        return {transform:"translate("+(p[0]+dx)+"px,"+(p[1]+dy)+"px)"};});
+      node.animate(f,{duration,iterations:Infinity});
+    }
+    for(let group=0;group<14;group++){
+      const tail=element("g",{},field);
+      for(let k=0;k<9;k++)element("circle",{cx:(random()-.5)*(13+group*2),cy:(random()-.5)*(8+group*2.4),
+        r:.7+random()*1.8,opacity:.88-group*.038,fill:"var(--"+["bright","middle","leaf"][k%3]+")"},tail);
+      position(tail,.003+group*.0034,0,0);
+    }
+    field.append(head);position(head,0,0,0);
+    drawing.addEventListener("pointermove",e=>{
+      if(location.search.includes("t="))return;
+      const t=(head.getAnimations()[0]?.currentTime||0)/duration,p=pos(t);
+      field.setAttribute("transform","translate("+(e.offsetX-p[0])+" "+(e.offsetY-p[1])+")");
+    });
+    drawing.addEventListener("pointerleave",()=>field.removeAttribute("transform"));
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
