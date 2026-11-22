@@ -12,7 +12,7 @@ Everything for the Mac.
 | [Folder icons](folder-icons/) | Custom folder icons |
 | [Wallpapers](wallpapers/) | Mac wallpapers |
 | [Desktop setups](desktop-setups/) | Desktop layouts and setups |
-| [Widgets](widgets/) | Mac widgets |
+| [Widgets](widgets/) | Mac widgets · **1 design** |
 | [Notifications](notifications/) | Mac notifications |
 | [Screensavers](screensavers/) | Screensavers |
 | [Login screens](login-screens/) | Login and lock screens |
