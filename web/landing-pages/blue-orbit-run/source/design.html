@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1200x756">
+<meta name="motherlode:scale" content="2">
+<title>Blue orbit running hero</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #21232E; --ink: #FAFAFB; --muted: #BEC1CE; --orb: #105BFF;
+  --orbit-ink: #FFFFFF; --pop: #FE8500; --on-pop: #231708; --pill: #0B56D4;
+  --on-pill: #FFFFFF; --ground: #080B12; --pulse: #FB798A; --mark: #BF9C77;
+  --hi: #FFFFFF; --lo: #090B14; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #EDF2F8; --ink: #1D2B3C; --muted: #4C6073; --orb: #4083E8;
+  --orbit-ink: #FFFFFF; --pop: #F4A357; --on-pop: #342316; --pill: #265D9D;
+  --on-pill: #FFFFFF; --ground: #354353; --pulse: #AC3150; --mark: #A48665;
+  --hi: #FFFFFF; --lo: #111B2B; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #10141F; --ink: #F1F3FB; --muted: #B9C1D3; --orb: #2853D6;
+  --orbit-ink: #FFFFFF; --pop: #FFB255; --on-pop: #362210; --pill: #344EAF;
+  --on-pill: #FFFFFF; --ground: #05070D; --pulse: #F18B98; --mark: #AD886E;
+  --hi: #FFFFFF; --lo: #060811; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #222222; --ink: #FAFAFA; --muted: #C3C3C3; --orb: #A0A0A0;
+  --orbit-ink: #161616; --pop: #E4E4E4; --on-pop: #1A1A1A; --pill: #D2D2D2;
+  --on-pill: #202020; --ground: #090909; --pulse: #EEEEEE; --mark: #999999;
+  --hi: #FFFFFF; --lo: #080808; --clear: transparent;
+}
+[data-colorway="sunset"] {
+  --bg: #33222B; --ink: #FFF5ED; --muted: #E6C6C3; --orb: #E55257;
+  --orbit-ink: #FFFFFF; --pop: #FFC16D; --on-pop: #3C2415; --pill: #A73145;
+  --on-pill: #FFFFFF; --ground: #190D1A; --pulse: #FFC5A6; --mark: #BB9378;
+  --hi: #FFF8E8; --lo: #210F21; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #123239; --ink: #F0FEF9; --muted: #B5D8D3; --orb: #02A7AF;
+  --orbit-ink: #FFFFFF; --pop: #F2C157; --on-pop: #332A16; --pill: #196873;
+  --on-pill: #FFFFFF; --ground: #07191F; --pulse: #EC9E9D; --mark: #9C978C;
+  --hi: #F4FFFF; --lo: #07191F; --clear: transparent;
+}
+[data-colorway="moss"] {
+  --bg: #25322B; --ink: #F4F8E7; --muted: #CCD3B9; --orb: #76A343;
+  --orbit-ink: #FBFEE9; --pop: #EEC777; --on-pop: #342D15; --pill: #4D6D36;
+  --on-pill: #FFFFFF; --ground: #111C15; --pulse: #E9A868; --mark: #BAAA81;
+  --hi: #F7FFDF; --lo: #101B13; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #292239; --ink: #F9F0FF; --muted: #D3C5DD; --orb: #8855DE;
+  --orbit-ink: #FFFFFF; --pop: #FF91C7; --on-pop: #3B2237; --pill: #7951A7;
+  --on-pill: #FFFFFF; --ground: #110B1B; --pulse: #FFB3A2; --mark: #B6A0AF;
+  --hi: #FFF6FF; --lo: #130C22; --clear: transparent;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: Inter, Arial, sans-serif; color: var(--ink); }
+main { width: 1200px; height: 756px; position: relative; isolation: isolate; overflow: hidden;
+  background: radial-gradient(ellipse at 78% 50%, color-mix(in srgb, var(--orb) 20%, var(--bg)), var(--clear) 55%),
+    linear-gradient(120deg, color-mix(in srgb, var(--bg) 88%, var(--lo)), var(--bg)); }
+header { position: absolute; z-index: 3; left: 28px; top: 22px; right: 29px; height: 65px; padding: 0 17px 0 27px;
+  display: flex; align-items: center; justify-content: space-between; border-radius: 40px;
+  background: color-mix(in srgb, var(--ink) 5%, var(--bg)); border: 1.5px solid color-mix(in srgb, var(--ink) 14%, var(--clear)); }
+.brand { display: flex; gap: 10px; align-items: center; font-size: 23px; font-weight: 740; letter-spacing: -.045em; }
+.brand svg { width: 29px; height: 24px; }
+nav, .member { display: flex; align-items: center; }
+nav { position: absolute; top: 0; bottom: 0; left: 400px; gap: 40px; color: var(--muted); font-size: 14px; font-weight: 470; }
+.member { gap: 32px; font-size: 14px; font-weight: 540; }
+.app { background: var(--pill); color: var(--on-pill); padding: 14px 31px; border-radius: 30px; box-shadow: 0 6px 20px color-mix(in srgb, var(--orb) 27%, var(--clear)); }
+.flag, .distance, .pulse { display: inline-flex; align-items: center; gap: 9px; border-radius: 25px;
+  background: color-mix(in srgb, var(--bg) 87%, var(--clear)); border: 1px solid color-mix(in srgb, var(--ink) 18%, var(--clear)); font-size: 14px; }
+.flag { position: absolute; top: 132px; left: 52px; height: 35px; padding: 0 15px; background: color-mix(in srgb, var(--ink) 7%, var(--bg)); }
+.flag::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orb); box-shadow: 0 0 0 5px color-mix(in srgb, var(--orb) 22%, var(--clear)); }
+h1 { position: absolute; left: 49px; top: 182px; margin: 0; font-size: 79px; transform: scaleX(1.045); transform-origin: left; line-height: 1.045; letter-spacing: -.063em; font-weight: 755; }
+h1 span { color: color-mix(in srgb, var(--ink) 82%, var(--muted)); }
+.intro { position: absolute; left: 52px; top: 380px; margin: 0; width: 411px; color: var(--muted); font-size: 17px; line-height: 1.53; letter-spacing: -.18px; }
+.actions { position: absolute; top: 463px; left: 52px; display: flex; align-items: center; gap: 25px; font-size: 16px; font-weight: 645; letter-spacing: -.3px; }
+.begin { display: inline-flex; gap: 10px; align-items: center; padding: 0 28px; height: 55px; border-radius: 30px; color: var(--on-pop); background: var(--pop); box-shadow: 0 14px 33px color-mix(in srgb, var(--pop) 28%, var(--clear)); }
+.begin svg { width: 17px; height: 17px; }
+.social { position: absolute; top: 564px; left: 53px; display: flex; gap: 10px; align-items: center; color: var(--muted); font-size: 14px; }
+.social strong { color: var(--ink); font-size: 15px; }
+.avatars { display: flex; margin-right: 2px; padding-left: 0; }
+.avatars span { display: grid; place-items: center; width: 27px; height: 29px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -14px; background: var(--mark); }
+.avatars span:first-child { margin-left: 0; background: linear-gradient(145deg, var(--mark) 35%, color-mix(in srgb,var(--mark) 40%, var(--hi))); }
+.avatars span:nth-child(2) { background: linear-gradient(125deg, color-mix(in srgb,var(--mark) 70%,var(--ink)),var(--mark)); }
+.avatars span:last-child { background: linear-gradient(145deg, color-mix(in srgb,var(--mark) 65%,var(--bg)),color-mix(in srgb,var(--mark) 55%,var(--lo))); }
+.press { position: absolute; left: 52px; top: 661px; display: flex; align-items: center; gap: 28px; color: var(--muted); }
+.press > span:first-child { font: 585 11px ui-monospace, Menlo, monospace; letter-spacing: .16em; }
+.press b { font-size: 14px; letter-spacing: .02em; }
+.press em { font-family: Georgia, serif; font-size: 17px; }
+.scene { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.orbit { fill: none; stroke: color-mix(in srgb, var(--orb) 28%, var(--ink)); stroke-opacity: .28; }
+.satellite { fill: color-mix(in srgb, var(--orb) 35%, var(--hi)); }
+.ground, .runner { fill: var(--ground); }
+.ridge { fill: none; stroke: color-mix(in srgb, var(--orb) 45%, var(--bg)); }
+.distance, .pulse { position: absolute; white-space: nowrap; padding: 0 15px; height: 40px; }
+.distance { right: 49px; top: 123px; display: block; line-height: 38px; }
+.distance span { color: var(--muted); }
+.pulse { left: 595px; top: 302px; font-weight: 610; }
+.pulse svg { width: 15px; height: 15px; fill: var(--pulse); }
+.pace { position: absolute; right: 22px; top: 475px; width: 197px; height: 190px; padding: 17px 18px 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--orb) 19%, var(--bg)), var(--bg) 75%);
+  border: 1.5px solid color-mix(in srgb, var(--ink) 19%, var(--clear)); border-radius: 21px; box-shadow: 0 20px 42px color-mix(in srgb, var(--lo) 30%, var(--clear)); }
+.pace-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; font: 650 11px ui-monospace, Menlo, monospace; color: var(--muted); letter-spacing: .12em; white-space: nowrap; }
+.record { padding: 5px 9px; border-radius: 20px; background: var(--pop); color: var(--on-pop); font: 750 10px Inter, sans-serif; letter-spacing: .035em; }
+.metric { margin: 6px 0 0; font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 560; font-size: 15px; }
+.metric strong { font-size: 47px; font-weight: 745; letter-spacing: -.06em; color: var(--pop); }
+.chart { display: flex; align-items: flex-end; gap: 5px; height: 56px; margin-top: 16px; }
+.chart i { flex: 1; height: var(--bar); border-radius: 4px; background: linear-gradient(color-mix(in srgb,var(--orb) 60%,var(--hi)),var(--orb)); }
+.chart i:last-child { background: var(--pop); box-shadow: 0 0 13px color-mix(in srgb, var(--pop) 42%, var(--clear)); }
+</style>
+</head>
+<body>
+<main aria-label="Running training landing page">
+  <svg class="scene" viewBox="0 0 1040 655" preserveAspectRatio="none" aria-hidden="true">
+    <defs><radialGradient id="disc" cx="43%" cy="38%" r="69%"><stop offset="0" style="stop-color:color-mix(in srgb,var(--orb) 35%,var(--hi))"/><stop offset=".44" style="stop-color:color-mix(in srgb,var(--orb) 87%,var(--hi))"/><stop offset=".82" style="stop-color:var(--orb)"/><stop offset="1" style="stop-color:color-mix(in srgb,var(--orb) 71%,var(--lo))"/></radialGradient></defs>
+    <circle class="orbit" cx="780" cy="338" r="261" stroke-width="1.4"/><circle class="satellite" cx="535" cy="427" r="4.4"/>
+    <circle cx="780" cy="338" r="209" fill="url(#disc)"/>
+    <path class="ground" d="M361 655C474 638 563 606 654 576C708 558 756 567 810 552C869 535 944 548 1040 535V655Z"/>
+    <path class="ridge" stroke-width="1.5" d="M361 655C474 638 563 606 654 576C708 558 756 567 810 552C869 535 944 548 1040 535"/>
+    <!-- A side-on generic runner. The limbs and separate far arm are original paths. -->
+    <g class="runner" transform="translate(678 225) scale(.95 1.01)">
+      <path d="M151 70C155 63 164 65 166 77L165 108L178 119Q183 121 185 128L184 134Q180 137 177 134L174 129L171 130L167 125L145 116Q141 114 142 106Z"/>
+      <path d="M149 25Q146 18 154 13Q162 7 172 8Q179 7 182 14L186 21L196 22Q201 22 200 25Q199 28 188 27L186 35L184 37L184 40L181 41Q181 49 173 50L171 59Q171 65 168 69Q175 84 170 102L168 113L181 108L187 103Q189 100 191 96Q193 92 195 94L193 101Q198 100 199 102L202 104L205 106Q208 106 209 109L203 111Q197 116 186 117L163 129Q159 132 155 129L153 141Q165 145 166 159L170 167L166 171L171 201L170 225Q169 230 165 237L149 268Q139 281 134 294L128 312L126 323Q131 328 139 329L147 334Q153 336 161 336L165 339Q159 343 143 342L117 342L111 340L104 340Q100 339 103 333L105 324Q106 320 113 319L117 304L126 281Q128 266 135 253L145 230L135 217L119 193L114 212L110 238Q108 246 100 249L77 262L47 281L31 295L34 300Q33 306 29 310L23 329Q23 336 17 341Q13 342 11 335L8 320Q7 315 10 307L12 294Q12 286 17 282Q21 278 27 280L42 267L69 241Q77 234 87 231L89 229L88 203L85 177L83 170Q83 153 88 142Q92 133 102 129L107 115L113 85Q114 72 123 63Q133 59 139 49L146 40L148 33Z"/>
+    </g>
+  </svg>
+  <header><div class="brand"><svg viewBox="0 0 31 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 18 7-10 6 5 9-10"/><path d="M23 18h4"/></svg>stridewell</div>
+    <nav aria-label="Sections"><span>Plans</span><span>Coaches</span><span>Pricing</span><span>Stories</span></nav><div class="member"><span>Log in</span><span class="app">Get the app</span></div></header>
+  <span class="flag">Adaptive plans 2.0 is here</span><h1>Run further,<br><span>every week.</span></h1>
+  <p class="intro">Training plans that adapt to your legs, your sleep and your calendar, every single morning.</p>
+  <div class="actions"><span class="begin">Start free <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10h14m-6-6 6 6-6 6"/></svg></span><span>See the plans</span></div>
+  <div class="social"><span class="avatars" aria-hidden="true"><span></span><span></span><span></span></span><strong>4.9 ★</strong><span>from 120k runners</span></div>
+  <div class="press"><span>AS SEEN IN</span><b>TRACKWEEK</b><em>Cadence</em><b>FIELD/RUN</b></div>
+  <div class="distance"><b>12.4 km</b><span> · Sunday long run</span></div>
+  <div class="pulse"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17 2.8 10.1C-2 5 4.7-.3 9.1 4.3l.9 1 .9-1C15.2-.4 22 5 17.2 10.1Z"/></svg>148 bpm</div>
+  <aside class="pace"><div class="pace-head"><span>AVG PACE</span><span class="record">NEW PR</span></div>
+    <p class="metric"><strong>5:12</strong> /km</p>
+    <div class="chart" aria-hidden="true"><i style="--bar:45%"></i><i style="--bar:54%"></i><i style="--bar:42%"></i><i style="--bar:56%"></i><i style="--bar:64%"></i><i style="--bar:59%"></i><i style="--bar:86%"></i></div></aside>
+</main>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
