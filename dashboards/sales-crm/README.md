@@ -5,10 +5,11 @@ Sales pipelines and CRMs.
 
 Part of [Dashboards](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="coral-pipeline/"><img src="coral-pipeline/preview.gif" width="260" alt="Coral pipeline workspace"></a><br><a href="coral-pipeline/"><b>Coral pipeline workspace</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="smoked-glass-deal-room/"><img src="smoked-glass-deal-room/preview.gif" width="260" alt="Smoked glass deal room"></a><br><a href="smoked-glass-deal-room/"><b>Smoked glass deal room</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="walnut-glass-pipeline/"><img src="walnut-glass-pipeline/preview.gif" width="260" alt="Walnut glass sales pipeline"></a><br><a href="walnut-glass-pipeline/"><b>Walnut glass sales pipeline</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="coral-pipeline/"><img src="coral-pipeline/preview.gif" width="260" alt="Coral pipeline workspace"></a><br><a href="coral-pipeline/"><b>Coral pipeline workspace</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pendant-glass-workspace/"><img src="pendant-glass-workspace/preview.gif" width="260" alt="Pendant glass workspace"></a><br><a href="pendant-glass-workspace/"><b>Pendant glass workspace</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="smoked-glass-deal-room/"><img src="smoked-glass-deal-room/preview.gif" width="260" alt="Smoked glass deal room"></a><br><a href="smoked-glass-deal-room/"><b>Smoked glass deal room</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="walnut-glass-pipeline/"><img src="walnut-glass-pipeline/preview.gif" width="260" alt="Walnut glass sales pipeline"></a><br><a href="walnut-glass-pipeline/"><b>Walnut glass sales pipeline</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
