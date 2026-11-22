@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x784">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.5">
+<meta name="motherlode:still" content="1.21">
+<title>Walnut glass banking</title>
+<style>
+:root, [data-colorway="original"] {
+  --mat: #b8ada8; --glass: #faf5ed; --paper: #fffaf4;
+  --ink: #1b1614; --muted: #473b35; --rail: #6f5949;
+  --nav: #fffaf2; --action: #201916; --on-action: #fffcf5;
+  --mint: #179780; --mint-ink: #0d4c42; --copper: #eb704e;
+  --blue: #497de1; --gold: #e5b432; --leaf: #6ca77b;
+  --track: #eee1d2; --focus: #754b32; --veil: #f2e7d00c;
+  --photo-filter: saturate(.70) brightness(1.04); --change-bg: #e3ecdc; --credit-ink: #fffaf3;
+  --glass-left: 55%; --glass-right: 44%;
+}
+[data-colorway="light"] {
+  --mat: #ede2d2; --glass: #fffcf6; --paper: #ffffff;
+  --ink: #2b251f; --muted: #524637; --rail: #655746;
+  --nav: #fffbf0; --action: #403427; --on-action: #fff9ed;
+  --mint: #78bba1; --mint-ink: #245c4b; --copper: #c66d4b;
+  --blue: #7691b6; --gold: #c6a454; --leaf: #84aa79;
+  --track: #ebe2d4; --focus: #6e5940; --veil: #fbf5e3a6;
+  --photo-filter: saturate(.54) brightness(1.04); --change-bg: #e3efe3; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="dark"] {
+  --mat: #212c34; --glass: #263842; --paper: #38505a;
+  --ink: #f5f4ee; --muted: #d5e2e1; --rail: #14252e;
+  --nav: #f6faf1; --action: #e7efe9; --on-action: #233435;
+  --mint: #57ba9f; --mint-ink: #0c382c; --copper: #fa997c;
+  --blue: #8eaced; --gold: #efd07a; --leaf: #8cc79e;
+  --track: #56636c; --focus: #a6e0cf; --veil: #0f1e2dc5;
+  --photo-filter: saturate(.5) brightness(.72); --change-bg: #dcf2e4; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="mono"] {
+  --mat: #a5a5a5; --glass: #f5f5f5; --paper: #fcfcfc;
+  --ink: #1e1e1e; --muted: #3f3f3f; --rail: #565656;
+  --nav: #ffffff; --action: #212121; --on-action: #fbfbfb;
+  --mint: #888888; --mint-ink: #202020; --copper: #777777;
+  --blue: #676767; --gold: #999999; --leaf: #aaaaaa;
+  --track: #dedede; --focus: #515151; --veil: #bcbcbc20;
+  --photo-filter: grayscale(1); --change-bg: #eeeeee; --credit-ink: #ffffff;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="terracotta"] {
+  --mat: #c49b89; --glass: #ffdfcf; --paper: #fff3e7;
+  --ink: #341e16; --muted: #55382a; --rail: #744a37;
+  --nav: #fff1e7; --action: #492519; --on-action: #fff4e7;
+  --mint: #bd784f; --mint-ink: #482619; --copper: #d96341;
+  --blue: #ab7780; --gold: #d7a04b; --leaf: #81915e;
+  --track: #f2d4bf; --focus: #873d27; --veil: #bf6d4266;
+  --photo-filter: saturate(.76); --change-bg: #f3e2ce; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="jade"] {
+  --mat: #98b1a6; --glass: #e4f0dd; --paper: #f7fff2;
+  --ink: #1b2d25; --muted: #344b3e; --rail: #3d5d4c;
+  --nav: #edf9ee; --action: #213c30; --on-action: #f4fbef;
+  --mint: #48a382; --mint-ink: #143e2d; --copper: #d4815d;
+  --blue: #6e9cb0; --gold: #ccb562; --leaf: #76aa78;
+  --track: #d4e5d5; --focus: #32674f; --veil: #78ab8b83;
+  --photo-filter: saturate(.49); --change-bg: #e2eddb; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="slate"] {
+  --mat: #a7b4c2; --glass: #e2ebf6; --paper: #f3f7fc;
+  --ink: #192937; --muted: #354959; --rail: #44596c;
+  --nav: #f4f8ff; --action: #22384b; --on-action: #f6faff;
+  --mint: #5599aa; --mint-ink: #183f49; --copper: #b27674;
+  --blue: #587fbe; --gold: #bfaa66; --leaf: #719c9a;
+  --track: #d5dfe7; --focus: #4b6588; --veil: #91aacb91;
+  --photo-filter: saturate(.38); --change-bg: #e1edf0; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+[data-colorway="amethyst"] {
+  --mat: #ada2c1; --glass: #f1e5f7; --paper: #fcf6ff;
+  --ink: #30223c; --muted: #4d3d5a; --rail: #624c70;
+  --nav: #fff2fc; --action: #3b294b; --on-action: #fff8ff;
+  --mint: #9c80b7; --mint-ink: #3b204b; --copper: #c87899;
+  --blue: #8086c7; --gold: #d4b26d; --leaf: #8da39e;
+  --track: #e6d6e8; --focus: #6c497e; --veil: #a991c586;
+  --photo-filter: saturate(.40); --change-bg: #f0e5f6; --credit-ink: #fffaf3;
+  --glass-left: 64%; --glass-right: 49%;
+}
+@font-face { font-family: 'DM Sans'; src: url('fonts/dmsans-latin.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: block; }
+:root { --type: 'DM Sans', sans-serif; }
+
+* { box-sizing: border-box; }
+html, body { width: 1440px; height: 784px; margin: 0; overflow: hidden; }
+body { color: var(--ink); font: 500 14px/1.35 var(--type); font-synthesis: none; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { appearance: none; border: 0; padding: 0; background: none; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+h1, h2, h3, h4, p { margin: 0; }
+.symbols { width: 0; height: 0; position: absolute; overflow: hidden; }
+.icon { display: inline-block; width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+.row { display: flex; align-items: center; gap: 9px; }
+.between { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ellipsis { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.screen { position: absolute; visibility: hidden; opacity: 0; }
+.counter { display: inline-grid; position: relative; overflow: hidden; vertical-align: bottom; font-variant-numeric: tabular-nums; }
+.counter-base { visibility: hidden; white-space: pre; }
+.counter-reel { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.counter-reel > span { flex: none; height: 100%; white-space: nowrap; }
+
+
+:root { --line:color-mix(in srgb,var(--paper) 32%,transparent); --shade:color-mix(in srgb,var(--action) 17%,transparent); --edge:color-mix(in srgb,var(--ink) 9%,transparent); --soft:color-mix(in srgb,var(--paper) 57%,transparent); --wash:color-mix(in srgb,var(--glass) 43%,transparent); }
+body{background:var(--mat);letter-spacing:-.026em;}
+.room,.room::after {position:absolute;inset:0;}.room {background:url('images/walnut-room.webp') center / cover;filter:var(--photo-filter);}.tint {position:absolute;inset:0;background:var(--veil);}
+.topbar,.dock,.rail {position:absolute;z-index:5;color:var(--nav);background:linear-gradient(110deg,color-mix(in srgb,var(--rail) 84%,transparent),color-mix(in srgb,var(--rail) 76%,transparent));border:1px solid var(--line);box-shadow:0 4px 11px var(--shade),inset 0 1px 1px var(--line);backdrop-filter:blur(8px);}
+.topbar {left:113px;right:89px;top:15px;height:59px;border-radius:30px;display:flex;align-items:center;justify-content:space-between;padding:0 8px;}
+.ident {display:flex;align-items:center;gap:10px;font-size:14px;font-weight:570;}.portrait {display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:var(--paper);color:var(--action);}.portrait .icon {width:24px;height:24px;stroke-width:2.4;}.command {position:absolute;left:39%;display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;}.orb {width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 65% 38%,var(--paper),var(--blue) 35%,var(--copper) 64%,var(--action) 87%);box-shadow:0 0 8px var(--shade);}
+.top-action,.dock-add {width:40px;height:40px;display:grid;place-items:center;border-radius:50%;font-size:16px;color:var(--ink);background:var(--paper);box-shadow:0 2px 5px var(--shade);}
+.rail {left:86px;top:135px;width:47px;height:350px;padding:8px 0;border-radius:25px;display:flex;flex-direction:column;align-items:center;justify-content:space-between;}.rail-entry {position:relative;display:grid;place-items:center;width:36px;height:36px;color:var(--nav);font-size:16px;}.rail-entry>.icon {position:relative;z-index:1;}.rail-entry .focus-mark {position:absolute;inset:0;background:var(--paper);border-radius:50%;box-shadow:0 2px 5px var(--shade);}.rail-entry .focus-ink {position:absolute;z-index:2;color:var(--ink);display:grid;place-items:center;inset:0;}.rail-entry:last-child{height:23px;font-size:12px;}
+.board {position:absolute;left:108px;right:88px;top:86px;height:880px;border:1px solid var(--line);border-radius:29px;isolation:isolate;overflow:hidden;box-shadow:0 17px 33px var(--shade),inset 0 1px 2px var(--line);}
+.board::before,.board::after {position:absolute;content:'';pointer-events:none;}.board::before {width:1440px;height:784px;top:-87px;left:-109px;background:url('images/walnut-frost.webp') center / 100% 100%;filter:var(--photo-filter);z-index:-2;}.board::after{inset:0;background:linear-gradient(135deg,color-mix(in srgb,var(--mat) 29%,transparent),color-mix(in srgb,var(--mat) 14%,transparent)),linear-gradient(var(--veil),var(--veil));z-index:-1;}
+.dock {bottom:15px;left:50%;transform:translateX(-50%);height:46px;display:flex;align-items:center;gap:2px;padding:4px;border-radius:28px;}.dock-entry {position:relative;padding:0 17px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--nav);font-size:11px;font-weight:570;}.dock-mark {position:absolute;inset:0;border-radius:22px;background:var(--paper);box-shadow:0 2px 4px var(--shade);}.dock-text {position:relative;z-index:1;}.dock-ink {position:absolute;inset:0;display:grid;place-items:center;z-index:2;color:var(--ink);}.dock-add {width:35px;height:35px;margin-left:3px;font-size:15px;}
+.screen {left:54px;right:28px;top:26px;}.view-head {height:81px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}.view-head h1 {font-size:32px;line-height:1.13;font-weight:580;letter-spacing:-.064em;}.view-head p {font-size:11.5px;color:var(--ink);margin-top:7px;}.actions {display:flex;align-items:center;gap:7px;padding-top:23px;}
+.pill,.button {display:inline-flex;align-items:center;justify-content:center;gap:6px;line-height:1;white-space:nowrap;font-weight:600;}.button {min-height:32px;font-size:11px;padding:8px 16px;border-radius:20px;background:var(--paper);color:var(--ink);}.button.dark,.pill.dark {background:var(--action);color:var(--on-action);}.pill {background:var(--soft);border-radius:20px;font-size:9.5px;padding:5px 9px;}.tools {display:inline-flex;align-items:center;gap:6px;}.seg {display:flex;align-items:center;padding:3px;gap:2px;border-radius:22px;background:var(--wash);}.seg .pill {background:transparent;}.seg .dark {background:var(--action);}
+.glass {position:relative;min-width:0;border-radius:15px;border:1px solid var(--line);box-shadow:0 3px 12px var(--shade),inset 0 1px 2px var(--line);background:linear-gradient(115deg,color-mix(in srgb,var(--glass) 64%,transparent),color-mix(in srgb,var(--glass) 49%,transparent));padding:14px;overflow:hidden;}
+.glass h2,.glass h3 {font-size:14.5px;letter-spacing:-.03em;font-weight:630;line-height:1.2;}.sub {font-size:10.5px;color:var(--label);}.symbol {width:25px;height:25px;border-radius:9px;font-size:12px;display:inline-grid;place-items:center;background:var(--soft);color:var(--ink);}.dot {display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--sw,var(--mint));}
+.overview-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;}.balance,.quick,.balance-chart {height:289px;}
+.balance .balance-value {font-size:26px;line-height:1.15;font-weight:660;letter-spacing:-.055em;margin-top:10px;}.up-note {display:flex;align-items:center;gap:6px;font-size:9px;color:var(--label);margin:6px 0 0;}.change {display:inline-flex;align-items:center;gap:2px;background:color-mix(in srgb,var(--paper) 75%,var(--leaf));color:var(--mint-ink);padding:3px 5px;border-radius:10px;white-space:nowrap;font-size:9px;font-weight:630;}.balance-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px;}.balance-actions .button {min-height:33px;}.wallets {margin-top:14px;background:var(--soft);border-radius:9px;padding:10px;}.wallets .row {font-size:9px;gap:8px;}.wallet-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:9px;}.currency {padding:7px 4px;border-radius:7px;background:color-mix(in srgb,var(--paper) 32%,transparent);}.currency span,.currency b,.currency small {display:block;}.currency span {font-size:9px;}.currency b {font-size:12px;letter-spacing:-.04em;margin-top:4px;}.currency small {font-size:8.5px;color:var(--label);margin-top:2px;}
+.quick {padding:9px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;}.quick-tile {position:relative;padding:10px 11px;display:flex;flex-direction:column;align-items:flex-start;background:var(--soft);border-radius:11px;overflow:hidden;}.quick-tile.primary {color:var(--on-action);background:radial-gradient(ellipse at 10% 4%,color-mix(in srgb,var(--mint) 60%,var(--paper)),transparent 64%),linear-gradient(135deg,var(--mint),color-mix(in srgb,var(--mint) 69%,var(--action)));}.quick-tile .symbol {position:absolute;right:9px;top:9px;width:21px;height:21px;font-size:10px;}.quick-tile.primary .symbol {background:color-mix(in srgb,var(--mint) 70%,var(--action));color:var(--on-action);}.quick-label {font-size:10px;margin-top:4px;}.quick-value {font-weight:610;font-size:25px;letter-spacing:-.055em;line-height:1.2;margin:auto 0 5px;}.quick-tile p {font-size:9px;color:var(--label);}.quick-tile.primary .quick-label,.quick-tile.primary p {color:var(--mint-ink);background:color-mix(in srgb,var(--paper) 78%,var(--mint));padding:1px 5px;border-radius:6px;}
+.balance-chart .sub {margin-top:5px;}.stack-chart {position:absolute;left:11px;right:11px;bottom:11px;top:64px;padding:12px;border-radius:10px;background:var(--soft);}.chart-key {display:flex;align-items:center;justify-content:space-between;font-size:10px;}.chart-key small {font-size:8.5px;}.barspace {display:flex;gap:5px;position:absolute;left:12px;right:12px;top:39px;bottom:9px;}.axis {display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;padding-bottom:15px;min-width:18px;font-size:8.5px;color:var(--label);}.columns {display:flex;flex:1;align-items:flex-end;justify-content:space-around;gap:6px;}.col {height:100%;flex:1;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;gap:5px;font-size:8.5px;color:var(--label);}.stack {display:flex;flex-direction:column;justify-content:flex-end;width:20px;max-width:80%;height:var(--h);transform-origin:bottom;gap:2px;}.stack .income {display:block;background:var(--mint);flex:var(--a);border-radius:3px;}.stack .spend {display:block;background:var(--action);flex:var(--b);border-radius:3px;}
+.overview-left {display:flex;flex-direction:column;gap:14px;}.limit {height:102px;}.track {height:8px;background:var(--wash);border-radius:12px;overflow:hidden;}.track i {display:block;height:100%;width:var(--value);border-radius:inherit;background:var(--mint);transform-origin:left;}.limit .track {margin:15px 0 7px;height:7px;}.limit .between,.saved-overview .sub {font-size:9.5px;}.credit-cards {min-height:167px;}.credit-wrap {display:flex;gap:9px;margin-top:17px;}.credit {width:55%;height:102px;border-radius:10px;background:linear-gradient(120deg,var(--action),color-mix(in srgb,var(--action) 80%,var(--mat)));color:var(--on-action);padding:11px;font-size:10px;position:relative;}.credit:last-child{background:linear-gradient(120deg,var(--mint),var(--mint-ink));}.credit small {border-radius:10px;background:var(--paper);color:var(--ink);padding:2px 6px;}.credit b {position:absolute;bottom:14px;left:12px;font-size:12px;letter-spacing:.1em;}.credit .double {position:absolute;top:12px;right:12px;width:11px;height:11px;border-radius:50%;background:var(--gold);box-shadow:-5px 0 var(--copper);}
+.activity {grid-column:span 2;min-height:286px;}.activity .tools {font-size:10px;color:var(--label);gap:20px;}.table {border-collapse:collapse;width:100%;margin-top:15px;}.table th,.table td {text-align:left;padding:9px 6px;font-size:10.5px;white-space:nowrap;border-bottom:1px solid var(--line);}.table th {background:var(--soft);font-size:9px;color:var(--label);font-weight:500;}.table td:first-child,.table th:first-child{padding-left:12px;}.table td b{font-weight:580;}.table .icon{width:12px;height:12px;}
+.saving-top {display:grid;grid-template-columns:1.5fr 1fr;gap:14px;}.saved-overview,.rules {height:204px;}.saved-overview {display:grid;grid-template-columns:1fr 1fr;gap:8px;}.savings-value {font-size:32px;line-height:1.15;font-weight:650;letter-spacing:-.06em;margin:10px 0 5px;}.saved-overview .progress-info{position:absolute;left:15px;bottom:15px;width:44%;}.progress-info .track{margin-bottom:6px;height:7px;}.progress-info .track i{background:var(--copper);}.saving-bars {display:flex;gap:10px;align-items:flex-end;justify-content:space-around;height:100%;padding:16px 7px 0;}.saving-col {flex:1;display:flex;align-items:center;justify-content:flex-end;height:100%;flex-direction:column;gap:5px;}.saving-col i {display:block;width:24px;height:var(--bar);max-width:90%;background:var(--paper);border-radius:4px;transform-origin:bottom;}.saving-col:last-child i{background:var(--copper);}.saving-col small {font-size:8.5px;color:var(--label);}.rules h3 {font-size:15px;}.rule {display:flex;align-items:center;gap:10px;margin-top:11px;}.rule b,.rule small {display:block;}.rule b {font-size:12px;}.rule small {font-size:9px;color:var(--label);}.toggle{margin-left:auto;display:block;width:29px;height:16px;border-radius:16px;background:var(--paper);padding:2px;}.toggle[aria-pressed=true]{background:var(--copper);}.toggle::after {content:'';display:block;width:12px;height:12px;border-radius:50%;background:var(--paper);box-shadow:0 1px 3px var(--shade);}.toggle[aria-pressed=true]::after{margin-left:auto;}
+.goals {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;width:993px;max-width:100%;margin-top:14px;}.goal {height:232px;display:flex;flex-direction:column;align-items:center;padding:12px 10px;text-align:center;}.goal-top {width:100%;display:flex;align-items:center;justify-content:space-between;}.goal-top .symbol {width:26px;height:26px;background:color-mix(in srgb,var(--sw) 28%,var(--paper));}.goal-top .pill {font-size:9px;padding:4px 6px;}.ring {position:relative;width:94px;height:94px;margin:9px 0 6px;}.ring svg {width:100%;height:100%;display:block;}.ring b {position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:20px;letter-spacing:-.06em;}.ring small{margin-top:1px;color:var(--label);font-size:8px;letter-spacing:0;}.goal h4 {font-size:12.5px;line-height:1.2;letter-spacing:-.035em;font-weight:650;}.goal>p {font-size:10px;color:var(--label);margin-top:4px;}.goal .button {margin-top:auto;width:100%;min-height:28px;font-size:9px;background:var(--soft);}.goal-new {height:232px;border:1px dashed var(--line);border-radius:15px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}.goal-new .symbol {border-radius:100%;width:36px;height:36px;}.goal-new b {font-size:12px;}.goal-new small {font-size:9px;color:var(--ink);}
+.report-stats {display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}.report-stat {height:119px;}.report-stat .row {font-size:10px;color:var(--label);}.report-stat .symbol {width:24px;height:24px;border-radius:50%;color:var(--sw);background:var(--soft);}.report-stat strong {display:block;font-size:24px;font-weight:650;letter-spacing:-.06em;margin:10px 0 3px;}.report-stat p {font-size:9px;color:var(--label);}.report-charts {display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin:14px 0;}.trends,.spend-chart {height:325px;}.trends p,.spend-chart p {margin-top:5px;font-size:10px;color:var(--label);}.plot {position:absolute;left:14px;right:14px;top:64px;bottom:22px;display:flex;gap:10px;}.plot .axis {padding-bottom:25px;min-width:23px;}.lineplot {flex:1;position:relative;}.lineplot svg {position:absolute;inset:0;width:100%;height:calc(100% - 20px);overflow:visible;}.dates {position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;color:var(--label);font-size:9px;}.donut {width:166px;height:166px;position:relative;margin:3px auto 0;}.donut svg {width:100%;height:100%;}.donut-center {position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;font-size:9px;color:var(--label);}.donut-center b {font-size:22px;letter-spacing:-.055em;color:var(--ink);}.legend {display:grid;gap:5px;}.legend-line{display:flex;align-items:center;gap:7px;font-size:9.5px;}.legend-line .label {width:71px;}.legend-line .track {flex:1;height:4px;}.legend-line .track i,.legend-line .dot {background:var(--sw);}.legend-line b {min-width:28px;text-align:right;}.statements {min-height:155px;}.statements .between {font-size:10px;color:var(--label);}.statement {display:flex;align-items:center;gap:10px;margin:12px 0;font-size:11px;}.statement .symbol {color:var(--copper);}.statement .button{margin-left:auto;}
+.settings-layout{display:grid;grid-template-columns:225px 1fr;gap:18px;align-items:start;}.setting-menu {display:grid;gap:4px;min-height:197px;}.menu-opt {display:flex;gap:9px;align-items:center;border-radius:9px;font-size:12px;padding:9px;}.menu-opt.selected {background:var(--soft);}.settings-panel {min-height:350px;padding:20px;}.settings-panel h3 {font-size:17px;}.profile-line {display:flex;gap:12px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);}.profile-line b,.profile-line small{display:block;}.profile-line small{font-size:10px;color:var(--label);}.setting-fields {display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:15px 0;}.field-name {display:block;font-size:11px;font-weight:600;}.value {display:block;background:var(--soft);padding:10px 12px;margin-top:6px;border-radius:8px;font-size:12px;}.settings-end {display:flex;justify-content:flex-end;}
+
+:root { --label:color-mix(in srgb,var(--ink) 64%,var(--muted)); }
+.board::after { background:radial-gradient(ellipse 400px 108px at 128px 41px,color-mix(in srgb,var(--glass) 63%,transparent),transparent 91%),linear-gradient(135deg,color-mix(in srgb,var(--mat) 29%,transparent),color-mix(in srgb,var(--mat) 14%,transparent)),linear-gradient(var(--veil),var(--veil)); }
+.glass { background:linear-gradient(115deg,color-mix(in srgb,var(--glass) var(--glass-left),transparent),color-mix(in srgb,var(--glass) var(--glass-right),transparent)); }
+.goals .goal-new small,.goals .goal-new b { background:color-mix(in srgb,var(--glass) 77%,transparent);border-radius:5px;padding:1px 5px; }
+.change,.quick-tile.primary .quick-label,.quick-tile.primary p { background:var(--change-bg); }
+.credit:last-child {background:linear-gradient(150deg,var(--mint),var(--mint-ink) 70%);}
+.credit:last-child b {color:var(--credit-ink);}
+.dock {background:color-mix(in srgb,var(--rail) 95%,transparent);}
+.saving-col small,.col>span:last-child,.dates {color:var(--ink);}
+
+</style>
+</head>
+<body>
+<svg class="symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8 M5.5 10v10h5v-6h3v6h5V10"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h17 M8 14v-3m5 3V7m5 7v-5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M2 21v-2a7 7 0 0 1 14 0v2 M16 5a3.5 3.5 0 0 1 0 7m1 2a5 5 0 0 1 5 5v1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9 M4 21v-1a8 8 0 0 1 16 0v1"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M3 8h18v12H3z M8 8V5h8v3m-13 5q9 5 18 0m-10 2h2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5z M14 3v6h5m-11 4h8m-8 4h6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 2q4-4 8-1t7 0v9q-4 3-7 0t-8 1"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16v13H9l-5 4v-4H3V5z M7 8h10M7 12h7"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3l4 5-2.5 3q2.3 3.8 5.6 5.7l3-2.6 5 3.7-2.2 3.1q-1.5 1-4.8-.6C8 17.4 4.8 13.9 2.9 8.7q-1-2.5.4-3.8z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3z M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19z M12 6.5v6l4 2"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h6l2 3h10v11H3z"/></symbol>
+  <symbol id="i-saved" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M15.6 15.6 21 21"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10 M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2m0-16-2 2M6 18l-2 2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3 6 0 .8 2.6 2 .9 2.5-.8 2 4-2 1.7v2l2 1.7-2 4-2.5-.7-2 .9L15 22H9l-.8-2.7-2-.9-2.5.7-2-4 2-1.7v-2L1.7 9.7l2-4 2.5.8 2-.9z M12 9a3.2 3.2 0 1 0 0 6.4A3.2 3.2 0 0 0 12 9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.4L20 6.2"/></symbol>
+  <symbol id="i-task" viewBox="0 0 24 24"><path d="M20 13v7H3V3h13 M7 10l4.5 4.5L21 5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 12h16"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M5 18 18 5 M9 5h9v9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 7.5 13 5q3.5-3.5 6.8-.2t-.4 6.6l-3 3 M13.5 16.5 11 19q-3.7 3.4-6.7.3t.3-6.8l3-3 M8.5 15.5l7-7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24"><path d="M8 13.5 15 6.7q3-3 5.3-.5t-.7 5.4l-9.2 9q-3.5 3-7-1t.5-7.5l9.5-9.2"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M14 2 5 14h6l-1 8 9-13h-6z"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 6l13-3 2 4M3 7h18v13H3z M21 11h-6v5h6m-3-2.5h.1"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><path d="M2.5 4.5h19v15h-19z M3 9h18m-15 5h5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 10h14v11H5z M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><path d="M12 3c11 0 11 7 0 7S1 3 12 3z M4 7v5c0 5 16 5 16 0V7m-16 5v5c0 5 16 5 16 0v-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 21 6v6q-1 6-9 10-8-4-9-10V6z M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22S4.5 14.6 4.5 9A7.5 7.5 0 0 1 19.5 9c0 5.6-7.5 13-7.5 13z M12 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 6h18M6 12h12m-9 6h6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h1m4 0h12M4 12h1m4 0h12M4 18h1m4 0h12"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M2 12h20M12 2q-8 10 0 20 8-10 0-20"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V6l10-3v18m0-13h4v13M8 9h1m2-1h1m-4 5h1m2-1h1m-4 5h1m2-1h1"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 13h4l3-8 4 15 3-11 2 4h4"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14V12a8 8 0 0 1 16 0v6q0 3-4 3h-2M3.5 12h4v6h-4zm13 0h4v6h-4z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M5 5h14v14H5z M9 2v3m6-3v3m-6 14v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3m-12-6h6v6H9z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M11 3H4v18h7m-1-9h11m-4-4 4 4-4 4"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><path d="M4 12h.1m7.9 0h.1m7.8 0h.1"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20m5-16q-2-2-5-2c-7 0-7 8-.3 8 7 0 7 8 .3 8-3 0-5-2-6-3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M2.5 3.5 22 11l-7.5 3-3 7-2-7-7-10.5z M9.5 14 22 11"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 2v10h10A10 10 0 0 0 12 2z M9 4A9 9 0 1 0 20 15H9z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h6l3 2 3-2h6v15h-6l-3 2-3-2H3z M12 6v15"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21 3.5 12C-1 5 7 .4 12 7c4-6.6 13-2 8.5 5z"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5z M3 12l9 4.5 9-4.5M3 16l9 4.5 9-4.5"/></symbol>
+</defs></svg>
+<div class="room" aria-hidden="true"></div><div class="tint" aria-hidden="true"></div><header class="topbar"><button class="ident" data-replay aria-label="Replay banking tour"><span class="portrait"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span>Welcome, Alex Vale</button><div class="command"><span class="orb"></span>Can you send $240 to Jamie Reeves?</div><span class="top-action"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span></header><main class="board"><section class="screen overview" data-panel="0"><header class="view-head"><div><h1>Good morning, Alex Vale</h1><p>A clear picture of your money today.</p></div><div class="actions"></div></header><div class="overview-grid"><article class="glass balance"><div class="between"><h2>Total Balance</h2><span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg>USD</span></div><div class="balance-value"><span class="counter" data-value="725400.84" data-prefix="$" data-suffix="" data-decimals="2"></span></div><div class="up-note"><span class="change">↗ 8.4%</span> since last month</div><div class="balance-actions"><span class="button dark"><svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg>Transfer</span><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>Request</span></div><div class="wallets"><div class="row"><b>Wallets</b><span class="sub">Your 3 accounts</span></div><div class="wallet-grid"><div class="currency"><span><span class="dot" style="--sw:var(--blue)"></span> &nbsp;USD</span><b>$43,541.80</b><small>Available balance</small></div><div class="currency"><span><span class="dot" style="--sw:var(--copper)"></span> &nbsp;EUR</span><b>€32,708.42</b><small>Available balance</small></div><div class="currency"><span><span class="dot" style="--sw:var(--leaf)"></span> &nbsp;GBP</span><b>£12,581.00</b><small>Available balance</small></div></div></div></article><section class="glass quick" aria-label="Account summary"><article class="quick-tile primary"><span class="quick-label">Monthly income</span><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span><strong class="quick-value"><span class="counter" data-value="875" data-prefix="$" data-suffix="" data-decimals="0"></span></strong><p>↗ 12.4% this month</p></article><article class="quick-tile "><span class="quick-label">Total spending</span><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><strong class="quick-value"><span class="counter" data-value="625" data-prefix="$" data-suffix="" data-decimals="0"></span></strong><p>2.7% this month</p></article><article class="quick-tile "><span class="quick-label">Happy savings</span><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-coins"/></svg></span><strong class="quick-value"><span class="counter" data-value="900" data-prefix="$" data-suffix="" data-decimals="0"></span></strong><p>↗ 4.6% this month</p></article><article class="quick-tile "><span class="quick-label">Cash reserves</span><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><strong class="quick-value"><span class="counter" data-value="675" data-prefix="$" data-suffix="" data-decimals="0"></span></strong><p>Cash available</p></article></section><article class="glass balance-chart"><h2>Total balance</h2><p class="sub">Income and expenses across your accounts.</p><div class="stack-chart"><div class="chart-key"><b>Asset balance</b><small><span class="dot" style="--sw:var(--mint)"></span> Inflow &nbsp; <span class="dot" style="--sw:var(--action)"></span> Spent</small></div><div class="barspace"><div class="axis"><span>12k</span><span>9k</span><span>6k</span><span>3k</span><span>0</span></div><div class="columns"><div class="col"><span class="stack" style="--h:65%;--a:45;--b:55"><i class="income"></i><i class="spend"></i></span><span>Jan</span></div><div class="col"><span class="stack" style="--h:75%;--a:65;--b:35"><i class="income"></i><i class="spend"></i></span><span>Feb</span></div><div class="col"><span class="stack" style="--h:60%;--a:63;--b:37"><i class="income"></i><i class="spend"></i></span><span>Mar</span></div><div class="col"><span class="stack" style="--h:64%;--a:52;--b:48"><i class="income"></i><i class="spend"></i></span><span>Apr</span></div><div class="col"><span class="stack" style="--h:61%;--a:56;--b:44"><i class="income"></i><i class="spend"></i></span><span>May</span></div><div class="col"><span class="stack" style="--h:67%;--a:32;--b:68"><i class="income"></i><i class="spend"></i></span><span>Jun</span></div><div class="col"><span class="stack" style="--h:41%;--a:41;--b:59"><i class="income"></i><i class="spend"></i></span><span>Jul</span></div><div class="col"><span class="stack" style="--h:18%;--a:17;--b:83"><i class="income"></i><i class="spend"></i></span><span>Aug</span></div></div></div></div></article><div class="overview-left"><article class="glass limit"><h3>Monthly Spending Limit</h3><div class="track"><i style="--value:47%"></i></div><div class="between"><b>$4,166.80</b><span>of $9,000.00</span></div></article><article class="glass credit-cards"><div class="between"><h3><svg class="icon" aria-hidden="true"><use href="#i-card"/></svg> &nbsp; My Cards</h3><span class="pill"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add card</span></div><div class="credit-wrap"><div class="credit"><small>Debit</small><i class="double"></i><b>•••• &nbsp; 4729</b></div><div class="credit"><small>Travel</small><b>•••• &nbsp; 8120</b></div></div></article></div><article class="glass activity"><div class="between"><h2>Recent Activities</h2><div class="tools"><span><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg> &nbsp; Search</span><span>Filter &nbsp;<svg class="icon" aria-hidden="true"><use href="#i-filter"/></svg></span></div></div><table class="table"><thead><tr><th></th><th>Activity</th><th>Merchant</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody><tr><td>○</td><td>Monthly subscription</td><td><span class="dot" style="--sw:var(--blue)"></span> &nbsp; Media House Premium</td><td><b>$19.99</b></td><td>Complete</td><td>17 Aug 2026 01:21 PM</td></tr><tr><td>○</td><td>ACH transfer</td><td><span class="dot" style="--sw:var(--leaf)"></span> &nbsp; Fieldwork Studio</td><td><b>$11.75</b></td><td>Pending</td><td>16 Aug 2026 11:48 AM</td></tr><tr><td>○</td><td>Business payment</td><td><span class="dot" style="--sw:var(--gold)"></span> &nbsp; Paper Technologies</td><td><b>$42.67</b></td><td>Complete</td><td>16 Aug 2026 10:56 AM</td></tr><tr><td>○</td><td>Online purchase</td><td><span class="dot" style="--sw:var(--copper)"></span> &nbsp; Greenpoint Books</td><td><b>$28.00</b></td><td>Complete</td><td>15 Aug 2026 03:30 PM</td></tr></tbody></table></article></div></section><section class="screen savings" data-panel="1"><header class="view-head"><div><h1>Savings &amp; Goals</h1><p>Set money aside for what matters most.</p></div><div class="actions"><span class="button dark"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>New goal</span></div></header><div class="saving-top"><article class="glass saved-overview"><div><h3>Total saved</h3><div class="savings-value"><span class="counter" data-value="17500.24" data-prefix="$" data-suffix="" data-decimals="2"></span></div><div class="up-note"><span class="change">↗ 8.2%</span> more than last month</div><div class="progress-info"><div class="track"><i style="--value:48%"></i></div><span class="sub">48% of $36,000 savings goal</span></div></div><div class="saving-bars"><span class="saving-col"><i style="--bar:37%"></i><small>Jan</small></span><span class="saving-col"><i style="--bar:58%"></i><small>Feb</small></span><span class="saving-col"><i style="--bar:45%"></i><small>Mar</small></span><span class="saving-col"><i style="--bar:68%"></i><small>Apr</small></span><span class="saving-col"><i style="--bar:84%"></i><small>May</small></span><span class="saving-col"><i style="--bar:86%"></i><small>Jun</small></span></div></article><article class="glass rules"><div class="between"><h3>Auto rules</h3><span class="change">2 on</span></div><div class="rule"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-coins"/></svg></span><div><b>Round-ups</b><small>Round each card purchase to the next dollar.</small></div><button class="toggle" aria-label="Round-ups" aria-pressed="true"></button></div><div class="rule"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span><div><b>Payday boost</b><small>Move part of every paycheck into savings.</small></div><button class="toggle" aria-label="Payday boost" aria-pressed="true"></button></div><div class="rule"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span><div><b>Weekly $25</b><small>Transfer every Monday morning.</small></div><button class="toggle" aria-label="Weekly $25" aria-pressed="false"></button></div></article></div><div class="goals"><article class="glass goal" style="--sw:var(--copper)"><div class="goal-top"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-brief"/></svg></span><span class="pill">Jul 2026</span></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 100 100"><g fill="none" stroke-width="5.5" transform="rotate(-90 50 50)"><circle cx="50" cy="50" r="42" stroke="var(--track)"/><circle class="ring-arc" cx="50" cy="50" r="42" pathLength="100" stroke="var(--copper)" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="24" data-percent="76"/></g></svg><b>76%<small>saved</small></b></div><h4>New studio laptop</h4><p>$2,660 of $3,500</p><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add money</span></article><article class="glass goal" style="--sw:var(--blue)"><div class="goal-top"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span><span class="pill">Aug 2026</span></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 100 100"><g fill="none" stroke-width="5.5" transform="rotate(-90 50 50)"><circle cx="50" cy="50" r="42" stroke="var(--track)"/><circle class="ring-arc" cx="50" cy="50" r="42" pathLength="100" stroke="var(--copper)" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="36" data-percent="64"/></g></svg><b>64%<small>saved</small></b></div><h4>Trip to Bali</h4><p>$3,200 of $5,000</p><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add money</span></article><article class="glass goal" style="--sw:var(--leaf)"><div class="goal-top"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><span class="pill">Dec 2026</span></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 100 100"><g fill="none" stroke-width="5.5" transform="rotate(-90 50 50)"><circle cx="50" cy="50" r="42" stroke="var(--track)"/><circle class="ring-arc" cx="50" cy="50" r="42" pathLength="100" stroke="var(--copper)" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="37" data-percent="63"/></g></svg><b>63%<small>saved</small></b></div><h4>Emergency fund</h4><p>$6,300 of $10,000</p><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add money</span></article><article class="glass goal" style="--sw:var(--blue)"><div class="goal-top"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><span class="pill">Mar 2027</span></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 100 100"><g fill="none" stroke-width="5.5" transform="rotate(-90 50 50)"><circle cx="50" cy="50" r="42" stroke="var(--track)"/><circle class="ring-arc" cx="50" cy="50" r="42" pathLength="100" stroke="var(--copper)" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="74" data-percent="26"/></g></svg><b>26%<small>saved</small></b></div><h4>New car</h4><p>$3,900 of $15,000</p><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add money</span></article><article class="glass goal" style="--sw:var(--copper)"><div class="goal-top"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span><span class="pill">May 2026</span></div><div class="ring"><svg aria-hidden="true" viewBox="0 0 100 100"><g fill="none" stroke-width="5.5" transform="rotate(-90 50 50)"><circle cx="50" cy="50" r="42" stroke="var(--track)"/><circle class="ring-arc" cx="50" cy="50" r="42" pathLength="100" stroke="var(--copper)" stroke-linecap="round" stroke-dasharray="100" stroke-dashoffset="20" data-percent="80"/></g></svg><b>80%<small>saved</small></b></div><h4>Mum’s birthday gift</h4><p>$480 of $600</p><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Add money</span></article><div class="goal-new"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span><b>New goal</b><small>Save for something new.</small></div></div></section><section class="screen reports" data-panel="2"><header class="view-head"><div><h1>Reports</h1><p>Your money, your activity and your monthly trends.</p></div><div class="actions"><div class="seg"><span class="pill">This week</span><span class="pill dark">This month</span><span class="pill">This year</span></div><span class="button dark"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>Export CSV</span></div></header><div class="report-stats"><article class="glass report-stat" style="--sw:var(--leaf)"><div class="row"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><span>Income</span></div><strong><span class="counter" data-value="425" data-prefix="$" data-suffix="k" data-decimals="0"></span></strong><p><span class="change">↗ 6.2%</span> &nbsp; vs. last month</p></article><article class="glass report-stat" style="--sw:var(--copper)"><div class="row"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-brief"/></svg></span><span>Expenses</span></div><strong><span class="counter" data-value="315.4" data-prefix="$" data-suffix="k" data-decimals="1"></span></strong><p><span class="change">↘ 3.1%</span> &nbsp; vs. last month</p></article><article class="glass report-stat" style="--sw:var(--blue)"><div class="row"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-wave"/></svg></span><span>Net income</span></div><strong><span class="counter" data-value="109.7" data-prefix="$" data-suffix="k" data-decimals="1"></span></strong><p><span class="change">↗ 4.8%</span> &nbsp; vs. last month</p></article><article class="glass report-stat" style="--sw:var(--blue)"><div class="row"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg></span><span>Savings rate</span></div><strong><span class="counter" data-value="25.8" data-prefix="" data-suffix="%" data-decimals="1"></span></strong><p><span class="change">↗ 1.2%</span> &nbsp; vs. last month</p></article></div><div class="report-charts"><article class="glass trends"><div class="between"><h2>Income vs expenses</h2><span class="sub"><span class="dot" style="--sw:var(--copper)"></span> Income &nbsp; <span class="dot" style="--sw:var(--action)"></span> Expenses</span></div><p>How the last eight months compare.</p><div class="plot"><div class="axis"><span>100k</span><span>75k</span><span>50k</span><span>25k</span><span>0</span></div><div class="lineplot"><svg viewBox="0 0 620 180" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="var(--copper)" stop-opacity=".20"/><stop offset="1" stop-color="var(--copper)" stop-opacity="0"/></linearGradient></defs><path class="area" d="M0 141C38 127 56 105 86 88S147 16 178 39 224 145 264 115 319 71 352 83 420 122 453 105 512 61 543 61 589 68 620 81V180H0Z" fill="url(#area)"/><g fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path class="trend-path" pathLength="100" stroke="var(--copper)" d="M0 141C38 127 56 105 86 88S147 16 178 39 224 145 264 115 319 71 352 83 420 122 453 105 512 61 543 61 589 68 620 81"/><path class="trend-path" pathLength="100" stroke="var(--action)" d="M0 140C50 133 75 127 105 120S170 107 199 97 254 78 294 84 373 99 415 105 473 108 512 101 569 98 620 114"/></g></svg><div class="dates"><span>Jan 01</span><span>Feb 01</span><span>Mar 01</span><span>Apr 01</span><span>May 01</span><span>Jun 01</span><span>Jul 01</span><span>Aug 01</span></div></div></div></article><article class="glass spend-chart"><h2>Spending by category</h2><div class="donut"><svg viewBox="0 0 140 140" aria-hidden="true"><g transform="rotate(-90 70 70)"><circle cx="70" cy="70" r="52" pathLength="100" fill="none" stroke="var(--copper)" stroke-width="16" stroke-dasharray="37 63" stroke-dashoffset="0"/><circle cx="70" cy="70" r="52" pathLength="100" fill="none" stroke="var(--action)" stroke-width="16" stroke-dasharray="28 72" stroke-dashoffset="-38"/><circle cx="70" cy="70" r="52" pathLength="100" fill="none" stroke="var(--gold)" stroke-width="16" stroke-dasharray="18 82" stroke-dashoffset="-67"/><circle cx="70" cy="70" r="52" pathLength="100" fill="none" stroke="var(--blue)" stroke-width="16" stroke-dasharray="9 91" stroke-dashoffset="-86"/><circle cx="70" cy="70" r="52" pathLength="100" fill="none" stroke="var(--leaf)" stroke-width="16" stroke-dasharray="3 97" stroke-dashoffset="-96"/></g></svg><div class="donut-center"><span>Total spent</span><b><span class="counter" data-value="209.7" data-prefix="$" data-suffix="k" data-decimals="1"></span></b><span>This period</span></div></div><div class="legend"><div class="legend-line" style="--sw:var(--copper)"><span class="dot" style="--sw:var(--copper)"></span><span class="label">Housing</span><div class="track"><i style="--value:91%"></i></div><b>38%</b></div><div class="legend-line" style="--sw:var(--action)"><span class="dot" style="--sw:var(--action)"></span><span class="label">Shopping</span><div class="track"><i style="--value:70%"></i></div><b>29%</b></div><div class="legend-line" style="--sw:var(--gold)"><span class="dot" style="--sw:var(--gold)"></span><span class="label">Groceries</span><div class="track"><i style="--value:46%"></i></div><b>19%</b></div><div class="legend-line" style="--sw:var(--blue)"><span class="dot" style="--sw:var(--blue)"></span><span class="label">Bills</span><div class="track"><i style="--value:24%"></i></div><b>10%</b></div><div class="legend-line" style="--sw:var(--leaf)"><span class="dot" style="--sw:var(--leaf)"></span><span class="label">Other</span><div class="track"><i style="--value:10%"></i></div><b>4%</b></div></div></article></div><article class="glass statements"><div class="between"><h2>Statements</h2><span>View month-end reports</span></div><div class="statement"><span class="symbol"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><div><b>April 2026 statement</b><br><small>Generated Apr 30 · PDF document</small></div><span class="button"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>Download</span></div></article></section><section class="screen settings" data-panel="3"><header class="view-head"><div><h1>Settings</h1><p>Your profile, notifications and account preferences.</p></div><div class="actions"></div></header><div class="settings-layout"><aside class="glass setting-menu"><div class="menu-opt selected"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>Profile</div><div class="menu-opt "><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Security</div><div class="menu-opt "><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg>Notifications</div><div class="menu-opt "><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>Preferences</div></aside><article class="glass settings-panel"><h3>Profile details</h3><div class="profile-line"><span class="portrait"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span><div><b>Alex Vale</b><small>Personal banking account</small></div></div><div class="setting-fields"><div><span class="field-name">Full name</span><span class="value">Alex Vale</span></div><div><span class="field-name">Email address</span><span class="value">alex@example.com</span></div><div><span class="field-name">Preferred currency</span><span class="value">USD — US Dollar</span></div><div><span class="field-name">Language</span><span class="value">English</span></div></div><div class="settings-end"><span class="button dark">Save changes</span></div></article></div></section></main><nav class="rail" aria-label="Banking views"><button class="rail-entry" data-view="0" aria-label="Overview" title="Overview"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg><span class="focus-mark" data-highlight="0"></span><span class="focus-ink" data-highlight="0"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span></button><span class="rail-entry" title="Activity"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span><button class="rail-entry" data-view="1" aria-label="Savings" title="Savings"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg><span class="focus-mark" data-highlight="1"></span><span class="focus-ink" data-highlight="1"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span></button><span class="rail-entry" title="Vault"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span><button class="rail-entry" data-view="2" aria-label="Reports" title="Reports"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg><span class="focus-mark" data-highlight="2"></span><span class="focus-ink" data-highlight="2"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg></span></button><span class="rail-entry" title="Transfers"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span><button class="rail-entry" data-view="3" aria-label="Settings" title="Settings"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg><span class="focus-mark" data-highlight="3"></span><span class="focus-ink" data-highlight="3"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg></span></button><span class="rail-entry" title="More"><svg class="icon" aria-hidden="true"><use href="#i-minus"/></svg></span></nav><nav class="dock" aria-label="Quick navigation"><button class="dock-entry" data-view="0"><span class="dock-mark" data-highlight="0"></span><span class="dock-text">Overview</span><span class="dock-ink" data-highlight="0">Overview</span></button><span class="dock-entry">Activity</span><span class="dock-entry">Manage</span><span class="dock-entry">Program</span><span class="dock-entry">Account</span><button class="dock-entry" data-view="2"><span class="dock-mark" data-highlight="2"></span><span class="dock-text">Reports</span><span class="dock-ink" data-highlight="2">Reports</span></button><span class="dock-add"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></nav>
+<script>
+const duration = 5.5;
+
+const timeline = (element, frames) => element.animate(frames.map(([time, properties]) => ({
+  ...properties, offset: Math.max(0, Math.min(1, time / duration))
+})), {duration: duration * 1000, iterations: Infinity, fill: 'both'});
+
+function showDuring(element, start, end, lift = 10, fade = .22) {
+  const hidden = {opacity: 0, visibility: 'hidden', transform: `translateY(${lift}px)`};
+  const appearing = {...hidden, visibility: 'visible', easing: 'cubic-bezier(.2,.65,.28,1)'};
+  const visible = {opacity: 1, visibility: 'visible', transform: 'translateY(0px)'};
+  const leaving = {opacity: 0, visibility: 'hidden', transform: `translateY(${-lift / 2}px)`};
+  const frames = [[0, hidden]];
+  if (start > 0) frames.push([Math.max(0, start - .001), hidden]);
+  frames.push([start, appearing], [start + fade, visible], [end - fade, visible], [end, leaving]);
+  if (end < duration) frames.push([duration, leaving]);
+  return timeline(element, frames);
+}
+
+function entrance(element, start, length, from, to, easing = 'cubic-bezier(.19,.67,.28,1)') {
+  const a = { ...from, easing };
+  return timeline(element, [[0, from], [start, a], [start + length, to], [duration, to]]);
+}
+
+function rollNumber(el, start, length) {
+  const {value, prefix = '', suffix = '', decimals = 0} = el.dataset;
+  const formatter = new Intl.NumberFormat('en-US', {minimumFractionDigits: +decimals, maximumFractionDigits: +decimals});
+  const format = (n) => prefix + formatter.format(n) + suffix;
+  const final = format(+value);
+  el.setAttribute('aria-label', final);
+  const base = document.createElement('span');
+  base.className = 'counter-base'; base.setAttribute('aria-hidden','true'); base.textContent = final; el.append(base);
+  const reel = document.createElement('span');
+  reel.className = 'counter-reel'; reel.setAttribute('aria-hidden', 'true'); el.append(reel);
+  const steps = 24;
+  for (let i = 0; i <= steps; i++) {
+    const row = document.createElement('span');
+    row.textContent = format(+value * (1 - (1 - i / steps) ** 2));
+    reel.append(row);
+  }
+  entrance(reel, start, length, {transform: 'translateY(0%)'}, {transform: `translateY(${-steps * 100}%)`}, `steps(${steps},end)`);
+}
+
+function wireNavigation() {
+  function select(index) {
+    const moment = moments[index];
+    for (const animation of document.getAnimations()) {
+      animation.pause(); animation.currentTime = moment * 1000;
+    }
+  }
+  for (const control of document.querySelectorAll('[data-view]')) {
+    control.addEventListener('click', () => select(Number(control.dataset.view)));
+  }
+  for (const control of document.querySelectorAll('[data-replay]')) {
+    control.addEventListener('click', () => {
+      for (const animation of document.getAnimations()) { animation.currentTime = 0; animation.play(); }
+    });
+  }
+  if (!location.search && matchMedia('(prefers-reduced-motion: reduce)').matches) select(0);
+}
+
+
+const moments = [1.21,3.12,4.84,5.49];
+const windows = [[0,1.40],[2.01,3.39],[3.55,5.18],[5.26,duration]];
+for (const panel of document.querySelectorAll('[data-panel]')) {
+  const index = Number(panel.dataset.panel); const [start,end] = windows[index];
+  if (index === 3) {
+    timeline(panel, [[0,{visibility:'hidden',opacity:0}],[start-.001,{visibility:'hidden',opacity:0}],[start,{visibility:'visible',opacity:0}],[duration-.01,{visibility:'visible',opacity:1,transform:'translateY(0px)'}],[duration,{visibility:'visible',opacity:1}]]);
+  } else { showDuring(panel,start,end,6,index===0?.12:.16); }
+  const cards = panel.querySelectorAll('.glass,.goal-new');
+  cards.forEach((card,n) => {
+    const lag = Math.min(n * (index===1?.034:.025),.19);
+    const length = index===3?.14:.33;
+    entrance(card,start+.025+lag,length,{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0px)'});
+  });
+  const content = panel.querySelectorAll('.balance>*,.quick-tile>*,.balance-chart>*,.activity>*,.goal>*,.saved-overview>*,.rule,.report-stat>*,.trends>*,.spend-chart>*');
+  content.forEach((el,n) => entrance(el,start+.16+Math.min(n*.005,.13),.31,{opacity:0},{opacity:1}));
+  panel.querySelectorAll('.counter').forEach(el=>rollNumber(el,start+.34,index===0?1.05:.90));
+  panel.querySelectorAll('.stack,.saving-col i').forEach((bar,n) => entrance(bar,start+.44+n*.041,.53,{transform:'scaleY(0)'},{transform:'scaleY(1)'}));
+  panel.querySelectorAll('.track i').forEach(bar=>entrance(bar,start+.48,.64,{transform:'scaleX(0)'},{transform:'scaleX(1)'}));
+  panel.querySelectorAll('.ring-arc').forEach((arc,n)=>entrance(arc,start+.55+n*.024,.65,{strokeDashoffset:'100'},{strokeDashoffset:String(100-Number(arc.dataset.percent))}));
+  panel.querySelectorAll('.trend-path').forEach((line,n)=>{line.style.strokeDasharray='100';entrance(line,start+.38+n*.09,.82,{strokeDashoffset:'100'},{strokeDashoffset:'0'});});
+  panel.querySelectorAll('.area,.donut').forEach(el=>entrance(el,start+.49,.62,{opacity:0},{opacity:1}));
+}
+const active = [[0,1.40],[1.40,3.41],[3.41,5.17],[5.17,duration]];
+for (const mark of document.querySelectorAll('[data-highlight]')) showDuring(mark,...active[Number(mark.dataset.highlight)],0,.025);
+const tall = {height:'880px'}, short = {height:'654px'};
+timeline(document.querySelector('.board'),[[0,tall],[1.25,tall],[1.53,short],[3.42,short],[3.64,tall],[5.04,tall],[5.28,short],[duration,short]]);
+for (const toggle of document.querySelectorAll('.toggle')) toggle.addEventListener('click',()=>{
+  toggle.setAttribute('aria-pressed',toggle.getAttribute('aria-pressed')==='false');
+  const count = document.querySelectorAll('.toggle[aria-pressed="true"]').length;
+  document.querySelector('.rules .change').textContent = `${count} on`;
+});
+wireNavigation();
+
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
