@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x318"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.6"><meta name="motherlode:still" content="2.9">
+<title>Abyssal wireframe swimmer</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #052448; --ink: #c5f4fc; --base: #032045; --low: #05203b; --high: #176179; --a: #7be0ee; --b: #37a2c5; --c: #7dcac5; --d: #177092; --e: #0d426b; --f: #0c5375; --g: #305e83; --h: #b7f4ff;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:318px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 318" role="img" aria-label="A pale wireframe swimmer undulates above a deep-blue seabed of fine receding lines." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1900516;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+const deep=gradient('water',[[0,'base'],[49,'bg'],[100,'e']],{x2:'6%',y2:'100%'});
+rect(0,0,W,H,deep);
+const bloom=soft('bloom',3.4);
+for(let i=0;i<27;i++){const y=range(36,273);rect(range(-50,W),y,range(10,45),range(3,17),css('d'),stage,{opacity:range(.012,.086),rx:4,filter:bloom});}
+function bed(x,z){return 231+z*104+11*Math.sin(x*.014-z*7)*(.41+.6*z)+6*Math.cos(x*.036+z*3);}
+for(let i=0;i<35;i++){
+ const z=i/34;path(shape(Array.from({length:90},(_,j)=>[j*W/89,bed(j*W/89,z)])),{fill:'none',stroke:css('b'),'stroke-opacity':.045+z*.07,'stroke-width':.65});
+}
+for(let i=-60;i<96;i++) {
+ const x=i*9;path(shape(Array.from({length:29},(_,j)=>{const z=j/28,sx=310+(x-310)*(.22+z*1.66);return [sx,bed(sx,z)];})),{fill:'none',stroke:css('b'),'stroke-opacity':.12,'stroke-width':.64});
+}
+function surface(u,v,t){
+ const s=u*2-1, phase=t*tau, skin=Math.sin(Math.PI*u)**.47;
+ const x=288+s*135+Math.sin(phase)*9;
+ const y=132+Math.sin(u*tau+phase)*21+Math.sin(phase*2+u*4)*9;
+ const a=v*tau+Math.sin(phase+u*tau)*.73;
+ const r=skin*(17+12*Math.cos(u*tau*2+phase*.36));
+ return [x+Math.sin(a)*r*.25,y+Math.cos(a)*r+Math.sin(a)*8*skin];
+}
+const mesh=group();
+for(const [kind,count,segments] of [['rings',48,27],['seams',23,48]]) {
+ for(let i=0;i<count;i++) {
+  const ratio=i/(kind==='rings'?count-1:count);const s=path('',{fill:'none',stroke:css(i%4?'a':'h'),'stroke-width':kind==='rings'?.65:.8,'stroke-opacity':kind==='rings'?.56:.55},mesh);
+  const outlines=[];
+  for(let k=0;k<=24;k++){const t=k/24;outlines.push(shape(Array.from({length:segments+1},(_,j)=>kind==='rings'?surface(ratio,j/segments,t):surface(j/segments,ratio,t))));}
+  tweenPath(s,outlines);
+ }
+}
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script></body></html>
