@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="526x948">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="5.5">
+  <meta name="motherlode:still" content="4">
+  <title>Scarlet broken heart</title>
+  <style>
+:root, [data-colorway="original"] { --background: #000000; --shade: #4c0014; --middle: #98051a; --bright: #f60016; --highlight: #ff8a8d; --leaf: #9d2933; --label: #f60016; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 526px; height: 948px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 526 948" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Scarlet broken heart</title>
+    <desc id="description">A red outline fills and a jagged seam travels through the center of the heart on black.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 5.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const artwork=element("g",{transform:"translate(0 194)"});
+    const outline="M270 414C246 386 191 347 190 303C188 248 249 234 270 276C296 232 355 249 354 299C353 342 299 386 270 414Z";
+    const base=element("path",{d:outline,fill:"var(--bright)",stroke:"var(--bright)","stroke-width":3,pathLength:1,"stroke-dasharray":"1 1"},artwork);
+    base.animate([{offset:0,strokeDashoffset:1,fillOpacity:0},{offset:.42,strokeDashoffset:0,fillOpacity:0},
+      {offset:.58,strokeDashoffset:0,fillOpacity:1},{offset:.98,strokeDashoffset:0,fillOpacity:1},
+      {offset:1,strokeDashoffset:1,fillOpacity:0}],{duration,iterations:Infinity});
+    const breakLine=line(artwork,"M271 267L259 290L274 304L262 322L277 334L263 348L275 360L265 372L273 384L268 410","background",6.5);
+    breakLine.setAttribute("pathLength",1);breakLine.setAttribute("stroke-dasharray","1 1");
+    breakLine.animate([{offset:0,strokeDashoffset:1},{offset:.5,strokeDashoffset:1},{offset:.70,strokeDashoffset:0},{offset:.98,strokeDashoffset:0},{offset:1,strokeDashoffset:1}],{duration,iterations:Infinity});
+    const question=element("text",{x:269,y:649,"text-anchor":"middle","font-family":"system-ui, sans-serif",
+      "font-size":15,"font-weight":650,fill:"var(--label)"});question.textContent="Why did you break my heart?";
+    question.animate([{offset:0,opacity:0},{offset:.73,opacity:0},{offset:.84,opacity:1},{offset:.985,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
