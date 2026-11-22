@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x538">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="40">
+  <meta name="motherlode:still" content="38.5">
+  <title>Plum aster mandala</title>
+  <style>
+:root, [data-colorway="original"] { --background: #ffffff; --shade: #313837; --middle: #9a2f84; --bright: #c29ece; --highlight: #182822; --leaf: #548736; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 538px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 538" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Plum aster mandala</title>
+    <desc id="description">A green sawtooth medallion grows into fine concentric bands and an outer chain of eight-pointed plum asters.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 40 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+
+    const cx=289,cy=268;
+    const polar=(r,a,x=cx,y=cy)=>[x+r*Math.cos(a),y+r*Math.sin(a)];
+    function paint(data,color,outline,start,end,width=1) {
+      const p=element("path",{d:data,fill:color?"var(--"+color+")":"none",stroke:"var(--"+outline+")",
+        "stroke-width":width,"stroke-linejoin":"round",pathLength:1,"stroke-dasharray":"1 1"});
+      p.animate([{offset:0,opacity:0,strokeDashoffset:1},{offset:start,opacity:0,strokeDashoffset:1},
+        {offset:Math.min(end,start+.005),opacity:1,strokeDashoffset:1},{offset:end,opacity:1,strokeDashoffset:0},
+        {offset:.99,opacity:1,strokeDashoffset:0},{offset:1,opacity:0,strokeDashoffset:1}],{duration,iterations:Infinity});
+    }
+    function star(x,y,r,pointCount,inner){
+      return pointsPath(Array.from({length:pointCount*2},(_,i)=>polar(i%2?r*inner:r,i*Math.PI/pointCount,x,y)),true);
+    }
+    function circle(r,x=cx,y=cy) { return "M"+(x-r)+" "+y+"a"+r+" "+r+" 0 1 0 "+2*r+" 0a"+r+" "+r+" 0 1 0 "+(-2*r)+" 0"; }
+    paint(star(cx,cy,89,40,.85),"leaf","shade",.004,.12);
+    paint(circle(70),"leaf","shade",.12,.16);
+    for(let i=0;i<14;i++){
+      const a=i*tau/14,p=polar(58,a);
+      const pts=[[-9,-5],[10,-5],[10,5],[-9,5]].map(([x,y])=>[p[0]-x*Math.sin(a)+y*Math.cos(a),p[1]+x*Math.cos(a)+y*Math.sin(a)]);
+      paint(pointsPath(pts,true),"middle","middle",.17+i*.005,.185+i*.005);
+    }
+    for(let k=0;k<5;k++)paint(circle([91,94,119,122,138][k]),null,"shade",.25+k*.014,.27+k*.014,.93);
+    for(let i=0;i<42;i++){
+      const a=i*tau/42;paint(pointsPath([polar(97,a),polar(118,a+.012)]),null,"shade",.33+i*.002,.34+i*.002,.84);
+    }
+    for(let i=0;i<26;i++){
+      const a=i*tau/26,p=polar(145,a);
+      paint(circle(4.2,p[0],p[1]),null,"shade",.42+i*.0023,.43+i*.0023,.78);
+      const pts=[polar(145,a-.12),polar(175,a),polar(145,a+.12)];
+      paint(pointsPath(pts,true),null,"shade",.50+i*.0033,.51+i*.0033,.95);
+    }
+    paint(circle(177),null,"shade",.595,.62,.82);paint(circle(188),null,"shade",.62,.646,.90);
+    for(let i=0;i<24;i++){
+      const a=-Math.PI+i*tau/24,p=polar(206,a);
+      paint(star(p[0],p[1],29,8,.59),"middle","shade",.65+i*.013,.66+i*.013,1.08);
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
