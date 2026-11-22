@@ -5,10 +5,10 @@ Roadmaps.
 
 Part of [Data](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="four-column-learning-path/"><img src="four-column-learning-path/preview.png" width="260" alt="Four-column learning path"></a><br><a href="four-column-learning-path/"><b>Four-column learning path</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="five-column-career-trail/"><img src="five-column-career-trail/preview.png" width="260" alt="Five-column career trail"></a><br><a href="five-column-career-trail/"><b>Five-column career trail</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="four-column-learning-path/"><img src="four-column-learning-path/preview.png" width="260" alt="Four-column learning path"></a><br><a href="four-column-learning-path/"><b>Four-column learning path</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
