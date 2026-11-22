@@ -43,7 +43,7 @@ Building blocks: components, kits and design systems.
 | [Tags](tags/) | Tags and chips |
 | [Avatars](avatars/) | Avatars and avatar groups |
 | [Progress bars](progress-bars/) | Progress bars and rings |
-| [Loaders](loaders/) | Spinners and loading indicators |
+| [Loaders](loaders/) | Spinners and loading indicators · **1 design** |
 | [Skeletons](skeletons/) | Skeleton loading screens |
 | [Carousels](carousels/) | Carousels |
 | [Galleries](galleries/) | Image galleries and lightboxes |
