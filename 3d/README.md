@@ -14,7 +14,7 @@
 | [Abstract](abstract/) | Abstract 3D art · **2 designs** |
 | [3D text](3d-text/) | 3D lettering and type · **1 design** |
 | [Clay](clay/) | Clay-style renders |
-| [Low-poly](low-poly/) | Low-poly art |
+| [Low-poly](low-poly/) | Low-poly art · **1 design** |
 | [Voxel](voxel/) | Voxel art |
 | [Sculpts](sculpts/) | Digital sculptures |
 | [Materials](materials/) | Materials and shaders |

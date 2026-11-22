@@ -3,4 +3,12 @@
 
 Low-poly art.
 
-Part of [3D](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [3D](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="block-axle-turntable/"><img src="block-axle-turntable/preview.gif" width="260" alt="Block axle turntable"></a><br><a href="block-axle-turntable/"><b>Block axle turntable</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
