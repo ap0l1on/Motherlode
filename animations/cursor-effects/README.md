@@ -5,10 +5,10 @@ Cursor trails and effects.
 
 Part of [Animations](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="cyan-click-sign-in/"><img src="cyan-click-sign-in/preview.gif" width="260" alt="Cyan click sign-in"></a><br><a href="cyan-click-sign-in/"><b>Cyan click sign-in</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="cyan-click-sign-in/"><img src="cyan-click-sign-in/preview.gif" width="260" alt="Cyan click sign-in"></a><br><a href="cyan-click-sign-in/"><b>Cyan click sign-in</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="silk-trail-spider/"><img src="silk-trail-spider/preview.gif" width="260" alt="Silk trail spider"></a><br><a href="silk-trail-spider/"><b>Silk trail spider</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

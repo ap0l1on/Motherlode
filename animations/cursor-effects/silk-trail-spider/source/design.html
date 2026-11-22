@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x401">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="15.5">
+  <meta name="motherlode:still" content="13">
+  <title>Silk trail spider</title>
+  <style>
+:root, [data-colorway="original"] { --background: #050a18; --shade: #171d31; --middle: #963455; --bright: #7991ad; --highlight: #d4edff; --leaf: #e7617d; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 401px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 401" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Silk trail spider</title>
+    <desc id="description">A tiny red spider traverses a navy field, leaving round silk webs marked by icy pinpoints.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 15.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{});
+    const pool=radial(defs,"night",[[0,"shade",.76],[.67,"shade",.32],[1,"background",0]]);
+    element("rect",{width:576,height:401,fill:pool});
+    const coords=[[145,144,137],[289,339,145],[515,132,138],[326,55,139]];
+    const webLayer=element("g",{});
+    function web(x,y,radius,layer) {
+      const g=element("g",{transform:"translate("+x+" "+y+")"},layer),angles=[];
+      for(let j=0;j<12;j++)angles.push(j*tau/12+(random()-.5)*.09);
+      const polar=(r,a)=>[r*Math.cos(a),r*Math.sin(a)];
+      for(const a of angles)line(g,pointsPath([[0,0],polar(radius*(1.09+random()*.15),a)]),"bright",.74,.72);
+      for(let i=1;i<=8;i++){
+        const r=radius*(i/8)**1.18;
+        let d="M"+polar(r,angles[0]).join(" ");
+        for(let k=0;k<12;k++){
+          const a=angles[k],b=k===11?angles[0]+tau:angles[k+1];
+          d+="Q"+polar(r*.90,(a+b)*.5).join(" ")+" "+polar(r,b).join(" ");
+        }
+        line(g,d,"bright",i<3?.82:.77,.8);
+      }
+      element("circle",{r:3.4,fill:"var(--highlight)"},g);
+      return g;
+    }
+    coords.forEach(([x,y,r],i)=>{
+      const holder=element("g",{});web(x,y,r,holder);webLayer.append(holder);
+      const start=.08+i*.208;
+      holder.animate([{offset:0,opacity:0},{offset:start,opacity:0},{offset:start+.052,opacity:1},
+        {offset:i===0?.67:.97,opacity:1},{offset:i===0?.74:1,opacity:0}],{duration,iterations:Infinity});
+    });
+    const spider=element("g",{});
+    for(const sign of [-1,1])for(let j=0;j<4;j++) {
+      const y=-5+j*3, h=-15+j*8;
+      line(spider,pointsPath([[2*sign,y],[(7+j)*sign,h],[(14+j/2)*sign,h+7+j]]),"middle",1,.91);
+    }
+    element("ellipse",{cx:0,cy:3.6,rx:4.8,ry:6.7,fill:"var(--middle)"},spider);
+    element("circle",{cx:0,cy:-3,r:3.5,fill:"var(--leaf)"},spider);
+    const journey=[[0,282,213],[.1,145,144],[.22,147,144],[.32,289,339],[.43,289,339],
+      [.55,515,132],[.66,515,132],[.75,326,55],[.86,326,55],[1,282,213]];
+    const travel=spider.animate(journey.map(([offset,x,y])=>({offset,transform:"translate("+x+"px,"+y+"px)"})),{duration,iterations:Infinity});
+    let placed=0;
+    drawing.addEventListener("pointermove",event=>{
+      if(location.search.includes("t="))return;
+      travel.cancel();spider.setAttribute("transform","translate("+event.offsetX+" "+event.offsetY+")");
+    });
+    drawing.addEventListener("pointerdown",event=>{
+      const mark=web(event.offsetX,event.offsetY,63+random()*20,webLayer);
+      mark.dataset.userWeb=String(++placed);const drawn=webLayer.querySelectorAll("[data-user-web]");
+      if(drawn.length>8)drawn[0].remove();
+    });
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
