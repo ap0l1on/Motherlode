@@ -26,7 +26,7 @@ Websites and web pages.
 | [Help centers](help-centers/) | Help centers and FAQs |
 | [Changelogs](changelogs/) | Changelogs and release notes |
 | [Auth pages](auth-pages/) | Sign-in, sign-up and password reset pages · **9 designs** |
-| [Error pages](error-pages/) | 404s, 500s and maintenance pages |
+| [Error pages](error-pages/) | 404s, 500s and maintenance pages · **1 design** |
 | [Coming soon](coming-soon/) | Coming soon pages |
 | [Waitlists](waitlists/) | Waitlist and early access pages |
 | [Link in bio](link-in-bio/) | Link-in-bio pages |
