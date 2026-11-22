@@ -29,7 +29,7 @@ Building blocks: components, kits and design systems.
 | [Tab bars](tab-bars/) | Bottom tab bars · **8 designs** |
 | [Sidebars](sidebars/) | Sidebars · **3 designs** |
 | [Breadcrumbs](breadcrumbs/) | Breadcrumbs |
-| [Menus](menus/) | Dropdown and context menus |
+| [Menus](menus/) | Dropdown and context menus · **1 design** |
 | [Command palettes](command-palettes/) | Command palettes and quick search |
 | [Pagination](pagination/) | Pagination |
 | [Steppers](steppers/) | Steppers and progress steps |
