@@ -3,4 +3,12 @@
 
 New Year designs.
 
-Part of [Seasonal](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Seasonal](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="ribbon-gift-reveal/"><img src="ribbon-gift-reveal/preview.gif" width="260" alt="Ribbon gift reveal"></a><br><a href="ribbon-gift-reveal/"><b>Ribbon gift reveal</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

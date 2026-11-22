@@ -5,7 +5,7 @@ Holidays, seasons and moments in the year.
 
 | Category | What goes in it |
 | --- | --- |
-| [New Year](new-year/) | New Year designs |
+| [New Year](new-year/) | New Year designs · **1 design** |
 | [Lunar New Year](lunar-new-year/) | Lunar New Year designs |
 | [Valentine's Day](valentines-day/) | Valentine's Day designs |
 | [Women's Day](womens-day/) | International Women's Day designs |
