@@ -3,4 +3,12 @@
 
 Web and product analytics.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="amber-glass-operations/"><img src="amber-glass-operations/preview.gif" width="260" alt="Amber glass operations"></a><br><a href="amber-glass-operations/"><b>Amber glass operations</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
