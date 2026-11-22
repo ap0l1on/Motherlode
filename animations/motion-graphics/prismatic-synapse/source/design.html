@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x398">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="10.5">
+  <meta name="motherlode:still" content="8.6">
+  <title>Prismatic synapse</title>
+  <style>
+:root, [data-colorway="original"] { --background: #02020b; --bone: #21303a; --edge: #485d66; --orchid: #f4a0de; --mint: #5df4c9; --lime: #9bff5b; --yellow: #f5ff66; --cyan: #22ddf5; --violet: #b783ff; --fire: #ff681a; --core: #f89ddc; --white: #fffff4; --blend: screen; }
+[data-colorway="light"] { --background: #f1ebe4; --bone: #a99f9b; --edge: #6e686e; --orchid: #a34171; --mint: #157f69; --lime: #4f8536; --yellow: #a18427; --cyan: #187995; --violet: #815394; --fire: #b74924; --core: #d983a0; --white: #fff8e2; --blend: normal; }
+[data-colorway="dark"] { --background: #090b15; --bone: #27323c; --edge: #475566; --orchid: #d582ca; --mint: #71d9b2; --lime: #a7d873; --yellow: #efe49a; --cyan: #59c6dc; --violet: #a98ce1; --fire: #e37a4b; --core: #ecadc9; --white: #fff9eb; --blend: screen; }
+[data-colorway="mono"] { --background: #080808; --bone: #292929; --edge: #525252; --orchid: #b3b3b3; --mint: #c9c9c9; --lime: #9c9c9c; --yellow: #d8d8d8; --cyan: #adadad; --violet: #878787; --fire: #bcbcbc; --core: #d1d1d1; --white: #ffffff; --blend: screen; }
+[data-colorway="ocean"] { --background: #061521; --bone: #203f50; --edge: #416373; --orchid: #87adde; --mint: #56eccf; --lime: #afe3a6; --yellow: #d8ebbd; --cyan: #47dbea; --violet: #818ecd; --fire: #e9aa71; --core: #b4d9fa; --white: #eeffff; --blend: screen; }
+[data-colorway="matcha"] { --background: #101b13; --bone: #304337; --edge: #546652; --orchid: #bca68b; --mint: #9de0ae; --lime: #a6db77; --yellow: #e5e5a5; --cyan: #82cbb5; --violet: #ac9dc0; --fire: #d3a768; --core: #e0d7b0; --white: #feffe5; --blend: screen; }
+[data-colorway="sunset"] { --background: #1e1019; --bone: #49303b; --edge: #72515c; --orchid: #ed9db7; --mint: #fed2a6; --lime: #f4b477; --yellow: #ffde90; --cyan: #d598c0; --violet: #d58cc0; --fire: #ff8e4c; --core: #f8abb8; --white: #fff3d3; --blend: screen; }
+[data-colorway="iris"] { --background: #141124; --bone: #302b4b; --edge: #58526d; --orchid: #dda1e5; --mint: #a9bae9; --lime: #beafd9; --yellow: #f2d5e9; --cyan: #91bdf7; --violet: #a57ee1; --fire: #ec97b8; --core: #e3b4f2; --white: #fff2ff; --blend: screen; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 398px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 398" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Prismatic synapse</title>
+    <desc id="description">An electric signal enters from the left and lights up a branching neuron. White, mint and violet pulses race out from the center.</desc>
+  </svg>
+  <script>
+(() => {
+
+const drawing = document.querySelector('svg');
+const ns = 'http://www.w3.org/2000/svg';
+const stageWidth = drawing.viewBox.baseVal.width, stageHeight = drawing.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content) * 1000;
+const tau = Math.PI * 2;
+function make(tag, attrs = {}, parent = drawing) {
+  const node = document.createElementNS(ns, tag);
+  for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+  parent.append(node);
+  return node;
+}
+function variable(name) { return 'var(--' + name + ')'; }
+function randomStream(seed) {
+  return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+}
+function pointString(point) { return point[0].toFixed(2) + ',' + point[1].toFixed(2); }
+function curve(points) {
+  return 'M' + pointString(points[0]) + points.slice(1).map((p,i) => {
+    const a = points[Math.max(0,i-1)], b = points[i], c = p, d = points[Math.min(points.length-1,i+2)];
+    return 'C' + pointString([b[0]+(c[0]-a[0])/6,b[1]+(c[1]-a[1])/6]) + ' ' +
+      pointString([c[0]-(d[0]-b[0])/6,c[1]-(d[1]-b[1])/6]) + ' ' + pointString(c);
+  }).join('');
+}
+function animate(node, keys, time = duration) {
+  return node.animate(keys, {duration: time, iterations: Infinity, easing: 'linear'});
+}
+function radial(parent, id, stops) {
+  const gradient = make('radialGradient',{id},parent);
+  stops.forEach(([offset,tone,opacity]) => make('stop',{offset,'stop-color':variable(tone),'stop-opacity':opacity},gradient));
+  return 'url(#'+id+')';
+}
+function mousePoint(event) {
+  const rect=drawing.getBoundingClientRect();
+  return [(event.clientX-rect.left)*stageWidth/rect.width,(event.clientY-rect.top)*stageHeight/rect.height];
+}
+
+const defs=make('defs'),soma=[331,225];
+const scene=make('g'),camera=make('g',{},scene);
+const random=randomStream(314);
+function gaussian(id,blur) {
+  const f=make('filter',{id,x:'-100%',y:'-100%',width:'300%',height:'300%','color-interpolation-filters':'sRGB'},defs);
+  make('feGaussianBlur',{stdDeviation:blur},f);return 'url(#'+id+')';
+}
+const wide=gaussian('signal-bloom',13),tight=gaussian('signal-afterglow',4);
+function gradient(id,first,last,stops) {
+  const g=make('linearGradient',{id,gradientUnits:'userSpaceOnUse',x1:first[0],y1:first[1],x2:last[0],y2:last[1]},defs);
+  stops.forEach(([off,color,opacity])=>make('stop',{offset:off,'stop-color':variable(color),'stop-opacity':opacity??1},g));return 'url(#'+id+')';
+}
+function sample(points,j) {
+  const u=Math.min(points.length-1.0001,j*(points.length-1)),i=Math.floor(u),t=u-i;
+  const a=points[Math.max(i-1,0)],b=points[i],c=points[i+1],d=points[Math.min(i+2,points.length-1)];
+  return [0,1,2].map(k=>.5*(2*b[k]+(c[k]-a[k])*t+(2*a[k]-5*b[k]+4*c[k]-d[k])*t*t+(-a[k]+3*b[k]-3*c[k]+d[k])*t*t*t));
+}
+function outline(points) {
+  const left=[],right=[];
+  for(let i=0;i<48;i++){
+    const p=sample(points,i/47),a=sample(points,Math.max(0,(i-.22)/47)),b=sample(points,Math.min(1,(i+.22)/47));
+    const dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;
+    left.push([p[0]+nx*p[2],p[1]+ny*p[2]]);right.push([p[0]-nx*p[2],p[1]-ny*p[2]]);
+  }
+  return 'M'+left.concat(right.reverse()).map(pointString).join('L')+'Z';
+}
+const skeleton=make('g',{},camera),colored=make('g',{id:'lit-arbor'},defs);
+const tones=[['orchid','orchid','mint','yellow'],['orchid','mint','cyan','lime'],['yellow','lime','mint','white'],['orchid','orchid','violet','mint'],['white','yellow','lime','cyan']];
+function nerve(p,tone,minor=false){
+  const id='branch-'+colored.children.length,colors=tones[tone],f=gradient(id,p[0],p.at(-1),[[0,colors[0]],[.34,colors[1]],[.62,colors[2]],[.85,colors[3]],[1,colors[0],.71]]);
+  const shape=outline(p);
+  make('path',{d:shape,fill:variable(minor?'bone':'edge'),opacity:minor?.47:.33},skeleton);
+  make('path',{d:curve(p),fill:'none',stroke:variable('edge'),'stroke-width':minor?.75:1.22,opacity:.69},skeleton);
+  make('path',{d:shape,fill:f},colored);
+  if(!minor){
+    const glints=p.slice(1).map(([x,y,w])=>[x-w*.28,y-w*.19]);
+    make('path',{d:curve(glints),fill:'none',stroke:f,'stroke-width':1.45,'stroke-linecap':'round',opacity:.78},colored);
+  }
+}
+// Width is the local half-diameter. Each taper follows its own curved branch.
+[
+ [0,[[318,207,15],[275,177,11],[228,131,6],[201,88,4],[186,45,3],[192,-8,4],[193,-43,2.2],[180,-91,1.2],[176,-130,.3]]],
+ [2,[[314,204,13],[306,166,9],[305,126,5],[300,78,4],[299,38,4],[294,-20,5],[290,-57,2.4],[282,-94,.8],[267,-139,.35]]],
+ [1,[[335,203,12],[343,164,8],[349,123,4],[346,79,3],[349,34,3],[358,-10,3],[376,-53,1.6],[404,-87,.4]]],
+ [1,[[338,208,16],[361,168,11],[385,127,8],[410,96,6],[457,49,4],[501,24,3],[551,-9,1.5],[591,-31,.8],[645,-67,.2]]],
+ [3,[[337,210,14],[357,177,9],[372,153,6],[391,144,4],[418,137,2],[433,131,.5]]],
+ [0,[[348,230,13],[385,242,7],[414,241,5],[442,241,5],[474,248,5],[510,263,3.5],[555,282,1.4],[582,278,1.3],[639,304,1.2],[698,325,.7],[754,341,.3]]],
+ [0,[[343,237,10],[368,252,7],[411,263,6],[443,274,4],[473,280,4],[511,299,3],[541,324,1.4],[563,360,.45]]],
+ [3,[[341,242,11],[370,269,8],[381,292,7],[387,320,5],[390,351,4],[396,380,4],[402,413,3],[414,457,1.5],[449,507,.5],[461,522,.2]]],
+ [3,[[324,247,7],[323,269,4],[310,295,3],[312,318,2],[304,343,.7],[299,363,.28]]],
+ [3,[[319,243,8],[296,263,5],[277,275,3],[261,294,2],[245,320,1.2],[251,349,.8],[264,370,.3]]],
+ [4,[[313,237,9],[280,249,6],[251,251,5],[221,263,3.5],[195,281,2.4],[175,291,1.6],[152,312,.45]]],
+ [3,[[312,221,7],[282,208,5],[249,199,3],[218,190,2],[193,185,1.1],[167,169,.4]]],
+ [4,[[301,202,10],[271,184,7],[245,181,4],[223,174,2],[198,155,1],[179,147,.3]]],
+ [1,[[308,199,7],[296,164,5],[282,145,3],[272,130,2],[256,120,1.1],[243,107,.3]]]
+].forEach(([tone,p])=>nerve(p,tone));
+[
+ [0,[[205,92,3],[198,73,2],[188,68,3],[188,76,2],[199,71,.8]]],
+ [1,[[227,132,3.4],[216,105,2],[220,78,.7],[242,61,.3]]],
+ [2,[[303,120,3.3],[295,93,2],[278,65,1],[273,29,.4]]],
+ [1,[[348,100,3],[354,76,2.2],[371,53,1.1],[384,48,.3]]],
+ [0,[[373,146,4],[395,122,3],[409,106,2],[440,100,1.4],[470,98,.5]]],
+ [4,[[402,103,3.2],[407,80,2],[419,52,.6],[429,38,.2]]],
+ [1,[[439,241,4.6],[449,219,3.4],[460,202,2.4],[489,183,1.3],[521,165,.65],[542,152,.15]]],
+ [1,[[449,274,4],[470,267,2.5],[490,267,1.4],[510,254,.4]]],
+ [2,[[480,248,3],[502,225,2],[522,201,1.1],[532,184,.3]]],
+ [4,[[503,292,3.6],[533,292,2.6],[552,304,1.3],[573,325,.4]]],
+ [1,[[390,353,3.7],[398,367,3],[418,380,2],[446,389,.5]]],
+ [3,[[388,322,3.4],[399,321,3],[404,323,3],[396,325,1],[376,333,.6]]],
+ [2,[[322,270,3.6],[335,285,2.5],[341,301,1.6],[351,317,.9],[368,323,.2]]],
+ [1,[[251,251,4.2],[240,261,3.1],[223,256,2],[212,258,.6]]],
+ [1,[[217,266,2.7],[202,269,1.4],[185,282,.5]]],
+ [3,[[201,155,2],[178,141,1.2],[155,136,.7],[142,125,.4],[118,118,.2]]],
+ [0,[[274,277,3],[270,304,1.7],[272,335,1],[277,371,.8],[294,391,.25]]],
+ [1,[[378,148,2.3],[377,131,1.1],[381,116,.3]]]
+].forEach(([tone,p])=>nerve(p,tone,true));
+const leadShape='M-260 192 C-63 213 105 215 231 202 Q277 196 315 189 L321 222 Q227 222 146 247 C26 283 -107 327 -260 367Z';
+const darkLead=make('path',{d:leadShape,fill:gradient('lead-base',[-160,210],[321,207],[[0,'bone',.46],[.55,'edge',.75],[.95,'bone',.69],[1,'edge',.78]])},skeleton);
+const cell='M301 183C315 176 338 181 348 194C364 200 373 216 369 233C368 253 354 265 341 261C328 269 311 260 305 249C293 248 286 230 291 218C287 204 293 191 301 183Z';
+make('path',{d:cell,fill:variable('bone'),stroke:variable('edge'),'stroke-width':1.3},skeleton);
+for(let i=0;i<41;i++){
+ const a=random()*tau,rad=5+random()*31,x=soma[0]+Math.cos(a)*rad,y=soma[1]+Math.sin(a)*rad*.92;
+ make('path',{d:curve([[x-3,y+5],[x+1,y-2],[x+3,y-5]]),stroke:variable('edge'),'stroke-width':.55+random()*.9,fill:'none',opacity:.45},skeleton);
+}
+const colorsGroup=make('g',{style:'mix-blend-mode:var(--blend)'},camera);
+const mask=make('mask',{id:'travel-mask',maskUnits:'userSpaceOnUse',x:-300,y:-180,width:1200,height:790},defs);
+const spreading=make('circle',{cx:soma[0],cy:soma[1],r:0,fill:variable('white')},mask);
+const lit=make('g',{mask:'url(#travel-mask)'},colorsGroup);
+const glow0=make('use',{href:'#lit-arbor',filter:wide,opacity:.96},lit);
+make('use',{href:'#lit-arbor',filter:tight,opacity:1},lit);
+make('use',{href:'#lit-arbor'},lit);
+const leadColor=gradient('lead-dye',[-61,246],[315,199],[[0,'yellow',.58],[.26,'lime',.77],[.57,'cyan',.92],[.77,'mint'],[.88,'orchid'],[1,'white']]);
+const paintedLead=make('path',{d:leadShape,fill:leadColor},lit);
+const slenderLead='M-260 212 C-63 215 105 213 231 209 Q277 207 315 204 L321 213 Q227 216 146 218 C26 220 -107 224 -260 227Z';
+const halfLead='M-260 211 C-63 216 105 213 231 205 Q277 202 315 198 L321 216 Q227 220 146 225 C26 234 -107 246 -260 258Z';
+for(const node of [darkLead,paintedLead])animate(node,[[0,slenderLead],[.47,slenderLead],[.57,halfLead],[.72,halfLead],[.817,leadShape],[.955,leadShape],[1,slenderLead]].map(([offset,shape])=>({offset,d:'path("'+shape+'")'})));
+
+const core=make('g',{},colorsGroup),cellGlow=radial(defs,'soma-halo',[[0,'white',1],[.24,'white',1],[.42,'yellow',.88],[.62,'lime',.32],[1,'mint',0]]);
+make('ellipse',{cx:320,cy:218,rx:107,ry:94,fill:cellGlow},core);
+make('path',{d:cell,fill:variable('white'),filter:tight},core);
+make('path',{d:cell,fill:radial(defs,'cell-shell',[[0,'core',1],[.48,'core',.96],[.82,'white',1],[1,'yellow',.95]])},core);
+const sparks=make('g',{},lit);
+for(const [x,y,rx,tone] of [[221,146,24,'yellow'],[263,181,28,'lime'],[304,109,30,'lime'],[353,71,14,'cyan'],[395,111,24,'mint'],[449,79,16,'cyan'],[473,50,13,'lime'],[470,236,27,'cyan'],[510,267,34,'lime'],[540,302,25,'yellow'],[396,367,21,'mint'],[348,309,12,'cyan'],[201,270,12,'lime'],[125,122,7,'mint'],[364,158,19,'orchid'],[304,266,21,'yellow']]) {
+ const halo=radial(defs,'scatter-'+x+'-'+y,[[0,'white',.9],[.08,tone,.95],[.37,tone,.39],[1,tone,0]]);
+ make('ellipse',{cx:x,cy:y,rx:rx*1.42,ry:rx,fill:halo},sparks);
+}
+// White-hot sections taper into coloured halos instead of lighting every point of a limb uniformly.
+const burns=[
+  [222,144,51,20,51,'yellow'],[266,176,58,24,34,'lime'],[300,121,60,18,-90,'lime'],
+  [352,77,38,12,-78,'mint'],[397,109,57,18,-53,'mint'],[434,63,59,13,-34,'lime'],
+  [456,225,55,13,-48,'mint'],[480,249,56,21,11,'cyan'],[510,270,61,21,26,'lime'],
+  [544,307,51,12,52,'yellow'],[394,375,43,13,77,'mint'],[341,303,25,8,61,'cyan'],
+  [210,274,28,8,-30,'mint'],[270,251,29,18,-15,'yellow'],[139,216,26,12,2,'mint']];
+for(const [x,y,rx,ry,angle,color] of burns){
+  const g=make('g',{transform:'translate('+x+' '+y+') rotate('+angle+')'},sparks);
+  const dye=radial(defs,'hot-'+x+'-'+y,[[0,'white',.90],[.07,color,1],[.30,color,.71],[.64,color,.20],[1,color,0]]);
+  make('ellipse',{rx,ry,fill:dye,opacity:.90},g);
+}
+for(const [x,y,rx,ry,tone] of [[301,143,90,122,'lime'],[435,91,91,60,'mint'],[515,277,84,82,'yellow'],[232,189,77,64,'lime']]){
+  make('ellipse',{cx:x,cy:y,rx,ry,fill:radial(defs,'aura-'+x,[[0,tone,.42],[.39,tone,.23],[1,tone,0]])},sparks);
+}
+const whiteEdge=gradient('white-sheath',[288,194],[348,243],[[0,'white'],[.35,'white'],[.65,'orchid',.62],[1,'orchid',0]]);
+make('path',{d:'M287 207Q291 188 310 180Q320 177 328 185Q311 190 311 209Q306 231 316 250Q326 261 338 257Q330 274 311 264Q294 255 290 240Q279 225 287 207Z',fill:whiteEdge,filter:tight},core);
+make('ellipse',{cx:327,cy:230,rx:28,ry:32,fill:radial(defs,'pink-interior',[[0,'orchid',.72],[.43,'core',.55],[1,'core',0]])},core);
+const moved=[];
+for(const [p,tone] of [
+ [[[252,169],[284,193],[313,205]],'lime'],[[[302,138],[302,89],[298,47]],'yellow'],
+ [[[369,150],[394,119],[418,89],[449,66]],'mint'],[[[455,244],[486,251],[522,268]],'cyan'],
+ [[[486,281],[515,297],[538,324]],'yellow'],[[[388,340],[393,365],[402,393]],'cyan']]){
+  const line=make('path',{d:curve(p),fill:'none',stroke:variable(tone),'stroke-width':4.2,'stroke-linecap':'round','stroke-dasharray':'26 99',filter:tight},sparks);
+  moved.push(line);
+}
+moved.forEach((trace,i)=>animate(trace,[{strokeDashoffset:(-i*13)+'px'},{strokeDashoffset:(-i*13-125)+'px'}],duration/5));
+const wave=[[0,0,0],[.078,0,0],[.115,.1,3],[.14,.96,33],[.19,.48,58],[.26,.9,159],[.34,1,295],[.46,.95,480],[.51,0,0],[.64,0,0],[.662,.12,12],[.687,1,42],[.74,.66,108],[.795,1,300],[.84,.99,485],[.938,1,650],[.965,.87,680],[1,0,0]];
+animate(spreading,wave.map(([offset,o,r])=>({offset,r:r+'px'})));
+animate(colorsGroup,wave.map(([offset,o])=>({offset,opacity:o})));
+animate(core,wave.map(([offset,o,r])=>({offset,opacity:o<.1?0:Math.min(1,o*(r<70?1.35:1)),transform:'scale('+(.69+.32*o)+')'})));
+core.style.transformOrigin='331px 225px';
+const ignition=make('g',{style:'mix-blend-mode:var(--blend)'},camera);
+const ignitionDye=radial(defs,'capacitive-flash',[[0,'white',1],[.27,'white',1],[.43,'orchid',.96],[.57,'violet',.67],[.8,'cyan',.15],[1,'cyan',0]]);
+make('ellipse',{cx:327,cy:219,rx:83,ry:88,fill:ignitionDye},ignition);
+make('ellipse',{cx:325,cy:219,rx:40,ry:45,fill:variable('white'),filter:tight},ignition);
+animate(ignition,[[0,0],[.103,0],[.126,1],[.145,.96],[.185,0],[.648,0],[.667,1],[.680,1],[.715,0],[1,0]].map(([offset,opacity])=>({offset,opacity})));
+const leadPulse=make('g',{style:'mix-blend-mode:var(--blend)'},camera);
+const goldLight=radial(defs,'incoming-heat',[[0,'white',1],[.13,'yellow',1],[.32,'fire',.94],[.58,'fire',.35],[1,'fire',0]]);
+make('ellipse',{rx:155,ry:62,fill:goldLight},leadPulse);make('path',{d:'M-85 0 Q-22 -5 74 -2L81 1Q0 7-85 3Z',fill:variable('fire'),filter:tight},leadPulse);make('path',{d:'M-71 0L78 -1L83 2L-70 4Z',fill:variable('yellow')},leadPulse);
+const input=[[0,-119,0],[.037,78,1],[.069,191,1],[.102,279,.94],[.127,325,0],[.545,-122,0],[.579,46,1],[.618,202,1],[.654,306,.96],[.674,328,0],[1,328,0]];
+animate(leadPulse,input.map(([offset,x,o])=>({offset,opacity:o,transform:'translate('+x+'px,'+(235-.075*x)+'px) rotate(-2.6deg) scale(1.55,1.14)'})));
+camera.style.transformOrigin='331px 225px';
+animate(camera,[[0,.61],[.465,.62],[.497,.77],[.6,.82],[.72,.87],[.82,1.02],[.9,1.20],[.965,1.46],[1,.61]].map(([offset,z])=>({offset,transform:'scale('+z+')'})));
+drawing.addEventListener('pointermove',e=>{const p=mousePoint(e);scene.setAttribute('transform','translate('+((p[0]/stageWidth-.5)*6)+' '+((p[1]/stageHeight-.5)*5)+')');});
+drawing.addEventListener('pointerleave',()=>scene.removeAttribute('transform'));
+drawing.addEventListener('pointerdown',()=>{
+ const surge=make('use',{href:'#lit-arbor',filter:tight,style:'mix-blend-mode:var(--blend)'},camera);
+ const a=surge.animate([{opacity:0},{offset:.22,opacity:1},{opacity:0}],{duration:780,easing:'ease-out'});a.onfinish=()=>surge.remove();
+});
+
+})();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
