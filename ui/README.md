@@ -19,7 +19,7 @@ Building blocks: components, kits and design systems.
 | [File uploads](file-uploads/) | File upload areas |
 | [Search bars](search-bars/) | Search bars |
 | [Forms](forms/) | Full form layouts |
-| [Cards](cards/) | Cards and tiles |
+| [Cards](cards/) | Cards and tiles · **1 design** |
 | [Lists](lists/) | Lists and list items |
 | [Tables](tables/) | Data tables |
 | [Accordions](accordions/) | Accordions |

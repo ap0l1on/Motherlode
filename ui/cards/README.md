@@ -3,4 +3,12 @@
 
 Cards and tiles.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="harbor-discovery-globe/"><img src="harbor-discovery-globe/preview.gif" width="260" alt="Harbor discovery globe"></a><br><a href="harbor-discovery-globe/"><b>Harbor discovery globe</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

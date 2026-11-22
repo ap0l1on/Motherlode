@@ -1,0 +1,107 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x480">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.5">
+<meta name="motherlode:still" content="5.03">
+<title>Harbor discovery globe</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #FCFCFC; --sheet: #F6F6F4; --ink: #F4FAFC; --muted: #DCEBF2;
+  --blue: #007AAC; --badge: #62D1F0; --badge-ink: #113849; --water: #2A637A;
+  --deep: #071E34; --sky: #BFCFDC; --cloud: #F0ECE8; --stone: #777B76;
+  --stone-hi: #B4AAAA; --leaves: #425749; --land: #88965B; --coast: #296365;
+  --glaze: #B9DEEC; --shadow: #263844; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F6F7F7; --sheet: #FFFFFF; --ink: #F8FEFF; --muted: #E8F4F7;
+  --blue: #346E8A; --badge: #BAE4E9; --badge-ink: #193741; --water: #50929B;
+  --deep: #173647; --sky: #CBDFE8; --cloud: #F9F2EE; --stone: #898B83;
+  --stone-hi: #D1C6B1; --leaves: #627562; --land: #939D72; --coast: #437F76;
+  --glaze: #D4F5FA; --shadow: #647780; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #151C25; --sheet: #35424B; --ink: #FAF7ED; --muted: #D7E6E3;
+  --blue: #83C5CF; --badge: #8AC6C2; --badge-ink: #193D43; --water: #285568;
+  --deep: #102632; --sky: #667D93; --cloud: #A5ABB2; --stone: #6E6D6B;
+  --stone-hi: #A9A39A; --leaves: #3F5748; --land: #809461; --coast: #397575;
+  --glaze: #B1E2EB; --shadow: #0C1119; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #F4F4F4; --sheet: #FAFAFA; --ink: #FFFFFF; --muted: #DDDDDD;
+  --blue: #414141; --badge: #CBCBCB; --badge-ink: #222222; --water: #777777;
+  --deep: #252525; --sky: #CDCDCD; --cloud: #EAEAEA; --stone: #767676;
+  --stone-hi: #B5B5B5; --leaves: #545454; --land: #898989; --coast: #626262;
+  --glaze: #DCDCDC; --shadow: #4A4A4A; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="sunset"] {
+  --bg: #FFF6EA; --sheet: #FFF6EA; --ink: #FFF8F1; --muted: #F7E7D7;
+  --blue: #9A4B39; --badge: #F6CE98; --badge-ink: #532F2A; --water: #8A7777;
+  --deep: #3D2B3C; --sky: #EAC0AB; --cloud: #FBDBC2; --stone: #967969;
+  --stone-hi: #CA9E7F; --leaves: #626652; --land: #B18D65; --coast: #947265;
+  --glaze: #FFD6B7; --shadow: #6A514E; --hi: #FFF9EA; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #ECFAF6; --sheet: #F8FFFC; --ink: #EEFFFB; --muted: #DEF4F1;
+  --blue: #166D70; --badge: #86E2C9; --badge-ink: #153F3B; --water: #387E84;
+  --deep: #14363F; --sky: #A9D9DD; --cloud: #E8F5EA; --stone: #79918A;
+  --stone-hi: #ABC6AF; --leaves: #537659; --land: #8BA96B; --coast: #417F78;
+  --glaze: #BAF1DE; --shadow: #355F62; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F9F4FC; --sheet: #FFF9FF; --ink: #FDF6FF; --muted: #F2E3F4;
+  --blue: #765186; --badge: #DFACE8; --badge-ink: #3E2D4A; --water: #686F92;
+  --deep: #342940; --sky: #CCBDDC; --cloud: #EFF0EF; --stone: #7D7485;
+  --stone-hi: #B2A4BA; --leaves: #697367; --land: #9CA783; --coast: #636F80;
+  --glaze: #DCD4EF; --shadow: #584D63; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="sand"] {
+  --bg: #FAF7EE; --sheet: #FFFBEB; --ink: #FFF9EB; --muted: #F6EACD;
+  --blue: #73603C; --badge: #E0C987; --badge-ink: #443821; --water: #777F6C;
+  --deep: #34382D; --sky: #C8CEBA; --cloud: #F0E8D1; --stone: #898675;
+  --stone-hi: #C3AD91; --leaves: #6D7652; --land: #9B9F64; --coast: #697E65;
+  --glaze: #D6D8AE; --shadow: #676252; --hi: #FFFFF2; --clear: transparent;
+}
+* {box-sizing:border-box;}html,body {margin:0;overflow:hidden;width:864px;height:480px;}
+main {position:relative;width:576px;height:320px;overflow:hidden;transform:scale(1.5);transform-origin:top left;background:var(--bg);font-family:Inter,sans-serif;}
+button {cursor:pointer;font:inherit;}button:focus-visible {outline:2px solid var(--blue);outline-offset:4px;}
+.discover {position:absolute;left:236px;top:110px;width:104px;height:104px;border-radius:50%;overflow:hidden;border:0;background:var(--blue);box-shadow:0 5px 12px color-mix(in srgb,var(--blue) 28%,var(--clear));color:var(--hi);padding:0;animation:circle 5.5s ease-in-out infinite;}.discover strong {z-index:1;position:relative;letter-spacing:1.4px;font-size:10px;}.discover svg {position:absolute;inset:0;width:100%;height:100%;animation:earth 5.5s linear infinite;}.lands {animation:rotate 5.5s linear infinite;}
+@keyframes circle {0%,81%{opacity:1;transform:scale(1)}87%{opacity:.8;transform:scale(1)}92%,98%{opacity:0;transform:scale(.65)}100%{opacity:1;transform:scale(1)}}
+@keyframes earth {0%,28%,100%{opacity:0}40%,91%{opacity:1}}@keyframes rotate {0%,30%{transform:translateX(0)}87%,100%{transform:translateX(-155px)}}
+.discover strong {animation:label 5.5s linear infinite;}@keyframes label {0%,24%,100%{opacity:1}34%,95%{opacity:0}}
+.shape {position:absolute;top:26px;left:175px;width:226px;height:274px;border:7px solid var(--sheet);border-radius:10px;box-shadow:0 9px 21px color-mix(in srgb,var(--shadow) 40%,var(--clear));overflow:hidden;color:var(--ink);background:var(--deep);animation:card 5.5s ease-out infinite;transform-origin:center 59%;}
+@keyframes card {0%,75%,100%{opacity:0;transform:scale(.78);visibility:hidden}78%{opacity:0;transform:scale(.78);visibility:visible}90%,98%{opacity:1;transform:scale(1);visibility:visible}}
+.picture,.shade {position:absolute;inset:0;width:100%;height:100%;}.shade {background:linear-gradient(180deg,var(--clear) 37%,color-mix(in srgb,var(--deep) 25%,var(--clear)) 50%,var(--deep) 96%);}
+.text {position:absolute;left:18px;right:16px;bottom:15px;}.badge {display:inline-block;padding:3px 7px 2px;border-radius:7px;background:var(--badge);color:var(--badge-ink);font-size:6px;font-weight:800;letter-spacing:.75px;text-transform:uppercase;}
+h1 {margin:7px 0 4px;font-size:16px;line-height:20px;font-weight:760;letter-spacing:-.4px;}.text p {margin:0 0 9px;font-size:7.5px;line-height:11px;color:var(--muted);}.next {border:0;border-radius:5px;background:var(--blue);color:var(--hi);width:100%;height:24px;font-size:7.5px;font-weight:680;box-shadow:inset 0 1px color-mix(in srgb,var(--hi) 24%,var(--clear));}
+</style></head><body><main><button class="discover" type="button" aria-label="Discover a harbor destination"><strong>DISCOVER</strong>
+<svg viewBox="0 0 104 104" aria-hidden="true"><defs><clipPath id="ball"><circle cx="52" cy="52" r="52"/></clipPath><radialGradient id="night" cx=".72" cy=".28" r=".83"><stop style="stop-color:var(--glaze);stop-opacity:.16"/><stop offset=".59" style="stop-color:var(--deep);stop-opacity:.1"/><stop offset=".94" style="stop-color:var(--deep);stop-opacity:.86"/><stop offset="1" style="stop-color:var(--deep)"/></radialGradient>
+<g id="map"><path d="m3 20 14-9 13 1 8 8 12-4 8 5-2 9-13 6-4 11-8 5 2 6-6 2-8-11-7-3-3-15-9-2Zm39 38 11-3 15 6 5 6-8 10-8 16-5 3-1-20-8-7Zm16-44 10-7 13 3-2 8-11 5Zm37 15 4-8 7-1 4 4 4-8 22-6 18 6 12 2 7 12-6 6-12-2-6 6-7-1-5 10-3 5-7-9-2-6-10 1-11-5Zm-1 9 14-3 12 8 1 12-8 16-7 8-9-9-3-15-7-8Zm55 34 11-7 13 2 8 10-6 5-11-5-8 2Z" fill="var(--land)" stroke="var(--coast)" stroke-width="1.8"/></g>
+</defs><g clip-path="url(#ball)"><circle cx="52" cy="52" r="52" fill="var(--water)"/><g class="lands"><use href="#map" x="-18" y="4"/><use href="#map" x="164" y="4"/></g><circle cx="52" cy="52" r="52" fill="url(#night)"/></g></svg></button>
+<article class="shape"><svg class="picture" viewBox="0 0 212 260" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="morning" x2=".3" y2="1"><stop style="stop-color:var(--sky)"/><stop offset=".7" style="stop-color:var(--cloud)"/><stop offset="1" style="stop-color:var(--sky)"/></linearGradient><linearGradient id="bay" x2=".3" y2="1"><stop style="stop-color:var(--glaze)"/><stop offset=".4" style="stop-color:var(--water)"/><stop offset="1" style="stop-color:var(--deep)"/></linearGradient><pattern id="windows" width="4" height="5" patternUnits="userSpaceOnUse"><path d="M1 1v1.5m2-1.5v1.5" stroke="var(--stone)" stroke-width=".8" opacity=".75"/></pattern><g id="skyline"></g></defs>
+<rect width="212" height="142" fill="url(#morning)"/><path d="M0 85q21-8 34-2t38-5 24 0 32-6 37-3 47-5v53H0Z" fill="var(--stone-hi)" opacity=".49"/>
+<path d="M0 107q12-7 24-4l15-11 12 1 12-6 16 6 15-8 15 8 10-1 16-4 22 5 23-8 32 7v35H0Z" fill="var(--leaves)" opacity=".75"/><g class="buildings"><use href="#skyline"/></g>
+<path d="m0 115 34-6 15 3 32-6 26 5 14-3 39 2 28-4 24 5v16H0Z" fill="var(--leaves)"/><path d="m0 126 61-9 27 1 34-5 21 4 32-5 37-3v151H0Z" fill="url(#bay)"/>
+<g fill="none" stroke-linecap="round"><path d="M0 131q17-6 54-8m22 1 49-5m-60 16 36-4m36-8 48-5m-16 22 40-6M7 153l34-5m49 9 44-5" stroke="var(--glaze)" opacity=".65"/><path d="m15 141 53-7m91-3 36-4m-83 23 28-5M7 161l23-3" stroke="var(--deep)" opacity=".37"/></g>
+</svg><div class="shade"></div><div class="text"><span class="badge">Destination discovered</span><h1>Sydney</h1><p>A bright Australian harbor of sailboats, sandstone shores and city towers.</p><button type="button" class="next">Rotate &amp; Discover Next Location</button></div></article></main><script>
+const ns='http://www.w3.org/2000/svg',svgRect=(x,y,w,h,paint)=>{const el=document.createElementNS(ns,'rect');for(const [name,value] of Object.entries({x,y,width:w,height:h,fill:paint}))el.setAttribute(name,value);return el;};
+const city=document.querySelector('#skyline');let choice=0;const ports=[['Sydney','A bright Australian harbor of sailboats, sandstone shores and city towers.'],['Oslo','A northern harbor where a wooded shoreline meets the city by the fjord.'],['Valparaíso','A Pacific harbor framed by steep hills and rows of painted waterfront houses.']];
+function drawCity(){city.replaceChildren();for(let i=0;i<54;i++){const x=i*4,h=4+((i*37+choice*17)%16)+(i>39&&i<50?(6-Math.abs(45-i))*7:0),y=111-h-Math.sin(i*.8)*3,w=4+(i*13)%8;city.append(svgRect(x,y,w,h,'var(--stone-hi)'),svgRect(x,y,Math.max(1,w*.25),h,'var(--stone)'),svgRect(x+1,y+1,w-1,h-1,'url(#windows)'));}}
+function restart(){document.getAnimations().forEach(a=>{a.currentTime=0;a.play();});}
+document.querySelector('.discover').addEventListener('click',()=>{document.getAnimations().forEach(a=>{a.currentTime=1600;a.play();});});
+document.querySelector('.next').addEventListener('click',()=>{choice=(choice+1)%ports.length;document.querySelector('h1').textContent=ports[choice][0];document.querySelector('.text p').textContent=ports[choice][1];drawCity();restart();});
+drawCity();if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))document.getAnimations().forEach(a=>{a.pause();a.currentTime=0;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
