@@ -3,7 +3,7 @@
 
 **The mother of all design libraries.**
 
-Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 29 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
+Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 30 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
 ## What's inside
 
@@ -28,7 +28,7 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 | [**Tablet**](tablet/) | [Home screens](tablet/home-screens/) · [Lock screens](tablet/lock-screens/) · [Wallpapers](tablet/wallpapers/) · [Widgets](tablet/widgets/) · [Multitasking](tablet/multitasking/) · [Drawing apps](tablet/drawing-apps/) · [E-readers](tablet/e-readers/) |
 | [**Mac**](mac/) | [Mac apps](mac/mac-apps/) · [Menu bar apps](mac/menu-bar-apps/) · [Menu bars](mac/menu-bars/) · [Docks](mac/docks/) · [Folder icons](mac/folder-icons/) · [Wallpapers](mac/wallpapers/) · [Desktop setups](mac/desktop-setups/) · [Widgets](mac/widgets/) · [Notifications](mac/notifications/) · [Screensavers](mac/screensavers/) · [Login screens](mac/login-screens/) · [Launcher themes](mac/launcher-themes/) · [Settings windows](mac/settings-windows/) · [Dialogs](mac/dialogs/) · [Toolbars](mac/toolbars/) · [OS concepts](mac/os-concepts/) |
 | [**Windows**](windows/) | [Windows apps](windows/windows-apps/) · [Taskbars](windows/taskbars/) · [Start menus](windows/start-menus/) · [Wallpapers](windows/wallpapers/) · [Desktop setups](windows/desktop-setups/) · [Widgets](windows/widgets/) · [Lock screens](windows/lock-screens/) · [Themes](windows/themes/) · [Rainmeter skins](windows/rainmeter-skins/) · [OS concepts](windows/os-concepts/) |
-| [**Watch**](watch/) | [Watch faces](watch/watch-faces/) · [Complications](watch/complications/) · [Watch apps](watch/watch-apps/) · [Notifications](watch/notifications/) · [Workout screens](watch/workout-screens/) · [Fitness bands](watch/fitness-bands/) |
+| [**Watch**](watch/)<br><sub>1 design</sub> | [Watch faces](watch/watch-faces/) · [Complications](watch/complications/) · [Watch apps](watch/watch-apps/) · [Notifications](watch/notifications/) · [Workout screens](watch/workout-screens/) · [Fitness bands](watch/fitness-bands/) |
 | [**TV**](tv/) | [Streaming apps](tv/streaming-apps/) · [Home screens](tv/home-screens/) · [Program guides](tv/program-guides/) · [Players](tv/players/) · [Screensavers](tv/screensavers/) · [Console UI](tv/console-ui/) |
 | [**Car**](car/) | [Instrument clusters](car/instrument-clusters/) · [Infotainment](car/infotainment/) · [CarPlay](car/carplay/) · [Android Auto](car/android-auto/) · [Heads-up displays](car/heads-up-displays/) · [EV charging](car/ev-charging/) |
 | [**XR**](xr/) | [Spatial apps](xr/spatial-apps/) · [VR apps](xr/vr-apps/) · [AR apps](xr/ar-apps/) · [AR filters](xr/ar-filters/) · [Virtual worlds](xr/virtual-worlds/) · [Spatial UI](xr/spatial-ui/) |

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x546">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5">
+<meta name="motherlode:still" content="3.3">
+<title>Calendar ring dial</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #2A2A2A; --inset: #242424; --face: #202020; --band: #424242;
+  --contour: #161616; --letter: #989898; --day: #F76894; --month: #70B9FC;
+  --week: #8ED3A5; --hand: #FAFAFA; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F1EEE7; --inset: #EAE5DC; --face: #FCFAF3; --band: #D6D2C9;
+  --contour: #C7C6BF; --letter: #595D5C; --day: #A43357; --month: #226392;
+  --week: #2A7153; --hand: #242B2A; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #121821; --inset: #171E29; --face: #1C2230; --band: #364252;
+  --contour: #0D1119; --letter: #B4B9C0; --day: #F594AA; --month: #87C6F7;
+  --week: #98D4A3; --hand: #F0F3ED; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #282828; --inset: #242424; --face: #1D1D1D; --band: #474747;
+  --contour: #101010; --letter: #A1A1A1; --day: #F4F4F4; --month: #DDDDDD;
+  --week: #C8C8C8; --hand: #FAFAFA; --clear: transparent;
+}
+[data-colorway="bronze"] {
+  --bg: #3C332B; --inset: #342B25; --face: #2B2421; --band: #57483C;
+  --contour: #1F1B18; --letter: #C8B6A4; --day: #F1B28D; --month: #CBC0A3;
+  --week: #CCD6A1; --hand: #F7EAD4; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #15383E; --inset: #163237; --face: #122A31; --band: #345962;
+  --contour: #0D242B; --letter: #B6CFD0; --day: #FFABAC; --month: #8BD1DF;
+  --week: #B9DB9B; --hand: #ECFBF5; --clear: transparent;
+}
+[data-colorway="plum"] {
+  --bg: #352836; --inset: #302431; --face: #2C202D; --band: #554055;
+  --contour: #211723; --letter: #C8B4C6; --day: #FFB1CE; --month: #BBAEFA;
+  --week: #B2D9C0; --hand: #FFF3F9; --clear: transparent;
+}
+[data-colorway="pine"] {
+  --bg: #23372D; --inset: #203229; --face: #1D2A24; --band: #3F5246;
+  --contour: #14221B; --letter: #BBCABD; --day: #F1BD9C; --month: #A8CBC4;
+  --week: #C5E190; --hand: #F0F7E9; --clear: transparent;
+}
+* { box-sizing:border-box; }
+html,body { margin:0; }
+main { width:864px; height:546px; position:relative; overflow:hidden; background:var(--bg); }
+main::before,main::after { content:""; position:absolute; width:170px; height:265px; top:171px; background:var(--inset); opacity:.26; }
+main::before { left:0; }main::after { right:-30px; }
+button { position:absolute; z-index:1; inset:0; width:100%; height:100%; padding:0; border:0; color:var(--hand); background:none; cursor:pointer; }
+button:focus-visible { outline:2px solid var(--month); outline-offset:-7px; }
+svg { width:100%; height:100%; display:block; }
+.dial { fill:var(--face); stroke:var(--contour); stroke-width:2; }.bed { fill:none; stroke:var(--band); }
+.arc { fill:none; stroke:var(--face); }.ring, .hand { transform-origin:288px 185px; }
+text { font-family:Inter,Arial,sans-serif; text-anchor:middle; dominant-baseline:central; font-weight:610; fill:var(--letter); }
+.legend { font-size:10px; }.greeting { font-weight:640; fill:var(--letter); }
+.face-hand { stroke:var(--hand); stroke-linecap:round; }.center { fill:var(--hand); }
+h1 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+</style></head><body><main><h1>Calendar ring dial</h1><button type="button" aria-label="Show local date and time"><svg viewBox="0 0 576 364" aria-hidden="true">
+  <circle class="dial" cx="288" cy="185" r="151"/><g class="layers"></g>
+  <circle class="dial" cx="288" cy="185" r="51"/>
+  <g class="hello"><g class="hello-letters"></g><circle cx="288" cy="198" r="16.5" fill="var(--hand)"/><path d="M263 233q25-29 50 0-26 14-50 0Z" fill="var(--hand)"/></g>
+  <g class="hands"><g class="hand hour"><path class="face-hand" d="M288 185v-28" stroke-width="6.5"/></g><g class="hand minute"><path class="face-hand" d="M288 185v-41" stroke-width="6.1"/></g><g class="hand second"><path class="face-hand" d="M288 185v-45" stroke-width="1"/></g><circle class="center" cx="288" cy="185" r="3.4"/></g>
+</svg></button><script>
+  const ns='http://www.w3.org/2000/svg', layers=document.querySelector('.layers'), tracks=[];
+  const months=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'], weekdays=['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  function svg(parent,tag,attrs,text) { const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));if(text)e.textContent=text;parent.append(e);return e; }
+  function at(r,angle) { const a=angle*Math.PI/180; return [288+r*Math.sin(a),185-r*Math.cos(a)]; }
+  function arc(radius,start,end) {const p=at(radius,start),q=at(radius,end);return 'M'+p.join(' ')+'A'+radius+' '+radius+' 0 '+(end-start>180?1:0)+' 1 '+q.join(' ');}
+  function inscription(parent,word,radius,spacing,size) {
+    [...word].forEach((letter,i)=>{const a=(i-(word.length-1)/2)*spacing;const [x,y]=at(radius,a);
+      svg(parent,'text',{x,y,transform:'rotate('+a+' '+x+' '+y+')',class:'greeting','font-size':size},letter);});
+  }
+  inscription(document.querySelector('.hello-letters'),'HELLO',32,25,13);
+  function animate(el,frames,options={}) {const a=el.animate(frames,{duration:5000,iterations:Infinity,fill:'both',...options});tracks.push(a);return a;}
+  function draw(date,live) {
+    tracks.splice(0).forEach(a=>a.cancel());layers.replaceChildren();
+    const count=new Date(date.getFullYear(),date.getMonth()+1,0).getDate();
+    const config=[
+      [140,22,Array.from({length:count},(_,i)=>String(i+1).padStart(2,'0')),date.getDate()-1,'day','DAY',.075],
+      [105.7,25,months,date.getMonth(),'month','MONTH',.165],
+      [73,25,weekdays,(date.getDay()+6)%7,'week','DAY NAME',.255]
+    ];
+    for(const [radius,width,values,selected,color,title,start] of config) {
+      svg(layers,'circle',{class:'bed',cx:288,cy:185,r:radius,'stroke-width':width});
+      const ring=svg(layers,'g',{class:'ring'}),step=270/values.length,first=-selected*step-step/2,last=first+270;
+      svg(ring,'path',{class:'arc',d:arc(radius,first,last),'stroke-width':width+.8});
+      const labels=svg(ring,'g',{});
+      values.forEach((value,i)=>{const a=(i-selected)*step,[x,y]=at(radius,a);
+        const el=svg(labels,'text',{class:'legend',x,y,'font-size':values.length>20?8.5:9.3,'letter-spacing':values.length>20?.65:2.7,transform:'rotate('+a+' '+x+' '+y+')'},value);
+        if(i===selected){el.style.fill='var(--'+color+')';el.style.fontWeight='790';}});
+      const greeting=svg(layers,'g',{});inscription(greeting,title,radius,title.length<=5?18:9.5,title==='DAY'?12.5:11.8);
+      const toBottom=180-(last+45);
+      const end=start+.15;
+      const once=live?{iterations:1}:{}; const lift=live?[{offset:1,opacity:0}]:[{offset:.93,opacity:0},{offset:.985,opacity:1},{offset:1,opacity:1}];
+      animate(greeting,[{offset:0,opacity:1},{offset:start,opacity:1},{offset:start+.06,opacity:0},...lift],once);
+      const finish=live?[{offset:1,opacity:1}]:[{offset:.93,opacity:1},{offset:.985,opacity:0},{offset:1,opacity:0}];
+      animate(labels,[{offset:0,opacity:0},{offset:start,opacity:0},{offset:end,opacity:1},...finish],once);
+      animate(ring,[{offset:0,transform:'rotate('+toBottom+'deg)'},{offset:start,transform:'rotate('+toBottom+'deg)',easing:'cubic-bezier(.18,.72,.22,1)'},{offset:end,transform:'rotate(0deg)'},{offset:1,transform:'rotate(0deg)'}],once);
+    }
+    const once=live?{iterations:1}:{}, hold=live?1:.93;
+    animate(document.querySelector('.hello'),[{offset:0,opacity:1},{offset:.34,opacity:1},{offset:.405,opacity:0},{offset:hold,opacity:0},{offset:1,opacity:live?0:1}],once);
+    animate(document.querySelector('.hands'),[{offset:0,opacity:0},{offset:.35,opacity:0},{offset:.42,opacity:1},{offset:hold,opacity:1},{offset:1,opacity:live?1:0}],once);
+    const second=date.getSeconds(),minute=date.getMinutes()+second/60,hour=(date.getHours()%12)+minute/60;
+    for (const [name,angle,period] of [['hour',30*hour,43200],['minute',6*minute,3600],['second',6*second,60]]) {
+      const el=document.querySelector('.'+name);
+      animate(el,[{transform:'rotate('+angle+'deg)'},{transform:'rotate('+(angle+(live?360:1800/period))+'deg)'}],{duration:live?period*1000:5000});
+    }
+    if(!live&&matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks.forEach(a=>{a.pause();a.currentTime=3300;});
+  }
+  draw(new Date(2025,10,22,9,37,13),false);
+  document.querySelector('button').addEventListener('click',()=>draw(new Date(),true));
+</script><script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script></main></body></html>

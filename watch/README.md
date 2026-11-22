@@ -5,7 +5,7 @@ Smartwatches and wearables.
 
 | Category | What goes in it |
 | --- | --- |
-| [Watch faces](watch-faces/) | Watch faces |
+| [Watch faces](watch-faces/) | Watch faces · **1 design** |
 | [Complications](complications/) | Complications and glanceable data |
 | [Watch apps](watch-apps/) | Watch apps |
 | [Notifications](notifications/) | Watch notifications |
