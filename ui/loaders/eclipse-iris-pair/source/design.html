@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x576">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.4">
+<meta name="motherlode:still" content="2.45">
+<title>Eclipse iris loader</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #000000; --surface: #29262B; --ink: #F3EDF1; --muted: #D5C2DD;
+  --accent: #ED4A37; --on-accent: #271713; --second: #A563AB; --third: #E6B9F0;
+  --ivory: #F2F0F2; --shade: #7A7279; --outline: #5B4145; --good: #B9BAD6;
+  --hi: #FFFCFF; --lo: #120D12; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+* {box-sizing:border-box;}html,body {margin:0;overflow:hidden;width:864px;height:576px;}main {position:relative;width:576px;height:384px;transform:scale(1.5);transform-origin:top left;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;}button {position:absolute;inset:0;border:0;background:none;color:inherit;cursor:pointer;}.pair {position:absolute;inset:0;width:100%;height:100%;}.eyes {transform-origin:288px 194px;}.iris {transform-origin:162px 186px;}.greeting {position:absolute;inset:0;display:grid;place-content:center;font-size:26px;font-weight:650;letter-spacing:3px;color:var(--muted);}button:focus-visible {outline:2px dashed var(--accent);outline-offset:-6px;}
+</style></head><body><main><button type="button" aria-label="Replay iris loader"><svg class="pair" viewBox="0 0 576 384" aria-hidden="true"><defs><clipPath id="lid"><path d="M91 166q25-4 59-3c45 0 64 8 78 58-39 0-69 1-95-7-21-6-33-19-42-48Z"/></clipPath>
+<g id="left" clip-path="url(#lid)"><path d="M80 153h156v75H80Z" fill="var(--ivory)"/><path d="M83 160h148v17q-70-7-148 3Z" fill="var(--shade)"/>
+<g class="iris"><circle cx="162" cy="186" r="34" fill="var(--accent)" stroke="var(--lo)" stroke-width="2"/><circle cx="162" cy="186" r="26" fill="none" stroke="var(--lo)" stroke-width="1.8"/><circle cx="162" cy="186" r="6" fill="var(--lo)"/><g fill="none" stroke="var(--lo)" stroke-width="2.2"><path d="m162 161 4 7-4 5-4-5Zm25 25-7 4-5-4 5-4Zm-25 25-4-7 4-5 4 5Zm-25-25 7-4 5 4-5 4Z"/></g></g>
+<g class="violet"><path d="M80 154h158v76H80Z" fill="var(--third)"/><g fill="none" stroke="var(--second)" stroke-width="2"><ellipse cx="162" cy="186" rx="8" ry="7"/><ellipse cx="162" cy="186" rx="15" ry="13"/><ellipse cx="162" cy="186" rx="23" ry="19"/><ellipse cx="162" cy="186" rx="31" ry="25"/><ellipse cx="162" cy="186" rx="40" ry="31"/><ellipse cx="162" cy="186" rx="50" ry="38"/><ellipse cx="162" cy="186" rx="61" ry="45"/></g><circle cx="162" cy="186" r="3" fill="var(--second)"/></g></g></defs>
+<g class="eyes"><use href="#left"/><use href="#left" transform="translate(576 0) scale(-1 1)"/></g></svg><span class="greeting">Welcome</span></button></main><script>
+const get=s=>document.querySelector(s);let tracks=[];function at(el,frames){tracks.push(el.animate(frames.map(f=>({easing:'ease-in-out',...f})),{duration:7400,iterations:Infinity}));}
+at(get('.eyes'),[{offset:0,transform:'scaleY(0)',opacity:0},{offset:.05,transform:'scaleY(.1)',opacity:1},{offset:.18,transform:'scaleY(1)',opacity:1},{offset:.79,transform:'scaleY(1)',opacity:1},{offset:.9,transform:'scaleY(0)',opacity:0},{offset:1,transform:'scaleY(0)',opacity:0}]);
+const source=get('#left'),right=source.cloneNode(true);right.id='right';document.querySelector('defs').append(right);
+const eyes=get('.eyes');eyes.replaceChildren();for(const [i,id] of ['left','right'].entries()){const eye=(i?right:source).cloneNode(true);eye.removeAttribute('id');const wrapper=document.createElementNS('http://www.w3.org/2000/svg','g');if(i)wrapper.setAttribute('transform','translate(576 0) scale(-1 1)');wrapper.append(eye);eyes.append(wrapper);
+at(eye.querySelector('.iris'),[{offset:0,transform:'rotate(0deg)'},{offset:.43,transform:'rotate(150deg)'},{offset:1,transform:'rotate(360deg)'}]);at(eye.querySelector('.violet'),[{offset:0,opacity:0},{offset:.41,opacity:0},{offset:.49,opacity:1},{offset:.87,opacity:1},{offset:1,opacity:0}]);}
+at(get('.greeting'),[{offset:0,opacity:0},{offset:.875,opacity:0},{offset:.94,opacity:1},{offset:.98,opacity:1},{offset:1,opacity:0}]);get('button').addEventListener('click',()=>tracks.forEach(a=>{a.currentTime=0;a.play();}));if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks.forEach(a=>{a.pause();a.currentTime=2450;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
