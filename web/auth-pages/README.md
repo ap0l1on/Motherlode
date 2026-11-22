@@ -5,10 +5,10 @@ Sign-in, sign-up and password reset pages.
 
 Part of [Web](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="iridescent-code-entry/"><img src="iridescent-code-entry/preview.gif" width="260" alt="Iridescent code entry"></a><br><a href="iridescent-code-entry/"><b>Iridescent code entry</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="iridescent-code-entry/"><img src="iridescent-code-entry/preview.gif" width="260" alt="Iridescent code entry"></a><br><a href="iridescent-code-entry/"><b>Iridescent code entry</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pleated-lamp-login/"><img src="pleated-lamp-login/preview.gif" width="260" alt="Pleated lamp login"></a><br><a href="pleated-lamp-login/"><b>Pleated lamp login</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
