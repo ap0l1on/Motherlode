@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="816x870">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="3">
+<meta name="motherlode:still" content="1.27">
+<title>Cyan click sign-in</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #FFFFFF; --panel: #FEFEFE; --display: #F5F5F4; --ink: #242629;
+  --muted: #51565A; --accent: #24769A; --cta: #0879C9; --cta-ink: #FFFFFF;
+  --spark: #59D8F6; --shirt: #A7E925; --sleeve: #62A511; --skin: #EAC1A3;
+  --skin-shade: #B77761; --hair: #49382B; --tie: #30312E; --hi: #FFFFFF;
+  --lo: #191D18; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F7F9FD; --panel: #FFFFFF; --display: #EAF2FA; --ink: #26323F;
+  --muted: #52606C; --accent: #27657D; --cta: #376D97; --cta-ink: #FFFFFF;
+  --spark: #56CDD9; --shirt: #A6D6A6; --sleeve: #5E9B7C; --skin: #E8BBA3;
+  --skin-shade: #B77765; --hair: #654B3E; --tie: #355469; --hi: #FFFFFF;
+  --lo: #1B2831; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #101924; --panel: #1E2A38; --display: #263A46; --ink: #F3F5F7;
+  --muted: #C3D0DA; --accent: #9FD9EB; --cta: #A0D7EE; --cta-ink: #173344;
+  --spark: #8BEAF7; --shirt: #8ACF68; --sleeve: #448451; --skin: #DCA987;
+  --skin-shade: #925F4C; --hair: #57463B; --tie: #17353C; --hi: #FFFFFF;
+  --lo: #111923; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #F3F3F3; --panel: #FFFFFF; --display: #E8E8E8; --ink: #222222;
+  --muted: #555555; --accent: #454545; --cta: #484848; --cta-ink: #FFFFFF;
+  --spark: #A4A4A4; --shirt: #BEBEBE; --sleeve: #777777; --skin: #CDCDCD;
+  --skin-shade: #939393; --hair: #414141; --tie: #333333; --hi: #FFFFFF;
+  --lo: #1A1A1A; --clear: transparent;
+}
+[data-colorway="apricot"] {
+  --bg: #FFF8F0; --panel: #FFFCF8; --display: #F6E5D4; --ink: #382821;
+  --muted: #675247; --accent: #925338; --cta: #AA5233; --cta-ink: #FFFFFF;
+  --spark: #FFAC77; --shirt: #EFA557; --sleeve: #B56D35; --skin: #EEC3A1;
+  --skin-shade: #B97959; --hair: #604737; --tie: #4C3E34; --hi: #FFFDF9;
+  --lo: #2B211A; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EFF9F7; --panel: #FCFFFC; --display: #DAF0EA; --ink: #173B3F;
+  --muted: #476468; --accent: #256B72; --cta: #226F75; --cta-ink: #FFFFFF;
+  --spark: #62DDD7; --shirt: #7CD4AB; --sleeve: #3E927E; --skin: #E0B08E;
+  --skin-shade: #A66D58; --hair: #504334; --tie: #24494D; --hi: #FFFFFF;
+  --lo: #142A2C; --clear: transparent;
+}
+[data-colorway="lilac"] {
+  --bg: #FAF6FC; --panel: #FEFBFF; --display: #F0E5F5; --ink: #382B3B;
+  --muted: #66546B; --accent: #754B85; --cta: #80588D; --cta-ink: #FFFFFF;
+  --spark: #D7A0EB; --shirt: #CC9FE0; --sleeve: #926AA9; --skin: #E4B49B;
+  --skin-shade: #AE7766; --hair: #514052; --tie: #493849; --hi: #FFFFFF;
+  --lo: #291C28; --clear: transparent;
+}
+[data-colorway="pine"] {
+  --bg: #F4F6ED; --panel: #FCFDF6; --display: #E1EBD8; --ink: #2D3828;
+  --muted: #58654E; --accent: #496647; --cta: #4A6844; --cta-ink: #FFFFFF;
+  --spark: #AFD96A; --shirt: #BCD05D; --sleeve: #808F38; --skin: #E3BA93;
+  --skin-shade: #A57558; --hair: #514330; --tie: #394334; --hi: #FFFFF6;
+  --lo: #202A1D; --clear: transparent;
+}
+* { box-sizing:border-box; }
+html,body { margin:0; }
+body,input,button { font-family:Inter,Arial,sans-serif; }
+main { position:relative; width:816px; height:870px; overflow:hidden; display:grid; place-items:center; color:var(--ink); background:var(--bg); }
+.card { position:relative; display:grid; grid-template-columns:1fr 1fr; width:748px; height:563px; overflow:hidden; background:var(--panel);
+  box-shadow:0 2px 19px color-mix(in srgb,var(--lo) 8%,var(--clear)); }
+.illustration { position:relative; background:linear-gradient(128deg,color-mix(in srgb,var(--display) 85%,var(--hi)),var(--display)); }
+.illustration>svg { position:absolute; left:17px; top:27px; width:324px; height:494px; overflow:visible; }
+.form-side { position:relative; display:flex; flex-direction:column; justify-content:center; padding:0 20px; }
+h1 { color:var(--accent); font-size:21px; line-height:1.3; margin:0 0 17px; letter-spacing:.005em; font-weight:660; }
+form { margin:0; }
+input,.submit { width:100%; height:40px; font-size:14px; border-radius:3px; }
+input { display:block; background:var(--panel); color:var(--ink); border:1px solid color-mix(in srgb,var(--muted) 32%,var(--panel)); padding:0 13px; margin-bottom:14px; }
+input::placeholder { color:var(--muted); opacity:1; }input:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+a, button { color:var(--accent); }.link { border:0; padding:0; background:none; cursor:pointer; }
+.reset { color:var(--muted); text-decoration:underline; font-size:14px; }
+.submit { display:block; margin:13px 0 11px; height:41px; background:var(--cta); color:var(--cta-ink); font-weight:630; border:0; cursor:pointer; }
+.caption,.footer { text-align:center; font-size:14px; }.caption { margin:0; }.caption button,.footer b { color:var(--accent); font-weight:660; font-size:inherit; }
+.footer { position:absolute; left:0; right:0; bottom:28px; margin:0; font-size:13.6px; }.footer i { color:var(--ink); font-style:normal; }
+.message { font-size:12px; color:var(--accent); text-align:center; min-height:16px; margin:9px 0 -25px; }
+.sparks { position:absolute; inset:0; pointer-events:none; }.spark { position:absolute; width:15px; height:15px; border-radius:50%; margin:-7.5px; background:var(--spark); box-shadow:0 0 3px color-mix(in srgb,var(--spark) 60%,var(--clear)); opacity:0; }
+.pointer { width:13px; height:18px; left:0; top:0; position:absolute; fill:var(--ink); stroke:var(--panel); stroke-width:.65; pointer-events:none; }
+</style></head><body>
+<main aria-label="Sign-in form with a click light">
+  <section class="card"><div class="illustration">
+    <svg viewBox="0 0 260 380" role="img" aria-label="An original clay-style studio helper wearing glasses and pointing in a chartreuse shirt"><defs>
+      <radialGradient id="skin" cx=".32" cy=".27" r=".8"><stop style="stop-color:color-mix(in srgb,var(--skin) 66%,var(--hi))"/><stop offset=".56" style="stop-color:var(--skin)"/><stop offset="1" style="stop-color:var(--skin-shade)"/></radialGradient>
+      <linearGradient id="fabric" x2=".84" y2="1"><stop style="stop-color:color-mix(in srgb,var(--shirt) 81%,var(--hi))"/><stop offset=".47" style="stop-color:var(--shirt)"/><stop offset="1" style="stop-color:var(--sleeve)"/></linearGradient>
+      <linearGradient id="hair" x2=".66" y2="1"><stop style="stop-color:color-mix(in srgb,var(--hair) 65%,var(--hi))"/><stop offset=".36" style="stop-color:var(--hair)"/><stop offset="1" style="stop-color:var(--lo)"/></linearGradient>
+      <linearGradient id="tie" x2=".9" y2="1"><stop style="stop-color:color-mix(in srgb,var(--tie) 78%,var(--hi))"/><stop offset=".5" style="stop-color:var(--tie)"/><stop offset="1" style="stop-color:var(--lo)"/></linearGradient>
+    </defs>
+    <path d="M138 250q20-4 51 0l-1 111q-23-30-40-61Z" fill="url(#tie)"/>
+    <path d="M156 144q19-14 33-17l-1-24 17-1 3 35q-11 12-42 24Z" fill="url(#fabric)"/>
+    <path d="M188 107q-4-4-2-10l3-9q1-4 4-3 3 0 2 4l-1 6 5-9q3-4 5-1 2 1 0 6 4-6 6-3 2 1 0 5 3-2 5 1 1 2-1 5l-4 9q-6 8-15 7Z" fill="url(#skin)"/>
+    <path d="M78 139q12-8 31-11l18-4 22 7q12 4 18 14l17 41q6 17 5 43l4 31q-28 19-60 13L98 230 74 172Z" fill="url(#fabric)"/>
+    <path d="M101 104q9 11 22 6l12 18q-4 10-17 14l-15-13Z" fill="url(#skin)"/>
+    <path d="m99 130 16 10-10 12-16-15Zm32-9 7 8-9 19-12-9Z" fill="color-mix(in srgb,var(--shirt) 83%,var(--hi))"/>
+    <path d="M113 138q7-3 15 1l-1 9-5 1q13 18 23 46l-7 15-13-10q-4-30-8-49Z" fill="url(#tie)"/>
+    <path d="M83 148q-12 1-18 11-5 9-2 26l10 66q2 13 11 14l79 6 3-20-69-7-2-77q-1-13-12-19Z" fill="url(#fabric)"/>
+    <path d="M166 249q5-5 14-5l14 2 44-1q10 0 10 4 0 3-8 4l-35 4q7 4 3 8-2 2-6 1-2 5-7 3-3 5-8 2-5 2-12-3l-12-6Z" fill="url(#skin)"/>
+    <g transform="rotate(-10 87 76)">
+      <ellipse cx="54" cy="81" rx="10" ry="15" fill="url(#skin)"/><ellipse cx="125" cy="78" rx="9" ry="14" fill="url(#skin)"/>
+      <path d="M53 61q0-37 38-42 36-4 39 38l-2 32q-2 32-32 45-20 5-35-19-10-19-8-54Z" fill="url(#skin)"/>
+      <path d="M51 70q-8-17-4-33-15 3-19-8 10 2 22-10Q68 0 84 6q16-12 28 0 18-2 23 16 7 20-4 41l-4-8q0-16-9-21-12 8-34 7-18 1-26 12l1 18Z" fill="url(#hair)"/>
+      <path d="M53 30q15-18 31-16M77 24q14-14 28-10" stroke="color-mix(in srgb,var(--hair) 55%,var(--hi))" stroke-width="2.5" opacity=".52" fill="none" stroke-linecap="round"/>
+      <path d="M60 62q10-9 20-4m20-1q10-8 20-1" fill="none" stroke="var(--hair)" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="73" cy="77" rx="9" ry="10" fill="var(--hi)"/><ellipse cx="110" cy="74" rx="9" ry="10" fill="var(--hi)"/>
+      <ellipse cx="76" cy="78" rx="4" ry="6" fill="var(--hair)"/><ellipse cx="112" cy="75" rx="4" ry="6" fill="var(--hair)"/>
+      <circle cx="77" cy="76" r="1.5" fill="var(--hi)"/><circle cx="113" cy="73" r="1.5" fill="var(--hi)"/>
+      <g stroke="var(--tie)" stroke-width="3.3" fill="none"><rect x="53" y="66" width="34" height="27" rx="10" transform="rotate(1 70 80)"/><rect x="93" y="63" width="35" height="27" rx="10"/><path d="M87 74q3-4 7-1M53 73l-6-4"/></g>
+      <path d="M91 76q1 12-4 16-1 5 6 5l5-2" fill="var(--skin)" stroke="var(--skin-shade)" stroke-width="1.2"/>
+      <path d="M77 104q15 6 30-5-4 18-16 19-10-1-14-14Z" fill="var(--hair)"/><path d="M79 104q14 4 26-4-6 9-16 9Z" fill="var(--hi)"/>
+      <g fill="var(--skin-shade)" opacity=".8"><circle cx="62" cy="97" r="1.4"/><circle cx="66" cy="99" r="1.25"/><circle cx="69" cy="96" r="1.2"/><circle cx="114" cy="94" r="1.2"/><circle cx="119" cy="92" r="1.2"/></g>
+    </g></svg>
+  </div><div class="form-side"><form><h1>Login to Dashboard</h1><input type="email" autocomplete="off" aria-label="Email address" placeholder="Email Address" required><input class="password" type="password" autocomplete="off" aria-label="Password" placeholder="Password" required><button class="link reset" type="button">Forgot password</button><button class="submit" type="submit">Login</button><p class="caption"><span>Don’t have an account</span> <button class="link switch" type="button">Sign up</button></p><p class="message" role="status"></p></form><p class="footer">Developed with <i>♥</i> by <b>Studio Crew</b></p></div></section>
+  <div class="sparks" aria-hidden="true"></div><svg class="pointer" viewBox="0 0 14 19" aria-hidden="true"><path d="M1 1v14l3.6-3.3 3.4 6 2.5-1.5-3.4-5.7 5-.8Z"/></svg>
+</main><script>
+  const stage=document.querySelector('main'), lights=document.querySelector('.sparks'), pointer=document.querySelector('.pointer');
+  const cycle=3000, demoTracks=[];
+  function track(el,frames) { const a=el.animate(frames,{duration:cycle,iterations:Infinity,fill:'both'}); demoTracks.push(a); }
+  const clicks=[[432,114,.055],[469,220,.37],[437,358,.70]];
+  for (const [x,y,at] of clicks) {
+    const light=document.createElement('i');light.className='spark';light.style.left=x+'px';light.style.top=y+'px';lights.append(light);
+    track(light,[{offset:0,opacity:0},{offset:at-.001,opacity:0,transform:'scale(.4)'},{offset:at,opacity:.95,transform:'scale(.45)',easing:'ease-out'},{offset:at+.17,opacity:0,transform:'scale(2.15)'},{offset:1,opacity:0}]);
+  }
+  const moves=[[0,432,114],[.095,432,114],[.31,469,220],[.37,469,220],[.43,431,231],[.65,437,358],[.79,437,358],[.96,432,114],[1,432,114]];
+  track(pointer,moves.map(([offset,x,y])=>({offset,transform:'translate('+x+'px,'+y+'px)',easing:'ease-in-out'})));
+  function endDemo(){if(!demoTracks.length)return;demoTracks.splice(0).forEach(a=>a.cancel());pointer.style.display='none';lights.replaceChildren();}
+  stage.addEventListener('pointerdown',event=>{
+    endDemo();const rect=stage.getBoundingClientRect(),el=document.createElement('i');el.className='spark';el.style.left=(event.clientX-rect.left)+'px';el.style.top=(event.clientY-rect.top)+'px';lights.append(el);
+    el.animate([{opacity:.95,transform:'scale(.45)'},{opacity:0,transform:'scale(2.15)'}],{duration:560,easing:'ease-out'}).finished.then(()=>el.remove());
+  });
+  const form=document.querySelector('form'),heading=form.querySelector('h1'),submit=form.querySelector('.submit'),password=form.querySelector('.password'),change=form.querySelector('.switch'),copy=form.querySelector('.caption span'),message=form.querySelector('.message');
+  let mode='login';
+  function display(next) { endDemo();mode=next;const reset=next==='reset',signup=next==='signup';heading.textContent=reset?'Reset your password':signup?'Create an account':'Login to Dashboard';submit.textContent=reset?'Reset password':signup?'Sign up':'Login';password.hidden=reset;password.disabled=reset;password.style.display=reset?'none':'';change.textContent=next==='login'?'Sign up':'Login';copy.textContent=next==='login'?'Don’t have an account':'Already have an account?';message.textContent=''; }
+  change.addEventListener('click',()=>display(mode==='login'?'signup':'login'));form.querySelector('.reset').addEventListener('click',()=>display('reset'));
+  form.addEventListener('submit',e=>{e.preventDefault();endDemo();message.textContent='Preview submitted.';});
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))endDemo();
+</script><script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script></body></html>

@@ -3,4 +3,12 @@
 
 Cursor trails and effects.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="cyan-click-sign-in/"><img src="cyan-click-sign-in/preview.gif" width="260" alt="Cyan click sign-in"></a><br><a href="cyan-click-sign-in/"><b>Cyan click sign-in</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

@@ -13,7 +13,7 @@ Animation for screens, the web and beyond.
 | [Loading animations](loading-animations/) | Loading animations |
 | [Success animations](success-animations/) | Checkmarks, confetti and celebrations |
 | [Onboarding animations](onboarding-animations/) | Animated onboarding and walkthroughs |
-| [Cursor effects](cursor-effects/) | Cursor trails and effects |
+| [Cursor effects](cursor-effects/) | Cursor trails and effects · **1 design** |
 | [Text animations](text-animations/) | Animated text |
 | [Logo animations](logo-animations/) | Animated logos for apps and websites |
 | [Lottie](lottie/) | Lottie files |
