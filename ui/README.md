@@ -47,7 +47,7 @@ Building blocks: components, kits and design systems.
 | [Skeletons](skeletons/) | Skeleton loading screens |
 | [Carousels](carousels/) | Carousels · **4 designs** |
 | [Galleries](galleries/) | Image galleries and lightboxes · **2 designs** |
-| [Calendars](calendars/) | Calendar views |
+| [Calendars](calendars/) | Calendar views · **1 design** |
 | [Kanban boards](kanban-boards/) | Kanban boards |
 | [Comment threads](comment-threads/) | Comment threads |
 | [Chat bubbles](chat-bubbles/) | Chat bubbles and message lists |
