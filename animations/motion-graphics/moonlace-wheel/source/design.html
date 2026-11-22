@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x554">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="53">
+  <meta name="motherlode:still" content="51">
+  <title>Moonlace wheel</title>
+  <style>
+:root, [data-colorway="original"] { --background: #181819; --shade: #555556; --middle: #969594; --bright: #c4c3bf; --highlight: #e1dfdf; --leaf: #929395; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 554px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 554" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Moonlace wheel</title>
+    <desc id="description">A silver wheel grows from fine spokes into concentric webs, small rosettes and a faceted rim.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 53 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const center = [294, 281];
+    const tau = Math.PI * 2;
+    const format = point => point.map(v => v.toFixed(2)).join(" ");
+    function polar(radius, angle) {
+      return [center[0] + radius * Math.cos(angle), center[1] + radius * Math.sin(angle)];
+    }
+    function chain(points, closed = false) {
+      return "M" + points.map(format).join("L") + (closed ? "Z" : "");
+    }
+    function ink(path, begin, finish, width = 0.95, parent = drawing, bright = "highlight") {
+      const line = element("path", {d: path, fill: "none", stroke: "var(--" + bright + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round",
+        pathLength: 1, "stroke-dasharray": "1 1"}, parent);
+      line.animate([{offset: 0, strokeDashoffset: 1}, {offset: begin, strokeDashoffset: 1},
+        {offset: finish, strokeDashoffset: 0}, {offset: 1, strokeDashoffset: 0}],
+        {duration, iterations: Infinity});
+    }
+    function radialStar(inner, outer, points) {
+      return chain(Array.from({length: points * 2}, (_, i) =>
+        polar(i % 2 ? inner : outer, Math.PI * i / points)), true);
+    }
+    const spiral = Array.from({length: 450}, (_, p) => polar(1 + 27 * p / 449, tau * 4.6 * p / 449));
+    ink(chain(spiral), 0, 0.022, 1.15);
+    ink(radialStar(28, 37, 31), 0.022, 0.045);
+    for (let i = 0; i < 24; i++) {
+      const a = i * tau / 24;
+      ink(chain([polar(37, a), polar(i % 2 ? 194 : 212, a)]),
+        0.04 + i * 0.008, 0.049 + i * 0.008, 0.84, drawing, "bright");
+    }
+    for (let k = 0; k < 8; k++) {
+      const radius = [48, 66, 84, 104, 126, 148, 174, 201][k];
+      let d = "M" + format(polar(radius, 0));
+      for (let i = 0; i < 24; i++) {
+        d += "Q" + format(polar(radius - 7.5, tau * (i + 0.5) / 24)) + " " +
+             format(polar(radius, tau * (i + 1) / 24));
+      }
+      ink(d, 0.23 + k * 0.018, 0.25 + k * 0.018, 0.95, drawing, "bright");
+    }
+    function circle(x, y, rx, ry = rx) {
+      return "M" + (x - rx) + " " + y + "a" + rx + " " + ry + " 0 1 0 " +
+        2 * rx + " 0a" + rx + " " + ry + " 0 1 0 " + (-2 * rx) + " 0";
+    }
+    const skull = "M-8 0C-11-10 11-12 8 0L6 4L5 8H-5L-6 4Z" +
+                  circle(-3.3, 0, 2.2) + circle(3.3, 0, 2.2) +
+                  "M0 2L-1.3 4H1.3Z M-3 6V8M0 6V8M3 6V8";
+    const spider = circle(0, -3, 3, 4) + circle(0, 4, 4.7, 6) +
+      [-1, 1].map(sign => [0, 1, 2, 3].map(k =>
+        "M" + 2 * sign + " " + k + "l" + (7 + k) * sign + " " + (-11 + 4 * k) +
+        "l" + (7 - k) * sign + " " + (13 + k * 1.6)).join("")).join("");
+    const pumpkin = circle(0, 0, 19.5, 20) + circle(-4.5, 0.6, 11.5, 18) +
+      circle(4.5, 0.6, 11.5, 18) + "M-2-19Q-6-23 0-27L3-22L2-19 M-11-3L-7-10L-3-3Z" +
+      "M4-4L8-10L12-2Z M-11 5L-6 8L-2 5L2 9L6 6L11 4Q1 21-11 5Z";
+    function stamp(d, radius, angle, start, span, size) {
+      const p = polar(radius, angle);
+      const group = element("g", {transform: "translate(" + format(p) + ") rotate(" +
+        (angle * 360 / tau + 90) + ") scale(" + size + ")"});
+      ink(d, start, start + span, 0.94, group);
+    }
+    for (let j = 0; j < 12; j++) {
+      const a = j * tau / 12;
+      stamp(skull, 79, a + tau / 24, 0.38 + 0.007 * j, 0.015, 0.97);
+      stamp(skull, 104, a, 0.48 + 0.007 * j, 0.015, 1);
+      stamp(spider, 139, a + tau / 24, 0.585 + 0.011 * j, 0.019, 1.05);
+      stamp(pumpkin, 185, a, 0.73 + 0.012 * j, 0.025, 1.16);
+    }
+    for (let k = 0; k < 2; k++) {
+      ink(chain(Array.from({length: 6}, (_, i) => polar(241, tau * i / 6 + k * tau / 12)), true),
+        0.89 + k * 0.028, 0.923 + k * 0.028, 1.1);
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
