@@ -1,8 +1,8 @@
-# radial
+# Gravity well atlas
 
 A blue coordinate net bends through a magenta nebula toward a glowing mass that darkens into an event horizon.
 
-![radial](preview.gif)
+![Gravity well atlas](preview.gif)
 
 | | |
 | --- | --- |
