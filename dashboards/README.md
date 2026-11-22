@@ -30,7 +30,7 @@ Dashboards for every kind of data.
 | [DevOps](devops/) | Servers, deploys and monitoring |
 | [Security](security/) | Security and threat monitoring |
 | [AI and ML](ai-ml/) | AI usage and model monitoring |
-| [Real estate](real-estate/) | Property and rental management · **1 design** |
+| [Real estate](real-estate/) | Property and rental management · **2 designs** |
 | [Sports](sports/) | Sports stats and scores |
 | [Gaming](gaming/) | Game stats and esports |
 | [Weather](weather/) | Weather and climate |

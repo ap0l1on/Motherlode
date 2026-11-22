@@ -5,10 +5,10 @@ Property and rental management.
 
 Part of [Dashboards](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="tidal-agency/"><img src="tidal-agency/preview.gif" width="260" alt="Tidal agency console"></a><br><a href="tidal-agency/"><b>Tidal agency console</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="garnet-agency/"><img src="garnet-agency/preview.gif" width="260" alt="Garnet agency console"></a><br><a href="garnet-agency/"><b>Garnet agency console</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="tidal-agency/"><img src="tidal-agency/preview.gif" width="260" alt="Tidal agency console"></a><br><a href="tidal-agency/"><b>Tidal agency console</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
