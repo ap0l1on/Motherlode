@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x370">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13.5">
+  <meta name="motherlode:still" content="7.3">
+  <title>Garnet heart keepsake</title>
+  <style>
+:root, [data-colorway="original"] { --background: #1a0309; --shade: #3c121e; --middle: #794050; --bright: #d889a0; --highlight: #fff3e9; --leaf: #a75271; --label: #d889a0; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 370px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 370" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Garnet heart keepsake</title>
+    <desc id="description">A faceted garnet heart floats inside a larger heart made of tiny pink lights, beneath a small dedication on a wine-colored field.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const cx=288,cy=184,defs=element("defs",{}),frame=element("g",{});
+    const sky=radial(defs,"wine-sky",[[0,"shade",.84],[.65,"background",1],[1,"background",1]]);
+    element("rect",{width:576,height:370,fill:sky});
+    const notes=element("text",{x:288,y:36,fill:"var(--label)","font-family":"system-ui, sans-serif","font-size":11.3,"font-weight":700,"text-anchor":"middle"});notes.textContent="this is for you";
+    drawing.append(frame);
+    const glints=[[],[],[],[]];
+    for(let i=0;i<2300;i++){
+      const a=tau*random(),x=16*Math.sin(a)**3,y=-(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a));
+      const fuzz=(random()-.5)*(random()>.69?16:5),px=cx+x*8.2+fuzz,py=cy+y*8.53+(random()-.5)*(random()>.8?19:4);
+      glints[i%4].push("M"+px.toFixed(1)+" "+py.toFixed(1)+"h.15");
+    }
+    glints.forEach((p,i)=>line(frame,p.join(""),["shade","middle","bright","highlight"][i],i%3?1.12:1.5,.59+i*.10));
+    const seeds=[];for(let i=0;i<138;i++)seeds.push("M"+(random()*576).toFixed(1)+" "+(random()*370).toFixed(1)+"h.12");
+    line(frame,seeds.join(""),"bright",1.52,.67);
+    const gem=element("g",{transform:"translate("+cx+" "+(cy+15)+")"},frame);
+    function pt(x,y){return [x,y];}
+    const outline=[pt(0,-9),[-6,-16],[-15,-19],[-24,-15],[-29,-6],[-27,5],[-20,14],[0,30],[21,13],[28,5],[29,-6],[23,-16],[15,-19],[6,-16]];
+    const inner=[[-9,-8],[9,-8],[0,9],[-16,2],[16,2]];
+    const faces=[[0,1,14],[1,2,14],[2,3,14],[3,4,17],[4,5,17],[5,6,17],[6,7,16],[7,8,16],[8,9,18],[9,10,18],[10,11,15],[11,12,15],[12,13,15],[13,0,15],[0,14,16],[0,16,15],[14,17,16],[17,6,16],[18,8,16],[15,16,18],[3,17,14],[10,15,18]];
+    const vertices=[...outline,...inner];faces.forEach((indices,i)=>element("path",{d:pointsPath(indices.map(k=>vertices[k]),true),
+      fill:"var(--"+["bright","middle","leaf","bright","shade","leaf","middle"][i%7]+")",stroke:"none"},gem));
+    const gleam=radial(defs,"gem-depth",[[0,"shade",.79],[.35,"shade",.48],[.67,"bright",.18],[1,"highlight",.37]]);
+    element("path",{d:pointsPath(outline,true),fill:gleam},gem);
+    frame.style.transformOrigin=cx+"px "+(cy+8)+"px";
+    frame.animate([{offset:0,transform:"scale(.88)"},{offset:.16,transform:"scale(1.12)"},
+      {offset:.37,transform:"scale(2.58)"},{offset:.56,transform:"scale(2.36)"},{offset:.68,transform:"scale(2.86)"},
+      {offset:.86,transform:"scale(1.02)"},{offset:1,transform:"scale(.88)"}],{duration,iterations:Infinity,easing:"ease-in-out"});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
