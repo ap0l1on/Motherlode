@@ -3,4 +3,12 @@
 
 Landing pages.
 
-Part of [Web](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Web](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="violet-sleep-sphere/"><img src="violet-sleep-sphere/preview.png" width="260" alt="Violet sleep sphere"></a><br><a href="violet-sleep-sphere/"><b>Violet sleep sphere</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

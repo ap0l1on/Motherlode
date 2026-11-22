@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1200x756">
+<meta name="motherlode:scale" content="2">
+<title>Violet sleep sphere</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/instrument-serif-italic-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #F0F0F0; --surface: #FFFFFF; --ink: #141416; --muted: #58575D;
+  --sphere: #553EFF; --bloom: #FF69D2; --pop: #FF69D2; --pop-ink: #4A173D;
+  --on-ink: #FFFFFF; --hi: #FFFFFF; --lo: #141419; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F9F7FC; --surface: #FFFFFF; --ink: #231A34; --muted: #665E70;
+  --sphere: #9C77EE; --bloom: #FFC5DE; --pop: #ECBAD3; --pop-ink: #442136;
+  --on-ink: #FFFFFF; --hi: #FFFFFF; --lo: #2F2346; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171520; --surface: #322A43; --ink: #F4EFFA; --muted: #C5BDD1;
+  --sphere: #8660F3; --bloom: #CB49BA; --pop: #EE9ED9; --pop-ink: #30132B;
+  --on-ink: #201925; --hi: #FFFFFF; --lo: #07060B; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FFFFFF; --ink: #171717; --muted: #5B5B5B;
+  --sphere: #727272; --bloom: #AEAEAE; --pop: #C5C5C5; --pop-ink: #222222;
+  --on-ink: #FFFFFF; --hi: #FFFFFF; --lo: #131313; --clear: transparent;
+}
+[data-colorway="peach"] {
+  --bg: #FAEDE5; --surface: #FFF9F3; --ink: #322128; --muted: #69545A;
+  --sphere: #E67C5A; --bloom: #F3B481; --pop: #FFC19D; --pop-ink: #4B2725;
+  --on-ink: #FFF9F3; --hi: #FFFAF7; --lo: #35252B; --clear: transparent;
+}
+[data-colorway="tide"] {
+  --bg: #E3F2F3; --surface: #F8FCFC; --ink: #17353C; --muted: #405D62;
+  --sphere: #23779B; --bloom: #64DBD1; --pop: #6CD9C7; --pop-ink: #113D38;
+  --on-ink: #FCFFFF; --hi: #FFFFFF; --lo: #102E3A; --clear: transparent;
+}
+[data-colorway="sage"] {
+  --bg: #EBEEDF; --surface: #FAFCF4; --ink: #273329; --muted: #53614E;
+  --sphere: #56815C; --bloom: #BCD677; --pop: #CDDF83; --pop-ink: #29371C;
+  --on-ink: #FAFCF4; --hi: #FFFFFF; --lo: #243623; --clear: transparent;
+}
+[data-colorway="periwinkle"] {
+  --bg: #EDEDF9; --surface: #FCFBFF; --ink: #29274A; --muted: #5B5874;
+  --sphere: #4E67CF; --bloom: #BCA3F1; --pop: #C9B7F4; --pop-ink: #362A55;
+  --on-ink: #FCFBFF; --hi: #FFFFFF; --lo: #22233E; --clear: transparent;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: Inter, Arial, sans-serif; color: var(--ink); }
+main {
+  position: relative; isolation: isolate; width: 1200px; height: 756px; overflow: hidden;
+  background:
+    radial-gradient(ellipse 48% 45% at 72% 91%, color-mix(in srgb, var(--sphere) 19%, var(--clear)), var(--clear) 88%),
+    radial-gradient(ellipse 56% 73% at 26% 32%, color-mix(in srgb, var(--surface) 80%, var(--bg)), var(--clear) 100%),
+    var(--bg);
+}
+header { position: absolute; z-index: 2; inset: 34px 47px auto 54px; display: flex; align-items: center; justify-content: space-between; }
+.wordmark, nav { display: flex; align-items: center; }
+.wordmark { gap: 10px; font-size: 24px; font-weight: 660; letter-spacing: -1.2px; }
+.wordmark svg { width: 24px; height: 24px; }
+nav { position: absolute; left: 377px; gap: 39px; font-size: 14px; font-weight: 450; color: var(--muted); }
+.sign-in { display: grid; place-items: center; width: 120px; height: 39px; border-radius: 24px; background: var(--ink); color: var(--on-ink); font-size: 14px; font-weight: 570; }
+.copy { position: absolute; inset: 139px auto auto 53px; }
+h1 { margin: 0; font-size: 106px; font-weight: 295; line-height: 1.06; letter-spacing: -.087em; }
+h1 em { display: inline-block; transform: scaleX(1.13); transform-origin: left; font-family: 'Instrument Serif', Georgia, serif; font-size: 1.18em; line-height: .76; font-weight: 400; letter-spacing: -.027em; color: color-mix(in srgb, var(--sphere) 90%, var(--ink)); }
+.intro { position: absolute; top: 389px; left: 55px; margin: 0; width: 400px; color: var(--muted); font-size: 17.6px; line-height: 1.51; letter-spacing: -.26px; }
+.trial, .gain { background: var(--pop); color: var(--pop-ink); box-shadow: 0 14px 26px color-mix(in srgb, var(--pop) 25%, var(--clear)); display: inline-flex; align-items: center; justify-content: center; font-weight: 610; }
+.trial { position: absolute; top: 482px; left: 54px; height: 57px; padding-inline: 33px; border-radius: 32px; font-size: 16px; }
+.terms { position: absolute; top: 572px; left: 56px; margin: 0; font-size: 14.5px; color: var(--muted); }
+.sphere { position: absolute; left: 615px; top: 124px; width: 430px; aspect-ratio: 1; border-radius: 50%;
+  background:
+    radial-gradient(ellipse at 34% 29%, color-mix(in srgb, var(--hi) 80%, var(--clear)), var(--clear) 42%),
+    radial-gradient(ellipse at 19% 87%, color-mix(in srgb, var(--bloom) 91%, var(--clear)), var(--clear) 58%),
+    radial-gradient(ellipse at 30% 25%, color-mix(in srgb, var(--sphere) 67%, var(--hi)) 0%, var(--sphere) 56%, color-mix(in srgb, var(--sphere) 49%, var(--lo)) 100%);
+  box-shadow: 0 56px 72px -23px color-mix(in srgb, var(--sphere) 41%, var(--clear));
+}
+.score { position: absolute; left: 982px; top: 109px; width: 183px; height: 146px; padding: 17px 22px; border-radius: 25px;
+  border: 1.5px solid color-mix(in srgb, var(--hi) 62%, var(--clear)); background: color-mix(in srgb, var(--surface) 86%, var(--clear));
+  box-shadow: 0 17px 36px color-mix(in srgb, var(--lo) 8%, var(--clear)); backdrop-filter: blur(9px); }
+.score small { color: var(--muted); font-weight: 520; font-size: 13px; }
+.score-line { display: flex; gap: 19px; align-items: center; margin-top: 13px; }
+.score-line strong { font-size: 58px; line-height: 1.2; font-weight: 305; letter-spacing: -.08em; font-variant-numeric: tabular-nums; }
+.score-ring { width: 51px; height: 51px; flex: none; }
+.ring-bed { stroke: color-mix(in srgb, var(--muted) 17%, var(--surface)); }
+.ring-value { stroke: var(--sphere); }
+.gain { position: absolute; left: 720px; top: 589px; gap: 12px; min-width: 224px; height: 51px; border-radius: 28px; font-size: 15.5px; }
+.gain::before { content: ""; width: 11px; height: 11px; border-radius: 50%; background: var(--surface); }
+</style>
+</head>
+<body>
+<main aria-label="Sleep tracking landing page">
+  <header>
+    <div class="wordmark"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.9 2.2a10 10 0 1 0 4.7 16.6A9.3 9.3 0 0 1 15.9 2.2Z"/></svg>hushline</div>
+    <nav aria-label="Sections"><span>How it works</span><span>The science</span><span>Pricing</span></nav><span class="sign-in">Sign in</span>
+  </header>
+  <section class="copy"><h1>Sleep is<br>a <em>skill.</em></h1></section>
+  <p class="intro">Wind-down audio, a smart alarm and a nightly score that tells you exactly what to fix.</p>
+  <span class="trial">Try 7 nights free</span><p class="terms">No card needed · cancel anytime</p>
+  <div class="sphere" aria-hidden="true"></div>
+  <aside class="score"><small>Sleep score</small><div class="score-line"><strong>82</strong>
+    <svg class="score-ring" viewBox="0 0 52 52" fill="none" stroke-width="5.4" aria-hidden="true"><circle class="ring-bed" cx="26" cy="26" r="21.5"/><circle class="ring-value" cx="26" cy="26" r="21.5" stroke-linecap="round" stroke-dasharray="110.8 135.1" transform="rotate(-90 26 26)"/></svg>
+  </div></aside>
+  <span class="gain">+38 min deep sleep</span>
+</main>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>

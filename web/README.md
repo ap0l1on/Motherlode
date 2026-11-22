@@ -5,7 +5,7 @@ Websites and web pages.
 
 | Category | What goes in it |
 | --- | --- |
-| [Landing pages](landing-pages/) | Landing pages |
+| [Landing pages](landing-pages/) | Landing pages · **1 design** |
 | [Homepages](homepages/) | Website homepages |
 | [SaaS sites](saas-sites/) | SaaS and product marketing sites |
 | [App sites](app-sites/) | Websites for mobile apps |
