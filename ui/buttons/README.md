@@ -5,10 +5,11 @@ Buttons and their states.
 
 Part of [UI](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="pixel-runner-download/"><img src="pixel-runner-download/preview.gif" width="260" alt="Pixel runner download"></a><br><a href="pixel-runner-download/"><b>Pixel runner download</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="rocket-download/"><img src="rocket-download/preview.gif" width="260" alt="Rocket download"></a><br><a href="rocket-download/"><b>Rocket download</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="walk-through-logout/"><img src="walk-through-logout/preview.gif" width="260" alt="Walk-through logout"></a><br><a href="walk-through-logout/"><b>Walk-through logout</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="copper-foil-arrow/"><img src="copper-foil-arrow/preview.gif" width="260" alt="Copper foil arrow button"></a><br><a href="copper-foil-arrow/"><b>Copper foil arrow button</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pixel-runner-download/"><img src="pixel-runner-download/preview.gif" width="260" alt="Pixel runner download"></a><br><a href="pixel-runner-download/"><b>Pixel runner download</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="rocket-download/"><img src="rocket-download/preview.gif" width="260" alt="Rocket download"></a><br><a href="rocket-download/"><b>Rocket download</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="walk-through-logout/"><img src="walk-through-logout/preview.gif" width="260" alt="Walk-through logout"></a><br><a href="walk-through-logout/"><b>Walk-through logout</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
