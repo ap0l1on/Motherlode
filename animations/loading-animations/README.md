@@ -3,4 +3,12 @@
 
 Loading animations.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="dune-gallop-loader/"><img src="dune-gallop-loader/preview.gif" width="260" alt="Dune gallop loader"></a><br><a href="dune-gallop-loader/"><b>Dune gallop loader</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

@@ -10,7 +10,7 @@ Animation for screens, the web and beyond.
 | [Page transitions](page-transitions/) | Page and screen transitions |
 | [Scroll animations](scroll-animations/) | Scroll-triggered animations · **1 design** |
 | [Parallax](parallax/) | Parallax effects |
-| [Loading animations](loading-animations/) | Loading animations |
+| [Loading animations](loading-animations/) | Loading animations · **1 design** |
 | [Success animations](success-animations/) | Checkmarks, confetti and celebrations |
 | [Onboarding animations](onboarding-animations/) | Animated onboarding and walkthroughs |
 | [Cursor effects](cursor-effects/) | Cursor trails and effects · **10 designs** |
