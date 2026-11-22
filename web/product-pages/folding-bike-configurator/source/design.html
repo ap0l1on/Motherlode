@@ -1,0 +1,225 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1152x780">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="13">
+<meta name="motherlode:still" content="3.2">
+<title>Folding bike configurator</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #DFE0E8; --surface: #FFFFFF; --ink: #191A1B; --muted: #4E5357;
+  --accent: #556083; --on-accent: #FFFFFF; --second: #ED6D61; --third: #A9AEB2;
+  --ivory: #E8E6DF; --shade: #6A6F75; --outline: #C2C4C4; --good: #56735D;
+  --hi: #FFFFFF; --lo: #14151A; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; width: 1152px; height: 780px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: Inter, Arial, sans-serif; }
+button { color: inherit; font: inherit; cursor: pointer; }
+.page { width: 576px; height: 390px; transform: scale(2); transform-origin: top left; display: grid; place-items: center; background: radial-gradient(ellipse at 60% 43%,var(--hi),var(--bg) 75%); }
+.product { position: relative; width: 484px; height: 332px; margin-left: 11px; margin-top: -10px; background: var(--surface); box-shadow: 0 13px 22px -17px var(--shade); overflow: hidden; }
+.strip { position: absolute; inset: 0 auto 0 0; width: 35%; background: var(--accent); transform: translateX(0); }
+.brand { position: absolute; top: 27px; left: 28px; color: var(--on-accent); font-size: 8px; font-weight: 750; z-index: 2; }
+.brand small { display: flex; align-items: center; gap: 3px; margin-top: 12px; border-left: 2px solid var(--second); padding: 3px 4px; }
+.brand svg { height: 9px; width: 18px; fill: none; stroke: currentColor; stroke-width: 1.3; }
+.bike { position: absolute; top: 83px; left: 31px; width: 270px; height: 181px; overflow: visible; pointer-events: none; }
+.tire { fill: none; stroke: var(--lo); stroke-width: 5.8; }
+.sidewall { fill: none; stroke: var(--shade); stroke-width: 1.3; }
+.rim { fill: none; stroke: var(--third); stroke-width: 1.05; }
+.hub { fill: var(--hi); stroke: var(--ink); stroke-width: 1.5; }
+.spokes { fill: none; stroke: var(--shade); stroke-width: .63; }
+.blade { fill: url(#spoke-metal); stroke: var(--lo); stroke-width: .8; }
+.metal { fill: url(#frame-metal); stroke: var(--shade); stroke-width: .7; }
+.edge { fill: none; stroke: var(--hi); stroke-width: .95; stroke-linecap: round; }
+.machine { fill: var(--lo); stroke: var(--shade); stroke-width: .6; }
+.cable { fill: none; stroke: var(--ink); stroke-width: .6; }
+#bike-shadow { opacity: .12; fill: var(--shade); }
+.wheel-shell { transform-box: fill-box; transform-origin: center; }
+.style { opacity: 0; }
+.style:first-child { opacity: 1; }
+.heading,.choices { position: absolute; left: 63%; }
+.heading { width: 170px; top: 65px; }
+h1 { font-size: 17px; letter-spacing: -.63px; line-height: 1.18; margin: 0; font-weight: 750; }
+.choices { left: 65.7%; top: 199px; }
+h2 { margin: 0 0 6px; font-size: 10px; font-weight: 750; }
+.options { display: flex; align-items: stretch; gap: 3px; }
+.option { border: 1px solid var(--clear); background: var(--clear); padding: 4px 2px; width: 30px; text-align: center; border-radius: 1.5px; }
+.option[aria-pressed="true"],.option:hover { border-color: var(--outline); box-shadow: 0 3px 6px -4px var(--shade); }
+.option svg { display: block; width: 22px; height: 22px; margin: 0 auto 3px; }
+.option span { display: block; font-size: 4.3px; line-height: 1.4; color: var(--muted); }
+.checkout,.back { position: absolute; border: 0; background: var(--second); color: var(--lo); height: 29px; padding: 0 12px; font-size: 8px; border-radius: 1px; }
+.checkout { left: 86px; bottom: 21px; }
+.cart { position: absolute; z-index: 3; left: 28px; top: 94px; width: 162px; opacity: 0; visibility: hidden; }
+.cart small { color: var(--muted); font-size: 8px; }
+.cart h2 { margin: 8px 0 19px; font-size: 23px; line-height: 1.02; letter-spacing: -1px; }
+.cart p { margin: 6px 0 14px; font-size: 8px; }
+.cart button { border: 0; border-radius: 2px; background: var(--second); padding: 7px 9px; color: var(--lo); font-size: 8px; }
+.cart .back { position: static; background: var(--clear); color: var(--ink); text-decoration: underline; }
+.product.is-cart .strip { transform: translateX(315px); }
+.product.is-cart .brand { color: var(--ink); }
+.product.is-cart .bike { transform: translate(153px,5px); }
+.product.is-cart .heading,.product.is-cart .choices,.product.is-cart .checkout { visibility: hidden; }
+.product.is-cart .cart { opacity: 1; visibility: visible; }
+.product.manual .strip,.product.manual .bike { transition: transform .65s cubic-bezier(.23,.9,.31,1); }
+:focus-visible { outline: 2px solid var(--second); outline-offset: 2px; }
+
+</style></head><body>
+<main class="page"><section class="product" aria-label="Folding bicycle builder"><div class="strip"></div>
+<div class="brand">Fold Mode<small><svg viewBox="0 0 24 13"><circle cx="5" cy="8.5" r="3.4"/><circle cx="19" cy="8.5" r="3.4"/><path d="M4 8.5 8 3.5l5 5 4-6 2 6m-13-6h4m5-1h3"/></svg></small></div>
+<svg class="bike" viewBox="0 0 269 180" role="img" aria-label="White folding bicycle with exchangeable wheel spokes">
+<defs><linearGradient id="frame-metal" x2=".3" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="var(--shade)"/><stop offset=".16" stop-color="var(--hi)"/><stop offset=".37" stop-color="var(--surface)"/><stop offset=".7" stop-color="var(--ivory)"/><stop offset="1" stop-color="var(--third)"/></linearGradient><linearGradient id="spoke-metal" x2="1" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="var(--lo)"/><stop offset=".43" stop-color="var(--shade)"/><stop offset=".7" stop-color="var(--lo)"/><stop offset="1" stop-color="var(--third)"/></linearGradient>
+<g id="wire-style"></g><g id="three-style"></g><g id="mesh-style"></g><g id="star-style"></g>
+</defs>
+<ellipse id="bike-shadow" cx="143" cy="166" rx="117" ry="1.7"/>
+<g id="rear-wheel" transform="translate(69 129)"><g class="wheel-shell" data-wheel></g></g>
+<g id="front-wheel" transform="translate(211 129)"><g class="wheel-shell" data-wheel></g></g>
+<g aria-hidden="true">
+<path class="machine" d="M98 44 104 45 131 125 127 128Z"/>
+<path d="m102 48 19 60" stroke="var(--third)" stroke-width="1.25"/>
+<path class="machine" d="M84 38q15-3 34 1l-2 3q-9 1-13 4l-7-2q-7 1-13-3Z"/>
+<path class="edge" d="m85 38 22 .25 10 1"/>
+<path class="metal" d="M68 120q18 0 48 4l10 1-1 13-56-4q-8-2-8-8 0-5 7-6Z"/>
+<path class="edge" d="M70 122q26 1 46 4"/>
+<path class="metal" d="M125 132q-5-4-7-10l-6-21c-1-3 0-6 4-9l51-24 16-10 7 6-2 7-62 32 7 25Z"/>
+<path class="edge" d="m121 94 42-19 20-12"/>
+<path fill="var(--shade)" d="m149 80 1 7 4-2-1-7Zm-26 21 3 13 2-1-2-14Z"/>
+<path class="machine" d="M190 66q3 15 10 30l13 31-4 4-17-31-7-25Z"/>
+<path class="metal" d="M183 62l-3-28-5-8 2-1 8 6 4 30Zm4 9 6 3 9 26-4 1Z"/>
+<path class="machine" d="m171 27 3-5 12-1 7 6-2 3-7-5-8 2Z"/>
+<path class="edge" d="m180 24 5-.3 7 4"/>
+<path class="cable" d="M178 26q-10 4-6 14t11 26m9-37q5 6 2 17t-4 21"/>
+<circle cx="68" cy="126" r="4.3" class="metal"/><circle cx="68" cy="126" r="1.6" fill="var(--shade)"/>
+<circle cx="127" cy="131" r="5" class="machine"/><circle cx="127" cy="131" r="2.4" fill="var(--third)"/>
+<path d="m127 131 6 15 6 0m-13-16-6-8-5-1" fill="none" stroke="var(--lo)" stroke-width="2.4" stroke-linecap="round"/>
+<path d="m207 128 4 2 2-1" fill="none" stroke="var(--third)" stroke-width="2"/>
+</g></svg>
+<div class="heading"><h1>Configure the Bike</h1></div>
+<div class="choices"><h2>Wheels</h2><div class="options" aria-label="Wheel design"></div></div>
+<button class="checkout" type="button">Check Out</button><div class="cart"><small>Your configuration</small><h2>Added to cart</h2><p class="cart-summary"></p><button class="buy" type="button">Buy now</button><button class="back" type="button">Go back</button></div>
+</section></main><script>
+
+const ns = 'http://www.w3.org/2000/svg';
+const bikeStyles = ['wire-style','three-style','mesh-style','star-style'];
+const wheelNames = ['Aero','Blade','Radial','Split'];
+function radialWires(count, skew) {
+  return Array.from({length:count},(_,index) => {
+    const angle = Math.PI * 2 * index / count;
+    return '<path class="spokes" d="M'+(4*Math.cos(angle))+','+(4*Math.sin(angle))+' '+(36.8*Math.cos(angle+skew))+','+(36.8*Math.sin(angle+skew))+'"/>';
+  }).join('');
+}
+function blades(count, branch) {
+  return Array.from({length:count},(_,index) => '<path class="blade" transform="rotate('+index*360/count+')" d="'+(branch?'M-2 -3Q-5 -16 -14 -33L-12 -35Q-4 -24 1 -18L6 -36 9 -35Q7 -17 3 -3Z':'M-3 -3Q-1 -18 -13 -34L-8 -37Q8 -26 9 -11L4 2Z')+'"/>').join('');
+}
+document.getElementById(bikeStyles[0]).innerHTML = radialWires(27,.15);
+document.getElementById(bikeStyles[1]).innerHTML = blades(3,false);
+document.getElementById(bikeStyles[2]).innerHTML = radialWires(18,.48)+radialWires(18,-.48);
+document.getElementById(bikeStyles[3]).innerHTML = blades(5,true);
+for (const wheel of document.querySelectorAll('[data-wheel]')) {
+  wheel.innerHTML = '<g class="variants">'+bikeStyles.map(id=>'<g class="style"><use href="#'+id+'"/></g>').join('')+'</g><circle class="tire" r="40"/><circle class="sidewall" r="38.7"/><circle class="rim" r="36.7"/><circle class="hub" r="3.2"/>';
+}
+const options = document.querySelector('.options');
+options.innerHTML = bikeStyles.map((id,index) => '<button type="button" class="option" aria-label="'+wheelNames[index]+' wheels" aria-pressed="'+(index===0)+'"><svg viewBox="-47 -47 94 94"><circle class="tire" r="40"/><use href="#'+id+'"/><circle class="hub" r="4"/></svg><span>STYLE '+(index+1)+'</span><span>'+wheelNames[index]+'</span></button>').join('');
+const product = document.querySelector('.product');
+const tours = [];
+const loop = {duration:13000,iterations:Infinity,fill:'both'};
+const tween = 'cubic-bezier(.4,0,.2,1)';
+const boundaries = [0,.32,.47,.65,.84,1];
+const sequence = [0,1,2,3,1];
+function tour(target,keys) { tours.push(target.animate(keys,loop)); }
+for (let style=0; style<4;style++) {
+  const keys=[];
+  sequence.forEach((value,i)=>{keys.push({offset:boundaries[i],opacity:+(value===style),easing:'steps(1,end)'});});
+  keys.push({offset:1,opacity:+(style===0)});
+  document.querySelectorAll('.variants').forEach(group=>tour(group.children[style],keys));
+  tour(options.children[style],keys.map(frame=>({offset:frame.offset,borderColor:frame.opacity?'var(--outline)':'var(--clear)',easing:'steps(1,end)'})));
+}
+for (const [index,wheel] of [...document.querySelectorAll('.wheel-shell')].entries()) {
+  const side = index ? 1 : -1;
+  const keys=[{offset:0,transform:'translateX(0px) rotate(0deg)'}];
+  for (const stop of [.32,.47,.65,.84]) {
+    keys.push({offset:stop-.05,transform:'translateX(0px) rotate(0deg)',easing:tween},{offset:stop,transform:'translateX('+side*166+'px) rotate('+side*180+'deg)',easing:tween},{offset:stop+.063,transform:'translateX(0px) rotate(0deg)',easing:tween});
+  }
+  keys.push({offset:1,transform:'translateX(0px) rotate(0deg)'});
+  tour(wheel,keys);
+}
+let selected=0;
+function seizeBuilder() { tours.forEach(animation=>animation.cancel()); product.classList.add('manual'); }
+function wheelChoice(index, animate) {
+  seizeBuilder(); selected=index;
+  document.querySelectorAll('.variants').forEach(group=>[...group.children].forEach((item,i)=>item.style.opacity=+(i===index)));
+  [...options.children].forEach((button,i)=>button.setAttribute('aria-pressed',String(i===index)));
+  if (animate) document.querySelectorAll('.wheel-shell').forEach((wheel,i)=>{
+    wheel.getAnimations().forEach(animation=>animation.cancel());
+    const side=i?1:-1;
+    wheel.animate([{transform:'translateX(0px)'},{offset:.43,transform:'translateX('+side*130+'px) rotate('+side*160+'deg)'},{transform:'translateX(0px)'}],{duration:650,easing:tween});
+  });
+}
+[...options.children].forEach((button,i)=>button.addEventListener('click',()=>wheelChoice(i,true)));
+document.querySelector('.checkout').addEventListener('click',()=>{
+  if (!product.classList.contains('manual')) {
+    const elapsed=(tours[0].currentTime||0)%13000/13000;
+    wheelChoice(sequence[boundaries.findIndex(stop=>stop>elapsed)-1]||0,false);
+  }
+  product.classList.add('is-cart');
+  document.querySelector('.cart-summary').textContent=wheelNames[selected]+' wheels · Folding frame';
+  document.querySelector('.buy').textContent='Buy now';
+});
+document.querySelector('.back').addEventListener('click',()=>product.classList.remove('is-cart'));
+document.querySelector('.buy').addEventListener('click',event=>{event.currentTarget.textContent='Order placed';document.querySelector('.cart-summary').textContent='Your '+wheelNames[selected].toLowerCase()+' build is reserved.';});
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
