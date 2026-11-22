@@ -10,18 +10,40 @@
   <title>Cyan contour scan</title>
   <style>
 :root, [data-colorway="original"] { --background: #030711; --shade: #091b28; --middle: #3f707c; --bright: #8ad2d7; --highlight: #b6ebed; --leaf: #6099a1; --label: #8ad2d7; }
-[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; }
-[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; }
-[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; }
-[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; }
-[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; }
-[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; }
-[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d;
+  --face-tracker-ink: #caaab3; --system-online-ink: #caaab3; --camera-active-ink: #caaab3; --pose-detected-ink: #caaab3; --movement-monitored-ink: #caaab3; --landmarks-478-ink: #caaab3; --display-model-ink: #caaab3;
+}
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f;
+  --face-tracker-ink: #f1b2c1; --system-online-ink: #f1b2c1; --camera-active-ink: #f1b2c1; --pose-detected-ink: #f1b2c1; --movement-monitored-ink: #f1b2c1; --landmarks-478-ink: #f1b2c1; --display-model-ink: #f1b2c1;
+}
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe;
+  --face-tracker-ink: #c4c4c4; --system-online-ink: #c4c4c4; --camera-active-ink: #c4c4c4; --pose-detected-ink: #c4c4c4; --movement-monitored-ink: #c4c4c4; --landmarks-478-ink: #c4c4c4; --display-model-ink: #c4c4c4;
+}
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4;
+  --face-tracker-ink: #63cbd6; --system-online-ink: #63cbd6; --camera-active-ink: #63cbd6; --pose-detected-ink: #63cbd6; --movement-monitored-ink: #63cbd6; --landmarks-478-ink: #63cbd6; --display-model-ink: #63cbd6;
+}
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989;
+  --face-tracker-ink: #b8cc8f; --system-online-ink: #b8cc8f; --camera-active-ink: #b8cc8f; --pose-detected-ink: #b8cc8f; --movement-monitored-ink: #b8cc8f; --landmarks-478-ink: #b8cc8f; --display-model-ink: #b8cc8f;
+}
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d;
+  --face-tracker-ink: #f2a88e; --system-online-ink: #f2a88e; --camera-active-ink: #f2a88e; --pose-detected-ink: #f2a88e; --movement-monitored-ink: #f2a88e; --landmarks-478-ink: #f2a88e; --display-model-ink: #f2a88e;
+}
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff;
+  --face-tracker-ink: #b8acff; --system-online-ink: #b8acff; --camera-active-ink: #b8acff; --pose-detected-ink: #b8acff; --movement-monitored-ink: #b8acff; --landmarks-478-ink: #b8acff; --display-model-ink: #b8acff;
+}
 
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 576px; height: 292px; overflow: hidden; background: var(--background); }
     svg { display: block; width: 100%; height: 100%; }
-  </style>
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\34 "][y="\32 3"] { fill: var(--face-tracker-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\34 0"] { fill: var(--system-online-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\35 2\.5"] { fill: var(--camera-active-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\36 5"] { fill: var(--pose-detected-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\37 7\.5"] { fill: var(--movement-monitored-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\39 0"] { fill: var(--landmarks-478-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\31 02\.5"] { fill: var(--display-model-ink); }
+</style>
 </head>
 <body>
   <svg viewBox="0 0 576 292" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
