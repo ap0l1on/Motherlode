@@ -5,10 +5,10 @@ Spinners and loading indicators.
 
 Part of [UI](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="eclipse-iris-pair/"><img src="eclipse-iris-pair/preview.gif" width="260" alt="Eclipse iris loader"></a><br><a href="eclipse-iris-pair/"><b>Eclipse iris loader</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="rose-filament-torus/"><img src="rose-filament-torus/preview.gif" width="260" alt="Rose filament torus"></a><br><a href="rose-filament-torus/"><b>Rose filament torus</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="eclipse-iris-pair/"><img src="eclipse-iris-pair/preview.gif" width="260" alt="Eclipse iris loader"></a><br><a href="eclipse-iris-pair/"><b>Eclipse iris loader</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="eight-trace-loading-chip/"><img src="eight-trace-loading-chip/preview.gif" width="260" alt="Eight-trace loading chip"></a><br><a href="eight-trace-loading-chip/"><b>Eight-trace loading chip</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="rose-filament-torus/"><img src="rose-filament-torus/preview.gif" width="260" alt="Rose filament torus"></a><br><a href="rose-filament-torus/"><b>Rose filament torus</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
