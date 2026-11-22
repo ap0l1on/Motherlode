@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x984">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6">
+<meta name="motherlode:still" content="3.55">
+<title>Desktop receipt printer</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #EBEDF2; --surface: #FFFDFB; --ink: #252631; --muted: #545866;
+  --accent: #152034; --on-accent: #FFFFFF; --second: #CD3E32; --third: #087AA5;
+  --ivory: #F4D7B1; --shade: #8B827C; --outline: #CACDD5; --good: #327456;
+  --hi: #FFFFFF; --lo: #14131B; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+  --tear-ink: #454545;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+  --tear-ink: #424242;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+  --tear-ink: #292929;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+  --tear-ink: #242424;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+  --tear-ink: #2b2b2b;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+  --tear-ink: #3b3b3b;
+}
+* {box-sizing:border-box;}html,body {width:864px;height:984px;overflow:hidden;margin:0;}
+main {position:relative;width:576px;height:656px;transform:scale(1.5);transform-origin:left top;overflow:hidden;color:var(--ink);font:600 11px Inter,sans-serif;background:repeating-linear-gradient(0deg,var(--clear) 0 30px,color-mix(in srgb,var(--outline) 19%,var(--clear)) 31px,var(--clear) 32px),repeating-linear-gradient(90deg,var(--clear) 0 29px,color-mix(in srgb,var(--outline) 16%,var(--clear)) 30px,var(--clear) 31px),linear-gradient(160deg,color-mix(in srgb,var(--bg) 72%,var(--hi)),var(--bg));}
+.printer {position:absolute;left:93px;top:71px;width:391px;height:62px;border-radius:13px 13px 9px 9px;background:linear-gradient(180deg,var(--hi),color-mix(in srgb,var(--surface) 83%,var(--outline)) 53%,var(--outline) 54%,color-mix(in srgb,var(--surface) 77%,var(--outline)) 70%,color-mix(in srgb,var(--bg) 86%,var(--outline)));box-shadow:0 6px 14px color-mix(in srgb,var(--shade) 16%,var(--clear)),inset 1px 0 2px var(--hi);}
+.slot {position:absolute;z-index:1;top:104px;left:117px;width:344px;height:5px;border-radius:2px;background:linear-gradient(90deg,var(--lo) 0 13%,var(--clear) 13% 87%,var(--lo) 87%);box-shadow:0 1px 2px color-mix(in srgb,var(--shade) 62%,var(--clear));}
+.paper-wrap {position:absolute;left:140px;top:107px;width:296px;height:505px;filter:drop-shadow(0 7px 10px color-mix(in srgb,var(--shade) 24%,var(--clear)));}
+.paper {position:relative;width:100%;height:100%;padding:9px 20px 25px;background:linear-gradient(95deg,color-mix(in srgb,var(--surface) 92%,var(--outline)),var(--surface) 30%,var(--surface) 68%,color-mix(in srgb,var(--surface) 88%,var(--outline)));color:var(--ink);clip-path:polygon(7% 0,93% 0,100% 99%,98% 100%,96% 99%,94% 100%,92% 99%,90% 100%,88% 99%,86% 100%,84% 99%,82% 100%,80% 99%,78% 100%,76% 99%,74% 100%,72% 99%,70% 100%,68% 99%,66% 100%,64% 99%,62% 100%,60% 99%,58% 100%,56% 99%,54% 100%,52% 99%,50% 100%,48% 99%,46% 100%,44% 99%,42% 100%,40% 99%,38% 100%,36% 99%,34% 100%,32% 99%,30% 100%,28% 99%,26% 100%,24% 99%,22% 100%,20% 99%,18% 100%,16% 99%,14% 100%,12% 99%,10% 100%,8% 99%,6% 100%,4% 99%,2% 100%,0 99%);text-align:center;font:500 11px/1.45 'Courier New',ui-monospace,monospace;}
+.banner {position:relative;display:grid;align-items:end;justify-items:center;margin:0 auto 10px;width:230px;height:63px;border-radius:3px;overflow:hidden;background:linear-gradient(160deg,var(--ivory),var(--second) 34%,color-mix(in srgb,var(--second) 42%,var(--lo)));box-shadow:0 1px 3px color-mix(in srgb,var(--lo) 29%,var(--clear));}.banner svg {position:absolute;inset:0;width:100%;height:100%;}.banner b {position:relative;padding:2px 9px;margin-bottom:5px;border-radius:10px;background:color-mix(in srgb,var(--lo) 70%,var(--clear));color:var(--hi);font-size:8px;letter-spacing:1.6px;}
+.kicker {font-weight:650;font-size:8px;letter-spacing:1.9px;}h1 {font-size:16px;letter-spacing:1.25px;margin:4px 0 0;line-height:21px;}h2 {font-size:10px;font-weight:400;font-style:italic;margin:1px 0 5px;}address {font:9px/12px 'Courier New',monospace;color:var(--muted);} .dots {margin:7px auto 20px;width:230px;font:900 11px/12px monospace;letter-spacing:8.5px;color:var(--shade);}
+dl {display:grid;gap:3px;margin:0 auto;text-align:left;padding:0 4px;}dl div,.row {display:flex;justify-content:space-between;gap:7px;}dt {color:var(--muted);}dd {margin:0;font-weight:750;}hr {border:0;border-top:1px dashed var(--outline);margin:18px 3px 20px;}table {width:100%;border-collapse:collapse;text-align:left;font:inherit;}th,td {padding:4px 2px;vertical-align:top;}th {font-size:9px;font-weight:750;border-bottom:1px dashed var(--outline);}td:last-child,th:last-child{text-align:right;}tfoot {font-weight:750;}.thanks {font-size:8px;letter-spacing:1.1px;margin-top:13px;}
+.bar {position:absolute;z-index:4;left:45px;top:501px;width:488px;height:46px;padding:7px 10px;display:flex;align-items:center;justify-content:space-between;gap:4px;background:color-mix(in srgb,var(--surface) 92%,var(--clear));border-radius:26px;border:1px solid color-mix(in srgb,var(--hi) 75%,var(--clear));backdrop-filter:blur(9px);box-shadow:0 7px 18px color-mix(in srgb,var(--shade) 17%,var(--clear));}
+button {position:relative;display:flex;align-items:center;justify-content:center;gap:5px;height:29px;flex:1;padding:0 9px;border:1px solid color-mix(in srgb,var(--outline) 48%,var(--clear));border-radius:16px;background:var(--surface);color:var(--ink);font:690 10px Inter,sans-serif;cursor:pointer;white-space:nowrap;text-transform:uppercase;}.print {flex:1.35;background:var(--accent);color:var(--on-accent);}.tear {background:var(--third);color:var(--on-accent);}.bar svg {width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}button:focus-visible {outline:2px solid var(--third);outline-offset:2px;}
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="ember"], [data-colorway="lagoon"], [data-colorway="orchid"], [data-colorway="olive"]) .ink-tear { color: var(--tear-ink); }
+</style></head><body><main><div class="printer"></div><div class="slot"></div><div class="paper-wrap"><article class="paper"><div class="banner"><svg viewBox="0 0 230 63" preserveAspectRatio="none" aria-hidden="true"><path d="m-10 53 69-28L99 5 80 27l-27 30Zm73 11 57-39 17-19-9 26-15 31Z" fill="var(--ivory)" opacity=".32"/><path d="m81 63 72-49 34-9-26 15-25 43Zm58-6 59-42 16-11-13 31-18 20Z" fill="var(--second)" opacity=".67"/><path d="m0 59 65-11 38-17 92 11 35 13v8H0Z" fill="var(--lo)" opacity=".25"/></svg><b>✦ CAFÉ &amp; ROASTERY ✦</b></div><span class="kicker">✦ OFFICIAL RECEIPT ✦</span><h1>EMBER &amp; BEAN</h1><h2>Artisan Coffee Roasters</h2><address>18 Juniper Row · Studio Market<br>Order desk / counter 02</address><div class="dots">••••••••••••••</div><dl><div><dt>ORDER:</dt><dd>#EB-8429</dd></div><div><dt>DATE:</dt><dd>Oct 07, 12:36 PM</dd></div><div><dt>CASHIER:</dt><dd>Studio 2</dd></div><div><dt>STATUS:</dt><dd>PAID ✓</dd></div></dl><hr><table><thead><tr><th>QTY</th><th>ITEM DESCRIPTION</th><th>AMT</th></tr></thead><tbody><tr><td>2×</td><td>Iced caramel oat<br>macchiato</td><td>$13.00</td></tr><tr><td>1×</td><td>Double espresso</td><td>$4.00</td></tr></tbody><tfoot><tr><td></td><td>TOTAL</td><td>$17.00</td></tr></tfoot></table><p class="thanks">THANK YOU FOR STOPPING BY</p></article></div>
+<div class="bar"><button class="print" data-a="print"><svg viewBox="0 0 24 24"><path d="M6 8V3h12v5M6 17H3V8h18v9h-3M7 14h10v7H7Z"/></svg><span>Re-print</span></button><button class="tear ink-tear" data-a="tear"><svg viewBox="0 0 24 24"><path d="M9 9 20 3M8 15l12 6M6 6a3 3 0 1 0 .1 0Zm0 9a3 3 0 1 0 .1 0Z"/></svg>Tear</button><button data-a="feed">↓ &nbsp;Feed</button><button data-a="reset">↺ &nbsp;Reset</button><button data-a="audio" aria-pressed="false">◁ &nbsp;Audio</button></div></main><script>
+const wrap=document.querySelector('.paper-wrap'),label=document.querySelector('.print span'),fixed=new URLSearchParams(location.search).has('t');let tracks=[],on=false;
+function rotate(frames,opts){const a=wrap.animate(frames,opts);tracks.push(a);return a;}function cancel(){tracks.forEach(a=>a.cancel());tracks=[];}
+function noise(){if(!on)return;try{const ac=new AudioContext(),osc=ac.createOscillator(),gain=ac.createGain();osc.type='triangle';osc.frequency.value=210;osc.connect(gain);gain.connect(ac.destination);gain.gain.setValueAtTime(.035,ac.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.1);osc.start();osc.stop(ac.currentTime+.12);osc.onended=()=>ac.close();}catch{}}
+function tour(){cancel();wrap.style.clipPath='';wrap.style.transform='';const frames=[[0,100,0,0],[.12,100,0,0],[.22,88,0,0],[.35,60,0,0],[.55,24,0,0],[.67,0,0,0],[.76,0,0,0],[.84,0,10,-2],[.91,0,13,-2],[.975,0,25,-3],[1,100,0,0]];rotate(frames.map(([offset,cut,y,angle])=>({offset,clipPath:'inset(0 0 '+cut+'% 0)',transform:'translateY('+y+'px) rotate('+angle+'deg)',easing:'ease-in-out'})),{duration:6000,iterations:Infinity});}
+document.querySelector('.bar').addEventListener('click',event=>{const button=event.target.closest('button');if(!button)return;const action=button.dataset.a;if(action==='audio'){on=!on;button.setAttribute('aria-pressed',String(on));noise();return;}noise();if(action==='print'){tour();label.textContent='Re-print';return;}const cut=getComputedStyle(wrap).clipPath;cancel();if(action==='reset'){wrap.style.clipPath='inset(0 0 100% 0)';wrap.style.transform='none';label.textContent='Print';}else if(action==='feed'){wrap.style.clipPath='inset(0)';wrap.style.transform='none';rotate([{clipPath:cut==='none'?'inset(0 0 100% 0)':cut},{clipPath:'inset(0)'}],{duration:750,fill:'forwards'});label.textContent='Re-print';}else{wrap.style.clipPath='inset(0)';rotate([{transform:'translateY(0) rotate(0)'},{transform:'translateY(10px) rotate(-2deg)',offset:.3},{transform:'translateY(455px) rotate(6deg)',opacity:0}],{duration:850,easing:'ease-in',fill:'forwards'});label.textContent='Print next';}});
+tour();if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!fixed)tracks.forEach(a=>{a.pause();a.currentTime=3550;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

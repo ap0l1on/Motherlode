@@ -3,4 +3,12 @@
 
 Success and confirmation screens.
 
-Part of [App screens](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [App screens](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="desktop-receipt-printer/"><img src="desktop-receipt-printer/preview.gif" width="260" alt="Desktop receipt printer"></a><br><a href="desktop-receipt-printer/"><b>Desktop receipt printer</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

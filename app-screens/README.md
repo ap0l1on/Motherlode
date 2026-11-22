@@ -28,7 +28,7 @@ Screens and flows found in almost every app.
 | [Achievements](achievements/) | Badges, streaks and rewards |
 | [Leaderboards](leaderboards/) | Leaderboards and rankings |
 | [Empty states](empty-states/) | Empty and first-run states |
-| [Success states](success-states/) | Success and confirmation screens |
+| [Success states](success-states/) | Success and confirmation screens · **1 design** |
 | [Error states](error-states/) | Error and offline screens |
 
 Each design gets its own folder inside a category. See [Adding a design](../README.md#adding-a-design).
