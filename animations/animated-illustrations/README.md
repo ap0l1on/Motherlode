@@ -5,10 +5,11 @@ Animated illustrations.
 
 Part of [Animations](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="amethyst-branch-canopy/"><img src="amethyst-branch-canopy/preview.gif" width="260" alt="Amethyst branch canopy"></a><br><a href="amethyst-branch-canopy/"><b>Amethyst branch canopy</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ribbon-rose-bloom/"><img src="ribbon-rose-bloom/preview.gif" width="260" alt="Ribbon rose bloom"></a><br><a href="ribbon-rose-bloom/"><b>Ribbon rose bloom</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="scarlet-broken-heart/"><img src="scarlet-broken-heart/preview.gif" width="260" alt="Scarlet broken heart"></a><br><a href="scarlet-broken-heart/"><b>Scarlet broken heart</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="amethyst-branch-canopy/"><img src="amethyst-branch-canopy/preview.gif" width="260" alt="Amethyst branch canopy"></a><br><a href="amethyst-branch-canopy/"><b>Amethyst branch canopy</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="aurora-orchard/"><img src="aurora-orchard/preview.gif" width="260" alt="Aurora orchard"></a><br><a href="aurora-orchard/"><b>Aurora orchard</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ribbon-rose-bloom/"><img src="ribbon-rose-bloom/preview.gif" width="260" alt="Ribbon rose bloom"></a><br><a href="ribbon-rose-bloom/"><b>Ribbon rose bloom</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="scarlet-broken-heart/"><img src="scarlet-broken-heart/preview.gif" width="260" alt="Scarlet broken heart"></a><br><a href="scarlet-broken-heart/"><b>Scarlet broken heart</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
