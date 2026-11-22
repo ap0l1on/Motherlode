@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x830">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="1.875">
+<meta name="motherlode:still" content="0.1">
+<title>White mission status sheet</title>
+<style>
+:root, [data-colorway="original"] {
+  --outer: #fffefd; --bg: #fffefd; --paper: #fffefd; --soft: #f8f8f9; --ink: #222226; --muted: #50505b; --rail: #25284b; --nav: #fffefe; --accent: #435a91; --pale: #e6eaf4; --deep: #384d84; --on-accent: #fffefe; --blue: #62799d; --copper: #b7877a; --mint: #9fbdaa; --gold: #baab78;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="light"] {
+  --outer: #f6f4f1; --bg: #f6f2ec; --paper: #fffdfa; --soft: #f3eee8; --ink: #2a2421; --muted: #62584e; --rail: #45372e; --nav: #fff8ed; --accent: #c89974; --pale: #f0ddc5; --deep: #865c42; --on-accent: #2e1d13; --blue: #7d92a3; --copper: #b47367; --mint: #72917a; --gold: #afa06c;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="dark"] {
+  --outer: #0d1119; --bg: #1c202b; --paper: #2a3040; --soft: #363b4b; --ink: #f5effa; --muted: #d1c9d6; --rail: #11151d; --nav: #f6f2ff; --accent: #bd9eec; --pale: #564867; --deep: #846ba5; --on-accent: #261b35; --blue: #8dace3; --copper: #e8a1a1; --mint: #95cdb4; --gold: #d5c187;
+  --photo-filter: saturate(.88);
+  --mission-sheet-ink: #a593bd;
+}
+[data-colorway="mono"] {
+  --outer: #f8f8f8; --bg: #eaeaea; --paper: #fdfdfd; --soft: #eeeeee; --ink: #1c1c1c; --muted: #535353; --rail: #202020; --nav: #fafafa; --accent: #a6a6a6; --pale: #d8d8d8; --deep: #777777; --on-accent: #191919; --blue: #858585; --copper: #999999; --mint: #ababab; --gold: #bdbdbd;
+  --photo-filter: grayscale(1);
+  --mission-sheet-ink: #737373;
+}
+[data-colorway="lagoon"] {
+  --outer: #e5f1ed; --bg: #e6efec; --paper: #f7fcf9; --soft: #dfebe7; --ink: #172e2a; --muted: #415b52; --rail: #183b37; --nav: #f0fbf5; --accent: #66b8aa; --pale: #c3e8df; --deep: #337b70; --on-accent: #103c34; --blue: #78a6b5; --copper: #b58b77; --mint: #83b696; --gold: #c6b47b;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="apricot"] {
+  --outer: #f6e9df; --bg: #f6ecdf; --paper: #fff9f1; --soft: #f2e6d8; --ink: #33251c; --muted: #66503d; --rail: #49362a; --nav: #fff5e7; --accent: #eaa873; --pale: #f2d3b1; --deep: #a76d42; --on-accent: #3f2511; --blue: #859faa; --copper: #ba7c68; --mint: #8fac85; --gold: #c4a36a;
+  --photo-filter: saturate(.88);
+  --mission-sheet-ink: #9b653d;
+}
+[data-colorway="cobalt"] {
+  --outer: #e4eaf5; --bg: #e9edf9; --paper: #fafbff; --soft: #e5e9f6; --ink: #1c2744; --muted: #465372; --rail: #1f2b49; --nav: #edf4ff; --accent: #84a0e5; --pale: #cdd9f3; --deep: #526fb5; --on-accent: #152745; --blue: #8196bc; --copper: #b386a4; --mint: #85aca7; --gold: #bead77;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="orchid"] {
+  --outer: #f0e5ee; --bg: #f4edf5; --paper: #fffbfe; --soft: #eee3ee; --ink: #34283b; --muted: #615067; --rail: #402c42; --nav: #fbf3fc; --accent: #ca96c2; --pale: #ebd0e6; --deep: #8d628b; --on-accent: #3a1d37; --blue: #9c93be; --copper: #c18491; --mint: #8bb3a1; --gold: #bfad89;
+  --photo-filter: saturate(.88);
+}
+:root {--edge:color-mix(in srgb,var(--ink) 8%,transparent);--shadow:color-mix(in srgb,var(--ink) 11%,transparent);--faint:color-mix(in srgb,var(--muted) 19%,var(--paper));--ink-accent:color-mix(in srgb,var(--ink) 65%,var(--deep));--skin:color-mix(in srgb,var(--paper) 66%,var(--copper));--hair:color-mix(in srgb,var(--ink) 79%,var(--copper));--portrait-bg-0:color-mix(in srgb,var(--pale) 64%,var(--copper));--portrait-bg-1:color-mix(in srgb,var(--paper) 67%,var(--mint));--portrait-bg-2:color-mix(in srgb,var(--paper) 63%,var(--blue));}
+@font-face {font-family:'Inter';src:url('fonts/inter-latin.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:block;}
+* {box-sizing:border-box;} html,body {width:1440px;height:830px;overflow:hidden;margin:0;}
+body {font-family:'Inter',sans-serif;background:var(--outer);}
+#art {display:block;width:1440px;height:830px;font-family:'Inter',sans-serif;}
+.screen,.active-mark {opacity:0;visibility:hidden;} .bar-grow {transform-box:fill-box;transform-origin:center bottom;}
+.action {cursor:pointer;} .action:focus-visible {outline:1px solid var(--accent);outline-offset:1px;}
+
+
+:is([data-colorway="mono"], [data-colorway="dark"], [data-colorway="apricot"]) .ink-mission-sheet { fill: var(--mission-sheet-ink); }
+</style></head><body>
+<svg id="art" role="group" aria-label="White mission status sheet" viewBox="0 0 576 332" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+
+</defs>
+<rect x="0" y="0" width="576" height="332" rx="0" fill="var(--paper)"/><g class="mission-sheet">
+<text x="108" y="22" font-size="8" font-weight="635" fill="var(--ink)">Aster Mission Control</text><text x="108" y="31" font-size="4.48" font-weight="495" fill="var(--muted)">Vessel ASTER–07 · Kepler Verge cruise phase.</text><text x="467" y="22" font-size="4.35" font-weight="490" fill="var(--muted)" text-anchor="end">MET: T+294:41:11  ·  UTC 06:08:44</text><text x="112" y="52" font-size="5.25" font-weight="610" fill="var(--deep)" class="ink-mission-sheet">Overview</text><text x="147" y="52" font-size="4.65" font-weight="495" fill="var(--muted)">Crew       Systems       Events       Destinations</text><path d="M108 61L468 61" fill="none" stroke="var(--edge)" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" /><text x="108" y="83" font-size="5.1" font-weight="495" fill="var(--muted)">S T A T U S</text><rect x="108" y="91" width="88" height="38" rx="2" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.35"/><text x="115" y="105" font-size="4.65" font-weight="495" fill="var(--muted)">Distance traveled</text><text x="115" y="118" font-size="9" font-weight="590" fill="var(--ink)">14,820 km</text><rect x="198" y="91" width="88" height="38" rx="2" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.35"/><text x="205" y="105" font-size="4.65" font-weight="495" fill="var(--muted)">Fuel remaining</text><text x="205" y="118" font-size="9" font-weight="590" fill="var(--ink)">74%</text><rect x="288" y="91" width="88" height="38" rx="2" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.35"/><text x="295" y="105" font-size="4.65" font-weight="495" fill="var(--muted)">O₂ reserve</text><text x="295" y="118" font-size="9" font-weight="590" fill="var(--ink)">96%</text><rect x="378" y="91" width="88" height="38" rx="2" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.35"/><text x="385" y="105" font-size="4.65" font-weight="495" fill="var(--muted)">Comm delay</text><text x="385" y="118" font-size="9" font-weight="590" fill="var(--ink)">142 ms</text><text x="108" y="149" font-size="5.1" font-weight="495" fill="var(--muted)">C R E W</text><text x="113" y="166" font-size="4.5" font-weight="495" fill="var(--muted)">NAME</text><text x="208" y="166" font-size="4.5" font-weight="495" fill="var(--muted)">ROLE</text><text x="306" y="166" font-size="4.5" font-weight="495" fill="var(--muted)">CONSOLE</text><text x="390" y="166" font-size="4.5" font-weight="495" fill="var(--muted)">STATUS</text><rect x="108" y="173" width="355" height="16" rx="0" fill="var(--paper)" opacity="0.38"/><text x="113" y="183" font-size="5.05" font-weight="545" fill="var(--ink)">Mara Vance</text><text x="208" y="183" font-size="4.95" font-weight="500" fill="var(--ink)">Commander</text><text x="306" y="183" font-size="4.85" font-weight="520" fill="var(--ink)">A1</text><rect x="389" y="177" width="18.931" height="8" rx="4" fill="var(--pale)"/><text x="398.466" y="182.304" font-size="3.95" font-weight="600" fill="var(--ink)" text-anchor="middle">On duty</text><rect x="108" y="190.5" width="355" height="16" rx="0" fill="var(--soft)" opacity="0.38"/><text x="113" y="200.5" font-size="5.05" font-weight="545" fill="var(--ink)">Ilya Rook</text><text x="208" y="200.5" font-size="4.95" font-weight="500" fill="var(--ink)">Pilot</text><text x="306" y="200.5" font-size="4.85" font-weight="520" fill="var(--ink)">A2</text><rect x="389" y="194.5" width="10.399" height="8" rx="4" fill="var(--soft)"/><text x="394.2" y="199.804" font-size="3.95" font-weight="600" fill="var(--ink)" text-anchor="middle">EVA</text><rect x="108" y="208" width="355" height="16" rx="0" fill="var(--paper)" opacity="0.38"/><text x="113" y="218" font-size="5.05" font-weight="545" fill="var(--ink)">Nia Okafor</text><text x="208" y="218" font-size="4.95" font-weight="500" fill="var(--ink)">Engineer</text><text x="306" y="218" font-size="4.85" font-weight="520" fill="var(--ink)">B1</text><rect x="389" y="212" width="18.931" height="8" rx="4" fill="var(--pale)"/><text x="398.466" y="217.304" font-size="3.95" font-weight="600" fill="var(--ink)" text-anchor="middle">On duty</text><rect x="108" y="225.5" width="355" height="16" rx="0" fill="var(--soft)" opacity="0.38"/><text x="113" y="235.5" font-size="5.05" font-weight="545" fill="var(--ink)">Theo Marsh</text><text x="208" y="235.5" font-size="4.95" font-weight="500" fill="var(--ink)">Science</text><text x="306" y="235.5" font-size="4.85" font-weight="520" fill="var(--ink)">B2</text><text x="392" y="235.5" font-size="4.2" font-weight="495" fill="var(--muted)">Rest</text><rect x="108" y="243" width="355" height="16" rx="0" fill="var(--paper)" opacity="0.38"/><text x="113" y="253" font-size="5.05" font-weight="545" fill="var(--ink)">Sana Reyes</text><text x="208" y="253" font-size="4.95" font-weight="500" fill="var(--ink)">Medic</text><text x="306" y="253" font-size="4.85" font-weight="520" fill="var(--ink)">C1</text><rect x="389" y="247" width="18.931" height="8" rx="4" fill="var(--pale)"/><text x="398.466" y="252.304" font-size="3.95" font-weight="600" fill="var(--ink)" text-anchor="middle">On duty</text><text x="108" y="280" font-size="5" font-weight="495" fill="var(--muted)">S Y S T E M S</text><text x="108" y="298" font-size="5.15" font-weight="525" fill="var(--ink)">Fuel</text><rect x="177" y="295" width="268" height="2" rx="1" fill="var(--soft)"/><rect x="177" y="295" width="198.32" height="2" rx="1" fill="var(--deep)"/><text x="468" y="298" font-size="4.75" font-weight="530" fill="var(--muted)" text-anchor="end">74%</text><text x="108" y="313" font-size="5.15" font-weight="525" fill="var(--ink)">Oxygen</text><rect x="177" y="310" width="268" height="2" rx="1" fill="var(--soft)"/><rect x="177" y="310" width="257.28" height="2" rx="1" fill="var(--deep)"/><text x="468" y="313" font-size="4.75" font-weight="530" fill="var(--muted)" text-anchor="end">96%</text><text x="108" y="328" font-size="5.15" font-weight="525" fill="var(--ink)">Hull integrity</text><rect x="177" y="325" width="268" height="2" rx="1" fill="var(--soft)"/><rect x="177" y="325" width="235.84" height="2" rx="1" fill="var(--deep)"/><text x="468" y="328" font-size="4.75" font-weight="530" fill="var(--muted)" text-anchor="end">88%</text><text x="108" y="354" font-size="4.85" font-weight="495" fill="var(--muted)">D E S T I N A T I O N   P R O G R E S S</text><text x="108" y="374" font-size="5.15" font-weight="540" fill="var(--ink)">Kepler Verge</text><rect x="177" y="371" width="268" height="2" rx="1" fill="var(--soft)"/><rect x="177" y="371" width="182" height="2" rx="1" fill="var(--deep)"/><text x="468" y="374" font-size="4.8" font-weight="530" fill="var(--muted)" text-anchor="end">68%</text>
+</g><g class="action" role="button" tabindex="0" aria-label="Replay mission status" data-replay="">
+<rect x="108" y="8" width="104" height="20" rx="0" fill="transparent"/>
+</g>
+</svg>
+<script>
+const duration=1.875, moments=[0.1], windows=[[0, 1.875]], navWindows=[[0, 1.875]];
+
+function track(el, keys) {
+  return el.animate(keys.map(([t,properties])=>({...properties,offset:Math.min(1,Math.max(0,t/duration))})),{duration:duration*1000,iterations:Infinity,fill:'both'});
+}
+function enter(el,t,len,a,b,ease='cubic-bezier(.2,.7,.25,1)') {
+  return track(el,[[0,a],[t,{...a,easing:ease}],[t+len,b],[duration,b]]);
+}
+function windowFor(el,start,end,fade=.18,first=false) {
+  const hidden={visibility:'hidden',opacity:0};
+  const shown={visibility:'visible',opacity:1};
+  const keys=[[0,hidden]];
+  if(start>0)keys.push([start-.001,hidden]);
+  keys.push([start,{visibility:'visible',opacity:first?1:0}],[start+fade,shown],[Math.max(start+fade,end-fade),shown]);
+  if(end<duration)keys.push([end,hidden],[duration,hidden]);else keys.push([end,shown]);
+  return track(el,keys);
+}
+function prepareNumber(el,start) {
+  const ns='http://www.w3.org/2000/svg', value=Number(el.dataset.counter), steps=16;
+  const formatter=new Intl.NumberFormat('en-US',{minimumFractionDigits:+el.dataset.digits,maximumFractionDigits:+el.dataset.digits});
+  const parent=document.createElementNS(ns,'g'); parent.setAttribute('aria-label',el.textContent);
+  el.replaceWith(parent);
+  const t=start+Number(el.dataset.delay), len=Number(el.dataset.length);
+  for(let i=0;i<=steps;i++) {
+    const step=el.cloneNode(false); step.removeAttribute('data-counter'); step.setAttribute('aria-hidden','true');
+    step.textContent=el.dataset.prefix+formatter.format(value*(1-(1-i/steps)**2))+el.dataset.suffix;
+    parent.append(step);
+    const a=Math.min(duration,t+len*i/steps), b=Math.min(duration,t+len*(i+1)/steps);
+    const off={opacity:0}, on={opacity:1};
+    const frames=i===0?[[0,on],[Math.max(0,b-.0001),on],[b,off],[duration,off]]:i===steps?[[0,off],[Math.max(0,a-.0001),off],[a,on],[duration,on]]:[[0,off],[Math.max(0,a-.0001),off],[a,on],[Math.max(a,b-.0001),on],[b,off],[duration,off]];
+    track(step,frames);
+  }
+}
+for(const pan of document.querySelectorAll('[data-panel]')) {
+  const i=Number(pan.dataset.panel),[start,end]=windows[i];
+  windowFor(pan,start,end,Math.min(.19,(end-start)/3));
+  pan.querySelectorAll('.enter').forEach(el=>enter(el,start+Number(el.dataset.lag),.28,{opacity:0,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}));
+  pan.querySelectorAll('[data-counter]').forEach(el=>prepareNumber(el,start));
+  pan.querySelectorAll('.bar-grow').forEach(el=>enter(el,start+.25+Number(el.dataset.lag||0),.60,{transform:'scaleY(0)'},{transform:'scaleY(1)'}));
+  pan.querySelectorAll('.draw').forEach((el,n)=>enter(el,start+.30+n*.035,.8,{strokeDashoffset:'100'},{strokeDashoffset:'0'}));
+}
+for(const mark of document.querySelectorAll('[data-highlight]')){const i=+mark.dataset.highlight;windowFor(mark,navWindows[i][0],navWindows[i][1],.025,i===0);}
+function selectView(i) { for(const a of document.getAnimations()){a.pause();a.currentTime=moments[i]*1000;} }
+function activate(el,fn){el.addEventListener('click',fn);el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn();}});}
+for(const control of document.querySelectorAll('[data-view]')) activate(control,()=>selectView(+control.dataset.view));
+for(const control of document.querySelectorAll('[data-replay]')) activate(control,()=>{for(const a of document.getAnimations()){a.currentTime=0;a.play();}});
+if(!location.search&&matchMedia('(prefers-reduced-motion:reduce)').matches)selectView(0);
+
+track(document.querySelector('.mission-sheet'),[[0,{transform:'translateY(0)'}],[.12,{transform:'translateY(0)',easing:'ease-out'}],[.54,{transform:'translateY(-46px)'}],[duration,{transform:'translateY(-46px)'}]]);
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body></html>
