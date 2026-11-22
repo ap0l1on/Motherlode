@@ -9,6 +9,8 @@ colorway selectors from source/design.html. All colorways get PNGs and, for
 animations, 24 fps H.264 MP4s. Loop durations round up to a whole video frame;
 odd video dimensions receive at most one pixel of padding (PNGs stay exact).
 Creates preview.png (static) or preview.gif (animated), plus colorways.png.
+For a carousel, motherlode:slides declares the number of ?slide=N pages;
+every page is also saved under exports/slides/<colorway>/.
 
 Chrome workers use private profiles and DevTools pipes, not the user's browser.
 DevTools sets the exact viewport, waits for fonts/images and captures animation
@@ -34,7 +36,7 @@ import subprocess
 import sys
 import tempfile
 import time
-from urllib.parse import quote, unquote, urlsplit
+from urllib.parse import quote, unquote, urlencode, urlsplit
 
 
 # Chrome expects null-terminated JSON on file descriptors 3 and 4. Launch via
@@ -93,6 +95,7 @@ class Design:
     loop: float | None
     still: float | None
     colorways: tuple[str, ...]
+    slides: int = 1
 
     @property
     def pixels(self):
@@ -139,7 +142,10 @@ def read_design(folder):
     if len(names) < 8 or not {"original", "light", "dark", "mono"}.issubset(names):
         raise ValueError("Provide at least 8 colorways, including original, light, dark and mono")
     names.remove("original")
-    return Design(source, width, height, scale, loop, still, ("original", *names))
+    slides = int(meta.get("slides", "1"))
+    if slides < 1:
+        raise ValueError("motherlode:slides must be a positive integer")
+    return Design(source, width, height, scale, loop, still, ("original", *names), slides)
 
 
 class Chrome:
@@ -155,6 +161,7 @@ class Chrome:
         self.events = []
         self.selector = selectors.DefaultSelector()
         self.log = None
+        self.previous_frame = None
 
     def __enter__(self):
         self.log = (self.directory / "chrome.log").open("wb")
@@ -251,10 +258,16 @@ class Chrome:
             raise RuntimeError(f"Page script failed: {result['exceptionDetails']}")
         return result.get("result", {}).get("value")
 
-    def render(self, colorway, seconds, output, wait_ms):
+    def render(self, colorway, seconds, output, wait_ms, slide=None):
         # Reload every timestamp: animations with fill modes, finished promises
         # and author-supplied ?t= initialization then behave like a fresh page.
-        query = f"?t={seconds:.9f}" if seconds is not None else ""
+        self.previous_frame = None
+        params = {}
+        if seconds is not None:
+            params["t"] = f"{seconds:.9f}"
+        if slide is not None:
+            params["slide"] = slide
+        query = "?" + urlencode(params) if params else ""
         url = self.design.source.as_uri() + query + "#" + quote(colorway)
         # Visiting a blank document forces a full navigation even for repeated
         # timestamps or hash-only changes, which emit no new load event. It also
@@ -292,16 +305,52 @@ class Chrome:
 
     def seek(self, seconds, output):
         """Seek existing CSS/WAAPI tracks in a document whose assets are ready."""
-        self.evaluate("""(() => {
+        changed = self.evaluate("""(() => {
             const t = TIME;
             const url = new URL(location.href);
             url.searchParams.set('t', String(t));
             history.replaceState(history.state, '', url);
-            for (const animation of document.getAnimations()) {
+            const animations = document.getAnimations();
+            for (const animation of animations) {
                 animation.pause(); animation.currentTime = t * 1000;
             }
+            // A held pose can span dozens of video frames. Under --reuse-page
+            // the page changes only through these tracks. Compare their painted
+            // CSS values, including pseudo-elements and custom properties.
+            const key = Symbol.for('motherlode.export.heldPose');
+            const state = window[key] ||= {properties: new WeakMap(), last: null};
+            const values = [];
+            for (const {effect} of animations) {
+                if (!effect?.target || !effect.getKeyframes) { state.last = null; return true; }
+                let props = state.properties.get(effect);
+                if (!props) {
+                    const skip = new Set(['offset', 'computedOffset', 'easing', 'composite']);
+                    props = [...new Set(effect.getKeyframes().flatMap(frame =>
+                        Object.keys(frame).filter(k => !skip.has(k))))];
+                    state.properties.set(effect, props);
+                }
+                const style = getComputedStyle(effect.target, effect.pseudoElement || null);
+                const row = [];
+                for (const p of props) {
+                    const value = p.startsWith('--') ? style.getPropertyValue(p) : style[p];
+                    if (value === undefined || value === '') { state.last = null; return true; }
+                    row.push(value);
+                }
+                values.push(row);
+            }
+            const signature = JSON.stringify(values);
+            const changed = signature !== state.last;
+            state.last = signature;
+            return changed;
         })()""".replace("TIME", json.dumps(seconds)))
-        self.capture(output)
+        if changed or self.previous_frame is None:
+            self.capture(output)
+        else:
+            try:
+                os.link(self.previous_frame, output)
+            except OSError:
+                shutil.copyfile(self.previous_frame, output)
+        self.previous_frame = output
 
     def capture(self, output):
         screenshot = self.call("Page.captureScreenshot", {"format": "png", "fromSurface": True,
@@ -391,6 +440,15 @@ def export(folder, args):
             try:
                 with Chrome(chrome, directory, design, args.timeout) as browser:
                     browser.render(name, design.still, exports / f"{name}.png", args.wait_ms)
+                    if design.slides > 1:
+                        slide_dir = exports / "slides" / name
+                        slide_dir.mkdir(parents=True)
+                        shutil.copyfile(exports / f"{name}.png", slide_dir / "01.png")
+                        for slide in range(2, design.slides + 1):
+                            browser.render(name, design.still, slide_dir / f"{slide:02}.png",
+                                           args.wait_ms, slide=slide)
+                        if design.loop and args.reuse_page:
+                            browser.render(name, design.still, exports / f"{name}.png", args.wait_ms)
                     for index in range(design.frames):
                         path = frames / f"frame-{index:06d}.png"
                         if args.reuse_page:
@@ -426,7 +484,10 @@ def export(folder, args):
         make_grid(exports, design.colorways, work / "colorways.png")
         extensions = ("png", "mp4") if design.loop else ("png",)
         media = [exports / f"{name}.{ext}" for name in design.colorways for ext in extensions]
-        products = [*media, work / preview, work / "colorways.png"]
+        slides = [exports / "slides" / name / f"{index:02}.png"
+                  for name in design.colorways for index in range(1, design.slides + 1)
+                  if design.slides > 1]
+        products = [*media, *slides, work / preview, work / "colorways.png"]
         for product in products:
             if product.stat().st_size >= FILE_LIMIT:
                 raise RuntimeError(f"{product.name} exceeds 50 MB; reduce scale or loop duration")
@@ -435,8 +496,10 @@ def export(folder, args):
         expected = {product.name for product in media}
         stale = sorted(path.name for path in destination.iterdir()
                        if path.suffix.lower() in {".png", ".mp4"} and path.name not in expected)
-        for product in media:
-            product.replace(destination / product.name)
+        for product in [*media, *slides]:
+            target = destination / product.relative_to(exports)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            product.replace(target)
         for name in (preview, "colorways.png"):
             (work / name).replace(folder / name)
         # A stale GIF wins the catalog's preview selection after animation is removed.

@@ -75,6 +75,8 @@ func encode() async throws {
     guard writer.startWriting() else { throw Failure(writer.error?.localizedDescription ?? "Cannot start encoder") }
     writer.startSession(atSourceTime: .zero)
     guard let pool = adaptor.pixelBufferPool else { throw Failure("Cannot allocate pixel buffer pool") }
+    var previousFile: NSNumber?
+    var previousBuffer: CVPixelBuffer?
     for (index, frame) in frames.enumerated() {
         let deadline = Date().addingTimeInterval(60)
         while !input.isReadyForMoreMediaData {
@@ -82,6 +84,17 @@ func encode() async throws {
                 throw Failure(writer.error?.localizedDescription ?? "Encoder timed out waiting for a frame")
             }
             try await Task.sleep(nanoseconds: 2_000_000)
+        }
+        let timestamp = CMTime(value: Int64(index), timescale: fps)
+        let attributes = try fm.attributesOfItem(atPath: frame.path)
+        let fileNumber = attributes[.systemFileNumber] as? NSNumber
+        if let fileNumber, fileNumber == previousFile, let previousBuffer {
+            // The exporter hard-links a held pose. Append the same immutable
+            // pixel buffer at its new timestamp without decoding the PNG again.
+            guard adaptor.append(previousBuffer, withPresentationTime: timestamp) else {
+                throw Failure(writer.error?.localizedDescription ?? "Cannot append held frame \(index)")
+            }
+            continue
         }
         try autoreleasepool {
             let current = try readImage(frame)
@@ -102,9 +115,11 @@ func encode() async throws {
             context.fill(CGRect(x: 0, y: 0, width: width, height: height))
             context.draw(current, in: CGRect(x: 0, y: height - current.height,
                                             width: current.width, height: current.height))
-            guard adaptor.append(buffer, withPresentationTime: CMTime(value: Int64(index), timescale: fps)) else {
+            guard adaptor.append(buffer, withPresentationTime: timestamp) else {
                 throw Failure(writer.error?.localizedDescription ?? "Cannot append frame \(index)")
             }
+            previousBuffer = buffer
+            previousFile = fileNumber
         }
     }
     writer.endSession(atSourceTime: CMTime(value: Int64(frames.count), timescale: fps))
