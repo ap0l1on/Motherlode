@@ -35,7 +35,7 @@ Animation for screens, the web and beyond.
 | [Particles](particles/) | Particle effects · **1 design** |
 | [Loops](loops/) | Seamless loops |
 | [Whiteboard animation](whiteboard/) | Whiteboard animation |
-| [Animated illustrations](animated-illustrations/) | Animated illustrations · **1 design** |
+| [Animated illustrations](animated-illustrations/) | Animated illustrations · **2 designs** |
 | [Animated stickers](animated-stickers/) | Animated stickers |
 
 Each design gets its own folder inside a category. See [Adding a design](../README.md#adding-a-design).

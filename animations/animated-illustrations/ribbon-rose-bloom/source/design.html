@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="466x463">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="10.5">
+  <meta name="motherlode:still" content="9.5">
+  <title>Ribbon rose bloom</title>
+  <style>
+:root, [data-colorway="original"] { --background: #10050d; --shade: #812149; --middle: #cc3478; --bright: #f266a2; --highlight: #ffd6e8; --leaf: #36775f; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 466px; height: 463px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 466 463" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Ribbon rose bloom</title>
+    <desc id="description">A curved green stem supports a rose made from overlapping loops of luminous pink wire.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 10.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let seed = 93216;
+    function noise() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    const stem = element("path", {d: "M327 442 Q273 414 252 380 Q232 347 229 311",
+      stroke: "var(--leaf)", "stroke-width": 2.15, "stroke-linecap": "round",
+      fill: "none", pathLength: 1, "stroke-dasharray": "1 1"});
+    stem.animate([{offset: 0, strokeDashoffset: 1}, {offset: 0.073, strokeDashoffset: 0},
+      {offset: 0.995, strokeDashoffset: 0}, {offset: 1, strokeDashoffset: 1}], {duration, iterations: Infinity});
+
+    // Point samples follow the surface of each low, rounded, ribbonlike lobe.
+    function ribbon(cx, cy, rx, ry, tilt, tones, appear, quantity) {
+      const group = element("g", {transform: "rotate(" + tilt + " " + cx + " " + cy + ")"});
+      element("ellipse", {cx, cy, rx: rx * .89, ry: ry * .82,
+        fill: "var(--" + tones[1] + ")", opacity: .14}, group);
+      const marks = tones.map(() => []);
+      for (let i = 0; i < quantity; i++) {
+        const u = noise() * 2 * Math.PI;
+        const v = noise() * 2 * Math.PI;
+        const radius = 0.75 + 0.25 * Math.cos(v);
+        const x = cx + rx * radius * Math.cos(u);
+        const y = cy + ry * (0.72 * Math.sin(v) + 0.30 * Math.sin(u)) +
+                  ry * 0.08 * Math.cos(2 * u);
+        const shade = (Math.sin(v - 0.55) + Math.cos(u + 0.8) + 2) / 4;
+        const bin = Math.min(tones.length - 1, Math.floor(shade * tones.length));
+        marks[bin].push("M" + x.toFixed(1) + " " + y.toFixed(1) + "h.1");
+      }
+      tones.forEach((tone, i) => element("path", {d: marks[i].join(""), fill: "none",
+        stroke: "var(--" + tone + ")", "stroke-linecap": "round", "stroke-width": 1.48,
+        opacity: 0.8 + 0.09 * i}, group));
+      const finish = Math.min(0.948, appear + 0.038);
+      group.animate([{offset: 0, opacity: 0}, {offset: appear, opacity: 0},
+        {offset: finish, opacity: 1}, {offset: 0.986, opacity: 1},
+        {offset: 1, opacity: 0}], {duration, iterations: Infinity});
+    }
+    ribbon(274, 390, 35, 13, 7, ["leaf", "leaf", "leaf"], 0.030, 1200);
+    ribbon(218, 320, 32, 11, 7, ["leaf", "leaf", "leaf"], 0.053, 1000);
+
+    const blossom = [];
+    for (const [cy, width, count, size] of [
+      [143, 29, 1, 28], [158, 63, 3, 29], [183, 81, 4, 31],
+      [201, 74, 4, 29], [230, 104, 5, 30], [256, 91, 4, 30],
+      [277, 67, 3, 29], [296, 47, 2, 27]
+    ]) {
+      for (let k = 0; k < count; k++) {
+        const position = count === 1 ? 0 : 2 * k / (count - 1) - 1;
+        const x = 240 + position * (width - size);
+        const y = cy + Math.sin((k + cy) * 1.1) * 3;
+        const radialDistance = Math.hypot((x - 227) * 0.9, (y - 232) * 1.12);
+        blossom.push({x, y, size, radialDistance, tilt: position * 5});
+      }
+    }
+    blossom.sort((a, b) => a.radialDistance - b.radialDistance);
+    blossom.forEach((p, i) => {
+      const tones = p.radialDistance < 31 ? ["bright", "bright", "highlight"] :
+                    p.radialDistance < 70 ? ["middle", "bright", "bright"] : ["shade", "middle", "middle"];
+      ribbon(p.x, p.y, p.size, 15 + noise() * 6, p.tilt, tones,
+             0.083 + i / blossom.length * 0.815, 2250);
+    });
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
