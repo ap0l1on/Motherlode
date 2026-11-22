@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1152x650">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="8">
+<meta name="motherlode:still" content="3.2">
+<title>Neumorphic photo orbit</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #DCE1EC; --surface: #E2E7EF; --ink: #2A3748; --muted: #4D5A6B;
+  --accent: #7972CD; --on-accent: #FFFFFF; --second: #AABBD0; --third: #9BAAC6;
+  --ivory: #F7F7F4; --shade: #9BA7B8; --outline: #BFC8D5; --good: #54806C;
+  --hi: #FFFFFF; --lo: #586479; --clear: transparent; --photo: none;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.70);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.82);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(318deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.67);
+}
+* {box-sizing:border-box;}html,body {width:1152px;height:650px;margin:0;overflow:hidden;}main {position:relative;width:576px;height:325px;overflow:hidden;transform:scale(2);transform-origin:top left;background:var(--bg);color:var(--ink);font:500 12px Inter,sans-serif;touch-action:none;}
+.progress {position:absolute;top:6px;left:248px;width:80px;height:3px;border-radius:3px;background:var(--outline);box-shadow:inset 1px 1px 2px var(--shade),0 1px 1px var(--hi);}.progress i {position:absolute;inset:0;background:var(--accent);border-radius:inherit;transform-origin:left;}
+.panel {position:absolute;top:134px;left:207px;width:162px;height:57px;display:grid;align-content:center;justify-items:center;border-radius:9px;background:var(--surface);box-shadow:5px 5px 8px color-mix(in srgb,var(--shade) 62%,var(--clear)),-5px -5px 10px color-mix(in srgb,var(--hi) 90%,var(--clear));}.panel h1,.panel h2 {font:630 16px/21px Inter,sans-serif;margin:0;letter-spacing:-.55px;}.panel small {color:var(--muted);font-size:4.3px;letter-spacing:1.4px;text-transform:uppercase;margin-top:2px;}
+.second {top:33px;left:158px;width:260px;height:93px;text-align:center;padding:12px 20px;}.second h2 {font-size:21px;}.second p {font-size:7px;line-height:10px;color:var(--muted);margin:7px 0 0;}
+.gallery {position:absolute;inset:0;pointer-events:none;}.photo {position:absolute;left:269px;top:139px;width:38px;height:49px;border-radius:6px;overflow:hidden;border:1px solid color-mix(in srgb,var(--hi) 74%,var(--clear));box-shadow:1px 2px 3px color-mix(in srgb,var(--shade) 58%,var(--clear));background-image:url('original-nature-atlas.webp');background-size:400% 400%;background-repeat:no-repeat;filter:var(--photo);}
+button {font:inherit;cursor:pointer;color:inherit;}.scroll {position:absolute;bottom:8px;left:50%;transform:translateX(-50%);border:0;border-radius:9px;background:var(--surface);box-shadow:1px 2px 3px color-mix(in srgb,var(--shade) 61%,var(--clear)),-1px -1px 2px var(--hi);padding:3px 8px;font-size:4.3px;line-height:7px;letter-spacing:.85px;text-transform:uppercase;}.dots {position:absolute;right:8px;top:139px;display:grid;gap:4px;}.dots button {padding:0;width:5px;height:5px;border:0;border-radius:50%;background:var(--outline);box-shadow:inset 1px 1px 1px var(--hi),1px 1px 1px var(--shade);}.dots button:nth-child(3) {background:var(--third);}button:focus-visible {outline:1px solid var(--accent);outline-offset:2px;}
+</style></head><body><main tabindex="0" aria-label="Scroll to explore the photo orbit"><div class="progress"><i></i></div><section class="panel title"><h1>Coding with me</h1><small>Scroll to explore</small></section><section class="panel second"><h2>Explore Our Vision</h2><p>Discover a collection of landscapes, light and architecture, gathered from a journey through nature.</p></section><div class="gallery"></div><nav class="dots" aria-label="Gallery positions"></nav><button class="scroll" type="button">↓ Scroll</button></main><script>
+const get=s=>document.querySelector(s),main=get('main'),tracks=[],qty=22,T=8000;const fixed=new URLSearchParams(location.search).has('t');let held=false,p=.0,anchor=null;
+const marks=[0,.13,.23,.36,.54,.65,.76,.86,.95,1],states=['row','row','arc','circle','circle','scatter','gone','gone','circle','row'];
+function pose(i,state){const a=(i/qty)*Math.PI*2-Math.PI/2,angle=(i*360/qty),x=(i-(qty-1)/2)*39,cy=(Math.cos(i*1.5)*2);let X=x,Y=cy,R=(i%3-1)*2,S=.95,O=1;
+if(state==='circle'){X=115*Math.cos(a);Y=115*Math.sin(a);R=angle;S=1;}else if(state==='arc'){const b=-2.7+i/(qty-1)*3.85;X=135*Math.cos(b)+5;Y=110*Math.sin(b)+22;R=b*180/Math.PI+90;S=.96;}else if(state==='scatter'||state==='gone'){const radius=state==='gone'?445:230;X=(radius+(i%3)*15)*Math.cos(a+.41);Y=(radius+(i%4)*23)*Math.sin(a+.41)+22;R=angle+35;S=1.23;O=state==='gone'?0:1;}
+return {transform:'translate('+X.toFixed(1)+'px,'+Y.toFixed(1)+'px) rotate('+R.toFixed(1)+'deg) scale('+S+')',opacity:O};}
+function at(el,sample){tracks.push(el.animate(marks.map((offset,j)=>({offset,...sample(states[j],offset),easing:'ease-in-out'})),{duration:T,iterations:Infinity,easing:'linear'}));}
+for(let i=0;i<qty;i++){const tile=document.createElement('i');tile.className='photo';const cell=(i*7+3)%16;tile.style.backgroundPosition=(cell%4*100/3)+'% '+(Math.floor(cell/4)*100/3)+'%';get('.gallery').append(tile);at(tile,s=>pose(i,s));}
+at(get('.title'),state=>({opacity:state==='circle'?1:state==='arc'?.6:0,transform:'scale('+(state==='circle'?1:.9)+')'}));at(get('.second'),state=>({opacity:state==='gone'?1:0,transform:'translateY('+(state==='gone'?0:15)+'px)'}));at(get('.progress i'),(state,t)=>({transform:'scaleX('+t+')'}));
+function seek(value){if(!held){held=true;p=(tracks[0].currentTime%T)/T;}p=Math.max(0,Math.min(.997,value));tracks.forEach(a=>{a.pause();a.currentTime=p*T;});}
+function current(){return held?p:(tracks[0].currentTime%T)/T;}
+function replay(){held=false;tracks.forEach(a=>{a.currentTime=0;a.play();});}
+[.02,.23,.44,.8].forEach((value,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',['Show photo row','Show curling photos','Show photo ring','Show vision panel'][i]);b.addEventListener('click',()=>seek(value));get('.dots').append(b);});
+get('.scroll').addEventListener('click',()=>{if(current()>.78)replay();else seek(current()<.32?.44:.80);});main.addEventListener('wheel',event=>{event.preventDefault();seek(current()+event.deltaY*.00065);},{passive:false});main.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;anchor={y:e.clientY,f:current()};main.setPointerCapture(e.pointerId);});main.addEventListener('pointermove',e=>{if(anchor)seek(anchor.f+(anchor.y-e.clientY)*.002);});main.addEventListener('pointerup',()=>anchor=null);document.addEventListener('keydown',e=>{if(['ArrowDown','ArrowUp','Home','End',' '].includes(e.key)){e.preventDefault();if(e.key===' '){replay();return;}seek(e.key==='Home'?0:e.key==='End'?.8:current()+(e.key==='ArrowDown'?.07:-.07));}});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!fixed)seek(.43);
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

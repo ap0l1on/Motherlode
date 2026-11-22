@@ -3,4 +3,12 @@
 
 Scroll-triggered animations.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="neumorphic-photo-orbit/"><img src="neumorphic-photo-orbit/preview.gif" width="260" alt="Neumorphic photo orbit"></a><br><a href="neumorphic-photo-orbit/"><b>Neumorphic photo orbit</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

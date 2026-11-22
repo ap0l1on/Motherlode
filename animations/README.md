@@ -8,7 +8,7 @@ Animation for screens, the web and beyond.
 | [Micro-interactions](micro-interactions/) | Small animations for buttons, toggles and feedback · **1 design** |
 | [Hover effects](hover-effects/) | Hover effects |
 | [Page transitions](page-transitions/) | Page and screen transitions |
-| [Scroll animations](scroll-animations/) | Scroll-triggered animations |
+| [Scroll animations](scroll-animations/) | Scroll-triggered animations · **1 design** |
 | [Parallax](parallax/) | Parallax effects |
 | [Loading animations](loading-animations/) | Loading animations |
 | [Success animations](success-animations/) | Checkmarks, confetti and celebrations |
