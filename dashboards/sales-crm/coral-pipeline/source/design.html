@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x784">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.75">
+<meta name="motherlode:still" content="1.28">
+<title>Coral pipeline workspace</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #e6e5e8; --panel: #f0eef3; --surface: #fffefe;
+  --soft: #f6f3f5; --ink: #211f23; --muted: #665e66;
+  --rail: #211f24; --rail-text: #f6f2f3; --hot: #f4645b;
+  --pale: #fbd9d5; --deep: #c04742; --accent-text: #993b35;
+  --on-hot: #4d1310; --good: #235942; --focus: #b63c35;
+  --large-on-hot: #fffaf5; --avatar-shade: transparent;
+}
+[data-colorway="light"] {
+  --bg: #f2efed; --panel: #fffcf8; --surface: #ffffff;
+  --soft: #f3eee8; --ink: #29211d; --muted: #675d54;
+  --rail: #49332c; --rail-text: #fff9f1; --hot: #f0a28a;
+  --pale: #fce4d8; --deep: #c66c53; --accent-text: #8b402b;
+  --on-hot: #442319; --good: #255f48; --focus: #813d2a;
+  --large-on-hot: #442319; --avatar-shade: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #12141b; --panel: #1c202a; --surface: #282e3a;
+  --soft: #333947; --ink: #f5f3f7; --muted: #c2becb;
+  --rail: #0c1017; --rail-text: #f5edf3; --hot: #f8877e;
+  --pale: #593c41; --deep: #e86b64; --accent-text: #ffb6b0;
+  --on-hot: #381210; --good: #a4dccb; --focus: #f5a197;
+  --large-on-hot: #381210; --avatar-shade: #10141c36;
+}
+[data-colorway="mono"] {
+  --bg: #e2e2e2; --panel: #f0f0f0; --surface: #ffffff;
+  --soft: #f4f4f4; --ink: #1f1f1f; --muted: #606060;
+  --rail: #262626; --rail-text: #f5f5f5; --hot: #a7a7a7;
+  --pale: #dedede; --deep: #7c7c7c; --accent-text: #4f4f4f;
+  --on-hot: #202020; --good: #525252; --focus: #353535;
+  --large-on-hot: #202020; --avatar-shade: transparent;
+}
+[data-colorway="apricot"] {
+  --bg: #eaded4; --panel: #fbefe1; --surface: #fffaf1;
+  --soft: #f7ead6; --ink: #33281e; --muted: #705a47;
+  --rail: #382b26; --rail-text: #fff6e6; --hot: #ed9a43;
+  --pale: #f9dfae; --deep: #bd642a; --accent-text: #91451c;
+  --on-hot: #39230f; --good: #386142; --focus: #9a4c18;
+  --large-on-hot: #39230f; --avatar-shade: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #d5e6e6; --panel: #e9f3f1; --surface: #fbfffd;
+  --soft: #e3efed; --ink: #19312e; --muted: #4c6564;
+  --rail: #193638; --rail-text: #eafff7; --hot: #47bbaa;
+  --pale: #bfe9da; --deep: #2b978c; --accent-text: #186357;
+  --on-hot: #0b342d; --good: #2e6144; --focus: #12695e;
+  --large-on-hot: #0b342d; --avatar-shade: transparent;
+}
+[data-colorway="iris"] {
+  --bg: #e3deed; --panel: #f1edf9; --surface: #fdfaff;
+  --soft: #eee9f5; --ink: #2b233b; --muted: #695b76;
+  --rail: #31293e; --rail-text: #faf1ff; --hot: #b58ad9;
+  --pale: #e7d6f4; --deep: #8c64b5; --accent-text: #674387;
+  --on-hot: #2f173e; --good: #356350; --focus: #694086;
+  --large-on-hot: #2f173e; --avatar-shade: transparent;
+}
+[data-colorway="sage"] {
+  --bg: #dbe2d8; --panel: #edf1e9; --surface: #fcfdf8;
+  --soft: #e9eee2; --ink: #253321; --muted: #56644c;
+  --rail: #293529; --rail-text: #f0f6e8; --hot: #93b37d;
+  --pale: #dceacb; --deep: #739462; --accent-text: #4b693b;
+  --on-hot: #20331b; --good: #315f43; --focus: #476c3c;
+  --large-on-hot: #20331b; --avatar-shade: transparent;
+}
+@font-face { font-family: 'Outfit'; src: url('fonts/outfit-latin.woff2') format('woff2'); font-style: normal; font-weight: 100 900; font-display: block; }
+:root { --type: 'Outfit', sans-serif; }
+
+* { box-sizing: border-box; }
+html, body { width: 1440px; height: 784px; margin: 0; overflow: hidden; }
+body { color: var(--ink); font: 500 14px/1.35 var(--type); font-synthesis: none; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { appearance: none; border: 0; padding: 0; background: none; cursor: pointer; }
+button:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+h1, h2, h3, h4, p { margin: 0; }
+.symbols { width: 0; height: 0; position: absolute; overflow: hidden; }
+.icon { display: inline-block; width: 1.15em; height: 1.15em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; vertical-align: middle; }
+.row { display: flex; align-items: center; gap: 9px; }
+.between { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ellipsis { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.screen { position: absolute; visibility: hidden; opacity: 0; }
+.counter { display: inline-grid; position: relative; overflow: hidden; vertical-align: bottom; font-variant-numeric: tabular-nums; }
+.counter-base { visibility: hidden; white-space: pre; }
+.counter-reel { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; }
+.counter-reel > span { flex: none; height: 100%; white-space: nowrap; }
+
+
+:root { --edge: color-mix(in srgb,var(--ink) 5%,transparent); --shade: color-mix(in srgb,var(--ink) 7%,transparent); --glow: color-mix(in srgb,var(--hot) 24%,transparent); }
+body { background: var(--bg); letter-spacing: -.015em; }
+.splash { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse at 49% 49%, color-mix(in srgb,var(--rail) 84%,var(--deep)),var(--rail) 45%,color-mix(in srgb,var(--rail) 89%,var(--ink))); }
+.emblem { display:inline-flex; align-items:center; justify-content:center; color:var(--hot); font-size:26px; line-height:1; }
+.emblem svg { width:1em; height:1em; fill:currentColor; }
+.splash .emblem { font-size:72px; filter:drop-shadow(0 0 24px var(--glow)); }
+.workspace { position:absolute; inset:0; background:var(--bg); }
+.shell { position:absolute; inset:0 51px; background:var(--panel); box-shadow:0 0 42px var(--edge); }
+.rail { position:absolute; z-index:3; left:16px; top:24px; width:54px; bottom:6px; display:flex; flex-direction:column; align-items:center; gap:6px; padding:10px 0 9px; border-radius:30px; color:var(--rail-text); background:linear-gradient(115deg,color-mix(in srgb,var(--rail) 93%,var(--muted)),var(--rail)); box-shadow:0 4px 11px var(--shade); }
+.rail .brand { display:grid; place-items:center; width:40px; height:40px; margin:0 0 10px; }
+.rail .nav-icon { position:relative; width:34px; height:31px; display:grid; place-items:center; font-size:15px; color:color-mix(in srgb,var(--rail-text) 76%,var(--rail)); }
+.rail .nav-icon > .icon { z-index:1; }
+.nav-spot { position:absolute; inset:-1px 0; border-radius:50%; background:var(--hot); box-shadow:0 0 13px var(--glow); visibility:hidden; }
+.nav-icon:has(.nav-spot) .icon { color:inherit; }
+.nav-spacer { flex:1; }
+.stage { position:absolute; inset:0 28px 0 94px; }
+.top { position:absolute; display:flex; justify-content:space-between; align-items:flex-start; left:0; right:0; top:25px; z-index:2; min-height:48px; }
+.top-item { position:absolute; top:0; left:0; opacity:0; visibility:hidden; }
+.top .overview-name { font-size:21px; letter-spacing:-.04em; display:flex; align-items:center; gap:7px; }
+.top .overview-name .icon { color:var(--accent-text); width:17px; height:17px; }
+.top small,.eyebrow { color:var(--muted); font-size:10.5px; }
+.top h3 { font-size:20px; font-weight:500; display:flex; align-items:center; gap:6px; }
+.top h3 .icon { width:16px; height:16px; }
+.top-tools { margin-left:auto; display:flex; align-items:center; gap:13px; }
+.search,.mini-circle { display:flex; align-items:center; justify-content:center; border-radius:26px; background:var(--surface); }
+.search { width:330px; height:40px; gap:12px; justify-content:flex-start; padding:0 15px; color:var(--muted); font-size:12px; }
+.search kbd { margin-left:auto; font:inherit; background:var(--soft); border-radius:7px; padding:2px 6px; }
+.mini-circle { width:39px; height:39px; font-size:17px; position:relative; }
+.mini-circle.dot::after { content:''; position:absolute; width:7px; height:7px; background:var(--hot); border-radius:100%; top:5px; right:7px; }
+.avatar { --tone:var(--pale); display:inline-grid; place-items:center; width:32px; height:32px; flex:none; font-weight:600; font-size:10px; color:var(--ink); border-radius:50%; background:linear-gradient(var(--avatar-shade),var(--avatar-shade)),linear-gradient(145deg,var(--surface),var(--tone) 43%,color-mix(in srgb,var(--tone) 72%,var(--muted))); border:2px solid var(--surface); }
+.avatar.v1 { --tone:color-mix(in srgb,var(--good) 33%, var(--surface)); }.avatar.v2 { --tone:color-mix(in srgb,var(--muted) 48%,var(--surface)); }.avatar.v3 { --tone:color-mix(in srgb,var(--deep) 38%,var(--surface)); }
+.top-tools>.avatar { width:43px; height:43px; font-size:13px; }
+.card { position:relative; background:var(--surface); border:1px solid var(--edge); border-radius:24px; padding:20px; box-shadow:0 4px 13px var(--edge); }
+.btn,.chip { display:inline-flex; align-items:center; justify-content:center; gap:7px; white-space:nowrap; line-height:1; }
+.btn { border-radius:25px; background:var(--soft); color:var(--ink); font-size:12px; padding:10px 14px; font-weight:550; }
+.btn.strong,.chip.strong { background:var(--rail); color:var(--rail-text); }
+.chip { padding:6px 10px; border-radius:18px; font-size:10px; color:var(--muted); background:var(--soft); }
+.overview { top:65px; left:0; right:0; display:grid; grid-template-columns:minmax(0,2.04fr) minmax(0,1fr); grid-template-rows:289px 299px 172px; gap:12px; }
+.quarter { padding:19px 20px; }
+.quarter h2 { font-size:30px; letter-spacing:-.045em; font-weight:510; line-height:1.2; }
+.quarter h2 span { color:var(--accent-text); }
+.quarter .team { position:absolute; top:24px; right:20px; display:flex; align-items:center; gap:9px; }
+.faces { display:flex; padding-left:7px; }.faces .avatar { margin-left:-9px; }
+.big-money { font-size:49px; font-weight:415; letter-spacing:-.06em; line-height:1.1; }
+.revenue { margin-top:14px; display:flex; align-items:center; gap:15px; }
+.up-tag { display:inline-flex; align-items:center; gap:3px; color:var(--good); background:color-mix(in srgb,var(--good) 10%,var(--surface)); padding:4px 7px; border-radius:12px; font-size:10px; }
+.target-progress { position:absolute; left:20px; right:20px; height:13px; bottom:109px; background:var(--soft); border-radius:12px; }
+.progress-fill { height:100%; border-radius:inherit; transform-origin:left; background:linear-gradient(90deg,color-mix(in srgb,var(--hot) 72%,var(--pale)),var(--hot)); }
+.target-mark { position:absolute; right:16%; bottom:-5px; width:2px; height:27px; background:var(--ink); }
+.target-mark b { position:absolute; bottom:30px; left:50%; transform:translateX(-50%); background:var(--rail); color:var(--rail-text); padding:3px 8px; border-radius:18px; font-size:9px; white-space:nowrap; font-weight:500; }
+.mini-stats { position:absolute; display:grid; grid-template-columns:repeat(3,1fr); gap:10px; bottom:18px; left:20px; right:20px; }
+.mini-stat { display:flex; align-items:center; gap:10px; background:var(--soft); padding:11px 12px; border-radius:14px; }
+.mini-stat .icon { color:var(--muted); }.mini-stat small,.mini-stat strong { display:block; }.mini-stat small { font-size:9.5px; color:var(--muted); }.mini-stat strong { font-size:17px; font-weight:550; }
+.pipeline-row { display:grid; grid-template-columns:minmax(0,1.68fr) minmax(0,1fr); gap:12px; }
+.card h3 { font-size:19px; font-weight:500; letter-spacing:-.035em; }
+.pipeline { display:flex; flex-direction:column; }
+.pipeline .amount { font-size:34px; line-height:1.1; letter-spacing:-.055em; }
+.bar-chart { display:flex; flex:1; align-items:flex-end; justify-content:space-around; padding:5px 0 0; gap:10px; }
+.pipe-col { display:grid; justify-items:center; align-content:end; gap:8px; height:100%; width:24%; position:relative; }
+.pipe-col i { width:40px; border-radius:22px; background:repeating-linear-gradient(-45deg,var(--soft) 0 4px,color-mix(in srgb,var(--muted) 19%,var(--surface)) 4px 6px); display:block; transform-origin:center bottom; }
+.pipe-col:last-child i { background:linear-gradient(var(--hot),var(--deep)); }.pipe-col span { font-size:11px; color:var(--muted); }
+.pipe-col b { position:absolute; bottom:calc(18px + var(--bar)); background:var(--rail); color:var(--rail-text); font-size:9px; padding:4px 7px; border-radius:7px; font-weight:500; }
+.hot { background:linear-gradient(132deg,color-mix(in srgb,var(--hot) 85%,var(--pale)),var(--hot) 70%,color-mix(in srgb,var(--hot) 92%,var(--deep))); color:var(--on-hot); border:0; }
+.hot .hot-num { font-size:50px; line-height:1.2; display:block; margin-top:22px; }
+.hot .hot-title { color:var(--on-hot); opacity:.93; }.hot .mini { font-size:11px; }.hot .hot-foot { position:absolute; bottom:20px; left:20px; right:20px; }
+.hot .meter-row { gap:8px; display:flex; align-items:center; margin-top:8px; font-size:9px; }.meter-row span:first-child {width:58px;}.meter { height:4px; flex:1; background:color-mix(in srgb,var(--on-hot) 15%,transparent); border-radius:10px; }.meter i { display:block; height:100%; background:var(--on-hot); border-radius:inherit; }
+.today { grid-column:2; grid-row:1/3; padding:18px; }
+.today .date-row { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin:19px 0 14px; }
+.day { display:grid; justify-items:center; align-content:center; gap:5px; height:57px; border-radius:14px; background:var(--soft); }
+.day b { font-size:14px; font-weight:550; }.day small { font-size:9px; }.day.active {background:var(--rail);color:var(--rail-text);}
+.items { display:grid; gap:8px; }.agenda { display:flex; align-items:center; gap:10px; min-height:37px; }.round-icon {display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:50%;background:var(--pale);color:var(--accent-text);font-size:12px;}.agenda b,.person b { display:block; font-size:12px; font-weight:550; }.agenda small,.person small { display:block; color:var(--muted);font-size:10px; }.agenda em { margin-left:auto;font-style:normal; font-size:10px;color:var(--muted); }
+.week { position:absolute; bottom:20px; left:19px; right:19px; }.week-grid { display:grid;grid-template-columns:repeat(4,1fr);text-align:center;margin:12px 0;}.week-grid b {display:grid;place-items:center;border:1px solid var(--pale);border-top:3px solid var(--hot);width:29px;height:29px;border-radius:50%;margin:0 auto 5px;font-size:10px;}.week-grid small {font-size:10px;color:var(--muted);}
+.overview-bottom {display:grid;grid-template-columns:1fr 1fr;gap:12px;}.person{display:flex;align-items:center;gap:8px;margin:12px 0;}.dark-card {background:linear-gradient(135deg,var(--rail),color-mix(in srgb,var(--rail) 88%,var(--muted)));color:var(--rail-text);}.dark-card .eyebrow {color:var(--rail-text);}
+.content { left:0;right:0;top:105px; }.heading { min-height:89px;display:flex;align-items:flex-end;justify-content:space-between;padding-bottom:16px;gap:15px; }.heading h1 {font-size:44px;line-height:1.07;font-weight:510;letter-spacing:-.055em;margin-bottom:8px;}.heading p{font-size:12px;color:var(--muted);}.pill-tabs {display:inline-flex;align-items:center;padding:3px;background:var(--surface);border-radius:22px;gap:2px;}.pill-tabs .chip {background:transparent;}.pill-tabs .strong {background:var(--rail);color:var(--rail-text);}
+.saved-layout {display:grid;grid-template-columns:minmax(0,3.15fr) minmax(0,.9fr);align-items:start;gap:14px;}.saved-grid { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px; }.saved-card {border-radius:19px;padding:8px;background:var(--surface);min-width:0;overflow:hidden;}.saved-thumb {height:107px;border-radius:13px;position:relative;overflow:hidden;display:grid;place-items:center;background:var(--pale);}.saved-thumb::after {content:'';position:absolute;inset:-50% -22% 13% 62%;border-radius:50%;background:color-mix(in srgb,var(--surface) 11%,transparent);transform:rotate(-30deg);}.saved-thumb>span.type {position:absolute;left:8px;top:7px;font-size:9px;background:var(--rail);color:var(--rail-text);padding:2px 7px;border-radius:12px;}.saved-thumb .thumb-center {display:grid;place-items:center;border-radius:15px;width:49px;height:49px;background:color-mix(in srgb,var(--surface) 72%,var(--pale));color:var(--accent-text);}.saved-thumb.deal {justify-items:start;padding-left:14px;background:linear-gradient(135deg,var(--hot),color-mix(in srgb,var(--hot) 80%,var(--deep)));color:var(--on-hot);}.saved-thumb.deal big {font-size:29px;letter-spacing:-.055em;}.saved-thumb.deal i {position:absolute;left:14px;right:28%;height:4px;bottom:13px;border-radius:10px;background:var(--on-hot);}.saved-thumb.ink {background:var(--rail);}.saved-thumb.ink .thumb-center {background:color-mix(in srgb,var(--rail) 77%,var(--muted));color:var(--hot);}.saved-thumb.audio {background:linear-gradient(120deg,var(--rail),var(--deep));}.saved-thumb.audio .thumb-center,.saved-thumb.wave .thumb-center {border-radius:50%;width:33px;height:33px;position:relative;z-index:1;}.saved-thumb.note {background:var(--soft);}.waveform {position:absolute;inset:20px 12px;display:flex;gap:2px;align-items:center;justify-content:center;color:var(--hot);opacity:.55;}.waveform i {width:3px;border-radius:2px;background:currentColor;}.saved-card h4 {font-size:13.5px;line-height:1.25;font-weight:550;min-height:37px;margin:10px 3px 2px;}.saved-foot {display:flex;align-items:center;justify-content:space-between;padding:0 3px 5px;color:var(--muted);font-size:10px;}.small-round {display:inline-grid;place-items:center;width:20px;height:20px;font-size:10px;border-radius:50%;background:var(--soft);color:var(--ink);}.small-round:last-child {background:var(--pale);color:var(--accent-text);}
+.collections {padding:20px 16px;}.collection {display:flex;gap:10px;align-items:center;margin:18px 0;}.collection-icon {width:34px;height:34px;display:grid;place-items:center;border-radius:10px;color:var(--on-hot);background:var(--hot);}.collection:nth-child(3) .collection-icon {background:var(--rail);color:var(--rail-text);}.collection:nth-child(4) .collection-icon {background:var(--pale);}.collection:nth-child(5) .collection-icon {background:var(--soft);color:var(--ink);}.collection-main {flex:1;}.collection-main b {font-size:12px;font-weight:550;}.collection-main small{font-size:9px;color:var(--muted);}.collection-main .meter {margin-top:5px;background:var(--soft);}.collection-main .meter i {background:var(--hot);}.collection:nth-child(odd) .meter i{background:var(--rail);}
+.tasks .heading {min-height:85px;}.task-metrics {display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}.task-metric {height:124px;padding:18px 20px;}.task-metric p {font-size:12px;}.task-metric big {display:block;margin-top:13px;font-size:37px;letter-spacing:-.05em;line-height:1;}.tiny-progress {margin-top:12px;width:42px;height:5px;border-radius:8px;background:var(--hot);}.task-filter {margin:15px 0 12px;}.task-groups {display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:12px;}.task-group {padding:17px 19px;}.task-group h3 {font-size:17px;}.task-group h3 small {font-size:10px;color:var(--muted);margin-left:7px;}.task-line {display:flex;align-items:center;gap:10px;min-height:44px;margin-top:3px;}.check-box {width:16px;height:16px;border:1px solid var(--edge);border-radius:5px;display:grid;place-items:center;font-size:8px;background:var(--soft);}.task-text {flex:1;min-width:0;}.task-text b {font-size:11.5px;font-weight:550;}.task-text small{display:block;font-size:9px;color:var(--muted);}.task-line .avatar{width:24px;height:24px;font-size:8px;}.tag {font-size:9px;background:var(--pale);color:var(--accent-text);padding:3px 7px;border-radius:20px;}.tag.neutral{background:var(--soft);color:var(--muted);}.completed .task-text b{text-decoration:line-through;color:var(--muted);}
+.message-frame {display:grid;grid-template-columns:.95fr 2.14fr .91fr;border-radius:22px;background:var(--surface);overflow:hidden;min-height:510px;padding:12px 0;}.message-list,.conversation,.contact {padding:6px 16px;min-width:0;}.message-list {border-right:1px solid var(--edge);}.message-list .search {background:var(--soft);width:100%;height:35px;font-size:10px;}.thread {display:flex;align-items:center;gap:9px;margin-top:5px;padding:7px 5px;border-radius:12px;min-height:61px;}.thread.selected {background:color-mix(in srgb,var(--pale) 45%,var(--surface));}.thread .avatar{width:37px;height:37px;}.thread b{font-size:12px;}.thread small{display:block;max-width:170px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:9px;color:var(--muted);}.conversation {display:flex;flex-direction:column;gap:11px;}.conversation .person {margin:0;}.talk {font-size:12px;max-width:76%;padding:12px 14px;border-radius:15px 15px 15px 5px;background:var(--soft);}.talk small{display:block;font-size:9px;color:var(--muted);margin-top:4px;}.talk.sent {margin-left:auto;min-width:60%;background:var(--hot);color:var(--on-hot);border-radius:15px 15px 4px 15px;}.talk.sent small{color:var(--on-hot);}.compose{margin-top:auto;background:var(--soft);border-radius:26px;display:flex;align-items:center;justify-content:space-between;padding:6px 8px 6px 14px;color:var(--muted);font-size:11px;}.compose .round-icon{background:var(--hot);color:var(--on-hot);}.contact{border-left:1px solid var(--edge);text-align:center;}.contact>.avatar{width:70px;height:70px;font-size:20px}.contact h3{font-size:17px;margin:5px 0 0}.contact p{font-size:10px;color:var(--muted);}.contact-actions{display:flex;justify-content:space-around;margin:24px 0;}.contact-actions div{display:grid;justify-items:center;gap:4px;font-size:10px;}.contact .record{background:var(--soft);border-radius:16px;text-align:left;padding:15px;}.record strong{display:block;font-size:27px;font-weight:500;letter-spacing:-.05em;}.record .meter{margin:7px 0 13px;}.record .meter i{background:var(--hot);}
+
+.hot-num,.task-metric.hot big,.saved-thumb.deal big { color:var(--large-on-hot); }
+.saved-thumb.deal i,.hot .meter i { background:var(--large-on-hot); }
+.saved .heading,.messages .heading { min-height:97px; }
+
+</style>
+</head>
+<body>
+<svg class="symbols" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8 M5.5 10v10h5v-6h3v6h5V10"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><path d="M3 3h7v7H3z M14 3h7v7h-7z M3 14h7v7H3z M14 14h7v7h-7z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 4v16h17 M8 14v-3m5 3V7m5 7v-5"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8 M2 21v-2a7 7 0 0 1 14 0v2 M16 5a3.5 3.5 0 0 1 0 7m1 2a5 5 0 0 1 5 5v1"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9 M4 21v-1a8 8 0 0 1 16 0v1"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><path d="M3 8h18v12H3z M8 8V5h8v3m-13 5q9 5 18 0m-10 2h2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M5 3h9l5 5v13H5z M14 3v6h5m-11 4h8m-8 4h6"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 2q4-4 8-1t7 0v9q-4 3-7 0t-8 1"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16v13H9l-5 4v-4H3V5z M7 8h10M7 12h7"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6 3l4 5-2.5 3q2.3 3.8 5.6 5.7l3-2.6 5 3.7-2.2 3.1q-1.5 1-4.8-.6C8 17.4 4.8 13.9 2.9 8.7q-1-2.5.4-3.8z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><path d="M3 5h18v16H3z M7 3v4m10-4v4M3 10h18m-13 4h2m4 0h2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19z M12 6.5v6l4 2"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6h6l2 3h10v11H3z"/></symbol>
+  <symbol id="i-saved" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M15.6 15.6 21 21"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10 M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2m0-16-2 2M6 18l-2 2"/></symbol>
+  <symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3 6 0 .8 2.6 2 .9 2.5-.8 2 4-2 1.7v2l2 1.7-2 4-2.5-.7-2 .9L15 22H9l-.8-2.7-2-.9-2.5.7-2-4 2-1.7v-2L1.7 9.7l2-4 2.5.8 2-.9z M12 9a3.2 3.2 0 1 0 0 6.4A3.2 3.2 0 0 0 12 9"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.4L20 6.2"/></symbol>
+  <symbol id="i-task" viewBox="0 0 24 24"><path d="M20 13v7H3V3h13 M7 10l4.5 4.5L21 5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 12h16"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M5 18 18 5 M9 5h9v9"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 7.5 13 5q3.5-3.5 6.8-.2t-.4 6.6l-3 3 M13.5 16.5 11 19q-3.7 3.4-6.7.3t.3-6.8l3-3 M8.5 15.5l7-7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24"><path d="M8 13.5 15 6.7q3-3 5.3-.5t-.7 5.4l-9.2 9q-3.5 3-7-1t.5-7.5l9.5-9.2"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M14 2 5 14h6l-1 8 9-13h-6z"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M3 6l13-3 2 4M3 7h18v13H3z M21 11h-6v5h6m-3-2.5h.1"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><path d="M2.5 4.5h19v15h-19z M3 9h18m-15 5h5"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M5 10h14v11H5z M8 10V7a4 4 0 0 1 8 0v3m-4 4v3"/></symbol>
+  <symbol id="i-coins" viewBox="0 0 24 24"><path d="M12 3c11 0 11 7 0 7S1 3 12 3z M4 7v5c0 5 16 5 16 0V7m-16 5v5c0 5 16 5 16 0v-5"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 21 6v6q-1 6-9 10-8-4-9-10V6z M8 12l3 3 5-6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22S4.5 14.6 4.5 9A7.5 7.5 0 0 1 19.5 9c0 5.6-7.5 13-7.5 13z M12 6a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 6h18M6 12h12m-9 6h6"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M4 6h1m4 0h12M4 12h1m4 0h12M4 18h1m4 0h12"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z M2 12h20M12 2q-8 10 0 20 8-10 0-20"/></symbol>
+  <symbol id="i-building" viewBox="0 0 24 24"><path d="M3 21h18M5 21V6l10-3v18m0-13h4v13M8 9h1m2-1h1m-4 5h1m2-1h1m-4 5h1m2-1h1"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 13h4l3-8 4 15 3-11 2 4h4"/></symbol>
+  <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 14V12a8 8 0 0 1 16 0v6q0 3-4 3h-2M3.5 12h4v6h-4zm13 0h4v6h-4z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M5 5h14v14H5z M9 2v3m6-3v3m-6 14v3m6-3v3M2 9h3m-3 6h3m14-6h3m-3 6h3m-12-6h6v6H9z"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M11 3H4v18h7m-1-9h11m-4-4 4 4-4 4"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><path d="M4 12h.1m7.9 0h.1m7.8 0h.1"/></symbol>
+  <symbol id="i-dollar" viewBox="0 0 24 24"><path d="M12 2v20m5-16q-2-2-5-2c-7 0-7 8-.3 8 7 0 7 8 .3 8-3 0-5-2-6-3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M2.5 3.5 22 11l-7.5 3-3 7-2-7-7-10.5z M9.5 14 22 11"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M12 2v10h10A10 10 0 0 0 12 2z M9 4A9 9 0 1 0 20 15H9z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4h6l3 2 3-2h6v15h-6l-3 2-3-2H3z M12 6v15"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21 3.5 12C-1 5 7 .4 12 7c4-6.6 13-2 8.5 5z"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><path d="m2 8 10-5 10 5-10 5z M3 12l9 4.5 9-4.5M3 16l9 4.5 9-4.5"/></symbol>
+</defs></svg>
+<div class="splash" aria-hidden="true"><span class="emblem"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 8 5-5 9 9-5 5zM15 20l5-5 9 9-5 5zM6 18l4-4 6 6-4 4zM17 11l4-4 5 5-4 4z"/></svg></span></div><main class="workspace"><div class="shell"><nav class="rail" aria-label="Workspace views"><button class="brand" data-replay aria-label="Replay workspace tour"><span class="emblem"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m3 8 5-5 9 9-5 5zM15 20l5-5 9 9-5 5zM6 18l4-4 6 6-4 4zM17 11l4-4 5 5-4 4z"/></svg></span></button><button class="nav-icon" data-view="0" title="Dashboard" aria-label="Dashboard"><span class="nav-spot" data-focus="0"></span><svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg></button><span class="nav-icon" title="Pipeline"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg></span><span class="nav-icon" title="People"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><span class="nav-icon" title="Accounts"><svg class="icon" aria-hidden="true"><use href="#i-brief"/></svg></span><span class="nav-icon" title="Deals"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><button class="nav-icon" data-view="2" title="Tasks" aria-label="Tasks"><span class="nav-spot" data-focus="2"></span><svg class="icon" aria-hidden="true"><use href="#i-task"/></svg></button><button class="nav-icon" data-view="3" title="Messages" aria-label="Messages"><span class="nav-spot" data-focus="3"></span><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></button><span class="nav-icon" title="Calls"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><span class="nav-icon" title="Calendar"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span><span class="nav-icon" title="Activity"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><span class="nav-icon" title="Reports"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg></span><span class="nav-icon" title="Files"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg></span><span class="nav-icon" title="Billing"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><button class="nav-icon" data-view="1" title="Saved" aria-label="Saved"><span class="nav-spot" data-focus="1"></span><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></button><span class="nav-spacer"></span><span class="nav-icon"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></span><span class="nav-icon"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg></span><span class="nav-icon"><svg class="icon" aria-hidden="true"><use href="#i-logout"/></svg></span></nav><div class="stage"><header class="top"><div class="top-item" data-top="0"><div class="overview-name">Good afternoon, Daniel <svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg></div></div><div class="top-item" data-top="1"><small>Pipeline workspace /</small><h3><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg>Saved</h3></div><div class="top-item" data-top="2"><small>Pipeline workspace /</small><h3><svg class="icon" aria-hidden="true"><use href="#i-task"/></svg>Tasks</h3></div><div class="top-item" data-top="3"><small>Pipeline workspace /</small><h3><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>Messages</h3></div><div class="top-tools"><span class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Search clients, leads, pages… <kbd>⌘K</kbd></span><span class="mini-circle dot"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span><span class="mini-circle"><svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg></span><span class="avatar v2" aria-hidden="true">DL</span></div></header><section class="screen overview" data-panel="0" aria-label="Sales overview"><section class="card quarter"><p class="eyebrow">Quarterly target · April to June</p><h2>Close the quarter <span>stronger</span></h2><div class="team"><div class="faces"><span class="avatar v0" aria-hidden="true">AL</span><span class="avatar v1" aria-hidden="true">SH</span><span class="avatar v2" aria-hidden="true">DP</span><span class="avatar v3" aria-hidden="true">JL</span></div><span class="chip"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>Invite</span><span class="btn strong"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>New deal</span></div><div class="revenue"><span class="big-money"><span class="counter" data-value="575" data-prefix="$" data-suffix="K" data-decimals="0"></span></span><span class="up-tag"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg> 16% on target</span></div><div class="target-progress"><div class="progress-fill"></div><div class="target-mark"><b>Target $650K</b></div></div><div class="mini-stats"><div class="mini-stat"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg><div><small>Committed</small><strong>$371K</strong><small>12 deals</small></div></div><div class="mini-stat"><svg class="icon" aria-hidden="true"><use href="#i-wave"/></svg><div><small>Forecast</small><strong>$202K</strong><small>Weighted</small></div></div><div class="mini-stat"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><div><small>Win rate</small><strong>49%</strong><small>past quarter</small></div></div></div></section><div class="pipeline-row"><section class="card pipeline"><div class="between"><h3>Pipeline by stage</h3><span class="chip"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg>Open pipeline</span></div><div class="amount"><span class="counter" data-value="555" data-prefix="$" data-suffix="K" data-decimals="0"></span></div><div class="bar-chart"><div class="pipe-col" style="--bar:67px"><i style="height:var(--bar)"></i><span>Inbound</span></div><div class="pipe-col" style="--bar:39px"><i style="height:var(--bar)"></i><span>Qualified</span></div><div class="pipe-col" style="--bar:53px"><i style="height:var(--bar)"></i><span>Proposal</span></div><div class="pipe-col" style="--bar:106px"><i style="height:var(--bar)"></i><span>Negotiation</span><b>$214K</b></div></div></section><section class="card hot"><div class="between"><h3 class="hot-title">Hot leads</h3><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></div><span class="hot-num"><span class="counter" data-value="5" data-prefix="" data-suffix="" data-decimals="0"></span></span><div class="hot-foot"><div class="meter-row"><span>High intent</span><span class="meter"><i style="width:85%"></i></span><b>5</b></div><div class="meter-row"><span>Following up</span><span class="meter"><i style="width:64%"></i></span><b>4</b></div><div class="meter-row"><span>New leads</span><span class="meter"><i style="width:35%"></i></span><b>2</b></div></div></section></div><section class="card today"><div class="between"><h3>Today</h3><span class="btn"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></div><p class="eyebrow">Friday, November 13</p><div class="date-row"><div class="day "><small>Mon</small><b>9</b></div><div class="day "><small>Tue</small><b>10</b></div><div class="day "><small>Wed</small><b>11</b></div><div class="day "><small>Thu</small><b>12</b></div><div class="day active"><small>Fri</small><b>13</b></div><div class="day "><small>Sat</small><b>14</b></div><div class="day "><small>Sun</small><b>15</b></div></div><div class="items"><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span><div><b>Upcoming Team Meeting</b><small>10:00 am · Weekly check-in</small></div><em>Join</em></div><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><div><b>Rubi</b><small>Outbound discovery call</small></div><em>Join</em></div><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><div><b>Follow up call about the renewal</b><small>Account review</small></div><em></em></div><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><div><b>Send the revised proposal</b><small>Commercial agreement</small></div><em></em></div><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span><div><b>Prepare notes with the sales team</b><small>Quarterly planning</small></div><em></em></div><div class="agenda"><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><div><b>Close yesterday’s activity</b><small>Completed task</small></div><em></em></div></div><div class="week"><div class="between"><b>This week</b><small>All tasks <svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></small></div><div class="week-grid"><div><b>6</b><small>Calls</small></div><div><b>2</b><small>Emails</small></div><div><b>4</b><small>Meetings</small></div><div><b>6</b><small>To-do</small></div></div><div class="between eyebrow"><span>Completed</span><span>8</span><span>Upcoming</span><span>6</span></div></div></section><div class="overview-bottom"><section class="card"><div class="between"><h3>Sales team</h3><span class="chip"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></div><div class="person"><span class="avatar v3" aria-hidden="true">AC</span><div><b>Ari Carter</b><small>Account executive</small></div></div></section><section class="card"><div class="between"><h3>Follow-ups</h3><span class="chip strong">Today</span></div><div class="person"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Review the Northline proposal</div></section></div><section class="card dark-card"><small class="eyebrow">ACCOUNT OF THE WEEK</small><h3 style="margin-top:18px">Northline Retail</h3></section></section><section class="screen content saved" data-panel="1"><div class="heading"><div><h1>Saved</h1><p>Deals, proposals, competitor notes and recordings you’ve bookmarked for later.</p></div><div class="row"><span class="pill-tabs"><span class="chip strong">All · 9</span><span class="chip">Deals · 2</span><span class="chip">Docs · 2</span><span class="chip">Recordings · 2</span><span class="chip">Links · 3</span></span><span class="btn strong"><svg class="icon" aria-hidden="true"><use href="#i-folder"/></svg>Collections</span></div></div><div class="saved-layout"><div class="saved-grid"><article class="saved-card"><div class="saved-thumb deal"><span class="type">Deal</span><big>$34K</big><i></i></div><h4>Annual license — Northline Retail</h4><div class="saved-foot"><span>Pipeline · Q4 2026<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb doc"><span class="type">Doc</span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span></div><h4>Quartz Systems — proposal v2</h4><div class="saved-foot"><span>Sales · Proposals<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb ink"><span class="type">Link</span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></span></div><h4>Pricing playbook 2026</h4><div class="saved-foot"><span>All-account team<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb audio"><span class="type">Recording</span><span class="waveform"><i style="height:3px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:23px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:3px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:4px"></i><i style="height:10px"></i><i style="height:19px"></i><i style="height:24px"></i><i style="height:23px"></i><i style="height:16px"></i><i style="height:4px"></i><i style="height:13px"></i><i style="height:20px"></i><i style="height:21px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:6px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:5px"></i><i style="height:10px"></i><i style="height:19px"></i><i style="height:25px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:6px"></i><i style="height:11px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:10px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:9px"></i></span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span></div><h4>Negotiation — Brightline Media</h4><div class="saved-foot"><span>Recording · 24 min<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb note"><span class="type">Note</span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg></span></div><h4>Competitor notes: pricing decisions</h4><div class="saved-foot"><span>Notes · Internal<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb deal"><span class="type">Deal</span><big>$33K</big><i></i></div><h4>Mobile app build — Pinecone</h4><div class="saved-foot"><span>Pipeline · Q3 2026<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb doc"><span class="type">Link</span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></span></div><h4>Objection handling cheat sheet</h4><div class="saved-foot"><span>Enablement team<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb wave"><span class="type">Recording</span><span class="waveform"><i style="height:3px"></i><i style="height:14px"></i><i style="height:22px"></i><i style="height:23px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:3px"></i><i style="height:6px"></i><i style="height:6px"></i><i style="height:4px"></i><i style="height:8px"></i><i style="height:8px"></i><i style="height:4px"></i><i style="height:10px"></i><i style="height:19px"></i><i style="height:24px"></i><i style="height:23px"></i><i style="height:16px"></i><i style="height:4px"></i><i style="height:13px"></i><i style="height:20px"></i><i style="height:21px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:4px"></i><i style="height:5px"></i><i style="height:4px"></i><i style="height:6px"></i><i style="height:10px"></i><i style="height:10px"></i><i style="height:5px"></i><i style="height:10px"></i><i style="height:19px"></i><i style="height:25px"></i><i style="height:24px"></i><i style="height:17px"></i><i style="height:6px"></i><i style="height:11px"></i><i style="height:18px"></i><i style="height:20px"></i><i style="height:16px"></i><i style="height:10px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:4px"></i><i style="height:9px"></i></span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span></div><h4>Sales training: handling pricing objections</h4><div class="saved-foot"><span>Recording · 38 min<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article><article class="saved-card"><div class="saved-thumb ink"><span class="type">Doc</span><span class="thumb-center"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span></div><h4>Fifth Avenue study — first six weeks</h4><div class="saved-foot"><span>Sales · Research<br>Saved on Friday</span><span><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></span> <span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-saved"/></svg></span></span></div></article></div><aside class="card collections"><div class="between"><h3>Collections</h3><span class="chip"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span></div><div class="collection"><span class="collection-icon"><svg class="icon" aria-hidden="true"><use href="#i-brief"/></svg></span><div class="collection-main"><div class="between"><b>Q4 closing deals</b><small>12 items</small></div><div class="meter"><i style="width:55%"></i></div></div></div><div class="collection"><span class="collection-icon"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><div class="collection-main"><div class="between"><b>Competitor intel</b><small>16 items</small></div><div class="meter"><i style="width:80%"></i></div></div></div><div class="collection"><span class="collection-icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><div class="collection-main"><div class="between"><b>Proposal templates</b><small>7 items</small></div><div class="meter"><i style="width:42%"></i></div></div></div><div class="collection"><span class="collection-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><div class="collection-main"><div class="between"><b>Call highlights</b><small>14 items</small></div><div class="meter"><i style="width:98%"></i></div></div></div><div class="eyebrow" style="margin-top:31px"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg> Shared across workspace</div></aside></div></section><section class="screen content tasks" data-panel="2"><div class="heading"><div><h1>Tasks</h1><p>Organize your work by due date.</p></div><div class="row"><span class="btn strong"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>New task</span></div></div><div class="task-metrics"><article class="card task-metric hot"><p>Due today</p><big><span class="counter" data-value="2" data-prefix="" data-suffix="" data-decimals="0"></span></big></article><article class="card task-metric "><p>Overdue</p><big><span class="counter" data-value="2" data-prefix="" data-suffix="" data-decimals="0"></span></big></article><article class="card task-metric "><p>Upcoming</p><big><span class="counter" data-value="6" data-prefix="" data-suffix="" data-decimals="0"></span></big></article><article class="card task-metric "><p>Completed</p><big><span class="counter" data-value="2" data-prefix="" data-suffix="" data-decimals="0"></span></big><div class="tiny-progress"></div></article></div><div class="task-filter"><span class="pill-tabs"><span class="chip strong">All · 12</span><span class="chip">Calls · 4</span><span class="chip">Emails · 3</span><span class="chip">Meetings · 3</span><span class="chip">To-dos · 2</span></span></div><div class="task-groups"><article class="card task-group "><h3>Overdue<small>2</small></h3><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div class="task-text"><b>Follow up call about the renewal</b><small>Call · Office</small></div><span class="tag">High</span><span class="tag neutral">Commercial</span><span class="avatar v0" aria-hidden="true">AC</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><div class="task-text"><b>Send the revised proposal</b><small>Email · Northline</small></div><span class="tag">High</span><span class="tag neutral">Sales</span><span class="avatar v1" aria-hidden="true">DL</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div></article><article class="card task-group "><h3>Today<small>2</small></h3><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div class="task-text"><b>Product demo with the ops team</b><small>Meeting · Quartz</small></div><span class="tag">Medium</span><span class="tag neutral">Commercial</span><span class="avatar v0" aria-hidden="true">AC</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><div class="task-text"><b>Discovery call — new lead</b><small>Call · Pinecone</small></div><span class="tag">Medium</span><span class="tag neutral">Sales</span><span class="avatar v1" aria-hidden="true">DL</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div></article><article class="card task-group "><h3>Upcoming<small>4</small></h3><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div class="task-text"><b>Pipeline clean down in the tracker</b><small>Review · Friday</small></div><span class="tag">Low</span><span class="tag neutral">Commercial</span><span class="avatar v0" aria-hidden="true">AC</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><div class="task-text"><b>Quarterly review with client</b><small>Meeting · Northline</small></div><span class="tag">High</span><span class="tag neutral">Sales</span><span class="avatar v1" aria-hidden="true">DL</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg><div class="task-text"><b>Check in after onboarding</b><small>Email · Brightline</small></div><span class="tag">Medium</span><span class="tag neutral">Internal</span><span class="avatar v2" aria-hidden="true">JP</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"></span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div class="task-text"><b>Quarterly business review prep</b><small>Task · Commercial</small></div><span class="tag">Low</span><span class="tag neutral">Commercial</span><span class="avatar v3" aria-hidden="true">AC</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div></article><article class="card task-group completed"><h3>Completed<small>2</small></h3><div class="task-line"><span class="check-box"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><div class="task-text"><b>Check in with the sales team</b><small>Call · Customer success</small></div><span class="tag">Low</span><span class="tag neutral">Commercial</span><span class="avatar v0" aria-hidden="true">AC</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div><div class="task-line"><span class="check-box"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><div class="task-text"><b>Revise the account brief</b><small>Task · Internal</small></div><span class="tag">Low</span><span class="tag neutral">Sales</span><span class="avatar v1" aria-hidden="true">DL</span><svg class="icon" aria-hidden="true"><use href="#i-dots"/></svg></div></article></div></section><section class="screen content messages" data-panel="3"><div class="heading"><div><h1>Messages</h1><p>A shared inbox from your contacts and team.</p></div><div class="row"><span class="pill-tabs"><span class="chip strong">All · 16</span><span class="chip">Clients · 8</span><span class="chip">Team · 5</span><span class="chip">Unread · 3</span></span><span class="btn"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Mark all read</span></div></div><div class="message-frame"><aside class="message-list"><span class="search"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Search people or messages</span><div class="thread selected"><span class="avatar v0" aria-hidden="true">MB</span><div class="ellipsis"><b>Marcus Bell</b><small>Enterprise</small><small>A few quick notes on our side…</small></div></div><div class="thread "><span class="avatar v1" aria-hidden="true">AM</span><div class="ellipsis"><b>Ava Martin</b><small>Support</small><small>Proposal on its way.</small></div></div><div class="thread "><span class="avatar v2" aria-hidden="true">PS</span><div class="ellipsis"><b>Priya Shah</b><small>Sales</small><small>Thanks for the update.</small></div></div><div class="thread "><span class="avatar v3" aria-hidden="true">LF</span><div class="ellipsis"><b>Leo Fischer</b><small>Team</small><small>Friday is good for the whole team.</small></div></div><div class="thread "><span class="avatar v0" aria-hidden="true">LV</span><div class="ellipsis"><b>Lena Vega</b><small>Commercial</small><small>Just sent the draft.</small></div></div><div class="thread "><span class="avatar v1" aria-hidden="true">TK</span><div class="ellipsis"><b>Thomas Kim</b><small>People</small><small>All set for the meeting.</small></div></div></aside><article class="conversation"><div class="between"><div class="person"><span class="avatar v1" aria-hidden="true">MB</span><div><b>Marcus Bell</b><small>Online now · Northline Accounts</small></div></div><div class="row"><span class="tag">Opportunity $34K</span><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></div></div><div class="talk sent">Here are the details from our call.</div><div class="talk">Thanks. Quick one: can we add a 12-month renewal option without reopening the contract?<small>11:48 AM</small></div><div class="talk sent">Absolutely. I have included the revised terms and the renewal option.<small>11:51 AM</small></div><div class="talk"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg> &nbsp; Master_Renewal_OrderForm_v2.pdf</div><div class="talk">Perfect. I’ll run the numbers past our legal team.</div><div class="talk">If that looks fine on your side, we can sign by Friday.</div><div class="compose"><span><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg> &nbsp; Message Marcus…</span><span class="round-icon"><svg class="icon" aria-hidden="true"><use href="#i-send"/></svg></span></div></article><aside class="contact"><span class="avatar v1" aria-hidden="true">MB</span><h3>Marcus Bell</h3><p>VP, Sales Operations</p><div class="contact-actions"><div><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>Call</div><div><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>Email</div><div><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>Meeting</div><div><span class="small-round"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg></span>Task</div></div><section class="record"><small>Open opportunity</small><h3>Support renewal</h3><strong>$29K</strong><div class="meter"><i style="width:82%"></i></div><span class="chip strong">View account</span></section></aside></div></section></div></div></main>
+<script>
+const duration = 5.75;
+
+const timeline = (element, frames) => element.animate(frames.map(([time, properties]) => ({
+  ...properties, offset: Math.max(0, Math.min(1, time / duration))
+})), {duration: duration * 1000, iterations: Infinity, fill: 'both'});
+
+function showDuring(element, start, end, lift = 10, fade = .22) {
+  const hidden = {opacity: 0, visibility: 'hidden', transform: `translateY(${lift}px)`};
+  const appearing = {...hidden, visibility: 'visible', easing: 'cubic-bezier(.2,.65,.28,1)'};
+  const visible = {opacity: 1, visibility: 'visible', transform: 'translateY(0px)'};
+  const leaving = {opacity: 0, visibility: 'hidden', transform: `translateY(${-lift / 2}px)`};
+  const frames = [[0, hidden]];
+  if (start > 0) frames.push([Math.max(0, start - .001), hidden]);
+  frames.push([start, appearing], [start + fade, visible], [end - fade, visible], [end, leaving]);
+  if (end < duration) frames.push([duration, leaving]);
+  return timeline(element, frames);
+}
+
+function entrance(element, start, length, from, to, easing = 'cubic-bezier(.19,.67,.28,1)') {
+  const a = { ...from, easing };
+  return timeline(element, [[0, from], [start, a], [start + length, to], [duration, to]]);
+}
+
+function rollNumber(el, start, length) {
+  const {value, prefix = '', suffix = '', decimals = 0} = el.dataset;
+  const formatter = new Intl.NumberFormat('en-US', {minimumFractionDigits: +decimals, maximumFractionDigits: +decimals});
+  const format = (n) => prefix + formatter.format(n) + suffix;
+  const final = format(+value);
+  el.setAttribute('aria-label', final);
+  const base = document.createElement('span');
+  base.className = 'counter-base'; base.setAttribute('aria-hidden','true'); base.textContent = final; el.append(base);
+  const reel = document.createElement('span');
+  reel.className = 'counter-reel'; reel.setAttribute('aria-hidden', 'true'); el.append(reel);
+  const steps = 24;
+  for (let i = 0; i <= steps; i++) {
+    const row = document.createElement('span');
+    row.textContent = format(+value * (1 - (1 - i / steps) ** 2));
+    reel.append(row);
+  }
+  entrance(reel, start, length, {transform: 'translateY(0%)'}, {transform: `translateY(${-steps * 100}%)`}, `steps(${steps},end)`);
+}
+
+function wireNavigation() {
+  function select(index) {
+    const moment = moments[index];
+    for (const animation of document.getAnimations()) {
+      animation.pause(); animation.currentTime = moment * 1000;
+    }
+  }
+  for (const control of document.querySelectorAll('[data-view]')) {
+    control.addEventListener('click', () => select(Number(control.dataset.view)));
+  }
+  for (const control of document.querySelectorAll('[data-replay]')) {
+    control.addEventListener('click', () => {
+      for (const animation of document.getAnimations()) { animation.currentTime = 0; animation.play(); }
+    });
+  }
+  if (!location.search && matchMedia('(prefers-reduced-motion: reduce)').matches) select(0);
+}
+
+
+const moments = [1.28, 2.76, 4.40, 5.54];
+const windows = [[.44, 1.57], [2.0, 3.53], [3.33, 4.77], [4.70, duration]];
+for (const panel of document.querySelectorAll('[data-panel]')) {
+  const index = Number(panel.dataset.panel);
+  const [start, end] = windows[index];
+  showDuring(panel, start, end, index === 0 ? 3 : 13, .19);
+  panel.querySelectorAll('.counter').forEach(el => rollNumber(el, index === 0 ? .76 : start + .24, index === 0 ? .82 : .8));
+  if (index > 0) panel.querySelectorAll('.saved-card,.task-group,.task-metric,.message-list,.conversation,.contact').forEach((el,i) => entrance(el, start + .05 + i * .022, .28, {opacity: 0, transform:'translateY(8px)'}, {opacity:1, transform:'translateY(0px)'}));
+}
+const navigationTimes = [[0,1.34],[1.34,3.34],[3.34,4.56],[4.56,duration]];
+for (const target of document.querySelectorAll('[data-focus],[data-top]')) {
+  const index = Number(target.dataset.focus ?? target.dataset.top);
+  showDuring(target, ...navigationTimes[index], 0, .12);
+}
+const circle = (r) => `circle(${r}px at 91px 27px)`;
+timeline(document.querySelector('.workspace'), [[0,{clipPath:circle(0)}],[.30,{clipPath:circle(0),easing:'cubic-bezier(.43,.05,.58,.98)'}],[.89,{clipPath:circle(1750)}],[duration-.08,{clipPath:circle(1750),opacity:1}],[duration,{clipPath:circle(1750),opacity:0}]]);
+timeline(document.querySelector('.splash .emblem'), [[0,{transform:'translate(0px,0px) scale(1) rotate(-3deg)'}],[.10,{transform:'translate(0px,0px) scale(.94) rotate(-3deg)'}],[.34,{transform:'translate(-625px,-361px) scale(.38) rotate(0deg)'}],[duration,{transform:'translate(-625px,-361px) scale(.38)'}]]);
+const normalRail = {top:'25px',bottom:'6px'};
+timeline(document.querySelector('.rail'), [[0,{top:'11px',bottom:'68px'}],[1.00,{top:'11px',bottom:'68px'}],[1.28,{top:'11px',bottom:'14px'}],[1.56,normalRail],[duration,normalRail]]);
+timeline(document.querySelector('.top'), [[0,{top:'6px'}],[1.31,{top:'6px'}],[1.57,{top:'25px'}],[duration,{top:'25px'}]]);
+entrance(document.querySelector('.progress-fill'), .93, .55, {transform:'scaleX(0)'}, {transform:'scaleX(.95)'});
+for (const [i, bar] of [...document.querySelectorAll('.pipe-col i')].entries()) entrance(bar, .98 + i*.035, .54, {transform:'scaleY(0)'}, {transform:'scaleY(1)'});
+wireNavigation();
+
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
