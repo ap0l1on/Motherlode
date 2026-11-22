@@ -5,10 +5,10 @@ Carousels.
 
 Part of [UI](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="obsidian-film-deck/"><img src="obsidian-film-deck/preview.gif" width="260" alt="Obsidian film deck"></a><br><a href="obsidian-film-deck/"><b>Obsidian film deck</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="orbiting-scene-carousel/"><img src="orbiting-scene-carousel/preview.gif" width="260" alt="Orbiting scene carousel"></a><br><a href="orbiting-scene-carousel/"><b>Orbiting scene carousel</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="midnight-developer-card-ring/"><img src="midnight-developer-card-ring/preview.gif" width="260" alt="Midnight developer card ring"></a><br><a href="midnight-developer-card-ring/"><b>Midnight developer card ring</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="obsidian-film-deck/"><img src="obsidian-film-deck/preview.gif" width="260" alt="Obsidian film deck"></a><br><a href="obsidian-film-deck/"><b>Obsidian film deck</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="orbiting-scene-carousel/"><img src="orbiting-scene-carousel/preview.gif" width="260" alt="Orbiting scene carousel"></a><br><a href="orbiting-scene-carousel/"><b>Orbiting scene carousel</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
