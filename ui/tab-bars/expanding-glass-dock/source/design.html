@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x100">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="4">
+<meta name="motherlode:still" content="0.2">
+<title>Expanding glass dock</title>
+<style>
+  :root, [data-colorway="original"] {
+    --wall: #cdbba3; --wood: #996e4c; --recess: #391e0e;
+    --leaf: #687429; --lamp: #efae6c; --screen: #120e10;
+    --reflection: #373132; --glass: #f2e5de; --glass-strength: 70%;
+    --icon: #685b52; --type: #24150e; --pressed: #6e5545;
+    --counter: #b52133; --counter-type: #fffaf4; --paper: #fff;
+    --black: #000; --clear: transparent;
+  }
+  [data-colorway="light"] {
+    --wall: #eddfc8; --wood: #c5a988; --recess: #75634e;
+    --leaf: #758d50; --lamp: #ffe1aa; --screen: #36383b;
+    --reflection: #626365; --glass: #fffaf0; --glass-strength: 79%;
+    --icon: #635a4c; --type: #322a20; --pressed: #98836e;
+    --counter: #a62c30; --counter-type: #fffdf0;
+  }
+  [data-colorway="dark"] {
+    --wall: #625f67; --wood: #5d4b4d; --recess: #291f2a;
+    --leaf: #465a45; --lamp: #d2a27d; --screen: #0c1018;
+    --reflection: #293040; --glass: #1b2330; --glass-strength: 85%;
+    --icon: #c4cee1; --type: #f5f5ff; --pressed: #aaa9da;
+    --counter: #ae3d51; --counter-type: #fff6f7;
+  }
+  [data-colorway="mono"] {
+    --wall: #c2c2c2; --wood: #818181; --recess: #383838;
+    --leaf: #666666; --lamp: #cecece; --screen: #131313;
+    --reflection: #393939; --glass: #e7e7e7; --glass-strength: 76%;
+    --icon: #626262; --type: #202020; --pressed: #6c6c6c;
+    --counter: #454545; --counter-type: #ffffff;
+  }
+  [data-colorway="ocean"] {
+    --wall: #b7cbd0; --wood: #728f97; --recess: #304855;
+    --leaf: #47736b; --lamp: #d8ddd2; --screen: #0c1b25;
+    --reflection: #2b4653; --glass: #d4f2f2; --glass-strength: 80%;
+    --icon: #446971; --type: #183a43; --pressed: #41899a;
+    --counter: #12677a; --counter-type: #f4fffd;
+  }
+  [data-colorway="matcha"] {
+    --wall: #d0c9a8; --wood: #8e8b64; --recess: #414331;
+    --leaf: #687740; --lamp: #e5ca93; --screen: #172019;
+    --reflection: #354238; --glass: #e6ebce; --glass-strength: 79%;
+    --icon: #636d47; --type: #303a20; --pressed: #778950;
+    --counter: #596a29; --counter-type: #fffcea;
+  }
+  [data-colorway="sunset"] {
+    --wall: #e5bda5; --wood: #aa7462; --recess: #643c37;
+    --leaf: #8f7851; --lamp: #ffc58a; --screen: #251823;
+    --reflection: #51313d; --glass: #ffe0cd; --glass-strength: 82%;
+    --icon: #835746; --type: #432c25; --pressed: #c67a60;
+    --counter: #a52d44; --counter-type: #fff7ef;
+  }
+  [data-colorway="berry"] {
+    --wall: #d6bccf; --wood: #98758c; --recess: #513448;
+    --leaf: #736074; --lamp: #f3c2ce; --screen: #201422;
+    --reflection: #453046; --glass: #ffe2f1; --glass-strength: 81%;
+    --icon: #7b536e; --type: #452b3a; --pressed: #a36e92;
+    --counter: #943757; --counter-type: #fff8fb;
+  }
+  [data-colorway="smoked-jade"] {
+    --wall: #bdab92; --wood: #8d684d; --recess: #351e12;
+    --leaf: #697737; --lamp: #dca368; --screen: #151115;
+    --reflection: #393538; --glass: #494440; --glass-strength: 58%;
+    --icon: #fff9f1; --type: #fffef5; --pressed: #38a589;
+    --counter: #b62433; --counter-type: #fffaf3;
+  }
+  [data-colorway="smoked-jade"] .room #interior { transform: translateY(85px); }
+  [data-colorway="smoked-jade"] .dock-chip {
+    background: linear-gradient(150deg, color-mix(in srgb, var(--pressed) 65%, var(--clear)), color-mix(in srgb, var(--pressed) 32%, var(--clear)));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--paper) 62%, var(--clear)), 0 0 8px color-mix(in srgb, var(--pressed) 40%, var(--clear));
+  }
+  @font-face { font-family: "DM Sans"; src: url("data:font/woff2;base64,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") format("woff2"); font-weight: 400 700; font-style: normal; font-display: block; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 576px; height: 100px; overflow: hidden; background: var(--wall); }
+  main { position: relative; width: 100%; height: 100%; isolation: isolate; }
+  .room { display: block; position: absolute; inset: 0; width: 576px; height: 100px; }
+  button { appearance: none; border: 0; padding: 0; margin: 0; background: var(--clear); color: inherit; font: inherit; cursor: pointer; }
+  button:focus-visible { outline: 1.5px solid currentColor; outline-offset: -3px; }
+  .icon { flex: none; display: block; fill: none; stroke: currentColor; stroke-width: 1.85; stroke-linecap: round; stroke-linejoin: round; }
+  nav { position: absolute; font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased; }
+
+  .dock { left: 168.3px; top: 28.4px; display: flex; align-items: center; gap: 6.8px; --o0: 1; --o1: 0; --o2: 0; --o3: 0; --chip-x: 4px; --lens-x: 46px; --lens-w: 0px; --lens-h: 0px; --lens-alpha: 0; }
+  .tray, .cart { position: relative; height: 43.2px; border-radius: 22px; }
+  .tray { width: 210.6px; }
+  .glass { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; background: color-mix(in srgb, var(--glass) var(--glass-strength), var(--clear));
+    backdrop-filter: blur(11px) saturate(.85); box-shadow: inset 0 1.7px 1.4px color-mix(in srgb, var(--paper) 77%, var(--clear)),
+    inset 1px 0 1.2px color-mix(in srgb, var(--paper) 65%, var(--clear)), inset -1px 0 1px color-mix(in srgb, var(--paper) 53%, var(--clear)),
+    inset 0 -1.7px 1.3px color-mix(in srgb, var(--paper) 64%, var(--clear)), 0 2px 4px color-mix(in srgb, var(--black) 13%, var(--clear)); }
+  .glass::before { content: ''; position: absolute; inset: 1.1px; border-radius: inherit; background: linear-gradient(to bottom, color-mix(in srgb, var(--glass) 19%, var(--clear)), var(--clear) 70%, color-mix(in srgb, var(--wood) 8%, var(--clear))); }
+  .dock-chip { position: absolute; top: 4.2px; bottom: 4.2px; left: var(--chip-x); width: 83.4px; border-radius: 20px; background: color-mix(in srgb, var(--pressed) 9%, var(--clear)); pointer-events: none; }
+  .tabs { position: absolute; inset: 0 4.2px; display: flex; align-items: center; }
+  .tab { display: flex; align-items: center; justify-content: center; flex: none; width: calc(39.65px + 43.2px * var(--open)); height: 35px; border-radius: 20px; color: color-mix(in srgb, var(--type) calc(100% * var(--open)), var(--icon)); }
+  .tab:nth-child(1) { --open: var(--o0); }
+  .tab:nth-child(2) { --open: var(--o1); }
+  .tab:nth-child(3) { --open: var(--o2); }
+  .tab:nth-child(4) { --open: var(--o3); }
+  .tab .icon { width: 14.5px; height: 14.5px; }
+  .tab .fillable { fill: currentColor; fill-opacity: var(--open); }
+  .tab span { display: block; overflow: hidden; white-space: nowrap; max-width: calc(34px * var(--open)); margin-left: calc(5.5px * var(--open)); opacity: var(--open); color: var(--type); font-size: 9.8px; line-height: 14px; font-weight: 690; }
+  .cart { display: grid; place-items: center; width: 43.4px; color: var(--type); }
+  .cart > .icon { position: relative; width: 15.3px; height: 15.3px; }
+  .cart[aria-pressed="true"] .glass { background: color-mix(in srgb, var(--glass) 92%, var(--clear)); }
+  .cart[aria-pressed="true"] > .icon { transform: scale(.88); }
+  .count { display: grid; place-items: center; position: absolute; left: 23.7px; top: 5px; min-width: 14px; height: 14px; border: 1.1px solid color-mix(in srgb, var(--paper) 88%, var(--glass)); border-radius: 50%; background: var(--counter); color: var(--counter-type); font-size: 8.2px; line-height: 1; font-weight: 680; }
+  .lens { position: absolute; z-index: 2; pointer-events: none; left: var(--lens-x); top: 50%; transform: translate(-50%, -50%); width: var(--lens-w); height: var(--lens-h); opacity: var(--lens-alpha); overflow: hidden; border-radius: 40px; }
+  .lens svg { position: absolute; width: 576px; height: 100px; left: calc(var(--lens-w) / 2 - var(--lens-x) - 168.3px); top: calc(var(--lens-h) / 2 - 50px); transform: scale(1.09, 1.22); transform-origin: calc(168.3px + var(--lens-x)) 50px; filter: blur(.6px); }
+  .lens::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(155deg, color-mix(in srgb, var(--paper) 18%, var(--clear)), var(--clear) 47%, color-mix(in srgb, var(--pressed) 12%, var(--clear))); box-shadow: inset 0 .7px 1.2px color-mix(in srgb, var(--paper) 65%, var(--clear)), inset 0 -1.1px 1px color-mix(in srgb, var(--paper) 75%, var(--clear)), inset 2px 0 2.6px color-mix(in srgb, var(--paper) 37%, var(--clear)), inset -2px 0 1.5px color-mix(in srgb, var(--black) 18%, var(--clear)); }
+  @property --o0 { syntax: '<number>'; inherits: true; initial-value: 1; }
+  @property --o1 { syntax: '<number>'; inherits: true; initial-value: 0; }
+  @property --o2 { syntax: '<number>'; inherits: true; initial-value: 0; }
+  @property --o3 { syntax: '<number>'; inherits: true; initial-value: 0; }
+  @property --chip-x { syntax: '<length>'; inherits: true; initial-value: 4px; }
+  @property --lens-x { syntax: '<length>'; inherits: true; initial-value: 46px; }
+  @property --lens-w { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --lens-h { syntax: '<length>'; inherits: true; initial-value: 0px; }
+  @property --lens-alpha { syntax: '<number>'; inherits: true; initial-value: 0; }
+</style>
+<script type="text/plain" id="font-license">Copyright 2014 The DM Sans Project Authors (https://github.com/googlefonts/dm-fonts)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+https://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+</script>
+</head>
+<body>
+<main>
+<svg class="room" viewBox="0 555 576 100" aria-hidden="true" focusable="false">
+  <defs>
+      <linearGradient id="wall" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="576" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 74%, var(--recess))"/>
+        <stop offset="1.2%" stop-color="var(--wall)"/>
+        <stop offset="17%" stop-color="color-mix(in srgb, var(--wall) 99%, var(--black))"/>
+        <stop offset="22%" stop-color="color-mix(in srgb, var(--wall) 88%, var(--black))"/>
+        <stop offset="26%" stop-color="color-mix(in srgb, var(--wall) 80%, var(--black))"/>
+        <stop offset="27%" stop-color="color-mix(in srgb, var(--wall) 60%, var(--black))"/>
+        <stop offset="38%" stop-color="color-mix(in srgb, var(--wall) 54%, var(--black))"/>
+        <stop offset="69%" stop-color="color-mix(in srgb, var(--wall) 56%, var(--black))"/>
+        <stop offset="91%" stop-color="color-mix(in srgb, var(--wall) 64%, var(--black))"/>
+        <stop offset="99%" stop-color="color-mix(in srgb, var(--wall) 76%, var(--black))"/>
+      </linearGradient>
+      <linearGradient id="screen" gradientUnits="userSpaceOnUse" x1="124" y1="0" x2="529" y2="0">
+        <stop offset="0%" stop-color="var(--screen)"/>
+        <stop offset="7%" stop-color="color-mix(in srgb, var(--screen) 72%, var(--reflection))"/>
+        <stop offset="10%" stop-color="color-mix(in srgb, var(--reflection) 70%, var(--screen))"/>
+        <stop offset="19%" stop-color="color-mix(in srgb, var(--reflection) 84%, var(--screen))"/>
+        <stop offset="28%" stop-color="color-mix(in srgb, var(--reflection) 72%, var(--screen))"/>
+        <stop offset="35%" stop-color="color-mix(in srgb, var(--reflection) 45%, var(--screen))"/>
+        <stop offset="56%" stop-color="color-mix(in srgb, var(--reflection) 64%, var(--screen))"/>
+        <stop offset="72%" stop-color="color-mix(in srgb, var(--reflection) 55%, var(--screen))"/>
+        <stop offset="86%" stop-color="color-mix(in srgb, var(--screen) 75%, var(--reflection))"/>
+        <stop offset="92%" stop-color="color-mix(in srgb, var(--screen) 82%, var(--black))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--screen) 45%, var(--black))"/>
+      </linearGradient>
+      <linearGradient id="shade" gradientUnits="userSpaceOnUse" x1="0" y1="397" x2="0" y2="505">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--reflection) 52%, var(--wood))" stop-opacity="0.42"/>
+        <stop offset="29%" stop-color="color-mix(in srgb, var(--reflection) 55%, var(--wood))" stop-opacity="0.31"/>
+        <stop offset="68%" stop-color="var(--screen)" stop-opacity="0"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="screen-shade" gradientUnits="userSpaceOnUse" x1="0" y1="447" x2="0" y2="560">
+        <stop offset="0%" stop-color="var(--screen)" stop-opacity="0"/>
+        <stop offset="33%" stop-color="var(--screen)" stop-opacity="0.03"/>
+        <stop offset="69%" stop-color="var(--screen)" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0.65"/>
+      </linearGradient>
+      <filter id="soft" x="-10%" y="-20%" width="120%" height="140%"><feGaussianBlur stdDeviation="2.1"/></filter>
+      <filter id="small-soft" x="-12%" y="-15%" width="124%" height="130%"><feGaussianBlur stdDeviation=".55"/></filter>
+      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".53 .7" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      <linearGradient id="tv-shadow" gradientUnits="userSpaceOnUse" x1="0" y1="566" x2="0" y2="586">
+        <stop offset="0%" stop-color="var(--screen)" stop-opacity="0.37"/>
+        <stop offset="47%" stop-color="var(--screen)" stop-opacity="0.1"/>
+        <stop offset="100%" stop-color="var(--screen)" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="candle" gradientUnits="userSpaceOnUse" x1="71" y1="0" x2="100" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 52%, var(--screen))"/>
+        <stop offset="8%" stop-color="color-mix(in srgb, var(--wall) 41%, var(--screen))"/>
+        <stop offset="19%" stop-color="color-mix(in srgb, var(--wall) 47%, var(--screen))"/>
+        <stop offset="31%" stop-color="color-mix(in srgb, var(--screen) 66%, var(--wall))"/>
+        <stop offset="58%" stop-color="color-mix(in srgb, var(--screen) 83%, var(--recess))"/>
+        <stop offset="89%" stop-color="color-mix(in srgb, var(--recess) 70%, var(--black))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--screen) 69%, var(--recess))"/>
+      </linearGradient>
+      <linearGradient id="vase" gradientUnits="userSpaceOnUse" x1="545" y1="0" x2="581" y2="0">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 60%, var(--wood))"/>
+        <stop offset="11%" stop-color="color-mix(in srgb, var(--wall) 78%, var(--paper))"/>
+        <stop offset="35%" stop-color="color-mix(in srgb, var(--wall) 95%, var(--paper))"/>
+        <stop offset="74%" stop-color="color-mix(in srgb, var(--wall) 64%, var(--wood))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--wall) 58%, var(--recess))"/>
+      </linearGradient>
+      <linearGradient id="timber" gradientUnits="userSpaceOnUse" x1="0" y1="610" x2="575" y2="649">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wood) 88%, var(--wall))"/>
+        <stop offset="8%" stop-color="color-mix(in srgb, var(--wood) 95%, var(--wall))"/>
+        <stop offset="22%" stop-color="var(--wood)"/>
+        <stop offset="42%" stop-color="color-mix(in srgb, var(--wood) 85%, var(--recess))"/>
+        <stop offset="46%" stop-color="color-mix(in srgb, var(--wood) 71%, var(--recess))"/>
+        <stop offset="64%" stop-color="color-mix(in srgb, var(--wood) 77%, var(--recess))"/>
+        <stop offset="79%" stop-color="color-mix(in srgb, var(--wood) 74%, var(--recess))"/>
+        <stop offset="99%" stop-color="color-mix(in srgb, var(--wood) 70%, var(--recess))"/>
+      </linearGradient>
+      <linearGradient id="countertop" gradientUnits="userSpaceOnUse" x1="0" y1="597" x2="0" y2="616">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 47%, var(--recess))"/>
+        <stop offset="20%" stop-color="color-mix(in srgb, var(--wall) 27%, var(--recess))"/>
+        <stop offset="37%" stop-color="color-mix(in srgb, var(--wood) 87%, var(--wall))"/>
+        <stop offset="60%" stop-color="color-mix(in srgb, var(--wood) 82%, var(--wall))"/>
+        <stop offset="68%" stop-color="color-mix(in srgb, var(--recess) 66%, var(--black))"/>
+        <stop offset="84%" stop-color="color-mix(in srgb, var(--recess) 68%, var(--black))"/>
+        <stop offset="94%" stop-color="color-mix(in srgb, var(--wood) 78%, var(--recess))"/>
+        <stop offset="100%" stop-color="var(--wood)"/>
+      </linearGradient>
+      <linearGradient id="chair" gradientUnits="userSpaceOnUse" x1="0" y1="633" x2="57" y2="661">
+        <stop offset="0%" stop-color="color-mix(in srgb, var(--wall) 52%, var(--screen))"/>
+        <stop offset="28%" stop-color="color-mix(in srgb, var(--wall) 63%, var(--screen))"/>
+        <stop offset="44%" stop-color="color-mix(in srgb, var(--wall) 48%, var(--screen))"/>
+        <stop offset="75%" stop-color="color-mix(in srgb, var(--wall) 36%, var(--screen))"/>
+        <stop offset="100%" stop-color="color-mix(in srgb, var(--wall) 26%, var(--screen))"/>
+      </linearGradient>
+  </defs>
+  <g id="interior">
+    <rect x="0" y="340" width="576" height="348" fill="url(#wall)"/>
+    <rect x="90" y="394" width="37" height="109" fill="url(#shade)"/>
+    <rect x="124.6" y="566.2" width="405.3" height="21" fill="url(#tv-shadow)"/>
+    <path d="M93.4 501.2v62" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 61%, var(--recess))" stroke-width="1.1" opacity=".63"/>
+    <g filter="url(#soft)">
+    <path d="M-3 575 Q6 573 17 581 L24 586 Q35 580 48 583 Q63 585 69 593 L82 599 L-3 600Z" fill="color-mix(in srgb, var(--wall) 49%, var(--recess))" opacity=".25"/>
+    <path d="M105 582 Q118 570 132 572 L139 564 L152 572 Q158 577 167 582 L172 599 L105 599Z" fill="color-mix(in srgb, var(--wall) 29%, var(--recess))" opacity=".27"/>
+    </g>
+    <rect x="269.4" y="554" width="1.4" height="49" fill="color-mix(in srgb, var(--wall) 37%, var(--recess))" opacity=".7"/>
+    <rect x="447.5" y="554" width="1.4" height="49" fill="color-mix(in srgb, var(--wall) 37%, var(--recess))" opacity=".7"/>
+    <rect x="94" y="502" width="1.2" height="60" fill="color-mix(in srgb, var(--wall) 62%, var(--recess))" opacity=".6"/>
+    <rect x="123.9" y="350.3" width="405.8" height="217.5" fill="color-mix(in srgb, var(--screen) 75%, var(--recess))"/>
+    <rect x="126" y="352" width="401.3" height="211.5" fill="url(#screen)"/>
+    <g filter="url(#soft)">
+    <path d="M128 472 Q149 465 173 469 L196 462 Q209 461 216 465 L301 466 Q336 466 356 472 L360 484 L417 486 L420 501 L127 519Z" fill="color-mix(in srgb, var(--screen) 71%, var(--black))" opacity=".47"/>
+    <path d="M391 447 Q409 435 417 425 Q424 423 427 417 L432 417 Q427 414 426 404 Q434 406 436 412 L447 414 Q460 412 462 398 L470 399 L467 410 Q477 399 486 403 Q481 413 474 416 Q485 413 491 418 L474 429 Q472 443 467 453 L461 452 Q461 461 458 468 L458 489 L444 489 L446 467 Q437 472 427 474 L430 461 Q419 467 411 466 Q420 455 424 450 L417 452 L416 447Z" fill="color-mix(in srgb, var(--screen) 48%, var(--black))" opacity=".30"/>
+    <path d="M145 493 Q167 483 185 483 L307 483 Q324 482 342 490 L408 499 L411 532 L142 531Z" fill="color-mix(in srgb, var(--screen) 80%, var(--black))" opacity=".69"/>
+    <path d="M408 501 L428 500 L438 507 L455 505 L471 512 L472 557 L412 560Z" fill="color-mix(in srgb, var(--screen) 70%, var(--black))" opacity=".46"/>
+    </g>
+    <rect x="125.8" y="447" width="401.6" height="117" fill="url(#screen-shade)"/>
+    <rect x="124.3" y="564" width="404.7" height="1" fill="color-mix(in srgb, var(--wall) 40%, var(--screen))"/>
+    <rect x="124.3" y="565" width="404.7" height="2.3" fill="color-mix(in srgb, var(--wall) 25%, var(--recess))"/>
+    <g filter="url(#small-soft)">
+    <path d="M72.4 588.9 L72.8 561 Q73.2 557.1 77.5 557 L97.9 557.5 Q99.8 557.9 99.9 560.5 L100.3 588.9 Q91 591 72.4 588.9Z" fill="url(#candle)"/>
+    <path d="M75 558.5 Q85 557 97.9 558.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 61%, var(--screen))" stroke-width="1"/>
+    <path d="M561.8 577.8 L555.4 555.5 M563 577.8 L562.5 555.7 M564.1 578.3 L570.7 555.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 72%, var(--screen))" stroke-width="0.8"/>
+    <path d="M546.7 601.6 L547 589 Q547.9 580 558.8 577.7 L560.1 574.3 L565.6 574.3 L567.2 577.8 Q576.5 580 578.9 588.2 L579.8 601.7 Q568.9 606.8 546.7 601.6Z" fill="url(#vase)"/>
+    <path d="M552.1 600 Q551 589 554 583 Q558 579.2 563 578" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 75%, var(--wood))" stroke-width="1.4"/>
+    </g>
+    <rect x="0" y="602.4" width="576" height="14" fill="url(#countertop)"/>
+    <rect x="0" y="614" width="576" height="70" fill="url(#timber)"/>
+    <rect x="3" y="609.8" width="573" height="2.8" fill="color-mix(in srgb, var(--recess) 66%, var(--black))"/>
+    <rect x="2.1" y="610.6" width="2" height="30" fill="color-mix(in srgb, var(--recess) 73%, var(--black))"/>
+    <rect x="231" y="613" width="1.8" height="65" fill="color-mix(in srgb, var(--wood) 18%, var(--recess))"/>
+    <rect x="233" y="613" width="1.2" height="65" fill="color-mix(in srgb, var(--wood) 82%, var(--wall))"/>
+    <rect x="432.7" y="613" width="1.7" height="64" fill="color-mix(in srgb, var(--wood) 21%, var(--recess))"/>
+    <rect x="434.6" y="613" width="1" height="65" fill="color-mix(in srgb, var(--wood) 88%, var(--wall))"/>
+    <path d="M5 618.1 Q143 616.8000000000001 231 619.0 M235 619.1 Q343 616.6 432 618.1 M436 617.1 Q490 618.9 576 617.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 622 Q143 620.7 231 622.9 M235 623 Q343 620.5 432 622 M436 621 Q490 622.8 576 621.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 627.3 Q143 626.0 231 628.1999999999999 M235 628.3 Q343 625.8 432 627.3 M436 626.3 Q490 628.0999999999999 576 626.6999999999999" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 637 Q143 635.7 231 637.9 M235 638 Q343 635.5 432 637 M436 636 Q490 637.8 576 636.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 640.1 Q143 638.8000000000001 231 641.0 M235 641.1 Q343 638.6 432 640.1 M436 639.1 Q490 640.9 576 639.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 647 Q143 645.7 231 647.9 M235 648 Q343 645.5 432 647 M436 646 Q490 647.8 576 646.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <path d="M5 652.5 Q143 651.2 231 653.4 M235 653.5 Q343 651.0 432 652.5 M436 651.5 Q490 653.3 576 651.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--wood) 78%, var(--recess))" stroke-width="0.6" opacity=".19"/>
+    <g filter="url(#small-soft)">
+    <path d="M62.6 597.7 L124.2 597.7 L137.7 594.9 L138.5 601.3 L125.3 603.7 L62.2 603.4Z" fill="color-mix(in srgb, var(--screen) 68%, var(--wood))"/>
+    <path d="M63.8 596 L127.7 595.8 L136.9 593.3 L137.5 596.3 L127.3 599.4 L63.3 599.5Z" fill="color-mix(in srgb, var(--wall) 55%, var(--recess))"/>
+    <path d="M66.7 590.6 L126.9 590.2 L135.4 588.6 L135.5 595 L126.7 597.4 L66.3 597.7Z" fill="color-mix(in srgb, var(--wall) 92%, var(--recess))"/>
+    <path d="M127.1 590.5 L135.2 588.6 L135.4 595 L127 597.6Z" fill="color-mix(in srgb, var(--wall) 50%, var(--recess))"/>
+    <path d="M68 590.7 L127.5 590.3 L134.8 588.5" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 83%, var(--paper))" stroke-width="0.6"/>
+    <path d="M-5 635 Q9 631.9 29 633.5 Q48.1 632.8 55.8 637.4 Q63.5 640.6 65.4 652.5 L69 670 L-5 670Z" fill="url(#chair)"/>
+    <path d="M-2 636.4 Q18 633.2 36 635" fill="var(--clear)" stroke="color-mix(in srgb, var(--wall) 64%, var(--screen))" stroke-width="2"/>
+    </g>
+    <g filter="url(#small-soft)">
+    <path d="M166.2 681.3 Q159.0 670.4 151.4 670.4 Q159.0 673.0 166.2 681.3Z" fill="color-mix(in srgb, var(--leaf) 56%, var(--lamp))"/>
+    <path d="M166.2 681.3 Q159.0 671.7 151.4 670.4" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M168.1 682.9 Q173.8 668.3 179.7 669.4 Q173.8 673.7 168.1 682.9Z" fill="color-mix(in srgb, var(--leaf) 57%, var(--black))"/>
+    <path d="M166.1 680.8 Q150.2 660.4 133.7 660.4 Q150.2 665.2 166.1 680.8Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M167.9 681.3 Q170.8 658.4 173.9 658.4 Q170.8 663.9 167.9 681.3Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--black))"/>
+    <path d="M167.5 683.6 Q159.4 674.2 151.0 675.8 Q159.4 679.4 167.5 683.6Z" fill="color-mix(in srgb, var(--leaf) 90%, var(--black))"/>
+    <path d="M167.1 680.4 Q187.0 665.9 207.8 666.7 Q187.0 670.8 167.1 680.4Z" fill="color-mix(in srgb, var(--leaf) 59%, var(--lamp))"/>
+    <path d="M168.0 681.9 Q147.4 666.6 125.9 667.1 Q147.4 671.0 168.0 681.9Z" fill="color-mix(in srgb, var(--leaf) 80%, var(--black))"/>
+    <path d="M168.0 681.9 Q147.4 668.8 125.9 667.1" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M169.2 680.8 Q186.1 660.3 203.8 660.6 Q186.1 665.7 169.2 680.8Z" fill="color-mix(in srgb, var(--leaf) 49%, var(--black))"/>
+    <path d="M168.2 681.7 Q160.3 662.5 152.1 661.2 Q160.3 664.9 168.2 681.7Z" fill="color-mix(in srgb, var(--leaf) 52%, var(--black))"/>
+    <path d="M167.5 681.0 Q176.4 656.7 185.6 656.4 Q176.4 662.1 167.5 681.0Z" fill="color-mix(in srgb, var(--leaf) 87%, var(--black))"/>
+    <path d="M168.4 680.5 Q163.8 659.7 159.1 658.3 Q163.8 662.2 168.4 680.5Z" fill="color-mix(in srgb, var(--leaf) 38%, var(--lamp))"/>
+    <path d="M169.9 679.8 Q173.3 654.6 176.9 653.6 Q173.3 659.0 169.9 679.8Z" fill="color-mix(in srgb, var(--leaf) 61%, var(--black))"/>
+    <path d="M168.0 683.0 Q160.6 659.3 152.8 657.7 Q160.6 662.0 168.0 683.0Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M168.0 683.0 Q160.6 660.7 152.8 657.7" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M165.3 679.9 Q177.7 658.0 190.7 656.8 Q177.7 661.2 165.3 679.9Z" fill="color-mix(in srgb, var(--leaf) 36%, var(--black))"/>
+    <path d="M165.8 683.7 Q154.9 673.4 143.5 673.5 Q154.9 676.0 165.8 683.7Z" fill="color-mix(in srgb, var(--leaf) 84%, var(--black))"/>
+    <path d="M168.8 681.5 Q187.5 671.9 207.0 673.5 Q187.5 677.0 168.8 681.5Z" fill="color-mix(in srgb, var(--leaf) 45%, var(--lamp))"/>
+    <path d="M165.9 681.7 Q158.1 666.6 150.0 666.7 Q158.1 670.4 165.9 681.7Z" fill="color-mix(in srgb, var(--leaf) 81%, var(--black))"/>
+    <path d="M169.5 680.7 Q181.4 661.9 193.7 662.1 Q181.4 666.8 169.5 680.7Z" fill="color-mix(in srgb, var(--leaf) 57%, var(--black))"/>
+    <path d="M167.9 681.1 Q147.7 669.1 126.5 669.9 Q147.7 673.4 167.9 681.1Z" fill="color-mix(in srgb, var(--leaf) 56%, var(--black))"/>
+    <path d="M167.9 681.1 Q147.7 671.3 126.5 669.9" fill="var(--clear)" stroke="color-mix(in srgb, var(--leaf) 65%, var(--lamp))" stroke-width=".45" opacity=".65"/>
+    <path d="M169.6 683.6 Q182.3 667.9 195.4 668.9 Q182.3 673.4 169.6 683.6Z" fill="color-mix(in srgb, var(--leaf) 86%, var(--black))"/>
+    <path d="M169.3 683.4 Q164.1 660.1 158.8 659.8 Q164.1 665.2 169.3 683.4Z" fill="color-mix(in srgb, var(--leaf) 43%, var(--lamp))"/>
+    <path d="M170.2 681.5 Q175.9 662.8 181.8 661.4 Q175.9 664.8 170.2 681.5Z" fill="color-mix(in srgb, var(--leaf) 47%, var(--black))"/>
+    <path d="M169.6 681.0 Q162.5 669.1 155.0 669.7 Q162.5 673.1 169.6 681.0Z" fill="color-mix(in srgb, var(--leaf) 38%, var(--black))"/>
+    </g>
+    <rect x="0" y="555" width="576" height="100" fill="var(--wall)" filter="url(#grain)" opacity=".056" style="mix-blend-mode: soft-light"/>
+  </g>
+</svg>
+<nav class="dock" aria-label="Shop navigation">
+  <div class="tray">
+    <div class="glass"></div>
+    <div class="dock-chip"></div>
+    <div class="tabs">
+      <button type="button" class="tab" aria-label="Home" aria-pressed="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="fillable" d="M3.2 10.4 12 3.2l8.8 7.2v9a1.6 1.6 0 0 1-1.6 1.6H4.8a1.6 1.6 0 0 1-1.6-1.6z"/></svg><span>Home</span></button>
+      <button type="button" class="tab" aria-label="Search" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.3" cy="10.4" r="7.7"/><path d="m16 16.2 5.1 5.1"/></svg><span>Search</span></button>
+      <button type="button" class="tab" aria-label="Saved" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="fillable" d="M12 20.7s-8.9-5.4-8.9-11.2a5.3 5.3 0 0 1 8.9-3.7 5.3 5.3 0 0 1 8.9 3.7c0 5.8-8.9 11.2-8.9 11.2Z"/></svg><span>Saved</span></button>
+      <button type="button" class="tab" aria-label="Alerts" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.2 10.6c0-4-2-6.5-6.2-6.5s-6.2 2.5-6.2 6.5c0 3.5-.7 5.2-2.2 6.4h16.8c-1.5-1.2-2.2-2.9-2.2-6.4Z M10.1 20a2.1 2.1 0 0 0 3.8 0"/></svg><span>Alerts</span></button>
+    </div>
+    <div class="lens" aria-hidden="true"><svg viewBox="0 555 576 100"><use href="#interior"/></svg></div>
+  </div>
+  <button type="button" class="cart" aria-label="Cart, 3 items" aria-pressed="false"><span class="glass"></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.1 4.2h3.1l2.4 11.2a1.6 1.6 0 0 0 1.6 1.1h8a1.6 1.6 0 0 0 1.6-1.2l1.8-7.2H6.2"/><circle cx="9.2" cy="20.3" r=".8"/><circle cx="17.7" cy="20.3" r=".8"/></svg><span class="count" aria-hidden="true">3</span></button>
+</nav>
+</main>
+<script>
+  const nav = document.querySelector('nav');
+  const tabs = [...nav.querySelectorAll('.tab')];
+  const stillTime = new URLSearchParams(location.search).get('t');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loop = Number(document.querySelector('[name="motherlode:loop"]').content);
+  let selected = 0;
+  let motion;
+  let announcement;
+
+  const between = (a, b, amount) => a + (b - a) * amount;
+  const pixels = value => `${value}px`;
+
+  const stops = [[.35, .83, 1], [1.18, 1.56, 2], [2.00, 3.10, 1, true], [3.45, 3.92, 0]];
+  const liveDuration = .44;
+  function opened(from, to, amount) {
+    const values = {};
+    tabs.forEach((_, i) => { values[`--o${i}`] = between(Number(i === from), Number(i === to), amount); });
+    return values;
+  }
+  const chipLeft = index => 4.1 + index * 39.65;
+  const chipCenter = index => chipLeft(index) + 41.7;
+  function pose(index) {
+    return { ...opened(index, index, 1), '--chip-x': pixels(chipLeft(index)), '--lens-x': pixels(chipCenter(index)),
+      '--lens-w': '0px', '--lens-h': '0px', '--lens-alpha': 0 };
+  }
+  function travel(from, to, drag = false) {
+    const start = chipCenter(from);
+    const end = chipCenter(to);
+    // A new tap lands on a collapsed icon. The lens draws back into the widened tab.
+    const contact = drag ? start + 13 : end + 20 * Math.sign(to - from);
+    const waypoints = drag
+      ? [[0, 0, 0, 0, 0, 0], [.08, 0, .02, 78, 42, .91], [.19, 0, .07, 88, 46, .95],
+         [.48, 0, .60, 88, 46, .95], [.78, .04, 1.18, 88, 46, .95], [.88, .48, 1.28, 83, 44, .88],
+         [.96, .98, 1.04, 33, 22, .36], [1, 1, 1, 0, 0, 0]]
+      : [[0, 0, 0, 0, 0, 0], [.1, .02, 0, 37, 23, .68], [.23, .12, .03, 86, 44, .97],
+         [.5, .65, .6, 88, 46, .96], [.72, .93, 1, 84, 45, .89], [.88, 1, 1, 50, 29, .54], [1, 1, 1, 0, 0, 0]];
+    return waypoints.map(([offset, opening, distance, width, height, alpha]) => ({ offset,
+      ...opened(from, to, opening), '--chip-x': pixels(between(chipLeft(from), chipLeft(to), opening)),
+      '--lens-x': pixels(between(contact, end, distance)), '--lens-w': pixels(width),
+      '--lens-h': pixels(height), '--lens-alpha': alpha }));
+  }
+  const cart = nav.querySelector('.cart');
+  cart.addEventListener('click', () => {
+    const pressed = cart.getAttribute('aria-pressed') !== 'true';
+    cart.setAttribute('aria-pressed', String(pressed));
+    cart.dispatchEvent(new CustomEvent('cartchange', { bubbles: true, detail: { open: pressed, items: 3 } }));
+  });
+
+  function mark(index) {
+    selected = index;
+    tabs.forEach((tab, i) => tab.setAttribute('aria-pressed', String(i === index)));
+  }
+  function choose(index) {
+    clearTimeout(announcement);
+    const previous = selected;
+    const destination = pose(index);
+    const computed = getComputedStyle(nav);
+    const current = Object.fromEntries(Object.keys(destination).map(key => [key, computed.getPropertyValue(key).trim()]));
+    motion?.cancel();
+    for (const [key, value] of Object.entries(destination)) nav.style.setProperty(key, value);
+    mark(index);
+    if (reduced || previous === index) return;
+    const frames = travel(previous, index);
+    frames[0] = { ...current, offset: 0 };
+    motion = nav.animate(frames, { duration: liveDuration * 1000, easing: 'linear' });
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => choose(index));
+    tab.addEventListener('focus', () => { if (tab.matches(':focus-visible')) choose(index); });
+    tab.addEventListener('keydown', event => {
+      const next = { ArrowRight: (index + 1) % tabs.length, ArrowLeft: (index - 1 + tabs.length) % tabs.length,
+        Home: 0, End: tabs.length - 1 }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      tabs[next].focus();
+    });
+  });
+
+  if (!reduced || stillTime !== null) {
+    const frames = [{ ...pose(0), offset: 0 }];
+    let previous = 0;
+    for (const [start, end, next, drag] of stops) {
+      for (const step of travel(previous, next, drag)) {
+        frames.push({ ...step, offset: between(start, end, step.offset) / loop });
+      }
+      // Restore the resting shape between gestures.
+      frames.push({ ...pose(next), offset: (end + .0001) / loop });
+      previous = next;
+    }
+    frames.push({ ...pose(0), offset: 1 });
+    motion = nav.animate(frames, { duration: loop * 1000, iterations: Infinity, easing: 'linear' });
+    // Only the accessibility state uses a timer. Every visible frame is seekable.
+    function syncSelection() {
+      const time = (stillTime === null ? Number(motion.currentTime) / 1000 : Number(stillTime)) % loop;
+      const changes = stops.map(([a, b, state]) => ({ time: between(a, b, .6), state }));
+      mark(changes.filter(change => change.time <= time).at(-1)?.state ?? 0);
+      if (stillTime === null) {
+        const next = changes.find(change => change.time > time)?.time ?? loop + changes[0].time;
+        announcement = setTimeout(syncSelection, Math.max(16, (next - time) * 1000 + 3));
+      }
+    }
+    syncSelection();
+  }
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
