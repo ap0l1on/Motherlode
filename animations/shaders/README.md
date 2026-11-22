@@ -3,4 +3,12 @@
 
 WebGL and shader effects.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="molten-stellar-corona/"><img src="molten-stellar-corona/preview.gif" width="260" alt="Molten stellar corona"></a><br><a href="molten-stellar-corona/"><b>Molten stellar corona</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

@@ -20,7 +20,7 @@ Animation for screens, the web and beyond.
 | [Rive](rive/) | Rive animations |
 | [CSS animations](css-animations/) | CSS animations |
 | [SVG animations](svg-animations/) | SVG animations |
-| [Shaders](shaders/) | WebGL and shader effects |
+| [Shaders](shaders/) | WebGL and shader effects · **1 design** |
 | [GIFs](gifs/) | GIFs |
 | [2D animation](2d-animation/) | 2D animation |
 | [3D animation](3d-animation/) | 3D animation · **1 design** |
