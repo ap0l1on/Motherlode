@@ -3,4 +3,12 @@
 
 Diagrams.
 
-Part of [Data](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Data](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="mast-linework-study/"><img src="mast-linework-study/preview.png" width="260" alt="Mast linework study"></a><br><a href="mast-linework-study/"><b>Mast linework study</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

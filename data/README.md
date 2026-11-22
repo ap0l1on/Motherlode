@@ -7,7 +7,7 @@ Charts, infographics and diagrams.
 | --- | --- |
 | [Charts](charts/) | Charts and graphs |
 | [Infographics](infographics/) | Infographics · **2 designs** |
-| [Diagrams](diagrams/) | Diagrams |
+| [Diagrams](diagrams/) | Diagrams · **1 design** |
 | [Flowcharts](flowcharts/) | Flowcharts |
 | [Timelines](timelines/) | Timelines |
 | [Roadmaps](roadmaps/) | Roadmaps |
