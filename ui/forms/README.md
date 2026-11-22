@@ -5,10 +5,10 @@ Full form layouts.
 
 Part of [UI](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="briefcase-webinar-registration/"><img src="briefcase-webinar-registration/preview.gif" width="260" alt="Briefcase webinar registration"></a><br><a href="briefcase-webinar-registration/"><b>Briefcase webinar registration</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="clockwork-registration-form/"><img src="clockwork-registration-form/preview.gif" width="260" alt="Clockwork registration form"></a><br><a href="clockwork-registration-form/"><b>Clockwork registration form</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="briefcase-webinar-registration/"><img src="briefcase-webinar-registration/preview.gif" width="260" alt="Briefcase webinar registration"></a><br><a href="briefcase-webinar-registration/"><b>Briefcase webinar registration</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="clockwork-registration-form/"><img src="clockwork-registration-form/preview.gif" width="260" alt="Clockwork registration form"></a><br><a href="clockwork-registration-form/"><b>Clockwork registration form</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="violet-arc-card-form/"><img src="violet-arc-card-form/preview.gif" width="260" alt="Violet arc card form"></a><br><a href="violet-arc-card-form/"><b>Violet arc card form</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
