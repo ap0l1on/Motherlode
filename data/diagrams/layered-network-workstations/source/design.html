@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x1024">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="10">
+  <meta name="motherlode:still" content="7.8">
+  <title>Layered network workstations</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #040a0a; --surface: #0b1014; --rule: #6aadb0; --text: #f5f8f5; --muted: #d5e0dd; --gold: #f4d34d; --violet: #be78f1; --green: #5cf68f; --cyan: #4fd5df; --red: #eb7870; --blue: #76c3e2; --orange: #fc8b4c; --paper: #0b1014; --ink: #f5f3ee; --soft: #bbbfbc; --on: #091217; --panel: #142329; --glow: #58cce5; --ivory: #f5f3ee; --caption: #0a1516; --photo: none; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #faf8f1; --photo: grayscale(.3) brightness(1.35); --clear: transparent;
+  --view-ink: #b7bbba;
+}
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #101824; --photo: brightness(.82) saturate(.85); --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #111111; --photo: grayscale(1); --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #061825; --photo: sepia(.3) hue-rotate(147deg); --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #12231a; --photo: sepia(.4) hue-rotate(45deg); --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #241710; --photo: sepia(.6) saturate(.92); --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #1a1529; --photo: sepia(.35) hue-rotate(230deg); --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 1024px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+.office { filter:var(--photo); }
+.heading { animation:label 10s step-end infinite; } .h-subnet { animation-delay:-5s; }
+@keyframes label { 0%,14% { opacity:1; } 15%,100% { opacity:0; } }
+.packet { animation:run 2.5s linear infinite; animation-delay:var(--delay); }
+@keyframes run { from { stroke-dashoffset:100; } to { stroke-dashoffset:0; } }
+.view { animation:scene 10s step-end infinite; }
+.subnet { animation-delay:-5s; }
+@keyframes scene { 0%,49.99% { opacity:1; } 50%,100% { opacity:0; } }
+
+
+[data-colorway="light"] .ink-view { fill: var(--view-ink); }
+</style>
+</head>
+<body>
+  <svg class="art" viewBox="0 0 576 1024" role="img" aria-labelledby="art-title art-desc" xmlns="http://www.w3.org/2000/svg"><title id="art-title">Layered network workstations</title><desc id="art-desc">Three office desks connect to a shared switch through luminous colored network paths. The diagram alternates between link-layer and network-layer views.</desc>
+<defs>
+    <filter id="haze" x="-65%" y="-65%" width="230%" height="230%">
+    <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    </defs>
+    <image class="office" href="workstations.webp" x="0" y="0" width="576" height="1024" preserveAspectRatio="xMidYMid slice"/>
+    <g class="view vlan">
+    <g class="heading h-vlan"><text x="288" y="81" font-family="Georgia, serif" font-size="37" font-weight="450" text-anchor="middle" fill="var(--text)" >VLAN (Layer 2)</text>
+    </g><text x="93" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" >PC 1</text><text x="93" y="208" font-family="Arial, sans-serif" font-size="17" font-weight="500" text-anchor="middle" fill="var(--text)" >(VLAN 10)</text><text x="288" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" >PC 2</text><text x="288" y="208" font-family="Arial, sans-serif" font-size="17" font-weight="500" text-anchor="middle" fill="var(--text)" >(VLAN 20)</text><text x="482" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" >PC 3</text><text x="482" y="208" font-family="Arial, sans-serif" font-size="17" font-weight="500" text-anchor="middle" fill="var(--text)" >(VLAN 10)</text>
+    <path d="M92 349C95 395 145 407 154 474S199 570 246 673L270 745" fill="none" stroke="var(--violet)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M92 349C95 395 145 407 154 474S199 570 246 673L270 745" fill="none" stroke="var(--violet)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M92 349C95 395 145 407 154 474S199 570 246 673L270 745" fill="none" stroke="var(--violet)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M92 349C95 395 145 407 154 474S199 570 246 673L270 745" fill="none" stroke="var(--violet)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-0.00s"/>
+    <path d="M280 348C279 409 283 464 290 524S288 642 288 748" fill="none" stroke="var(--green)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M280 348C279 409 283 464 290 524S288 642 288 748" fill="none" stroke="var(--green)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M280 348C279 409 283 464 290 524S288 642 288 748" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M280 348C279 409 283 464 290 524S288 642 288 748" fill="none" stroke="var(--green)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-0.59s"/>
+    <path d="M484 346C468 396 425 406 420 466S359 580 336 639Q319 685 304 746" fill="none" stroke="var(--green)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M484 346C468 396 425 406 420 466S359 580 336 639Q319 685 304 746" fill="none" stroke="var(--green)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M484 346C468 396 425 406 420 466S359 580 336 639Q319 685 304 746" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M484 346C468 396 425 406 420 466S359 580 336 639Q319 685 304 746" fill="none" stroke="var(--green)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-1.18s"/>
+    <path d="M39 686h128l11 44H21z" fill="var(--caption)" stroke="var(--violet)" stroke-width="1.35" stroke-linejoin="round" stroke-linecap="round" opacity=".88"/><text x="100" y="715" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="var(--violet)" >VLAN 10</text>
+    <path d="M412 686h128l11 44H394z" fill="var(--caption)" stroke="var(--green)" stroke-width="1.35" stroke-linejoin="round" stroke-linecap="round" opacity=".88"/><text x="473" y="715" font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle" fill="var(--green)" >VLAN 20</text>
+    <rect x="145" y="846" width="286" height="45" rx="6" fill="var(--caption)" stroke="none" opacity=".88"/><text x="288" y="877" font-family="Arial, sans-serif" font-size="26" font-weight="760" text-anchor="middle" fill="var(--text)" >Link-layer groups</text>
+    <rect x="190" y="898" width="196" height="38" rx="5" fill="var(--caption)" stroke="none" opacity=".93"/><text x="288" y="925" font-family="Arial, sans-serif" font-size="23" font-weight="750" text-anchor="middle" fill="var(--green)" >MAC based</text>
+    </g>
+    <g class="view subnet">
+    <path d="M11 667l9-31h241l-7 35H10z" fill="var(--violet)" stroke="var(--violet)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill-opacity=".16"/>
+    <path d="M289 636h256l15 35H294z" fill="var(--green)" stroke="var(--green)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill-opacity=".16"/>
+    <path d="M34 590L59 510Q73 472 131 468h299q51 4 61 37l29 99-125-5-17-69q-2-10-20-10H200q-13 1-16 14l-15 64H29z" fill="var(--blue)" stroke="var(--blue)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill-opacity=".12"/>
+    <g class="heading h-subnet"><text x="288" y="81" font-family="Arial, sans-serif" font-size="37" font-weight="500" text-anchor="middle" fill="var(--text)" >Subnet (Layer 3)</text>
+    </g><text x="93" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >PC 1</text>
+    <rect x="31" y="192" width="124" height="25" rx="5" fill="var(--caption)" stroke="var(--rule)" opacity=".93"/><text x="93" y="210" font-family="Arial, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="var(--text)" >192.0.2.11</text><text x="288" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >PC 2</text>
+    <rect x="226" y="192" width="124" height="25" rx="5" fill="var(--caption)" stroke="var(--rule)" opacity=".93"/><text x="288" y="210" font-family="Arial, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="var(--text)" >192.0.2.12</text><text x="482" y="180" font-family="Arial, sans-serif" font-size="23" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >PC 3</text>
+    <rect x="420" y="192" width="124" height="25" rx="5" fill="var(--caption)" stroke="var(--rule)" opacity=".93"/><text x="482" y="210" font-family="Arial, sans-serif" font-size="14" font-weight="500" text-anchor="middle" fill="var(--text)" >198.51.100.8</text>
+    <path d="M91 349C117 381 136 388 144 441S186 495 252 512Q270 516 278 537" fill="none" stroke="var(--green)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M91 349C117 381 136 388 144 441S186 495 252 512Q270 516 278 537" fill="none" stroke="var(--green)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M91 349C117 381 136 388 144 441S186 495 252 512Q270 516 278 537" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M91 349C117 381 136 388 144 441S186 495 252 512Q270 516 278 537" fill="none" stroke="var(--green)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-0.00s"/>
+    <path d="M285 349C285 407 286 472 288 492" fill="none" stroke="var(--green)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M285 349C285 407 286 472 288 492" fill="none" stroke="var(--green)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M285 349C285 407 286 472 288 492" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M285 349C285 407 286 472 288 492" fill="none" stroke="var(--green)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-0.59s"/>
+    <path d="M480 349C448 380 420 405 416 447S354 492 308 507" fill="none" stroke="var(--orange)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M480 349C448 380 420 405 416 447S354 492 308 507" fill="none" stroke="var(--orange)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M480 349C448 380 420 405 416 447S354 492 308 507" fill="none" stroke="var(--orange)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M480 349C448 380 420 405 416 447S354 492 308 507" fill="none" stroke="var(--orange)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-1.18s"/>
+    <path d="M282 517Q267 532 261 569T256 666Q254 710 259 746" fill="none" stroke="var(--violet)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M282 517Q267 532 261 569T256 666Q254 710 259 746" fill="none" stroke="var(--violet)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M282 517Q267 532 261 569T256 666Q254 710 259 746" fill="none" stroke="var(--violet)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M282 517Q267 532 261 569T256 666Q254 710 259 746" fill="none" stroke="var(--violet)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-1.77s"/>
+    <path d="M298 517Q322 554 333 580T323 663Q306 707 302 745" fill="none" stroke="var(--green)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" opacity=".68" filter="url(#haze)"/>
+    <path d="M298 517Q322 554 333 580T323 663Q306 707 302 745" fill="none" stroke="var(--green)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>
+    <path d="M298 517Q322 554 333 580T323 663Q306 707 302 745" fill="none" stroke="var(--green)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" transform="translate(5 0)" opacity=".67"/>
+    <path d="M298 517Q322 554 333 580T323 663Q306 707 302 745" fill="none" stroke="var(--green)" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" class="packet" pathLength="100" stroke-dasharray="3 97" style="--delay:-2.36s"/>
+    <path d="M65 504q5-10 24-10h94q15 0 21 12l17 108H17z" fill="var(--blue)" stroke="var(--blue)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill-opacity=".13" stroke-opacity=".83"/><text x="115" y="577" font-family="Arial, sans-serif" font-size="14" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >192.0.2.0/24</text><text x="115" y="597" font-family="Arial, sans-serif" font-size="15" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >Subnet</text>
+    <path d="M420 504q5-10 24-10h94q15 0 21 12l17 108H372z" fill="var(--cyan)" stroke="var(--cyan)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" fill-opacity=".13" stroke-opacity=".83"/><text x="470" y="577" font-family="Arial, sans-serif" font-size="14" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >198.51.100.0/24</text><text x="470" y="597" font-family="Arial, sans-serif" font-size="15" font-weight="550" text-anchor="middle" fill="var(--text)" class="ink-view" >Subnet</text>
+    <path d="M269 496l12 0-3-5 11 7-13 6 3-5h-10m42 10h-13l4 5-12-7 12-6-4 5h13" fill="var(--text)" stroke="var(--text)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity=".82"/>
+    <rect x="145" y="846" width="286" height="45" rx="6" fill="var(--caption)" stroke="none" opacity=".88"/><text x="288" y="877" font-family="Arial, sans-serif" font-size="26" font-weight="760" text-anchor="middle" fill="var(--text)" >IP address groups</text>
+    <rect x="190" y="898" width="196" height="38" rx="5" fill="var(--caption)" stroke="none" opacity=".93"/><text x="288" y="925" font-family="Arial, sans-serif" font-size="23" font-weight="750" text-anchor="middle" fill="var(--green)" >IP based</text>
+    </g>
+  </svg>
+  <script>
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
