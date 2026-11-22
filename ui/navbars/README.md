@@ -3,4 +3,12 @@
 
 Top navigation bars.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="sunlit-services-megamenu/"><img src="sunlit-services-megamenu/preview.gif" width="260" alt="Sunlit services megamenu"></a><br><a href="sunlit-services-megamenu/"><b>Sunlit services megamenu</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
