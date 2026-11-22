@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1152x628">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6">
+<meta name="motherlode:still" content="0.3">
+<title>Walnut glass checkout</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --wall: #A78063; --wall-hi: #EEE7D9; --wood: #795037; --room-dark: #282124;
+  --floor: #BD9D81; --glass: #E9DCC9; --ink: #251916; --muted: #543E34;
+  --rail: #977557; --rail-ink: #FFFAF3; --hero: #C44924; --coral: #F07849;
+  --hero-ink: #FFFDF6; --button: #241914; --button-ink: #FFF9F2; --good: #226147;
+  --good-bed: #D7E8CF; --med-a: #B5BD83; --med-b: #97AFBD; --med-c: #DDBB9B;
+  --med-d: #9C8498; --hi: #FFFFFF; --lo: #171013; --clear: transparent;
+}
+[data-colorway="light"] {
+  --wall: #CEC4B6; --wall-hi: #F7F4E8; --wood: #B09783; --room-dark: #6C6864;
+  --floor: #D3CBB9; --glass: #FFF6E9; --ink: #302A24; --muted: #62584D;
+  --rail: #826C5C; --rail-ink: #FFFBF4; --hero: #A44E41; --coral: #DE8A71;
+  --hero-ink: #FFFCF9; --button: #36302B; --button-ink: #FFF9F1; --good: #2B6043;
+  --good-bed: #DAE9D6; --med-a: #A5BF96; --med-b: #93AFBE; --med-c: #E5B991;
+  --med-d: #BA9BAA; --hi: #FFFFFF; --lo: #271F1D; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --wall: #3B3538; --wall-hi: #75706D; --wood: #4B3934; --room-dark: #18151A;
+  --floor: #3F3436; --glass: #4B3E40; --ink: #FCF1E7; --muted: #E4D0C5;
+  --rail: #453439; --rail-ink: #F8EDE9; --hero: #863D3C; --coral: #DB7867;
+  --hero-ink: #FFF7F2; --button: #F0D9C8; --button-ink: #37282B; --good: #B8E0C6;
+  --good-bed: #3F5A49; --med-a: #A8AA77; --med-b: #7F9DAE; --med-c: #C99C7F;
+  --med-d: #A8889E; --hi: #FFFFFF; --lo: #110D13; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --wall: #848484; --wall-hi: #D6D6D6; --wood: #626262; --room-dark: #222222;
+  --floor: #999999; --glass: #E1E1E1; --ink: #1C1C1C; --muted: #4C4C4C;
+  --rail: #585858; --rail-ink: #FAFAFA; --hero: #525252; --coral: #999999;
+  --hero-ink: #FFFFFF; --button: #242424; --button-ink: #FFFFFF; --good: #323232;
+  --good-bed: #D5D5D5; --med-a: #B5B5B5; --med-b: #929292; --med-c: #D1D1D1;
+  --med-d: #A9A9A9; --hi: #FFFFFF; --lo: #111111; --clear: transparent;
+}
+[data-colorway="cedar"] {
+  --wall: #987961; --wall-hi: #DFCCB2; --wood: #725944; --room-dark: #302724;
+  --floor: #B59A7F; --glass: #E6D5BF; --ink: #322C22; --muted: #5C5144;
+  --rail: #6E6049; --rail-ink: #FFF9EC; --hero: #655D37; --coral: #AB9565;
+  --hero-ink: #FFFCED; --button: #382E25; --button-ink: #FFF9EB; --good: #2E6047;
+  --good-bed: #D6E4C9; --med-a: #B1BB83; --med-b: #9DAF9B; --med-c: #C6996E;
+  --med-d: #AD9490; --hi: #FFFEF3; --lo: #1F1916; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --wall: #71999E; --wall-hi: #D9EAE4; --wood: #47696D; --room-dark: #1F323A;
+  --floor: #A2BBAD; --glass: #D8EBE3; --ink: #183C40; --muted: #3B5C60;
+  --rail: #3C6970; --rail-ink: #F7FFFB; --hero: #246671; --coral: #5AB9B2;
+  --hero-ink: #F6FFFB; --button: #173D42; --button-ink: #F1FFF9; --good: #225A48;
+  --good-bed: #C8E4D3; --med-a: #9FBF8F; --med-b: #82B5C4; --med-c: #D9BB91;
+  --med-d: #92A1AE; --hi: #FFFFFF; --lo: #10242B; --clear: transparent;
+}
+[data-colorway="mulberry"] {
+  --wall: #947886; --wall-hi: #ECDCE3; --wood: #654755; --room-dark: #2B202E;
+  --floor: #B899A3; --glass: #EBD9E3; --ink: #382636; --muted: #60495C;
+  --rail: #77576C; --rail-ink: #FCF4FC; --hero: #82485E; --coral: #D18BA6;
+  --hero-ink: #FFF5F9; --button: #40293A; --button-ink: #FFF3FB; --good: #385E49;
+  --good-bed: #D8E7D6; --med-a: #ADB588; --med-b: #93A8BF; --med-c: #DFB69A;
+  --med-d: #AC8CA9; --hi: #FFFAFF; --lo: #201521; --clear: transparent;
+}
+[data-colorway="cobalt"] {
+  --wall: #728397; --wall-hi: #D8E4E7; --wood: #465970; --room-dark: #202634;
+  --floor: #9AAABB; --glass: #DFE9F1; --ink: #253447; --muted: #465970;
+  --rail: #475E7F; --rail-ink: #F6FAFF; --hero: #365781; --coral: #7C9EC9;
+  --hero-ink: #F8FBFF; --button: #25394F; --button-ink: #F7FAFF; --good: #2D5B48;
+  --good-bed: #D3E5D8; --med-a: #AAB995; --med-b: #87AAC7; --med-c: #D9BD9F;
+  --med-d: #A695B6; --hi: #FFFFFF; --lo: #111A2A; --clear: transparent;
+}
+* { box-sizing:border-box; }html,body { width:1152px; height:628px; margin:0;overflow:hidden; }
+main { position:relative; width:1152px; height:628px; overflow:hidden; color:var(--ink); font-family:Inter,sans-serif; }
+.room,.shell,.stepper,.bar { position:absolute; } .room { inset:0; width:100%; height:100%; }
+button,input { font:inherit; color:inherit; }button { cursor:pointer; }button:focus-visible,input:focus-visible { outline:2px solid var(--good);outline-offset:2px; }
+button { border:0; } button:disabled { cursor:default; }
+.bar { top:10px; left:80px; width:1005px; height:46px; display:flex; align-items:center; padding:0 13px; gap:10px; border:1px solid color-mix(in srgb,var(--hi) 25%,var(--clear)); border-radius:24px; color:var(--rail-ink);background:color-mix(in srgb,var(--rail) 68%,var(--clear)); backdrop-filter:blur(15px);box-shadow:inset 0 1px color-mix(in srgb,var(--hi) 32%,var(--clear)); }
+.bar .mark,.account { border-radius:50%;width:31px;height:31px;display:grid;place-items:center;font-size:16px;} .mark { background:linear-gradient(145deg,var(--good-bed),var(--good));color:var(--button-ink);font-weight:850; } .bar b {font-size:12px;} .bar .protection { font-size:8px;letter-spacing:.15px; margin-left:auto;display:flex;align-items:center;gap:8px; } .seal {width:15px;height:15px;display:block;border-radius:50%;background:radial-gradient(at 31% 31%,var(--hi),var(--med-b) 43%,var(--med-d) 70%); }
+.session { margin:0 auto 0 120px;padding:5px 11px;border-radius:14px;background:color-mix(in srgb,var(--glass) 45%,var(--clear));font-size:9px; } .account { background:var(--glass);color:var(--good);margin-left:auto;font-size:16px; }
+.shell { top:68px; left:86px; width:997px; height:506px; border:1px solid color-mix(in srgb,var(--hi) 39%,var(--clear)); background:linear-gradient(128deg,color-mix(in srgb,var(--glass) 48%,var(--clear)),color-mix(in srgb,var(--glass) 32%,var(--clear)) 50%,color-mix(in srgb,var(--glass) 47%,var(--clear))); border-radius:24px; backdrop-filter:blur(17px); box-shadow:0 10px 28px color-mix(in srgb,var(--lo) 20%,var(--clear)),inset 0 1px color-mix(in srgb,var(--hi) 46%,var(--clear)); }
+.list {position:absolute;left:-18px;top:39px;width:32px;padding:8px 0;border-radius:20px;display:grid;justify-items:center;gap:13px;color:var(--rail-ink);background:color-mix(in srgb,var(--rail) 62%,var(--clear));font-size:12px;} .list span:first-child {border-radius:50%;padding:3px 5px;background:var(--glass);color:var(--ink);}
+h1 {font-size:22px;line-height:26px;margin:0;font-weight:675;letter-spacing:-.85px;}h2,h3,p {margin:0;}h2 {font-size:13px;letter-spacing:-.33px;} .heading {position:absolute;left:44px;top:19px;}
+.heading p {margin-top:4px;color:var(--muted);font-size:8px;} .controls {position:absolute;right:20px;top:31px;display:flex;gap:6px;}
+.pill {border-radius:22px;padding:5px 10px;color:var(--ink);font-size:8px;line-height:12px;background:color-mix(in srgb,var(--glass) 88%,var(--hi));box-shadow:inset 0 1px color-mix(in srgb,var(--hi) 52%,var(--clear));}
+.pane {position:absolute;top:72px;width:296px;height:404px;padding:13px;border:1px solid color-mix(in srgb,var(--hi) 37%,var(--clear));border-radius:18px;background:linear-gradient(115deg,color-mix(in srgb,var(--glass) 83%,var(--clear)),color-mix(in srgb,var(--glass) 62%,var(--clear)));backdrop-filter:blur(18px);box-shadow:0 4px 15px color-mix(in srgb,var(--lo) 13%,var(--clear)),inset 0 1px color-mix(in srgb,var(--hi) 52%,var(--clear));}
+.pay {left:386px;}.order {left:694px;width:276px;}.panel-head {display:flex;align-items:center;justify-content:space-between;}.panel-head .pill {font-size:7px;padding:3px 8px;}.panel-sub {font-size:8px;color:var(--muted);margin:5px 0 13px;}
+label {display:block;min-width:0;font-size:7px;color:var(--muted);font-weight:610;} label input {display:block;width:100%;height:29px;border:0;border-radius:7px;padding:0 10px;margin:4px 0 8px;background:color-mix(in srgb,var(--glass) 65%,var(--hi));font:600 9px Inter,sans-serif;color:var(--ink);}
+.field-row {display:flex;gap:7px;} .field-row label {flex:1;} .remember {display:flex;gap:7px;align-items:center;width:100%;text-align:left;color:var(--ink);background:color-mix(in srgb,var(--glass) 66%,var(--hi));border-radius:7px;height:31px;padding:5px 8px;}.remember b,.item b,.shipping b {font-size:8px;display:block;}.remember small,.item small,.shipping small {font-size:7px;line-height:10px;color:var(--muted);display:block;}
+.switch {width:26px;height:14px;background:var(--good);border-radius:10px;position:relative;}.switch::after {content:'';position:absolute;right:2px;top:2px;width:10px;height:10px;border-radius:50%;background:var(--button-ink);}.remember[aria-pressed="false"] .switch {background:var(--muted);}.remember[aria-pressed="false"] .switch::after {left:2px;}
+.submit {position:absolute;left:13px;bottom:13px;right:13px;height:33px;border-radius:23px;background:var(--button);color:var(--button-ink);font-size:10px;font-weight:680;box-shadow:0 4px 10px color-mix(in srgb,var(--lo) 22%,var(--clear));}.submit span {position:absolute;right:4px;top:4px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:var(--button-ink);color:var(--button);}
+.items {display:grid;gap:6px;}.item,.shipping {background:color-mix(in srgb,var(--glass) 67%,var(--hi));border-radius:8px;padding:5px;display:flex;gap:7px;align-items:center;}
+.thumb {width:29px;height:30px;flex:0 0 auto;border-radius:7px;display:grid;place-items:center;background:linear-gradient(140deg,var(--med-c),var(--glass));color:var(--muted);}
+.item:nth-child(2) .thumb {background:linear-gradient(140deg,var(--med-d),var(--glass));}.item:nth-child(3) .thumb,.shipping .thumb {background:linear-gradient(140deg,var(--med-a),var(--glass));}.thumb svg {width:22px;height:22px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.step {margin-left:auto;display:flex;align-items:center;gap:4px;font-size:8px;background:color-mix(in srgb,var(--glass) 66%,var(--hi));border-radius:14px;}.step button {background:none;font-weight:700;padding:3px 4px;font-size:9px;}.promo {display:flex;gap:4px;margin:8px 0;}.promo input {border:0;background:color-mix(in srgb,var(--glass) 65%,var(--hi));border-radius:6px;padding:4px 7px;min-width:0;flex:1;font-size:8px;}.promo button {font-size:8px;background:var(--rail);color:var(--rail-ink);border-radius:6px;padding:4px 7px;}
+dl {margin:7px 0;font-size:8px;line-height:14px;}dl div {display:flex;justify-content:space-between;} dt {color:var(--muted);}dd {margin:0;font-weight:650;} .total {font-size:10px;margin-top:8px;padding-top:6px;border-top:1px solid color-mix(in srgb,var(--muted) 18%,var(--clear));}.shipping {position:absolute;bottom:12px;left:13px;right:13px;}
+.chooser {position:absolute;left:79px;top:134px;width:270px;height:40px;border:1px solid color-mix(in srgb,var(--hi) 42%,var(--clear));border-radius:12px;display:flex;align-items:center;gap:5px;padding:7px 9px;background:color-mix(in srgb,var(--glass) 44%,var(--clear));}.chooser small {font-size:7px;color:var(--muted);display:block;}.chooser b {font-size:10px;}.chooser div {margin-right:auto;}.swatch {width:14px;height:14px;border-radius:50%;padding:0;background:var(--tone);border:1px solid color-mix(in srgb,var(--hi) 51%,var(--clear));}.swatch[aria-pressed=true] {outline:1px solid var(--ink);outline-offset:2px;}
+.card-trip {position:absolute;left:86px;top:192px;width:248px;height:158px;perspective:800px;z-index:3;}.bank-card {width:100%;height:100%;border:0;background:none;padding:0;position:relative;transform-style:preserve-3d;color:var(--hero-ink);}.face {position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;text-align:left;border-radius:12px;display:block;padding:14px;background:linear-gradient(113deg,color-mix(in srgb,var(--card-color,var(--coral)) 78%,var(--hi)),var(--card-color,var(--coral)) 36%,color-mix(in srgb,var(--card-color,var(--coral)) 78%,var(--hero)));box-shadow:0 8px 10px color-mix(in srgb,var(--lo) 25%,var(--clear)),inset 0 1px color-mix(in srgb,var(--hi) 64%,var(--clear));}.face::after {content:'';position:absolute;inset:-40% -22%;background:repeating-linear-gradient(-25deg,var(--clear) 0px 10px,color-mix(in srgb,var(--hi) 7%,var(--clear)) 10.5px 11px);pointer-events:none;}
+.chip {display:inline-block;width:26px;height:20px;vertical-align:middle;border-radius:4px;border:1px solid var(--med-c);background:repeating-linear-gradient(90deg,var(--med-c) 0 6px,var(--wall-hi) 6px 7px);}.tiny {font-size:7px;display:inline-block;background:var(--glass);color:var(--ink);padding:3px 5px;border-radius:9px;vertical-align:middle;margin-left:6px;}.network {position:absolute;right:14px;top:15px;font-size:11px;font-style:italic;font-weight:850;}.number {display:block;margin:26px 0 20px;border:1px solid color-mix(in srgb,var(--hi) 58%,var(--clear));padding:3px 6px;border-radius:5px;letter-spacing:1.5px;white-space:nowrap;font:14px ui-monospace,monospace;}.id {font-size:9px;line-height:12px;font-weight:700;}.id small {display:block;text-transform:uppercase;font-size:5px;line-height:8px;letter-spacing:.8px;font-weight:600;}.expiry {position:absolute;right:14px;bottom:12px;}.back {transform:rotateY(180deg);}.stripe {position:absolute;top:24px;left:0;right:0;height:31px;background:var(--button);}.sig {display:block;border-radius:4px;color:var(--ink);background:var(--glass);margin-top:60px;padding:7px;text-align:right;font:italic 12px ui-monospace,monospace;}
+.tag {position:absolute;border-radius:15px;background:var(--glass);color:var(--ink);padding:4px 8px;box-shadow:0 2px 5px color-mix(in srgb,var(--lo) 15%,var(--clear));font-size:7px;white-space:nowrap;}.top-tag {left:-8px;top:-8px;}.bottom-tag {right:-11px;bottom:-7px;}.flip {position:absolute;left:169px;top:365px;}.under {position:absolute;left:110px;top:400px;display:flex;gap:7px;}
+.stepper {bottom:7px;left:424px;height:35px;padding:3px 4px;display:flex;align-items:center;gap:8px;border-radius:20px;background:color-mix(in srgb,var(--rail) 67%,var(--clear));color:var(--rail-ink);backdrop-filter:blur(14px);}.stepper span {font-size:8px;padding:5px 9px;}.stepper span:nth-child(3),.restart {background:var(--glass);color:var(--ink);border-radius:20px;font-weight:700;}.restart {height:25px;width:25px;padding:0;}
+.message {position:absolute;z-index:4;left:365px;top:343px;width:257px;text-align:center;font-size:11px;font-weight:600;line-height:18px;}.message small {display:block;font-size:8px;color:var(--muted);}
+</style></head><body><main>
+<svg class="room" viewBox="0 0 1152 628" preserveAspectRatio="none" aria-hidden="true"><defs>
+    <linearGradient id="backwall"><stop style="stop-color:var(--room-dark)"/><stop offset=".21" style="stop-color:var(--wood)"/><stop offset=".54" style="stop-color:var(--wall)"/><stop offset=".82" style="stop-color:var(--wood)"/><stop offset="1" style="stop-color:var(--wall-hi)"/></linearGradient>
+    <linearGradient id="window" x2=".85" y2="1"><stop style="stop-color:var(--hi)"/><stop offset=".7" style="stop-color:var(--wall-hi)"/><stop offset="1" style="stop-color:var(--floor)"/></linearGradient>
+    <linearGradient id="timber" x2="1" y2=".15"><stop style="stop-color:var(--wood)"/><stop offset=".55" style="stop-color:var(--wall)"/><stop offset="1" style="stop-color:var(--room-dark)"/></linearGradient>
+    <linearGradient id="floor" x2="0" y2="1"><stop style="stop-color:var(--floor)"/><stop offset=".8" style="stop-color:color-mix(in srgb,var(--floor) 77%,var(--wood))"/><stop offset="1" style="stop-color:var(--wall)"/></linearGradient>
+    <filter id="room-soft"><feGaussianBlur stdDeviation="1.9"/></filter></defs>
+    <rect width="1152" height="628" fill="url(#backwall)"/><g filter="url(#room-soft)">
+    <path d="M-5 0h54v384H-5Z" fill="var(--room-dark)"/><path d="M49 0h195v373H49Z" fill="var(--wall)"/><path d="M244 0h11v377h-11Z" fill="var(--room-dark)"/>
+    <path d="M267 0h467v375H264Z" fill="var(--wall)"/><path d="M300 10h360v96H300Z" fill="color-mix(in srgb,var(--wall) 82%,var(--wood))"/>
+    <path d="M734 0h269v310H734Z" fill="url(#timber)"/><path d="M1011 0h142v446h-142Z" fill="url(#window)"/>
+    <path d="M1112 28h35v400h-35Z" fill="var(--wall-hi)"/><path d="M1000 0h8v442h-8Z" fill="var(--wood)"/>
+    <path d="M-5 375h268v23H-5Z" fill="var(--wall-hi)"/><path d="M-4 393h270v22H-4Z" fill="var(--wood)"/>
+    <path d="M-5 417h267v158H-5Z" fill="var(--room-dark)"/><path d="M0 446h265v9H0Z" fill="var(--wood)"/>
+    <path d="M266 261h707v202H266Z" fill="url(#timber)"/><path d="M344 285h493v136H344Z" fill="var(--room-dark)"/><path d="M281 454h705v25H281Z" fill="var(--wood)"/>
+    <rect x="310" y="44" width="453" height="380" rx="12" fill="url(#timber)"/><rect x="337" y="65" width="396" height="307" rx="15" fill="var(--room-dark)"/><path d="M369 72h331l-32 58-264 39Z" fill="var(--wood)" opacity=".44"/><path d="m732 105 38 36 20 249H728Z" fill="var(--wall-hi)" opacity=".44"/><path d="m367 367 55-132 26 13 9 123Z" fill="var(--wood)" opacity=".68"/>
+    <path d="M0 470h1152v160H0Z" fill="url(#floor)"/><path d="M0 490h32l-3 95-29 18Z" fill="var(--room-dark)"/>
+    <path d="M1000 439h152v23h-152Z" fill="var(--floor)"/><path d="M1030 465h122v7h-122Z" fill="var(--wood)"/><path d="M1020 525h132v14h-132Z" fill="var(--wall)"/>
+    <path d="m923 623 188-44h40v6l-204 43Z" fill="var(--wood)"/><path d="M245 0h102v10H245ZM742 0h258v10H742Z" fill="var(--room-dark)"/>
+    <ellipse cx="87" cy="589" rx="60" ry="8" fill="var(--wood)" opacity=".53"/><path d="M18 421q17-32 51-10l35 26v114q1 15 19 23v9q-21 12-66 6l-3-39q-14-38-36-54Z" fill="url(#timber)"/><path d="M264 565q147-15 430-1l92 10q-113 19-199 15v39h-16v-38H329v38h-13v-39l-52-8Z" fill="var(--wood)"/><ellipse cx="1068" cy="578" rx="35" ry="7" fill="var(--wood)"/><path d="M1065 279h5v299h-5Z" fill="url(#timber)"/>
+    </g></svg>
+<div class="bar"><span class="mark">⌄</span><b>Verve Checkout</b><span class="protection"><i class="seal"></i>Protected by the studio checkout</span><span class="session">◷ &nbsp;14:20</span><span class="account">◎</span></div>
+<section class="shell"><div class="list" aria-hidden="true"><span>⌂</span><span>⌘</span><span>▥</span><span>♧</span></div><div class="heading"><h1>Complete your order</h1><p>Verve House &nbsp;›&nbsp; Delivery &nbsp;›&nbsp; Payment details</p></div><div class="controls"><span class="pill">Sample checkout</span><button type="button" class="pill reset">↶ &nbsp;Back to bag</button></div>
+<div class="chooser quiet"><div><small>Paying with</small><b>Verve Platinum</b></div></div>
+<div class="card-trip"><button type="button" class="bank-card" aria-label="Flip payment card"><span class="face front"><i class="chip"></i><b class="tiny">◆ &nbsp;Premium</b><i class="network">VERVE</i><span class="number">4242 &nbsp;4242 &nbsp;4242 &nbsp;••••</span><span class="id"><small>Cardholder</small><span class="holder">STUDIO MEMBER</span></span><span class="id expiry"><small>Valid thru</small><span class="valid">12/28</span></span></span><span class="face back"><i class="stripe"></i><span class="sig">•••</span></span></button><span class="tag top-tag">◇ &nbsp;3-D Secure</span><span class="tag bottom-tag">◉ &nbsp;Tap to pay</span></div>
+<button type="button" class="flip pill quiet">◌ &nbsp;Flip to CVV</button><div class="under quiet"><span class="pill">256-bit local preview</span><span class="pill">◈ &nbsp;VERVE PLATINUM</span></div>
+<form class="pane pay quiet"><div class="panel-head"><h2>Payment details</h2><span class="pill">✓ &nbsp;Autofill</span></div><p class="panel-sub">Your details stay in this preview.</p><label>Cardholder name<input id="holder" maxlength="23" value="STUDIO MEMBER"></label><label>Sample card number<input aria-label="Sample card number" value="4242 4242 4242 4242" maxlength="19" inputmode="numeric"></label><div class="field-row"><label>Expiry date<input id="valid" maxlength="5" value="12/28"></label><label>Security code<input value="•••" maxlength="3" aria-label="Sample security code"></label></div><button type="button" class="remember" aria-pressed="true"><i class="switch"></i><span><b>Save card for next time</b><small>Use these sample details again in this preview.</small></span></button><button type="submit" class="submit">Pay <b class="total-amount"></b><span>➜</span></button></form>
+<section class="pane order quiet"><div class="panel-head"><h2>Order summary</h2><span class="pill pieces">3 items</span></div><p class="panel-sub">Verve House &nbsp;·&nbsp; Curated home goods</p><div class="items"></div><div class="promo"><input aria-label="Promo code" placeholder="Promo code"><button type="button">Apply</button></div><span class="discount" aria-live="polite"></span><dl><div><dt>Subtotal</dt><dd class="subtotal"></dd></div><div><dt>Shipping</dt><dd>Free</dd></div><div><dt>Tax (8%)</dt><dd class="tax"></dd></div><div class="total"><dt>Total</dt><dd class="total-amount"></dd></div></dl><div class="shipping"><span class="thumb">◇</span><div><b>Arrives Fri, Nov 6</b><small>Standard delivery · Two to five working days</small></div></div></section>
+<div class="message"><span></span><small></small></div><div class="message approved"><b>Payment confirmed</b><small>Your studio order is ready.</small></div></section>
+<div class="stepper"><span>✓ &nbsp; Bag</span><span>✓ &nbsp; Delivery</span><span>Payment</span><span>Review</span><button class="restart" type="button" aria-label="Replay checkout">↻</button></div>
+</main><script>
+const get=selector=>document.querySelector(selector),all=selector=>[...document.querySelectorAll(selector)];
+const main=get('main'),bank=get('.bank-card'),trip=get('.card-trip'),form=get('form');
+const held=new URLSearchParams(location.search).has('t'),quiet=all('.quiet'),message=get('.message');
+const art=['<path d="M8 12h9l-3-7h-4Zm4 0v8m-4 0h8"/>','<path d="M4 12q0-5 4-5h8q4 0 4 5v5H4Zm2 5v3m12-3v3M5 12h14"/>','<path d="M3 9q1 10 9 10t9-10Zm5 10h8M5 8q7-3 14 0"/>'];
+const names=['Arc floor lamp','Bouclé ottoman','Pebble bowl'],prices=[389,699,38],quantities=[1,1,1];
+const cash=value=>value.toLocaleString('en-US',{style:'currency',currency:'USD'});let applied=false,flipped=false;
+const tones=['var(--good)','var(--coral)','var(--med-b)','var(--med-d)','var(--button)'];
+tones.forEach((tone,i)=>{const b=document.createElement('button');b.type='button';b.className='swatch';b.setAttribute('aria-label','Card finish '+(i+1));b.setAttribute('aria-pressed',String(i===1));b.style.setProperty('--tone',tone);b.addEventListener('click',()=>{live();main.style.setProperty('--card-color',tone);all('.swatch').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));});get('.chooser').append(b);});
+names.forEach((name,i)=>{const row=document.createElement('div');row.className='item';row.innerHTML='<span class="thumb"><svg viewBox="0 0 24 24">'+art[i]+'</svg></span><div><b>'+name+'</b><small>Studio collection</small><b>'+cash(prices[i])+'</b></div><div class="step"><button type="button" aria-label="Remove one '+name+'">−</button><strong>1</strong><button type="button" aria-label="Add one '+name+'">+</button></div>';const [minus,plus]=row.querySelectorAll('button'),n=row.querySelector('strong');for(const [control,d] of [[minus,-1],[plus,1]])control.addEventListener('click',()=>{live();quantities[i]=Math.max(0,Math.min(9,quantities[i]+d));n.textContent=quantities[i];total();});get('.items').append(row);});
+function total(){const subtotal=prices.reduce((sum,v,i)=>sum+v*quantities[i],0)*(applied?.95:1),tax=subtotal*.08;get('.subtotal').textContent=cash(subtotal);get('.tax').textContent=cash(tax);all('.total-amount').forEach(el=>el.textContent=cash(subtotal+tax));get('.pieces').textContent=quantities.reduce((a,b)=>a+b,0)+' items';}
+total();let tracks=[],manual=false,pending=[];
+function at(node,frames){const anim=node.animate(frames,{duration:6000,iterations:Infinity,easing:'ease-in-out'});tracks.push(anim);}
+const visibility=(open,close)=>[{offset:0,opacity:1},{offset:open,opacity:1},{offset:close,opacity:0},{offset:.94,opacity:0},{offset:1,opacity:1}];
+function tour(){pending.forEach(clearTimeout);pending=[];tracks.forEach(anim=>anim.cancel());tracks=[];manual=false;main.style.removeProperty('--card-color');flipped=false;bank.style.transform='';trip.style.transform='';quiet.forEach(n=>{n.style.opacity='';n.style.pointerEvents='';});get('.approved').style.opacity='';message.style.opacity='';message.firstElementChild.textContent='Securing your payment';message.lastElementChild.textContent='Preparing the studio order';get('h1').textContent='Complete your order';
+quiet.forEach(n=>at(n,visibility(.50,.63)));at(bank,[{offset:0,transform:'rotateY(0deg)'},{offset:.12,transform:'rotateY(0deg)'},{offset:.23,transform:'rotateY(180deg)'},{offset:.33,transform:'rotateY(180deg)'},{offset:.45,transform:'rotateY(0deg)'},{offset:1,transform:'rotateY(0deg)'}]);at(trip,[{offset:0,transform:'translate(0,0)'},{offset:.50,transform:'translate(0,0)'},{offset:.66,transform:'translate(272px,-64px)'},{offset:.94,transform:'translate(272px,-64px)'},{offset:1,transform:'translate(0,0)'}]);at(message,[{offset:0,opacity:0},{offset:.63,opacity:0},{offset:.70,opacity:1},{offset:.83,opacity:1},{offset:.88,opacity:0},{offset:1,opacity:0}]);at(get('.approved'),[{offset:0,opacity:0},{offset:.85,opacity:0},{offset:.9,opacity:1},{offset:.95,opacity:1},{offset:1,opacity:0}]);at(get('.front'),[{offset:0,'--card-color':'var(--coral)'},{offset:.84,'--card-color':'var(--coral)'},{offset:.92,'--card-color':'var(--good)'},{offset:.98,'--card-color':'var(--good)'},{offset:1,'--card-color':'var(--coral)'}]);}
+function live(){if(manual)return;manual=true;tracks.forEach(anim=>anim.cancel());tracks=[];message.style.opacity='0';get('.approved').style.opacity='0';}
+function flip(){live();flipped=!flipped;bank.style.transition='transform .48s ease';bank.style.transform='rotateY('+(flipped?180:0)+'deg)';}
+bank.addEventListener('click',flip);get('.flip').addEventListener('click',flip);
+form.addEventListener('focusin',live);get('#holder').addEventListener('input',event=>get('.holder').textContent=event.target.value.toUpperCase()||'STUDIO MEMBER');get('#valid').addEventListener('input',event=>get('.valid').textContent=event.target.value||'12/28');
+get('.remember').addEventListener('click',event=>{live();const button=event.currentTarget;button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));});
+get('.promo button').addEventListener('click',()=>{live();applied=get('.promo input').value.trim().length>0;get('.discount').textContent=applied?'Studio offer applied · 5%':'';get('.discount').style.fontSize='8px';total();});
+form.addEventListener('submit',event=>{event.preventDefault();live();quiet.forEach(n=>{n.style.opacity=0;n.style.pointerEvents='none';});trip.style.transition='transform .5s ease';trip.style.transform='translate(272px,-64px)';bank.style.transform='rotateY(0)';message.style.opacity=1;get('h1').textContent='Securing your payment';message.firstElementChild.textContent='Reviewing sample order';message.lastElementChild.textContent='Studio checkout';pending.push(setTimeout(()=>{get('h1').textContent='You’re all set';message.firstElementChild.textContent='Payment confirmed';main.style.setProperty('--card-color','var(--good)');},680));});
+get('.reset').addEventListener('click',tour);get('.restart').addEventListener('click',tour);tour();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!held)live();
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

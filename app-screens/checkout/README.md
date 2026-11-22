@@ -3,4 +3,12 @@
 
 Checkout and payment.
 
-Part of [App screens](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [App screens](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="walnut-glass-checkout/"><img src="walnut-glass-checkout/preview.gif" width="260" alt="Walnut glass checkout"></a><br><a href="walnut-glass-checkout/"><b>Walnut glass checkout</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

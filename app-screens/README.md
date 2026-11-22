@@ -20,7 +20,7 @@ Screens and flows found in almost every app.
 | [Chat threads](chat-threads/) | Conversation screens |
 | [Comments](comments/) | Comment sections |
 | [Cart](cart/) | Shopping carts |
-| [Checkout](checkout/) | Checkout and payment |
+| [Checkout](checkout/) | Checkout and payment · **1 design** |
 | [Order tracking](order-tracking/) | Order and delivery tracking |
 | [Product details](product-details/) | Product detail screens |
 | [Ratings and reviews](ratings-reviews/) | Ratings and reviews |
