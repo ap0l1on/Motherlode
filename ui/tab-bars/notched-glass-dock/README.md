@@ -13,6 +13,7 @@ The active icon lifts into a jade lens while a rounded notch travels through the
 | **Icons** | Original SVG strokes |
 | **Animated** | Yes, 2.5-second loop at 24 fps |
 | **Based on** | [Glassy Navigation Tabs V5 by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7704943271675546900) |
+| **Also shown in** | [The Profile selection by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7707167232501091604) |
 
 ## Every colorway
 
