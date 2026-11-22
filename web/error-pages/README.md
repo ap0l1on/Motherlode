@@ -5,10 +5,10 @@
 
 Part of [Web](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="amber-cable-break/"><img src="amber-cable-break/preview.gif" width="260" alt="Amber cable break"></a><br><a href="amber-cable-break/"><b>Amber cable break</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="tangerine-tumble-404/"><img src="tangerine-tumble-404/preview.gif" width="260" alt="Tangerine tumble 404"></a><br><a href="tangerine-tumble-404/"><b>Tangerine tumble 404</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="amber-cable-break/"><img src="amber-cable-break/preview.gif" width="260" alt="Amber cable break"></a><br><a href="amber-cable-break/"><b>Amber cable break</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="lost-at-the-stones/"><img src="lost-at-the-stones/preview.gif" width="260" alt="Lost at the stones"></a><br><a href="lost-at-the-stones/"><b>Lost at the stones</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="tangerine-tumble-404/"><img src="tangerine-tumble-404/preview.gif" width="260" alt="Tangerine tumble 404"></a><br><a href="tangerine-tumble-404/"><b>Tangerine tumble 404</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
