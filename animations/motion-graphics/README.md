@@ -5,10 +5,11 @@ Motion graphics.
 
 Part of [Animations](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="gravity-well-atlas/"><img src="gravity-well-atlas/preview.gif" width="260" alt="Gravity well atlas"></a><br><a href="gravity-well-atlas/"><b>Gravity well atlas</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="moonlace-wheel/"><img src="moonlace-wheel/preview.gif" width="260" alt="Moonlace wheel"></a><br><a href="moonlace-wheel/"><b>Moonlace wheel</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="orbital-hand-study/"><img src="orbital-hand-study/preview.gif" width="260" alt="Orbital hand study"></a><br><a href="orbital-hand-study/"><b>Orbital hand study</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="cyan-contour-scan/"><img src="cyan-contour-scan/preview.gif" width="260" alt="Cyan contour scan"></a><br><a href="cyan-contour-scan/"><b>Cyan contour scan</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="gravity-well-atlas/"><img src="gravity-well-atlas/preview.gif" width="260" alt="Gravity well atlas"></a><br><a href="gravity-well-atlas/"><b>Gravity well atlas</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="moonlace-wheel/"><img src="moonlace-wheel/preview.gif" width="260" alt="Moonlace wheel"></a><br><a href="moonlace-wheel/"><b>Moonlace wheel</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="orbital-hand-study/"><img src="orbital-hand-study/preview.gif" width="260" alt="Orbital hand study"></a><br><a href="orbital-hand-study/"><b>Orbital hand study</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
