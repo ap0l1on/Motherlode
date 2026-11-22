@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="992x660">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.8">
+<meta name="motherlode:still" content="2.6">
+<title>Gilded astronomer relic</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #05050A; --surface: #111320; --ink: #F4DAB6; --muted: #E8CFAD;
+  --accent: #BA8B4D; --on-accent: #21170E; --second: #C18340; --third: #5F778F;
+  --ivory: #FCE5B0; --shade: #594836; --outline: #92663F; --good: #B8BE82;
+  --hi: #FFF9DF; --lo: #05050A; --clear: transparent; --photo: brightness(.87);
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.7);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.78);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.32);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(19deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(312deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.65);
+}
+* {box-sizing:border-box;}html,body {margin:0;width:992px;height:660px;overflow:hidden;}main {width:496px;height:330px;position:relative;overflow:hidden;isolation:isolate;transform:scale(2);transform-origin:left top;background:radial-gradient(ellipse 85% 36% at 54% 91%,color-mix(in srgb,var(--third) 19%,var(--bg)),var(--clear)),var(--bg);color:var(--ink);font-family:Inter,sans-serif;perspective:650px;}
+.relic,.face {background-image:url('original-relic-atlas.webp');background-size:300% 100%;background-repeat:no-repeat;filter:var(--photo);}
+.relic-wrap {position:absolute;top:7px;left:37px;width:198px;height:291px;}.relic {position:absolute;inset:0;background-position:left center;mask-image:linear-gradient(90deg,var(--clear),var(--lo) 15%,var(--lo) 84%,var(--clear)),linear-gradient(180deg,var(--lo) 85%,var(--clear));mask-composite:intersect;}
+.halo {position:absolute;left:41px;bottom:17px;width:126px;height:20px;border-radius:50%;background:radial-gradient(ellipse,color-mix(in srgb,var(--accent) 39%,var(--clear)),var(--clear) 72%);filter:blur(4px);}
+.tilt {position:absolute;left:247px;top:39px;width:167px;height:242px;border-radius:4px;perspective:460px;transform-style:preserve-3d;}
+button {position:relative;width:100%;height:100%;padding:0;border:0;background:none;transform-style:preserve-3d;cursor:pointer;color:var(--ink);}
+button:focus-visible {outline:2px solid var(--ivory);outline-offset:5px;}.face {position:absolute;inset:0;border-radius:5px;backface-visibility:hidden;background-position:50% center;box-shadow:0 8px 16px color-mix(in srgb,var(--lo) 55%,var(--clear)),inset 0 0 0 1px var(--outline);}.back {background-position:right center;transform:rotateY(180deg);}
+.face span {position:absolute;left:9px;right:9px;display:block;text-align:center;color:var(--ivory);font:700 7px/10px Georgia,serif;letter-spacing:1px;text-transform:uppercase;text-shadow:0 1px 1px var(--lo);}.face .title {top:12px;}.face .caption {bottom:14px;}
+.guide {position:absolute;bottom:12px;left:0;right:0;text-align:center;letter-spacing:1.45px;text-transform:uppercase;font-size:5.5px;color:var(--muted);}
+.dust {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}.intro {position:absolute;left:0;right:0;top:145px;text-align:center;text-transform:uppercase;letter-spacing:2.3px;font-size:6px;color:var(--muted);}.intro i {display:block;margin:0 auto 6px;background:var(--accent);width:3px;height:3px;border-radius:50%;box-shadow:0 0 9px var(--accent);}
+</style></head><body><main><svg class="dust" viewBox="0 0 496 330" aria-hidden="true"><g></g></svg><div class="intro"><i></i>The astronomer’s relic</div><div class="relic-wrap"><div class="relic"></div><i class="halo"></i></div>
+<div class="tilt"><button type="button" aria-label="Flip the astronomer relic card" aria-pressed="false"><span class="face"><span class="title">The astronomer</span><span class="caption">Read the stars</span></span><span class="face back"></span></button></div><p class="guide">Move to tilt · Drag to rotate · Double click to flip</p></main><script>
+const get=s=>document.querySelector(s),stage=get('main'),tilt=get('.tilt'),card=get('button'),piece=get('.relic-wrap');let tracks=[],live=false,angle=0,dragStart=null,skipClick=false,lastClick=0;
+function anim(el,frames){tracks.push(el.animate(frames.map(k=>({easing:'ease-in-out',...k})),{duration:7800,iterations:Infinity}));}
+anim(get('.intro'),[{offset:0,opacity:1},{offset:.06,opacity:1},{offset:.13,opacity:0},{offset:.94,opacity:0},{offset:1,opacity:1}]);
+anim(piece,[{offset:0,opacity:0,clipPath:'inset(100% 0 0)'},{offset:.07,opacity:0,clipPath:'inset(100% 0 0)'},{offset:.23,opacity:1,clipPath:'inset(0 0 0)'},{offset:.94,opacity:1,clipPath:'inset(0 0 0)'},{offset:1,opacity:0,clipPath:'inset(100% 0 0)'}]);
+anim(tilt,[{offset:0,opacity:0,transform:'translateY(65px) scale(.6)'},{offset:.15,opacity:0,transform:'translateY(65px) scale(.6)'},{offset:.27,opacity:1,transform:'translateY(0) scale(1)'},{offset:.94,opacity:1,transform:'translateY(0) scale(1)'},{offset:1,opacity:0,transform:'translateY(45px) scale(.7)'}]);
+anim(card,[{offset:0,transform:'rotateY(-90deg)'},{offset:.20,transform:'rotateY(-90deg)'},{offset:.30,transform:'rotateY(0)'},{offset:.39,transform:'rotateY(0)'},{offset:.51,transform:'rotateY(155deg)'},{offset:.61,transform:'rotateY(360deg)'},{offset:.81,transform:'rotateY(540deg)'},{offset:.86,transform:'rotateY(540deg)'},{offset:.97,transform:'rotateY(720deg)'},{offset:1,transform:'rotateY(810deg)'}]);
+anim(get('.guide'),[{offset:0,opacity:0},{offset:.22,opacity:0},{offset:.30,opacity:1},{offset:.94,opacity:1},{offset:1,opacity:0}]);
+const g=get('.dust g');for(let i=0;i<34;i++){const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');dot.setAttribute('cx',(i*131+19)%496);dot.setAttribute('cy',(i*71+3)%330);dot.setAttribute('r',i%5?'.6':'1.2');dot.setAttribute('fill',i%3?'var(--ivory)':'var(--accent)');dot.setAttribute('opacity',.16+i%5*.125);g.append(dot);}anim(g,[{offset:0,transform:'translateY(8px)',opacity:.2},{offset:.45,transform:'translateY(-3px)',opacity:1},{offset:.9,transform:'translateY(-15px)',opacity:.55},{offset:1,transform:'translateY(8px)',opacity:.2}]);
+function manual(){if(live)return;live=true;tracks.forEach(a=>a.cancel());get('.intro').style.opacity=0;piece.style.opacity=1;tilt.style.opacity=1;get('.guide').style.opacity=1;card.style.transition='transform .48s cubic-bezier(.25,.75,.25,1)';}
+function flip(){manual();angle+=180;card.style.transform='rotateY('+angle+'deg)';card.setAttribute('aria-pressed',String(Math.round(angle/180)%2===1));}
+stage.addEventListener('pointermove',e=>{if(!live)return;const box=stage.getBoundingClientRect(),x=(e.clientX-box.left)/box.width-.5,y=(e.clientY-box.top)/box.height-.5;tilt.style.transform='rotateY('+(x*14)+'deg) rotateX('+(-y*9)+'deg)';piece.style.transform='translate('+(x*6)+'px,'+(y*4)+'px)';if(dragStart){const dx=e.clientX-dragStart.x;if(Math.abs(dx)>5){skipClick=true;card.style.transition='none';card.style.transform='rotateY('+(dragStart.angle+dx*.45)+'deg)';}}});
+card.addEventListener('pointerdown',e=>{manual();skipClick=false;dragStart={x:e.clientX,angle};card.setPointerCapture(e.pointerId);});card.addEventListener('pointerup',e=>{if(dragStart&&skipClick){angle=Math.round((dragStart.angle+(e.clientX-dragStart.x)*.45)/180)*180;card.style.transition='transform .3s';card.style.transform='rotateY('+angle+'deg)';}dragStart=null;});card.addEventListener('click',()=>{if(skipClick){skipClick=false;return;}const now=performance.now();if(now-lastClick>280)flip();lastClick=now;});
+stage.addEventListener('pointerleave',()=>{if(live){tilt.style.transform='';piece.style.transform='';}});if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))manual();
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
