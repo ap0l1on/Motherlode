@@ -5,10 +5,11 @@ Banking and money management.
 
 Part of [Dashboards](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="cobalt-joint-savings/"><img src="cobalt-joint-savings/preview.gif" width="260" alt="Cobalt joint savings"></a><br><a href="cobalt-joint-savings/"><b>Cobalt joint savings</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="violet-vault/"><img src="violet-vault/preview.gif" width="260" alt="Violet vault banking"></a><br><a href="violet-vault/"><b>Violet vault banking</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="walnut-glass-banking/"><img src="walnut-glass-banking/preview.gif" width="260" alt="Walnut glass banking"></a><br><a href="walnut-glass-banking/"><b>Walnut glass banking</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="apricot-wallet-companion/"><img src="apricot-wallet-companion/preview.gif" width="260" alt="Apricot wallet companion"></a><br><a href="apricot-wallet-companion/"><b>Apricot wallet companion</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="cobalt-joint-savings/"><img src="cobalt-joint-savings/preview.gif" width="260" alt="Cobalt joint savings"></a><br><a href="cobalt-joint-savings/"><b>Cobalt joint savings</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="violet-vault/"><img src="violet-vault/preview.gif" width="260" alt="Violet vault banking"></a><br><a href="violet-vault/"><b>Violet vault banking</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="walnut-glass-banking/"><img src="walnut-glass-banking/preview.gif" width="260" alt="Walnut glass banking"></a><br><a href="walnut-glass-banking/"><b>Walnut glass banking</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

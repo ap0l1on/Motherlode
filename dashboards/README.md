@@ -11,7 +11,7 @@ Dashboards for every kind of data.
 | [Sales and CRM](sales-crm/) | Sales pipelines and CRMs · **8 designs** |
 | [Marketing](marketing/) | Campaign and ad performance |
 | [Finance](finance/) | Finance and accounting · **2 designs** |
-| [Banking](banking/) | Banking and money management · **3 designs** |
+| [Banking](banking/) | Banking and money management · **4 designs** |
 | [Crypto](crypto/) | Crypto portfolios and exchanges |
 | [Trading](trading/) | Stock trading and markets |
 | [E-commerce](e-commerce/) | Store sales and orders · **3 designs** |
