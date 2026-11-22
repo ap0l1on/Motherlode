@@ -16,6 +16,7 @@
 [data-colorway="light"] {
   --outer: #f6f4f1; --bg: #f6f2ec; --paper: #fffdfa; --soft: #f3eee8; --ink: #2a2421; --muted: #62584e; --rail: #45372e; --nav: #fff8ed; --accent: #c89974; --pale: #f0ddc5; --deep: #865c42; --on-accent: #2e1d13; --blue: #7d92a3; --copper: #b47367; --mint: #72917a; --gold: #afa06c;
   --photo-filter: saturate(.88);
+  --detail-co-ink: #25170f; --detail-to-ink: #25170f; --detail-co-ink-2: #25170f; --detail-to-ink-2: #25170f;
 }
 [data-colorway="dark"] {
   --outer: #0d1119; --bg: #1c202b; --paper: #2a3040; --soft: #363b4b; --ink: #f5effa; --muted: #d1c9d6; --rail: #11151d; --nav: #f6f2ff; --accent: #bd9eec; --pale: #564867; --deep: #846ba5; --on-accent: #261b35; --blue: #8dace3; --copper: #e8a1a1; --mint: #95cdb4; --gold: #d5c187;
@@ -28,10 +29,12 @@
 [data-colorway="lagoon"] {
   --outer: #e5f1ed; --bg: #e6efec; --paper: #f7fcf9; --soft: #dfebe7; --ink: #172e2a; --muted: #415b52; --rail: #183b37; --nav: #f0fbf5; --accent: #66b8aa; --pale: #c3e8df; --deep: #337b70; --on-accent: #103c34; --blue: #78a6b5; --copper: #b58b77; --mint: #83b696; --gold: #c6b47b;
   --photo-filter: saturate(.88);
+  --detail-co-ink: #0d312b; --detail-to-ink: #0d312b; --detail-co-ink-2: #0d312b; --detail-to-ink-2: #0d312b;
 }
 [data-colorway="apricot"] {
   --outer: #f6e9df; --bg: #f6ecdf; --paper: #fff9f1; --soft: #f2e6d8; --ink: #33251c; --muted: #66503d; --rail: #49362a; --nav: #fff5e7; --accent: #eaa873; --pale: #f2d3b1; --deep: #a76d42; --on-accent: #3f2511; --blue: #859faa; --copper: #ba7c68; --mint: #8fac85; --gold: #c4a36a;
   --photo-filter: saturate(.88);
+  --detail-co-ink: #331e0e; --detail-to-ink: #331e0e; --detail-co-ink-2: #331e0e; --detail-to-ink-2: #331e0e;
 }
 [data-colorway="cobalt"] {
   --outer: #e4eaf5; --bg: #e9edf9; --paper: #fafbff; --soft: #e5e9f6; --ink: #1c2744; --muted: #465372; --rail: #1f2b49; --nav: #edf4ff; --accent: #84a0e5; --pale: #cdd9f3; --deep: #526fb5; --on-accent: #152745; --blue: #8196bc; --copper: #b386a4; --mint: #85aca7; --gold: #bead77;
@@ -49,6 +52,11 @@ body {font-family:'Inter',sans-serif;background:var(--outer);}
 .screen,.active-mark {opacity:0;visibility:hidden;} .bar-grow {transform-box:fill-box;transform-origin:center bottom;}
 .action {cursor:pointer;} .action:focus-visible {outline:1px solid var(--accent);outline-offset:1px;}
 .room{filter:var(--photo-filter);}
+
+:is([data-colorway="light"], [data-colorway="lagoon"], [data-colorway="apricot"]) #art > g.application > g.screen[data-panel="\32 "] > g.enter:nth-of-type(2) > text[x="\31 42"][y="\31 78"] { fill: var(--detail-co-ink) !important; }
+:is([data-colorway="light"], [data-colorway="lagoon"], [data-colorway="apricot"]) #art > g.application > g.screen[data-panel="\32 "] > g.enter:nth-of-type(2) > text[x="\31 42"][y="\32 98"] { fill: var(--detail-to-ink) !important; }
+:is([data-colorway="light"], [data-colorway="lagoon"], [data-colorway="apricot"]) #art > g.application > g.screen[data-panel="\33 "] > g.enter > text[x="\31 42"][y="\31 78"] { fill: var(--detail-co-ink-2) !important; }
+:is([data-colorway="light"], [data-colorway="lagoon"], [data-colorway="apricot"]) #art > g.application > g.screen[data-panel="\33 "] > g.enter > text[x="\31 42"][y="\32 98"] { fill: var(--detail-to-ink-2) !important; }
 </style></head><body>
 <svg id="art" role="group" aria-label="Smoked glass deal room" viewBox="0 0 576 330" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
 <defs><symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
