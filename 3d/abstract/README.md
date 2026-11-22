@@ -5,10 +5,10 @@ Abstract 3D art.
 
 Part of [3D](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="nebula-glass-planetoid/"><img src="nebula-glass-planetoid/preview.gif" width="260" alt="Nebula glass planetoid"></a><br><a href="nebula-glass-planetoid/"><b>Nebula glass planetoid</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="nebula-glass-planetoid/"><img src="nebula-glass-planetoid/preview.gif" width="260" alt="Nebula glass planetoid"></a><br><a href="nebula-glass-planetoid/"><b>Nebula glass planetoid</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="prismatic-filament-projector/"><img src="prismatic-filament-projector/preview.gif" width="260" alt="Prismatic filament projector"></a><br><a href="prismatic-filament-projector/"><b>Prismatic filament projector</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

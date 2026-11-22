@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="552x409"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="10.75"><meta name="motherlode:still" content="3.0">
+<title>Prismatic filament projector</title><style>
+:root, [data-colorway="original"] {
+  --bg: #020306; --ink: #e0fffd; --shadow: #030715; --paper: #fffced; --ash: #0a1728;
+  --metal: #25405b; --edge: #7992ad; --a: #72f1f1; --b: #e996f0; --c: #fff4b1; --d: #cf9def; --e: #ade7b5; --f: #7395ff;
+}
+[data-colorway="light"] {
+  --bg: #edf2f7; --ink: #202b3d; --shadow: #29374d; --paper: #ffffff; --ash: #b8c7d5;
+  --metal: #8193a6; --edge: #dae7f1; --a: #267385; --b: #854d6d; --c: #ae702e; --d: #7462a1; --e: #459773; --f: #6482c3;
+}
+[data-colorway="dark"] {
+  --bg: #111722; --ink: #edf3ff; --shadow: #030610; --paper: #ffffff; --ash: #293243;
+  --metal: #546078; --edge: #97a7bf; --a: #65deef; --b: #fa987d; --c: #f6cd7d; --d: #c497ff; --e: #87e4ae; --f: #91acff;
+}
+[data-colorway="mono"] {
+  --bg: #161616; --ink: #f6f6f6; --shadow: #030303; --paper: #ffffff; --ash: #313131;
+  --metal: #686868; --edge: #a2a2a2; --a: #f6f6f6; --b: #aaaaaa; --c: #d6d6d6; --d: #777777; --e: #929292; --f: #bdbdbd;
+}
+[data-colorway="ocean"] {
+  --bg: #082a39; --ink: #e4fbff; --shadow: #03121e; --paper: #f3feff; --ash: #245066;
+  --metal: #34758b; --edge: #83bac9; --a: #74f5eb; --b: #6eb2f3; --c: #e0f4bb; --d: #b1b2ef; --e: #6be5b1; --f: #6ca8d2;
+}
+[data-colorway="matcha"] {
+  --bg: #21382b; --ink: #f6f7dd; --shadow: #132218; --paper: #ffffed; --ash: #4f6749;
+  --metal: #6f8965; --edge: #a9bf89; --a: #dde87b; --b: #cda076; --c: #e9cf89; --d: #a7a9cd; --e: #90d687; --f: #80b9a9;
+}
+[data-colorway="sunset"] {
+  --bg: #47243e; --ink: #fff5e6; --shadow: #241127; --paper: #fff7df; --ash: #74415d;
+  --metal: #976982; --edge: #d59ba2; --a: #ffba80; --b: #f27987; --c: #ffe19c; --d: #d699df; --e: #f4ab7b; --f: #ae96d7;
+}
+[data-colorway="berry"] {
+  --bg: #33243c; --ink: #fff1fb; --shadow: #211426; --paper: #fff2fb; --ash: #593950;
+  --metal: #854b71; --edge: #c792b2; --a: #f3a1d6; --b: #bd90e8; --c: #ffd09e; --d: #d4acf6; --e: #d8bea3; --f: #ac9cd2;
+}
+
+*{box-sizing:border-box}html,body{margin:0;width:552px;height:409px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Arial',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+@property --scene-time{syntax:"<number>";inherits:false;initial-value:0}@property --control-x{syntax:"<number>";inherits:false;initial-value:0}@property --control-y{syntax:"<number>";inherits:false;initial-value:0}@property --choice{syntax:"<number>";inherits:false;initial-value:0}#render,#render>canvas{display:block;position:absolute;inset:0;width:100%;height:100%}#render[data-painted]{background-image:paint(motherlode-scene)}#render[data-painted]>canvas{display:none}
+</style></head><body><main aria-label="Prismatic filament projector"><div id="render" aria-hidden="true"><canvas width="552" height="409"></canvas></div>
+
+<script type="text/plain" id="drawing">
+const tau = Math.PI * 2;
+const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+const smooth = v => { v=clamp(v); return v*v*(3-2*v); };
+const lerp = (a,b,t) => a+(b-a)*t;
+function channels(col) {
+  const s=String(col).trim(); if(s.startsWith('#')){const h=s.slice(1);return (h.length===3?[...h].map(c=>c+c):h.match(/../g)).slice(0,3).map(v=>parseInt(v,16));}
+  const values=s.match(/[.0-9]+/g)||[0,0,0];return values.slice(0,3).map(Number);
+}
+function mix(a,b,t){const f=channels(a),s=channels(b);return 'rgb('+f.map((v,i)=>Math.round(lerp(v,s[i],clamp(t)))).join(',')+')';}
+function alpha(col,a){return 'rgba('+channels(col).join(',')+','+clamp(a)+')';}
+function ellipse(c,x,y,rx,ry,fill,rot=0){if(rx<=0||ry<=0)return;c.beginPath();c.ellipse(x,y,rx,ry,rot,0,tau);c.fillStyle=fill;c.fill();}
+function polygon(c,pts,fill,stroke,width=1){if(!pts.length)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}}
+function stroke(c,pts,col,width=1){if(pts.length<2)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.strokeStyle=col;c.lineWidth=width;c.stroke();}
+function glow(c,x,y,r,stops,aspect=1) {if(r<=0)return;c.save();c.translate(x,y);c.scale(1,aspect);let g=c.createRadialGradient(0,0,0,0,0,r);for(const [v,col] of stops)g.addColorStop(v,col);ellipse(c,0,0,r,r,g);c.restore();}
+function segment(t,points){if(t<=points[0][0])return points[0][1];for(let i=1;i<points.length;i++){if(t<=points[i][0])return lerp(points[i-1][1],points[i][1],smooth((t-points[i-1][0])/(points[i][0]-points[i-1][0])));}return points.at(-1)[1];}
+function number(i){const s=Math.sin(i*127.1+311.7)*43758.5453123;return s-Math.floor(s);}
+function rotate(v,axis,a){const [x,y,z]=v,s=Math.sin(a),c=Math.cos(a);if(axis==='x')return [x,y*c-z*s,y*s+z*c];if(axis==='y')return [x*c+z*s,y,-x*s+z*c];return [x*c-y*s,x*s+y*c,z];}
+function project(v,yaw,pitch,x,y,scale,eye=0){const q=rotate(rotate(v,'y',yaw),'x',pitch),k=eye?eye/(eye-q[2]):1;return [x+q[0]*k*scale,y+q[1]*k*scale,q[2]];}
+
+function draw(c,w,h,t,p,controls){
+  c.fillStyle=p.bg;c.fillRect(0,0,w,h);
+  for(let i=0;i<115;i++){const x=number(i*2+9)*w,y=number(i*2+24)*h,s=number(i+34);c.fillStyle=alpha(i%5===0?p.a:p.edge,.2+s*.46);c.fillRect(x,y,s*1.7+.18,s*1.7+.18);}
+  const zoom=segment(t,[[0,2.9],[.8,2.6],[2.3,1.06],[3.35,.98],[5.4,.93],[8.4,.98],[10.75,1.12]]),R=163*zoom;
+  const cx=w*.50,cy=h*.455;
+  const tilt=segment(t,[[0,.22],[2.7,.17],[3.5,.29],[5.45,1.31],[7.6,.16],[9.6,.63],[10.75,1.28]])+controls[1]*.58;
+  const spin=.56*t+controls[0]*2, groundY=cy+R*1.08;
+  for(let i=0;i<7;i++){const rad=R*(.075+i*.11);c.beginPath();c.ellipse(cx,groundY+9,rad,rad*.25,0,0,tau);c.strokeStyle=alpha(p.f,.55-i*.058);c.lineWidth=1.2;c.stroke();}
+  glow(c,cx,groundY+8,R*.66,[[0,alpha(p.a,.71)],[.27,alpha(p.f,.32)],[1,alpha(p.f,0)]],.25);
+  c.beginPath();c.ellipse(cx,groundY+R*.25,R*1.94,R*.66,0,0,tau);c.strokeStyle=alpha(p.a,.23);c.lineWidth=2;c.stroke();
+  const strands=112,pass=2;
+  for(let i=0;i<strands;i++){
+    const f=i/strands,theta=spin+tau*f;
+    const hue=[p.c,p.e,p.a,p.f,p.d,p.b];
+    const line=[];for(let j=0;j<=70;j++){
+      const v=j/70;const yy=(2*v-1)*.85;
+      const spiral=theta+v*tau*(.94+.19*Math.sin(theta*.55))+Math.sin(v*tau+t*.21)*.21;
+      const base=Math.sqrt(Math.max(.01,1-yy*yy));
+      const pin=.24+.73*Math.abs(Math.sin(theta*.5+v*1.97-t*.19));
+      const rr=base*pin;
+      const q=rotate([rr*Math.cos(spiral),yy,rr*Math.sin(spiral)],'x',tilt);
+      line.push([cx+R*q[0]*1.08,cy+R*q[1]*1.02]);
+    }
+    for(let j=0;j<5;j++){const a=j*14,b=(j+1)*14;stroke(c,line.slice(a,b+1),alpha(mix(hue[j],hue[j+1],.36),.18+.3*Math.pow(Math.sin(theta+1.7),4)),.56+zoom*.43);}
+  }
+  // Sweeping latitude contours define the outer globe and the projecting beam.
+  for(let k=0;k<60;k++){const u=k/59,y0=1.53*(u-.5),r=Math.sqrt(1-y0*y0)*(.99+.022*Math.sin(k*1.7+t*.4));const pts=[];
+    for(let j=0;j<=66;j++){const a=j/66*tau,dx=.06*Math.cos(a*2+spin+y0*2.3),q=rotate([(r+dx)*Math.cos(a),y0+.085*Math.sin(a*2+u*4+spin),(r+dx)*Math.sin(a)],'x',tilt);pts.push([cx+q[0]*R*1.06,cy+q[1]*R]);}
+    const col=u<.49?mix(p.c,p.a,u*2):mix(p.a,p.d,(u-.49)*1.94);stroke(c,pts,alpha(col,.14+.26*Math.pow(Math.sin(k*.43),6)),.39+zoom*.27);
+  }
+  for(let i=0;i<52;i++){const phase=i/52*tau,pts=[];for(let j=0;j<=64;j++){const u=j/64,yy=(2*u-1)*.74;
+    const radius=.12+.38*Math.pow(Math.abs(2*u-1),2.7),a=phase+u*tau*1.03+spin*.5;
+    const q=rotate([radius*Math.cos(a)+.067*Math.sin(u*tau+spin),yy,radius*Math.sin(a)],'x',tilt);
+    pts.push([cx+q[0]*R,cy+q[1]*R]);}
+    for(let k=0;k<4;k++)stroke(c,pts.slice(k*16,k*16+17),alpha([p.c,p.e,p.a,p.d][k],.45+.4*Math.pow(Math.sin(phase),4)),.55+zoom*.39);}
+  glow(c,cx+R*.03,cy+R*.68*Math.cos(tilt),R*.34,[[0,alpha(p.d,.36)],[.45,alpha(p.d,.12)],[1,alpha(p.d,0)]],.28);
+  glow(c,cx,cy+R*.21,R*.22,[[0,alpha(p.paper,.32)],[.28,alpha(p.a,.15)],[1,alpha(p.a,0)]]);
+}
+</script></main>
+<script>
+const stage = document.querySelector('main');
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+const motion = [];
+function animate(target, keys, options = {}) {
+  if (typeof target === 'string') target = document.querySelector(target);
+  const list = keys.map(([time, value]) => ({ offset: time / duration, ...value }));
+  const effect = target.animate(list, { duration: duration * 1000, iterations: Infinity, fill: 'both', easing: 'linear', ...options });
+  motion.push(effect);
+  return effect;
+}
+function hold(seconds) {
+  for (const effect of motion) { effect.pause(); effect.currentTime = Math.max(0,Math.min(duration - .001,seconds)) * 1000; }
+}
+function replay() {
+  for (const effect of motion) { effect.currentTime = 0; effect.play(); }
+}
+function bind(element, callback) {
+  element.addEventListener('click', callback);
+  element.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); callback(event); }
+  });
+}
+
+const picture = document.querySelector('#render');
+const source = document.querySelector('#drawing').textContent;
+const names = ['bg','ink','shadow','paper','ash','metal','edge','a','b','c','d','e','f',];
+const clock = animate(picture, [[0,{'--scene-time':0}],[duration,{'--scene-time':duration}]]);
+const props = ['--scene-time','--control-x','--control-y','--choice', ...names.map(v=>'--'+v)];
+const readColors = getter => Object.fromEntries(names.map(name=>[name,String(getter('--'+name)).trim()]));
+const readControls = getter => ['--control-x','--control-y','--choice'].map(name=>Number(String(getter(name)).trim()) || 0);
+const paintFallback = new Function(source+';return draw;')();
+const fallback = () => {
+  const styles = getComputedStyle(picture), get = key=>styles.getPropertyValue(key), ctx=picture.querySelector('canvas').getContext('2d');
+  ctx.save();paintFallback(ctx,552,409,Number(get('--scene-time'))||0,readColors(get),readControls(get));ctx.restore();
+};
+document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';
+fallback();
+if (CSS.paintWorklet) {
+  const definition = source + '\nregisterPaint("motherlode-scene",class { static get inputProperties() { return '+JSON.stringify(props)+'; } paint(ctx,size,styles) { const colors = {}; for(const key of '+JSON.stringify(names)+') colors[key]=String(styles.get("--"+key)).trim(); const controls=["--control-x","--control-y","--choice"].map(key=>Number(String(styles.get(key)).trim())||0); draw(ctx,size.width,size.height,Number(String(styles.get("--scene-time")).trim())||0,colors,controls); } });';
+  const url=URL.createObjectURL(new Blob([definition],{type:'text/javascript'}));
+  CSS.paintWorklet.addModule(url).then(()=>{picture.dataset.painted='';URL.revokeObjectURL(url);}).catch(()=>{URL.revokeObjectURL(url);setInterval(fallback,1000/24);});
+} else { setInterval(fallback,1000/24); }
+stage.addEventListener('pointermove',e=>{if(e.buttons){picture.style.setProperty('--control-x',e.offsetX/stage.clientWidth-.5);picture.style.setProperty('--control-y',e.offsetY/stage.clientHeight-.5);}});stage.addEventListener('dblclick',replay);
+
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>
