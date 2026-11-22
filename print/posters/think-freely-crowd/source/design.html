@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="1272x1472">
+  <meta name="motherlode:scale" content="1">
+  <title>Think freely crowd</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #020303; --surface: #0b1014; --rule: #363b40; --text: #f5f3ee; --muted: #bbbfbc; --gold: #f4d34d; --violet: #c594ec; --green: #74d99a; --cyan: #58cce5; --red: #eb7870; --blue: #6ca6ef; --orange: #e9a265; --paper: #0b1014; --edge: #363b40; --button: #020303; --poster-ink: #f5f5f5; --poster-accent: #fa262d; --photo-filter: grayscale(1); }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --edge: #b8b9b3; --button: #faf8f1; --poster-ink: #141414; --poster-accent: #a41824; --photo-filter: grayscale(1) invert(.83); }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --edge: #43516a; --button: #101824; --poster-ink: #f5f5f5; --poster-accent: #82edee; --photo-filter: grayscale(.85) sepia(.3) hue-rotate(140deg); }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --edge: #494949; --button: #111111; --poster-ink: #f5f5f5; --poster-accent: #bbbbbb; --photo-filter: grayscale(1) contrast(1.16); }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --edge: #305064; --button: #061825; --poster-ink: #f5f5f5; --poster-accent: #83dee9; --photo-filter: sepia(.6) hue-rotate(154deg); }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --edge: #455e49; --button: #12231a; --poster-ink: #f5f5f5; --poster-accent: #b8ea94; --photo-filter: sepia(.6) hue-rotate(53deg); }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --edge: #64493b; --button: #241710; --poster-ink: #f5f5f5; --poster-accent: #f9b174; --photo-filter: sepia(.72); }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --edge: #504365; --button: #1a1529; --poster-ink: #f5f5f5; --poster-accent: #c0a3f4; --photo-filter: sepia(.5) hue-rotate(225deg); }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1272px; height: 1472px; overflow: hidden; background: var(--bg); }
+    svg { display: block; width: 100%; height: 100%; } .photo { filter: var(--photo-filter); }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 560 648.0503" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+    <title id="title">Think freely crowd</title>
+    <desc id="desc">One bright hood stands out from a monochrome crowd beneath two short lines of italic display type.</desc>
+    <image class="photo" href="hoods.webp" width="560" height="648.0503" preserveAspectRatio="xMidYMid slice"/>
+    <text x="280" y="90" font-family="Arial, sans-serif" font-size="68" font-weight="900" text-anchor="middle" fill="var(--poster-ink)" font-style="italic" letter-spacing="1">THINK</text>
+    <text x="280" y="153" font-family="Arial, sans-serif" font-size="69" font-weight="900" text-anchor="middle" fill="var(--poster-accent)" font-style="italic" letter-spacing="-.8">FREELY</text>
+  </svg>
+  <script>
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+  </script>
+</body>
+</html>

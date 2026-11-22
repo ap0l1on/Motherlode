@@ -3,4 +3,12 @@
 
 Posters.
 
-Part of [Print](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Print](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="think-freely-crowd/"><img src="think-freely-crowd/preview.png" width="260" alt="Think freely crowd"></a><br><a href="think-freely-crowd/"><b>Think freely crowd</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

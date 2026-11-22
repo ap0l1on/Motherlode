@@ -3,7 +3,7 @@
 
 **The mother of all design libraries.**
 
-Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 35 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
+Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 36 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
 ## What's inside
 
@@ -85,7 +85,7 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 
 | Section | Categories |
 | --- | --- |
-| [**Print**](print/) | [Posters](print/posters/) · [Art prints](print/art-prints/) · [Flyers](print/flyers/) · [Brochures](print/brochures/) · [Rack cards](print/rack-cards/) · [Door hangers](print/door-hangers/) · [Business cards](print/business-cards/) · [Stationery](print/stationery/) · [Greeting cards](print/greeting-cards/) · [Postcards](print/postcards/) · [Menus](print/menus/) · [Table tents](print/table-tents/) · [Calendars](print/calendars/) · [Bookmarks](print/bookmarks/) · [Labels](print/labels/) · [Wrapping paper](print/wrapping-paper/) |
+| [**Print**](print/)<br><sub>1 design</sub> | [Posters](print/posters/) · [Art prints](print/art-prints/) · [Flyers](print/flyers/) · [Brochures](print/brochures/) · [Rack cards](print/rack-cards/) · [Door hangers](print/door-hangers/) · [Business cards](print/business-cards/) · [Stationery](print/stationery/) · [Greeting cards](print/greeting-cards/) · [Postcards](print/postcards/) · [Menus](print/menus/) · [Table tents](print/table-tents/) · [Calendars](print/calendars/) · [Bookmarks](print/bookmarks/) · [Labels](print/labels/) · [Wrapping paper](print/wrapping-paper/) |
 | [**Publishing**](publishing/) | [Book covers](publishing/book-covers/) · [Book interiors](publishing/book-interiors/) · [Audiobook covers](publishing/audiobook-covers/) · [Magazine covers](publishing/magazine-covers/) · [Magazine layouts](publishing/magazine-layouts/) · [Newspapers](publishing/newspapers/) · [Zines](publishing/zines/) · [Comic books](publishing/comic-books/) · [Children's books](publishing/childrens-books/) · [Cookbooks](publishing/cookbooks/) · [Photo books](publishing/photo-books/) · [Yearbooks](publishing/yearbooks/) |
 | [**Packaging**](packaging/) | [Boxes](packaging/boxes/) · [Mailer boxes](packaging/mailer-boxes/) · [Bags](packaging/bags/) · [Pouches](packaging/pouches/) · [Bottles](packaging/bottles/) · [Cans](packaging/cans/) · [Jars](packaging/jars/) · [Tubes](packaging/tubes/) · [Food](packaging/food/) · [Beverages](packaging/beverages/) · [Coffee](packaging/coffee/) · [Cosmetics](packaging/cosmetics/) · [Wine labels](packaging/wine-labels/) · [Beer labels](packaging/beer-labels/) · [Dielines](packaging/dielines/) |
 | [**Signage**](signage/) | [Storefront signs](signage/storefront-signs/) · [Wayfinding](signage/wayfinding/) · [Banners](signage/banners/) · [A-frames](signage/a-frames/) · [Neon signs](signage/neon-signs/) · [Window graphics](signage/window-graphics/) · [Vehicle wraps](signage/vehicle-wraps/) · [Menu boards](signage/menu-boards/) · [Office signage](signage/office-signage/) · [Safety signs](signage/safety-signs/) · [Environmental graphics](signage/environmental-graphics/) |

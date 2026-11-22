@@ -5,7 +5,7 @@ Things that get printed.
 
 | Category | What goes in it |
 | --- | --- |
-| [Posters](posters/) | Posters |
+| [Posters](posters/) | Posters · **1 design** |
 | [Art prints](art-prints/) | Wall art prints |
 | [Flyers](flyers/) | Flyers and leaflets |
 | [Brochures](brochures/) | Brochures and booklets |
