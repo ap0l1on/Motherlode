@@ -60,10 +60,17 @@ func extract() async throws {
         throw Failure("No video track in \(input.lastPathComponent)")
     }
     guard duration.isFinite, duration > 0 else { throw Failure("Video has no finite duration") }
-    let stop = end ?? duration
-    guard stop > start, stop <= duration, start < duration else {
+    let requestedEnd = end ?? duration
+    guard requestedEnd > start, requestedEnd <= duration, start < duration else {
         throw Failure("Require 0 <= start < end <= video duration (\(duration)s)")
     }
+    // Some clips carry audio for a fraction of a second after their last
+    // picture. AVAsset.duration includes that tail, but AVAssetImageGenerator
+    // can only seek within the actual video track.
+    let videoSpan = try await track.load(.timeRange)
+    start = max(start, videoSpan.start.seconds)
+    let stop = min(requestedEnd, videoSpan.end.seconds)
+    guard stop > start else { throw Failure("The selected interval contains no video frames") }
     let rate = try await track.load(.nominalFrameRate)
     let generator = AVAssetImageGenerator(asset: asset)
     generator.appliesPreferredTrackTransform = true
