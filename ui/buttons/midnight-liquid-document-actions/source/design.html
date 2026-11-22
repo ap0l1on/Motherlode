@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x440"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="8.5"><meta name="motherlode:still" content="1.5">
+<title>Midnight liquid document actions</title><style>
+:root, [data-colorway="original"] {
+  --bg: #060a12; --ink: #edf2f4; --shadow: #05070d; --paper: #edf8fa; --ash: #101a30;
+  --metal: #3d4a62; --edge: #84929e; --a: #25bfae; --b: #dc9173; --c: #d0df49; --d: #8f7dd2; --e: #84ceb1; --f: #5d91b5;
+}
+[data-colorway="light"] {
+  --bg: #edf2f7; --ink: #202b3d; --shadow: #29374d; --paper: #ffffff; --ash: #b8c7d5;
+  --metal: #8193a6; --edge: #dae7f1; --a: #267385; --b: #854d6d; --c: #ae702e; --d: #7462a1; --e: #459773; --f: #6482c3;
+}
+[data-colorway="dark"] {
+  --bg: #111722; --ink: #edf3ff; --shadow: #030610; --paper: #ffffff; --ash: #293243;
+  --metal: #546078; --edge: #97a7bf; --a: #65deef; --b: #fa987d; --c: #f6cd7d; --d: #c497ff; --e: #87e4ae; --f: #91acff;
+}
+[data-colorway="mono"] {
+  --bg: #161616; --ink: #f6f6f6; --shadow: #030303; --paper: #ffffff; --ash: #313131;
+  --metal: #686868; --edge: #a2a2a2; --a: #f6f6f6; --b: #aaaaaa; --c: #d6d6d6; --d: #777777; --e: #929292; --f: #bdbdbd;
+}
+[data-colorway="ocean"] {
+  --bg: #082a39; --ink: #e4fbff; --shadow: #03121e; --paper: #f3feff; --ash: #245066;
+  --metal: #34758b; --edge: #83bac9; --a: #74f5eb; --b: #6eb2f3; --c: #e0f4bb; --d: #b1b2ef; --e: #6be5b1; --f: #6ca8d2;
+}
+[data-colorway="matcha"] {
+  --bg: #21382b; --ink: #f6f7dd; --shadow: #132218; --paper: #ffffed; --ash: #4f6749;
+  --metal: #6f8965; --edge: #a9bf89; --a: #dde87b; --b: #cda076; --c: #e9cf89; --d: #a7a9cd; --e: #90d687; --f: #80b9a9;
+}
+[data-colorway="sunset"] {
+  --bg: #47243e; --ink: #fff5e6; --shadow: #241127; --paper: #fff7df; --ash: #74415d;
+  --metal: #976982; --edge: #d59ba2; --a: #ffba80; --b: #f27987; --c: #ffe19c; --d: #d699df; --e: #f4ab7b; --f: #ae96d7;
+}
+[data-colorway="berry"] {
+  --bg: #33243c; --ink: #fff1fb; --shadow: #211426; --paper: #fff2fb; --ash: #593950;
+  --metal: #854b71; --edge: #c792b2; --a: #f3a1d6; --b: #bd90e8; --c: #ffd09e; --d: #d4acf6; --e: #d8bea3; --f: #ac9cd2;
+}
+@font-face{font-family:'Outfit';src:url('fonts/outfit.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:576px;height:440px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Outfit',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+
+</style></head><body><main aria-label="Midnight liquid document actions"><svg id="art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 440" width="576" height="440" aria-hidden="true"><defs><linearGradient id="glass" x1=".1" y1="0" x2=".89" y2="1"><stop offset="0%" stop-color="var(--bg)"></stop><stop offset="40%" stop-color="var(--ash)"></stop><stop offset="72%" stop-color="color-mix(in srgb, var(--ash) 57%, var(--bg))"></stop><stop offset="100%" stop-color="var(--shadow)"></stop></linearGradient><radialGradient id="lightpool"><stop offset="0%" stop-color="var(--f)" stop-opacity="0.21"></stop><stop offset="100%" stop-color="var(--f)" stop-opacity="0"></stop></radialGradient><radialGradient id="flare"><stop offset="0%" stop-color="var(--a)" stop-opacity="0.17"></stop><stop offset="100%" stop-color="var(--a)" stop-opacity="0"></stop></radialGradient><linearGradient id="window" x2=".9" y2="1"><stop offset="0%" stop-color="var(--ash)" stop-opacity="0.48"></stop><stop offset="45%" stop-color="var(--metal)" stop-opacity="0.12"></stop><stop offset="100%" stop-color="var(--ash)" stop-opacity="0.31"></stop></linearGradient><filter id="aura" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"></feGaussianBlur></filter><clipPath id="liquidclip0"><circle cx="161.5" cy="217" r="38.6" fill="var(--paper)"></circle></clipPath><clipPath id="liquidclip1"><circle cx="412.5" cy="217" r="38.6" fill="var(--paper)"></circle></clipPath></defs>
+<rect x="0" y="0" width="576" height="440" rx="0" fill="var(--bg)"></rect><rect x="24" y="46" width="526" height="341" rx="17" fill="url(#glass)"></rect><ellipse cx="249" cy="221" rx="214" ry="135" fill="url(#lightpool)"></ellipse><ellipse cx="440" cy="89" rx="111" ry="78" fill="url(#lightpool)" opacity="0.28"></ellipse><g role="button" tabindex="0" aria-label="Export" data-action="0"><rect x="52" y="178" width="219" height="78" rx="39" fill="url(#window)" stroke="var(--edge)" stroke-width="0.85" id="shell0"></rect><g id="initial0"><circle cx="89" cy="217" r="32" fill="var(--ash)" opacity="0.68"></circle><path d="M92.0 205.0v25 m-9-11 9 11 9-11" fill="none" stroke="var(--a)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"></path><text x="193.5" y="224" font-size="19.3" fill="var(--ink)" font-weight="575" text-anchor="middle">Export</text></g><g id="gem0"><path d="M161.5 204.0l9 12-9 13-9-13Z" fill="none" stroke="var(--c)" stroke-width="2.7" stroke-linejoin="round"></path></g><g clip-path="url(#liquidclip0)"><g id="water0"><path d="M115.5 228.0q13-8 27-2t26 .5q12-7 34 0v55h-87Z" fill="var(--a)"></path><path d="M117.5 228.0q14-6 25-2t25 .5q15-5 34-.5" fill="none" stroke="color-mix(in srgb, var(--a) 78%, var(--paper))" stroke-width="1.3"></path></g></g><g id="drop0" style="transform-origin:161.5px 171.0px"><ellipse cx="161.5" cy="171" rx="4.5" ry="6.2" fill="var(--a)" opacity="0.48" filter="url(#aura)"></ellipse><ellipse cx="161.5" cy="171" rx="2.6" ry="4.3" fill="var(--a)"></ellipse></g><text x="161.5" y="224" font-size="19.4" fill="var(--ink)" font-weight="570" text-anchor="middle" id="terminal0">Open</text><rect x="52" y="178" width="219" height="78" rx="39" fill="transparent"></rect></g><g role="button" tabindex="0" aria-label="Invoice" data-action="1"><rect x="303" y="178" width="219" height="78" rx="39" fill="url(#window)" stroke="var(--edge)" stroke-width="0.85" id="shell1"></rect><g id="initial1"><circle cx="340" cy="217" r="32" fill="var(--ash)" opacity="0.68"></circle><path d="M343.0 205.0v25 m-9-11 9 11 9-11" fill="none" stroke="var(--c)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"></path><text x="444.5" y="224" font-size="19.3" fill="var(--ink)" font-weight="575" text-anchor="middle">Invoice</text></g><g id="gem1"><path d="M412.5 204.0l9 12-9 13-9-13Z" fill="none" stroke="var(--d)" stroke-width="2.7" stroke-linejoin="round"></path></g><g clip-path="url(#liquidclip1)"><g id="water1"><path d="M366.5 228.0q13-8 27-2t26 .5q12-7 34 0v55h-87Z" fill="var(--c)"></path><path d="M368.5 228.0q14-6 25-2t25 .5q15-5 34-.5" fill="none" stroke="color-mix(in srgb, var(--c) 78%, var(--paper))" stroke-width="1.3"></path></g></g><g id="drop1" style="transform-origin:412.5px 171.0px"><ellipse cx="412.5" cy="171" rx="4.5" ry="6.2" fill="var(--c)" opacity="0.48" filter="url(#aura)"></ellipse><ellipse cx="412.5" cy="171" rx="2.6" ry="4.3" fill="var(--c)"></ellipse></g><text x="412.5" y="224" font-size="19.4" fill="var(--ink)" font-weight="570" text-anchor="middle" id="terminal1">View</text><rect x="303" y="178" width="219" height="78" rx="39" fill="transparent"></rect></g>
+</svg></main>
+<script>
+const stage = document.querySelector('main');
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+const motion = [];
+function animate(target, keys, options = {}) {
+  if (typeof target === 'string') target = document.querySelector(target);
+  const list = keys.map(([time, value]) => ({ offset: time / duration, ...value }));
+  const effect = target.animate(list, { duration: duration * 1000, iterations: Infinity, fill: 'both', easing: 'linear', ...options });
+  motion.push(effect);
+  return effect;
+}
+function hold(seconds) {
+  for (const effect of motion) { effect.pause(); effect.currentTime = Math.max(0,Math.min(duration - .001,seconds)) * 1000; }
+}
+function replay() {
+  for (const effect of motion) { effect.currentTime = 0; effect.play(); }
+}
+function bind(element, callback) {
+  element.addEventListener('click', callback);
+  element.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); callback(event); }
+  });
+}
+
+animate("#shell0", [[0,{"x":"52.0px","width":"219.0px"}],[0.44,{"x":"52.0px","width":"219.0px","easing":"ease-in-out"}],[0.97,{"x":"122.5px","width":"78.0px"}],[2.4899999999999998,{"x":"122.5px","width":"78.0px","easing":"ease-in-out"}],[3.18,{"x":"52.0px","width":"219.0px"}],[8.5,{"x":"52.0px","width":"219.0px"}]]);
+animate("#initial0", [[0,{"opacity":1}],[0.44,{"opacity":1}],[0.6799999999999999,{"opacity":0}],[8.5,{"opacity":0}]]);
+animate("#gem0", [[0,{"opacity":0}],[0.8390000000000001,{"opacity":0}],[0.8400000000000001,{"opacity":1}],[1.92,{"opacity":1}],[1.9209999999999998,{"opacity":0}],[8.5,{"opacity":0}]]);
+animate("#water0", [[0,{"opacity":0,"transform":"translateY(43px)"}],[1.12,{"opacity":0,"transform":"translateY(43px)"}],[1.23,{"opacity":0.94,"transform":"translateY(31px)"}],[1.97,{"opacity":1,"transform":"translateY(-52px)"}],[2.4899999999999998,{"opacity":0,"transform":"translateY(-57px)"}],[8.5,{"opacity":0,"transform":"translateY(-57px)"}]]);
+animate("#drop0", [[0,{"opacity":0,"transform":"translateY(13px)"}],[0.72,{"opacity":0,"transform":"translateY(12px)"}],[0.96,{"opacity":1,"transform":"translateY(-3px)"}],[1.29,{"opacity":0,"transform":"translateY(14px)"}],[2.4899999999999998,{"opacity":0,"transform":"translateY(0px)"}],[2.7199999999999998,{"opacity":0.95,"transform":"translateY(-18px)"}],[3.18,{"opacity":0,"transform":"translateY(-23px)"}],[8.5,{"opacity":0}]]);
+animate("#terminal0", [[0,{"opacity":0}],[3.0900000000000003,{"opacity":0}],[3.61,{"opacity":1}],[8.5,{"opacity":1}]]);
+animate("#shell1", [[0,{"x":"303.0px","width":"219.0px"}],[4.64,{"x":"303.0px","width":"219.0px","easing":"ease-in-out"}],[5.17,{"x":"373.5px","width":"78.0px"}],[6.6899999999999995,{"x":"373.5px","width":"78.0px","easing":"ease-in-out"}],[7.38,{"x":"303.0px","width":"219.0px"}],[8.5,{"x":"303.0px","width":"219.0px"}]]);
+animate("#initial1", [[0,{"opacity":1}],[4.64,{"opacity":1}],[4.88,{"opacity":0}],[8.5,{"opacity":0}]]);
+animate("#gem1", [[0,{"opacity":0}],[5.039,{"opacity":0}],[5.04,{"opacity":1}],[6.119999999999999,{"opacity":1}],[6.1209999999999996,{"opacity":0}],[8.5,{"opacity":0}]]);
+animate("#water1", [[0,{"opacity":0,"transform":"translateY(43px)"}],[5.319999999999999,{"opacity":0,"transform":"translateY(43px)"}],[5.43,{"opacity":0.94,"transform":"translateY(31px)"}],[6.17,{"opacity":1,"transform":"translateY(-52px)"}],[6.6899999999999995,{"opacity":0,"transform":"translateY(-57px)"}],[8.5,{"opacity":0,"transform":"translateY(-57px)"}]]);
+animate("#drop1", [[0,{"opacity":0,"transform":"translateY(13px)"}],[4.92,{"opacity":0,"transform":"translateY(12px)"}],[5.16,{"opacity":1,"transform":"translateY(-3px)"}],[5.489999999999999,{"opacity":0,"transform":"translateY(14px)"}],[6.6899999999999995,{"opacity":0,"transform":"translateY(0px)"}],[6.92,{"opacity":0.95,"transform":"translateY(-18px)"}],[7.38,{"opacity":0,"transform":"translateY(-23px)"}],[8.5,{"opacity":0}]]);
+animate("#terminal1", [[0,{"opacity":0}],[7.29,{"opacity":0}],[7.81,{"opacity":1}],[8.5,{"opacity":1}]]);
+let manual=false;const timers=[0,0];const starts=[.44,4.64];document.querySelectorAll('[data-action]').forEach((button,i)=>{bind(button,()=>{if(!manual){hold(0);manual=true;}clearTimeout(timers[i]);const own=motion.filter(effect=>effect.effect.target.closest('[data-action]')===button);for(const effect of own){effect.currentTime=starts[i]*1000;effect.play();}timers[i]=setTimeout(()=>{for(const effect of own){effect.pause();effect.currentTime=(starts[i]+3.26)*1000;}},3260);});});
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>
