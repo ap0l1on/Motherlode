@@ -5,11 +5,11 @@ Particle effects.
 
 Part of [Animations](../).
 
-## Designs (5)
+## Designs (6)
 
 <table>
 <tr><td align="center" valign="top" width="33%"><a href="carmine-particle-heart/"><img src="carmine-particle-heart/preview.gif" width="260" alt="Carmine particle heart"></a><br><a href="carmine-particle-heart/"><b>Carmine particle heart</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="copper-spiral-galaxy/"><img src="copper-spiral-galaxy/preview.gif" width="260" alt="Copper spiral galaxy"></a><br><a href="copper-spiral-galaxy/"><b>Copper spiral galaxy</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ember-petal-vortex/"><img src="ember-petal-vortex/preview.gif" width="260" alt="Ember petal vortex"></a><br><a href="ember-petal-vortex/"><b>Ember petal vortex</b></a><br><sub>8 colorways</sub></td></tr>
-<tr><td align="center" valign="top" width="33%"><a href="prismatic-stellar-arms/"><img src="prismatic-stellar-arms/preview.gif" width="260" alt="Prismatic stellar arms"></a><br><a href="prismatic-stellar-arms/"><b>Prismatic stellar arms</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ultraviolet-dustwing/"><img src="ultraviolet-dustwing/preview.gif" width="260" alt="Ultraviolet dustwing"></a><br><a href="ultraviolet-dustwing/"><b>Ultraviolet dustwing</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="prismatic-stellar-arms/"><img src="prismatic-stellar-arms/preview.gif" width="260" alt="Prismatic stellar arms"></a><br><a href="prismatic-stellar-arms/"><b>Prismatic stellar arms</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="starlit-pulse-heart/"><img src="starlit-pulse-heart/preview.gif" width="260" alt="Starlit pulse heart"></a><br><a href="starlit-pulse-heart/"><b>Starlit pulse heart</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ultraviolet-dustwing/"><img src="ultraviolet-dustwing/preview.gif" width="260" alt="Ultraviolet dustwing"></a><br><a href="ultraviolet-dustwing/"><b>Ultraviolet dustwing</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
