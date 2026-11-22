@@ -3,7 +3,7 @@
 
 **The mother of all design libraries.**
 
-Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 189 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
+Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 190 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
 ## What's inside
 
@@ -32,7 +32,7 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 | [**TV**](tv/) | [Streaming apps](tv/streaming-apps/) · [Home screens](tv/home-screens/) · [Program guides](tv/program-guides/) · [Players](tv/players/) · [Screensavers](tv/screensavers/) · [Console UI](tv/console-ui/) |
 | [**Car**](car/) | [Instrument clusters](car/instrument-clusters/) · [Infotainment](car/infotainment/) · [CarPlay](car/carplay/) · [Android Auto](car/android-auto/) · [Heads-up displays](car/heads-up-displays/) · [EV charging](car/ev-charging/) |
 | [**XR**](xr/) | [Spatial apps](xr/spatial-apps/) · [VR apps](xr/vr-apps/) · [AR apps](xr/ar-apps/) · [AR filters](xr/ar-filters/) · [Virtual worlds](xr/virtual-worlds/) · [Spatial UI](xr/spatial-ui/) |
-| [**Device screens**](device-screens/) | [Kiosks](device-screens/kiosks/) · [Point of sale](device-screens/point-of-sale/) · [Self-checkout](device-screens/self-checkout/) · [ATMs](device-screens/atms/) · [Ticket machines](device-screens/ticket-machines/) · [Smart displays](device-screens/smart-displays/) · [Thermostats](device-screens/thermostats/) · [Appliances](device-screens/appliances/) · [Medical devices](device-screens/medical-devices/) · [Fitness machines](device-screens/fitness-machines/) · [In-flight entertainment](device-screens/in-flight/) · [Digital menu boards](device-screens/digital-menu-boards/) · [E-ink displays](device-screens/e-ink/) |
+| [**Device screens**](device-screens/)<br><sub>1 design</sub> | [Kiosks](device-screens/kiosks/) · [Point of sale](device-screens/point-of-sale/) · [Self-checkout](device-screens/self-checkout/) · [ATMs](device-screens/atms/) · [Ticket machines](device-screens/ticket-machines/) · [Smart displays](device-screens/smart-displays/) · [Thermostats](device-screens/thermostats/) · [Appliances](device-screens/appliances/) · [Medical devices](device-screens/medical-devices/) · [Fitness machines](device-screens/fitness-machines/) · [In-flight entertainment](device-screens/in-flight/) · [Digital menu boards](device-screens/digital-menu-boards/) · [E-ink displays](device-screens/e-ink/) |
 | [**Developer**](developer/) | [Editor themes](developer/editor-themes/) · [Terminal themes](developer/terminal-themes/) · [Linux rices](developer/linux-rices/) · [Code screenshots](developer/code-screenshots/) · [GitHub READMEs](developer/github-readmes/) · [Profile READMEs](developer/profile-readmes/) · [Repo banners](developer/repo-banners/) · [Status pages](developer/status-pages/) · [Browser extensions](developer/browser-extensions/) · [CLI tools](developer/cli-tools/) · [ASCII art](developer/ascii-art/) |
 
 ### Interface design

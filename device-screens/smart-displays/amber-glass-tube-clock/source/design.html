@@ -1,0 +1,101 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x576">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="9.2">
+<meta name="motherlode:still" content="2.1">
+<title>Amber glass tube clock</title><style>
+:root, [data-colorway="original"] {
+  --bg: #0C1716; --surface: #171D1D; --ink: #FFBD69; --muted: #CFBAA5;
+  --accent: #E78F42; --on-accent: #271C11; --second: #F9CE84; --third: #86512F;
+  --ivory: #FFE4A6; --shade: #6B5A50; --outline: #6F7168; --good: #C1B37C;
+  --hi: #FFF9E7; --lo: #101113; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+  --label-ink: #524839;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+  --label-ink: #f6efe7;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+  --label-ink: #3e3e3e;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+  --label-ink: #514433;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+  --label-ink: #4b4636;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+  --label-ink: #4c433b;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+  --label-ink: #4b4736;
+}
+* {box-sizing:border-box;}html,body {margin:0;width:864px;height:576px;overflow:hidden;}main {position:relative;width:576px;height:384px;transform:scale(1.5);transform-origin:top left;overflow:hidden;background:var(--bg);}.dial {position:absolute;inset:0;width:100%;height:100%;}.light {opacity:0;}.power {position:absolute;left:185px;top:308px;width:206px;height:46px;border:0;border-radius:50%;background:none;cursor:pointer;}.power:focus-visible {outline:2px solid var(--accent);outline-offset:3px;}.label {font:600 6.5px ui-sans-serif,sans-serif;fill:var(--ivory);letter-spacing:1px;}
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ember"], [data-colorway="lagoon"], [data-colorway="orchid"], [data-colorway="olive"]) .ink-label { fill: var(--label-ink); }
+</style></head><body><main aria-label="Glass tube clock"><svg class="dial" viewBox="0 0 576 384" role="img" aria-label="9:55 PM, November 8, 2025"><defs>
+<linearGradient id="floor" x2="0" y2="1"><stop style="stop-color:var(--bg)"/><stop offset=".54" style="stop-color:color-mix(in srgb,var(--shade) 43%,var(--bg))"/><stop offset="1" style="stop-color:var(--surface)"/></linearGradient>
+<linearGradient id="floor-lit" x2="0" y2="1"><stop style="stop-color:var(--bg);stop-opacity:0"/><stop offset=".42" style="stop-color:var(--third);stop-opacity:.7"/><stop offset=".67" style="stop-color:var(--accent);stop-opacity:.84"/><stop offset=".75" style="stop-color:var(--third)"/><stop offset="1" style="stop-color:var(--third);stop-opacity:.92"/></linearGradient>
+<linearGradient id="steel" x2=".8" y2=".25"><stop style="stop-color:var(--lo)"/><stop offset=".16" style="stop-color:var(--outline)"/><stop offset=".29" style="stop-color:var(--surface)"/><stop offset=".53" style="stop-color:var(--shade)"/><stop offset=".81" style="stop-color:var(--outline)"/><stop offset="1" style="stop-color:var(--lo)"/></linearGradient>
+<linearGradient id="threads" x2="1" y2=".1"><stop style="stop-color:var(--third)"/><stop offset=".22" style="stop-color:var(--ivory)"/><stop offset=".5" style="stop-color:var(--accent)"/><stop offset=".75" style="stop-color:var(--second)"/><stop offset="1" style="stop-color:var(--third)"/></linearGradient>
+<radialGradient id="gas" cx=".5" cy=".47" r=".69"><stop style="stop-color:var(--third);stop-opacity:.75"/><stop offset=".55" style="stop-color:var(--accent);stop-opacity:.22"/><stop offset=".8" style="stop-color:var(--accent);stop-opacity:.13"/><stop offset="1" style="stop-color:var(--second);stop-opacity:.65"/></radialGradient>
+<radialGradient id="base"><stop style="stop-color:var(--second)"/><stop offset=".52" style="stop-color:var(--third)"/><stop offset="1" style="stop-color:var(--lo)"/></radialGradient><radialGradient id="shine"><stop style="stop-color:var(--ivory);stop-opacity:.8"/><stop offset=".49" style="stop-color:var(--accent);stop-opacity:.26"/><stop offset="1" style="stop-color:var(--accent);stop-opacity:0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="3"/></filter><filter id="strong"><feGaussianBlur stdDeviation="7"/></filter>
+<path id="arch" d="M211 317V88q0-32 32-32h89q32 0 32 32v229"/><path id="inner" d="M233 315V93q0-32 25-32h61q24 0 24 32v222"/><rect id="glass" x="250" y="76" width="76" height="211" rx="35"/>
+<g id="stands"><ellipse cx="213" cy="105" rx="12" ry="3"/><ellipse cx="363" cy="105" rx="12" ry="3"/><ellipse cx="213" cy="133" rx="12" ry="3"/><ellipse cx="363" cy="133" rx="12" ry="3"/><ellipse cx="213" cy="250" rx="12" ry="3"/><ellipse cx="363" cy="250" rx="12" ry="3"/></g>
+</defs><rect width="576" height="384" fill="var(--bg)"/><rect y="253" width="576" height="131" fill="url(#floor)"/><g class="light"><rect y="239" width="576" height="145" fill="url(#floor-lit)"/><ellipse cx="288" cy="367" rx="65" ry="39" fill="url(#shine)" filter="url(#strong)"/></g>
+<ellipse cx="288" cy="345" rx="108" ry="7" fill="var(--lo)" opacity=".62" filter="url(#soft)"/>
+<g fill="none" stroke-linecap="round"><use href="#arch" stroke="var(--lo)" stroke-width="13"/><use href="#arch" stroke="url(#steel)" stroke-width="9"/><use href="#inner" stroke="url(#steel)" stroke-width="3"/><path d="M212 91q6-28 30-29h88q29 0 29 31" stroke="var(--outline)" opacity=".44" stroke-width="2"/>
+<g class="light"><use href="#arch" stroke="var(--accent)" stroke-width="10" opacity=".46" filter="url(#soft)"/><use href="#arch" transform="translate(1 2)" stroke="url(#threads)" stroke-width="3.5"/><use href="#inner" stroke="url(#threads)" stroke-width="2"/></g>
+<path d="M215 104q35-2 43 6m60 0q12-5 42-5m-145 28q21-3 39 2m70 0q16-4 39-2m-149 117q24 4 38-1m75-1q20 5 36 1" stroke="url(#steel)" stroke-width="2.2"/></g>
+<use href="#stands" fill="url(#steel)" stroke="var(--outline)" stroke-width=".8"/><use class="light" href="#stands" fill="url(#threads)" opacity=".65"/>
+<use href="#glass" fill="color-mix(in srgb,var(--surface) 74%,var(--bg))" stroke="url(#steel)" stroke-width="3.8"/><g class="light"><use href="#glass" fill="url(#gas)" stroke="var(--accent)" stroke-width="6" filter="url(#soft)"/><use href="#glass" fill="url(#gas)" stroke="url(#threads)" stroke-width="2.1"/></g>
+<path d="M255 109q0-17 12-25m-11 38v124m61-135v132" fill="none" stroke="var(--hi)" stroke-opacity=".11" stroke-width="1.5"/>
+<g class="cold-digits" fill="none" stroke="var(--outline)" stroke-width="1.75" opacity=".28"></g><g class="light"><g class="warm-digits" fill="none" stroke="var(--accent)" stroke-width="6" filter="url(#soft)"></g><g class="value-digits" fill="none" stroke="var(--ivory)" stroke-width="2.9"></g><text class="label ink-label" x="308" y="120">P</text><text class="label ink-label" x="308" y="128">M</text></g>
+<g><rect x="268" y="284" width="40" height="7" rx="3" fill="url(#steel)"/><path d="M277 291h23l-5 12h-14Z" fill="url(#steel)" stroke="var(--outline)" stroke-width=".8"/><ellipse cx="288" cy="312" rx="30" ry="7" fill="url(#steel)"/><ellipse cx="288" cy="309" rx="30" ry="6" fill="var(--surface)"/><circle cx="288" cy="56" r="11" fill="url(#steel)" stroke="var(--outline)" stroke-width="1"/><circle cx="288" cy="56" r="6" fill="var(--surface)"/></g>
+<path d="M190 319q0-8 98-8t98 8v16q-3 10-98 10t-98-10Z" fill="var(--lo)" stroke="url(#steel)" stroke-width="1.4"/><ellipse cx="288" cy="318" rx="97" ry="8" fill="url(#steel)"/><ellipse cx="288" cy="318" rx="86" ry="4" fill="var(--surface)"/>
+<g class="light"><ellipse cx="288" cy="318" rx="90" ry="5" fill="url(#base)"/><ellipse cx="288" cy="307" rx="25" ry="5" fill="url(#base)"/><circle cx="288" cy="56" r="6" fill="var(--accent)"/><circle cx="288" cy="56" r="4" fill="var(--ivory)" opacity=".78"/></g>
+<circle cx="288" cy="337" r="8" fill="url(#steel)"/><circle cx="288" cy="337" r="5" fill="var(--outline)"/><g class="light"><circle cx="288" cy="337" r="9" fill="var(--accent)" filter="url(#soft)"/><circle cx="288" cy="337" r="5.5" fill="var(--second)"/><circle cx="288" cy="336" r="2.7" fill="var(--ivory)"/></g></svg><button type="button" class="power" aria-label="Toggle tube clock power" aria-pressed="true"></button></main><script>
+const ns='http://www.w3.org/2000/svg',get=s=>document.querySelector(s);const segments=['M2 1h10','M14 3l-.5 10','M13 17l-.5 10','M1 29h10','M0 17l-.5 10','M1 3l-.5 10','M1 15h11'],digits=['abcdef','bc','abdeg','abcdg','bcfg','acdfg','acdefg','abc','abcdefg','abcdfg'];let on=true,manual=false,timer=null;const groups=[get('.cold-digits'),get('.warm-digits'),get('.value-digits')];
+function draw(values){groups.forEach((group,version)=>{group.replaceChildren();values.forEach((raw,i)=>{const value=String(raw).padStart(2,' '),y=[94,128,169,204,239][i];for(let j=0;j<2;j++){const names=version===0?'abcdefg':value[j]===' '?'':digits[+value[j]];for(const [k,path] of segments.entries()){if(!names.includes('abcdefg'[k]))continue;const node=document.createElementNS(ns,'path');node.setAttribute('d',path);node.setAttribute('transform','translate('+(269+j*20)+' '+y+')');node.setAttribute('stroke-linecap','round');node.setAttribute('stroke-linejoin','round');group.append(node);}}});});}
+const fixed=new URLSearchParams(location.search).has('t'),phases=[[0,0],[.14,0],[.17,1],[.44,1],[.53,0],[.72,0],[.79,1],[.96,1],[1,0]];draw([9,55,11,8,25]);const tracks=[...document.querySelectorAll('.light')].map(el=>el.animate(phases.map(([offset,opacity])=>({offset,opacity,easing:'ease-in-out'})),{duration:9200,iterations:Infinity}));
+function clock(){const now=new Date();draw([now.getHours()%12||12,now.getMinutes(),now.getMonth()+1,now.getDate(),now.getFullYear()%100]);const am=now.getHours()<12;get('.label').textContent=am?'A':'P';get('.dial').setAttribute('aria-label',now.toLocaleString());}
+get('button').addEventListener('click',()=>{if(!manual){on=+getComputedStyle(get('.light')).opacity>.5;manual=true;tracks.forEach(a=>a.cancel());clock();timer=setInterval(clock,30000);}on=!on;document.querySelectorAll('.light').forEach(el=>{el.style.transition='opacity .28s';el.style.opacity=on?'1':'0';});get('button').setAttribute('aria-pressed',String(on));});addEventListener('pagehide',()=>clearInterval(timer));if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!fixed)tracks.forEach(a=>{a.pause();a.currentTime=2100;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

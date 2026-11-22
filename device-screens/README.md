@@ -10,7 +10,7 @@ Screens on everything else, from kiosks to fridges.
 | [Self-checkout](self-checkout/) | Self-checkout screens |
 | [ATMs](atms/) | ATMs |
 | [Ticket machines](ticket-machines/) | Ticket and vending machines |
-| [Smart displays](smart-displays/) | Smart home displays and hubs |
+| [Smart displays](smart-displays/) | Smart home displays and hubs · **1 design** |
 | [Thermostats](thermostats/) | Thermostats |
 | [Appliances](appliances/) | Screens on washing machines, ovens and fridges |
 | [Medical devices](medical-devices/) | Medical device screens |

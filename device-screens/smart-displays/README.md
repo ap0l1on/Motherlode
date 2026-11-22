@@ -3,4 +3,12 @@
 
 Smart home displays and hubs.
 
-Part of [Device screens](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Device screens](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="amber-glass-tube-clock/"><img src="amber-glass-tube-clock/preview.gif" width="260" alt="Amber glass tube clock"></a><br><a href="amber-glass-tube-clock/"><b>Amber glass tube clock</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
