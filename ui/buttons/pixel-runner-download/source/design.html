@@ -1,0 +1,79 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x513">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.2">
+<meta name="motherlode:still" content="2.5">
+<title>Pixel runner download</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #F5F5F5; --edge: #13181A; --track: #FEFEFD; --ink: #15191B;
+  --start: #0878E9; --start-ink: #FFFFFF; --done: #248846; --done-ink: #FFFFFF;
+  --shadow: #6B8287; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F6FAFC; --edge: #304553; --track: #FFFFFF; --ink: #203440;
+  --start: #236BB0; --start-ink: #FFFFFF; --done: #337B54; --done-ink: #FFFFFF;
+  --shadow: #8EA8B3; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #1A2029; --edge: #C1CEDD; --track: #303A47; --ink: #F3F6F9;
+  --start: #9DCCFF; --start-ink: #193D61; --done: #9AD4A6; --done-ink: #193820;
+  --shadow: #141A21; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EFEFEF; --edge: #232323; --track: #FAFAFA; --ink: #191919;
+  --start: #3B3B3B; --start-ink: #FFFFFF; --done: #535353; --done-ink: #FFFFFF;
+  --shadow: #929292; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #FCF3EB; --edge: #633C2A; --track: #FFF9F1; --ink: #42271E;
+  --start: #A84C2D; --start-ink: #FFFFFF; --done: #496636; --done-ink: #FFFFFF;
+  --shadow: #BE9B8B; --hi: #FFFEFC; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #E9F7F5; --edge: #245351; --track: #F8FFFC; --ink: #1C4143;
+  --start: #256B73; --start-ink: #FFFFFF; --done: #39704F; --done-ink: #FFFFFF;
+  --shadow: #82A7A3; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="lilac"] {
+  --bg: #F7F0F9; --edge: #503B5D; --track: #FFFBFF; --ink: #382B48;
+  --start: #77528C; --start-ink: #FFFFFF; --done: #526D47; --done-ink: #FFFFFF;
+  --shadow: #AA98B0; --hi: #FFFFFF; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F4F5EA; --edge: #444E34; --track: #FCFDF6; --ink: #323C26;
+  --start: #596A3E; --start-ink: #FFFFFF; --done: #426548; --done-ink: #FFFFFF;
+  --shadow: #9FA490; --hi: #FFFFFF; --clear: transparent;
+}
+@property --amount { syntax:'<integer>';inherits:false;initial-value:0; }
+* {box-sizing:border-box;}html,body {width:864px;height:513px;margin:0;overflow:hidden;}
+main {width:576px;height:342px;position:relative;transform:scale(1.5);transform-origin:left top;overflow:hidden;background:radial-gradient(ellipse at 100% 83%,color-mix(in srgb,var(--bg) 96%,var(--shadow)),var(--bg) 71%);font:640 14px Inter,sans-serif;}
+button {position:absolute;left:175px;top:138px;width:214px;height:54px;border-radius:30px;border:2px solid var(--edge);background:var(--track);box-shadow:0 5px 12px color-mix(in srgb,var(--shadow) 18%,var(--clear)),inset 0 1px 2px var(--hi);color:var(--ink);padding:0;overflow:hidden;cursor:pointer;font:inherit;}
+button:focus-visible {outline:2px solid var(--edge);outline-offset:4px;}
+.face {position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:650;}
+.start {background:var(--start);color:var(--start-ink);animation:start 5.2s linear infinite;}.done {background:var(--done);color:var(--done-ink);animation:done 5.2s linear infinite;}.track {animation:track 5.2s linear infinite;}
+@keyframes start {0%,17%,100%{opacity:1}26%,95%{opacity:0}}@keyframes done {0%,80%,100%{opacity:0}87%,95%{opacity:1}}@keyframes track {0%,18%,85%,100%{opacity:0}25%,81%{opacity:1}}
+.count {position:absolute;right:21px;top:17px;line-height:17px;font-size:13px;counter-reset:p var(--amount);animation:count 5.2s linear infinite;font-variant-numeric:tabular-nums;}.count::after {content:counter(p) '%';}
+@keyframes count {0%,20%{--amount:0}48.1%{--amount:45}84%,100%{--amount:100}}
+.runner {position:absolute;left:9px;top:8px;width:36px;height:33px;animation:run 5.2s linear infinite;}
+@keyframes run {0%,20% {transform:translateX(-12px)}48.1%{transform:translateX(16px)}84%,100% {transform:translateX(113px)}}
+.run-art {width:100%;height:100%;shape-rendering:crispEdges;}.leg-a {animation:step .2s steps(1,end) infinite;}.leg-b {animation:step .2s steps(1,end) -.1s infinite;}
+@keyframes step {0%{opacity:1}50%,100%{opacity:0}}
+.check {width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;}
+</style></head><body><main><button type="button" aria-label="Replay pixel runner download"><span class="face start">Download</span><span class="face track"><span class="runner"><svg class="run-art" viewBox="0 0 38 34" aria-hidden="true">
+<g fill="currentColor"><path d="M23 4h6v2h2v5h-7v3h-2v4h3v2h-2v-1h-3v4h-2v2h-7v-2H9v-2H7v-5h2v2h2v2h3v-4h2v-3h2V9h2V6h3Z"/><path class="leg-a" d="M12 24h3v4h-2v2h-3v-2h2Zm6-1h3v3h3v2h-5v-2h-1Z"/><path class="leg-b" d="M12 24h3v2h3v2h-5v-2h-1Zm5 0h4v3h-2v3h-3v-2h1Z"/><path opacity=".58" d="M2 28h4v1H2zm22 2h8v1h-8zM9 32h5v1H9zM0 15h5v1H0zm1-3h5v1H1z"/></g><path d="M26 6h1v1h-1Z" fill="var(--track)"/></svg></span><b class="count"></b></span><span class="face done"><svg class="check" viewBox="0 0 20 20" aria-hidden="true"><path d="m3 10 4 4L17 5"/></svg>Done</span></button></main>
+<script>const tracks=()=>document.getAnimations();document.querySelector('button').addEventListener('click',()=>tracks().forEach(a=>{a.currentTime=0;a.play();}));if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks().forEach(a=>{a.pause();a.currentTime=0;});</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

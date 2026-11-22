@@ -7,7 +7,7 @@ Building blocks: components, kits and design systems.
 | --- | --- |
 | [Design systems](design-systems/) | Complete design systems with tokens and docs |
 | [UI kits](ui-kits/) | Ready-made UI kits |
-| [Buttons](buttons/) | Buttons and their states · **1 design** |
+| [Buttons](buttons/) | Buttons and their states · **2 designs** |
 | [Inputs](inputs/) | Text fields and inputs |
 | [Dropdowns](dropdowns/) | Dropdowns and selects |
 | [Checkboxes](checkboxes/) | Checkboxes |
