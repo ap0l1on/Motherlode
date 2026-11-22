@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x592">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="10">
+<meta name="motherlode:still" content="4.9">
+<title>Aurora speedometer</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #020203; --surface: #090B0D; --ink: #F4F4F1; --muted: #B1B2B4;
+  --accent: #188995; --on-accent: #FFFFFF; --second: #A33D23; --third: #B45835;
+  --ivory: #D8D8CE; --shade: #285259; --outline: #5A5B5D; --good: #46A6AA;
+  --hi: #FFFFFF; --lo: #050507; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+
+@property --speed-value { syntax:'<integer>'; initial-value:0; inherits:true; }
+* { box-sizing:border-box; }
+html,body { width:864px; height:592px; margin:0; overflow:hidden; }
+body { background:var(--bg); font-family:Inter,Arial,sans-serif; }
+.stage { --speed-value:0; position:relative; display:block; width:576px; height:394.667px; transform:scale(1.5); transform-origin:top left; background:var(--bg); overflow:hidden; }
+.gauge { position:absolute; inset:0; border:0; margin:0; padding:0; width:100%; background:none; color:var(--ink); font:inherit; cursor:crosshair; touch-action:none; }
+.instrument { position:absolute; inset:0; transform-origin:290px 210px; }
+svg { display:block; width:100%; height:100%; }
+.digits { position:absolute; left:231px; top:183px; width:118px; text-align:center; font-size:41px; line-height:53px; font-weight:260; letter-spacing:-2.8px; font-variant-numeric:tabular-nums; color:var(--ink); counter-reset:speed-display var(--speed-value); }
+.digits::after { content:counter(speed-display); }
+.needle { transform-origin:290px 210px; transform:rotate(130deg); }
+.gauge:focus-visible { outline:2px dotted var(--muted); outline-offset:-7px; }
+:root[data-colorway="mono"] { filter:grayscale(1); }
+
+</style></head><body>
+<main class="stage"><button class="gauge" type="button" aria-label="Speedometer. Hold to accelerate and release to slow down."><span class="instrument">
+<svg viewBox="0 0 576 394.667" aria-hidden="true"><defs>
+<mask id="aurora-texture" maskUnits="userSpaceOnUse" x="115" y="35" width="350" height="350" style="mask-type:alpha"><image href="aurora-grain.png" x="115" y="35" width="350" height="350"/></mask>
+<mask id="sweep" maskUnits="userSpaceOnUse" x="120" y="40" width="340" height="340" style="mask-type:alpha"><path class="arc-path reveal" data-radius="128" pathLength="224" fill="none" stroke="var(--hi)" stroke-width="53" stroke-dasharray="0 225"/></mask>
+</defs><g mask="url(#sweep)"><rect x="115" y="35" width="350" height="350" mask="url(#aurora-texture)" class="cloud" fill="var(--accent)"/></g>
+<g class="ticks" fill="none" stroke="var(--muted)"></g><path class="arc-path progress" data-radius="149" pathLength="224" fill="none" stroke="var(--muted)" stroke-width="1" stroke-dasharray="0 225"/>
+<path class="redline" fill="none" stroke="var(--second)" stroke-width="3.2"/><circle cx="290" cy="210" r="59" fill="var(--bg)" stroke="var(--outline)" stroke-width="1.1"/><path class="arc-path center-progress" data-radius="55.5" pathLength="224" fill="none" stroke="var(--accent)" stroke-width="4" stroke-opacity=".66" stroke-dasharray="0 225"/>
+<circle cx="290" cy="210" r="50" fill="var(--bg)" stroke="var(--ink)" stroke-width="1.6"/><g class="needle"><path d="M341 210H439" fill="none" stroke="var(--ink)" stroke-width="1.3"/><path d="M343 211H435" fill="none" stroke="var(--muted)" stroke-width=".36"/></g></svg>
+<span class="digits" aria-hidden="true"></span></span></button></main><script>
+
+const svgNS='http://www.w3.org/2000/svg', maximum=224, startAngle=130, travel=273;
+const $=selector=>document.querySelector(selector);
+const stage=$('.stage'),gauge=$('.gauge'),instrument=$('.instrument');
+function point(radius,angle) {const a=angle*Math.PI/180;return [(290+radius*Math.cos(a)).toFixed(2),(210+radius*Math.sin(a)).toFixed(2)];}
+function arc(radius,from,to){return 'M'+point(radius,from)+' A'+radius+' '+radius+' 0 '+(to-from>180?1:0)+' 1 '+point(radius,to);}
+document.querySelectorAll('.arc-path').forEach(path=>path.setAttribute('d',arc(Number(path.dataset.radius),startAngle,startAngle+travel)));
+$('.redline').setAttribute('d',arc(158,10,41));
+for(let i=0;i<=106;i++){
+ const rad=i%5===0?135.8:(i%2===0?140:142), deg=startAngle+travel*i/106;
+ const path=document.createElementNS(svgNS,'path');path.setAttribute('d','M'+point(rad,deg)+'L'+point(149,deg));path.setAttribute('stroke-width',i%5===0?'1':'.68');path.setAttribute('opacity',i%5===0?'.82':'.61');$('.ticks').append(path);
+}
+const parts=[
+ [stage,value=>({'--speed-value':String(value)})],
+ [$('.needle'),value=>({transform:'rotate('+(startAngle+travel*value/maximum)+'deg)'})],
+ ...['.reveal','.progress','.center-progress'].map(selector=>[$(selector),value=>({strokeDasharray:value+' 225'})]),
+ ...['.cloud','.center-progress'].map(selector=>[$(selector),value=>({[selector==='.cloud'?'fill':'stroke']:value>=190?'var(--second)':'var(--accent)'})])
+];
+const sequence=[[0,0],[.06,0],[.16,17],[.30,66],[.41,113],[.49,144],[.61,183],[.70,211],[.76,224],[.81,205],[.9,113],[1,0]];
+const tour=parts.map(([element,state])=>element.animate(sequence.map(([offset,value])=>({offset,...state(value),easing:'linear'})),{duration:10000,iterations:Infinity,fill:'both'}));
+let drive=null,held=false,tilt=null;
+function primeDrive(){
+ if(drive)return;
+ const current=parseInt(getComputedStyle(stage).getPropertyValue('--speed-value'),10)||0;
+ tour.forEach(animation=>animation.cancel());
+ drive=parts.map(([element,state])=>{
+   const stops=[0,184,190,224];
+   const animation=element.animate(stops.map(value=>({offset:value/maximum,...state(value)})),{duration:3900,fill:'both'});
+   animation.pause();animation.currentTime=current/maximum*3900;return animation;
+ });
+}
+function pedal(pressed){
+ if(pressed===held&&drive)return;
+ primeDrive();held=pressed;
+ drive.forEach(animation=>{
+   const time=animation.currentTime??0;
+   if((pressed&&time>=3900)||(!pressed&&time<=0)){animation.pause();return;}
+   animation.updatePlaybackRate(pressed?1:-.82);animation.play();
+ });
+}
+gauge.addEventListener('pointerdown',event=>{gauge.setPointerCapture(event.pointerId);pedal(true);});
+gauge.addEventListener('pointerup',()=>pedal(false));gauge.addEventListener('pointercancel',()=>pedal(false));
+gauge.addEventListener('pointermove',event=>{
+ if(!drive)return;const box=gauge.getBoundingClientRect(),dx=(event.clientX-box.left)/box.width-.5,dy=(event.clientY-box.top)/box.height-.5;
+ const transform='perspective(600px) rotateY('+dx*5+'deg) rotateX('+(-dy*5)+'deg)';
+ if(tilt)tilt.cancel();tilt=instrument.animate([{transform:getComputedStyle(instrument).transform},{transform}],{duration:110,fill:'forwards'});
+});
+gauge.addEventListener('pointerleave',()=>{if(tilt){tilt.cancel();tilt=null;}});
+gauge.addEventListener('keydown',event=>{if(event.code==='Space'||event.code==='Enter'){event.preventDefault();if(!event.repeat)pedal(true);}});
+gauge.addEventListener('keyup',event=>{if(event.code==='Space'||event.code==='Enter'){event.preventDefault();pedal(false);}});
+if(matchMedia('(prefers-reduced-motion:reduce)').matches&&!new URLSearchParams(location.search).has('t'))primeDrive();
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
