@@ -25,6 +25,7 @@
   --orbit-ink: #FFFFFF; --pop: #F4A357; --on-pop: #342316; --pill: #265D9D;
   --on-pill: #FFFFFF; --ground: #354353; --pulse: #AC3150; --mark: #A48665;
   --hi: #FFFFFF; --lo: #111B2B; --clear: transparent;
+  --metric-ink: #ab723d;
 }
 [data-colorway="dark"] {
   --bg: #10141F; --ink: #F1F3FB; --muted: #B9C1D3; --orb: #2853D6;
@@ -118,6 +119,8 @@ h1 span { color: color-mix(in srgb, var(--ink) 82%, var(--muted)); }
 .chart { display: flex; align-items: flex-end; gap: 5px; height: 56px; margin-top: 16px; }
 .chart i { flex: 1; height: var(--bar); border-radius: 4px; background: linear-gradient(color-mix(in srgb,var(--orb) 60%,var(--hi)),var(--orb)); }
 .chart i:last-child { background: var(--pop); box-shadow: 0 0 13px color-mix(in srgb, var(--pop) 42%, var(--clear)); }
+
+[data-colorway="light"] .ink-metric { color: var(--metric-ink); }
 </style>
 </head>
 <body>
@@ -144,7 +147,7 @@ h1 span { color: color-mix(in srgb, var(--ink) 82%, var(--muted)); }
   <div class="distance"><b>12.4 km</b><span> · Sunday long run</span></div>
   <div class="pulse"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 17 2.8 10.1C-2 5 4.7-.3 9.1 4.3l.9 1 .9-1C15.2-.4 22 5 17.2 10.1Z"/></svg>148 bpm</div>
   <aside class="pace"><div class="pace-head"><span>AVG PACE</span><span class="record">NEW PR</span></div>
-    <p class="metric"><strong>5:12</strong> /km</p>
+    <p class="metric"><strong class="ink-metric">5:12</strong> /km</p>
     <div class="chart" aria-hidden="true"><i style="--bar:45%"></i><i style="--bar:54%"></i><i style="--bar:42%"></i><i style="--bar:56%"></i><i style="--bar:64%"></i><i style="--bar:59%"></i><i style="--bar:86%"></i></div></aside>
 </main>
 <script>
