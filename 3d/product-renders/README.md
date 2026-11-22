@@ -3,4 +3,12 @@
 
 Product renders.
 
-Part of [3D](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [3D](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="aqua-concentric-core/"><img src="aqua-concentric-core/preview.gif" width="260" alt="Aqua concentric core"></a><br><a href="aqua-concentric-core/"><b>Aqua concentric core</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
