@@ -6,7 +6,7 @@ Everything for social media.
 | Category | What goes in it |
 | --- | --- |
 | [Instagram posts](instagram-posts/) | Instagram feed posts |
-| [Instagram carousels](instagram-carousels/) | Multi-slide carousels · **2 designs** |
+| [Instagram carousels](instagram-carousels/) | Multi-slide carousels · **3 designs** |
 | [Instagram stories](instagram-stories/) | Instagram stories |
 | [Instagram grids](instagram-grids/) | Profile grid layouts |
 | [Highlight covers](highlight-covers/) | Story highlight covers |

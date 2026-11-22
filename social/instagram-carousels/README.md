@@ -5,10 +5,10 @@ Multi-slide carousels.
 
 Part of [Social](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="blue-interface-field-guide/"><img src="blue-interface-field-guide/preview.png" width="260" alt="Blue interface field guide"></a><br><a href="blue-interface-field-guide/"><b>Blue interface field guide</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="four-design-directions/"><img src="four-design-directions/preview.png" width="260" alt="Four design directions"></a><br><a href="four-design-directions/"><b>Four design directions</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="blue-interface-field-guide/"><img src="blue-interface-field-guide/preview.png" width="260" alt="Blue interface field guide"></a><br><a href="blue-interface-field-guide/"><b>Blue interface field guide</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="four-design-directions/"><img src="four-design-directions/preview.png" width="260" alt="Four design directions"></a><br><a href="four-design-directions/"><b>Four design directions</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="midnight-solo-toolkit/"><img src="midnight-solo-toolkit/preview.gif" width="260" alt="Midnight solo toolkit"></a><br><a href="midnight-solo-toolkit/"><b>Midnight solo toolkit</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
