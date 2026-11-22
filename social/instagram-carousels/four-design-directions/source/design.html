@@ -1,0 +1,1345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1080x1350">
+<meta name="motherlode:scale" content="1">
+<meta name="motherlode:slides" content="6">
+<title>Four design directions</title>
+<style>
+  :root, [data-colorway="original"] {
+    --bg: #fefefe; --ink: #101014; --muted: #626169;
+    --ghost: #cfcfd3; --accent: #0b05d9; --blue: #5379fa;
+    --pink: #f33a9d; --orange: #ff8a37; --green: #23b479;
+    --pine: #095445; --violet: #8a6aef; --yellow: #ffda47;
+    --cyan: #67dfe4; --slate: #657380; --white: #ffffff;
+    --black: #101017; --coral: #f1665f; --lilac: #e8c2f2;
+    --ice: #b5e5f6; --bright-violet: #8552ff; --mint-ice: #7efaed;
+    --soft-ivory: #e4e7f4; --soft-silver: #ededed; --deepblack: #000;
+    --clear: transparent;
+  }
+  [data-colorway="light"] {
+    --bg: #f7f5ed; --ink: #292b31; --muted: #55575b;
+    --ghost: #cecac1; --accent: #463cb1; --blue: #84a6e5;
+    --pink: #e994bb; --orange: #f8b46b; --green: #69bd8d;
+    --pine: #426455; --violet: #ad92d4; --yellow: #f0d890;
+    --cyan: #a9d9d8; --slate: #7a92a0; --white: #fffcf4;
+    --black: #252b32; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="dark"] {
+    --bg: #141720; --ink: #f3f4f8; --muted: #b6bcc9;
+    --ghost: #575c68; --accent: #a7aeff; --blue: #7997fa;
+    --pink: #e56aab; --orange: #f3ac70; --green: #34a87f;
+    --pine: #153e3b; --violet: #9b87ed; --yellow: #edc967;
+    --cyan: #74cbce; --slate: #485767; --white: #eef1f8;
+    --black: #10131d; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="mono"] {
+    --bg: #f7f7f7; --ink: #151515; --muted: #626262;
+    --ghost: #c7c7c7; --accent: #303030; --blue: #999999;
+    --pink: #757575; --orange: #ababab; --green: #898989;
+    --pine: #484848; --violet: #858585; --yellow: #c9c9c9;
+    --cyan: #adadad; --slate: #757575; --white: #ffffff;
+    --black: #131313; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="ocean"] {
+    --bg: #f0f7f8; --ink: #133441; --muted: #415f67;
+    --ghost: #bbd5d8; --accent: #17547b; --blue: #3c8bbd;
+    --pink: #59b4cb; --orange: #e9b486; --green: #339da2;
+    --pine: #1f515d; --violet: #6789ba; --yellow: #e5cd8b;
+    --cyan: #85d6df; --slate: #586e82; --white: #f7fdff;
+    --black: #112937; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="matcha"] {
+    --bg: #f5f6e9; --ink: #293728; --muted: #4c6049;
+    --ghost: #c8d4ba; --accent: #426239; --blue: #759a79;
+    --pink: #bf9fb2; --orange: #e4b667; --green: #7da956;
+    --pine: #3b5940; --violet: #9b91af; --yellow: #dcce83;
+    --cyan: #a9cabb; --slate: #64756a; --white: #ffffed;
+    --black: #273326; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="sunset"] {
+    --bg: #fff2e9; --ink: #492923; --muted: #795348;
+    --ghost: #e9c8bb; --accent: #8f3941; --blue: #a783ba;
+    --pink: #ee77a1; --orange: #f29654; --green: #86a27b;
+    --pine: #4b6260; --violet: #bc86b3; --yellow: #f5cf78;
+    --cyan: #a9cfcb; --slate: #7f737c; --white: #fff7e9;
+    --black: #3c242c; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  [data-colorway="berry"] {
+    --bg: #fcf0f6; --ink: #3c2339; --muted: #745269;
+    --ghost: #dfc3d6; --accent: #822d63; --blue: #9d83c6;
+    --pink: #df6b9f; --orange: #dfa078; --green: #81a68f;
+    --pine: #405650; --violet: #aa7cc4; --yellow: #e8c787;
+    --cyan: #a1c8ca; --slate: #71657b; --white: #fff5fa;
+    --black: #312230; --coral: color-mix(in srgb, var(--pink) 47%, var(--orange)); --lilac: color-mix(in srgb, color-mix(in srgb, var(--violet) 58%, var(--pink)) 33%, var(--white));
+    --ice: color-mix(in srgb, var(--cyan) 44%, var(--white)); --bright-violet: color-mix(in srgb, var(--violet) 87%, var(--blue)); --mint-ice: color-mix(in srgb, var(--cyan) 63%, var(--white));
+    --soft-ivory: color-mix(in srgb, var(--blue) 12%, var(--white)); --soft-silver: color-mix(in srgb, var(--slate) 9%, var(--white));
+  }
+  @font-face { font-family: "Manrope"; src: url("data:font/woff2;base64,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") format("woff2"); font-weight: 400 800; font-style: normal; font-display: block; }
+  * { box-sizing: border-box; }
+  body { margin: 0; width: 1080px; height: 1350px; background: var(--bg); color: var(--ink); font-family: "Manrope", sans-serif; }
+  main { width: 100%; height: 100%; position: relative; isolation: isolate; overflow: hidden; }
+  .art { width: 100%; height: 100%; display: block; background: var(--bg); font-family: inherit; touch-action: pan-y; user-select: none; }
+  [data-slide][aria-hidden="true"] { display: none; }
+  .status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .arrow { position: absolute; top: calc(50% - 40px); z-index: 1; width: 62px; height: 80px; border: 0; padding: 0; background: var(--clear); color: var(--ink); cursor: pointer; opacity: 0; }
+  .previous { left: 0; } .next { right: 0; }
+  .arrow span { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; border: 1px solid currentColor; background: var(--bg); font: 600 22px/1 "Manrope", sans-serif; }
+  .arrow:hover, .arrow:focus-visible { opacity: 1; }
+  .arrow:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  @media (max-width: 1079px) { body { width: 100vw; height: auto; aspect-ratio: 4 / 5; } main { height: auto; aspect-ratio: 4 / 5; } }
+</style>
+<script type="text/plain" id="font-license">Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+
+-----------------------------------------------------------
+SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
+-----------------------------------------------------------
+
+PREAMBLE
+The goals of the Open Font License (OFL) are to stimulate worldwide
+development of collaborative font projects, to support the font creation
+efforts of academic and linguistic communities, and to provide a free and
+open framework in which fonts may be shared and improved in partnership
+with others.
+
+The OFL allows the licensed fonts to be used, studied, modified and
+redistributed freely as long as they are not sold by themselves. The
+fonts, including any derivative works, can be bundled, embedded, 
+redistributed and/or sold with any software provided that any reserved
+names are not used by derivative works. The fonts and derivatives,
+however, cannot be released under any other type of license. The
+requirement for fonts to remain under this license does not apply
+to any document created using the fonts or their derivatives.
+
+DEFINITIONS
+"Font Software" refers to the set of files released by the Copyright
+Holder(s) under this license and clearly marked as such. This may
+include source files, build scripts and documentation.
+
+"Reserved Font Name" refers to any names specified as such after the
+copyright statement(s).
+
+"Original Version" refers to the collection of Font Software components as
+distributed by the Copyright Holder(s).
+
+"Modified Version" refers to any derivative made by adding to, deleting,
+or substituting -- in part or in whole -- any of the components of the
+Original Version, by changing formats or by porting the Font Software to a
+new environment.
+
+"Author" refers to any designer, engineer, programmer, technical
+writer or other person who contributed to the Font Software.
+
+PERMISSION & CONDITIONS
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of the Font Software, to use, study, copy, merge, embed, modify,
+redistribute, and sell modified and unmodified copies of the Font
+Software, subject to the following conditions:
+
+1) Neither the Font Software nor any of its individual components,
+in Original or Modified Versions, may be sold by itself.
+
+2) Original or Modified Versions of the Font Software may be bundled,
+redistributed and/or sold with any software, provided that each copy
+contains the above copyright notice and this license. These can be
+included either as stand-alone text files, human-readable headers or
+in the appropriate machine-readable metadata fields within text or
+binary files as long as those fields can be easily viewed by the user.
+
+3) No Modified Version of the Font Software may use the Reserved Font
+Name(s) unless explicit written permission is granted by the corresponding
+Copyright Holder. This restriction only applies to the primary font name as
+presented to the users.
+
+4) The name(s) of the Copyright Holder(s) or the Author(s) of the Font
+Software shall not be used to promote, endorse or advertise any
+Modified Version, except to acknowledge the contribution(s) of the
+Copyright Holder(s) and the Author(s) or with their explicit written
+permission.
+
+5) The Font Software, modified or unmodified, in part or in whole,
+must be distributed entirely under this license, and must not be
+distributed under any other license. The requirement for fonts to
+remain under this license does not apply to any document created
+using the Font Software.
+
+TERMINATION
+This license becomes null and void if any of the above conditions are
+not met.
+
+DISCLAIMER
+THE FONT SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT
+OF COPYRIGHT, PATENT, TRADEMARK, OR OTHER RIGHT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
+DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
+OTHER DEALINGS IN THE FONT SOFTWARE.
+</script>
+</head>
+<body>
+<main aria-label="Four design directions">
+<svg class="art" viewBox="0 0 600 750" role="img" aria-labelledby="art-title">
+  <title id="art-title">Four directions for a visual refresh.</title>
+  <defs>
+<radialGradient id="letter-shade" cx="20%" cy="86%" r="76%"><stop offset="0%" stop-color="var(--black)" stop-opacity="0.34"/><stop offset="40%" stop-color="var(--black)" stop-opacity="0.28"/><stop offset="76%" stop-color="var(--black)" stop-opacity="0.04"/><stop offset="100%" stop-color="var(--black)" stop-opacity="0"/></radialGradient>
+<linearGradient id="floor-paper" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--white)"/><stop offset="48%" stop-color="var(--white)"/><stop offset="78%" stop-color="color-mix(in srgb, var(--slate) 7%, var(--white))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--violet) 5%, var(--white))"/></linearGradient>
+<filter id="weave"><feTurbulence type="fractalNoise" baseFrequency=".72 .52" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+<linearGradient id="spectrum" x2="100%" y2="0%"><stop offset="0%" stop-color="var(--pink)"/><stop offset="45%" stop-color="var(--orange)"/><stop offset="100%" stop-color="var(--blue)"/></linearGradient>
+<linearGradient id="folder-face" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--accent) 95%, var(--blue))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--accent) 76%, var(--black))"/></linearGradient>
+<linearGradient id="wall-card" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--slate) 40%, var(--white))"/><stop offset="50%" stop-color="color-mix(in srgb, var(--slate) 60%, var(--white))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--slate) 28%, var(--white))"/></linearGradient>
+<linearGradient id="green-ink" x2="100%" y2="100%"><stop offset="0%" stop-color="var(--pine)"/><stop offset="54%" stop-color="color-mix(in srgb, var(--green) 80%, var(--pine))"/><stop offset="100%" stop-color="var(--green)"/></linearGradient>
+<linearGradient id="screen-ink" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--slate) 51%, var(--black))"/><stop offset="54%" stop-color="var(--black)"/><stop offset="100%" stop-color="color-mix(in srgb, var(--pine) 37%, var(--black))"/></linearGradient>
+<linearGradient id="bottle" x2="100%" y2="0%"><stop offset="0%" stop-color="color-mix(in srgb, var(--slate) 67%, var(--white))"/><stop offset="14%" stop-color="color-mix(in srgb, var(--slate) 30%, var(--white))"/><stop offset="50%" stop-color="var(--white)"/><stop offset="76%" stop-color="color-mix(in srgb, var(--slate) 10%, var(--white))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--slate) 48%, var(--white))"/></linearGradient>
+<radialGradient id="marble" cx="35%" cy="22%" r="80%"><stop offset="0%" stop-color="color-mix(in srgb, var(--green) 55%, var(--white))"/><stop offset="28%" stop-color="color-mix(in srgb, var(--green) 77%, var(--white))"/><stop offset="62%" stop-color="var(--green)"/><stop offset="100%" stop-color="var(--pine)"/></radialGradient>
+<radialGradient id="seat" cx="38%" cy="13%" r="80%"><stop offset="0%" stop-color="color-mix(in srgb, var(--green) 40%, var(--pine))"/><stop offset="49%" stop-color="color-mix(in srgb, var(--green) 28%, var(--pine))"/><stop offset="84%" stop-color="var(--pine)"/><stop offset="100%" stop-color="color-mix(in srgb, var(--pine) 70%, var(--black))"/></radialGradient>
+<radialGradient id="fabric" cx="35%" cy="22%" r="80%"><stop offset="0%" stop-color="color-mix(in srgb, var(--violet) 44%, var(--white))"/><stop offset="28%" stop-color="color-mix(in srgb, var(--violet) 69%, var(--white))"/><stop offset="57%" stop-color="var(--violet)"/><stop offset="100%" stop-color="color-mix(in srgb, var(--violet) 56%, var(--black))"/></radialGradient>
+<radialGradient id="fabric-front" cx="36%" cy="30%" r="80%"><stop offset="0%" stop-color="color-mix(in srgb, var(--violet) 76%, var(--white))"/><stop offset="45%" stop-color="var(--violet)"/><stop offset="100%" stop-color="color-mix(in srgb, var(--violet) 45%, var(--black))"/></radialGradient>
+<linearGradient id="studio" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--slate) 70%, var(--black))"/><stop offset="52%" stop-color="color-mix(in srgb, var(--slate) 82%, var(--white))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--slate) 70%, var(--black))"/></linearGradient>
+<linearGradient id="gold-sky" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--orange) 35%, var(--slate))"/><stop offset="28%" stop-color="color-mix(in srgb, var(--yellow) 52%, var(--slate))"/><stop offset="54%" stop-color="color-mix(in srgb, var(--yellow) 63%, var(--white))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--orange) 37%, var(--black))"/></linearGradient>
+<linearGradient id="orange-form" x2="100%" y2="0%"><stop offset="0%" stop-color="color-mix(in srgb, var(--orange) 53%, var(--black))"/><stop offset="24%" stop-color="var(--orange)"/><stop offset="47%" stop-color="color-mix(in srgb, var(--orange) 68%, var(--yellow))"/><stop offset="67%" stop-color="color-mix(in srgb, var(--orange) 80%, var(--pink))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--orange) 47%, var(--black))"/></linearGradient>
+<linearGradient id="metrics" x2="100%" y2="100%"><stop offset="0%" stop-color="color-mix(in srgb, var(--slate) 42%, var(--black))"/><stop offset="37%" stop-color="color-mix(in srgb, var(--violet) 37%, var(--slate))"/><stop offset="70%" stop-color="color-mix(in srgb, var(--orange) 52%, var(--slate))"/><stop offset="100%" stop-color="color-mix(in srgb, var(--slate) 68%, var(--black))"/></linearGradient>
+<filter id="blur16" x="-65%" y="-65%" width="230%" height="230%"><feGaussianBlur stdDeviation="15"/></filter>
+<filter id="blur8" x="-55%" y="-55%" width="210%" height="210%"><feGaussianBlur stdDeviation="7"/></filter>
+<filter id="shadow" x="-40%" y="-65%" width="190%" height="240%"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="soft" x="-15%" y="-15%" width="130%" height="130%"><feGaussianBlur stdDeviation="1.2"/></filter>
+</defs>
+  <g data-slide="1" data-description="Four directions for a visual refresh." aria-hidden="false">
+      <text x="35.5" y="153" font-size="67.5" font-weight="790" fill="var(--ink)" letter-spacing="-4.1">Four design</text>
+      <text x="35.5" y="217" font-size="67.5" font-weight="790" fill="var(--ink)" letter-spacing="-4.1">styles for a</text>
+      <text x="35.5" y="281" font-size="67.5" font-weight="790" fill="var(--ink)" letter-spacing="-4.1">fresh start.</text>
+      <rect x="36" y="338" width="231" height="34" rx="17" fill="var(--slate)" opacity="0.17" filter="url(#blur8)"/>
+      <rect x="35.8" y="333.5" width="231.5" height="35.3" rx="18" fill="var(--ink)"/>
+      <ellipse cx="53.7" cy="351" rx="6.4" ry="6.4" fill="url(#spectrum)"/>
+      <text x="67" y="356.5" font-size="15.7" font-weight="650" fill="var(--bg)" letter-spacing="-0.45">4 ideas for your next build</text>
+      <ellipse cx="192" cy="564" rx="117" ry="83" fill="var(--blue)" opacity="0.33" filter="url(#blur16)"/>
+      <ellipse cx="321" cy="575" rx="91" ry="73" fill="var(--pink)" opacity="0.42" filter="url(#blur16)"/>
+      <rect x="79.3" y="508" width="200" height="134" rx="18" fill="color-mix(in srgb, var(--slate) 65%, var(--black))" opacity="0.16" filter="url(#blur8)"/>
+      <rect x="78" y="500" width="200" height="134" rx="18" fill="var(--white)" opacity="0.24"/>
+      <rect x="78.7" y="500.7" width="198.6" height="132.6" rx="18" fill="none" stroke="var(--white)" stroke-width="1.6" stroke-opacity="0.86"/>
+      <rect x="311" y="483.5" width="83.2" height="83.5" rx="14" fill="var(--ink)"/>
+      <rect x="403" y="483.5" width="119" height="83.5" rx="14" fill="color-mix(in srgb, var(--ghost) 37%, var(--bg))"/>
+      <rect x="311" y="575.8" width="211" height="66.3" rx="14" fill="color-mix(in srgb, var(--ghost) 26%, var(--bg))"/>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">Swipe →</text>
+    </g>
+    </g>
+  <g data-slide="2" data-description="Liquid glass. Translucency and bright edges lift a card off the page." aria-hidden="true">
+      <g>
+      <ellipse cx="48.5" cy="72.5" rx="9" ry="9" fill="url(#spectrum)"/>
+      <text x="68.1" y="83" font-size="39.5" font-weight="760" fill="var(--ink)" letter-spacing="-2">Liquid glass</text>
+      <text x="42" y="129.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Bento grids</text>
+      <text x="42" y="176" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Giant type</text>
+      <text x="42" y="222.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Soft 3D</text>
+    </g>
+      <ellipse cx="206" cy="407" rx="119" ry="102" fill="var(--blue)" opacity="1" filter="url(#blur16)"/>
+      <ellipse cx="365" cy="456" rx="119" ry="101" fill="var(--pink)" opacity="1" filter="url(#blur16)"/>
+      <ellipse cx="428" cy="368" rx="71" ry="77" fill="var(--orange)" opacity="1" filter="url(#blur16)"/>
+      <rect x="134.8" y="347" width="333" height="189" rx="26" fill="color-mix(in srgb, var(--slate) 65%, var(--black))" opacity="0.16" filter="url(#blur8)"/>
+      <rect x="133.5" y="339" width="333" height="189" rx="26" fill="var(--white)" opacity="0.24"/>
+      <rect x="134.2" y="339.7" width="331.6" height="187.6" rx="26" fill="none" stroke="var(--white)" stroke-width="1.6" stroke-opacity="0.86"/>
+      <rect x="135" y="340.5" width="330" height="186" rx="24" fill="url(#letter-shade)"/>
+      <text x="159" y="480" font-size="31" font-weight="730" fill="var(--white)" letter-spacing="-1.4">Liquid glass</text>
+      <text x="160" y="502" font-size="14.1" font-weight="610" fill="var(--white)" letter-spacing="-0.2">Soft focus, crisp edges.</text>
+      <text x="42" y="638" font-size="16.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.45">Try it on cards, toolbars and tabs.</text>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">02 / 06</text>
+    </g>
+    </g>
+  <g data-slide="3" data-description="Bento grids. A modular grid organizes type, objects and images." aria-hidden="true">
+      <g>
+      <text x="42" y="83" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Liquid glass</text>
+      <ellipse cx="48.5" cy="119" rx="9" ry="9" fill="url(#spectrum)"/>
+      <text x="68.1" y="129.5" font-size="39.5" font-weight="760" fill="var(--ink)" letter-spacing="-2">Bento grids</text>
+      <text x="42" y="176" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Giant type</text>
+      <text x="42" y="222.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Soft 3D</text>
+    </g>
+      <defs><clipPath id="bento-grid"><rect x="42" y="266" width="516" height="339" rx="23" fill="var(--white)"/></clipPath></defs><g clip-path="url(#bento-grid)">
+      <rect x="42" y="266" width="516" height="339" rx="23" fill="url(#wall-card)"/>
+      <rect x="34" y="277" width="128" height="98" rx="9" fill="var(--white)"/>
+      <text x="45" y="294" font-size="6" font-weight="800" fill="var(--pine)">FIELD PASS</text>
+      <text x="45" y="309" font-size="10" font-weight="700" fill="var(--black)">Access for the</text>
+      <text x="45" y="321" font-size="10" font-weight="700" fill="var(--black)">next session.</text>
+      <text x="46" y="358" font-size="21" font-weight="800" fill="var(--green)">09</text>
+      <rect x="33" y="376" width="129" height="42" rx="8" fill="var(--white)"/>
+      <text x="45" y="390" font-size="7" font-weight="700" fill="var(--black)">GRID / 09</text>
+      <rect x="43" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="44.72" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="46.44" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="48.16" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="49.88" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="51.6" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="53.32" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="55.04" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="56.76" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="58.48" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="60.2" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="61.92" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="63.64" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="65.36" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="67.08" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="68.8" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="70.52" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="72.24" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="73.96" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="75.68" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="77.4" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="79.12" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="80.84" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="82.56" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="84.28" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="86" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="87.72" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="89.44" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="91.16" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="92.88" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="94.6" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="96.32" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="98.04" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="99.76" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="101.48" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="103.2" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="104.92" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="106.64" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="108.36" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="110.08" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="111.8" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="113.52" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="115.24" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="116.96" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="118.68" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="120.4" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="122.12" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="123.84" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="125.56" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="127.28" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="129" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="130.72" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="132.44" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="134.16" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="135.88" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="137.6" y="394.8" width="1.3" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="139.32" y="394.8" width="0.65" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="141.04" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="142.76" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="144.48" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="146.2" y="394.8" width="1" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="147.92" y="394.8" width="0.35" height="13" fill="color-mix(in srgb, var(--slate) 68%, var(--black))"/>
+      <rect x="174.8" y="276" width="112" height="142" rx="9" fill="url(#green-ink)"/>
+      <text x="186" y="305" font-size="18" font-weight="700" fill="var(--white)">Fieldwork</text>
+      <text x="186" y="324" font-size="16.5" font-weight="650" fill="var(--white)">type notes</text>
+      <text x="184" y="388" font-size="50" font-weight="620" fill="var(--white)" letter-spacing="-3">Aa</text>
+      <rect x="176" y="405" width="25" height="12" fill="var(--green)"/>
+      <rect x="201" y="405" width="29" height="12" fill="color-mix(in srgb, var(--green) 60%, var(--yellow))"/>
+      <rect x="230" y="405" width="27" height="12" fill="var(--white)"/>
+      <rect x="257" y="405" width="29" height="12" fill="var(--black)"/>
+      <defs><clipPath id="facade-tile"><rect x="299" y="276" width="113" height="142" rx="8" fill="var(--white)"/></clipPath></defs><g clip-path="url(#facade-tile)">
+      <rect x="299" y="276" width="113" height="142" fill="color-mix(in srgb, var(--slate) 60%, var(--white))"/>
+      <path d="M300 276h112v141H300Z" fill="color-mix(in srgb, var(--slate) 59%, var(--white))"/>
+      <path d="M293 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M296 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M309 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M312 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M325 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M328 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M341 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M344 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M357 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M360 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M373 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M376 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M389 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M392 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M405 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M408 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <path d="M421 272 l3 0 -5 101 -5 1Z" fill="color-mix(in srgb, var(--slate) 71%, var(--black))"/>
+      <path d="M424 272l3 0 -5 99 -3 1Z" fill="color-mix(in srgb, var(--slate) 18%, var(--white))"/>
+      <line x1="296" y1="281" x2="413" y2="257" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="295" x2="413" y2="271" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="309" x2="413" y2="285" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="323" x2="413" y2="299" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="337" x2="413" y2="313" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="351" x2="413" y2="327" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="365" x2="413" y2="341" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <line x1="296" y1="379" x2="413" y2="355" stroke="color-mix(in srgb, var(--slate) 80%, var(--black))" stroke-width="0.8"/>
+      <path d="M294 374l123-33v83H294Z" fill="color-mix(in srgb, var(--slate) 65%, var(--black))"/>
+      <path d="M327 312l50 12-3 54-48-8Z" fill="color-mix(in srgb, var(--slate) 8%, var(--white))"/>
+      <g transform="translate(336 322) scale(0.86)">
+      <path d="M0 5q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+      <path d="M12 5q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M0 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M12 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+      <path d="M24 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M12 29q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M24 29q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+    </g>
+      <text x="332" y="365" font-size="5.2" font-weight="800" fill="var(--black)">FORM UNIT</text>
+    </g>
+      <defs><clipPath id="marble-phone"><rect x="424" y="276" width="138" height="207" rx="9" fill="var(--white)"/></clipPath></defs><g clip-path="url(#marble-phone)">
+      <rect x="424" y="276" width="140" height="207" fill="var(--pine)"/>
+      <ellipse cx="420.77" cy="278.17" rx="12.87" ry="12.87" fill="url(#marble)"/>
+      <ellipse cx="447.26" cy="278.29" rx="13.81" ry="13.81" fill="url(#marble)"/>
+      <ellipse cx="469.34" cy="283.39" rx="10.94" ry="10.94" fill="url(#marble)"/>
+      <ellipse cx="489.12" cy="281.15" rx="14.89" ry="14.89" fill="url(#marble)"/>
+      <ellipse cx="515.7" cy="282.94" rx="11.71" ry="11.71" fill="url(#marble)"/>
+      <ellipse cx="534.26" cy="282.51" rx="14.21" ry="14.21" fill="url(#marble)"/>
+      <ellipse cx="557.22" cy="277.69" rx="14.54" ry="14.54" fill="url(#marble)"/>
+      <ellipse cx="436.33" cy="301.67" rx="11.7" ry="11.7" fill="url(#marble)"/>
+      <ellipse cx="457.35" cy="300.17" rx="11.95" ry="11.95" fill="url(#marble)"/>
+      <ellipse cx="478.92" cy="300.34" rx="13.41" ry="13.41" fill="url(#marble)"/>
+      <ellipse cx="507.53" cy="300.62" rx="14.5" ry="14.5" fill="url(#marble)"/>
+      <ellipse cx="527.91" cy="302.28" rx="14.18" ry="14.18" fill="url(#marble)"/>
+      <ellipse cx="552.19" cy="302.08" rx="12.66" ry="12.66" fill="url(#marble)"/>
+      <ellipse cx="574.02" cy="303.52" rx="11.21" ry="11.21" fill="url(#marble)"/>
+      <ellipse cx="422.23" cy="328.69" rx="13.81" ry="13.81" fill="url(#marble)"/>
+      <ellipse cx="444.59" cy="325.25" rx="11.1" ry="11.1" fill="url(#marble)"/>
+      <ellipse cx="470.33" cy="329.23" rx="11.58" ry="11.58" fill="url(#marble)"/>
+      <ellipse cx="492.97" cy="323.55" rx="11.15" ry="11.15" fill="url(#marble)"/>
+      <ellipse cx="515.74" cy="325.94" rx="12.76" ry="12.76" fill="url(#marble)"/>
+      <ellipse cx="534.44" cy="327.05" rx="13.08" ry="13.08" fill="url(#marble)"/>
+      <ellipse cx="558.83" cy="328.01" rx="11.46" ry="11.46" fill="url(#marble)"/>
+      <ellipse cx="433.83" cy="346.85" rx="15.63" ry="15.63" fill="url(#marble)"/>
+      <ellipse cx="458.47" cy="353.21" rx="12.23" ry="12.23" fill="url(#marble)"/>
+      <ellipse cx="483.21" cy="351.34" rx="10.3" ry="10.3" fill="url(#marble)"/>
+      <ellipse cx="507.37" cy="350.05" rx="12.13" ry="12.13" fill="url(#marble)"/>
+      <ellipse cx="525.97" cy="348.22" rx="14.96" ry="14.96" fill="url(#marble)"/>
+      <ellipse cx="549.49" cy="349.34" rx="12.88" ry="12.88" fill="url(#marble)"/>
+      <ellipse cx="574.5" cy="350.68" rx="11.53" ry="11.53" fill="url(#marble)"/>
+      <ellipse cx="423.63" cy="376.74" rx="12.35" ry="12.35" fill="url(#marble)"/>
+      <ellipse cx="448.84" cy="375.7" rx="12.98" ry="12.98" fill="url(#marble)"/>
+      <ellipse cx="472.8" cy="371" rx="11.49" ry="11.49" fill="url(#marble)"/>
+      <ellipse cx="491.25" cy="369.93" rx="10.49" ry="10.49" fill="url(#marble)"/>
+      <ellipse cx="513.8" cy="372.89" rx="13.86" ry="13.86" fill="url(#marble)"/>
+      <ellipse cx="541.02" cy="373.53" rx="13.44" ry="13.44" fill="url(#marble)"/>
+      <ellipse cx="557.02" cy="369.04" rx="13.29" ry="13.29" fill="url(#marble)"/>
+      <ellipse cx="433.11" cy="399.98" rx="15.37" ry="15.37" fill="url(#marble)"/>
+      <ellipse cx="455.14" cy="392.34" rx="15.38" ry="15.38" fill="url(#marble)"/>
+      <ellipse cx="484.76" cy="397.91" rx="10.44" ry="10.44" fill="url(#marble)"/>
+      <ellipse cx="507.19" cy="397.5" rx="15.77" ry="15.77" fill="url(#marble)"/>
+      <ellipse cx="528.23" cy="397.48" rx="15.82" ry="15.82" fill="url(#marble)"/>
+      <ellipse cx="549.32" cy="393.4" rx="11.11" ry="11.11" fill="url(#marble)"/>
+      <ellipse cx="571.98" cy="398.43" rx="15.45" ry="15.45" fill="url(#marble)"/>
+      <ellipse cx="422.36" cy="416.69" rx="10.8" ry="10.8" fill="url(#marble)"/>
+      <ellipse cx="444.35" cy="421.84" rx="10.38" ry="10.38" fill="url(#marble)"/>
+      <ellipse cx="470.03" cy="422.65" rx="13.5" ry="13.5" fill="url(#marble)"/>
+      <ellipse cx="493.73" cy="415.29" rx="12.97" ry="12.97" fill="url(#marble)"/>
+      <ellipse cx="516.6" cy="416.14" rx="11.82" ry="11.82" fill="url(#marble)"/>
+      <ellipse cx="537.94" cy="421.66" rx="13.78" ry="13.78" fill="url(#marble)"/>
+      <ellipse cx="561.96" cy="419.22" rx="11.74" ry="11.74" fill="url(#marble)"/>
+      <ellipse cx="438.66" cy="444.01" rx="10.35" ry="10.35" fill="url(#marble)"/>
+      <ellipse cx="461.94" cy="444.21" rx="10.55" ry="10.55" fill="url(#marble)"/>
+      <ellipse cx="483.12" cy="445.81" rx="12.48" ry="12.48" fill="url(#marble)"/>
+      <ellipse cx="504.88" cy="438.95" rx="11.91" ry="11.91" fill="url(#marble)"/>
+      <ellipse cx="524.62" cy="439.47" rx="11.86" ry="11.86" fill="url(#marble)"/>
+      <ellipse cx="547.94" cy="442.73" rx="14.47" ry="14.47" fill="url(#marble)"/>
+      <ellipse cx="576.94" cy="445.95" rx="10.12" ry="10.12" fill="url(#marble)"/>
+      <ellipse cx="425.82" cy="463.25" rx="12.51" ry="12.51" fill="url(#marble)"/>
+      <ellipse cx="449.66" cy="462.29" rx="16.11" ry="16.11" fill="url(#marble)"/>
+      <ellipse cx="467.32" cy="468.7" rx="12" ry="12" fill="url(#marble)"/>
+      <ellipse cx="492.1" cy="461.25" rx="15.27" ry="15.27" fill="url(#marble)"/>
+      <ellipse cx="517.39" cy="463.22" rx="14.95" ry="14.95" fill="url(#marble)"/>
+      <ellipse cx="540.47" cy="467.19" rx="10.67" ry="10.67" fill="url(#marble)"/>
+      <ellipse cx="564.53" cy="463.73" rx="10.95" ry="10.95" fill="url(#marble)"/>
+      <ellipse cx="431.45" cy="491.44" rx="12.36" ry="12.36" fill="url(#marble)"/>
+      <ellipse cx="455.12" cy="491.01" rx="10.99" ry="10.99" fill="url(#marble)"/>
+      <ellipse cx="478.64" cy="488.71" rx="10.89" ry="10.89" fill="url(#marble)"/>
+      <ellipse cx="507.35" cy="484.37" rx="13.25" ry="13.25" fill="url(#marble)"/>
+      <ellipse cx="523.2" cy="488.46" rx="15.47" ry="15.47" fill="url(#marble)"/>
+      <ellipse cx="546.35" cy="490.79" rx="15.46" ry="15.46" fill="url(#marble)"/>
+      <ellipse cx="575.85" cy="487.79" rx="15.51" ry="15.51" fill="url(#marble)"/>
+      <g transform="rotate(-29 492 382)">
+      <rect x="457" y="314" width="68" height="135" rx="10" fill="var(--black)"/>
+      <rect x="459" y="315" width="64" height="132" rx="8" fill="url(#screen-ink)"/>
+      <rect x="463" y="320" width="24" height="28" rx="6" fill="color-mix(in srgb, var(--slate) 38%, var(--black))"/>
+      <ellipse cx="468" cy="326" rx="4.6" ry="4.6" fill="var(--black)" stroke="var(--slate)" stroke-width="0.9"/>
+      <ellipse cx="467" cy="325" rx="1.2" ry="1.2" fill="var(--slate)"/>
+      <ellipse cx="480" cy="328" rx="4.6" ry="4.6" fill="var(--black)" stroke="var(--slate)" stroke-width="0.9"/>
+      <ellipse cx="479" cy="327" rx="1.2" ry="1.2" fill="var(--slate)"/>
+      <ellipse cx="470" cy="338" rx="4.6" ry="4.6" fill="var(--black)" stroke="var(--slate)" stroke-width="0.9"/>
+      <ellipse cx="469" cy="337" rx="1.2" ry="1.2" fill="var(--slate)"/>
+      <path d="M485 387l7-7 8 7-7 5Z" fill="color-mix(in srgb, var(--slate) 55%, var(--black))"/>
+    </g>
+    </g>
+      <defs><clipPath id="phone-grid"><rect x="40" y="430" width="122" height="143" rx="8" fill="var(--white)"/></clipPath></defs><g clip-path="url(#phone-grid)">
+      <rect x="39" y="430" width="128" height="144" fill="var(--pine)"/>
+      <g transform="rotate(-14 97 525)">
+      <rect x="34" y="454" width="142" height="145" rx="13" fill="var(--black)"/>
+      <rect x="39" y="459" width="132" height="134" rx="10" fill="color-mix(in srgb, var(--black) 93%, var(--slate))"/>
+      <text x="48" y="476" font-size="7" font-weight="700" fill="var(--white)">10:24</text>
+    </g>
+      <g transform="rotate(-14 97 525)">
+      <rect x="47" y="488" width="21" height="22" rx="5" fill="var(--green)"/>
+      <path d="M51 503q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--green) 32%, var(--black))"/>
+      <rect x="48.5" y="512" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="76" y="488" width="21" height="22" rx="5" fill="var(--white)"/>
+      <path d="M80 503q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--white) 32%, var(--black))"/>
+      <rect x="77.5" y="512" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="105" y="488" width="21" height="22" rx="5" fill="var(--orange)"/>
+      <path d="M109 503q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--orange) 32%, var(--black))"/>
+      <rect x="106.5" y="512" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="134" y="488" width="21" height="22" rx="5" fill="var(--cyan)"/>
+      <path d="M138 503q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--cyan) 32%, var(--black))"/>
+      <rect x="135.5" y="512" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="47" y="523" width="21" height="22" rx="5" fill="var(--violet)"/>
+      <path d="M51 538q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--violet) 32%, var(--black))"/>
+      <rect x="48.5" y="547" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="76" y="523" width="21" height="22" rx="5" fill="var(--yellow)"/>
+      <path d="M80 538q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--yellow) 32%, var(--black))"/>
+      <rect x="77.5" y="547" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="105" y="523" width="21" height="22" rx="5" fill="var(--pink)"/>
+      <path d="M109 538q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--pink) 32%, var(--black))"/>
+      <rect x="106.5" y="547" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+      <rect x="134" y="523" width="21" height="22" rx="5" fill="var(--slate)"/>
+      <path d="M138 538q5-17 13-6-4 8-13 6Z" fill="color-mix(in srgb, var(--slate) 32%, var(--black))"/>
+      <rect x="135.5" y="547" width="18" height="1" fill="var(--white)" opacity="0.65"/>
+    </g>
+    </g>
+      <rect x="174.7" y="430.5" width="237.3" height="142" rx="9" fill="var(--white)"/>
+      <g transform="translate(270 465) scale(1.5)">
+      <path d="M0 5q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+      <path d="M12 5q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M0 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M12 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+      <path d="M24 17q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M12 29q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--green)"/>
+      <path d="M24 29q0-5 5-5h5v5q0 5-5 5h-5Z" fill="var(--pine)"/>
+    </g>
+      <text x="293" y="540" font-size="18" font-weight="820" fill="var(--black)" text-anchor="middle" letter-spacing="-0.7">form unit</text>
+      <rect x="424.5" y="496" width="139" height="127" rx="9" fill="url(#green-ink)"/>
+      <path d="M489 612v-43q0-8 7-13l1-10h24l1 10q8 5 8 13v43Z" fill="url(#bottle)"/>
+      <rect x="494.8" y="529" width="29" height="12" rx="2.5" fill="url(#bottle)"/>
+      <rect x="496" y="543" width="26" height="4" rx="1" fill="var(--white)"/>
+      <text x="520" y="603" font-size="12" font-weight="800" fill="var(--green)" transform="rotate(-90 520 603)">MOSS</text>
+      <rect x="29" y="584.7" width="215" height="57" rx="8" fill="color-mix(in srgb, var(--slate) 43%, var(--white))"/>
+      <rect x="256" y="585" width="156" height="48" rx="8" fill="url(#green-ink)"/>
+    </g>
+      <text x="42" y="638" font-size="16.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.45">Build a grid for features or a landing page.</text>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">03 / 06</text>
+    </g>
+    </g>
+  <g data-slide="4" data-description="Giant type. A single oversized word anchors a poster." aria-hidden="true">
+      <g>
+      <text x="42" y="83" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Liquid glass</text>
+      <text x="42" y="129.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Bento grids</text>
+      <ellipse cx="48.5" cy="165.5" rx="9" ry="9" fill="url(#spectrum)"/>
+      <text x="68.1" y="176" font-size="39.5" font-weight="760" fill="var(--ink)" letter-spacing="-2">Giant type</text>
+      <text x="42" y="222.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Soft 3D</text>
+    </g>
+      <rect x="42" y="261" width="516" height="344" rx="25" fill="color-mix(in srgb, var(--black) 20%, var(--deepblack))"/>
+      <text x="49" y="349" font-size="25" font-weight="550" fill="var(--white)" letter-spacing="-1.3">Start with</text>
+      <text x="49" y="374" font-size="25" font-weight="550" fill="var(--white)" letter-spacing="-1.3">one word.</text>
+      <rect x="49" y="385" width="53" height="15" rx="7.5" fill="none" stroke="var(--white)" stroke-width="0.45" stroke-opacity="0.55"/>
+      <text x="55" y="394.7" font-size="4.1" font-weight="600" fill="var(--white)">THE ARCHIVE  →</text>
+      <rect x="107" y="385" width="53" height="15" rx="7.5" fill="none" stroke="var(--white)" stroke-width="0.45" stroke-opacity="0.55"/>
+      <text x="113" y="394.7" font-size="4.1" font-weight="600" fill="var(--white)">ABOUT THIS  ↗</text>
+      <text x="452" y="394" font-size="8" font-weight="600" fill="var(--white)">Index</text>
+      <text x="452" y="404" font-size="8" font-weight="600" fill="var(--white)">Journal</text>
+      <text x="452" y="414" font-size="8" font-weight="600" fill="var(--white)">Contact</text>
+      <g transform="translate(48 467) scale(0.98824 1)" aria-label="Unfold">
+      <path d="M0 0H25V56Q25 77 42.5 77T60 56V0H85V59Q85 101 42.5 101T0 59Z" fill="var(--white)" fill-rule="evenodd" transform="translate(0 0)"/>
+      <path d="M0 0H24L59 49V0H84V100H61L25 50V100H0Z" fill="var(--white)" fill-rule="evenodd" transform="translate(87.6 0)"/>
+      <path d="M0 0H74V23H25V40H66V63H25V100H0Z" fill="var(--white)" fill-rule="evenodd" transform="translate(174.2 0)"/>
+      <path d="M49 -1C77 -1 98 21 98 50S77 101 49 101 0 79 0 50 21 -1 49 -1ZM49 23C35 23 25 34 25 50s10 27 24 27 24-12 24-27-10-27-24-27Z" fill="var(--white)" fill-rule="evenodd" transform="translate(250.79999999999998 0)"/>
+      <path d="M0 0H25V76H66V100H0Z" fill="var(--white)" fill-rule="evenodd" transform="translate(351.4 0)"/>
+      <path d="M0 0H38C70 0 90 20 90 50s-20 50-52 50H0ZM25 24V76H38c16 0 26-10 26-26S54 24 38 24Z" fill="var(--white)" fill-rule="evenodd" transform="translate(420.0 0)"/>
+    </g>
+      <text x="50" y="580" font-size="4.4" font-weight="550" fill="var(--white)">01 / An independent type study</text>
+      <text x="251" y="580" font-size="4.4" font-weight="550" fill="var(--white)">A collection in six parts</text>
+      <text x="456" y="580" font-size="4.4" font-weight="550" fill="var(--white)">Edition one</text>
+      <text x="42" y="638" font-size="16.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.45">Make one word lead a cover, poster or hero.</text>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">04 / 06</text>
+    </g>
+    </g>
+  <g data-slide="5" data-description="Soft 3D. Cushioned forms and directional light give objects depth." aria-hidden="true">
+      <g>
+      <text x="42" y="83" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Liquid glass</text>
+      <text x="42" y="129.5" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Bento grids</text>
+      <text x="42" y="176" font-size="39.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Giant type</text>
+      <ellipse cx="48.5" cy="212" rx="9" ry="9" fill="url(#spectrum)"/>
+      <text x="68.1" y="222.5" font-size="39.5" font-weight="760" fill="var(--ink)" letter-spacing="-2">Soft 3D</text>
+    </g>
+      <g transform="rotate(-3 428 144)">
+      <path d="M419 61Q426 57 443 65L491 83q8 4 8 15l3 61q0 14-13 24l-45 30q-10 6-22 0l-54-23q-12-5-14-16l-4-57q-1-12 10-21l47-33Z" fill="color-mix(in srgb, var(--violet) 66%, var(--black))"/>
+      <path d="M493.74 133.80 Q481.29 135.00 469.26 148.20 Q464.50 151.00 464.71 157.02 Q460.08 175.54 465.79 187.98 Q466.00 194.00 470.76 191.20 Q483.21 190.00 495.24 176.80 Q500.00 174.00 499.79 167.98 Q504.42 149.46 498.71 137.02 Q498.50 131.00 493.74 133.80Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M494.3 130.9Q494.0 133.1 491.7 137.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M495.0 131.0Q494.8 133.3 491.7 137.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M492.3 132.1Q491.5 136.4 488.7 143.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M492.9 132.2Q492.3 136.6 488.7 143.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M489.6 133.7Q489.5 136.8 487.4 142.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M490.2 133.8Q490.3 137.0 487.4 142.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M473.9 142.9Q476.3 145.1 476.8 149.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M474.6 143.0Q477.1 145.3 476.8 149.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M471.6 144.3Q473.7 145.0 473.8 148.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M472.2 144.4Q474.5 145.2 473.8 148.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M468.5 146.1Q471.0 146.7 471.4 149.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M469.1 146.2Q471.8 146.9 471.4 149.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.6 157.4Q466.9 157.1 469.2 159.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M463.2 157.5Q467.7 157.3 469.2 159.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.6 160.0Q466.7 159.2 468.8 160.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M463.3 160.1Q467.5 159.4 468.8 160.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.8 163.4Q466.7 162.1 468.6 163.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M463.4 163.5Q467.5 162.3 468.6 163.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M463.5 183.2Q466.9 179.3 468.3 177.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M464.1 183.3Q467.7 179.5 468.3 177.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M463.6 186.2Q466.6 182.4 467.6 181.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M464.2 186.3Q467.4 182.6 467.6 181.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M463.7 190.1Q466.5 186.3 467.2 184.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M464.3 190.2Q467.3 186.5 467.2 184.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M470.2 194.1Q473.3 187.3 474.4 183.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M470.8 194.2Q474.1 187.5 474.4 183.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M472.2 192.9Q474.9 186.6 475.5 182.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M472.9 193.0Q475.7 186.8 475.5 182.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M474.9 191.3Q477.1 185.6 477.2 182.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M475.6 191.4Q477.9 185.8 477.2 182.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M490.6 182.1Q490.2 177.7 487.9 175.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M491.2 182.2Q491.0 177.9 487.9 175.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M492.9 180.7Q492.8 177.5 490.6 176.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M493.6 180.8Q493.6 177.7 490.6 176.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M496.0 178.9Q495.2 175.5 492.4 174.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M496.7 179.0Q496.0 175.7 492.4 174.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M501.9 167.6Q500.8 165.8 497.7 166.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M502.6 167.7Q501.6 166.0 497.7 166.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M501.9 165.0Q500.3 163.5 496.7 164.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M502.5 165.1Q501.1 163.7 496.7 164.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M501.7 161.6Q500.2 160.5 496.6 161.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M502.4 161.7Q501.0 160.7 496.6 161.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M501.0 141.8Q498.7 144.3 494.3 149.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M501.7 141.9Q499.5 144.5 494.3 149.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M500.9 138.8Q499.1 141.2 495.2 146.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M501.6 138.9Q499.9 141.4 495.2 146.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M500.8 134.9Q500.0 136.4 497.2 140.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M501.5 135.0Q500.8 136.6 497.2 140.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M361.68 144.96 Q374.79 144.00 388.32 155.04 Q393.50 157.00 393.71 163.02 Q399.86 180.62 394.79 193.98 Q395.00 200.00 389.82 198.04 Q376.71 199.00 363.18 187.96 Q358.00 186.00 357.79 179.98 Q351.64 162.38 356.71 149.02 Q356.50 143.00 361.68 144.96Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M360.9 142.2Q363.9 145.0 364.9 150.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M361.5 142.3Q364.7 145.2 364.9 150.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M363.1 143.1Q366.3 146.9 367.6 153.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M363.7 143.2Q367.1 147.1 367.6 153.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M366.0 144.2Q368.7 147.6 369.3 153.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M366.7 144.3Q369.5 147.8 369.3 153.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M383.1 150.6Q383.4 151.4 381.7 154.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M383.7 150.7Q384.2 151.6 381.7 154.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M385.6 151.6Q385.4 153.0 383.1 156.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M386.3 151.7Q386.2 153.2 383.1 156.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M389.0 152.9Q387.9 154.6 384.9 158.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M389.6 153.0Q388.7 154.8 384.9 158.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M396.0 163.0Q394.5 162.9 391.0 165.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.6 163.1Q395.3 163.1 391.0 165.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M396.1 165.6Q394.2 165.2 390.4 167.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.7 165.7Q395.0 165.4 390.4 167.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M396.2 169.1Q394.3 168.2 390.4 169.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.8 169.2Q395.1 168.4 390.4 169.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M396.9 188.8Q394.8 185.1 390.8 183.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M397.5 188.9Q395.6 185.3 390.8 183.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.0 191.8Q394.8 187.6 390.7 185.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M397.6 191.9Q395.6 187.8 390.7 185.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.1 195.7Q395.8 191.9 392.5 190.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M397.8 195.8Q396.6 192.1 392.5 190.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.6 200.8Q389.1 194.5 385.5 190.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M391.3 200.9Q389.9 194.7 385.5 190.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M388.4 199.9Q387.5 194.5 384.7 191.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M389.1 200.0Q388.3 194.7 384.7 191.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M385.5 198.8Q385.4 194.5 383.3 192.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M386.1 198.9Q386.2 194.7 383.3 192.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M368.4 192.4Q370.4 188.4 370.4 186.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M369.1 192.5Q371.2 188.6 370.4 186.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M365.9 191.4Q368.6 186.7 369.3 184.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M366.5 191.5Q369.4 186.9 369.3 184.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M362.5 190.1Q365.8 185.8 367.0 183.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M363.2 190.2Q366.6 186.0 367.0 183.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M355.5 180.0Q359.6 177.5 361.7 177.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M356.2 180.1Q360.4 177.7 361.7 177.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M355.4 177.4Q360.0 175.2 362.6 175.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M356.1 177.5Q360.8 175.4 362.6 175.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M355.3 173.9Q359.0 172.4 360.8 173.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M356.0 174.0Q359.8 172.6 360.8 173.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M354.6 154.2Q358.1 155.0 359.7 158.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M355.3 154.3Q358.9 155.2 359.7 158.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M354.5 151.2Q357.9 152.3 359.3 155.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M355.2 151.3Q358.7 152.5 359.3 155.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M354.4 147.3Q359.0 150.2 361.7 155.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M355.0 147.4Q359.8 150.4 361.7 155.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M459.74 153.80 Q447.29 155.00 435.26 168.20 Q430.50 171.00 430.71 177.02 Q426.08 195.54 431.79 207.98 Q432.00 214.00 436.76 211.20 Q449.21 210.00 461.24 196.80 Q466.00 194.00 465.79 187.98 Q470.42 169.46 464.71 157.02 Q464.50 151.00 459.74 153.80Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M460.3 150.9Q459.2 155.3 456.1 162.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.0 151.0Q460.0 155.5 456.1 162.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M458.3 152.1Q457.9 155.2 455.5 160.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M458.9 152.2Q458.7 155.4 455.5 160.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M455.6 153.7Q455.3 157.7 453.0 164.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M456.2 153.8Q456.1 157.9 453.0 164.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M439.9 162.9Q441.8 163.9 441.8 167.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M440.6 163.0Q442.6 164.1 441.8 167.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M437.6 164.3Q439.8 165.3 440.1 168.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M438.2 164.4Q440.6 165.5 440.1 168.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.5 166.1Q437.7 167.5 438.8 171.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M435.1 166.2Q438.5 167.7 438.8 171.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.6 177.4Q432.3 176.9 434.0 178.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M429.2 177.5Q433.1 177.1 434.0 178.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.6 180.0Q433.1 179.2 435.5 180.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M429.3 180.1Q433.9 179.4 435.5 180.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.8 183.4Q433.0 182.1 435.3 183.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M429.4 183.5Q433.8 182.3 435.3 183.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M429.5 203.2Q432.6 199.7 433.7 198.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M430.1 203.3Q433.4 199.9 433.7 198.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M429.6 206.2Q433.0 201.9 434.5 200.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M430.2 206.3Q433.8 202.1 434.5 200.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M429.7 210.1Q432.5 206.1 433.4 204.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M430.3 210.2Q433.3 206.3 433.4 204.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M436.2 214.1Q439.0 208.2 439.7 204.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M436.8 214.2Q439.8 208.4 439.7 204.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M438.2 212.9Q440.5 207.9 440.7 205.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M438.9 213.0Q441.3 208.1 440.7 205.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M440.9 211.3Q443.0 205.8 443.1 202.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M441.6 211.4Q443.8 206.0 443.1 202.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M456.6 202.1Q456.5 198.4 454.5 197.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M457.2 202.2Q457.3 198.6 454.5 197.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M458.9 200.7Q458.7 197.3 456.5 196.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M459.6 200.8Q459.5 197.5 456.5 196.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.0 198.9Q461.5 195.8 459.0 195.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M462.7 199.0Q462.3 196.0 459.0 195.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M467.9 187.6Q466.8 185.8 463.7 186.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M468.6 187.7Q467.6 186.0 463.7 186.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M467.9 185.0Q466.4 183.5 462.9 184.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M468.5 185.1Q467.2 183.7 462.9 184.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M467.7 181.6Q465.4 180.5 461.1 181.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M468.4 181.7Q466.2 180.7 461.1 181.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M467.0 161.8Q466.0 162.9 462.9 166.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.7 161.9Q466.8 163.1 462.9 166.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M466.9 158.8Q464.7 161.7 460.4 167.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.6 158.9Q465.5 161.9 460.4 167.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M466.8 154.9Q464.6 158.5 460.4 164.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.5 155.0Q465.4 158.7 460.4 164.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M398.68 158.96 Q411.79 158.00 425.32 169.04 Q430.50 171.00 430.71 177.02 Q436.86 194.62 431.79 207.98 Q432.00 214.00 426.82 212.04 Q413.71 213.00 400.18 201.96 Q395.00 200.00 394.79 193.98 Q388.64 176.38 393.71 163.02 Q393.50 157.00 398.68 158.96Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M397.9 156.2Q400.8 158.8 401.7 163.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M398.5 156.3Q401.6 159.0 401.7 163.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M400.1 157.1Q403.2 160.5 404.2 166.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M400.7 157.2Q404.0 160.7 404.2 166.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M403.0 158.2Q405.1 159.9 405.1 164.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M403.7 158.3Q405.9 160.1 405.1 164.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M420.1 164.6Q420.3 165.5 418.6 168.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M420.7 164.7Q421.1 165.7 418.6 168.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M422.6 165.6Q422.5 166.8 420.3 170.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M423.3 165.7Q423.3 167.0 420.3 170.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M426.0 166.9Q425.7 167.4 423.5 170.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M426.6 167.0Q426.5 167.6 423.5 170.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M433.0 177.0Q430.9 177.1 426.8 179.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.6 177.1Q431.7 177.3 426.8 179.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M433.1 179.6Q431.9 179.0 428.7 180.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.7 179.7Q432.7 179.2 428.7 180.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M433.2 183.1Q432.2 182.1 429.2 183.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.8 183.2Q433.0 182.3 429.2 183.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M433.9 202.8Q431.1 198.5 426.3 196.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M434.5 202.9Q431.9 198.7 426.3 196.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.0 205.8Q431.9 201.7 427.8 199.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M434.6 205.9Q432.7 201.9 427.8 199.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.1 209.7Q431.4 204.3 426.7 201.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M434.8 209.8Q432.2 204.5 426.7 201.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M427.6 214.8Q426.2 208.8 422.8 205.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M428.3 214.9Q427.0 209.0 422.8 205.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M425.4 213.9Q425.0 209.5 422.5 207.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M426.1 214.0Q425.8 209.7 422.5 207.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M422.5 212.8Q422.0 207.5 419.5 204.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M423.1 212.9Q422.8 207.7 419.5 204.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M405.4 206.4Q407.6 202.0 407.7 200.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M406.1 206.5Q408.4 202.2 407.7 200.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M402.9 205.4Q405.0 201.9 405.2 200.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M403.5 205.5Q405.8 202.1 405.2 200.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M399.5 204.1Q402.5 200.1 403.5 198.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M400.2 204.2Q403.3 200.3 403.5 198.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M392.5 194.0Q396.8 191.4 399.2 191.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M393.2 194.1Q397.6 191.6 399.2 191.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M392.4 191.4Q395.3 189.7 396.1 190.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M393.1 191.5Q396.1 189.9 396.1 190.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M392.3 187.9Q396.2 186.4 398.2 187.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M393.0 188.0Q397.0 186.6 398.2 187.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M391.6 168.2Q395.4 169.3 397.2 172.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M392.3 168.3Q396.2 169.5 397.2 172.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M391.5 165.2Q394.7 166.0 395.9 169.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M392.2 165.3Q395.5 166.2 395.9 169.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M391.4 161.3Q394.5 162.4 395.5 166.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M392.0 161.4Q395.3 162.6 395.5 166.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M492.24 90.80 Q479.79 92.00 467.76 105.20 Q463.00 108.00 463.21 114.02 Q458.58 132.54 464.29 144.98 Q464.50 151.00 469.26 148.20 Q481.71 147.00 493.74 133.80 Q498.50 131.00 498.29 124.98 Q502.92 106.46 497.21 94.02 Q497.00 88.00 492.24 90.80Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M492.8 87.9Q492.6 89.9 490.4 94.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M493.5 88.0Q493.4 90.1 490.4 94.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M490.8 89.1Q490.1 93.2 487.3 99.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M491.4 89.2Q490.9 93.4 487.3 99.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M488.1 90.7Q488.3 92.4 486.6 96.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M488.7 90.8Q489.1 92.6 486.6 96.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M472.4 99.9Q474.6 101.4 474.7 105.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M473.1 100.0Q475.4 101.6 474.7 105.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M470.1 101.3Q472.9 103.2 473.7 107.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M470.7 101.4Q473.7 103.4 473.7 107.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M467.0 103.1Q469.7 104.0 470.4 107.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.6 103.2Q470.5 104.2 470.4 107.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M461.1 114.4Q463.9 113.7 464.6 115.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.7 114.5Q464.7 113.9 464.6 115.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M461.1 117.0Q464.6 116.1 466.1 117.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.8 117.1Q465.4 116.3 466.1 117.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M461.3 120.4Q464.0 119.1 464.8 120.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.9 120.5Q464.8 119.3 464.8 120.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.0 140.2Q464.8 137.0 465.6 136.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M462.6 140.3Q465.6 137.2 465.6 136.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.1 143.2Q466.4 137.8 468.8 134.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M462.7 143.3Q467.2 138.0 468.8 134.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M462.2 147.1Q465.1 143.0 466.0 141.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M462.8 147.2Q465.9 143.2 466.0 141.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M468.7 151.1Q471.2 146.0 471.6 143.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M469.3 151.2Q472.0 146.2 471.6 143.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M470.7 149.9Q473.0 144.6 473.4 141.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M471.4 150.0Q473.8 144.8 473.4 141.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M473.4 148.3Q475.1 144.4 474.8 142.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M474.1 148.4Q475.9 144.6 474.8 142.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M489.1 139.1Q489.0 135.3 486.9 133.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M489.7 139.2Q489.8 135.5 486.9 133.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M491.4 137.7Q491.3 134.4 489.1 133.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M492.1 137.8Q492.1 134.6 489.1 133.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M494.5 135.9Q493.5 132.2 490.4 131.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M495.2 136.0Q494.3 132.4 490.4 131.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M500.4 124.6Q499.0 122.8 495.6 123.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M501.1 124.7Q499.8 123.0 495.6 123.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M500.4 122.0Q498.4 120.4 494.5 121.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M501.0 122.1Q499.2 120.6 494.5 121.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M500.2 118.6Q498.5 117.5 494.8 118.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M500.9 118.7Q499.3 117.7 494.8 118.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M499.5 98.8Q498.8 99.5 496.1 102.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M500.2 98.9Q499.6 99.7 496.1 102.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M499.4 95.8Q497.6 98.1 493.8 102.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M500.1 95.9Q498.4 98.3 493.8 102.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M499.3 91.9Q497.1 95.4 493.0 101.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M500.0 92.0Q497.9 95.6 493.0 101.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M360.18 101.96 Q373.29 101.00 386.82 112.04 Q392.00 114.00 392.21 120.02 Q398.36 137.62 393.29 150.98 Q393.50 157.00 388.32 155.04 Q375.21 156.00 361.68 144.96 Q356.50 143.00 356.29 136.98 Q350.14 119.38 355.21 106.02 Q355.00 100.00 360.18 101.96Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M359.4 99.2Q362.0 101.2 362.6 105.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M360.0 99.3Q362.8 101.4 362.6 105.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M361.6 100.1Q364.8 103.8 366.0 109.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M362.2 100.2Q365.6 104.0 366.0 109.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M364.5 101.2Q366.6 103.1 366.7 107.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M365.2 101.3Q367.4 103.3 366.7 107.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M381.6 107.6Q381.3 110.1 379.0 115.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M382.2 107.7Q382.1 110.3 379.0 115.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M384.1 108.6Q383.7 110.3 381.3 114.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M384.8 108.7Q384.5 110.5 381.3 114.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M387.5 109.9Q386.1 112.0 382.8 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M388.1 110.0Q386.9 112.2 382.8 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.5 120.0Q393.1 119.8 389.6 122.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M395.1 120.1Q393.9 120.0 389.6 122.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.6 122.6Q392.4 122.3 388.2 124.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M395.2 122.7Q393.2 122.5 388.2 124.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.7 126.1Q393.3 125.1 389.9 126.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M395.3 126.2Q394.1 125.3 389.9 126.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M395.4 145.8Q393.1 141.9 388.8 140.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.0 145.9Q393.9 142.1 388.8 140.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M395.5 148.8Q393.8 145.1 390.1 143.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.1 148.9Q394.6 145.3 390.1 143.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M395.6 152.7Q393.6 148.1 389.6 145.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.3 152.8Q394.4 148.3 389.6 145.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M389.1 157.8Q388.5 153.4 385.9 151.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M389.8 157.9Q389.3 153.6 385.9 151.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M386.9 156.9Q385.7 150.8 382.6 147.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M387.6 157.0Q386.5 151.0 382.6 147.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M384.0 155.8Q383.5 150.6 381.1 147.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M384.6 155.9Q384.3 150.8 381.1 147.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M366.9 149.4Q369.1 144.8 369.3 142.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M367.6 149.5Q369.9 145.0 369.3 142.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M364.4 148.4Q367.0 143.8 367.7 141.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M365.0 148.5Q367.8 144.0 367.7 141.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M361.0 147.1Q363.7 143.6 364.3 142.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M361.7 147.2Q364.5 143.8 364.3 142.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M354.0 137.0Q358.6 134.3 361.2 133.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M354.7 137.1Q359.4 134.5 361.2 133.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M353.9 134.4Q357.0 132.6 358.2 133.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M354.6 134.5Q357.8 132.8 358.2 133.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M353.8 130.9Q357.0 129.5 358.1 130.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M354.5 131.0Q357.8 129.7 358.1 130.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M353.1 111.2Q356.6 112.0 358.1 115.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M353.8 111.3Q357.4 112.2 358.1 115.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M353.0 108.2Q357.3 110.1 359.6 114.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M353.7 108.3Q358.1 110.3 359.6 114.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M352.9 104.3Q357.7 107.4 360.5 113.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M353.5 104.4Q358.5 107.6 360.5 113.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M458.24 110.80 Q445.79 112.00 433.76 125.20 Q429.00 128.00 429.21 134.02 Q424.58 152.54 430.29 164.98 Q430.50 171.00 435.26 168.20 Q447.71 167.00 459.74 153.80 Q464.50 151.00 464.29 144.98 Q468.92 126.46 463.21 114.02 Q463.00 108.00 458.24 110.80Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M458.8 107.9Q458.2 111.0 455.6 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M459.5 108.0Q459.0 111.2 455.6 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M456.8 109.1Q456.5 111.9 454.1 117.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M457.4 109.2Q457.3 112.1 454.1 117.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M454.1 110.7Q454.4 112.2 452.7 116.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M454.7 110.8Q455.2 112.4 452.7 116.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M438.4 119.9Q440.4 121.1 440.4 124.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M439.1 120.0Q441.2 121.3 440.4 124.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M436.1 121.3Q438.2 122.1 438.4 125.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M436.7 121.4Q439.0 122.3 438.4 125.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M433.0 123.1Q435.6 123.8 436.2 126.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.6 123.2Q436.4 124.0 436.2 126.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M427.1 134.4Q430.1 133.7 431.1 135.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M427.7 134.5Q430.9 133.9 431.1 135.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M427.1 137.0Q430.6 136.1 432.0 137.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M427.8 137.1Q431.4 136.3 432.0 137.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M427.3 140.4Q431.6 139.1 434.0 140.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M427.9 140.5Q432.4 139.3 434.0 140.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.0 160.2Q431.8 155.8 433.7 153.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M428.6 160.3Q432.6 156.0 433.7 153.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.1 163.2Q431.3 159.2 432.4 157.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M428.7 163.3Q432.1 159.4 432.4 157.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.2 167.1Q431.0 163.2 431.8 161.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M428.8 167.2Q431.8 163.4 431.8 161.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.7 171.1Q437.6 164.8 438.5 160.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M435.3 171.2Q438.4 165.0 438.5 160.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M436.7 169.9Q439.2 164.2 439.6 161.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M437.4 170.0Q440.0 164.4 439.6 161.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M439.4 168.3Q441.1 164.3 440.8 162.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M440.1 168.4Q441.9 164.5 440.8 162.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M455.1 159.1Q455.0 155.4 453.0 154.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M455.7 159.2Q455.8 155.6 453.0 154.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M457.4 157.7Q456.9 153.8 454.3 152.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M458.1 157.8Q457.7 154.0 454.3 152.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M460.5 155.9Q459.1 151.8 455.7 150.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.2 156.0Q459.9 152.0 455.7 150.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M466.4 144.6Q465.2 142.8 462.0 143.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.1 144.7Q466.0 143.0 462.0 143.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M466.4 142.0Q464.4 140.4 460.5 141.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.0 142.1Q465.2 140.6 460.5 141.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M466.2 138.6Q464.9 137.5 461.7 138.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M466.9 138.7Q465.7 137.7 461.7 138.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M465.5 118.8Q464.5 119.9 461.4 123.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M466.2 118.9Q465.3 120.1 461.4 123.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M465.4 115.8Q464.2 117.4 461.1 121.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M466.1 115.9Q465.0 117.6 461.1 121.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M465.3 111.9Q463.5 114.9 459.7 120.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M466.0 112.0Q464.3 115.1 459.7 120.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.18 115.96 Q410.29 115.00 423.82 126.04 Q429.00 128.00 429.21 134.02 Q435.36 151.62 430.29 164.98 Q430.50 171.00 425.32 169.04 Q412.21 170.00 398.68 158.96 Q393.50 157.00 393.29 150.98 Q387.14 133.38 392.21 120.02 Q392.00 114.00 397.18 115.96Z" fill="url(#fabric-front)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M396.4 113.2Q399.2 115.7 400.1 120.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M397.0 113.3Q400.0 115.9 400.1 120.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M398.6 114.1Q400.8 115.7 401.1 119.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M399.2 114.2Q401.6 115.9 401.1 119.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M401.5 115.2Q403.7 117.1 403.8 121.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M402.2 115.3Q404.5 117.3 403.8 121.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M418.6 121.6Q418.8 122.6 417.0 126.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M419.2 121.7Q419.6 122.8 417.0 126.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M421.1 122.6Q421.0 123.6 418.9 127.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M421.8 122.7Q421.8 123.8 418.9 127.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M424.5 123.9Q423.4 125.6 420.3 129.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M425.1 124.0Q424.2 125.8 420.3 129.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.5 134.0Q430.1 133.8 426.7 136.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M432.1 134.1Q430.9 134.0 426.7 136.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.6 136.6Q429.3 136.4 424.9 138.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M432.2 136.7Q430.1 136.6 424.9 138.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.7 140.1Q429.6 139.2 425.6 140.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M432.3 140.2Q430.4 139.4 425.6 140.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M432.4 159.8Q431.0 156.7 427.6 155.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.0 159.9Q431.8 156.9 427.6 155.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M432.5 162.8Q429.7 158.0 424.9 155.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.1 162.9Q430.5 158.2 424.9 155.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M432.6 166.7Q431.0 162.5 427.3 160.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.3 166.8Q431.8 162.7 427.3 160.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M426.1 171.8Q425.8 167.8 423.4 166.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M426.8 171.9Q426.6 168.0 423.4 166.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M423.9 170.9Q422.8 165.1 419.8 161.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M424.6 171.0Q423.6 165.3 419.8 161.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M421.0 169.8Q420.9 165.8 418.9 164.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M421.6 169.9Q421.7 166.0 418.9 164.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M403.9 163.4Q406.1 159.0 406.2 156.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M404.6 163.5Q406.9 159.2 406.2 156.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M401.4 162.4Q404.0 157.9 404.6 155.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M402.0 162.5Q404.8 158.1 404.6 155.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M398.0 161.1Q400.2 158.2 400.4 157.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M398.7 161.2Q401.0 158.4 400.4 157.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M391.0 151.0Q394.2 148.8 395.5 149.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M391.7 151.1Q395.0 149.0 395.5 149.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.9 148.4Q395.4 146.2 397.8 146.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M391.6 148.5Q396.2 146.4 397.8 146.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.8 144.9Q393.8 143.5 394.8 144.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M391.5 145.0Q394.6 143.7 394.8 144.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.1 125.2Q394.4 126.7 396.7 130.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M390.8 125.3Q395.2 126.9 396.7 130.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.0 122.2Q393.1 123.0 394.3 126.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M390.7 122.3Q393.9 123.2 394.3 126.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M389.9 118.3Q394.2 120.9 396.5 125.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M390.5 118.4Q395.0 121.1 396.5 125.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.18 61.96 Q446.67 63.96 454.82 72.04 Q460.00 74.00 455.24 76.80 Q448.61 86.12 430.76 91.20 Q426.00 94.00 420.82 92.04 Q402.33 90.04 394.18 81.96 Q389.00 80.00 393.76 77.20 Q400.39 67.88 418.24 62.80 Q423.00 60.00 428.18 61.96Z" fill="url(#fabric)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M429.6 60.4Q429.7 61.9 427.9 65.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M430.2 60.5Q430.5 62.1 427.9 65.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.8 61.3Q431.7 62.5 429.5 66.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M432.4 61.4Q432.5 62.7 429.5 66.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.7 62.4Q433.9 63.8 431.1 67.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M435.4 62.5Q434.7 64.0 431.1 67.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M451.8 68.8Q449.7 68.5 445.7 70.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M452.4 68.9Q450.5 68.7 445.7 70.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M454.4 69.8Q452.4 69.3 448.5 71.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M455.0 69.9Q453.2 69.5 448.5 71.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M457.7 71.1Q454.6 70.6 449.5 72.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M458.3 71.2Q455.4 70.8 449.5 72.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M458.2 77.3Q454.3 76.0 448.3 77.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M458.9 77.4Q455.1 76.2 448.3 77.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M456.2 78.5Q452.8 77.1 447.5 78.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M456.8 78.6Q453.6 77.3 447.5 78.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M453.5 80.1Q451.3 78.5 447.2 79.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M454.1 80.2Q452.1 78.7 447.2 79.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M437.8 89.3Q437.4 86.7 434.9 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M438.5 89.4Q438.2 86.9 434.9 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M435.4 90.7Q434.8 87.4 432.1 86.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M436.1 90.8Q435.6 87.6 432.1 86.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M432.4 92.5Q432.5 89.5 430.5 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.0 92.6Q433.3 89.7 430.5 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M419.4 93.6Q421.2 89.9 421.0 88.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M420.1 93.7Q422.0 90.1 421.0 88.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M417.2 92.7Q419.2 89.5 419.1 88.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M417.9 92.8Q420.0 89.7 419.1 88.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M414.3 91.6Q416.2 89.0 416.2 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M414.9 91.7Q417.0 89.2 416.2 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.2 85.2Q401.0 83.1 402.8 83.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M397.9 85.3Q401.8 83.3 402.8 83.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.6 84.2Q398.9 82.2 401.2 82.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M395.3 84.3Q399.7 82.4 401.2 82.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M391.3 82.9Q396.7 81.0 400.0 81.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M392.0 83.0Q397.5 81.2 400.0 81.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M390.8 76.7Q395.9 75.6 399.0 76.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M391.4 76.8Q396.7 75.8 399.0 76.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M392.8 75.5Q399.5 74.6 404.2 76.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M393.5 75.6Q400.3 74.8 404.2 76.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M395.5 73.9Q401.0 73.2 404.5 74.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.2 74.0Q401.8 73.4 404.5 74.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M411.2 64.7Q414.5 65.7 415.8 69.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M411.8 64.8Q415.3 65.9 415.8 69.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M413.6 63.3Q415.6 63.4 415.6 65.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M414.2 63.4Q416.4 63.6 415.6 65.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M416.6 61.5Q418.6 62.2 418.5 65.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M417.3 61.6Q419.4 62.4 418.5 65.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M465.18 75.96 Q483.67 77.96 491.82 86.04 Q497.00 88.00 492.24 90.80 Q485.61 100.12 467.76 105.20 Q463.00 108.00 457.82 106.04 Q439.33 104.04 431.18 95.96 Q426.00 94.00 430.76 91.20 Q437.39 81.88 455.24 76.80 Q460.00 74.00 465.18 75.96Z" fill="url(#fabric)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M466.6 74.4Q467.0 75.2 465.4 78.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M467.2 74.5Q467.8 75.4 465.4 78.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M468.8 75.3Q468.9 76.0 467.0 79.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M469.4 75.4Q469.7 76.2 467.0 79.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M471.7 76.4Q471.2 77.4 468.6 80.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M472.4 76.5Q472.0 77.6 468.6 80.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M488.8 82.8Q486.8 82.5 482.8 84.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M489.4 82.9Q487.6 82.7 482.8 84.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M491.4 83.8Q488.3 83.6 483.2 85.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M492.0 83.9Q489.1 83.8 483.2 85.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M494.7 85.1Q490.9 84.7 485.1 86.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M495.3 85.2Q491.7 84.9 485.1 86.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M495.2 91.3Q493.0 90.0 488.9 91.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M495.9 91.4Q493.8 90.2 488.9 91.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M493.2 92.5Q489.5 91.1 483.9 92.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M493.8 92.6Q490.3 91.3 483.9 92.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M490.5 94.1Q486.3 92.3 480.0 93.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M491.1 94.2Q487.1 92.5 480.0 93.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M474.8 103.3Q474.5 100.8 472.1 100.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M475.5 103.4Q475.3 101.0 472.1 100.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M472.4 104.7Q472.3 102.1 470.2 101.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M473.1 104.8Q473.1 102.3 470.2 101.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M469.4 106.5Q469.4 103.4 467.5 102.7" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M470.0 106.6Q470.2 103.6 467.5 102.7" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M456.4 107.6Q458.2 103.9 457.9 102.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M457.1 107.7Q459.0 104.1 457.9 102.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M454.2 106.7Q456.4 102.9 456.7 101.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M454.9 106.8Q457.2 103.1 456.7 101.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M451.3 105.6Q453.2 103.1 453.1 103.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M451.9 105.7Q454.0 103.3 453.1 103.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.2 99.2Q438.1 97.1 439.9 97.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M434.9 99.3Q438.9 97.3 439.9 97.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.6 98.2Q436.1 96.1 438.6 96.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M432.3 98.3Q436.9 96.3 438.6 96.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M428.3 96.9Q434.1 94.9 437.9 95.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M429.0 97.0Q434.9 95.1 437.9 95.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M427.8 90.7Q432.4 89.6 434.9 90.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M428.4 90.8Q433.2 89.8 434.9 90.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M429.8 89.5Q435.0 88.5 438.1 89.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M430.5 89.6Q435.8 88.7 438.1 89.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M432.5 87.9Q438.1 87.2 441.6 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.2 88.0Q438.9 87.4 441.6 88.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M448.2 78.7Q451.5 79.6 452.7 82.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M448.8 78.8Q452.3 79.8 452.7 82.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M450.6 77.3Q453.5 78.6 454.5 82.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M451.2 77.4Q454.3 78.8 454.5 82.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M453.6 75.5Q455.4 75.8 455.1 78.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M454.3 75.6Q456.2 76.0 455.1 78.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.18 81.96 Q412.67 83.96 420.82 92.04 Q426.00 94.00 421.24 96.80 Q414.61 106.12 396.76 111.20 Q392.00 114.00 386.82 112.04 Q368.33 110.04 360.18 101.96 Q355.00 100.00 359.76 97.20 Q366.39 87.88 384.24 82.80 Q389.00 80.00 394.18 81.96Z" fill="url(#fabric)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M395.6 80.4Q395.9 81.5 394.2 84.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.2 80.5Q396.7 81.7 394.2 84.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.8 81.3Q397.7 82.4 395.6 85.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M398.4 81.4Q398.5 82.6 395.6 85.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M400.7 82.4Q400.3 83.3 397.8 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M401.4 82.5Q401.1 83.5 397.8 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M417.8 88.8Q416.0 88.5 412.2 90.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M418.4 88.9Q416.8 88.7 412.2 90.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M420.4 89.8Q418.5 89.3 414.7 91.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M421.0 89.9Q419.3 89.5 414.7 91.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M423.7 91.1Q418.9 90.9 412.2 93.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M424.3 91.2Q419.7 91.1 412.2 93.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M424.2 97.3Q419.3 96.0 412.4 97.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M424.9 97.4Q420.1 96.2 412.4 97.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M422.2 98.5Q419.0 97.1 413.9 98.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M422.8 98.6Q419.8 97.3 413.9 98.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M419.5 100.1Q415.6 98.4 409.8 99.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M420.1 100.2Q416.4 98.6 409.8 99.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M403.8 109.3Q403.1 106.5 400.4 106.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M404.5 109.4Q403.9 106.7 400.4 106.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M401.4 110.7Q400.7 107.3 398.0 106.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M402.1 110.8Q401.5 107.5 398.0 106.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M398.4 112.5Q398.1 108.9 395.9 107.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M399.0 112.6Q398.9 109.1 395.9 107.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M385.4 113.6Q387.1 110.2 386.8 109.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M386.1 113.7Q387.9 110.4 386.8 109.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M383.2 112.7Q385.0 109.8 384.8 109.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M383.9 112.8Q385.8 110.0 384.8 109.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M380.3 111.6Q382.5 108.6 382.8 108.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M380.9 111.7Q383.3 108.8 382.8 108.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M363.2 105.2Q367.1 103.1 368.9 103.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M363.9 105.3Q367.9 103.3 368.9 103.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M360.6 104.2Q366.3 101.9 369.9 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M361.3 104.3Q367.1 102.1 369.9 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M357.3 102.9Q362.9 100.9 366.5 101.3" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M358.0 103.0Q363.7 101.1 366.5 101.3" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M356.8 96.7Q362.9 95.6 367.0 96.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M357.4 96.8Q363.7 95.8 367.0 96.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M358.8 95.5Q365.3 94.6 369.8 96.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M359.5 95.6Q366.1 94.8 369.8 96.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M361.5 93.9Q366.7 93.2 369.9 94.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M362.2 94.0Q367.5 93.4 369.9 94.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M377.2 84.7Q380.4 85.6 381.6 88.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M377.8 84.8Q381.2 85.8 381.6 88.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M379.6 83.3Q381.9 83.8 382.2 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M380.2 83.4Q382.7 84.0 382.2 86.6" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M382.6 81.5Q384.4 81.8 384.1 84.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M383.3 81.6Q385.2 82.0 384.1 84.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M431.18 95.96 Q449.67 97.96 457.82 106.04 Q463.00 108.00 458.24 110.80 Q451.61 120.12 433.76 125.20 Q429.00 128.00 423.82 126.04 Q405.33 124.04 397.18 115.96 Q392.00 114.00 396.76 111.20 Q403.39 101.88 421.24 96.80 Q426.00 94.00 431.18 95.96Z" fill="url(#fabric)" stroke="color-mix(in srgb, var(--violet) 55%, var(--black))" stroke-width="0.35"/>
+      <path d="M432.6 94.4Q432.7 96.1 430.8 100.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M433.2 94.5Q433.5 96.3 430.8 100.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M434.8 95.3Q434.9 96.0 433.0 99.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M435.4 95.4Q435.7 96.2 433.0 99.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M437.7 96.4Q437.5 96.9 435.3 99.9" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M438.4 96.5Q438.3 97.1 435.3 99.9" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M454.8 102.8Q451.4 102.9 446.1 105.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M455.4 102.9Q452.2 103.1 446.1 105.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M457.4 103.8Q453.6 103.7 447.9 106.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M458.0 103.9Q454.4 103.9 447.9 106.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M460.7 105.1Q455.9 104.9 449.1 107.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.3 105.2Q456.7 105.1 449.1 107.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M461.2 111.3Q458.7 110.0 454.2 111.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M461.9 111.4Q459.5 110.2 454.2 111.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M459.2 112.5Q455.1 111.0 449.1 112.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M459.8 112.6Q455.9 111.2 449.1 112.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M456.5 114.1Q453.5 112.4 448.5 113.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M457.1 114.2Q454.3 112.6 448.5 113.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M440.8 123.3Q440.3 120.6 437.7 120.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M441.5 123.4Q441.1 120.8 437.7 120.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M438.4 124.7Q437.6 121.2 434.7 120.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M439.1 124.8Q438.4 121.4 434.7 120.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M435.4 126.5Q435.1 122.8 432.8 121.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M436.0 126.6Q435.9 123.0 432.8 121.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M422.4 127.6Q424.0 124.6 423.5 124.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M423.1 127.7Q424.8 124.8 423.5 124.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M420.2 126.7Q422.1 123.7 421.9 123.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M420.9 126.8Q422.9 123.9 421.9 123.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M417.3 125.6Q420.1 121.8 420.9 120.4" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M417.9 125.7Q420.9 122.0 420.9 120.4" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M400.2 119.2Q404.6 116.9 407.0 117.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M400.9 119.3Q405.4 117.1 407.0 117.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M397.6 118.2Q402.2 116.1 404.8 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M398.3 118.3Q403.0 116.3 404.8 116.5" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M394.3 116.9Q400.5 114.8 404.7 115.1" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M395.0 117.0Q401.3 115.0 404.7 115.1" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M393.8 110.7Q398.0 109.6 400.2 110.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M394.4 110.8Q398.8 109.8 400.2 110.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M395.8 109.5Q402.2 108.6 406.7 110.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M396.5 109.6Q403.0 108.8 406.7 110.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M398.5 107.9Q403.8 107.2 407.1 108.8" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M399.2 108.0Q404.6 107.4 407.1 108.8" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M414.2 98.7Q417.0 99.2 417.7 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M414.8 98.8Q417.8 99.4 417.7 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M416.6 97.3Q419.4 98.4 420.3 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M417.2 97.4Q420.2 98.6 420.3 102.0" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <path d="M419.6 95.5Q421.5 96.1 421.5 99.2" fill="none" stroke="color-mix(in srgb, var(--violet) 45%, var(--black))" stroke-width="0.82" opacity="0.72"/>
+      <path d="M420.3 95.6Q422.3 96.3 421.5 99.2" fill="none" stroke="color-mix(in srgb, var(--violet) 47%, var(--white))" stroke-width="0.5" opacity="0.59"/>
+      <defs><clipPath id="fabric-edge"><path d="M419 61Q426 57 443 65L491 83q8 4 8 15l3 61q0 14-13 24l-45 30q-10 6-22 0l-54-23q-12-5-14-16l-4-57q-1-12 10-21l47-33Z" fill="var(--white)"/></clipPath></defs><g clip-path="url(#fabric-edge)">
+      <rect x="348" y="56" width="160" height="163" fill="var(--white)" filter="url(#weave)" opacity="0.28" style="mix-blend-mode: soft-light"/>
+    </g>
+    </g>
+      <defs><clipPath id="chair-sheet"><rect x="42" y="261" width="516" height="344" rx="24" fill="var(--white)"/></clipPath></defs><g clip-path="url(#chair-sheet)">
+      <rect x="42" y="261" width="516" height="344" rx="24" fill="color-mix(in srgb, var(--ghost) 54%, var(--bg))"/>
+      <rect x="60" y="271.5" width="480" height="325.5" rx="27" fill="url(#floor-paper)"/>
+      <ellipse cx="269" cy="479" rx="126" ry="37" fill="var(--slate)" opacity="0.16" filter="url(#blur16)"/>
+      <path d="M60 298q0-26 28-26h123q61 3 53 71l-16 113q-5 36-35 42L70 516H60Z" fill="color-mix(in srgb, color-mix(in srgb, var(--green) 67%, var(--pine)) 88%, var(--cyan))"/>
+      <text x="110" y="368" font-size="35" font-weight="800" fill="var(--white)" letter-spacing="-1">Soft</text>
+      <text x="110" y="403" font-size="35" font-weight="800" fill="var(--white)" letter-spacing="-1">forms</text>
+      <path d="M94 441q9-6 14-15 9-10 15-2 5 7-5 16l-13 11q-14 7-15-2 0-5 4-8Z" fill="var(--white)"/>
+      <ellipse cx="250" cy="445" rx="64" ry="14" fill="var(--slate)" opacity="0.24" filter="url(#blur8)"/>
+      <rect x="193" y="388" width="123" height="36" rx="19" fill="url(#seat)"/>
+      <path d="M191 390Q180 390 182 376q0-16 17-17l102 1q19 1 19 15 1 18-19 20Z" fill="url(#seat)"/>
+      <ellipse cx="292" cy="373" rx="19" ry="6.2" fill="color-mix(in srgb, var(--green) 72%, var(--cyan))" opacity="0.32" filter="url(#blur8)"/>
+      <path d="M188 390Q218 402 307 391" fill="none" stroke="color-mix(in srgb, var(--pine) 55%, var(--black))" stroke-width="1.4" opacity="0.65"/>
+      <line x1="206" y1="423" x2="204" y2="433" stroke="var(--black)" stroke-width="2.4"/>
+      <line x1="293" y1="423" x2="294" y2="432" stroke="var(--black)" stroke-width="2.2"/>
+      <g filter="url(#soft)">
+      <rect x="164" y="422" width="48" height="20" rx="10" fill="var(--orange)"/>
+      <rect x="159" y="428" width="58" height="13" rx="5" fill="color-mix(in srgb, var(--violet) 43%, var(--orange))"/>
+      <line x1="173" y1="442" x2="165" y2="479" stroke="var(--orange)" stroke-width="3.2"/>
+      <line x1="199" y1="442" x2="209" y2="481" stroke="var(--orange)" stroke-width="3.2"/>
+      <line x1="186" y1="442" x2="186" y2="474" stroke="var(--orange)" stroke-width="3"/>
+    </g>
+      <g filter="url(#blur8)">
+      <path d="M216 252l38 7-18 57-29-20Z" fill="var(--orange)"/>
+    </g>
+      <text x="335" y="355" font-size="16" font-weight="650" fill="var(--black)">Object</text>
+      <text x="335" y="375" font-size="16" font-weight="650" fill="var(--black)">library</text>
+      <ellipse cx="500" cy="308" rx="10" ry="10" fill="var(--yellow)"/>
+      <path d="M495 309q5 4 9-2" fill="none" stroke="var(--black)" stroke-width="1"/>
+      <ellipse cx="498" cy="305.8" rx="0.8" ry="0.8" fill="var(--black)"/>
+      <ellipse cx="502" cy="305.8" rx="0.8" ry="0.8" fill="var(--black)"/>
+      <text x="336" y="404" font-size="5.4" font-weight="700" fill="var(--black)">OBJECT</text>
+      <text x="504" y="404" font-size="5.4" font-weight="700" fill="var(--black)">NO.</text>
+      <rect x="329" y="420" width="197" height="38" rx="3" fill="color-mix(in srgb, var(--slate) 3%, var(--white))"/>
+      <text x="336" y="443" font-size="8.1" font-weight="640" fill="var(--black)">Footstool</text>
+      <text x="419" y="443" font-size="6" font-weight="650" fill="var(--black)">72 × 72</text>
+      <g>
+      <ellipse cx="472" cy="423" rx="8.1" ry="3" fill="var(--orange)"/>
+      <rect x="464" y="424" width="16" height="3" rx="1" fill="color-mix(in srgb, var(--pink) 45%, var(--violet))"/>
+      <line x1="468" y1="427" x2="465" y2="440" stroke="var(--orange)" stroke-width="1.1"/>
+      <line x1="477" y1="427" x2="481" y2="440" stroke="var(--orange)" stroke-width="1.1"/>
+      <line x1="472" y1="427" x2="472" y2="437" stroke="var(--orange)" stroke-width="1"/>
+    </g>
+      <text x="503" y="442" font-size="9" font-weight="700" fill="var(--black)">+</text>
+      <rect x="329" y="459" width="197" height="38" rx="3" fill="color-mix(in srgb, var(--slate) 7%, var(--white))"/>
+      <text x="336" y="482" font-size="8.1" font-weight="640" fill="var(--black)">Soft cushion</text>
+      <text x="419" y="482" font-size="6" font-weight="650" fill="var(--black)">72 × 72</text>
+      <rect x="465" y="460" width="15" height="17" rx="3" fill="url(#orange-form)" transform="rotate(19 472 468)"/>
+      <text x="503" y="481" font-size="9" font-weight="700" fill="var(--black)">+</text>
+      <rect x="329" y="498" width="197" height="38" rx="3" fill="color-mix(in srgb, var(--slate) 3%, var(--white))"/>
+      <text x="336" y="521" font-size="8.1" font-weight="640" fill="var(--black)">Low chair</text>
+      <text x="419" y="521" font-size="6" font-weight="650" fill="var(--black)">72 × 72</text>
+      <g>
+      <rect x="463" y="499" width="20" height="8" rx="4" fill="url(#fabric-front)"/>
+      <rect x="466" y="505" width="17" height="6" rx="3" fill="url(#fabric-front)"/>
+      <line x1="466" y1="509" x2="465" y2="512" stroke="var(--black)" stroke-width="0.65"/>
+      <line x1="479" y1="509" x2="480" y2="512" stroke="var(--black)" stroke-width="0.65"/>
+    </g>
+      <text x="503" y="520" font-size="9" font-weight="700" fill="var(--black)">+</text>
+      <rect x="265" y="524" width="150" height="36" rx="18" fill="color-mix(in srgb, var(--slate) 13%, var(--white))"/>
+      <rect x="384" y="526" width="28" height="28" rx="9" fill="var(--black)"/>
+      <text x="392" y="546" font-size="14" font-weight="600" fill="var(--white)">→</text>
+      <rect x="291" y="539" width="8" height="5" rx="1.9" fill="none" stroke="var(--slate)" stroke-width="0.8"/>
+      <rect x="316" y="539" width="8" height="5" rx="1.9" fill="none" stroke="var(--slate)" stroke-width="0.8"/>
+      <rect x="341" y="539" width="8" height="5" rx="1.9" fill="none" stroke="var(--slate)" stroke-width="0.8"/>
+      <rect x="82" y="544" width="30" height="29" rx="9" fill="color-mix(in srgb, var(--slate) 12%, var(--white))"/>
+      <rect x="486" y="544" width="30" height="29" rx="9" fill="color-mix(in srgb, var(--slate) 12%, var(--white))"/>
+      <ellipse cx="97" cy="558" rx="3.4" ry="3.4" fill="none" stroke="var(--black)" stroke-width="0.65"/>
+      <ellipse cx="97" cy="558" rx="1.3" ry="1.3" fill="var(--black)"/>
+      <text x="495" y="562" font-size="10" font-weight="600" fill="var(--black)">II</text>
+    </g>
+      <text x="42" y="638" font-size="16.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.45">Add dimension to an icon or product study.</text>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">05 / 06</text>
+    </g>
+    </g>
+  <g data-slide="6" data-description="Choose one direction for the next project." aria-hidden="true">
+      <text x="35" y="143" font-size="53" font-weight="780" fill="var(--ink)" letter-spacing="-2.8">A reference for</text>
+      <text x="35" y="196" font-size="53" font-weight="780" fill="var(--ink)" letter-spacing="-2.8">your next project.</text>
+      <text x="36" y="253" font-size="17.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.5">Choose one direction and explore it.</text>
+      <text x="36" y="277" font-size="17.8" font-weight="550" fill="var(--muted)" letter-spacing="-0.5">Keep the other three for later.</text>
+      <g>
+      <text x="42" y="398" font-size="46.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Liquid glass</text>
+      <text x="42" y="455.5" font-size="46.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Bento grids</text>
+      <text x="42" y="513" font-size="46.5" font-weight="760" fill="var(--ghost)" letter-spacing="-2">Giant type</text>
+      <ellipse cx="48.5" cy="560" rx="9" ry="9" fill="url(#spectrum)"/>
+      <text x="68.1" y="570.5" font-size="46.5" font-weight="760" fill="var(--ink)" letter-spacing="-2">Soft 3D</text>
+    </g>
+      <g>
+      <text x="36" y="710" font-size="11" font-weight="540" fill="var(--muted)" letter-spacing="-0.14">Motherlode notes</text>
+      <text x="563" y="710" font-size="11" font-weight="530" fill="var(--muted)" text-anchor="end">06 / 06</text>
+    </g>
+    </g>
+</svg>
+<nav aria-label="Slide navigation">
+  <button class="arrow previous" type="button" aria-label="Previous slide"><span aria-hidden="true">←</span></button>
+  <button class="arrow next" type="button" aria-label="Next slide"><span aria-hidden="true">→</span></button>
+</nav>
+<span class="status" aria-live="polite"></span>
+</main>
+<script>
+  const artwork = document.querySelector('.art');
+  const slides = [...artwork.querySelectorAll('[data-slide]')];
+  const title = artwork.querySelector('title');
+  const live = document.querySelector('.status');
+  let index = 0;
+  let touch;
+  function showSlide(number, updateAddress = true) {
+    const parsed = Number(number);
+    index = Number.isInteger(parsed) ? Math.max(1, Math.min(slides.length, parsed)) - 1 : 0;
+    slides.forEach((slide, i) => slide.setAttribute('aria-hidden', String(i !== index)));
+    const description = `Slide ${index + 1} of ${slides.length}. ${slides[index].dataset.description}`;
+    title.textContent = description;
+    live.textContent = description;
+    if (updateAddress) {
+      const url = new URL(location.href);
+      url.searchParams.set('slide', index + 1);
+      history.replaceState(null, '', url);
+    }
+  }
+  function move(amount) {
+    showSlide(((index + amount + slides.length) % slides.length) + 1);
+  }
+  document.querySelector('.previous').addEventListener('click', () => move(-1));
+  document.querySelector('.next').addEventListener('click', () => move(1));
+  document.addEventListener('keydown', event => {
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.key === 'ArrowRight') move(1);
+    else if (event.key === 'ArrowLeft') move(-1);
+    else if (event.key === 'Home') showSlide(1);
+    else if (event.key === 'End') showSlide(slides.length);
+    else return;
+    event.preventDefault();
+  });
+  artwork.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    touch = { x: event.clientX, y: event.clientY };
+    artwork.setPointerCapture(event.pointerId);
+  });
+  artwork.addEventListener('pointerup', event => {
+    if (!touch) return;
+    const dx = event.clientX - touch.x;
+    if (Math.abs(dx) > 38 && Math.abs(dx) > 1.4 * Math.abs(event.clientY - touch.y)) move(dx > 0 ? -1 : 1);
+    touch = null;
+  });
+  artwork.addEventListener('pointercancel', () => { touch = null; });
+  const readAddress = () => showSlide(new URLSearchParams(location.search).get('slide') || 1, false);
+  readAddress();
+  addEventListener('popstate', readAddress);
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
