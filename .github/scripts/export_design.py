@@ -353,12 +353,14 @@ class Chrome:
         self.previous_frame = output
 
     def capture(self, output):
-        screenshot = self.call("Page.captureScreenshot", {"format": "png", "fromSurface": True,
-            "captureBeyondViewport": False})
+        options = {"format": "png", "fromSurface": True, "captureBeyondViewport": False}
+        if output.suffix == ".jpg":
+            options.update(format="jpeg", quality=100)
+        screenshot = self.call("Page.captureScreenshot", options)
         output.write_bytes(base64.b64decode(screenshot["data"], validate=True))
         with Image.open(output) as image:
             if image.size != self.design.pixels:
-                raise RuntimeError(f"Expected {self.design.pixels} PNG, got {image.size}")
+                raise RuntimeError(f"Expected {self.design.pixels} capture, got {image.size}")
 
 
 def run_command(command, timeout):
@@ -369,7 +371,7 @@ def run_command(command, timeout):
 
 def make_gif(frames, output):
     """Use a shared palette and cumulative GIF ticks to preserve loop timing."""
-    paths = sorted(frames.glob("frame-*.png"))
+    paths = sorted(p for p in frames.glob("frame-*") if p.suffix in (".png", ".jpg"))
     # Start at 12 fps/600px; reduce palette, frame rate, then width if necessary.
     for width, step, colors in [(600, 2, 256), (600, 2, 128), (600, 3, 128),
                                 (600, 4, 64), (480, 4, 64), (360, 4, 64), (240, 6, 32)]:
@@ -377,8 +379,9 @@ def make_gif(frames, output):
         samples = []
         for index in indices:
             with Image.open(paths[index]) as image:
-                samples.append(image.convert("RGB").resize(
-                    (width, max(1, round(image.height * width / image.width))), Image.Resampling.LANCZOS))
+                size = (width, max(1, round(image.height * width / image.width)))
+                image.draft("RGB", size)
+                samples.append(image.convert("RGB").resize(size, Image.Resampling.LANCZOS))
         # Train on samples spread across the whole loop, not just the first frame.
         palette_sheet = Image.new("RGB", (128 * min(16, len(samples)), 128))
         for cell in range(min(16, len(samples))):
@@ -450,7 +453,8 @@ def export(folder, args):
                         if design.loop and args.reuse_page:
                             browser.render(name, design.still, exports / f"{name}.png", args.wait_ms)
                     for index in range(design.frames):
-                        path = frames / f"frame-{index:06d}.png"
+                        suffix = "jpg" if args.video_frame_format == "jpeg" else "png"
+                        path = frames / f"frame-{index:06d}.{suffix}"
                         if args.reuse_page:
                             browser.seek(index / FPS, path)
                         else:
@@ -517,6 +521,8 @@ def main():
     parser.add_argument("--timeout", type=float, default=60, help="Seconds allowed per browser operation (default: 60)")
     parser.add_argument("--wait-ms", type=int, default=100, help="Asset settling time per frame (default: 100 ms)")
     parser.add_argument("--reuse-page", action="store_true", help="Seek already-loaded CSS/WAAPI tracks for faster loops. Omit for designs that build different content on page load for each ?t= value.")
+    parser.add_argument("--video-frame-format", choices=("png", "jpeg"), default="png",
+                        help="Temporary video frames: lossless PNG (default) or quality-100 JPEG. Still exports are always PNG.")
     args = parser.parse_args()
     if args.jobs < 1 or not math.isfinite(args.timeout) or args.timeout <= 0 or args.wait_ms < 0:
         parser.error("jobs and timeout must be positive; wait-ms must be nonnegative")

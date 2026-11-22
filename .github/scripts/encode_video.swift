@@ -1,5 +1,5 @@
 #!/usr/bin/env swift
-// Encode frame-000000.png, frame-000001.png, ... as H.264 using AVFoundation.
+// Encode numbered PNGs or JPEGs as H.264 using AVFoundation.
 // Usage: swift encode_video.swift FRAMES OUTPUT.mp4 [FPS=24]
 // Called by export_design.py; opaque PNGs are expected. Odd dimensions are
 // padded by at most one pixel for H.264. Existing output files are never replaced.
@@ -18,7 +18,7 @@ struct Failure: LocalizedError {
 func readImage(_ url: URL) throws -> CGImage {
     guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
           let image = CGImageSourceCreateImageAtIndex(source, 0, nil) else {
-        throw Failure("Cannot read PNG: \(url.path)")
+        throw Failure("Cannot read frame image: \(url.path)")
     }
     return image
 }
@@ -36,12 +36,12 @@ func encode() async throws {
     let output = URL(fileURLWithPath: args[1]).standardizedFileURL
     guard !fm.fileExists(atPath: output.path) else { throw Failure("Output already exists: \(output.path)") }
     let frames = try fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
-        .filter { $0.lastPathComponent.hasPrefix("frame-") && $0.pathExtension == "png" }
+        .filter { $0.lastPathComponent.hasPrefix("frame-") && ["png", "jpg"].contains($0.pathExtension) }
         .sorted { $0.lastPathComponent < $1.lastPathComponent }
-    guard let first = frames.first else { throw Failure("No frame-*.png files in \(directory.path)") }
+    guard let first = frames.first else { throw Failure("No numbered PNG or JPEG frames in \(directory.path)") }
     for (index, frame) in frames.enumerated() {
-        guard frame.lastPathComponent == String(format: "frame-%06d.png", index) else {
-            throw Failure("Frame numbers must be contiguous and start at frame-000000.png")
+        guard frame.lastPathComponent == String(format: "frame-%06d.", index) + first.pathExtension else {
+            throw Failure("Use one image format and contiguous frame numbers starting at zero")
         }
     }
     let image = try readImage(first)
