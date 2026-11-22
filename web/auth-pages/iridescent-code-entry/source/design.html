@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="900x480">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6">
+<meta name="motherlode:still" content="1.65">
+<title>Iridescent code entry</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #F7F6F4; --tile: #FFFFFF; --ink: #171717; --muted: #535353;
+  --edge: #D9D5D1; --deep: #888A90; --a: #F8B3E0; --b: #B6C5F6;
+  --c: #AFEADD; --d: #FAE7AE; --e: #FFBDCF; --bad: #942A38;
+  --bad-bg: #F9E4E7; --hi: #FFFFFF; --lo: #1B1920; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #FBF9F8; --tile: #FFFFFF; --ink: #252731; --muted: #565C66;
+  --edge: #DBDDE5; --deep: #8D90A3; --a: #DCCBFF; --b: #B7D4FF;
+  --c: #E1F2FC; --d: #FFECCD; --e: #FAD3DD; --bad: #8F304A;
+  --bad-bg: #FAE8F0; --hi: #FFFFFF; --lo: #232536; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171924; --tile: #282C39; --ink: #F4F1F6; --muted: #C3C3D4;
+  --edge: #474858; --deep: #8B8EAD; --a: #B58DC3; --b: #7F98D6;
+  --c: #88C7BB; --d: #DDC78F; --e: #C693B4; --bad: #FFC0C8;
+  --bad-bg: #482C3A; --hi: #FFFFFF; --lo: #090B12; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #F0F0F0; --tile: #FDFDFD; --ink: #1D1D1D; --muted: #545454;
+  --edge: #CECECE; --deep: #8E8E8E; --a: #D6D6D6; --b: #AEAEAE;
+  --c: #E2E2E2; --d: #C0C0C0; --e: #F1F1F1; --bad: #353535;
+  --bad-bg: #DDDDDD; --hi: #FFFFFF; --lo: #111111; --clear: transparent;
+}
+[data-colorway="opal"] {
+  --bg: #F4F1F6; --tile: #FFFCFF; --ink: #30283B; --muted: #61596A;
+  --edge: #DDD7E3; --deep: #A59AB0; --a: #DCA9F6; --b: #B1C5FF;
+  --c: #AFF2EB; --d: #F8DEAA; --e: #FDB9D8; --bad: #883A57;
+  --bad-bg: #F9E5EE; --hi: #FFFFFF; --lo: #302336; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #E9F3F1; --tile: #F9FFFE; --ink: #183C38; --muted: #486661;
+  --edge: #C6DAD6; --deep: #85A3A3; --a: #89CEC8; --b: #A4C6E8;
+  --c: #86D8C0; --d: #CBE7B2; --e: #BDDDEB; --bad: #853A46;
+  --bad-bg: #FAE7EA; --hi: #FFFFFF; --lo: #102E31; --clear: transparent;
+}
+[data-colorway="rose"] {
+  --bg: #F7EFEB; --tile: #FFF9F6; --ink: #3B292E; --muted: #68545A;
+  --edge: #DFD1D0; --deep: #AC969F; --a: #F58FB0; --b: #C5B2F2;
+  --c: #E8C6D4; --d: #FADD9A; --e: #FCB188; --bad: #912E42;
+  --bad-bg: #FCE6E9; --hi: #FFFFFF; --lo: #34202B; --clear: transparent;
+}
+[data-colorway="dusk"] {
+  --bg: #222436; --tile: #38384E; --ink: #F8F1FF; --muted: #CBC5DA;
+  --edge: #55526B; --deep: #908AA4; --a: #B09CD1; --b: #8DA5E9;
+  --c: #87C8CD; --d: #E3CF9C; --e: #D59ABA; --bad: #FFC0D5;
+  --bad-bg: #543245; --hi: #FFFFFF; --lo: #11101D; --clear: transparent;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: Inter, Arial, sans-serif; color: var(--ink); }
+main { position: relative; isolation: isolate; width: 900px; height: 480px; overflow: hidden; background:
+  radial-gradient(ellipse at 50% 45%, color-mix(in srgb, var(--bg) 91%, var(--tile)), var(--bg) 74%); }
+@property --turn { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+.rim { position: absolute; z-index: -1; width: 380px; height: 295px; pointer-events: none;
+  filter: drop-shadow(1px 10px 5px color-mix(in srgb, var(--deep) 21%, var(--clear))) blur(1.7px); }
+.rim-top { right: -70px; top: -95px; transform: rotate(-15deg); }
+.rim-bottom { left: -197px; bottom: -208px; width: 453px; height: 339px; transform: rotate(18deg); }
+.tube, .rim::before, .rim::after { position: absolute; inset: 0; border-radius: 50%; }
+.tube { opacity: .82; background: conic-gradient(from var(--turn), var(--a), var(--b), var(--c), var(--d), var(--e), var(--a));
+  mask: radial-gradient(ellipse closest-side, var(--clear) 62%, var(--lo) 66% 94%, var(--clear) 100%);
+  animation: iridescence 3s linear infinite; }
+.rim-bottom .tube { animation-direction: reverse; }
+.rim::before { content: ""; inset: 8px 1px -8px;
+  background: var(--deep); opacity: .20; mask: radial-gradient(ellipse closest-side, var(--clear) 60%, var(--lo) 72% 86%, var(--clear) 99%); }
+.rim::after { content: ""; background: radial-gradient(ellipse closest-side,
+  var(--clear) 60%, color-mix(in srgb, var(--hi) 76%, var(--clear)) 68%,
+  color-mix(in srgb, var(--hi) 31%, var(--clear)) 77%, var(--clear) 92%);
+  transform: translate(-2px,-3px); }
+@keyframes iridescence { to { --turn: 360deg; } }
+h1, .sub, .entry, .success, .status, .quick, .notice { position: absolute; left: 50%; }
+h1 { width: 100%; top: 110px; margin: 0; transform: translateX(-50%) scaleX(1.09); text-align: center; font-size: 36px; line-height: 1.2; font-weight: 535; letter-spacing: -.064em; }
+.sub { width: 100%; top: 167px; margin: 0; transform: translateX(-50%); text-align: center; font-size: 19px; color: var(--muted); letter-spacing: -.025em; }
+.entry { top: 234px; width: 515px; height: 91px; margin-left: -257.5px; }
+.tiles { display: flex; align-items: center; justify-content: center; gap: 14px; height: 100%; }
+.tile { position: relative; display: grid; place-items: center; width: 72px; height: 88px; flex: none; border-radius: 17px;
+  background: var(--tile); box-shadow: 0 2px 4px color-mix(in srgb,var(--lo) 5%,var(--clear)), 0 12px 19px -10px color-mix(in srgb,var(--lo) 13%,var(--clear)); }
+.tile:nth-child(4) { margin-left: 16px; }
+.focus-ring { position: absolute; inset: -1px; border-radius: 18px; border: 2.3px solid var(--ink); opacity: 0; }
+.digit { font-size: 48px; line-height: 1; font-weight: 620; letter-spacing: -.065em; font-variant-numeric: tabular-nums; }
+.cursor { position: absolute; top: 22px; left: calc(50% - 1px); width: 2px; height: 41px; border-radius: 2px; background: var(--ink); opacity: 0; }
+.code { position: absolute; inset: 0; cursor: text; width: 100%; height: 100%; border: 0; opacity: 0; font: inherit; }
+.success { top: 226px; width: 116px; height: 93px; margin-left: -58px; display: grid; place-items: center; opacity: 0; pointer-events: none; }
+.success svg { width: 116px; height: 93px; }
+.tick { fill: none; stroke: var(--ink); stroke-width: 5.5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 120; stroke-dashoffset: 120; }
+.status { top: 341px; width: 100%; margin: 0 0 0 -50%; text-align: center; color: var(--muted); font-size: 17px; opacity: 0; }
+.quick, .notice { transform: translateX(-50%); display: none; background: var(--tile); color: var(--ink); border: 1px solid color-mix(in srgb,var(--edge) 55%,var(--clear)); box-shadow: 0 7px 22px color-mix(in srgb,var(--lo) 9%,var(--clear)); }
+.quick { top: 342px; height: 42px; align-items: center; gap: 12px; border-radius: 13px; padding: 0 20px; font: 14px Inter, sans-serif; cursor: pointer; color: var(--muted); }
+.quick b { color: var(--ink); font-size: 16px; letter-spacing: .08em; }
+.quick:active { transform: translateX(-50%) scale(.97); }
+.notice { top: 14px; width: 440px; height: 72px; align-items: center; border-radius: 20px; gap: 12px; padding: 13px 16px; }
+.notice-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px; background: var(--c); color: var(--lo); }
+.notice-icon svg { width: 25px; height: 25px; }
+.notice div:last-child { display: grid; gap: 3px; }
+.notice strong { font-size: 15px; }.notice small { font-size: 14px; color: var(--muted); }
+main[data-mode="live"][data-state="empty"] :is(.quick,.notice) { display: flex; }
+main[data-mode="live"] .tile.active .focus-ring, main[data-mode="live"] .tile.active .cursor { opacity: 1; }
+main[data-mode="live"] .tile.active .cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+main[data-state="checking"] .tiles { opacity: .54; }
+main[data-state="error"] .tile { background: var(--bad-bg); box-shadow: inset 0 0 0 1.8px var(--bad); }
+main[data-state="error"] .status { color: var(--bad); }
+main[data-mode="live"]:is([data-state="checking"],[data-state="error"],[data-state="verified"]) .status { opacity: 1; }
+main[data-state="verified"] .tiles { opacity: 0; visibility: hidden; }
+main[data-state="verified"] .success { opacity: 1; }
+main[data-state="verified"] .tick { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) { .tube { animation: none; } }
+</style>
+</head>
+<body>
+<main data-mode="demo" data-state="demo" aria-label="Verification code example">
+  <div class="rim rim-top" aria-hidden="true"><i class="tube"></i></div><div class="rim rim-bottom" aria-hidden="true"><i class="tube"></i></div>
+  <h1 id="title">Enter the code</h1><p class="sub" id="destination">Sent to +1 (202) 555-0146</p>
+  <div class="entry"><div class="tiles" aria-hidden="true"></div>
+    <input class="code" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" spellcheck="false" aria-labelledby="title" aria-describedby="destination feedback">
+  </div>
+  <div class="success" aria-hidden="true"><svg viewBox="0 0 116 93"><path class="tick" pathLength="120" d="m11 47 32 31 62-66"/></svg></div>
+  <p class="status" id="feedback" role="status" aria-live="polite"></p>
+  <aside class="notice" aria-hidden="true"><span class="notice-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C5.8 2 2 6.1 2 10.5c0 3.1 1.3 5.5 3.3 7.1l-1.2 3.1 4.4-1.5a12.8 12.8 0 0 0 3.5.5c5.7 0 10-3.8 10-8.9C22 5.8 17.6 2 12 2Z"/></svg></span><div><strong>Messages</strong><small>Your sample code is 516204.</small></div></aside>
+  <button class="quick" type="button">From Messages <b>516 204</b></button>
+</main>
+<script>
+  const screen = document.querySelector('main');
+  const slots = document.querySelector('.tiles');
+  const field = document.querySelector('.code');
+  const success = document.querySelector('.success');
+  const tick = document.querySelector('.tick');
+  const statusText = document.querySelector('.status');
+  const sample = '516204';
+  const tiles = Array.from(sample, () => {
+    const tile = document.createElement('span');
+    tile.className = 'tile';
+    tile.innerHTML = '<i class="focus-ring"></i><b class="digit"></b><i class="cursor"></i>';
+    slots.append(tile);
+    return tile;
+  });
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const loops = [];
+  let checkTimer;
+  function track(element, frames) {
+    const animation = element.animate(frames, { duration: 6000, iterations: Infinity, fill: 'both' });
+    loops.push(animation);
+    return animation;
+  }
+  function demo() {
+    clearTimeout(checkTimer);
+    loops.splice(0).forEach(animation => animation.cancel());
+    screen.dataset.mode = 'demo';
+    statusText.setAttribute('aria-hidden', 'true');
+    screen.dataset.state = 'demo';
+    field.value = '';
+    field.setAttribute('aria-invalid', 'false');
+    statusText.textContent = 'Verified';
+    const entered = [.09, .13, .17, .21, .37, .405];
+    tiles.forEach((tile, index) => {
+      tile.classList.remove('active');
+      const digit = tile.querySelector('.digit');
+      digit.textContent = sample[index];
+      const start = entered[index];
+      track(digit, [
+        { offset: 0, opacity: 0 }, { offset: start, opacity: 0, transform: 'translateY(7px)', filter: 'blur(4px)', easing: 'ease-out' },
+        { offset: start + .028, opacity: 1, transform: 'translateY(0)', filter: 'blur(0px)' },
+        { offset: .55, opacity: 1 }, { offset: .61, opacity: .2 }, { offset: .65, opacity: 0 }, { offset: 1, opacity: 0 }
+      ]);
+      const on = index === 0 ? 0 : entered[index - 1];
+      const frames = index === 0 ? [{offset:0,opacity:1}] : [{offset:0,opacity:0},{offset:on-.001,opacity:0},{offset:on,opacity:1}];
+      frames.push({offset:start-.002,opacity:1},{offset:start,opacity:0},{offset:.94,opacity:0});
+      if (index === 0) frames.push({offset:.95,opacity:1});
+      frames.push({offset:1,opacity:index===0?1:0});
+      track(tile.querySelector('.focus-ring'),frames);
+      track(tile.querySelector('.cursor'),frames);
+    });
+    track(slots, [
+      {offset:0,opacity:1,transform:'scale(1)'},{offset:.54,opacity:1,transform:'scale(1)'},
+      {offset:.59,opacity:.87,transform:'scale(.99)'},{offset:.63,opacity:.78,transform:'scale(.94)'},
+      {offset:.66,opacity:0,transform:'scale(.82)'},{offset:.925,opacity:0,transform:'scale(.95)'},
+      {offset:.955,opacity:1,transform:'scale(1)'},{offset:1,opacity:1,transform:'scale(1)'}
+    ]);
+    track(success,[{offset:0,opacity:0},{offset:.635,opacity:0},{offset:.66,opacity:1},{offset:.90,opacity:1},{offset:.94,opacity:0},{offset:1,opacity:0}]);
+    track(tick,[{offset:0,strokeDashoffset:120},{offset:.64,strokeDashoffset:120,easing:'ease-out'},{offset:.72,strokeDashoffset:0},{offset:1,strokeDashoffset:0}]);
+    track(statusText,[{offset:0,opacity:0},{offset:.70,opacity:0},{offset:.75,opacity:1},{offset:.90,opacity:1},{offset:.94,opacity:0},{offset:1,opacity:0}]);
+    if (reduced && !new URLSearchParams(location.search).has('t')) {
+      loops.forEach(animation => { animation.pause(); animation.currentTime=1650; });
+    }
+  }
+  function live() {
+    if (screen.dataset.mode === 'live') return;
+    loops.splice(0).forEach(animation => animation.cancel());
+    screen.dataset.mode = 'live';
+    statusText.removeAttribute('aria-hidden');
+    field.value = '';
+    update();
+  }
+  function update() {
+    clearTimeout(checkTimer);
+    const value = field.value.replace(/\D/g,'').slice(0,6);
+    field.value = value;
+    field.setAttribute('aria-invalid','false');
+    screen.dataset.state = value ? 'typing' : 'empty';
+    statusText.textContent = '';
+    tiles.forEach((tile,index) => {
+      tile.querySelector('.digit').textContent = value[index] || '';
+      tile.classList.toggle('active', index === value.length);
+    });
+    if (value.length !== 6) return;
+    screen.dataset.state = 'checking';
+    statusText.textContent = 'Checking…';
+    checkTimer = setTimeout(() => {
+      const verified = value === sample;
+      screen.dataset.state = verified ? 'verified' : 'error';
+      field.setAttribute('aria-invalid', String(!verified));
+      statusText.textContent = verified ? 'Verified' : 'Wrong code';
+      if (verified) {
+        if (!reduced) tick.animate([{strokeDashoffset:120},{strokeDashoffset:0}],{duration:340,easing:'ease-out'});
+      } else {
+        field.select();
+        if (!reduced) slots.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(5px)'},{transform:'translateX(-2px)'},{transform:'translateX(0)'}],{duration:240});
+      }
+    },380);
+  }
+  field.addEventListener('focus', live);
+  field.addEventListener('input', () => { live(); update(); });
+  field.addEventListener('paste', event => {
+    event.preventDefault(); live(); field.value = event.clipboardData.getData('text').replace(/\D/g,'').slice(0,6); update();
+  });
+  document.querySelector('.quick').addEventListener('click', () => {
+    live(); field.value = sample; update(); field.focus();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { field.blur(); demo(); return; }
+    if (/^\d$/.test(event.key) && (screen.dataset.mode === 'demo' || screen.dataset.state === 'verified')) {
+      event.preventDefault(); live(); field.focus(); field.value = event.key; update();
+    }
+  });
+  demo();
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>

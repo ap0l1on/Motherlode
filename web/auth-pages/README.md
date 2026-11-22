@@ -3,4 +3,12 @@
 
 Sign-in, sign-up and password reset pages.
 
-Part of [Web](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Web](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="iridescent-code-entry/"><img src="iridescent-code-entry/preview.gif" width="260" alt="Iridescent code entry"></a><br><a href="iridescent-code-entry/"><b>Iridescent code entry</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
