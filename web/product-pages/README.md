@@ -3,4 +3,12 @@
 
 Product detail pages.
 
-Part of [Web](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Web](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="cherry-cola-morph/"><img src="cherry-cola-morph/preview.gif" width="260" alt="Cherry cola product morph"></a><br><a href="cherry-cola-morph/"><b>Cherry cola product morph</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
