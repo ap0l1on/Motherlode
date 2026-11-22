@@ -6,7 +6,7 @@ Teaching and learning materials.
 | Category | What goes in it |
 | --- | --- |
 | [Worksheets](worksheets/) | Worksheets |
-| [Flashcards](flashcards/) | Flashcards |
+| [Flashcards](flashcards/) | Flashcards · **1 design** |
 | [Quizzes](quizzes/) | Quizzes and polls |
 | [Test papers](test-papers/) | Mock tests and exam papers |
 | [Answer sheets](answer-sheets/) | Answer sheets and keys |
