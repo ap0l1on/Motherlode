@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1140x624">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="12">
+<meta name="motherlode:still" content="3.6">
+<title>Lunar gravity</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #020204; --surface: #0D0D13; --ink: #F1F1F3; --muted: #D3D0D8;
+  --accent: #A6A3B1; --on-accent: #101015; --second: #898794; --third: #595763;
+  --ivory: #E8E7EF; --shade: #53515D; --outline: #75747F; --good: #B4B0BE;
+  --hi: #FFFFFF; --lo: #040409; --clear: transparent; --photo: none;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.74);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.84);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(321deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.63);
+}
+*{box-sizing:border-box}html,body{margin:0;width:1140px;height:624px;overflow:hidden;background:var(--bg)}main{position:relative;width:570px;height:312px;transform:scale(2);transform-origin:0 0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;overflow:hidden;border-radius:19px}
+.copy{position:absolute;left:35px;top:68px;z-index:2}.copy h1{margin:0;font-size:49px;line-height:.95;letter-spacing:-3.55px;font-weight:760;background:linear-gradient(155deg,var(--hi) 3%,var(--ink) 41%,var(--third) 93%);color:var(--clear);background-clip:text}.copy p{margin:13px 0 0;width:183px;font-size:10px;line-height:17px;font-weight:425;color:var(--muted)}
+.cosmos{position:absolute;left:224px;top:-15px;width:348px;height:342px;touch-action:none;cursor:grab}.cosmos:active{cursor:grabbing}.cosmos svg{width:100%;height:100%;overflow:visible}.globe {position:absolute;right:16px;top:18px;width:23px;height:23px;border:1px solid var(--surface);border-radius:50%;background:color-mix(in srgb,var(--ink) 6%,var(--bg));color:var(--accent);display:grid;place-items:center;cursor:pointer}.globe svg{width:11px;height:11px;fill:none;stroke:currentColor;stroke-width:1}.globe:focus-visible,.cosmos:focus-visible{outline:1px solid var(--accent);outline-offset:2px}
+</style></head><body><main><div class="copy"><h1>Lunar<br>Gravity.</h1><p>Explore a moon shaped by ancient impacts. Set its surface in motion, change the lighting, and follow the fragments in orbit.</p></div><div class="cosmos" role="slider" aria-label="Lunar rotation" aria-valuemin="0" aria-valuemax="360" aria-valuenow="0" tabindex="0"><svg viewBox="0 0 348 342" aria-hidden="true"><defs>
+<clipPath id="disc"><circle cx="161" cy="169" r="71"/></clipPath><radialGradient id="light" cx="31%" cy="20%" r="89%"><stop stop-color="var(--ivory)" stop-opacity=".12"/><stop offset=".52" stop-color="var(--clear)"/><stop offset=".85" stop-color="var(--lo)" stop-opacity=".35"/><stop offset=".998" stop-color="var(--lo)" stop-opacity=".87"/></radialGradient><radialGradient id="halo"><stop stop-color="var(--outline)" stop-opacity=".31"/><stop offset=".48" stop-color="var(--second)" stop-opacity=".12"/><stop offset="1" stop-color="var(--clear)"/></radialGradient>
+<filter id="surface" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".032" numOctaves="5" seed="21" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".65"/></feComponentTransfer></filter><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".43" numOctaves="2" seed="53"/><feColorMatrix type="saturate" values="0"/></filter><radialGradient id="rock" cx="26%" cy="23%" r="91%"><stop stop-color="var(--ivory)"/><stop offset=".6" stop-color="var(--second)"/><stop offset="1" stop-color="var(--lo)"/></radialGradient></defs>
+<ellipse cx="161" cy="168" rx="115" ry="143" fill="url(#halo)"/><g class="dust"></g><g clip-path="url(#disc)"><circle cx="161" cy="169" r="71" fill="var(--accent)"/><g class="geology"><image x="79" y="88" width="165" height="162" href="original-lunar-surface.webp" preserveAspectRatio="none" style="filter:var(--photo)"/></g><rect x="89" y="97" width="144" height="144" filter="url(#surface)" opacity=".22" style="mix-blend-mode:multiply"/><rect x="89" y="97" width="144" height="144" filter="url(#grain)" opacity=".2" style="mix-blend-mode:overlay"/><circle cx="161" cy="169" r="71" fill="url(#light)"/></g><g class="rocks"></g></svg></div><button type="button" class="globe" aria-label="Reverse orbit"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.4"/><ellipse cx="8" cy="8" rx="3" ry="6.4"/><path d="M2 6h12M2 10h12"/></svg></button></main><script>
+const ns='http://www.w3.org/2000/svg',$=s=>document.querySelector(s);let seed=219,angle=0,drag=null,moon;const tracks=[];function rand(){seed=(1664525*seed+1013904223)>>>0;return seed/4294967296;}
+function node(parent,tag,attrs){const el=document.createElementNS(ns,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);parent.append(el);return el;}
+const dust=$('.dust');for(let i=0;i<510;i++){const a=rand()*Math.PI*2,r=55+Math.pow(rand(),2)*107,x=161+Math.cos(a)*r*.86,y=169+Math.sin(a)*r*1.22;node(dust,'circle',{cx:x,cy:y,r:rand()*.6+.12,fill:'var(--ivory)',opacity:(rand()*.35).toFixed(2)});}
+const geo=$('.geology');for(let i=0;i<100;i++){const x=66+rand()*194,y=81+rand()*171,r=.45+Math.pow(rand(),6)*9.5,w=r*(.44+Math.sqrt(Math.max(.015,1-Math.pow((x-161)/78,2)))*.55);const col=i%4===0?'--third':'--shade';node(geo,'ellipse',{cx:x,cy:y,rx:w,ry:r*.82,fill:'var('+col+')',opacity:.03+rand()*.07});if(r>2)node(geo,'path',{d:'M'+(x-w)+' '+y+'a'+w+' '+(r*.82)+' 0 0 0 '+(w*1.6)+' '+(r*.67),fill:'none',stroke:'var(--ivory)','stroke-width':.4+r*.08,opacity:.03+rand()*.06});}
+moon=geo.animate([{transform:'translateX(3px)'},{transform:'translateX(-4px)'},{transform:'translateX(3px)'}],{duration:12000,iterations:Infinity});tracks.push(moon);
+const rocks=$('.rocks');for(let i=0;i<36;i++){const r=1+Math.pow(rand(),2)*5,phase=rand()*Math.PI*2,ax=66+rand()*69,ay=79+rand()*70,x=161+ax*Math.cos(phase),y=169+ay*Math.sin(phase);const el=node(rocks,'path',{d:'M0 '+(-r)+'l'+(r*.71)+' '+(r*.24)+' '+(r*.39)+' '+r+' '+(-r*.43)+' '+(r*.7)+' '+(-r*.88)+' '+(r*.19)+' '+(-r*.63)+' '+(-r*.74)+' '+(r*.18)+' '+(-r*.93)+'Z',fill:'url(#rock)',opacity:.23+rand()*.65});const frames=[];for(let n=0;n<=24;n++){const t=phase+n/24*Math.PI*2;frames.push({offset:n/24,transform:'translate('+(161+ax*Math.cos(t))+'px,'+(169+ay*Math.sin(t))+'px) scale('+(0.45+.5*(1+Math.sin(t))/2)+')',opacity:Math.max(.09,Math.cos(t)>-.42&&Math.abs(x-161)+Math.abs(y-169)<100?.14:.75)});}tracks.push(el.animate(frames,{duration:12000,iterations:Infinity}));}
+const control=$('.cosmos');function setAngle(a){angle=(a+360)%360;tracks.forEach(t=>{t.pause();t.currentTime=angle/360*12000;});control.setAttribute('aria-valuenow',String(Math.round(angle)));}
+control.onpointerdown=e=>{control.setPointerCapture(e.pointerId);drag=e.clientX;};control.onpointermove=e=>{if(drag===null)return;setAngle(angle+(e.clientX-drag)*.55);drag=e.clientX;};control.onpointerup=()=>drag=null;control.onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();setAngle(angle+(e.key==='ArrowLeft'?-12:12));}};$('.globe').onclick=()=>tracks.forEach(t=>{t.playbackRate=-t.playbackRate;t.play();});if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))setAngle(108);
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
