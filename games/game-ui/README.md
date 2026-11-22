@@ -5,10 +5,10 @@ Game interfaces.
 
 Part of [Games](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="tilted-target-arcade/"><img src="tilted-target-arcade/preview.gif" width="260" alt="Tilted target arcade"></a><br><a href="tilted-target-arcade/"><b>Tilted target arcade</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="snowbound-chimney-crossing/"><img src="snowbound-chimney-crossing/preview.gif" width="260" alt="Snowbound chimney crossing"></a><br><a href="snowbound-chimney-crossing/"><b>Snowbound chimney crossing</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="tilted-target-arcade/"><img src="tilted-target-arcade/preview.gif" width="260" alt="Tilted target arcade"></a><br><a href="tilted-target-arcade/"><b>Tilted target arcade</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

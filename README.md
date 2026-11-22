@@ -3,7 +3,7 @@
 
 **The mother of all design libraries.**
 
-Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 197 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
+Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 198 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
 ## What's inside
 
@@ -53,7 +53,7 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 | [**Mockups**](mockups/) | [Phones](mockups/phones/) · [Tablets](mockups/tablets/) · [Laptops](mockups/laptops/) · [Desktops](mockups/desktops/) · [Watches](mockups/watches/) · [TVs](mockups/tvs/) · [Browsers](mockups/browsers/) · [Apparel](mockups/apparel/) · [Products](mockups/products/) · [Print](mockups/print/) · [Books](mockups/books/) · [Packaging](mockups/packaging/) · [Signage](mockups/signage/) · [Stationery](mockups/stationery/) · [Social](mockups/social/) · [Scenes](mockups/scenes/) |
 | [**Photo**](photo/) | [Presets](photo/presets/) · [Actions](photo/actions/) · [Overlays](photo/overlays/) · [Collages](photo/collages/) · [Photo layouts](photo/photo-layouts/) · [Retouching](photo/retouching/) · [Stock](photo/stock/) |
 | [**AI**](ai/) | [Image prompts](ai/image-prompts/) · [Video prompts](ai/video-prompts/) · [Style references](ai/style-references/) · [Generated art](ai/generated-art/) · [AI avatars](ai/ai-avatars/) · [Workflows](ai/workflows/) · [LoRAs](ai/loras/) |
-| [**Games**](games/)<br><sub>2 designs</sub> | [Sprites](games/sprites/) · [Pixel art](games/pixel-art/) · [Characters](games/characters/) · [Tilesets](games/tilesets/) · [Backgrounds](games/backgrounds/) · [Items](games/items/) · [Game UI](games/game-ui/) · [HUD](games/hud/) · [Main menus](games/main-menus/) · [Inventories](games/inventories/) · [Skill trees](games/skill-trees/) · [Loading screens](games/loading-screens/) · [Level maps](games/level-maps/) · [VFX](games/vfx/) · [Card games](games/card-games/) · [Board games](games/board-games/) · [Tabletop RPG](games/tabletop-rpg/) · [Game logos](games/game-logos/) · [Key art](games/key-art/) · [Store capsules](games/store-capsules/) · [Achievement badges](games/achievement-badges/) |
+| [**Games**](games/)<br><sub>3 designs</sub> | [Sprites](games/sprites/) · [Pixel art](games/pixel-art/) · [Characters](games/characters/) · [Tilesets](games/tilesets/) · [Backgrounds](games/backgrounds/) · [Items](games/items/) · [Game UI](games/game-ui/) · [HUD](games/hud/) · [Main menus](games/main-menus/) · [Inventories](games/inventories/) · [Skill trees](games/skill-trees/) · [Loading screens](games/loading-screens/) · [Level maps](games/level-maps/) · [VFX](games/vfx/) · [Card games](games/card-games/) · [Board games](games/board-games/) · [Tabletop RPG](games/tabletop-rpg/) · [Game logos](games/game-logos/) · [Key art](games/key-art/) · [Store capsules](games/store-capsules/) · [Achievement badges](games/achievement-badges/) |
 
 ### Social and marketing
 
