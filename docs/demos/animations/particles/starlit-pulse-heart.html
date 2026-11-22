@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x512">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13.5">
+  <meta name="motherlode:still" content="12">
+  <title>Starlit pulse heart</title>
+  <style>
+:root, [data-colorway="original"] { --background: #100715; --shade: #4e203f; --middle: #aa477b; --bright: #e384ad; --highlight: #ffe6f2; --leaf: #c46c9f; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 512px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 512" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Starlit pulse heart</title>
+    <desc id="description">Two paths of tiny pink lights meet at the cleft of a heart, then a cloud of rose stardust fills the outline.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=284,cy=258;
+    function heart(a,s=1) {
+      return [cx+s*11.4*16*Math.sin(a)**3,cy-s*11.4*(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))];
+    }
+    const dust=element("g",{});
+    for(let i=0;i<60;i++){
+      const x=random()*576,y=random()*512,s=.62+random()*.93;
+      element("path",{d:"M0 3C-4 0-4-3-2-3Q0-3 0-1Q2-5 4-2Q5 0 0 3Z",
+        transform:"translate("+x+" "+y+") scale("+s+")",fill:"var(--middle)",opacity:.11+.31*random()},dust);
+    }
+    for(let s=0;s<110;s++) {
+      const t=s/109,a=Math.PI+t*tau,p=heart(a);
+      const node=element("path",{d:"M0 3C-7-1-4-6 0-3C4-6 7-1 0 3Z",transform:"translate("+p[0]+" "+p[1]+") scale(.85)",fill:"var(--highlight)"});
+      const b=.055+Math.min(t,1-t)*.91;
+      node.animate([{offset:0,opacity:0},{offset:b,opacity:0},{offset:b+.029,opacity:1},{offset:.985,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    }
+    const rim=Array.from({length:145},(_,i)=>heart(i*tau/144));
+    function inside(x,y) {
+      let hit=false;for(let i=1;i<rim.length;i++){
+        const [ax,ay]=rim[i-1],[bx,by]=rim[i];
+        if((ay>y)!==(by>y) && x<(bx-ax)*(y-ay)/(by-ay)+ax)hit=!hit;
+      }return hit;
+    }
+    const zones=Array.from({length:19},()=>[]);
+    for(let i=0;i<9400;i++){
+      const x=cx-186+372*random(),y=cy-150+349*random();
+      if(!inside(x,y))continue;
+      const ring=Math.min(18,Math.floor(19*Math.hypot((x-cx)/186,(y-cy)/195)));
+      zones[ring].push("M"+x.toFixed(2)+" "+y.toFixed(2)+"h.22");
+    }
+    for(let g=0;g<19;g++) {
+      const glow=line(drawing,zones[g].join(""),["middle","bright","highlight"][g%3],1.88,.96);
+      const at=.46+g*.024;
+      glow.animate([{offset:0,opacity:0},{offset:at,opacity:0},{offset:at+.06,opacity:.96},{offset:.985,opacity:.96},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7701630672946990356) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

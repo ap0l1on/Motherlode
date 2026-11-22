@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x398"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6"><meta name="motherlode:still" content="0.9">
+<title>Chromatic thread loom</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #202022; --ink: #f5f5f6; --base: #262427; --low: #17191b; --high: #bdccd1; --a: #db1f52; --b: #ff8a16; --c: #c9ce28; --d: #52da37; --e: #12c5b1; --f: #236bdc; --g: #7e3cdd; --h: #d414b5;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:398px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 398" role="img" aria-label="Rainbow threads cross a charcoal field as two moving curves draw and unwind a symmetrical mesh." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1627901;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+const panel=gradient('graphite',[[0,'base'],[63,'bg'],[100,'low']],{x2:'90%',y2:'100%'});rect(0,0,W,H,panel);
+const tones=['a','b','c','d','e','f','g','h'];
+function threadInk(h){
+  h=((h%1)+1)%1*8;const a=Math.floor(h),w=Math.round((1-h%1)*100);
+  return 'color-mix(in srgb,'+css(tones[a])+' '+w+'%,'+css(tones[(a+1)%8])+')';
+}
+function swing(point,t,phase) {
+  const [x,y]=point,sw=Math.sin(phase),cx=x-288,cy=y-199;
+  const r=.50*sw*Math.cos(t*2.1)+.42*Math.sin(phase*2);
+  return [288+cx*Math.cos(r)-cy*Math.sin(r)+sw*30*Math.sin(t*6+cy*.019),199+cy*Math.cos(r)+cx*Math.sin(r)+sw*28*Math.cos(t*4+cx*.011)];
+}
+function drawThread(pointsAt,hue,width=1,opacity=.93) {
+  const thread=path('',{fill:'none',stroke:threadInk(hue),'stroke-width':width,'stroke-opacity':opacity,'stroke-linecap':'round'});const poses=[];
+  for(let k=0;k<=24;k++) {const phase=(k/24-.15)*tau;poses.push(shape(pointsAt(phase)));}
+  tweenPath(thread,poses);
+}
+for(const side of [-1,1])for(const vertical of [-1,1]) {
+  for(let i=0;i<54;i++){
+    const t=i/53,a=t*tau,wall=[288+side*(215-9*Math.sin(t*Math.PI)),199+vertical*(-235+470*t)];
+    const inner=[288+side*(49+47*Math.sin(a+.31)),199+vertical*(120*Math.cos(a+.18))];
+    drawThread(phase=>[swing(wall,t,phase),swing(inner,t+.8,phase)],vertical<0?.83+t*.16:.16-t*.34,1.13,.86);
+  }
+  for(let i=0;i<38;i++) {
+    const t=i/37,a=t*tau,wall=[288+side*(220-220*t),199+vertical*214];
+    const inside=[288+side*(32+65*Math.sin(a-.27)),199+vertical*(109+26*Math.cos(a+.43))];
+    drawThread(p=>[swing(wall,t+.1,p),swing(inside,t+.5,p)],vertical<0?.1+t*.31:.94-t*.19,1.09,.86);
+  }
+}
+for(let i=0;i<94;i++) {
+ const t=i/94,a=t*tau,outer=[288+81*Math.cos(a),188+59*Math.sin(a)],inside=[288+69*Math.cos(a+.4),175+82*Math.sin(a*1.99-.35)];
+ drawThread(p=>[swing(outer,t,p),swing(inside,t+.6,p)],.84+.13*(1+Math.sin(a))*.5,1.02,.68);
+}
+function ribbon(t,vertical,offset) {
+ const x=76+424*t+offset*(.38+.54*Math.sin(t*tau));
+ const y=5+326*(1-Math.abs(2*t-1)**(1.47+offset*.011))+offset*.76;
+ return [x,vertical>0?y:398-y];
+}
+for(const vert of [-1,1])for(let band=-5;band<=5;band+=2.5)for(let patch=0;patch<12;patch++){
+ const seed=patch/12;
+ drawThread(p=>Array.from({length:10},(_,k)=>{const t=seed+k/108;return swing(ribbon(t,vert,band),t+.21,p);}),vert>0?.59+.22*Math.sin(seed*Math.PI):.32-.18*Math.sin(seed*Math.PI),1.02,.92);
+}
+for(const diagonal of [-1,1])for(let band=-1;band<=1;band++){
+ drawThread(p=>Array.from({length:26},(_,k)=>{const t=k/25;const px=81+415*t+8*Math.sin(t*tau)+band*1.1,py=4+390*t+10*Math.sin(t*tau);return swing([diagonal===1?px:576-px,py],t+.7,p);}),.49+band*.02,.84,.72);
+}
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7696407614900718900) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x324">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8.3">
+  <meta name="motherlode:still" content="3.4">
+  <title>Air traffic sweep</title>
+  <style>
+:root, [data-colorway="original"] { --background: #020505; --shade: #31423d; --middle: #2ec354; --bright: #73fa7a; --highlight: #abf5de; --leaf: #7da489; --label: #73fa7a; --heading: #abf5de; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; --heading: #78253d; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; --heading: #ffcfb6; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; --heading: #f1f1f1; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; --heading: #c5f1e6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; --heading: #eaf2c7; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; --heading: #ffdd9e; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; --heading: #eee0ff; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 324px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 324" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Air traffic sweep</title>
+    <desc id="description">A rotating green sweep crosses a four-ring air traffic display. Seven points pulse beside the compact system readout.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 8.3 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=286,cy=193, radius=132, defs=element("defs",{});
+    function label(x,y,text,size,color="label",anchor="start",bold=false){
+      const t=element("text",{x,y,fill:"var(--"+color+")","font-family":"ui-monospace, monospace",
+        "font-size":size,"font-weight":bold?700:400,"text-anchor":anchor});t.textContent=text;
+    }
+    label(13,20,"AIR TRAFFIC SURVEILLANCE",12,"heading","start",true);
+    label(13,33,"RADAR SYSTEM // ONLINE",6.6);
+    label(447,63,"SYSTEM STATUS",8.4);
+    [["RADAR","ONLINE"],["CONTACTS","7"],["TRACKING","7"],["SIGNAL","98.7%"]].forEach(([a,b],i)=>{
+      label(446,84+i*21,a,7.2);label(541,84+i*21,b,7.5,"label","end");});
+    for(let j=1;j<=4;j++)element("circle",{cx,cy,r:radius*j/4,fill:"none",stroke:"var(--shade)","stroke-width":j===4?1.3:.8});
+    for(let i=0;i<4;i++){
+      const a=tau*i/4;line(drawing,pointsPath([[cx,cy],[cx+radius*Math.cos(a),cy+radius*Math.sin(a)]]),"shade",.87);
+      label(cx+(radius+9)*Math.cos(a),cy+2+(radius+8)*Math.sin(a),["E","S","W","N"][i],8.3,"label","middle");
+    }
+    const sweep=element("g",{});sweep.style.transformOrigin=cx+"px "+cy+"px";
+    for(let i=0;i<23;i++){
+      const a=-(22-i)*.015;line(sweep,pointsPath([[cx,cy],[cx+radius*Math.cos(a),cy+radius*Math.sin(a)]]),
+        i>20?"highlight":"middle",1.6,.025+.80*(i/22)**2);}
+    sweep.animate([{transform:"rotate(-88deg)"},{transform:"rotate(272deg)"}],{duration:duration/2,iterations:Infinity,easing:"linear"});
+    const marks=[[52,-46],[-68,-14],[11,72],[-39,53],[85,15],[84,68],[63,-69]];
+    marks.forEach(([x,y],i)=>{
+      const g=element("g",{transform:"translate("+(cx+x)+" "+(cy+y)+")"});
+      const pulse=element("g",{},g);element("circle",{r:6.5,fill:"none",stroke:"var(--bright)","stroke-width":.9},pulse);
+      element("circle",{r:2.4,fill:"var(--highlight)"},pulse);
+      pulse.animate([{opacity:.35,transform:"scale(.68)"},{opacity:1,transform:"scale(1.15)"},{opacity:.35,transform:"scale(.68)"}],
+        {duration:duration/3,iterations:Infinity,delay:-i*477});});
+    element("rect",{x:440,y:199,width:111,height:24,fill:"none",stroke:"var(--middle)","stroke-width":.9});
+    label(495,214,"TRACKING STABLE",7.9,"label","middle");
+    label(19,296,"LOCAL ARRAY 01 // SYSTEM ACTIVE",5.8);label(548,296,"REV 02",5.8,"label","end");
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7698648980296584469) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

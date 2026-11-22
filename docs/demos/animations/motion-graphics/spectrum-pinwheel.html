@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x551">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="15">
+  <meta name="motherlode:still" content="14.4">
+  <title>Spectrum pinwheel</title>
+  <style>
+:root, [data-colorway="original"] { --background: #040404; --shade: #d34b75; --middle: #8975d1; --bright: #65b7d3; --highlight: #8bc684; --leaf: #e69b66; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 551px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 551" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Spectrum pinwheel</title>
+    <desc id="description">Ten fine petals expand outward into a bright spiral of open colored fans.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 15 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx = 290, cy = 268, blades = 10;
+    const colors = ["shade", "middle", "bright", "highlight", "leaf"];
+    const polar = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    for (let row = 0; row < 24; row++) {
+      const u = (row + 1) / 24, radius = 24 + 228 * u, group = element("g", {});
+      for (let i = 0; i < blades; i++) {
+        const angle = i * tau / blades + 2.04 * u;
+        const tip = polar(radius, angle), inside = polar(radius * .90, angle + .51);
+        const base = polar(radius * .18, angle + 1.72);
+        const curve = polar(radius * .53, angle + .74);
+        const p = "M" + cx + " " + cy + "L" + tip.join(" ") + "L" + inside.join(" ")
+          + "Q" + curve.join(" ") + " " + base.join(" ") + "Z";
+        line(group, p, colors[(row + i * 2) % colors.length], 1.16, .90);
+      }
+      const s = .012 + .90 * u;
+      group.animate([{offset: 0, opacity: 0}, {offset: s, opacity: 0}, {offset: s + .027, opacity: 1},
+        {offset: .989, opacity: 1}, {offset: 1, opacity: 0}], {duration, iterations: Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7700868584297270548) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

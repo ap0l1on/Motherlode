@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x299"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.8"><meta name="motherlode:still" content="2.7">
+<title>Pinlight shadow cursor</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #2e3843; --ink: #e3e6e7; --base: #35424b; --low: #222b37; --high: #687781; --a: #70c5be; --b: #e7c879; --c: #b57b93; --d: #b5cfe1; --e: #dba285; --f: #96aab4; --g: #7e8b97; --h: #e4e8dc;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:299px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 299" role="img" aria-label="Small colored squares float over slate and throw long, soft shadows away from a wandering point of light." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1822626;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+const ground=gradient('ground',[[0,'base'],[80,'bg'],[100,'low']],{cx:'65%',cy:'74%',r:'86%'},true);
+rect(0,0,W,H,ground);
+const light=gradient('light',[[0,'high',.20],[100,'high',0]],{},true);
+const spot=circle(0,0,181,light);
+const points=[[28,35,13,'a'],[208,237,6.6,'b'],[383,252,6.5,'c'],[401,238,6.4,'h'],[439,212,7.6,'b'],[487,185,3.4,'h'],[569,119,9.5,'b'],[568,277,4.1,'h'],[55,205,2,'g'],[148,113,2,'g'],[539,-2,7,'a'],[249,289,2.5,'g']];
+const shades=group(),seeds=group();
+function beacon(t){return [288+171*Math.cos(t*tau-.43),170+88*Math.sin(t*tau*2-.62)];}
+function outline(x,y,r,lx,ly) {
+  const theta=Math.atan2(y-ly,x-lx),end=90+238*Math.max(0,1-Math.hypot(x-lx,y-ly)/390);
+  const u=Math.cos(theta),v=Math.sin(theta),half=r*.60;
+  return shape([[x-v*half,y+u*half],[x+u*end-v*(half+end*.06),y+v*end+u*(half+end*.06)],[x+u*end+v*(half+end*.06),y+v*end-u*(half+end*.06)],[x+v*half,y-u*half]],true);
+}
+const gradientId=gradient('cast',[[0,'low',.46],[100,'low',.03]],{x2:'90%',y2:'65%'});
+const live=[];
+for(const [i,[x,y,r,tone]] of points.entries()) {
+  const shadow=path('',{fill:gradientId},shades),diamond=rect(x-r/2,y-r/2,r,r,css(tone),seeds,{rx:.7});origin(diamond,x,y);
+  const rotation=i%2?27:15;
+  animate(diamond,[{transform:'rotate('+rotation+'deg)'},{transform:'rotate('+(rotation+90)+'deg)'}]);
+  const outlines=Array.from({length:35},(_,k)=>outline(x,y,r,...beacon(k/34)));
+  tweenPath(shadow,outlines);
+  const manual=path(outlines[0],{fill:gradientId,visibility:'hidden'},shades);live.push([x,y,r,shadow,manual]);
+}
+animate(spot,Array.from({length:41},(_,k)=>{const [x,y]=beacon(k/40);return {transform:'translate('+x+'px,'+y+'px)'};}));
+const manualSpot=circle(0,0,181,light,stage,{visibility:'hidden'});
+stage.addEventListener('pointermove',e=>{const [x,y]=at(e);spot.style.visibility='hidden';manualSpot.setAttribute('cx',x);manualSpot.setAttribute('cy',y);manualSpot.setAttribute('visibility','visible');for(const [px,py,r,automatic,manual] of live){automatic.style.visibility='hidden';manual.setAttribute('visibility','visible');manual.setAttribute('d',outline(px,py,r,x,y));}});
+stage.addEventListener('pointerleave',()=>{spot.style.visibility='';manualSpot.setAttribute('visibility','hidden');for(const [,,,automatic,manual] of live){automatic.style.visibility='';manual.setAttribute('visibility','hidden');}});
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7694922476085693716) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

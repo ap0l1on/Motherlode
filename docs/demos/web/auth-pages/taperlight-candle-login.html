@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x326"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.8">
+<meta name="motherlode:still" content="3.0">
+<title>Taperlight candle login</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #090811; --surface: #13101c; --text: #ded1c2;
+  --muted: #b1a9ae; --accent: #d5a33f; --button: #a98539;
+  --button-ink: #251b10; --signal: #df6b48; --wall: #e9c982;
+  --wood: #77542d; --recess: #391e0e; --leaf: #687429;
+  --lamp: #fbb851; --screen: #120e10; --reflection: #373132;
+  --paper: #fff; --white: #fff; --black: #000;
+  --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #e5d9c5; --surface: #fff7e8; --text: #302a23;
+  --muted: #4e4539; --accent: #29775a; --button: #3d4b3f;
+  --button-ink: #fff9e9; --signal: #a14439; --wall: #eddfc8;
+  --wood: #c5a988; --recess: #75634e; --leaf: #758d50;
+  --lamp: #ffe1aa; --screen: #36383b; --reflection: #626365;
+}
+[data-colorway="dark"] {
+  --bg: #202431; --surface: #202837; --text: #f2f5ff;
+  --muted: #d2d9e8; --accent: #73d6be; --button: #ccd6ef;
+  --button-ink: #162331; --signal: #e99588; --wall: #625f67;
+  --wood: #5d4b4d; --recess: #291f2a; --leaf: #465a45;
+  --lamp: #d2a27d; --screen: #0c1018; --reflection: #293040;
+}
+[data-colorway="mono"] {
+  --bg: #252525; --surface: #323232; --text: #fafafa;
+  --muted: #e1e1e1; --accent: #bcbcbc; --button: #ededed;
+  --button-ink: #202020; --signal: #b3b3b3; --wall: #c2c2c2;
+  --wood: #818181; --recess: #383838; --leaf: #666666;
+  --lamp: #cecece; --screen: #131313; --reflection: #393939;
+}
+[data-colorway="ocean"] {
+  --bg: #244752; --surface: #25464d; --text: #f1ffff;
+  --muted: #d2e9e9; --accent: #65d7d1; --button: #dbf5f3;
+  --button-ink: #13393f; --signal: #e9b084; --wall: #b7cbd0;
+  --wood: #728f97; --recess: #304855; --leaf: #47736b;
+  --lamp: #d8ddd2; --screen: #0c1b25; --reflection: #2b4653;
+}
+[data-colorway="matcha"] {
+  --bg: #47503b; --surface: #39483a; --text: #fffbe9;
+  --muted: #e2e7ce; --accent: #bfda8d; --button: #e6ebcc;
+  --button-ink: #283522; --signal: #e2a37c; --wall: #d0c9a8;
+  --wood: #8e8b64; --recess: #414331; --leaf: #687740;
+  --lamp: #e5ca93; --screen: #172019; --reflection: #354238;
+}
+[data-colorway="sunset"] {
+  --bg: #603e42; --surface: #54363c; --text: #fff7ed;
+  --muted: #f2dacf; --accent: #efad86; --button: #ffe4cf;
+  --button-ink: #40242b; --signal: #f38c92; --wall: #e5bda5;
+  --wood: #aa7462; --recess: #643c37; --leaf: #8f7851;
+  --lamp: #ffc58a; --screen: #251823; --reflection: #51313d;
+}
+[data-colorway="berry"] {
+  --bg: #513348; --surface: #493145; --text: #fff3fb;
+  --muted: #f2dce9; --accent: #db95c5; --button: #f4d9ed;
+  --button-ink: #3b2337; --signal: #edb39d; --wall: #d6bccf;
+  --wood: #98758c; --recess: #513448; --leaf: #736074;
+  --lamp: #f3c2ce; --screen: #201422; --reflection: #453046;
+}
+:root{--width:576px;--height:326px}
+*{box-sizing:border-box} html,body{margin:0}body{width:var(--width);height:var(--height);overflow:hidden;background:var(--bg);color:var(--text);font:14px/1.35 Georgia,serif;-webkit-font-smoothing:antialiased}main{width:100%;height:100%;isolation:isolate;position:relative;overflow:hidden}.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:var(--clear)}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ico{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}h1,h2,p{margin:0}.a11y{position:absolute;width:1px;height:1px;clip-path:inset(50%);white-space:nowrap;overflow:hidden}
+[data-colorway="light"] {--bg: #f3eade; --surface: #fff8ed; --text: #2e2a27; --muted: #514840; --accent: #b56836; --button: #75543b; --button-ink: #f7e9d7; --wood: #9bad8b; --lamp: #c78b70; --reflection: #5f887d;}
+[data-colorway="dark"] {--bg: #1b232d; --surface: #303847; --text: #f3f5fa; --muted: #d2dbe8; --accent: #91b8e8; --button: #9bbcdc; --button-ink: #182a36; --wood: #698196; --lamp: #bb8d9c; --reflection: #6f9c9a;}
+[data-colorway="mono"] {--bg: #ddd; --surface: #f4f4f4; --text: #191919; --muted: #484848; --accent: #666; --button: #555; --button-ink: #fff; --wood: #777; --lamp: #aaa; --reflection: #909090;}
+[data-colorway="ocean"] {--bg: #c1e0e0; --surface: #e4f2ed; --text: #183c45; --muted: #3c5b62; --accent: #43869a; --button: #3a6e7e; --button-ink: #f0f7ed; --wood: #55949c; --lamp: #9bb5b1; --reflection: #6c8b9e;}
+[data-colorway="matcha"] {--bg: #d8dfc2; --surface: #eef1da; --text: #2a3c2c; --muted: #4b5a40; --accent: #698653; --button: #526c43; --button-ink: #f6f7e7; --wood: #9aab73; --lamp: #ba9e7d; --reflection: #7d9d85;}
+[data-colorway="sunset"] {--bg: #efd0ba; --surface: #ffebda; --text: #4e302d; --muted: #715047; --accent: #b86961; --button: #934e4f; --button-ink: #fff1e7; --wood: #dca37d; --lamp: #aa808f; --reflection: #a79682;}
+[data-colorway="berry"] {--bg: #e4ccdc; --surface: #f6e6ed; --text: #452b41; --muted: #675165; --accent: #a66894; --button: #854e74; --button-ink: #fff0f5; --wood: #ba8ba9; --lamp: #c09392; --reflection: #9184ac;}.auth,.auth *{box-sizing:border-box}.auth{display:flex;flex-direction:column;position:absolute}.field{display:block;min-width:0}.field-name{display:block}.input-wrap{display:flex;align-items:center;position:relative}.input-wrap>.ico{position:absolute;pointer-events:none;left:6px}.field input{display:block;width:100%;min-width:0;outline-offset:1px}.field input::placeholder{color:var(--muted);opacity:1}.input-wrap:has(svg) input{padding-left:22px}.submit{display:grid;place-items:center;background:var(--button);color:var(--button-ink);font-weight:650}.text-action{padding:0}.feedback{display:none;position:absolute;bottom:3px;left:4px;right:4px;text-align:center;font-size:7px}.feedback:not(:empty){display:block}.socials{display:flex;justify-content:center;gap:8px}.socials button{border:1px solid currentColor;border-radius:50%;width:24px;height:24px;display:grid;place-items:center;padding:0}.auth :focus-visible{outline-color:var(--accent)}
+
+@property --lit{syntax:'<number>';inherits:true;initial-value:0}.night{--lit:0;position:absolute;inset:0;background:radial-gradient(ellipse at 48% 56%,color-mix(in srgb,var(--surface) calc(var(--lit)*99%),var(--bg)),var(--bg) 90%);font-family:Georgia,serif}.lantern{left:214px;top:49px;width:147px;height:215px;padding:17px 20px 10px;align-items:stretch;text-align:center;border-radius:8px;background:linear-gradient(130deg,color-mix(in srgb,var(--surface) 92%,var(--bg)),var(--surface));box-shadow:3px 9px 22px color-mix(in srgb,var(--black) 32%,var(--clear));opacity:var(--lit);transform:translateY(calc(8px * (1 - var(--lit))))}.emblem{height:30px;display:grid;place-items:center}.emblem .candle{width:8px;height:22px}.lantern h1{font-size:14px;font-weight:450;letter-spacing:1px;margin:7px 0 0}.title-small{font-size:4.4px;color:var(--muted);letter-spacing:1.55px;margin:0 0 12px}.lantern .field-name{text-align:left;color:var(--muted);text-transform:uppercase;font-size:4.6px;letter-spacing:1.1px;margin-bottom:4px}.lantern input{width:100%;height:20px;padding:4px 8px;border:1px solid color-mix(in srgb,var(--text) 5%,var(--surface));border-radius:4px;background:color-mix(in srgb,var(--surface) 95%,var(--text));font-size:6px}.lantern .field{margin-bottom:8px}.lantern .submit{border-radius:5px;height:20px;font:600 5.9px Georgia,serif;letter-spacing:1.4px;margin-top:4px}.night .holder{position:absolute;left:calc(263px - 243px * var(--lit));bottom:8px;width:49px;height:63px;display:grid;place-items:center}.holder .candle{width:calc(35px - 11px * var(--lit));height:59px;overflow:visible}.holder:after{content:"";position:absolute;bottom:6px;width:calc(93px - 54px * var(--lit));height:3px;border-radius:50%;background:linear-gradient(90deg,var(--clear),var(--button),var(--clear));opacity:.67}.flame{filter:drop-shadow(0 0 3px var(--lamp));transform-origin:16px 13px}.ignite,.extinguish{position:absolute;border:1px solid color-mix(in srgb,var(--text) 17%,var(--clear));font:600 5px Georgia,serif;letter-spacing:1.75px;color:var(--muted);border-radius:12px}.ignite{left:239px;bottom:66px;width:99px;height:18px;opacity:calc(1 - var(--lit))}.extinguish{right:8px;bottom:6px;height:13px;font-size:4.2px;opacity:var(--lit)}.lantern .feedback{bottom:-12px}
+
+</style>
+</head><body><main>
+<section class="night"><form class="auth lantern"><div class="emblem"><svg viewBox="0 0 34 70" aria-hidden="true" class="candle"><defs><linearGradient id="stand" x2="100%" y2="0%"><stop offset="0%" stop-color="var(--wood)"/><stop offset="36%" stop-color="var(--lamp)"/><stop offset="69%" stop-color="var(--button)"/><stop offset="100%" stop-color="var(--wood)"/></linearGradient></defs><g class="flame">
+      <path d="M16 14q-8-5-4-12q0 3 2 4q2-3 2-6q8 10 0 14Z" fill="var(--lamp)"/>
+    </g><rect x="11" y="14" width="10" height="25" rx="1" fill="var(--paper)"/><path d="M12 15q2 4 4 0q2-3 4 1v4q-1 4-2-1q-4-3-5 1Z" fill="var(--wall)"/><path d="M4 40h25l-1 5h-8v9l6 4v2H6v-2l7-4v-9H5Z" fill="url(#stand)"/><rect x="5" y="60" width="22" height="2" rx="1" fill="var(--lamp)"/></svg></div><h1>Welcome</h1><p class="title-small">FOLLOW THE LIGHT</p><label class="field"><span class="field-name">Email</span><span class="input-wrap"><input type="email" aria-label="Email" placeholder="your@email.com" autocomplete="email" required></span></label><label class="field"><span class="field-name">Password</span><span class="input-wrap"><input type="password" aria-label="Password" placeholder="••••••••" autocomplete="current-password" required></span></label><button class="submit" type="submit">SIGN IN</button><output class="feedback" role="status"></output></form><button class="ignite" type="button">LIGHT THE WAY</button><button class="holder" type="button" aria-label="Light the candle"><svg viewBox="0 0 34 70" aria-hidden="true" class="candle"><defs><linearGradient id="stand" x2="100%" y2="0%"><stop offset="0%" stop-color="var(--wood)"/><stop offset="36%" stop-color="var(--lamp)"/><stop offset="69%" stop-color="var(--button)"/><stop offset="100%" stop-color="var(--wood)"/></linearGradient></defs><g class="flame">
+      <path d="M16 14q-8-5-4-12q0 3 2 4q2-3 2-6q8 10 0 14Z" fill="var(--lamp)"/>
+    </g><rect x="11" y="14" width="10" height="25" rx="1" fill="var(--paper)"/><path d="M12 15q2 4 4 0q2-3 4 1v4q-1 4-2-1q-4-3-5 1Z" fill="var(--wall)"/><path d="M4 40h25l-1 5h-8v9l6 4v2H6v-2l7-4v-9H5Z" fill="url(#stand)"/><rect x="5" y="60" width="22" height="2" rx="1" fill="var(--lamp)"/></svg></button><button class="extinguish" type="button">EXTINGUISH</button></section>
+</main><script>
+const root = document.querySelector('main');
+const $ = selector => root.querySelector(selector);
+const all = selector => [...root.querySelectorAll(selector)];
+const frozen = new URLSearchParams(location.search).has('t');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const duration = Number(document.querySelector('[name="motherlode:loop"]')?.content || 0);
+const previewAnimations = [];
+function play(target, keys) {
+  if ((!reduced || frozen) && duration) {
+    const elements = typeof target === 'string' ? all(target) : [target];
+    for (const element of elements) {
+      const frames = keys.map(([seconds, properties]) => ({ ...properties, offset: seconds / duration }));
+      previewAnimations.push(element.animate(frames, { duration: duration * 1000, iterations: Infinity, easing: 'linear' }));
+    }
+  }
+}
+function manual() {
+  for (const animation of previewAnimations) animation.cancel();
+  previewAnimations.length = 0;
+  root.dataset.mode = 'manual';
+}
+
+for(const form of all('form')){form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('output').textContent='Details accepted.'});form.addEventListener('input',()=>{form.querySelector('output').textContent=''})}
+all('[data-action="detail"]').forEach(button=>button.addEventListener('click',()=>{const output=button.closest('form')?.querySelector('output')||$('.feedback');if(output)output.textContent=button.getAttribute('aria-label')||button.textContent;}));
+
+const night=$('.night'),formPanel=$('.lantern');function light(state){manual();night.style.setProperty('--lit',state?1:0);formPanel.inert=!state;$('.ignite').hidden=state;$('.extinguish').hidden=!state;}$('.holder').onclick=()=>light(true);$('.ignite').onclick=()=>light(true);$('.extinguish').onclick=()=>light(false);formPanel.onfocusin=()=>light(true);play(night,[[0,{'--lit':0}],[1.16,{'--lit':0}],[1.83,{'--lit':1}],[4.68,{'--lit':1}],[5.38,{'--lit':0}],[5.8,{'--lit':0}]]);play('.flame',[[0,{transform:'scale(.86,1)'}],[1.45,{transform:'scale(1.18,.85)'}],[2.9,{transform:'scale(.8,1.09)'}],[4.35,{transform:'scale(1.13,.91)'}],[5.8,{transform:'scale(.86,1)'}]]);
+</script><script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7700132190457318677) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

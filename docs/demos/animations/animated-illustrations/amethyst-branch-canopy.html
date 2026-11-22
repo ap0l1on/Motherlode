@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x470">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="12.5">
+  <meta name="motherlode:still" content="11.75">
+  <title>Amethyst branch canopy</title>
+  <style>
+:root, [data-colorway="original"] { --background: #000000; --shade: #423849; --middle: #67566e; --bright: #897694; --highlight: #ad97b9; --leaf: #6b5f72; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 470px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 470" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Amethyst branch canopy</title>
+    <desc id="description">A hairline violet trunk divides into an umbrella of tiny drooping branches on black.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 12.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const strokes = [];
+    let elapsed = 0;
+    const radians = degrees => degrees * Math.PI / 180;
+
+    function branch(x, y, direction, length, depth) {
+      const endX = x + length * Math.sin(direction);
+      const endY = y - length * Math.cos(direction);
+      const begin = elapsed;
+      elapsed += length;
+      const line = "M" + x.toFixed(2) + " " + y.toFixed(2) + "L" +
+                   endX.toFixed(2) + " " + endY.toFixed(2);
+      strokes.push({line, begin, end: elapsed, depth});
+      if (depth < 11) {
+        branch(endX, endY, direction + radians(24.0), length * 0.805, depth + 1);
+        branch(endX, endY, direction - radians(24.0), length * 0.805, depth + 1);
+      }
+    }
+    branch(284, 371, 0, 59, 0);
+    // Reveal adjoining runs in the same order that a pen would reach them.
+    const count = 85;
+    for (let i = 0; i < count; i++) {
+      const start = Math.floor(i * strokes.length / count);
+      const end = Math.floor((i + 1) * strokes.length / count);
+      const chunk = strokes.slice(start, end);
+      const tone = i % 7 === 0 ? "highlight" : "bright";
+      const group = element("path", {d: chunk.map(part => part.line).join(" "),
+        fill: "none", stroke: "var(--" + tone + ")", opacity: 0,
+        "stroke-width": 0.78, "stroke-linecap": "round"});
+      const drawAt = 0.025 + 0.9 * chunk[0].begin / elapsed;
+      const showAt = 0.025 + 0.9 * chunk[chunk.length - 1].end / elapsed;
+      group.animate([{offset: 0, opacity: 0}, {offset: drawAt, opacity: 0},
+        {offset: showAt, opacity: 0.84}, {offset: 0.984, opacity: 0.84},
+        {offset: 1, opacity: 0}], {duration, iterations: Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7709773281720536340) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

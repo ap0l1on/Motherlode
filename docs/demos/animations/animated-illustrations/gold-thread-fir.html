@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x356">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8.5">
+  <meta name="motherlode:still" content="7.6">
+  <title>Gold thread fir</title>
+  <style>
+:root, [data-colorway="original"] { --background: #11101f; --shade: #594130; --middle: #a5754d; --bright: #d6a56e; --highlight: #f6dbab; --leaf: #87b0d4; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 356px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 356" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Gold thread fir</title>
+    <desc id="description">A warm gold line draws a star-topped fir with delicately scalloped edges and a sweeping baseline on dark indigo.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 8.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const needle="M188 301C210 284 268 294 292 302C338 316 383 312 409 289M184 278C175 260 215 254 229 246C260 225 182 230 207 211C224 195 259 195 263 180C267 166 217 178 229 157C246 144 260 120 277 86C282 72 287 72 290 86C306 126 320 149 338 162C354 176 310 171 308 184C303 202 349 202 358 219C371 241 321 223 326 241C334 259 377 258 386 277Q392 287 383 293";
+    const shadow=line(drawing,needle,"shade",4.3,.69),ink=line(drawing,needle,"bright",2.85,.98);
+    const star=[], cx=284,cy=59;
+    for(let j=0;j<10;j++){const a=-Math.PI/2+j*tau/10,r=j%2?8:17;star.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]);}
+    const crown=element("g",{});element("path",{d:pointsPath(star,true),fill:"var(--bright)",stroke:"var(--highlight)","stroke-width":.77},crown);
+    const glimmer=element("g",{});
+    for(let j=0;j<8;j++){const a=j*tau/8;line(glimmer,pointsPath([[cx+11*Math.cos(a),cy+11*Math.sin(a)],[cx+23*Math.cos(a),cy+23*Math.sin(a)]]),"highlight",.81,.76);}
+    const trunk=line(drawing,"M264 314C264 338 305 339 307 314","bright",2.5);
+    for(const node of [shadow,ink]){
+      node.setAttribute("pathLength",1);node.setAttribute("stroke-dasharray","1 1");
+      node.animate([{offset:0,strokeDashoffset:1},{offset:.10,strokeDashoffset:1},{offset:.78,strokeDashoffset:0},
+        {offset:.976,strokeDashoffset:0},{offset:1,strokeDashoffset:1}],{duration,iterations:Infinity});
+    }
+    for(const [node,start] of [[crown,.21],[glimmer,.28],[trunk,.72]])node.animate([{offset:0,opacity:0},{offset:start,opacity:0},
+      {offset:start+.11,opacity:1},{offset:.976,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7698713736210681108) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

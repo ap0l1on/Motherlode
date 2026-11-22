@@ -1,0 +1,157 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x549">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.2">
+<meta name="motherlode:still" content="1.65">
+<title>Knurled brass power switch</title><style>
+
+:root, [data-colorway="original"] {
+  --bg: #07080C; --surface: #191B20; --ink: #F0D99B; --muted: #B89A64;
+  --accent: #D4B16E; --on-accent: #211A11; --second: #8C6D3B; --third: #55575A;
+  --ivory: #F2F0E8; --shade: #75674F; --outline: #9F854E; --good: #D1A34D;
+  --hi: #FFF8E4; --lo: #07080C; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+
+* { box-sizing:border-box; }
+html,body { margin:0; width:864px; height:549px; overflow:hidden; }
+body { background:var(--bg); }
+.stage { position:relative; width:576px; height:366px; transform:scale(1.5); transform-origin:top left; overflow:hidden; background:radial-gradient(ellipse at 50% 46%,var(--surface),var(--bg) 52%,var(--lo)); }
+.day { position:absolute; inset:0; background:radial-gradient(ellipse at 52% 47%,color-mix(in srgb,var(--accent) 28%,var(--ivory)),var(--ivory) 35%,color-mix(in srgb,var(--ivory) 87%,var(--hi)) 76%); opacity:0; }
+.dial { position:absolute; left:193px; top:64px; width:212px; height:212px; padding:0; border:0; border-radius:50%; background:var(--lo); cursor:pointer; box-shadow:0 8px 18px color-mix(in srgb,var(--lo) 45%,var(--clear)); }
+.night-rim,.day-rim,.inner,.gasket,.face,.power,.indicator { position:absolute; display:block; border-radius:50%; }
+.night-rim,.day-rim { inset:0; }
+.night-rim { background:repeating-conic-gradient(from -1deg,var(--surface) 0deg,var(--shade) 1.1deg,var(--bg) 2.4deg,var(--lo) 3.8deg,var(--surface) 5deg); box-shadow:inset 0 0 0 1px var(--bg),inset 0 0 5px var(--lo); }
+.day-rim { opacity:0; background:repeating-conic-gradient(from -1deg,var(--ivory) 0deg,var(--hi) 1.15deg,var(--ivory) 2.3deg,var(--accent) 3.8deg,var(--ivory) 5deg); box-shadow:0 0 13px color-mix(in srgb,var(--accent) 38%,var(--clear)),inset 0 0 0 1px var(--ivory),inset 0 0 5px var(--hi); }
+.inner { inset:9px; background:conic-gradient(from 25deg,var(--second),var(--accent),var(--hi),var(--second),var(--hi),var(--accent),var(--second)); box-shadow:0 1px 2px var(--lo); }
+.inner::before { content:''; position:absolute; inset:4px; border-radius:inherit; background:radial-gradient(ellipse,var(--surface) 36%,var(--lo) 70%,var(--bg)); }
+.gasket { inset:24px; background:conic-gradient(from 18deg,var(--accent),var(--second),var(--outline),var(--accent),var(--hi),var(--accent)); }
+.gasket::before { content:''; position:absolute; inset:2px; border-radius:inherit; background:linear-gradient(135deg,var(--lo),var(--surface) 68%,var(--bg)); box-shadow:inset 1px 0 7px var(--lo); }
+.face { inset:46px; border:1.5px solid var(--outline); background:radial-gradient(ellipse at 52% 66%,var(--third) -20%,var(--surface) 56%,var(--lo) 91%); box-shadow:0 4px 5px var(--lo),0 0 0 7px var(--surface),0 0 0 8px color-mix(in srgb,var(--shade) 40%,var(--lo)),inset 1px 1px 7px var(--bg); }
+.face::after { content:''; position:absolute; inset:1px; border-radius:inherit; background:linear-gradient(120deg,color-mix(in srgb,var(--ivory) 3%,var(--clear)),var(--clear) 37%,color-mix(in srgb,var(--hi) 5%,var(--clear)) 75%,var(--clear)); }
+.power { width:41px; height:41px; left:calc(50% - 20.5px); top:calc(50% - 20.5px); color:var(--third); }
+.power svg { width:100%; height:100%; fill:none; stroke:currentColor; stroke-width:4.4; stroke-linecap:round; }
+.indicator { width:6px; height:6px; left:calc(50% - 3px); top:54px; background:var(--shade); opacity:.7; }
+.rotor { position:absolute; inset:0; transform:rotate(0deg); border-radius:50%; }
+.caption { position:absolute; left:184px; top:287px; width:231px; text-align:center; font:600 12px/1 Georgia,'Times New Roman',serif; letter-spacing:4px; }
+.caption span { position:absolute; left:0; right:0; text-shadow:0 0 7px color-mix(in srgb,var(--accent) 40%,var(--clear)); }
+.off-label { color:color-mix(in srgb,var(--ink) 78%,var(--muted)); }
+.on-label { color:color-mix(in srgb,var(--lo) 62%,var(--outline)); opacity:0; }
+.dots { position:absolute; top:303px; left:289px; width:21px; text-align:center; color:var(--muted); letter-spacing:1px; font:8px Georgia,serif; }
+.dial:focus-visible { outline:2px solid var(--accent); outline-offset:5px; }
+:root[data-colorway="mono"] { filter:grayscale(1); }
+
+</style></head><body>
+<main class="stage"><div class="day"></div><button type="button" class="dial" role="switch" aria-label="Turn power on" aria-checked="false"><i class="night-rim"></i><i class="day-rim"></i><i class="inner"></i><i class="gasket"></i><i class="face"></i><span class="rotor"><span class="power"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 8.8a13.3 13.3 0 1 0 12 0M20 5v14"/></svg></span><i class="indicator"></i></span></button><div class="caption" aria-hidden="true"><span class="off-label">TURN ON</span><span class="on-label">TURN OFF</span></div><div class="dots" aria-hidden="true">···</div></main><script>
+
+const $=selector=>document.querySelector(selector);
+const phases=[[0,0],[.15,0],[.28,1],[.53,1],[.65,0],[.78,0],[.9,1],[.93,1],[1,0]];
+const tracks=[];
+function makeTrack(selector,map) {
+ const element=$(selector);
+ const animation=element.animate(phases.map(([offset,on])=>({offset,...map(on),easing:'cubic-bezier(.4,0,.2,1)'})),{duration:5200,iterations:Infinity,fill:'both'});
+ tracks.push({element,map,animation});
+}
+makeTrack('.day',on=>({opacity:on}));makeTrack('.day-rim',on=>({opacity:on}));
+makeTrack('.dial',on=>({boxShadow:on?'0 8px 25px color-mix(in srgb,var(--second) 27%,var(--clear))':'0 8px 18px color-mix(in srgb,var(--lo) 45%,var(--clear))'}));
+makeTrack('.rotor',on=>({transform:'rotate('+(on?137:0)+'deg)'}));
+makeTrack('.power',on=>({color:on?'var(--hi)':'var(--third)',filter:on?'drop-shadow(0 0 5px var(--accent))':'drop-shadow(0 0 2px var(--shade))'}));
+makeTrack('.indicator',on=>({backgroundColor:on?'var(--hi)':'var(--shade)',boxShadow:on?'0 0 7px var(--accent)':'0 0 0px var(--bg)',opacity:on?.95:.45}));
+makeTrack('.off-label',on=>({opacity:1-on}));makeTrack('.on-label',on=>({opacity:on}));
+let powerOn=null,manualAnimations=[];
+function commitSwitch(state,animate) {
+ powerOn=state;
+ const saved=tracks.map(({element,map})=>{const computed=getComputedStyle(element),snapshot={};Object.keys(map(state)).forEach(property=>snapshot[property]=computed[property]);return snapshot;});
+ tracks.forEach(({animation})=>animation.cancel());manualAnimations.forEach(animation=>animation.cancel());manualAnimations=[];
+ tracks.forEach(({element,map},i)=>{const goal=map(+state);Object.assign(element.style,goal);if(animate)manualAnimations.push(element.animate([saved[i],goal],{duration:470,easing:'cubic-bezier(.25,.75,.2,1)'}));});
+ $('.dial').setAttribute('aria-checked',String(state));$('.dial').setAttribute('aria-label',state?'Turn power off':'Turn power on');
+}
+$('.dial').onclick=()=>{const present=powerOn??Number(getComputedStyle($('.day')).opacity)>.5;commitSwitch(!present,true);};
+if(matchMedia('(prefers-reduced-motion:reduce)').matches&&!new URLSearchParams(location.search).has('t'))commitSwitch(false,false);
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7692332078100139284) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

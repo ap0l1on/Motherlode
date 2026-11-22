@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x348">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="6.8">
+  <meta name="motherlode:still" content="4.55">
+  <title>Dusk street lantern</title>
+  <style>
+:root, [data-colorway="original"] { --background: #141e2b; --shade: #252446; --middle: #675c6d; --bright: #81744e; --highlight: #f8e1a2; --leaf: #aa915b; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 348px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 348" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Dusk street lantern</title>
+    <desc id="description">A single street lantern throws a wide cone of amber light across a curved road. Angular rooftops and lit windows silhouette the dusk sky.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 6.8 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const defs=element("defs",{}),sky=element("linearGradient",{id:"dusk",x1:0,y1:0,x2:0,y2:"100%"},defs);
+    [[0,"shade"],[.4,"middle"],[1,"bright"]].forEach(([offset,c])=>element("stop",{offset,"stop-color":"var(--"+c+")"},sky));
+    element("rect",{width:576,height:348,fill:"url(#dusk)"});
+    const homes=element("g",{fill:"var(--background)"});
+    element("path",{d:"M0 122L48 88L108 141H140L263 48L382 136L354 136L366 146H404L423 92H539L562 144H576V273H0Z"},homes);
+    [[36,116],[53,166],[447,157],[465,157],[525,156]].forEach(([x,y],i)=>{
+      element("rect",{x,y,width:i%2?10:12,height:i%2?16:13,fill:"var(--highlight)",opacity:.83},homes);
+      line(homes,"M"+(x+5)+" "+y+"v16M"+x+" "+(y+6)+"h12","background",1.8);});
+    element("path",{d:"M0 264Q289 245 576 264V348H0Z",fill:"var(--bright)"});
+    element("path",{d:"M0 311Q272 249 576 304V315Q292 268 0 326Z",fill:"var(--shade)",opacity:.83});
+    const beam=element("g",{});
+    element("path",{d:"M282 108L72 313Q289 361 493 312L299 108Z",fill:"var(--highlight)",opacity:.18},beam);
+    element("ellipse",{cx:285,cy:313,rx:164,ry:24,fill:"var(--highlight)",opacity:.32},beam);
+    element("path",{d:"M269 322L273 272L278 261L278 114H287L292 261L296 271L304 322Z",fill:"var(--background)"});
+    line(drawing,"M286 0v76","middle",1.4);
+    element("path",{d:"M261 88L285 73L309 88L303 112H270Z",fill:"var(--background)"});
+    const glass=element("g",{},beam);
+    element("path",{d:"M265 89L281 88L282 110H272ZM286 88L304 89L300 110H285Z",fill:"var(--highlight)"},glass);
+    // The glowing panes sit in front of the dark lantern housing.
+    drawing.append(glass);
+    const states=[{offset:0,opacity:.26},{offset:.08,opacity:1},{offset:.37,opacity:1},{offset:.43,opacity:.21},
+      {offset:.54,opacity:.26},{offset:.60,opacity:1},{offset:.93,opacity:1},{offset:1,opacity:.26}];
+    for(const g of [beam,glass])g.animate(states,{duration,iterations:Infinity});
+    let lit=true;drawing.setAttribute("tabindex","0");drawing.setAttribute("aria-label","Street lantern. Activate to switch the light.");
+    function toggle(){lit=!lit;for(const g of [beam,glass]){g.getAnimations().forEach(a=>a.cancel());g.style.opacity=lit?"1":".14";}}
+    drawing.addEventListener("click",toggle);drawing.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle();}});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7691962057909947669) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

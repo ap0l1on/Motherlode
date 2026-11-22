@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x365">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8.5">
+  <meta name="motherlode:still" content="7.3">
+  <title>Cobalt fan peacock</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010103; --shade: #102554; --middle: #2459b7; --bright: #49a6f3; --highlight: #c7eeff; --leaf: #73c4e7; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 365px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  :root { --deep:var(--shade); --blue:var(--middle); --electric:var(--bright); --glint:var(--highlight); --aqua:var(--leaf); }
+:root[data-colorway="original"] { --background:#000001; --deep:#081A50; --blue:#204CBA; --electric:#328FF3; --glint:#DFF8FF; --aqua:#70DFFF; }
+
+:root[data-colorway="mono"] { filter:grayscale(1); }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 365" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Cobalt fan peacock</title>
+    <desc id="description">A luminous blue peacock rises from a cloud of sparks. Fine tapered shafts spread behind its curved neck and build a layered fan of cobalt eyes.</desc>
+  </svg>
+  <script>
+    (() => {
+
+    const drawing = document.querySelector('svg');
+    const ns = 'http://www.w3.org/2000/svg';
+    function add(tag, attrs={}, parent=drawing) {
+      const node=document.createElementNS(ns,tag);
+      for(const [name,value] of Object.entries(attrs)) node.setAttribute(name,value);
+      parent.append(node);
+      return node;
+    }
+    const defs=add('defs');
+    const color=name=>'var(--'+name+')';
+    function gradient(name, stops, radial=true, attrs={}) {
+      const node=add(radial?'radialGradient':'linearGradient',{id:name,...attrs},defs);
+      for(const [offset,token,opacity=1] of stops) add('stop',{offset,'stop-color':color(token),'stop-opacity':opacity},node);
+      return 'url(#'+name+')';
+    }
+    function filterBlur(name,size) {
+      const filter=add('filter',{id:name,x:'-55%',y:'-55%',width:'210%',height:'210%','color-interpolation-filters':'sRGB'},defs);
+      add('feGaussianBlur',{stdDeviation:size},filter);
+      return 'url(#'+name+')';
+    }
+    const loop=Number(document.querySelector('[name="motherlode:loop"]').content);
+    function animate(node, frames) {
+      return node.animate(frames.map(([at,props])=>({offset:at/loop,...props})),{duration:loop*1000,iterations:Infinity,fill:'both',easing:'linear'});
+    }
+    let seed=58997;function rand(){seed=seed*48271%2147483647;return seed/2147483647;}
+    const tau=2*Math.PI,pt=(x,y)=>x.toFixed(1)+' '+y.toFixed(1);
+    const featherGlow=gradient('quill-glow',[[0,'electric',.51],[.43,'electric',.24],[.74,'blue',.10],[1,'blue',0]]);
+    const blueFeather=gradient('eye-feather',[[0,'blue'],[.42,'deep'],[.67,'blue'],[.85,'electric'],[1,'blue']],false,{x1:'18%',y1:'100%',x2:'76%',y2:'5%'});
+    const pearl=gradient('pearl',[[0,'glint'],[.33,'glint'],[.56,'aqua'],[.75,'electric'],[1,'blue',.7]]);
+    const neckPaint=gradient('neck',[[0,'aqua'],[.19,'electric'],[.44,'electric'],[.69,'blue'],[1,'deep']],false,{x1:'0%',y1:'0%',x2:'98%',y2:'94%'});
+    const chest=gradient('chest',[[0,'electric'],[.28,'blue'],[.65,'blue'],[1,'deep']],true,{cx:'48%',cy:'30%',r:'79%'});
+    const headPaint=gradient('head',[[0,'aqua'],[.29,'electric'],[.73,'blue'],[1,'deep']],true,{cx:'47%',cy:'28%',r:'82%'});
+    const dustGlow=gradient('stardust',[[0,'glint'],[.18,'glint',.95],[.30,'aqua',.88],[.47,'electric',.72],[.67,'electric',.19],[1,'blue',0]]);
+    const bg=add('g'),shoal=[[],[],[]];
+    for(let i=0;i<470;i++){const a=rand()*tau,r=Math.sqrt(rand()),x=288+Math.cos(a)*175*r,y=215+Math.sin(a)*134*r;shoal[i%3].push('M'+pt(x,y)+'h.25');}
+    shoal.forEach((d,i)=>add('path',{d:d.join(''),stroke:color(i===0?'glint':i===1?'aqua':'blue'),'stroke-width':[1.44,1.72,2.15][i],'stroke-linecap':'round',opacity:[.46,.37,.30][i],fill:'none'},bg));
+    const eyeData=[
+      [131,341,24,33,-94,0],[143,327,29,36,-89,0],[143,307,29,39,-81,0],[129,279,35,47,-76,0],
+      [131,218,39,49,-64,0],[153,191,37,47,-53,0],[170,203,33,44,-44,0],[180,167,38,49,-45,0],
+      [217,127,42,59,-16,0],[242,94,53,72,-17,0],[249,139,43,60,-8,0],[279,116,33,53,7,0],
+      [330,104,29,44,22,0],[365,117,25,43,24,0],[390,122,33,49,26,0],
+      [401,165,39,54,41,0],[412,212,24,39,43,0],[425,237,37,48,66,0],
+      [439,281,39,51,76,0],[421,310,32,46,81,0],[414,337,28,35,88,0],
+      [156,347,23,31,-97,1],[159,328,23,32,-87,1],[149,310,30,39,-80,1],
+      [127,282,28,42,-77,1],[147,252,40,51,-57,1],[138,220,42,54,-62,1],[140,199,43,56,-56,1],
+      [192,151,47,63,-42,1],[244,137,37,58,-10,1],[330,128,36,52,31,1],[363,122,27,45,25,1],
+      [386,128,29,50,28,1],[414,157,43,61,49,1],[403,180,35,46,51,1],
+      [451,249,34,48,79,1],[432,244,45,56,69,1],[450,305,29,46,88,1],
+      [430,303,35,48,83,1],[428,327,32,42,88,1],[409,338,23,31,89,1]];
+    const fiber=gradient('pale-fiber',[[0,'glint'],[.21,'glint',.92],[.48,'aqua',.78],[.68,'electric',.57],[.86,'blue',.36],[1,'deep',.1]],true,{gradientUnits:'userSpaceOnUse',cx:288,cy:331,r:260});
+    const shafts=add('g',{'stroke-linecap':'round',fill:'none'}), sparkTrack=add('g');
+    const groups=[];
+    for(let k=0;k<8;k++){groups.push(add('g',{stroke:k%3===0?fiber:color(['blue','electric','blue','aqua','deep','glint','blue','electric'][k]),'stroke-width':[.85,.68,.75,.76,.68,.48,.61,.65][k],opacity:[.93,.62,.59,.85,.85,.80,.83,.77][k]},shafts));}
+    const tips=[[],[],[]];
+    for(let i=0;i<240;i++){
+      const angle=(-1.68+rand()*3.36),long=.70+rand()*.34;
+      const x=288+Math.sin(angle)*(155+rand()*38)*long,y=333-Math.cos(angle)*(218+rand()*48)*long;
+      const sway=(rand()-.5)*30,base=279+rand()*19;
+      const path='M'+pt(base,331+rand()*4)+'Q'+pt((288+x)/2+sway,(331+y)/2-6-rand()*17)+' '+pt(x,y);
+      add('path',{d:path,pathLength:1,'stroke-dasharray':1},groups[i%8]);
+      for(let j=0;j<3;j++){const u=.56+rand()*.44;tips[i%3].push('M'+pt(288+(x-288)*u+(rand()-.5)*3,332+(y-332)*u+(rand()-.5)*4)+'h.255');}
+    }
+    tips.forEach((set,i)=>add('path',{d:set.join(''),fill:'none',stroke:color(i===0?'glint':i===1?'electric':'blue'),'stroke-width':[1.15,.96,1.6][i],'stroke-linecap':'round',opacity:[.56,.60,.47][i]},sparkTrack));
+    for(const [i,group] of groups.entries())animate(group,[[0,{strokeDashoffset:1}],[2.85+i*.055,{strokeDashoffset:1}],[3.88+i*.04,{strokeDashoffset:.48}],[5.62+i*.02,{strokeDashoffset:0}],[8.33,{strokeDashoffset:0}],[8.5,{strokeDashoffset:1}]]);
+    animate(sparkTrack,[[0,{opacity:.05}],[3,{opacity:.13}],[5.8,{opacity:.86}],[8.3,{opacity:1}],[8.5,{opacity:.05}]]);
+    const fan=add('g'),eyePath='M0 -0.58C-.10 -.43 -.34 -.32 -.45 -.11C-.58 .15 -.39 .42 -.10 .46C.23 .51 .50 .31 .51 .06C.52 -.18 .28 -.36 .11 -.47Z';
+    const featherSymbol=add('g',{id:'feather-eye'},defs);
+    add('ellipse',{cy:-.05,rx:.80,ry:.76,fill:featherGlow},featherSymbol);
+    add('path',{d:eyePath,fill:blueFeather,stroke:color('deep'),'stroke-width':.026},featherSymbol);
+    add('path',{d:eyePath,transform:'translate(-.014 -.05) scale(.85 .81)',fill:color('blue'),stroke:color('electric'),'stroke-width':.045},featherSymbol);
+    add('path',{d:eyePath,transform:'translate(-.021 .001) scale(.65 .66)',fill:color('aqua'),stroke:color('electric'),'stroke-width':.022},featherSymbol);
+    add('path',{d:eyePath,transform:'translate(-.03 .028) scale(.50 .51)',fill:color('deep')},featherSymbol);
+    add('ellipse',{cx:-.037,cy:.025,rx:.14,ry:.109,fill:pearl},featherSymbol);
+    add('ellipse',{cx:-.064,cy:.00,rx:.058,ry:.046,fill:color('glint'),opacity:.69},featherSymbol);
+    for(const [x,y,w,h,angle,front] of eyeData){
+      const spindle=add('g',{transform:'translate('+x+' '+y+') rotate('+angle+') scale('+w+' '+h+')'},fan),eye=add('g',{},spindle);
+      add('use',{href:'#feather-eye'},eye);
+      const delay=6.03+Math.max(0,y-85)*.00335+front*.08+rand()*.11;
+      const alpha=front?1:.82;
+      animate(eye,[[0,{opacity:0,transform:'scale(.28)'}],[delay,{opacity:0,transform:'scale(.28)'}],[delay+.27,{opacity:alpha*.48,transform:'translateY(.04px) scale(.79)'}],[delay+.57,{opacity:alpha,transform:'scale(1)'}],[8.34,{opacity:alpha,transform:'scale(1)'}],[8.5,{opacity:0,transform:'scale(.28)'}]]);
+    }
+    const quill='M284 314C282 304 284 293 279 278C273 260 261 242 266 222C268 210 276 201 283 201C288 201 293 208 291 214C281 231 290 244 299 260C308 277 313 296 310 311C308 324 291 331 284 314Z';
+    const clip=add('clipPath',{id:'body-hull'},defs);
+    add('path',{d:quill},clip);add('ellipse',{cx:288,cy:324,rx:32,ry:38},clip);
+    const seedFlare=add('ellipse',{cx:287,cy:329,rx:26,ry:14,fill:dustGlow,opacity:.74});
+    const lift=add('clipPath',{id:'emergence'},defs),reveal=add('rect',{x:246,y:0,width:84,height:365},lift);
+    const bird=add('g',{'clip-path':'url(#emergence)'});
+    add('path',{d:'M276 349 269 365m33-16 6 16',fill:'none',stroke:color('deep'),'stroke-width':1.4},bird);
+    add('ellipse',{cx:288,cy:324,rx:32,ry:38,fill:chest,stroke:color('blue'),'stroke-width':.9},bird);
+    add('path',{d:quill,fill:neckPaint,stroke:color('electric'),'stroke-width':.7},bird);
+    add('path',{d:'M278 211Q260 231 281 266Q299 294 287 307',fill:'none',stroke:color('aqua'),'stroke-width':1.05,opacity:.59},bird);
+    const texture=add('g',{'clip-path':'url(#body-hull)'},bird);
+    const nebulaData=[[288,327,34,23],[277,319,18,12],[299,330,15,11],[287,323,10,9],[279,282,13,16],[274,310,8,9],[301,323,6,8]];
+    nebulaData.forEach(([cx,cy,rx,ry],i)=>add('ellipse',{cx,cy,rx,ry,fill:dustGlow,opacity:i===0?1:.70},texture));
+    const scaleDots=[[],[],[],[]];for(let i=0;i<910;i++){
+      const x=252+rand()*72,y=203+rand()*151, centerBand=Math.exp(-Math.pow((y-325)/16,2));
+      if(rand()>.25+.74*centerBand)continue;scaleDots[i%4].push('M'+pt(x,y)+'h.25');
+    }
+    scaleDots.forEach((ds,i)=>add('path',{d:ds.join(''),fill:'none',stroke:color(['glint','aqua','electric','deep'][i]),'stroke-width':[2.05,2.95,1.5,1.24][i],'stroke-linecap':'round',opacity:[.76,.53,.76,.64][i]},texture));
+    add('circle',{cx:288.7,cy:209,r:13.1,fill:headPaint},bird);
+    add('ellipse',{cx:294.4,cy:207.7,rx:2.25,ry:1.9,fill:color('deep')},bird);
+    add('circle',{cx:295.2,cy:207.0,r:.58,fill:color('glint')},bird);
+    add('path',{d:'m287 218 6.5 .4-4.3 7.2Z',fill:color('glint')},bird);
+    for(let j=0;j<6;j++){
+      const x=277+j*4.2,y=167+Math.abs(j-2.4)*3.6;
+      add('path',{d:'M288 197Q'+(284+j*.8)+' 186 '+x+' '+y,fill:'none',stroke:color('aqua'),'stroke-width':.70,opacity:.57},bird);
+      add('ellipse',{cx:x,cy:y,rx:1.2,ry:2.6,fill:color('aqua'),opacity:.61},bird);
+    }
+    animate(bird,[[0,{opacity:0}],[.48,{opacity:1}],[8.35,{opacity:1}],[8.5,{opacity:0}]]);
+    animate(seedFlare,[[0,{opacity:.76}],[.55,{opacity:.42}],[1,{opacity:0}],[8.35,{opacity:0}],[8.5,{opacity:.76}]]);
+    animate(reveal,[[0,{transform:'translateY(342px)'}],[.5,{transform:'translateY(303px)'}],[1.0,{transform:'translateY(232px)'}],[1.5,{transform:'translateY(193px)'}],[2,{transform:'translateY(156px)'}],[8.34,{transform:'translateY(156px)'}],[8.5,{transform:'translateY(342px)'}]]);
+
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7699752020953140501) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

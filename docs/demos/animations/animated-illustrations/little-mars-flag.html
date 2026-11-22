@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x356">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="9.4">
+  <meta name="motherlode:still" content="5.7">
+  <title>Little Mars flag</title>
+  <style>
+:root, [data-colorway="original"] { --background: #41596c; --shade: #34465a; --middle: #f36c48; --bright: #9fda74; --highlight: #f4f2e9; --leaf: #c94837; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 356px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 356" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Little Mars flag</title>
+    <desc id="description">A tiny rocket approaches a terracotta planet with three flat craters, leaves a white flag and flies away.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 9.4 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=288,cy=176,defs=element("defs",{});
+    const ground=element("ellipse",{cx,cy:299,rx:54,ry:7,fill:"var(--shade)",opacity:.23});
+    const planet=element("g",{});planet.style.transformOrigin=cx+"px "+cy+"px";
+    element("circle",{cx,cy,r:91,fill:"var(--middle)"},planet);
+    element("path",{d:"M287 85C336 79 377 123 378 172C379 221 339 268 286 269C251 270 221 250 206 230C237 250 279 250 312 226C357 195 370 127 328 92Z",fill:"var(--leaf)",opacity:.61},planet);
+    [[247,162,12],[308,130,8],[281,211,10]].forEach(([x,y,r])=>{
+      element("circle",{cx:x,cy:y,r,fill:"var(--leaf)",opacity:.76},planet);
+      element("path",{d:"M"+(x-r*.8)+" "+(y+2)+"q0 -"+(r*1.2)+" "+(r*1.4)+" -"+r,fill:"none",stroke:"var(--shade)","stroke-width":1.5,opacity:.29},planet);
+    });
+    const flag=element("g",{},planet);
+    line(flag,"M291 85V61","highlight",1.7);
+    element("path",{d:"M292 61q6-3 12 0t9-1v12q-5 3-11 0t-10 0Z",fill:"var(--highlight)"},flag);
+    flag.animate([{offset:0,opacity:0},{offset:.40,opacity:0},{offset:.48,opacity:1},{offset:.96,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    const orbit=element("g",{});orbit.style.transformOrigin="288px 176px";
+    const jet=element("g",{transform:"translate(359 104) rotate(43)"},orbit);
+    element("path",{d:"M-3 9L-6 19L0 15L6 19L3 9Z",fill:"var(--bright)"},jet);
+    element("path",{d:"M0 -13Q7 -7 5 7L3 12H-3L-5 7Q-7 -7 0 -13Z",fill:"var(--highlight)"},jet);
+    element("circle",{cy:-3,r:2.1,fill:"var(--background)"},jet);
+    orbit.animate([{offset:0,transform:"translate(86px,-65px) rotate(-19deg)",opacity:0},
+      {offset:.14,transform:"translate(64px,-31px) rotate(-9deg)",opacity:1},
+      {offset:.34,transform:"translate(0,0) rotate(0deg)",opacity:1},{offset:.62,transform:"rotate(2deg)",opacity:1},
+      {offset:.79,transform:"translate(35px,-12px) rotate(14deg)",opacity:1},{offset:.95,transform:"translate(120px,-65px) rotate(27deg)",opacity:0},
+      {offset:1,opacity:0}],{duration,iterations:Infinity});
+    planet.animate([{transform:"translateY(-2px)"},{transform:"translateY(3px)"},{transform:"translateY(-2px)"}],{duration,iterations:Infinity});
+    ground.animate([{transform:"scaleX(.97)"},{transform:"scaleX(1.02)"},{transform:"scaleX(.97)"}],{duration,iterations:Infinity});
+    ground.style.transformOrigin="288px 299px";
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7695673429223034132) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x329"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.6"><meta name="motherlode:still" content="4.2">
+<title>Balloon year rollover</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #202043; --ink: #f4d9e3; --base: #201f45; --low: #1e1e41; --high: #8a9ae7; --a: #889cf0; --b: #ee94b8; --c: #efce73; --d: #e4c991; --e: #a0a2b4; --f: #c5799f; --g: #b7a7ee; --h: #f5dfae;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:329px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 329" role="img" aria-label="A gilded balloon lifts the outgoing five as the new year settles beneath a handwritten greeting and four sparklers." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1612323;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+rect(0,0,W,H,css('bg'));
+const year=group(stage,{'font-family':'Arial, sans-serif','font-weight':750,'font-size':82,fill:css('a'),'letter-spacing':'-4.8'});
+words('202',177,242,{textLength:150,lengthAdjust:'spacingAndGlyphs'},year);
+const five=words('5',325,242,{textLength:51,lengthAdjust:'spacingAndGlyphs'},year),six=words('6',325,242,{textLength:51,lengthAdjust:'spacingAndGlyphs'},year);
+animate(five,[{transform:'translate(0,0)',opacity:1},{transform:'translate(0,0)',opacity:1,offset:.25},{transform:'translate(26px,-17px)',opacity:1,offset:.39},{transform:'translate(26px,-120px)',opacity:1,offset:.61},{transform:'translate(26px,-200px)',opacity:0,offset:.70},{transform:'translate(26px,-200px)',opacity:0,offset:.96},{transform:'translate(0,0)',opacity:0}]);
+animate(six,[{opacity:0,transform:'translate(67px,1px)'},{opacity:0,transform:'translate(67px,1px)',offset:.14},{opacity:1,transform:'translate(48px,1px)',offset:.25},{opacity:1,transform:'translate(0,0)',offset:.52},{opacity:1,offset:.93},{opacity:0}]);
+const balloon=group();path('M0 0C1 18 -1 39 1 57',{stroke:css('ink'),'stroke-width':1.1,fill:'none'},balloon);
+node('ellipse',{cx:0,cy:-21,rx:23.7,ry:24.6,fill:css('c')},balloon);path('m0 2 -3 5 6 0Z',{fill:css('c')},balloon);
+animate(balloon,[{transform:'translate(430px,140px)',opacity:0},{transform:'translate(430px,140px)',opacity:0,offset:.08},{transform:'translate(411px,139px)',opacity:1,offset:.19},{transform:'translate(359px,119px)',opacity:1,offset:.38},{transform:'translate(357px,-31px)',opacity:1,offset:.64},{transform:'translate(357px,-65px)',opacity:0,offset:.78},{opacity:0,transform:'translate(357px,-65px)'}]);
+const party=group(), greeting=words('Happy new year',288,117,{fill:css('b'),'text-anchor':'middle','font-size':64,'font-family':'SignPainter, "Brush Script MT", cursive','font-weight':600,stroke:css('b'),'stroke-width':1.28,'stroke-linejoin':'round'},party);
+for(const [x,y,r] of [[71,133,30],[502,133,30],[33,231,32],[540,231,32]]){
+ const spark=group(party);for(let i=0;i<6;i++){const angle=i*tau/6-Math.PI/2;line(...polar(x,y,8.4,angle),...polar(x,y,r,angle),css('d'),1.0,spark);}
+ circle(x,y,2.1,css('d'),spark);for(let i=0;i<6;i++)circle(...polar(x,y,10,i*tau/6),.75,css('d'),spark);
+}
+animate(party,[{opacity:0},{opacity:0,offset:.50},{opacity:1,offset:.73},{opacity:1,offset:.94},{opacity:0}]);
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7696410322374069524) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

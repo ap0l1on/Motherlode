@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x455">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="23">
+  <meta name="motherlode:still" content="14.7">
+  <title>Pewter fractal wheel</title>
+  <style>
+:root, [data-colorway="original"] { --background: #0e0e0f; --shade: #49484a; --middle: #737274; --bright: #a5a5a5; --highlight: #e4e2de; --leaf: #b5b3af; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 455px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 455" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Pewter fractal wheel</title>
+    <desc id="description">A pewter wreath of open rosettes gives way to a sharp fan of rays and a much smaller silver wheel on charcoal.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 23 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=287,cy=226;
+    const polar=(r,a,x=cx,y=cy)=>[x+r*Math.cos(a), y+r*Math.sin(a)];
+    const wreath=element("g",{}),spokes=element("g",{}),rosette=element("g",{});
+    function stamp(parent,r,a) {
+      const [x,y]=polar(r,a),petals=[];
+      for(let p=0;p<8;p++){
+        const pts=[];for(let i=0;i<=60;i++){
+          const t=tau*i/60,q=14*(.3+.7*Math.abs(Math.cos(3*t)));
+          pts.push(polar(q,t+a+p*tau/8,x+10*Math.cos(p*tau/8),y+10*Math.sin(p*tau/8)));
+        }
+        petals.push(pointsPath(pts,true));
+      }
+      line(parent,petals.join(""),"bright",.67,.78);
+    }
+    for(let i=0;i<16;i++)stamp(wreath,159,i*tau/16);
+    line(wreath,pointsPath(Array.from({length:26},(_,i)=>polar(i%2?70:51,i*tau/26)),true),"bright",.84,.87);
+    for(let i=0;i<13;i++)line(wreath,pointsPath([[cx,cy],polar(68,tau*i/13)]),"middle",.65,.8);
+    for(let i=0;i<13;i++)for(let j=0;j<15;j++)line(spokes,
+      pointsPath([[cx,cy],polar(217,i*tau/13+.09*(j/14-.5))]),"highlight",.58,.76);
+    for(let i=0;i<14;i++)for(let k=0;k<5;k++){
+      const a=i*tau/14+.04*k,pts=[];
+      for(let u=0;u<=38;u++){
+        const t=tau*u/38;pts.push(polar(40+15*Math.cos(t)+5*k,a+.21*Math.sin(t)));
+      }
+      line(rosette,pointsPath(pts,true),"bright",.75,.77);
+    }
+    [13,22,31,45,58].forEach(r=>element("circle",{cx,cy,r,fill:"none",stroke:"var(--middle)","stroke-width":.65},rosette));
+    for(let i=0;i<10;i++){const a=i*tau/10;line(rosette,pointsPath([polar(62,a-.05),polar(71,a),polar(64,a+.07)],true),"highlight",.86);}
+    wreath.animate([{offset:0,opacity:0},{offset:.14,opacity:1},{offset:.36,opacity:1},{offset:.4,opacity:0},
+      {offset:.53,opacity:0},{offset:.57,opacity:1},{offset:.68,opacity:1},{offset:.72,opacity:0},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    spokes.animate([{offset:0,opacity:0},{offset:.35,opacity:0},{offset:.40,opacity:1},{offset:.49,opacity:1},
+      {offset:.54,opacity:0},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    rosette.style.transformOrigin=cx+"px "+cy+"px";
+    rosette.animate([{offset:0,opacity:0,transform:"scale(.12)"},{offset:.70,opacity:0,transform:"scale(.12)"},
+      {offset:.78,opacity:1,transform:"scale(.75)"},{offset:.92,opacity:1,transform:"scale(1)"},
+      {offset:.98,opacity:1,transform:"scale(1)"},{offset:1,opacity:0,transform:"scale(1)"}],{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7701979451160104213) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

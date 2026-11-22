@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="360x279">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="10.8">
+  <meta name="motherlode:still" content="4.05">
+  <title>Afterimage particle forms</title>
+  <style>
+:root, [data-colorway="original"] { --background: #000001; --shade: #18121d; --middle: #512639; --bright: #7a5d85; --highlight: #c7bab9; --leaf: #749591; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 360px; height: 279px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 360 279" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Afterimage particle forms</title>
+    <desc id="description">Very fine particles appear out of black, moving between nested hearts, slanted orbits, a tall helix and a hazy cloud.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 10.8 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=180,cy=139,defs=element("defs",{}),field=element("g",{});
+    const colors=["shade","middle","bright","highlight","leaf"];
+    const poses=["heart","orbit","coil","mist"],nodes=[];
+    function point(type,index,t,u,v){
+      const a=u*tau,r=36+v*55;
+      if(type==="heart"){
+        const k=1+index%3*.61;return [cx+k*(15.6*Math.sin(a)**3)+Math.sin(a*2+t)*3,
+          cy-k*(13*Math.cos(a)-5*Math.cos(2*a)-2*Math.cos(3*a)-Math.cos(4*a))];
+      }
+      if(type==="orbit"){
+        const lane=index%4,ang=[-.29,.31,-.98,.91][lane]+t;
+        const radius=[49,58,102,122][lane]+(v-.5)*1.7, x=radius*Math.cos(a)*[.30,.42,.34,.61][lane],y=radius*Math.sin(a);
+        return [cx+x*Math.cos(ang)-y*Math.sin(ang),cy+x*Math.sin(ang)+y*Math.cos(ang)];
+      }
+      if(type==="coil"){const q=tau*u*6.5+t;return [cx+(48+18*Math.sin(Math.PI*u))*Math.cos(q),cy-105+211*u+9*Math.sin(q)];}
+      return [cx+Math.cos(a)*r*v*.56+18*Math.sin(u*16+t),cy+Math.sin(a)*r*1.07+13*Math.cos(u*14+t)];
+    }
+    const seedData=Array.from({length:8100},(_,i)=>[i,random(),random(),(random()-.5)*1.8,(random()-.5)*1.8]);
+    for(let s=0;s<poses.length;s++){
+      const g=element("g",{},field), tones=[[],[],[],[],[]];const type=poses[s];
+      for(const [i,u,v,nx,ny] of seedData){
+        const [x,y]=point(type,i,0,u,v), ci=(i%17===0?3:i%7===0?2:i%3?0:1);
+        tones[ci].push("M"+(x+nx).toFixed(1)+" "+(y+ny).toFixed(1)+"h.08");
+      }
+      tones.forEach((arr,i)=>line(g,arr.join(""),colors[i],.66+(i%2)*.15,.40+i*.14));
+      const p=[[0,1],[.125,1],[.175,0],[.80,0],[.94,1],[1,1]];
+      const times=s===0?p:s===1?[[0,0],[.12,0],[.22,1],[.43,1],[.49,0],[1,0]]:
+        s===2?[[0,0],[.41,0],[.53,1],[.66,1],[.74,0],[1,0]]:[[0,0],[.65,0],[.75,.75],[.85,.75],[.94,0],[1,0]];
+      g.style.transformOrigin=cx+"px "+cy+"px";g.animate(times.map(([offset,opacity])=>({offset,opacity,transform:"rotate("+((s===0?0:1)*Math.sin(offset*tau)*17)+"deg) scale("+(s===0?1.35:1)+")"})),{duration,iterations:Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7691585482848767284) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

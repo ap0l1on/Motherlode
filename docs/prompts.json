@@ -1,0 +1,415 @@
+{
+  "universal": {
+    "id": "universal",
+    "title": "Universal design prompt",
+    "summary": "A starting brief for composition, type, color, motion and the final proof.",
+    "group": "Foundations",
+    "sections": [],
+    "paragraphs": [
+      "Design [artifact] for [audience] to [goal] in [setting]. Use [content], [format] and [constraints]. Name the first thing someone should notice and the next thing they should understand or do. Make a first pass with the actual headline, longest label and most demanding image.",
+      "Build the layout around a few shared edges. Give a caption less space from its image than from the next group. Line up visible letterforms, icon strokes and image subjects by eye at the final size. A play triangle often needs a small nudge toward its point to feel centered inside a circle.",
+      "Make nested corners follow the same curve. With a uniform inset, start the inner radius at the outer radius minus the inset, down to zero. A 24 px card with 8 px of padding starts with a 16 px image radius. Look around all four corners for an even band. Match icon stroke weight to the neighboring type.",
+      "Choose a readable typeface and a small set of sizes with distinct jobs. Adjust line spacing against the actual letters and give changing numbers tabular figures. Assign colors to roles such as surface, text, accent and focus. Check body text against its rendered background at 4.5 to 1 or higher in every screen palette. Give important states a second cue such as a label or shape.",
+      "For an interaction, show what received the input, where the change starts and when it finishes. Let a dragged object follow the pointer directly. Make focus visible, protect the touch area around small icons and give the action a reduced-motion equivalent. Reserve space for content that appears late.",
+      "When working from a reference, study the finished frame, spacing and motion. Use original or licensed artwork, credit the source and keep the editable structure. For a Motherlode entry, use named color variables for the original, light, dark, monochrome and at least four additional palettes.",
+      "Proof the result where it will be used. Try narrow and wide screens, long text and keyboard input, or print at the intended size and view it from the intended distance. Compare a reconstruction beside its reference at the same scale and with a half-opacity overlay. Check the final export after fonts and images have loaded."
+    ]
+  },
+  "guides": [
+    {
+      "id": "web-pages",
+      "title": "Web pages and sections",
+      "summary": "Plan the first viewport, the next decision and the narrow layout.",
+      "group": "Screens and interfaces",
+      "sections": ["web", "web-sections"],
+      "paragraphs": [
+        "Write the visitor’s question at the top of the brief. Answer it with a specific heading, an image or example that supports the claim, and an action named for its destination. Use the following section to answer the next question a visitor would reasonably ask.",
+        "Line up paragraph starts, image edges and button labels across sections. Set a comfortable reading measure and let narrow screens reflow in the intended reading order. Test with a two-line heading, a long navigation label, visible keyboard focus and a slow-loading hero image."
+      ]
+    },
+    {
+      "id": "mobile-screens",
+      "title": "Mobile apps and screens",
+      "summary": "Design around the thumb, the keyboard and the available screen.",
+      "group": "Screens and interfaces",
+      "sections": ["apps", "app-screens", "phone", "tablet"],
+      "paragraphs": [
+        "Choose the task someone can complete on this screen with one hand. Keep its next action within reach and give small glyphs a generous touch area. Leave room for the status bar, camera cutout and home indicator. For a Motherlode phone mockup, use 9:41 and a full battery.",
+        "Open the keyboard, rotate the screen and enlarge the text. Keep the active field and its submit action reachable. Size a bottom sheet to the visible viewport and allow its content to scroll. On a tablet, use the extra width for a useful companion view or a comfortable reading measure."
+      ]
+    },
+    {
+      "id": "dashboard-workspaces",
+      "title": "Dashboards",
+      "summary": "Give each metric a unit, a time period and a decision it supports.",
+      "group": "Screens and interfaces",
+      "sections": ["dashboards"],
+      "paragraphs": [
+        "Identify one decision this dashboard supports. Put the metric that informs it near its unit, reporting period and comparison. Give supporting trends a quieter scale. Use realistic values that agree across the summary, chart, table and filters.",
+        "Align numeric columns and use tabular figures where values change. Assign consistent colors to the same series in every view. Exercise a date filter, a long row name, zero results and a missing value. On a phone, retain the decision-making metric and let detailed tables scroll within their own region."
+      ]
+    },
+    {
+      "id": "interface-components",
+      "title": "Interface components",
+      "summary": "Set visual weight and feedback across the component’s real states.",
+      "group": "Screens and interfaces",
+      "sections": ["ui"],
+      "paragraphs": [
+        "Name the action or information this component owns. Size its label and icon together, align the visible strokes, then add padding to reach a comfortable target. Choose one emphasis for the primary action and spell out what happens when it is activated.",
+        "Show the applicable resting, hover, pressed, focused, selected, disabled and error states. Give the focus ring space around the control. Test with long labels, touch, keyboard input, a dark surface and a monochrome palette. Keep surrounding elements still when the state changes."
+      ]
+    },
+    {
+      "id": "ux-flows",
+      "title": "User flows and prototypes",
+      "summary": "Trace a real task through its entry, decisions and recovery paths.",
+      "group": "Screens and interfaces",
+      "sections": ["ux"],
+      "paragraphs": [
+        "Name the person, their starting context and the outcome they can verify. Draw each choice in the language they would see on screen. Include a realistic detour, a back path and a recovery from missing information.",
+        "Build the smallest prototype that lets someone attempt the full task with representative content. Observe where they hesitate or go back. Separate what you observed from your interpretation and tie each revision to the step it improves."
+      ]
+    },
+    {
+      "id": "desktop-tools",
+      "title": "Desktop and developer tools",
+      "summary": "Keep dense panes, commands and focus legible at working size.",
+      "group": "Screens and interfaces",
+      "sections": ["mac", "windows", "developer"],
+      "paragraphs": [
+        "Arrange navigation, the working document and contextual tools around the task. Give the active pane a clear focus treatment. Put frequently repeated actions near their target and show keyboard shortcuts where the commands are listed.",
+        "Test a narrow window, a long file path and a large text setting. Align tables and code on stable baselines. Try the whole sequence by keyboard, including dismissing a dialog and returning focus to the control that opened it."
+      ]
+    },
+    {
+      "id": "device-interfaces",
+      "title": "Watch, TV and device interfaces",
+      "summary": "Use the actual viewing distance, input method and display shape.",
+      "group": "Screens and interfaces",
+      "sections": ["watch", "tv", "car", "xr", "device-screens"],
+      "paragraphs": [
+        "Describe how far away the display is, how long someone can look at it and which control they have in hand. Reduce the first view to the information needed in that moment. Check the size of text and targets on the intended display.",
+        "Follow the real input path. Step through a TV menu with a directional pad, inspect a watch face near its curved edges, or test selection while a spatial panel moves in and out of view. Give focus, confirmation and a way back a recognizable shape. Check bright and dim surroundings."
+      ]
+    },
+    {
+      "id": "brand-and-icons",
+      "title": "Brand marks and icons",
+      "summary": "Make the silhouette and interior spaces carry the identity at small sizes.",
+      "group": "Identity and imagery",
+      "sections": ["brand", "icons"],
+      "paragraphs": [
+        "Sketch the mark in one color at the smallest intended size. Give each symbol a distinct silhouette and keep enclosed spaces open. Match stroke weights and terminal shapes across a set. Nudge asymmetric shapes until their visual mass feels balanced in the same box.",
+        "Pair the mark with its real wordmark or label. Inspect spacing between individual letter pairs and the gap between mark and type. Try the artwork as a favicon, a one-color print and a reversed mark on a dark field. Supply the original vector and a clear-space example."
+      ]
+    },
+    {
+      "id": "typography",
+      "title": "Type and lettering",
+      "summary": "Judge size, rhythm and spacing with the content that will ship.",
+      "group": "Identity and imagery",
+      "sections": ["typography"],
+      "paragraphs": [
+        "Set a specimen using the actual headline, a body paragraph, numerals, punctuation and the languages the design needs. Judge x-height and stroke weight side by side at reading size. Adjust awkward display pairs individually before changing the tracking of the whole line.",
+        "Choose line spacing that separates adjacent lines while keeping a paragraph together. Start long-form text near 60 to 70 characters per line and adjust for the typeface and reader. Test wrapping, accents and descenders. Verify the rendered font and record its license with the source."
+      ]
+    },
+    {
+      "id": "palettes",
+      "title": "Color systems and themes",
+      "summary": "Preserve hierarchy and meaning as the palette changes.",
+      "group": "Identity and imagery",
+      "sections": ["color"],
+      "paragraphs": [
+        "Assign distinct roles to the canvas, raised surface, text, quiet text, accent, border and focus indicator. Apply swatches to the same piece of content in every theme. Set a lightness progression deliberately and inspect the middle of each gradient for muddy bands.",
+        "In a dark scheme, try a slightly lighter elevated surface and a fine upper edge. Check the contrast of body text over the actual gradient, photograph or translucent layer. Turn the design monochrome and confirm that labels, shapes and placement still communicate every important state."
+      ]
+    },
+    {
+      "id": "image-direction",
+      "title": "Illustration, photography and backgrounds",
+      "summary": "Control silhouette, crop and the quiet area behind text.",
+      "group": "Identity and imagery",
+      "sections": ["illustrations", "backgrounds", "photo", "ai"],
+      "paragraphs": [
+        "Describe the subject, point of view, light direction, palette and intended crop. Block in the largest light and dark shapes first. Reserve quiet space where a headline or control needs to sit. Review the silhouette at thumbnail size before adding texture.",
+        "Test the tightest crop and the widest crop side by side. Check details near faces, hands, hard edges and repeated patterns at delivery resolution. Use original or licensed imagery. Keep the source layers or generation notes with the working file so a later variant can retain the same visual decisions."
+      ]
+    },
+    {
+      "id": "three-dimensional-art",
+      "title": "3D scenes and mockups",
+      "summary": "Make light, scale and material describe a consistent physical scene.",
+      "group": "Identity and imagery",
+      "sections": ["3d", "mockups"],
+      "paragraphs": [
+        "Choose a camera angle that explains the object’s form and the detail being presented. Establish the silhouette and scale using simple geometry. Give the scene a shared light direction, plausible contact shadows and enough background contrast to read its edges.",
+        "Check that material roughness, highlights and reflections agree. Follow seams, folds and curved surfaces when placing artwork on a mockup. Inspect the object at normal viewing size and from a second angle. Preserve editable materials, replaceable artwork and a clean presentation view."
+      ]
+    },
+    {
+      "id": "games",
+      "title": "Games and play surfaces",
+      "summary": "Keep the playable space, feedback and controls readable in action.",
+      "group": "Screens and interfaces",
+      "sections": ["games"],
+      "paragraphs": [
+        "Choose what the player must recognize in a glance. Separate player, obstacle, reward and scenery through silhouette, value and movement. Keep key play areas visible when score or inventory changes. Give each resource a consistent symbol.",
+        "Show how to start, act, pause and restart with the available input. Test success, failure and a second round. Inspect a busy moment at normal play speed. For a tabletop piece, lay out a real turn with the printed cards or tokens and check that values read from the other side of the table."
+      ]
+    },
+    {
+      "id": "campaign-art",
+      "title": "Social and campaign graphics",
+      "summary": "Keep the message legible through thumbnails, crops and related formats.",
+      "group": "Publishing and campaigns",
+      "sections": ["social", "marketing", "seasonal"],
+      "paragraphs": [
+        "Write the one message someone should retain after a brief glance. Give its headline and subject most of the visual emphasis. Use a motif, type treatment or composition that can repeat across the campaign. Include dates, terms or a destination where the reader needs them.",
+        "Place the work in a feed at its actual thumbnail size. Check portrait, square and wide crops with platform controls visible. Keep faces, type and essential symbols inside the usable area. For a seasonal piece, choose imagery and wording that make sense for the audience and occasion."
+      ]
+    },
+    {
+      "id": "email",
+      "title": "Email",
+      "summary": "Make the message and its action work with images hidden.",
+      "group": "Publishing and campaigns",
+      "sections": ["email"],
+      "paragraphs": [
+        "Give the subject, preview text and opening heading complementary jobs. Put the reason for the message and the primary action early. Use live text for important facts, descriptive link labels and useful alternative text for meaningful images.",
+        "Build a single-column reading order that works on a small phone. Try dark mode, enlarged text and blocked images. In a transactional message, make the order, amount, date and next step easy to find again when someone returns to the message."
+      ]
+    },
+    {
+      "id": "motion",
+      "title": "Animation and video",
+      "summary": "Direct timing, movement and the transition between shots or states.",
+      "group": "Motion and sound",
+      "sections": ["animations", "video"],
+      "paragraphs": [
+        "Storyboard the initial pose, the change and the final pose. Specify what moves, its distance, its duration and the reason the viewer should follow it. Give each shot or state a focal point and enough time to understand what changed.",
+        "Watch the piece at delivery speed, then scrub the start and end of each move. Check entrances, holds and the loop seam. Put captions over the busiest frame they cross. For interactive work, supply a reduced-motion version that follows the same sequence of information."
+      ]
+    },
+    {
+      "id": "music-art",
+      "title": "Music artwork",
+      "summary": "Translate the mood into a cover or loop that survives thumbnail size.",
+      "group": "Motion and sound",
+      "sections": ["music"],
+      "paragraphs": [
+        "Listen for a quality the artwork can express through image, rhythm, type or texture. Give the release one recognizable motif. Arrange the title and artist credit with the real names and inspect the cover at the size of a playlist tile.",
+        "Adapt the motif to the actual format. Check a gig poster from across the room, a sleeve across its folds, or a short visual loop through the repeat point. Leave working layers and track any image and type licenses with the artwork."
+      ]
+    },
+    {
+      "id": "documents-learning",
+      "title": "Slides, documents and learning materials",
+      "summary": "Give each page a job and make the sequence easy to follow.",
+      "group": "Information design",
+      "sections": ["presentations", "documents", "education"],
+      "paragraphs": [
+        "Write what the reader should learn, decide or do after each page. Use meaningful headings, repeat the same grid and keep examples beside the statements they explain. Give a worksheet enough room for a real answer and a projected slide type large enough for the back row.",
+        "Read the headings alone to check the sequence. Proof a dense page, a sparse page and the longest heading. Check page breaks, reading order, table headers and captions in the exported file. For a teaching piece, ask someone to complete the exercise from the instructions provided."
+      ]
+    },
+    {
+      "id": "data",
+      "title": "Charts, maps and diagrams",
+      "summary": "Choose an encoding that makes the intended comparison visible.",
+      "group": "Information design",
+      "sections": ["data"],
+      "paragraphs": [
+        "Write the question the graphic answers. Use a common scale for values the reader must compare, a time axis for change, and labeled connections for relationships. Put units, date range and source where the reader meets the data.",
+        "Label the important series or point directly and keep supporting marks quiet. Use a second cue when categories share similar colors. Check extremes, missing values and long labels. Provide a short text takeaway or an accessible table when the graphic carries essential information."
+      ]
+    },
+    {
+      "id": "print-editorial",
+      "title": "Print and editorial",
+      "summary": "Set the grid to the physical page and proof it at final scale.",
+      "group": "Publishing and campaigns",
+      "sections": ["print", "publishing"],
+      "paragraphs": [
+        "Set the finished trim size, folds, binding and viewing distance before choosing a type scale. Work with real copy, captions and page furniture. Align facing pages to shared baselines and leave usable space at the gutter and edges.",
+        "Use the printer’s specifications for bleed, color profile and file delivery. Make a full-size paper proof. Check small type, thin rules, images near the trim, awkward paragraph endings and the reading order after folding. Inspect the exported pages as spreads and as individual sheets."
+      ]
+    },
+    {
+      "id": "packaging",
+      "title": "Packaging and labels",
+      "summary": "Design the shelf view and the assembled package together.",
+      "group": "Objects and environments",
+      "sections": ["packaging"],
+      "paragraphs": [
+        "Place the product name, variant and essential information on the panels a shopper sees first. Map the artwork to the supplied dieline, with separate guides for trim, fold, glue and safe areas. Keep critical lettering away from seams and sharp curves.",
+        "Build a paper mockup at full scale. Rotate it to check reading direction, joins and label placement. Test related variants together on a shelf. Confirm the final print and finishing requirements with the producer before releasing the artwork."
+      ]
+    },
+    {
+      "id": "signage-events",
+      "title": "Signs and event materials",
+      "summary": "Show the information people need at the point where they need it.",
+      "group": "Objects and environments",
+      "sections": ["signage", "events"],
+      "paragraphs": [
+        "Walk through the arrival, decision point and destination. Give each sign or event piece the name, direction, time or instruction useful at that point. Repeat destination names and symbols consistently from invitation to ticket to venue.",
+        "Place a life-size proof at the intended height and viewing distance. Check it from an angle, in the venue lighting and with people in the foreground. Keep wayfinding cues readable when color is hard to distinguish. Test small names and seat numbers on the printed item."
+      ]
+    },
+    {
+      "id": "sports",
+      "title": "Sports graphics",
+      "summary": "Make participants, scores and match status quick to distinguish.",
+      "group": "Publishing and campaigns",
+      "sections": ["sports"],
+      "paragraphs": [
+        "Build the layout around the information a spectator needs at that moment, such as opponent, time, score or position. Pair each team color with an explicit name or symbol. Use original marks and keep jersey numbers or score digits clear of busy graphics.",
+        "Test a tie, extra time, an unusually long name and a late score change. Give numbers stable widths. Check a broadcast crop, a phone feed, a printed fixture or a kit at playing distance, according to the intended use."
+      ]
+    },
+    {
+      "id": "wearables-craft",
+      "title": "Merch, fashion and craft",
+      "summary": "Account for the material, seams and smallest reproducible detail.",
+      "group": "Objects and environments",
+      "sections": ["merch", "fashion", "crafts"],
+      "paragraphs": [
+        "Choose the material, making process and finished size before drawing the motif. Check the smallest available stitch, cut, printed line or gap against the producer’s sample. Keep key shapes clear of seams, joins and areas that distort in use.",
+        "Proof the artwork on the actual material or a close sample. View a worn or assembled version in daylight and inspect a repeat where its edges meet. Deliver measured placement, scale, color references and editable paths or pattern pieces suitable for the process."
+      ]
+    },
+    {
+      "id": "spaces-products",
+      "title": "Spaces and physical products",
+      "summary": "Show how a person approaches, handles or moves through the design.",
+      "group": "Objects and environments",
+      "sections": ["spaces", "products"],
+      "paragraphs": [
+        "Draw a typical use sequence and put a person or familiar object in the scale study. Identify reach, clearance, sight lines and contact points. Give controls, openings and circulation paths a shape or position that explains how to use them.",
+        "Build a physical or full-scale paper mockup of the most important interaction. Compare materials under the expected light and from the normal viewpoint. Supply a dimensioned view alongside the presentation image so someone else can inspect fit and placement."
+      ]
+    },
+    {
+      "id": "navigation-tabs",
+      "title": "Navigation tabs",
+      "summary": "Balance the icons by eye and keep selection anchored to its destination.",
+      "group": "Component details",
+      "sections": ["ui", "phone"],
+      "categories": ["ui/tabs", "ui/tab-bars", "ui/segmented-controls", "ui/navbars", "phone/docks"],
+      "paragraphs": [
+        "Use labels people can distinguish without opening each destination. Center each icon by its visible weight and align label baselines. Keep hit areas stable as the indicator moves. Show the selection with a second cue such as shape, weight or an underline.",
+        "For a tab panel, support keyboard movement between tabs and connect the active tab to its panel. For links to separate pages, retain normal link behavior. Test the longest label, the first and last positions, a rapid second selection, and the reduced-motion transition."
+      ]
+    },
+    {
+      "id": "forms",
+      "title": "Forms and account screens",
+      "summary": "Make entry, validation and recovery work as one continuous task.",
+      "group": "Component details",
+      "sections": ["ui", "web", "web-sections", "app-screens"],
+      "categories": ["ui/forms", "ui/inputs", "ui/file-uploads", "ui/checkboxes", "ui/radio-buttons", "web/auth-pages", "web/contact-pages", "web-sections/newsletter-signups", "app-screens/sign-in", "app-screens/sign-up"],
+      "paragraphs": [
+        "Label fields persistently and group the pieces of information someone thinks of together. Choose suitable input types and autocomplete hints. Show format guidance before it is needed. For a one-time code, allow a complete paste and provide a clear place to resume editing.",
+        "Validate in context, preserve entered values and say exactly how to fix an error. Distinguish submitting, success and failure with text as well as color. Complete the form by keyboard and with a phone keyboard open. Check autofill, a failed attempt and a successful retry."
+      ]
+    },
+    {
+      "id": "nested-surfaces",
+      "title": "Cards and nested surfaces",
+      "summary": "Keep corner insets, elevation and text contrast consistent.",
+      "group": "Component details",
+      "sections": ["ui", "backgrounds"],
+      "categories": ["ui/cards", "ui/modals", "ui/drawers", "ui/popovers", "backgrounds/glassmorphism"],
+      "paragraphs": [
+        "Measure the gap between the outer edge and the inset image. For concentric corners with an even gap, try an inner radius equal to the outer radius minus that gap. Inspect the corners next to the straight sides. Align the first text line with the image edge or a deliberate inner text column.",
+        "Choose a clear material. Give frosted glass a visible backdrop, a restrained edge and a sufficiently opaque area under type. For a soft raised surface, make its highlight and shadow agree on the light direction. Test the result on the brightest and darkest background it can encounter."
+      ]
+    },
+    {
+      "id": "tables-and-charts",
+      "title": "Charts and metric tables",
+      "summary": "Make comparisons honest and changing values easy to track.",
+      "group": "Component details",
+      "sections": ["data", "ui", "dashboards"],
+      "categories": ["data/charts", "data/kpi-cards", "data/comparison-tables", "data/heatmaps", "ui/tables", "dashboards/analytics", "dashboards/saas-metrics"],
+      "paragraphs": [
+        "State the quantity, unit and time window. Start a bar chart at zero so bar lengths remain comparable. Label any shortened scale clearly when a line chart needs to show small changes. Distinguish zero from unavailable data.",
+        "Align comparable numbers at the right edge or decimal point. Use consistent precision and stable tabular figures. Give a sorted column a readable state and a clear direction. Test outliers, negative values and the smallest supported viewport with the legend and units visible."
+      ]
+    },
+    {
+      "id": "carousels",
+      "title": "Carousels and galleries",
+      "summary": "Show the sequence and preserve the focal point as each item changes.",
+      "group": "Component details",
+      "sections": ["ui", "social", "video"],
+      "categories": ["ui/carousels", "ui/galleries", "social/instagram-carousels", "social/linkedin-carousels", "video/slideshows"],
+      "paragraphs": [
+        "Give the opening frame a recognizable subject and each later frame a distinct job. Align persistent labels and keep captions tied to the right image. Check crops individually. Use a partial next item or a soft fade at a scrolling edge when it helps explain that more items follow.",
+        "For an interactive gallery, provide explicit previous and next controls alongside swipe and keyboard input. Preserve the selected item across resizing and return visits where appropriate. For an exported carousel, check slide order and read every slide separately at feed size."
+      ]
+    },
+    {
+      "id": "motion-feedback",
+      "title": "Press, drag and menu motion",
+      "summary": "Connect movement to the interaction that caused it.",
+      "group": "Component details",
+      "sections": ["ui", "animations"],
+      "categories": ["ui/buttons", "ui/toggles", "ui/menus", "ui/dropdowns", "ui/sliders", "ui/loaders", "animations/micro-interactions", "animations/hover-effects", "animations/page-transitions"],
+      "paragraphs": [
+        "Anchor a menu’s scale or reveal to the trigger. Try a 200 ms ease-out entrance and a slightly quicker exit, then adjust for distance. A press can compress the control very slightly while the hit area stays fixed. Stagger related items only if the first action remains immediately available.",
+        "Let a held knob follow the pointer directly, then ease it into place on release. Interrupt an entrance halfway through and reverse it to check continuity. In reduced motion, preserve selection, progress and confirmation with a stable visual change or a short fade."
+      ]
+    },
+    {
+      "id": "commerce",
+      "title": "Product pages and checkout",
+      "summary": "Keep the product, selected variant and amount consistent through purchase.",
+      "group": "Component details",
+      "sections": ["web", "apps", "app-screens"],
+      "categories": ["web/e-commerce", "web/product-pages", "apps/shopping", "app-screens/product-details", "app-screens/cart", "app-screens/checkout"],
+      "paragraphs": [
+        "Give the product a clear silhouette, consistent scale across views and useful alternate angles. Label variants by name as well as swatch. Keep the selected variant, price and availability together and carry that choice into the cart.",
+        "Lay out the subtotal, delivery, discounts and total so the arithmetic can be followed. Try a missing size, a quantity change, a long address and a recoverable error. For a demonstration, use fictional items and local sample data."
+      ]
+    },
+    {
+      "id": "maps",
+      "title": "Maps and routes",
+      "summary": "Keep routes, landmarks and labels distinct at useful zoom levels.",
+      "group": "Component details",
+      "sections": ["data", "apps", "illustrations", "games"],
+      "categories": ["data/maps", "apps/maps-navigation", "illustrations/maps", "games/level-maps"],
+      "paragraphs": [
+        "Choose the location, journey or relationship the viewer needs to find. Establish a visual order for ground, streets, landmarks, route and current position. Repeat a route identity through line shape or markers as well as color. Keep labels clear of intersections and controls.",
+        "Check a wide overview and the closest useful view. For an interactive map, preserve orientation when panning or switching themes. Keep an equivalent text description of essential route details and verify the route, labels and controls in every palette."
+      ]
+    },
+    {
+      "id": "widgets",
+      "title": "Widgets and watch faces",
+      "summary": "Choose one glanceable value and protect it at every size.",
+      "group": "Component details",
+      "sections": ["phone", "tablet", "mac", "windows", "watch"],
+      "categories": ["phone/widgets", "tablet/widgets", "mac/widgets", "windows/widgets", "watch/watch-faces", "watch/complications", "phone/live-activities"],
+      "paragraphs": [
+        "Choose the value someone needs in a single glance, then give its unit or status a quieter place beside it. Leave room for double-digit dates, a wide time and unusually long names. Keep key glyphs clear of the display curve or widget inset.",
+        "Build the smallest size first and decide what information deserves the extra room in larger sizes. Test a dark face, a light face and a low-detail ambient state where supported. Keep numerals steady as values tick and make the destination of a tap predictable."
+      ]
+    },
+    {
+      "id": "work-boards",
+      "title": "Work boards and calendars",
+      "summary": "Keep ownership, time and state legible as work moves.",
+      "group": "Component details",
+      "sections": ["ui", "dashboards", "apps"],
+      "categories": ["ui/kanban-boards", "ui/calendars", "ui/date-pickers", "dashboards/sales-crm", "dashboards/project-management", "apps/calendars"],
+      "paragraphs": [
+        "Choose the unit of work and show its title, owner, time and current state in a consistent reading order. Tie counts to the visible filters. Use a stable column or day width and indicate overflow with a real count or reachable detail view.",
+        "Move a card or reschedule an event, then show the result at its new location. Offer a keyboard-accessible way to make the same change. Test overlapping items, empty stages, a long title and a narrow viewport with the current date or stage still visible."
+      ]
+    }
+  ]
+}

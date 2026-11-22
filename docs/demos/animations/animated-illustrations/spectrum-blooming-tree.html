@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x377">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13.4">
+  <meta name="motherlode:still" content="7.3">
+  <title>Spectrum blooming tree</title>
+  <style>
+:root, [data-colorway="original"] { --background: #040306; --shade: #342144; --middle: #8e3bdd; --bright: #eeee41; --highlight: #f8ad42; --leaf: #f42725; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 377px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 377" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Spectrum blooming tree</title>
+    <desc id="description">A tree grows from a glowing stump in yellow, violet, amber and red. Each burst starts with the trunk and ends in fine luminous tips.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13.4 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const crown=element("g",{}), branches=[],leaves=[];
+    function branch(x,y,angle,len,thick,depth){
+      const turn=(random()-.48)*.34, ax=Math.sin(angle),ay=-Math.cos(angle);
+      const xx=x+Math.sin(angle+turn)*len, yy=y-Math.cos(angle+turn)*len;
+      const pt1=[x+ay*thick*.5,y-ax*thick*.5],pt2=[x-ay*thick*.5,y+ax*thick*.5];
+      const d="M"+pt1.join(" ")+"Q"+(x+ax*len*.55+ay*thick*.43)+" "+(y+ay*len*.55-ax*thick*.43)+" "+(xx+ay*thick*.29)+" "+(yy-ax*thick*.29)+"L"+(xx-ay*thick*.29)+" "+(yy+ax*thick*.29)+"Q"+(x+ax*len*.51-ay*thick*.41)+" "+(y+ay*len*.51+ax*thick*.41)+" "+pt2.join(" ")+"Z";
+      branches.push({d,depth});
+      if(depth<1){leaves.push([xx,yy]);return;}
+      branch(xx,yy,angle+turn-.31-random()*.28,len*(.67+random()*.15),thick*.66,depth-1);
+      branch(xx,yy,angle+turn+.24+random()*.38,len*(.67+random()*.15),thick*.69,depth-1);
+      if(depth>2&&depth<6&&random()>.37)branch(xx,yy,angle+turn+(random()-.5)*.44,len*.62,thick*.48,depth-1);
+    }
+    branch(289,372,.03,75,17,8);
+    const scenes=["bright","middle","highlight","middle","leaf"];
+    for(let i=0;i<5;i++){
+      const scene=element("g",{fill:"var(--"+scenes[i]+")"},crown), paints=[];
+      for(let level=8;level>=0;level--){
+        const p=element("path",{d:branches.filter(b=>b.depth===level).map(b=>b.d).join(" ")},scene);
+        paints.push(p);
+      }
+      const dust=[[],[]];for(const [x,y] of leaves){
+        for(let j=0;j<3;j++){const a=tau*random(),r=1+random()*5;dust[j%2].push("M"+(x+Math.cos(a)*r).toFixed(1)+" "+(y+Math.sin(a)*r).toFixed(1)+"l1.6 -1.1");}
+      }
+      dust.forEach((x,j)=>paints.push(line(scene,x.join(""),scenes[i],j?1.33:1.06,.95)));
+      for(let j=0;j<paints.length;j++){
+        const start=i/5+j*.0075,end=(i+1)/5;
+        const frames=[{offset:0,opacity:0}];if(start>0)frames.push({offset:start,opacity:0});
+        frames.push({offset:start+.024,opacity:1},{offset:end-.017,opacity:1},{offset:end,opacity:0});
+        if(end<1)frames.push({offset:1,opacity:0});paints[j].animate(frames,{duration,iterations:Infinity});
+      }
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7691954105966677268) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

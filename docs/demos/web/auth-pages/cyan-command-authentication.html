@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x322"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6.3">
+<meta name="motherlode:still" content="0.9">
+<title>Cyan command authentication</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #0b1116; --surface: #0c1728; --text: #72cfde;
+  --muted: #86aab2; --accent: #2e8eac; --button: #17313d;
+  --button-ink: #b8e3e9; --signal: #45c7b4; --wall: #cdbba3;
+  --wood: #996e4c; --recess: #391e0e; --leaf: #687429;
+  --lamp: #efae6c; --screen: #120e10; --reflection: #5b98a2;
+  --white: #fff; --paper: #fff; --black: #000;
+  --clear: transparent;
+  --scene-ink: #77b6c9;
+}
+[data-colorway="light"] {
+  --bg: #e5d9c5; --surface: #fff7e8; --text: #302a23;
+  --muted: #4e4539; --accent: #29775a; --button: #3d4b3f;
+  --button-ink: #fff9e9; --signal: #a14439; --wall: #eddfc8;
+  --wood: #c5a988; --recess: #75634e; --leaf: #758d50;
+  --lamp: #ffe1aa; --screen: #36383b; --reflection: #626365;
+  --scene-ink: #4a2b16; --scene-r-e-l-ink: #9a582e;
+}
+[data-colorway="dark"] {
+  --bg: #202431; --surface: #202837; --text: #f2f5ff;
+  --muted: #d2d9e8; --accent: #73d6be; --button: #ccd6ef;
+  --button-ink: #162331; --signal: #e99588; --wall: #625f67;
+  --wood: #5d4b4d; --recess: #291f2a; --leaf: #465a45;
+  --lamp: #d2a27d; --screen: #0c1018; --reflection: #293040;
+  --scene-ink: #94bae9;
+}
+[data-colorway="mono"] {
+  --bg: #252525; --surface: #323232; --text: #fafafa;
+  --muted: #e1e1e1; --accent: #bcbcbc; --button: #ededed;
+  --button-ink: #202020; --signal: #b3b3b3; --wall: #c2c2c2;
+  --wood: #818181; --recess: #383838; --leaf: #666666;
+  --lamp: #cecece; --screen: #131313; --reflection: #393939;
+  --scene-ink: #2b2b2b; --scene-r-e-l-ink: #606060;
+}
+[data-colorway="ocean"] {
+  --bg: #244752; --surface: #25464d; --text: #f1ffff;
+  --muted: #d2e9e9; --accent: #65d7d1; --button: #dbf5f3;
+  --button-ink: #13393f; --signal: #e9b084; --wall: #b7cbd0;
+  --wood: #728f97; --recess: #304855; --leaf: #47736b;
+  --lamp: #d8ddd2; --screen: #0c1b25; --reflection: #2b4653;
+  --scene-ink: #162c33; --scene-r-e-l-ink: #326474;
+}
+[data-colorway="matcha"] {
+  --bg: #47503b; --surface: #39483a; --text: #fffbe9;
+  --muted: #e2e7ce; --accent: #bfda8d; --button: #e6ebcc;
+  --button-ink: #283522; --signal: #e2a37c; --wall: #d0c9a8;
+  --wood: #8e8b64; --recess: #414331; --leaf: #687740;
+  --lamp: #e5ca93; --screen: #172019; --reflection: #354238;
+  --scene-ink: #232c1b; --scene-r-e-l-ink: #4f643e;
+}
+[data-colorway="sunset"] {
+  --bg: #603e42; --surface: #54363c; --text: #fff7ed;
+  --muted: #f2dacf; --accent: #efad86; --button: #ffe4cf;
+  --button-ink: #40242b; --signal: #f38c92; --wall: #e5bda5;
+  --wood: #aa7462; --recess: #643c37; --leaf: #8f7851;
+  --lamp: #ffc58a; --screen: #251823; --reflection: #51313d;
+  --scene-ink: #37201d; --scene-r-e-l-ink: #844c46;
+}
+[data-colorway="berry"] {
+  --bg: #513348; --surface: #493145; --text: #fff3fb;
+  --muted: #f2dce9; --accent: #db95c5; --button: #f4d9ed;
+  --button-ink: #3b2337; --signal: #edb39d; --wall: #d6bccf;
+  --wood: #98758c; --recess: #513448; --leaf: #736074;
+  --lamp: #f3c2ce; --screen: #201422; --reflection: #453046;
+  --scene-ink: #321f2c; --scene-r-e-l-ink: #784b6b;
+}
+:root{--width:576px;--height:322px}
+*{box-sizing:border-box} html,body{margin:0}body{width:var(--width);height:var(--height);overflow:hidden;background:var(--bg);color:var(--text);font:14px/1.35 monospace;-webkit-font-smoothing:antialiased}main{width:100%;height:100%;isolation:isolate;position:relative;overflow:hidden}.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:var(--clear)}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ico{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}h1,h2,p{margin:0}.a11y{position:absolute;width:1px;height:1px;clip-path:inset(50%);white-space:nowrap;overflow:hidden}
+[data-colorway="light"] {--bg: #f3eade; --surface: #fff8ed; --text: #2e2a27; --muted: #514840; --accent: #b56836; --button: #75543b; --button-ink: #f7e9d7; --wood: #9bad8b; --lamp: #c78b70; --reflection: #5f887d;}
+[data-colorway="dark"] {--bg: #1b232d; --surface: #303847; --text: #f3f5fa; --muted: #d2dbe8; --accent: #91b8e8; --button: #9bbcdc; --button-ink: #182a36; --wood: #698196; --lamp: #bb8d9c; --reflection: #6f9c9a;}
+[data-colorway="mono"] {--bg: #ddd; --surface: #f4f4f4; --text: #191919; --muted: #484848; --accent: #666; --button: #555; --button-ink: #fff; --wood: #777; --lamp: #aaa; --reflection: #909090;}
+[data-colorway="ocean"] {--bg: #c1e0e0; --surface: #e4f2ed; --text: #183c45; --muted: #3c5b62; --accent: #43869a; --button: #3a6e7e; --button-ink: #f0f7ed; --wood: #55949c; --lamp: #9bb5b1; --reflection: #6c8b9e;}
+[data-colorway="matcha"] {--bg: #d8dfc2; --surface: #eef1da; --text: #2a3c2c; --muted: #4b5a40; --accent: #698653; --button: #526c43; --button-ink: #f6f7e7; --wood: #9aab73; --lamp: #ba9e7d; --reflection: #7d9d85;}
+[data-colorway="sunset"] {--bg: #efd0ba; --surface: #ffebda; --text: #4e302d; --muted: #715047; --accent: #b86961; --button: #934e4f; --button-ink: #fff1e7; --wood: #dca37d; --lamp: #aa808f; --reflection: #a79682;}
+[data-colorway="berry"] {--bg: #e4ccdc; --surface: #f6e6ed; --text: #452b41; --muted: #675165; --accent: #a66894; --button: #854e74; --button-ink: #fff0f5; --wood: #ba8ba9; --lamp: #c09392; --reflection: #9184ac;}.auth,.auth *{box-sizing:border-box}.auth{display:flex;flex-direction:column;position:absolute}.field{display:block;min-width:0}.field-name{display:block}.input-wrap{display:flex;align-items:center;position:relative}.input-wrap>.ico{position:absolute;pointer-events:none;left:6px}.field input{display:block;width:100%;min-width:0;outline-offset:1px}.field input::placeholder{color:var(--muted);opacity:1}.input-wrap:has(svg) input{padding-left:22px}.submit{display:grid;place-items:center;background:var(--button);color:var(--button-ink);font-weight:650}.text-action{padding:0}.feedback{display:none;position:absolute;bottom:3px;left:4px;right:4px;text-align:center;font-size:7px}.feedback:not(:empty){display:block}.socials{display:flex;justify-content:center;gap:8px}.socials button{border:1px solid currentColor;border-radius:50%;width:24px;height:24px;display:grid;place-items:center;padding:0}.auth :focus-visible{outline-color:var(--accent)}
+
+@property --scan{syntax:'<number>';inherits:true;initial-value:0}@property --pass{syntax:'<number>';inherits:true;initial-value:0}main{--scan:0;--pass:0;font-family:monospace;letter-spacing:.45px}.command{left:287px;top:33px;width:159px;height:265px;padding:15px 16px 8px;align-items:stretch;border-radius:7px 8px 6px 3px;border:1px solid color-mix(in srgb,var(--accent) 24%,var(--bg));background:linear-gradient(132deg,color-mix(in srgb,var(--surface) 78%,var(--accent)),var(--surface) 27%,var(--surface) 63%,color-mix(in srgb,var(--surface) 80%,var(--signal)));box-shadow:0 0 11px color-mix(in srgb,var(--accent) 12%,var(--clear));font-family:monospace;color:var(--text);opacity:calc(1 - var(--pass))}.command h1{text-align:center;font-size:11px;font-weight:600;letter-spacing:2px}.sub,.alternate{text-align:center;color:var(--muted);font-size:4.7px;letter-spacing:.85px}.scans{display:flex;justify-content:space-evenly;align-items:center;height:54px}.scans button{width:27px;height:27px;border-radius:50%;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--accent) 19%,var(--clear));color:var(--accent)}.command .field-name{font-size:4.5px;letter-spacing:.9px;margin-bottom:3px}.command .field{margin:1px 0 7px}.command .field .ico{width:8px;opacity:.85}.command .field input{height:21px;width:100%;font-family:monospace;border:1px solid color-mix(in srgb,var(--accent) 17%,var(--surface));background:color-mix(in srgb,var(--surface) 92%,var(--accent));color:var(--text);font-size:6.4px;padding:3px 7px 3px 16px}.more{display:flex;justify-content:space-between;align-items:center;font-size:4.2px}.more input{accent-color:var(--accent);width:7px;height:7px;margin:0;vertical-align:middle}.command .submit,.voice,.scan-panel button,.approved button{border:1px solid color-mix(in srgb,var(--accent) 57%,var(--clear));color:var(--text);background:var(--clear);font-family:monospace;letter-spacing:1px}.command .submit{margin-top:10px;height:22px;font-size:6.2px}.alternate{padding:6px}.voice{align-self:center;height:16px;font-size:4.5px;letter-spacing:.4px;padding:0 8px}.scan-panel,.approved{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text);font-family:monospace}.scan-panel{opacity:calc(var(--scan) * (1 - var(--pass)));background:color-mix(in srgb,var(--black) 89%,var(--clear));pointer-events:none}.scanner{position:relative;width:77px;height:77px;border:1px solid var(--muted);border-radius:50%;margin-bottom:19px;display:grid;place-items:center}.scanner:before,.scanner i,.scanner b{content:"";position:absolute;border-radius:50%;border:1px solid var(--accent)}.scanner:before{inset:8px;border-style:dashed}.scanner i{width:28px;height:28px;border:0;background:radial-gradient(circle,var(--signal),var(--surface) 53%,var(--clear) 74%)}.scanner b{inset:20px;opacity:.42}.scan-panel p{font-size:7px;letter-spacing:1.4px}.scan-panel button,.approved button{font-size:4.7px;padding:3px 6px;margin:5px 2px 0}.approved{opacity:var(--pass);background:var(--bg);pointer-events:none}.approved h2{font-size:19px;letter-spacing:2px;font-weight:440;margin-top:29px}.approved p,.approved small{font-size:5.2px;letter-spacing:1.7px;margin:7px 0}.approved big{font-size:28px;color:var(--accent);opacity:.34;margin:5px}.board-tile{position:absolute;padding:7px;line-height:1.8;font-size:5.3px;color:var(--muted);background:var(--surface);border:1px solid color-mix(in srgb,var(--accent) 15%,var(--surface))}.board-tile b{color:var(--signal)}.sys{top:14px;left:14px}.links{left:14px;top:128px}.power{bottom:11px;right:13px}.signals{right:13px;top:125px}.approved button{margin-top:4px}main[data-screen=scan] .scan-panel,main[data-screen=done] .approved{pointer-events:auto}main[data-screen=scan] .command,main[data-screen=done] .command{pointer-events:none}
+
+
+:is([data-colorway="original"], [data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="berry"]) .ink-scene { fill: var(--scene-ink); }
+[data-colorway="original"] .ink-scene { opacity: 0.7; }
+[data-colorway="mono"] .ink-scene { opacity: 0.7; }
+[data-colorway="light"] .ink-scene { opacity: 0.7; }
+[data-colorway="dark"] .ink-scene { opacity: 0.7; }
+[data-colorway="ocean"] .ink-scene { opacity: 0.7; }
+[data-colorway="matcha"] .ink-scene { opacity: 0.7; }
+[data-colorway="sunset"] .ink-scene { opacity: 0.7; }
+[data-colorway="berry"] .ink-scene { opacity: 0.7; }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="berry"]) .ink-scene-r-e-l { fill: var(--scene-r-e-l-ink); }
+</style>
+</head><body><main>
+<svg class="scene" viewBox="0 0 576 322" aria-hidden="true"><defs><filter id="mist" x="-40%" y="-50%" width="180%" height="200%"><feGaussianBlur stdDeviation="6"/></filter><filter id="soft" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="1.25"/></filter><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".58" numOctaves="2"/><feColorMatrix type="saturate" values="0"/></filter>
+<radialGradient id="nucleus" cx="50%" cy="50%" r="52%"><stop offset="0%" stop-color="var(--paper)"/><stop offset="22%" stop-color="var(--signal)"/><stop offset="53%" stop-color="var(--accent)" stop-opacity="0.73"/><stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/></radialGradient></defs>
+<rect x="0" y="0" width="576" height="322" fill="var(--bg)"/>
+<rect x="7" y="7" width="561" height="308" fill="none" stroke="var(--accent)" stroke-width="0.55" stroke-opacity="0.46"/>
+<ellipse cx="124" cy="58" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.6"/>
+<ellipse cx="15" cy="194" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.29"/>
+<ellipse cx="238" cy="56" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.44"/>
+<ellipse cx="108" cy="16" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.53"/>
+<ellipse cx="47" cy="49" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.38"/>
+<ellipse cx="249" cy="285" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.77"/>
+<ellipse cx="29" cy="242" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.11"/>
+<ellipse cx="59" cy="222" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.35"/>
+<ellipse cx="168" cy="60" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.51"/>
+<ellipse cx="347" cy="215" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.36"/>
+<ellipse cx="291" cy="161" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.73"/>
+<ellipse cx="43" cy="204" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.66"/>
+<ellipse cx="107" cy="224" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.25"/>
+<ellipse cx="51" cy="147" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.24"/>
+<ellipse cx="281" cy="194" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.36"/>
+<ellipse cx="342" cy="47" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.7"/>
+<ellipse cx="246" cy="297" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.6"/>
+<ellipse cx="29" cy="151" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.68"/>
+<ellipse cx="191" cy="19" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.33"/>
+<ellipse cx="337" cy="22" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.47"/>
+<ellipse cx="459" cy="124" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.18"/>
+<ellipse cx="426" cy="264" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.58"/>
+<ellipse cx="505" cy="83" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.7"/>
+<ellipse cx="389" cy="105" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.3"/>
+<ellipse cx="357" cy="152" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.26"/>
+<ellipse cx="550" cy="77" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.24"/>
+<ellipse cx="146" cy="129" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.38"/>
+<ellipse cx="305" cy="304" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.7"/>
+<ellipse cx="17" cy="154" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.48"/>
+<ellipse cx="169" cy="264" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.42"/>
+<ellipse cx="396" cy="12" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.15"/>
+<ellipse cx="232" cy="43" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.71"/>
+<ellipse cx="380" cy="265" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.34"/>
+<ellipse cx="125" cy="26" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.45"/>
+<ellipse cx="557" cy="128" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.36"/>
+<ellipse cx="429" cy="58" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.17"/>
+<ellipse cx="274" cy="120" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.41"/>
+<ellipse cx="173" cy="140" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.11"/>
+<ellipse cx="546" cy="241" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.14"/>
+<ellipse cx="392" cy="125" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.66"/>
+<ellipse cx="105" cy="52" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.51"/>
+<ellipse cx="248" cy="139" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.6"/>
+<ellipse cx="90" cy="249" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.14"/>
+<ellipse cx="515" cy="198" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.16"/>
+<ellipse cx="125" cy="278" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.62"/>
+<ellipse cx="534" cy="115" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.72"/>
+<ellipse cx="61" cy="40" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.41"/>
+<ellipse cx="548" cy="80" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.15"/>
+<ellipse cx="88" cy="264" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.32"/>
+<ellipse cx="69" cy="62" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.14"/>
+<ellipse cx="422" cy="184" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.52"/>
+<ellipse cx="423" cy="87" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.35"/>
+<ellipse cx="246" cy="71" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.11"/>
+<ellipse cx="311" cy="75" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.12"/>
+<ellipse cx="214" cy="152" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.25"/>
+<ellipse cx="274" cy="298" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.5"/>
+<ellipse cx="524" cy="83" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.59"/>
+<ellipse cx="554" cy="146" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.39"/>
+<ellipse cx="174" cy="109" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.49"/>
+<ellipse cx="212" cy="179" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.24"/>
+<ellipse cx="518" cy="102" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.55"/>
+<ellipse cx="260" cy="227" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.43"/>
+<ellipse cx="510" cy="105" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.13"/>
+<ellipse cx="342" cy="116" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.42"/>
+<ellipse cx="346" cy="19" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.45"/>
+<ellipse cx="190" cy="151" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.14"/>
+<ellipse cx="103" cy="104" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.1"/>
+<ellipse cx="190" cy="203" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.37"/>
+<ellipse cx="325" cy="217" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.47"/>
+<ellipse cx="355" cy="289" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.55"/>
+<ellipse cx="196" cy="286" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.62"/>
+<ellipse cx="62" cy="266" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.77"/>
+<ellipse cx="391" cy="46" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.41"/>
+<ellipse cx="372" cy="69" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.43"/>
+<ellipse cx="387" cy="297" rx="0.6" ry="0.6" fill="var(--reflection)" opacity="0.18"/>
+<line x1="16" y1="99" x2="16" y2="107" stroke="var(--accent)" stroke-width="1.15" opacity="0.92"/>
+<line x1="16" y1="109" x2="16" y2="117" stroke="var(--accent)" stroke-width="1.15" opacity="0.86"/>
+<line x1="16" y1="119" x2="16" y2="127" stroke="var(--accent)" stroke-width="1.15" opacity="0.79"/>
+<line x1="16" y1="129" x2="16" y2="137" stroke="var(--accent)" stroke-width="1.15" opacity="0.73"/>
+<line x1="16" y1="139" x2="16" y2="147" stroke="var(--accent)" stroke-width="1.15" opacity="0.66"/>
+<line x1="16" y1="149" x2="16" y2="157" stroke="var(--accent)" stroke-width="1.15" opacity="0.6"/>
+<line x1="16" y1="159" x2="16" y2="167" stroke="var(--accent)" stroke-width="1.15" opacity="0.54"/>
+<line x1="16" y1="169" x2="16" y2="177" stroke="var(--accent)" stroke-width="1.15" opacity="0.47"/>
+<line x1="16" y1="179" x2="16" y2="187" stroke="var(--accent)" stroke-width="1.15" opacity="0.41"/>
+<line x1="16" y1="189" x2="16" y2="197" stroke="var(--accent)" stroke-width="1.15" opacity="0.34"/>
+<line x1="16" y1="199" x2="16" y2="207" stroke="var(--accent)" stroke-width="1.15" opacity="0.28"/>
+<ellipse cx="200" cy="168" rx="10" ry="10" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="5 2" opacity="0.85"/>
+<ellipse cx="200" cy="168" rx="15" ry="15" fill="none" stroke="var(--accent)" stroke-width="0.7" stroke-dasharray="84 12 7 3" opacity="0.77"/>
+<ellipse cx="200" cy="168" rx="22" ry="22" fill="none" stroke="var(--accent)" stroke-width="0.7" stroke-dasharray="136 20 2 8" opacity="0.69"/>
+<ellipse cx="200" cy="168" rx="27" ry="27" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="5 2" opacity="0.61"/>
+<ellipse cx="200" cy="168" rx="32" ry="32" fill="none" stroke="var(--accent)" stroke-width="0.7" stroke-dasharray="84 12 7 3" opacity="0.53"/>
+<ellipse cx="200" cy="168" rx="38" ry="38" fill="none" stroke="var(--accent)" stroke-width="0.7" stroke-dasharray="136 20 2 8" opacity="0.45"/>
+<ellipse cx="200" cy="168" rx="47" ry="47" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="5 2" opacity="0.37"/>
+<ellipse cx="200" cy="168" rx="55" ry="55" fill="none" stroke="var(--accent)" stroke-width="0.7" stroke-dasharray="84 12 7 3" opacity="0.29"/>
+<ellipse cx="200" cy="168" rx="14" ry="14" fill="url(#nucleus)"/>
+<text x="130" y="123" font-size="3.6" font-weight="500" fill="var(--muted)" letter-spacing="0.8">FIELD CONTROL</text>
+<text x="122" y="209" font-size="3.4" font-weight="500" fill="var(--muted)" letter-spacing="0.82">SENSOR ALIGNMENT</text>
+<text x="249" y="139" font-size="3.5" font-weight="500" fill="var(--muted)" letter-spacing="0.8">RELAY ARRAY</text>
+<text x="197" y="219" font-size="4.2" font-weight="500" fill="var(--muted)" text-anchor="middle" letter-spacing="0.8">FIELD GENERATOR • OUTPUT NOMINAL</text>
+<text x="499" y="170" font-size="22" font-weight="400" fill="var(--accent)" opacity="0.42" class="ink-scene">13:14</text>
+<text x="486" y="183" font-size="3.6" font-weight="500" fill="var(--muted)" letter-spacing="0.8">LOCAL SYSTEM TIME</text>
+<ellipse cx="22" cy="16" rx="9.5" ry="9.5" fill="none" stroke="var(--accent)" stroke-width="0.6"/>
+<ellipse cx="22" cy="16" rx="5" ry="5" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+<text x="38" y="16" font-size="6.2" font-weight="690" fill="var(--accent)" letter-spacing="1.4" class="ink-scene-r-e-l">R E L A Y</text>
+<text x="38" y="23" font-size="3.3" font-weight="500" fill="var(--muted)" letter-spacing="0.9">DISTRIBUTED ACCESS CONTROL</text>
+<text x="439" y="16" font-size="3.7" font-weight="500" fill="var(--muted)" letter-spacing="1.1">SECURE    SYSTEM MONITOR    ONLINE</text></svg><form class="auth command"><h1>SIGN IN</h1><p class="sub">AUTHENTICATION REQUIRED</p><div class="scans"><button type="button" data-scan="eye" aria-label="Retinal scan"><svg class="ico" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12q10-15 20 0q-10 15-20 0Z"/><circle cx="12" cy="12" r="3"/></svg></button><button type="button" data-scan="finger" aria-label="Fingerprint scan"><svg class="ico" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M8 13q0-8 5-6q5 1 2 9m-5 0q-1-7 2-6q2 0 0 6"/></svg></button><button type="button" data-scan="voice" aria-label="Voice scan"><svg class="ico" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M5 11q0 8 7 8t7-8m-7 8v3m-4 0h8"/></svg></button></div><label class="field"><span class="field-name">IDENTIFIER</span><span class="input-wrap"><svg class="ico" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5 20q1-9 7-9t7 9"/></svg><input type="text" aria-label="IDENTIFIER" placeholder="Local identifier" autocomplete="username" required></span></label><label class="field"><span class="field-name">PASSKEY</span><span class="input-wrap"><svg class="ico" width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8 20 6v5.3c0 4.4-3.2 7.7-8 9.9-4.8-2.2-8-5.5-8-9.9V6Z"/><path d="m8.4 11.8 2.4 2.5 4.8-5"/></svg><input type="password" aria-label="PASSKEY" placeholder="••••••••" autocomplete="current-password" required></span></label><div class="more"><label><input type="checkbox"> REMEMBER ID</label><button class="text-action" type="button" data-action="detail">RECOVER ACCESS</button></div><button class="submit" type="submit">AUTHENTICATE</button><div class="alternate">···</div><button class="voice" type="button" data-scan="voice">⌁　VOICE AUTHENTICATION</button><output class="feedback" role="status"></output></form><section class="scan-panel" aria-live="polite"><div class="scanner"><i></i><b></b></div><p>PLACE FINGER ON SCANNER</p><button class="confirm-scan" type="button">COMPLETE SCAN</button><button class="abort" type="button">ABORT SCAN</button></section><section class="approved"><div class="board-tile sys">SYSTEM STATUS<br><b>NOMINAL</b><br>NETWORK ACTIVE<br>INTEGRITY　99.9%</div><div class="board-tile links">NETWORK ACTIVITY<br>⌁　·　⌁　·　⌁</div><div class="board-tile power">POWER CORE<br><b>99%</b><br>COOLANT　FULL</div><div class="board-tile signals">SIGNAL ANALYSIS<br>▂▅▃▇▅▁▆▂</div><h2>WELCOME, AGENT</h2><p>ALL SYSTEMS OPERATIONAL</p><small>SECURITY CLEARANCE　 LEVEL 8</small><big>13:14</big><button type="button">RETURN TO ACCESS</button></section>
+</main><script>
+const root = document.querySelector('main');
+const $ = selector => root.querySelector(selector);
+const all = selector => [...root.querySelectorAll(selector)];
+const frozen = new URLSearchParams(location.search).has('t');
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const duration = Number(document.querySelector('[name="motherlode:loop"]')?.content || 0);
+const previewAnimations = [];
+function play(target, keys) {
+  if ((!reduced || frozen) && duration) {
+    const elements = typeof target === 'string' ? all(target) : [target];
+    for (const element of elements) {
+      const frames = keys.map(([seconds, properties]) => ({ ...properties, offset: seconds / duration }));
+      previewAnimations.push(element.animate(frames, { duration: duration * 1000, iterations: Infinity, easing: 'linear' }));
+    }
+  }
+}
+function manual() {
+  for (const animation of previewAnimations) animation.cancel();
+  previewAnimations.length = 0;
+  root.dataset.mode = 'manual';
+}
+
+for(const form of all('form')){form.addEventListener('submit',e=>{e.preventDefault();form.querySelector('output').textContent='Details accepted.'});form.addEventListener('input',()=>{form.querySelector('output').textContent=''})}
+all('[data-action="detail"]').forEach(button=>button.addEventListener('click',()=>{const output=button.closest('form')?.querySelector('output')||$('.feedback');if(output)output.textContent=button.getAttribute('aria-label')||button.textContent;}));
+
+const module=$('.command'),scan=$('.scan-panel'),done=$('.approved');scan.inert=true;done.inert=true;function screen(name){manual();root.dataset.screen=name;root.style.setProperty('--scan',name==='scan'?1:0);root.style.setProperty('--pass',name==='done'?1:0);module.inert=name!=='login';scan.inert=name!=='scan';done.inert=name!=='done';}for(const button of all('[data-scan]'))button.onclick=()=>{screen('scan');scan.querySelector('p').textContent={eye:'ALIGN YOUR EYE WITH THE SCANNER',finger:'PLACE FINGER ON SCANNER',voice:'READY FOR VOICE AUTHENTICATION'}[button.dataset.scan];};$('.confirm-scan').onclick=()=>screen('done');$('.abort').onclick=()=>screen('login');$('.approved button').onclick=()=>screen('login');module.onsubmit=e=>{e.preventDefault();screen('done')};module.onfocusin=()=>{if(!root.dataset.screen)screen('login')};let inp=all('.command .field input');inp[0].value='relay.operator';inp[1].value='demo-code';play(root,[[0,{'--scan':0,'--pass':0}],[1.95,{'--scan':0,'--pass':0}],[2.22,{'--scan':1,'--pass':0}],[3.27,{'--scan':1,'--pass':0}],[3.55,{'--scan':0,'--pass':0}],[4.55,{'--scan':0,'--pass':0}],[4.95,{'--scan':0,'--pass':1}],[5.85,{'--scan':0,'--pass':1}],[6.3,{'--scan':0,'--pass':0}]]);
+</script><script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7697529602599701812) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

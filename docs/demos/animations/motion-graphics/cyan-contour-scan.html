@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x292">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="6.5">
+  <meta name="motherlode:still" content="2.5">
+  <title>Cyan contour scan</title>
+  <style>
+:root, [data-colorway="original"] { --background: #030711; --shade: #091b28; --middle: #3f707c; --bright: #8ad2d7; --highlight: #b6ebed; --leaf: #6099a1; --label: #8ad2d7; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d;
+  --face-tracker-ink: #caaab3; --system-online-ink: #caaab3; --camera-active-ink: #caaab3; --pose-detected-ink: #caaab3; --movement-monitored-ink: #caaab3; --landmarks-478-ink: #caaab3; --display-model-ink: #caaab3;
+}
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f;
+  --face-tracker-ink: #f1b2c1; --system-online-ink: #f1b2c1; --camera-active-ink: #f1b2c1; --pose-detected-ink: #f1b2c1; --movement-monitored-ink: #f1b2c1; --landmarks-478-ink: #f1b2c1; --display-model-ink: #f1b2c1;
+}
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe;
+  --face-tracker-ink: #c4c4c4; --system-online-ink: #c4c4c4; --camera-active-ink: #c4c4c4; --pose-detected-ink: #c4c4c4; --movement-monitored-ink: #c4c4c4; --landmarks-478-ink: #c4c4c4; --display-model-ink: #c4c4c4;
+}
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4;
+  --face-tracker-ink: #63cbd6; --system-online-ink: #63cbd6; --camera-active-ink: #63cbd6; --pose-detected-ink: #63cbd6; --movement-monitored-ink: #63cbd6; --landmarks-478-ink: #63cbd6; --display-model-ink: #63cbd6;
+}
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989;
+  --face-tracker-ink: #b8cc8f; --system-online-ink: #b8cc8f; --camera-active-ink: #b8cc8f; --pose-detected-ink: #b8cc8f; --movement-monitored-ink: #b8cc8f; --landmarks-478-ink: #b8cc8f; --display-model-ink: #b8cc8f;
+}
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d;
+  --face-tracker-ink: #f2a88e; --system-online-ink: #f2a88e; --camera-active-ink: #f2a88e; --pose-detected-ink: #f2a88e; --movement-monitored-ink: #f2a88e; --landmarks-478-ink: #f2a88e; --display-model-ink: #f2a88e;
+}
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff;
+  --face-tracker-ink: #b8acff; --system-online-ink: #b8acff; --camera-active-ink: #b8acff; --pose-detected-ink: #b8acff; --movement-monitored-ink: #b8acff; --landmarks-478-ink: #b8acff; --display-model-ink: #b8acff;
+}
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 292px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\34 "][y="\32 3"] { fill: var(--face-tracker-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\34 0"] { fill: var(--system-online-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\35 2\.5"] { fill: var(--camera-active-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\36 5"] { fill: var(--pose-detected-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\37 7\.5"] { fill: var(--movement-monitored-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\39 0"] { fill: var(--landmarks-478-ink); }
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="iris"]) svg > g:nth-of-type(1) > text[x="\33 "][y="\31 02\.5"] { fill: var(--display-model-ink); }
+</style>
+</head>
+<body>
+  <svg viewBox="0 0 576 292" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Cyan contour scan</title>
+    <desc id="description">A cyan face outline turns inside a dark scan display, flanked by a compact status panel and a horizontal sweep.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 6.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function animatePath(node, drawAt, samples) {
+      const frames = Array.from({length: samples + 1}, (_, j) => ({d: 'path("' + drawAt(j / samples) + '")'}));
+      node.setAttribute("d", drawAt(0));
+      node.animate(frames, {duration, iterations: Infinity, easing: "linear"});
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{});
+    const pool=radial(defs,"halo",[[0,"middle",.34],[1,"shade",0]]);
+    element("ellipse",{cx:289,cy:152,rx:188,ry:118,fill:pool});
+    const panel=element("g",{});
+    element("rect",{x:-7,y:5,width:110,height:160,rx:7,fill:"var(--shade)",stroke:"var(--middle)","stroke-width":1.1},panel);
+    function label(x,y,text,size,weight=400) {
+      const t=element("text",{x,y,fill:"var(--label)","font-family":"monospace","font-size":size,"font-weight":weight},panel);t.textContent=text;
+    }
+    label(4,23,"FACE TRACKER",10,700);
+    ["SYSTEM ONLINE","CAMERA ACTIVE","POSE DETECTED","MOVEMENT MONITORED",
+     "LANDMARKS  478","DISPLAY  •  MODEL"].forEach((v,i)=>label(3,40+12.5*i,v,5.8));
+    for(const [y,text] of [[111,"START SCAN"],[137,"STOP SCAN"]]){
+      element("rect",{x:-4,y,width:96,height:20,rx:2,fill:"var(--background)",stroke:"var(--middle)"},panel);
+      label(16,y+12.5,text,6.6);
+    }
+    const curves=[
+      [[-33,-45],[-21,-56],[0,-57],[18,-52],[31,-41],[39,-18],[39,14],[30,38],[15,52],[-1,54],[-17,47],[-29,30],[-35,7],[-36,-20],[-33,-45]],
+      [[-30,-31],[-20,-41],[-7,-45],[14,-44],[29,-34]],
+      [[-29,-15],[-20,-19],[-12,-18],[-8,-15],[-20,-15],[-26,-13]],[[8,-15],[19,-19],[28,-14],[17,-14],[12,-12]],
+      [[2,-18],[0,-6],[-4,9],[4,13],[9,9]],[[1,26],[9,22],[18,25],[8,29],[1,26]],
+      [[-28,-4],[-25,17],[-18,33]],[[28,-1],[30,16],[21,36]]
+    ];
+    const group=element("g",{});
+    let strokes=curves.map((curve,i)=>line(group,"",i===3||i===4||i===5?"bright":"middle",i===0?1.32:.93,i===0?.87:.75));
+    function drawFace(t) {
+      const a=t*tau,turn=.60*Math.sin(a),roll=.34*Math.cos(a*2);
+      return curves.map((c,index)=>pointsPath(c.map(([x,y])=>{
+        const z=index===4?18:index===3||index===2?9:(1-(x/48)**2)*6;
+        const xx=x*Math.cos(turn)+z*Math.sin(turn);
+        return [292+xx*Math.cos(roll)-y*Math.sin(roll),126+xx*Math.sin(roll)+y*Math.cos(roll)+7*Math.sin(a)];
+      })));
+    }
+    for(let i=0;i<strokes.length;i++)animatePath(strokes[i],t=>drawFace(t)[i],32);
+    const scan=line(drawing,"M0 0H576","bright",.85,.63);
+    scan.animate([{transform:"translateY(16px)",opacity:0},{offset:.2,opacity:.62},{offset:.83,opacity:.53},
+      {transform:"translateY(272px)",opacity:0}],{duration:duration/2,iterations:Infinity});
+    line(drawing,"M0 264H576","middle",.7,.82);
+    label(442,278,"NEURAL VISION SYSTEM  •  MODEL",5.9);
+    drawing.addEventListener("click",e=>{
+      if(e.offsetX>102)return;
+      if(e.offsetY>107&&e.offsetY<135)document.getAnimations().forEach(a=>a.play());
+      if(e.offsetY>=135&&e.offsetY<162)document.getAnimations().forEach(a=>a.pause());
+    });
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7704995144772144404) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

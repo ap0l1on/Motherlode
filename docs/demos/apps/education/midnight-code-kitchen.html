@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x1024">
+  <meta name="motherlode:scale" content="2">
+  <meta name="motherlode:loop" content="6">
+  <meta name="motherlode:still" content="4.15">
+  <title>Midnight code kitchen</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #0e1e2c; --surface: #16232f; --rule: #46525e; --text: #f4f5f5; --muted: #cbd4d9; --gold: #ffdc33; --violet: #c6a4df; --green: #8fd752; --cyan: #63d3e8; --red: #eea5b1; --blue: #268ad1; --orange: #eca944; --paper: #0b1014; --ink: #f5f3ee; --soft: #eeb984; --on: #101c28; --panel: #334351; --glow: #58cce5; --ivory: #fffbf4; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 1024px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+.app { position:absolute; inset:155px 69px 25px; }
+.problem { position:absolute; inset:0; pointer-events:none; opacity:0; animation: turn 6s step-end infinite; }
+.problem.active { pointer-events:auto; }
+body.interactive .problem { animation:none; opacity:0; }
+body.interactive .problem.active { opacity:1; }
+.toolbar { display:grid; grid-template-columns:26px 1fr 59px; height:44px; gap:13px; align-items:center; }
+.exit { font-size:40px; line-height:1; font-weight:300; color:var(--muted); }
+.streak { position:relative; height:18px; background:var(--panel); border-radius:12px; }
+.streak span { display:block; height:100%; width:var(--fill); border-radius:inherit; background:linear-gradient(90deg,var(--gold),var(--orange)); }
+.streak small { position:absolute; text-align:center; display:block; width:100%; top:-21px; text-transform:uppercase; letter-spacing:1.3px; font-size:12px; font-weight:800; color:var(--gold); }
+.energy { font-size:17px; font-weight:800; color:var(--gold); white-space:nowrap; }
+h1 { font-size:27px; letter-spacing:-.7px; margin:12px 0 23px; }
+.coach { display:flex; align-items:center; gap:14px; height:162px; padding-left:8px; overflow:hidden; }
+.coach svg { align-self:flex-start; width:122px; height:164px; flex:none; }
+.bubble { max-width:250px; color:var(--text); font-size:18px; line-height:1.38; padding:15px 17px; border:2px solid var(--rule); border-radius:16px; background:var(--surface); position:relative; }
+.bubble::before { content:""; position:absolute; left:-8px; top:48%; width:11px; height:11px; background:var(--surface); border-left:2px solid var(--rule); border-bottom:2px solid var(--rule); transform:rotate(45deg); }
+.editor { border:2px solid var(--rule); border-radius:18px; overflow:hidden; background:var(--surface); }
+.editor header { padding:13px 17px; background:var(--panel); color:var(--text); font-size:16px; font-weight:700; }
+.program { padding:13px 11px 27px; min-height:132px; font-size:15px; }
+.program div { display:flex; gap:11px; line-height:1.7; }
+.number { color:var(--muted); width:15px; text-align:right; }
+code { font-family:Menlo,monospace; white-space:pre; }
+code i { font-style:normal; color:var(--cyan); }
+code em { font-style:normal; color:var(--orange); }
+code b { color:var(--red); font-weight:600; }
+.slot { display:inline-block; outline:2px solid var(--green); border-radius:7px; padding:0 5px; line-height:1.36; }
+body.interactive .slot.awaiting { color:var(--muted); outline-color:var(--rule); }
+.tokens { display:flex; justify-content:center; gap:11px; margin:18px 0; }
+.tokens button, .why { background:var(--surface); border:1.5px solid var(--rule); border-radius:9px; padding:7px 14px; font:15px Menlo,monospace; cursor:pointer; }
+.tokens button[aria-pressed="true"] { border-color:var(--green); color:var(--green); }
+.feedback { position:absolute; bottom:23px; width:100%; background:var(--surface); border-radius:12px; padding:12px; }
+.feedback p { margin:0 0 10px; color:var(--green); min-height:17px; font-size:16px; font-weight:bold; }
+.action { display:flex; gap:9px; }
+.check { flex:1; border:0; border-radius:9px; background:var(--blue); color:var(--on); font-size:15px; padding:13px; font-weight:800; cursor:pointer; }
+.correct .check { background:var(--green); }
+
+@keyframes exercise0 { 0%,100% { opacity:1; visibility:visible; } 0.000%,19.980% { opacity:1; visibility:visible; } 20.000% { opacity:0; visibility:hidden; } }
+@keyframes exercise1 { 0%,100% { opacity:0; visibility:hidden; } 19.990% { opacity:0; visibility:hidden; } 20.000%,39.980% { opacity:1; visibility:visible; } 40.000% { opacity:0; visibility:hidden; } }
+@keyframes exercise2 { 0%,100% { opacity:0; visibility:hidden; } 39.990% { opacity:0; visibility:hidden; } 40.000%,59.980% { opacity:1; visibility:visible; } 60.000% { opacity:0; visibility:hidden; } }
+@keyframes exercise3 { 0%,100% { opacity:0; visibility:hidden; } 59.990% { opacity:0; visibility:hidden; } 60.000%,79.980% { opacity:1; visibility:visible; } 80.000% { opacity:0; visibility:hidden; } }
+@keyframes exercise4 { 0%,100% { opacity:0; visibility:hidden; } 79.990% { opacity:0; visibility:hidden; } 80.000%,99.980% { opacity:1; visibility:visible; } 99.999% { opacity:0; visibility:hidden; } }
+.problem:nth-child(4) .tokens { visibility:hidden; } body.interactive .problem.active .tokens { visibility:visible; }
+body.interactive .problem { visibility:hidden; pointer-events:none !important; } body.interactive .problem.active { visibility:visible; pointer-events:auto !important; }
+  </style>
+</head>
+<body>
+  <main aria-label="Coding lesson"><div class="app"><section class="problem active" data-answer="if" style="animation-name:exercise0; --fill:24%">
+  <div class="toolbar"><span class="exit" aria-hidden="true">×</span><div class="streak"><small>Combo ×3</small><span></span></div><span class="energy">ϟ ×3</span></div>
+  <h1>Complete the program</h1>
+  <div class="coach"><svg viewBox="0 0 126 168" aria-hidden="true"><path d="M17 166q1-40 22-46l27-3 23 4q15 9 19 45z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M38 130q-15-8-13-27Q16 99 17 89t12-9q0-19 17-29h35q17 8 19 29 11 2 10 11t-10 11q0 22-21 33z" fill="var(--soft)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M31 64q7-9 20-12-12-9-11-23Q40 3 65 3t25 25q1 15-15 25 14 3 20 11l-3 12q-28-10-58-1z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M36 76q23-12 56 1v10q-29-7-56 0z" fill="var(--gold)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".28"/><circle cx="50" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="77" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="51" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><circle cx="75" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><path d="M37 101q11-14 26-5 15-8 26 5l10 6q-13 6-27 4 8 7 7 15-2 18-17 35-17-19-21-34-2-9 5-17-13 3-21-4z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /></svg><div class="bubble">Unlock the finale when the episode count reaches nine.</div></div>
+  <div class="editor"><header>python</header><div class="program"><div><span class="number">1</span><code><i>episodes</i> = <em>9</em></code></div><div><span class="number">2</span><code> </code></div><div><span class="number">3</span><code><b class="slot" data-answer-slot>if</b> <i>episodes == 9</i>:</code></div><div><span class="number">4</span><code>    <i>print</i>(<em>"Finale unlocked"</em>)</code></div></div></div>
+  <div class="tokens" aria-label="Choose an answer"><button type="button" data-token="if" aria-pressed="false">if</button><button type="button" data-token="else" aria-pressed="false">else</button><button type="button" data-token="while" aria-pressed="false">while</button></div>
+  <footer class="feedback"><p aria-live="polite"></p><div class="action"><button class="why" aria-label="Show hint">?</button><button class="check">CHECK</button></div></footer>
+</section><section class="problem" data-answer="if" style="animation-name:exercise1; --fill:40%">
+  <div class="toolbar"><span class="exit" aria-hidden="true">×</span><div class="streak"><small>Combo ×6</small><span></span></div><span class="energy">ϟ ×6</span></div>
+  <h1>Complete the program</h1>
+  <div class="coach"><svg viewBox="0 0 126 168" aria-hidden="true"><path d="M17 166q1-40 22-46l27-3 23 4q15 9 19 45z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M38 130q-15-8-13-27Q16 99 17 89t12-9q0-19 17-29h35q17 8 19 29 11 2 10 11t-10 11q0 22-21 33z" fill="var(--soft)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M31 64q7-9 20-12-12-9-11-23Q40 3 65 3t25 25q1 15-15 25 14 3 20 11l-3 12q-28-10-58-1z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M36 76q23-12 56 1v10q-29-7-56 0z" fill="var(--gold)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".28"/><circle cx="50" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="77" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="51" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><circle cx="75" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><path d="M37 101q11-14 26-5 15-8 26 5l10 6q-13 6-27 4 8 7 7 15-2 18-17 35-17-19-21-34-2-9 5-17-13 3-21-4z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /></svg><div class="bubble">Show the badge when at least twenty people are watching.</div></div>
+  <div class="editor"><header>python</header><div class="program"><div><span class="number">1</span><code><i>viewers</i> = <em>26</em></code></div><div><span class="number">2</span><code> </code></div><div><span class="number">3</span><code><b class="slot" data-answer-slot>if</b> <i>viewers &gt;= 20</i>:</code></div><div><span class="number">4</span><code>    <i>print</i>(<em>"Live now"</em>)</code></div></div></div>
+  <div class="tokens" aria-label="Choose an answer"><button type="button" data-token="if" aria-pressed="false">if</button><button type="button" data-token="in" aria-pressed="false">in</button><button type="button" data-token="break" aria-pressed="false">break</button></div>
+  <footer class="feedback"><p aria-live="polite"></p><div class="action"><button class="why" aria-label="Show hint">?</button><button class="check">CHECK</button></div></footer>
+</section><section class="problem" data-answer="if" style="animation-name:exercise2; --fill:56%">
+  <div class="toolbar"><span class="exit" aria-hidden="true">×</span><div class="streak"><small>Combo ×9</small><span></span></div><span class="energy">ϟ ×9</span></div>
+  <h1>Complete the program</h1>
+  <div class="coach"><svg viewBox="0 0 126 168" aria-hidden="true"><path d="M17 166q1-40 22-46l27-3 23 4q15 9 19 45z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M38 130q-15-8-13-27Q16 99 17 89t12-9q0-19 17-29h35q17 8 19 29 11 2 10 11t-10 11q0 22-21 33z" fill="var(--soft)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M31 64q7-9 20-12-12-9-11-23Q40 3 65 3t25 25q1 15-15 25 14 3 20 11l-3 12q-28-10-58-1z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M36 76q23-12 56 1v10q-29-7-56 0z" fill="var(--gold)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".28"/><circle cx="50" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="77" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="51" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><circle cx="75" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><path d="M37 101q11-14 26-5 15-8 26 5l10 6q-13 6-27 4 8 7 7 15-2 18-17 35-17-19-21-34-2-9 5-17-13 3-21-4z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /></svg><div class="bubble">Open the gate only when access is already on.</div></div>
+  <div class="editor"><header>python</header><div class="program"><div><span class="number">1</span><code><i>is_open</i> = <em>True</em></code></div><div><span class="number">2</span><code> </code></div><div><span class="number">3</span><code><b class="slot" data-answer-slot>if</b> <i>is_open</i>:</code></div><div><span class="number">4</span><code>    <i>print</i>(<em>"Come in"</em>)</code></div></div></div>
+  <div class="tokens" aria-label="Choose an answer"><button type="button" data-token="or" aria-pressed="false">or</button><button type="button" data-token="if" aria-pressed="false">if</button><button type="button" data-token="for" aria-pressed="false">for</button></div>
+  <footer class="feedback"><p aria-live="polite"></p><div class="action"><button class="why" aria-label="Show hint">?</button><button class="check">CHECK</button></div></footer>
+</section><section class="problem" data-answer="else" style="animation-name:exercise3; --fill:72%">
+  <div class="toolbar"><span class="exit" aria-hidden="true">×</span><div class="streak"><small>Combo ×12</small><span></span></div><span class="energy">ϟ ×12</span></div>
+  <h1>Complete the program</h1>
+  <div class="coach"><svg viewBox="0 0 126 168" aria-hidden="true"><path d="M17 166q1-40 22-46l27-3 23 4q15 9 19 45z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M38 130q-15-8-13-27Q16 99 17 89t12-9q0-19 17-29h35q17 8 19 29 11 2 10 11t-10 11q0 22-21 33z" fill="var(--soft)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M31 64q7-9 20-12-12-9-11-23Q40 3 65 3t25 25q1 15-15 25 14 3 20 11l-3 12q-28-10-58-1z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M36 76q23-12 56 1v10q-29-7-56 0z" fill="var(--gold)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".28"/><circle cx="50" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="77" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="51" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><circle cx="75" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><path d="M37 101q11-14 26-5 15-8 26 5l10 6q-13 6-27 4 8 7 7 15-2 18-17 35-17-19-21-34-2-9 5-17-13 3-21-4z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /></svg><div class="bubble">Add the branch that catches every other topping.</div></div>
+  <div class="editor"><header>python</header><div class="program"><div><span class="number">1</span><code><i>topping</i> = <em>&quot;Pineapple&quot;</em></code></div><div><span class="number">2</span><code> </code></div><div><span class="number">3</span><code><b>if</b> <i>topping == &quot;Pepperoni&quot;</i>:</code></div><div><span class="number">4</span><code>    <i>print</i>(<em>"Classic"</em>)</code></div><div><span class="number">5</span><code><b class="slot" data-answer-slot>else</b>:</code></div><div><span class="number">6</span><code>    <i>print</i>(<em>"Try another"</em>)</code></div></div></div>
+  <div class="tokens" aria-label="Choose an answer"><button type="button" data-token="elif" aria-pressed="false">elif</button><button type="button" data-token="else" aria-pressed="false">else</button><button type="button" data-token="while" aria-pressed="false">while</button></div>
+  <footer class="feedback"><p aria-live="polite"></p><div class="action"><button class="why" aria-label="Show hint">?</button><button class="check">CHECK</button></div></footer>
+</section><section class="problem" data-answer="else" style="animation-name:exercise4; --fill:88%">
+  <div class="toolbar"><span class="exit" aria-hidden="true">×</span><div class="streak"><small>Combo ×15</small><span></span></div><span class="energy">ϟ ×15</span></div>
+  <h1>Complete the program</h1>
+  <div class="coach"><svg viewBox="0 0 126 168" aria-hidden="true"><path d="M17 166q1-40 22-46l27-3 23 4q15 9 19 45z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M38 130q-15-8-13-27Q16 99 17 89t12-9q0-19 17-29h35q17 8 19 29 11 2 10 11t-10 11q0 22-21 33z" fill="var(--soft)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M31 64q7-9 20-12-12-9-11-23Q40 3 65 3t25 25q1 15-15 25 14 3 20 11l-3 12q-28-10-58-1z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /><path d="M36 76q23-12 56 1v10q-29-7-56 0z" fill="var(--gold)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" opacity=".28"/><circle cx="50" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="77" cy="85" r="6" fill="var(--ivory)" stroke="none" stroke-width="1"/><circle cx="51" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><circle cx="75" cy="86" r="2.6" fill="var(--on)" stroke="none" stroke-width="1"/><path d="M37 101q11-14 26-5 15-8 26 5l10 6q-13 6-27 4 8 7 7 15-2 18-17 35-17-19-21-34-2-9 5-17-13 3-21-4z" fill="var(--ivory)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" /></svg><div class="bubble">Send every other level back to the workshop.</div></div>
+  <div class="editor"><header>python</header><div class="program"><div><span class="number">1</span><code><i>level</i> = <em>&quot;Boss&quot;</em></code></div><div><span class="number">2</span><code> </code></div><div><span class="number">3</span><code><b>if</b> <i>level == &quot;Boss&quot;</i>:</code></div><div><span class="number">4</span><code>    <i>print</i>(<em>"Final stage"</em>)</code></div><div><span class="number">5</span><code><b class="slot" data-answer-slot>else</b>:</code></div><div><span class="number">6</span><code>    <i>print</i>(<em>"Keep going"</em>)</code></div></div></div>
+  <div class="tokens" aria-label="Choose an answer"><button type="button" data-token="for" aria-pressed="false">for</button><button type="button" data-token="if" aria-pressed="false">if</button><button type="button" data-token="else" aria-pressed="false">else</button></div>
+  <footer class="feedback"><p aria-live="polite"></p><div class="action"><button class="why" aria-label="Show hint">?</button><button class="check">CHECK</button></div></footer>
+</section></div></main>
+  <script>
+
+const problems = [...document.querySelectorAll(".problem")];
+let current = 0;
+function activate(index) {
+  document.body.classList.add("interactive");
+  current = index;
+  problems.forEach((problem,i) => problem.classList.toggle("active", i === current));
+  const active = problems[current];
+  if (!active.dataset.selected) {
+    const slot = active.querySelector("[data-answer-slot]");
+    slot.textContent = "…"; slot.classList.add("awaiting");
+  }
+}
+function noticed(event) {
+  if (document.body.classList.contains("interactive")) return;
+  const shown = problems.findIndex(p => Number(getComputedStyle(p).opacity) > .5);
+  activate(Math.max(0,shown));
+}
+for (const p of problems) p.style.pointerEvents = "auto";
+document.addEventListener("pointermove", noticed, {once:true});
+document.addEventListener("focusin", event => activate(problems.indexOf(event.target.closest(".problem")) < 0 ? current : problems.indexOf(event.target.closest(".problem"))));
+for (const [index,p] of problems.entries()) {
+  const message = p.querySelector(".feedback p");
+  const check = p.querySelector(".check");
+  p.querySelector(".why").onclick = () => { activate(index); message.textContent = "Look at the branch after the condition."; };
+  for (const btn of p.querySelectorAll("[data-token]")) btn.onclick = () => {
+    activate(index);
+    p.dataset.selected = btn.dataset.token;
+    const slot = p.querySelector("[data-answer-slot]");
+    slot.textContent = btn.dataset.token; slot.classList.remove("awaiting");
+    for (const choice of p.querySelectorAll("[data-token]")) choice.setAttribute("aria-pressed",String(choice === btn));
+    message.textContent = "";
+  };
+  check.onclick = () => {
+    activate(index);
+    if (p.classList.contains("correct")) { p.classList.remove("correct"); check.textContent = "CHECK"; message.textContent = ""; delete p.dataset.selected; p.querySelectorAll("[data-token]").forEach(choice=>choice.setAttribute("aria-pressed","false")); activate((index+1) % problems.length); return; }
+    if (p.dataset.selected === p.dataset.answer) {
+      p.classList.add("correct"); message.textContent = "✦  Correct"; check.textContent = "CONTINUE";
+    } else { message.textContent = p.dataset.selected ? "Try another answer." : "Choose an answer above."; }
+  };
+}
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7710530058544352533) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

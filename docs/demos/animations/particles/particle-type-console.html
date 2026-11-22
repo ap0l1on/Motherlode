@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x341">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="13">
+  <meta name="motherlode:still" content="10.2">
+  <title>Particle type console</title>
+  <style>
+:root, [data-colorway="original"] { --background: #020203; --shade: #29272c; --middle: #5343ab; --bright: #756790; --highlight: #c8c4e5; --leaf: #84808e; --label: #c8c4e5; --control-ink: #ffffff; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --label: #78253d; --control-ink: #ffffff; --entry-ink: #cdaeb7; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --label: #ea899f; --control-ink: #ffffff; --entry-ink: #f2b7c4; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --label: #bebebe; --control-ink: #000000; --entry-ink: #c8c8c8; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --label: #5bc8d4; --control-ink: #000000; --entry-ink: #6bced8; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --label: #b4c989; --control-ink: #000000; --entry-ink: #bccf96; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --label: #ec825d; --control-ink: #ffffff; --entry-ink: #f3ae96; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --label: #ac9eff; --control-ink: #ffffff; --entry-ink: #bbafff; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 341px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 341" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Particle type console</title>
+    <desc id="description">A violet particle globe breaks apart into letters. An input below the field turns a short phrase into a new constellation of dots.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 13 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs = element("defs", {}), cx=286, cy=149;
+    const mist=radial(defs,"dust-halo",[[0,"middle",.20],[.7,"shade",.09],[1,"background",0]]);
+    element("ellipse",{cx,cy,rx:256,ry:155,fill:mist});
+    const dust=[[],[],[]];
+    for(let i=0;i<5000;i++)dust[i%3].push("M"+(random()*576).toFixed(1)+" "+(random()*341).toFixed(1)+"h.12");
+    dust.forEach((d,k)=>line(drawing,d.join(""),k===0?"bright":"middle",.69,.12+k*.022));
+    function dots(word){
+      const pad=document.createElement("canvas");pad.width=440;pad.height=110;
+      const ctx=pad.getContext("2d");ctx.textAlign="center";ctx.textBaseline="middle";
+      ctx.fillStyle=getComputedStyle(drawing).getPropertyValue("--label");
+      ctx.font="800 "+Math.min(84,360 / Math.max(1, word.length)*1.57)+"px system-ui";
+      ctx.fillText(word,220,57);
+      const pixels=ctx.getImageData(0,0,440,110).data, values=[];
+      for(let y=0;y<110;y+=2)for(let x=0;x<440;x+=2)if(pixels[(y*440+x)*4+3]>48)
+        values.push([cx+x-220+(random()-.5)*1.35,cy+y-55+(random()-.5)*1.35]);
+      return values;
+    }
+    const globe=[];
+    for(let i=0;i<4200;i++){
+      const a=tau*random(),z=2*random()-1,s=Math.sqrt(1-z*z);
+      globe.push([cx+72*Math.cos(a)*s,cy+72*z]);
+    }
+    const scene=element("g",{});
+    function pointLayer(points){
+      const g=element("g",{},scene), groups=[[],[],[]];
+      for(let i=0;i<points.length;i++)groups[i%3].push("M"+points[i][0].toFixed(1)+" "+points[i][1].toFixed(1)+"h.11");
+      groups.forEach((set,i)=>line(g,set.join(""),i?"bright":"highlight",i?1.04:1.24,i?.40:.49));return g;
+    }
+    const initial=pointLayer(globe), first=pointLayer(dots("TCW")), second=pointLayer(dots("Follow"));
+    function appear(g, start, end){
+      g.style.transformOrigin=cx+"px "+cy+"px";
+      const frames=[{offset:0,opacity:start===0?1:0,transform:"scale(1)"}];
+      if(start){frames.push({offset:start-.055,opacity:0,transform:"scale(.38)"},{offset:start,opacity:1,transform:"scale(1)"});}
+      frames.push({offset:end,opacity:1,transform:"scale(1)"},{offset:Math.min(1,end+.065),opacity:0,transform:"scale(.32)"});
+      if(end+.065<1)frames.push({offset:1,opacity:0,transform:"scale(.32)"});
+      g.animate(frames,{duration,iterations:Infinity});
+    }
+    appear(initial,0,.245);appear(first,.34,.60);appear(second,.72,.923);
+    const entry=element("foreignObject",{x:158,y:280,width:263,height:34});
+    const form=document.createElement("form");form.style.cssText="display:flex;gap:5px;padding:5px;border-radius:7px;background:var(--shade);font:10px system-ui;box-sizing:border-box;height:100%";
+    const field=document.createElement("input");field.setAttribute("aria-label","Text to form in particles");field.value="Follow";
+    field.style.cssText="width:0;flex:1;min-width:0;background:transparent;color:var(--entry-ink,var(--label));border:0;padding:0 6px;font:inherit";
+    const submit=document.createElement("button");submit.type="submit";submit.textContent="✧ Create";
+    submit.style.cssText="border:0;border-radius:5px;background:var(--middle);color:var(--control-ink);font:inherit;padding:0 12px;cursor:pointer";
+    form.append(field,submit);entry.append(form);
+    form.addEventListener("submit",event=>{event.preventDefault();if(!field.value.trim())return;
+      for(const a of scene.getAnimations({subtree:true}))a.cancel();
+      scene.replaceChildren();pointLayer(dots([...field.value.trim()].slice(0,20).join("")));});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7699385726407871765) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

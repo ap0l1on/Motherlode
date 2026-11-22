@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x355">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="19.5">
+  <meta name="motherlode:still" content="10">
+  <title>Glacier trail spider</title>
+  <style>
+:root, [data-colorway="original"] { --background: #030209; --shade: #0d1021; --middle: #147391; --bright: #40cad3; --highlight: #b6ffff; --leaf: #427699; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 355px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 355" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Glacier trail spider</title>
+    <desc id="description">An icy blue spider turns toward the pointer. Fading cyan outlines trace its eight moving legs across a nearly black field.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 19.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{}),base=radial(defs,"night",[[0,"shade",.37],[1,"background",0]]);
+    element("ellipse",{cx:304,cy:179,rx:252,ry:163,fill:base});
+    const poses=[[.51,.33],[.75,.35],[.67,.29],[.42,.39],[.54,.55],[.78,.42],[.68,.09],[.43,.24],[.50,.53],[.76,.58],[.65,.36],[.38,.38],[.44,.67],[.69,.53],[.80,.37],[.82,.35],[.51,.33]];
+    function position(t){
+      t=(t%1+1)%1;const a=t*(poses.length-1),i=Math.floor(a),u=a-i,q=u*u*(3-2*u);
+      return [576*(poses[i][0]*(1-q)+poses[i+1][0]*q),355*(poses[i][1]*(1-q)+poses[i+1][1]*q)];
+    }
+    function pose(g,lag){
+      const frames=Array.from({length:83},(_,j)=>{const t=j/82-lag,p=position(t),v=position(t+.017),turn=-90+Math.atan2(v[1]-p[1],v[0]-p[0])*180/Math.PI;
+        return {transform:"translate("+p[0]+"px,"+p[1]+"px) rotate("+turn+"deg)"};});
+      return g.animate(frames,{duration,iterations:Infinity,easing:"linear"});
+    }
+    const host=element("g",{}),glow=radial(defs,"body",[[0,"highlight",1],[.42,"bright",1],[.83,"middle",.9],[1,"shade",.65]]);
+    let master;
+    for(let j=7;j>=0;j--){
+      const spider=element("g",{opacity:j===0?1:.080+(7-j)*.041},host);
+      for(let sign of [-1,1])for(let k=0;k<4;k++){
+        const h=-9+5*k,spread=sign*(17+5*Math.sin(k));
+        const path="M"+(3*sign)+" "+h+"Q"+(9*sign)+" "+(h-7)+" "+spread+" "+(h-6+k*2)
+          +"Q"+(spread+7*sign)+" "+(h+3)+" "+(spread+2*sign)+" "+(h+12);
+        line(spider,path,j?"middle":"bright",j?2.14:2.96,.96);
+      }
+      element("ellipse",{cx:0,cy:1,rx:9.6,ry:12.1,fill:glow},spider);
+      element("circle",{cx:0,cy:-10,r:4.9,fill:"var(--bright)"},spider);
+      const track=pose(spider,j*.0046);if(!j)master=track;
+    }
+    drawing.addEventListener("pointermove",event=>{
+      const p=position((master.currentTime||0)/duration),r=drawing.getBoundingClientRect();
+      host.setAttribute("transform","translate("+(event.clientX-r.left-p[0])+" "+(event.clientY-r.top-p[1])+")");
+    });
+    drawing.addEventListener("pointerleave",()=>host.removeAttribute("transform"));
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7697533502572514581) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

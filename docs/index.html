@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbfbf9">
+  <meta name="description" content="Browse Motherlode’s editable design library. Try live designs, explore colorways, copy the source and use designer prompts.">
+  <title>Design library · Motherlode</title>
+  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="./assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./library.css">
+  <script src="./library.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="topbar">
+    <a class="brand" href="#library" aria-label="Motherlode home"><img src="./assets/mark.svg" alt="" width="32" height="32">Motherlode</a>
+    <nav class="topnav" aria-label="Main navigation">
+      <a href="#library" id="nav-library">Library</a>
+      <a href="#prompts" id="nav-prompts" aria-label="Designer prompts"><span class="nav-long">Designer prompts</span><span class="nav-short">Prompts</span></a>
+    </nav>
+    <div class="header-tools">
+      <form class="search-box" id="search-form" role="search">
+        <svg class="icon" aria-hidden="true"><use href="./assets/icons.svg#search"/></svg>
+        <input id="search-designs" type="search" placeholder="Search designs…" aria-label="Search designs" autocomplete="off">
+        <kbd aria-hidden="true">/</kbd>
+      </form>
+      <a class="repo-link" href="https://github.com/ap0l1on/Motherlode" target="_blank" rel="noopener" aria-label="Motherlode on GitHub"><svg class="icon" aria-hidden="true"><use href="./assets/icons.svg#github"/></svg><span>GitHub</span></a>
+    </div>
+  </header>
+  <div class="shell">
+    <button class="sidebar-shade" type="button" aria-label="Close navigation" hidden></button>
+    <aside id="sidebar" aria-label="Library navigation"></aside>
+    <main id="main-content" tabindex="-1"><p class="loading">Loading the design library…</p></main>
+  </div>
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+  <noscript>Enable JavaScript to try live designs and switch colorways. <a href="https://github.com/ap0l1on/Motherlode">Browse the catalog on GitHub</a>.</noscript>
+</body>
+</html>

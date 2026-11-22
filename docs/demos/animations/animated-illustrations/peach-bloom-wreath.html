@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x309"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.8"><meta name="motherlode:still" content="4.8">
+<title>Peach bloom wreath</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #031013; --ink: #c4d6cb; --base: #051415; --low: #0c2428; --high: #8dc4ba; --a: #31776f; --b: #66b7a8; --c: #91c1b1; --d: #f7d6bf; --e: #eeb59a; --f: #badaac; --g: #254f4c; --h: #f7e8cf;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:309px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 309" role="img" aria-label="Mirrored sprigs of peach flowers, turquoise leaves and curled tendrils grow into an open wreath against deep green-black." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 2079663;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+rect(0,0,W,H,css('bg'));
+const petal=gradient('silk',[[0,'h'],[55,'d'],[100,'e']],{x2:'74%',y2:'100%'});
+const leaf=gradient('leaves',[[0,'a'],[46,'b'],[100,'c']],{x2:'77%',y2:'82%'});
+function leafAt(parent,x,y,angle,w,l){
+ const sprig=group(parent,{transform:'translate('+x+' '+y+') rotate('+angle+')'});
+ path('M0 0Q'+(-w)+' '+(-l*.57)+' 0 '+(-l)+'Q'+w+' '+(-l*.49)+' 0 0Z',{fill:leaf},sprig);
+ path('M0 0Q'+(-w*.18)+' '+(-l*.49)+' 0 '+(-l),{fill:'none',stroke:css('a'),'stroke-width':.55},sprig);
+}
+function bloom(parent,x,y,rotation,size){
+ const flower=group(parent,{transform:'translate('+x+' '+y+') rotate('+rotation+') scale('+size+')'});
+ for(const [ang,h,w] of [[-46,24,6.7],[-26,32,7.2],[13,34,7],[36,30,7.2],[51,22,6],[-4,30,7]]) {
+  const l=group(flower,{transform:'rotate('+ang+')'});
+  path('M0 0C'+(-w)+' -7 '+(-w*1.58)+' '+(-h+4)+' -2 '+(-h)+'Q'+(w+4)+' '+(-h-2)+' '+w+' '+(-h*.52)+'Q'+w*.6+' -6 0 0Z',{fill:petal,stroke:css('e'),'stroke-width':1.05},l);
+  path('M0 -1Q'+w*.37+' '+(-h*.42)+' -1 '+(-h*.87),{fill:'none',stroke:css('e'),'stroke-width':.6,opacity:.67},l);
+ }
+ for(let i=0;i<3;i++){const xx=(i-1)*3.8;path('M0 0Q'+xx+' -15 '+xx*1.25+' -27',{stroke:css('e'),fill:'none','stroke-width':.7},flower);circle(xx*1.25,-27,1.2,css('h'),flower);}
+}
+for(const mirror of [false,true]){
+ const side=group(stage,mirror?{transform:'translate(580 0) scale(-1 1)'}:{}),bot=group(side);
+ const stems=['M290 287C276 257 247 261 215 250C183 238 166 208 172 169C177 140 178 116 188 93Q203 60 218 42Q226 25 228 5','M248 259Q214 257 184 267Q165 274 152 279','M233 256Q182 254 158 228Q143 211 147 189','M218 251Q188 230 195 196Q197 181 206 171','M207 244Q181 233 171 220Q151 202 153 183','M180 198Q173 172 161 158Q150 140 158 123','M176 171Q187 147 190 124','M181 122Q169 106 161 103Q147 98 149 92','M188 98Q195 85 204 79','M200 74Q192 57 185 52','M215 46Q225 34 243 26','M225 24Q234 21 247 18'];
+ for(const [i,d] of stems.entries())path(d,{fill:'none',stroke:css(i%3===0?'b':'a'),'stroke-width':i===0?2.0:1.0,'stroke-linecap':'round'},bot);
+ for(const [x,y,a,w,l] of [[181,267,-113,7,32],[210,258,-125,6,24],[196,249,-48,6,25],[196,229,13,3,15],[172,213,-43,4,15],[175,174,-34,5,18],[165,119,-65,7,20],[171,103,-41,6,23],[176,98,16,4,12],[197,87,46,3,11],[224,28,-4,6,24],[234,22,62,6,24],[226,37,70,3,12]])leafAt(bot,x,y,a,w,l);
+ for(const [x,y,size] of [[207,175,.30],[168,200,.23],[210,218,.29],[204,105,.23]])bloom(bot,x,y,-19,size);
+ bloom(bot,171,170,-14,1.05);bloom(bot,207,76,16,.94);
+ for(const [x,y,spin,len] of [[165,133,-1,16],[164,222,-1,14],[181,250,-1,18],[210,249,1,14],[196,78,-1,12],[244,262,-1,14],[275,275,-1,9]]){const pts=[];for(let t=0;t<33;t++){const a=t/32*tau*1.25,r=len*(1-t/32);pts.push([x+spin*r*Math.cos(a),y+r*Math.sin(a)]);}path(shape(pts),{fill:'none',stroke:css('a'),'stroke-width':.8},bot);}
+ for(let i=0;i<29;i++){const x=range(150,260),y=range(29,258);if(Math.abs(x-(170+(y-150)**2*.003))<31)circle(x,y,range(.48,1.25),css('h'),bot,{opacity:.78});}
+ animate(bot,[{clipPath:'inset(100% 0 0 0)',opacity:0},{clipPath:'inset(94% 0 0 0)',opacity:1,offset:.08},{clipPath:'inset(40% 0 0 0)',opacity:1,offset:.41},{clipPath:'inset(0% 0 0 0)',opacity:1,offset:.72},{clipPath:'inset(0% 0 0 0)',opacity:1,offset:.94},{clipPath:'inset(0% 0 0 0)',opacity:0}]);
+}
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7693450857320434964) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

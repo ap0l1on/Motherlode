@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x1024">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="36">
+  <meta name="motherlode:still" content="4.5">
+  <meta name="motherlode:slides" content="6">
+  <title>Green array methods</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #0e1119; --surface: #282923; --rule: #3a675c; --text: #efeee8; --muted: #c4c5bc; --gold: #f3cb42; --violet: #cab6e2; --green: #5bd8a2; --cyan: #6ac7cf; --red: #eb7870; --blue: #6ca6ef; --orange: #f1ba89; --paper: #0b1014; --ink: #f5f3ee; --soft: #bbbfbc; --on: #071c17; --panel: #191a26; --glow: #58cce5; --ivory: #f5f3ee; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 1024px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+.card { position:absolute; inset:0; visibility:hidden; text-align:center; animation:var(--stage) 36s linear infinite; }
+h1 { margin:72px 20px 0; font: bold 79px/1.06 Georgia,serif; color:var(--green); }
+.desc { margin:8px 10px 0; font:26px/1.22 Georgia,serif; color:var(--text); }
+.source-code { position:absolute; top:286px; left:32px; right:32px; padding:41px 30px 22px; text-align:left; background:var(--surface); border-radius:16px; border:1.4px solid var(--muted); animation:var(--code) 36s linear infinite; }
+.lights { display:flex; position:absolute; top:16px; left:15px; gap:8px; }
+.lights i { width:16px; height:16px; border-radius:100%; background:var(--red); }
+.lights i:nth-child(2) { background:var(--gold); } .lights i:last-child { background:var(--green); }
+pre { margin:0; font:24px/1.37 Menlo,monospace; letter-spacing:-.6px; white-space:pre; }
+.c-cyan { color:var(--cyan); } .c-violet { color:var(--violet); } .c-gold { color:var(--gold); } .c-red { color:var(--red); } .c-muted { color:var(--muted); }
+.result { position:absolute; top:704px; left:37px; right:37px; animation:var(--out) 36s linear infinite; }
+h2 { margin:0 0 12px; font:bold 29px Georgia,serif; color:var(--gold); }
+output { display:block; padding:22px 8px; border:1.6px solid var(--green); border-radius:8px; background:var(--panel); font:34px/1.4 Menlo,monospace; }
+output i { color:var(--green); font-style:normal; }
+.recap h1 { font-size:65px; color:var(--text); } .recap h1 span { color:var(--green); }
+.recap .desc { font:italic 22px Georgia,serif; }
+.recap ul { position:absolute; list-style:none; padding:0; margin:0; left:32px; right:32px; top:333px; }
+.recap li { display:flex; align-items:center; justify-content:center; gap:12px; margin:7px 0; padding:14px; background:var(--panel); font:22px Georgia,serif; border-radius:4px; animation:var(--row) 36s linear infinite; }
+.recap b { font:700 27px Menlo,monospace; color:var(--green); } .recap em { color:var(--gold); font-style:normal; }
+body.fixed .card,body.fixed .card * { animation:none; }
+body.fixed .card { visibility:hidden; opacity:0; } body.fixed .card.selected { visibility:visible; opacity:1; }
+
+@keyframes stage0 { 0.00000% { opacity:0; visibility:visible; } 0.88889% { opacity:1; visibility:visible; } 16.66111% { opacity:1; visibility:visible; } 16.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes code0 { 0.00000% { opacity:0; visibility:hidden; } 2.49444% { opacity:0; visibility:hidden; } 2.50000% { opacity:0; visibility:visible; } 3.61111% { opacity:1; visibility:visible; } 16.66111% { opacity:1; visibility:visible; } 16.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes out0 { 0.00000% { opacity:0; visibility:hidden; } 9.43889% { opacity:0; visibility:hidden; } 9.44444% { opacity:0; visibility:visible; } 10.41667% { opacity:1; visibility:visible; } 16.66111% { opacity:1; visibility:visible; } 16.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes stage1 { 0.00000% { opacity:0; visibility:hidden; } 16.66111% { opacity:0; visibility:hidden; } 16.66667% { opacity:0; visibility:visible; } 17.55556% { opacity:1; visibility:visible; } 33.32778% { opacity:1; visibility:visible; } 33.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes code1 { 0.00000% { opacity:0; visibility:hidden; } 19.16111% { opacity:0; visibility:hidden; } 19.16667% { opacity:0; visibility:visible; } 20.27778% { opacity:1; visibility:visible; } 33.32778% { opacity:1; visibility:visible; } 33.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes out1 { 0.00000% { opacity:0; visibility:hidden; } 26.10556% { opacity:0; visibility:hidden; } 26.11111% { opacity:0; visibility:visible; } 27.08333% { opacity:1; visibility:visible; } 33.32778% { opacity:1; visibility:visible; } 33.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes stage2 { 0.00000% { opacity:0; visibility:hidden; } 33.32778% { opacity:0; visibility:hidden; } 33.33333% { opacity:0; visibility:visible; } 34.22222% { opacity:1; visibility:visible; } 49.99444% { opacity:1; visibility:visible; } 50.00000% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes code2 { 0.00000% { opacity:0; visibility:hidden; } 35.82778% { opacity:0; visibility:hidden; } 35.83333% { opacity:0; visibility:visible; } 36.94444% { opacity:1; visibility:visible; } 49.99444% { opacity:1; visibility:visible; } 50.00000% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes out2 { 0.00000% { opacity:0; visibility:hidden; } 42.77222% { opacity:0; visibility:hidden; } 42.77778% { opacity:0; visibility:visible; } 43.75000% { opacity:1; visibility:visible; } 49.99444% { opacity:1; visibility:visible; } 50.00000% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes stage3 { 0.00000% { opacity:0; visibility:hidden; } 49.99444% { opacity:0; visibility:hidden; } 50.00000% { opacity:0; visibility:visible; } 50.88889% { opacity:1; visibility:visible; } 66.66111% { opacity:1; visibility:visible; } 66.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes code3 { 0.00000% { opacity:0; visibility:hidden; } 52.49444% { opacity:0; visibility:hidden; } 52.50000% { opacity:0; visibility:visible; } 53.61111% { opacity:1; visibility:visible; } 66.66111% { opacity:1; visibility:visible; } 66.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes out3 { 0.00000% { opacity:0; visibility:hidden; } 59.43889% { opacity:0; visibility:hidden; } 59.44444% { opacity:0; visibility:visible; } 60.41667% { opacity:1; visibility:visible; } 66.66111% { opacity:1; visibility:visible; } 66.66667% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes stage4 { 0.00000% { opacity:0; visibility:hidden; } 66.66111% { opacity:0; visibility:hidden; } 66.66667% { opacity:0; visibility:visible; } 67.55556% { opacity:1; visibility:visible; } 83.32778% { opacity:1; visibility:visible; } 83.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes code4 { 0.00000% { opacity:0; visibility:hidden; } 69.16111% { opacity:0; visibility:hidden; } 69.16667% { opacity:0; visibility:visible; } 70.27778% { opacity:1; visibility:visible; } 83.32778% { opacity:1; visibility:visible; } 83.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes out4 { 0.00000% { opacity:0; visibility:hidden; } 76.10556% { opacity:0; visibility:hidden; } 76.11111% { opacity:0; visibility:visible; } 77.08333% { opacity:1; visibility:visible; } 83.32778% { opacity:1; visibility:visible; } 83.33333% { opacity:0; visibility:hidden; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes stage5 { 0.00000% { opacity:0; visibility:hidden; } 83.32778% { opacity:0; visibility:hidden; } 83.33333% { opacity:0; visibility:visible; } 84.22222% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes row0 { 0.00000% { opacity:0; visibility:hidden; } 86.10556% { opacity:0; visibility:hidden; } 86.11111% { opacity:0; visibility:visible; } 87.00000% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes row1 { 0.00000% { opacity:0; visibility:hidden; } 87.77222% { opacity:0; visibility:hidden; } 87.77778% { opacity:0; visibility:visible; } 88.66667% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes row2 { 0.00000% { opacity:0; visibility:hidden; } 89.43889% { opacity:0; visibility:hidden; } 89.44444% { opacity:0; visibility:visible; } 90.33333% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes row3 { 0.00000% { opacity:0; visibility:hidden; } 91.10556% { opacity:0; visibility:hidden; } 91.11111% { opacity:0; visibility:visible; } 92.00000% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+@keyframes row4 { 0.00000% { opacity:0; visibility:hidden; } 92.77222% { opacity:0; visibility:hidden; } 92.77778% { opacity:0; visibility:visible; } 93.66667% { opacity:1; visibility:visible; } 99.99444% { opacity:1; visibility:visible; } 100.00000% { opacity:0; visibility:hidden; } }
+  </style>
+</head>
+<body>
+  <main aria-label="JavaScript array method flashcards">
+<article class="card" style="--stage:stage0; --code:code0; --out:out0">
+  <h1>map()</h1><p class="desc">transform every item in an array</p>
+  <div class="source-code"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><pre><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">1</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">2</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">3</span><span class="c-muted">]</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">doubled</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted">.</span><span class="c-gold">map</span><span class="c-muted">(</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-muted">=&gt;</span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-red">*</span><span class="c-muted"> </span><span class="c-violet">2</span><span class="c-muted">
+</span><span class="c-muted">)</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-gold">console</span><span class="c-muted">.</span><span class="c-gold">log</span><span class="c-muted">(</span><span class="c-gold">doubled</span><span class="c-muted">)</span><span class="c-muted">;</span></pre></div>
+  <div class="result"><h2>OUTPUT</h2><output><i>&gt;</i> [2, 4, 6]</output></div>
+</article>
+<article class="card" style="--stage:stage1; --code:code1; --out:out1">
+  <h1>filter()</h1><p class="desc">keep items that match a condition</p>
+  <div class="source-code"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><pre><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">1</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">2</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">3</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">4</span><span class="c-muted">]</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">even</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted">.</span><span class="c-gold">filter</span><span class="c-muted">(</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-muted">=&gt;</span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-red">%</span><span class="c-muted"> </span><span class="c-violet">2</span><span class="c-muted"> </span><span class="c-red">===</span><span class="c-muted"> </span><span class="c-violet">0</span><span class="c-muted">
+</span><span class="c-muted">)</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-gold">console</span><span class="c-muted">.</span><span class="c-gold">log</span><span class="c-muted">(</span><span class="c-gold">even</span><span class="c-muted">)</span><span class="c-muted">;</span></pre></div>
+  <div class="result"><h2>OUTPUT</h2><output><i>&gt;</i> [2, 4]</output></div>
+</article>
+<article class="card" style="--stage:stage2; --code:code2; --out:out2">
+  <h1>reduce()</h1><p class="desc">combine many items into one value</p>
+  <div class="source-code"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><pre><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">1</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">2</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">3</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">4</span><span class="c-muted">]</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">sum</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted">.</span><span class="c-gold">reduce</span><span class="c-muted">(</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">(</span><span class="c-muted">total</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted">)</span><span class="c-muted"> </span><span class="c-muted">=&gt;</span><span class="c-muted"> </span><span class="c-muted">total</span><span class="c-muted"> </span><span class="c-red">+</span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">0</span><span class="c-muted">
+</span><span class="c-muted">)</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-gold">console</span><span class="c-muted">.</span><span class="c-gold">log</span><span class="c-muted">(</span><span class="c-gold">sum</span><span class="c-muted">)</span><span class="c-muted">;</span></pre></div>
+  <div class="result"><h2>OUTPUT</h2><output><i>&gt;</i> 10</output></div>
+</article>
+<article class="card" style="--stage:stage3; --code:code3; --out:out3">
+  <h1>find()</h1><p class="desc">find the first item that matches</p>
+  <div class="source-code"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><pre><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">5</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">10</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">15</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">20</span><span class="c-muted">]</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">first</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted">.</span><span class="c-gold">find</span><span class="c-muted">(</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-muted">=&gt;</span><span class="c-muted"> </span><span class="c-muted">n</span><span class="c-muted"> </span><span class="c-red">&gt;</span><span class="c-muted"> </span><span class="c-violet">8</span><span class="c-muted">
+</span><span class="c-muted">)</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-muted">
+</span><span class="c-gold">console</span><span class="c-muted">.</span><span class="c-gold">log</span><span class="c-muted">(</span><span class="c-gold">first</span><span class="c-muted">)</span><span class="c-muted">;</span></pre></div>
+  <div class="result"><h2>OUTPUT</h2><output><i>&gt;</i> 10</output></div>
+</article>
+<article class="card" style="--stage:stage4; --code:code4; --out:out4">
+  <h1>flat()</h1><p class="desc">flatten nested arrays into one array</p>
+  <div class="source-code"><div class="lights" aria-hidden="true"><i></i><i></i><i></i></div><pre><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-violet">1</span><span class="c-muted">,</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">2</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">3</span><span class="c-muted">]</span><span class="c-muted">,</span><span class="c-muted">
+</span><span class="c-muted"> </span><span class="c-muted"> </span><span class="c-muted">[</span><span class="c-violet">4</span><span class="c-muted">,</span><span class="c-muted"> </span><span class="c-violet">5</span><span class="c-muted">]</span><span class="c-muted">
+</span><span class="c-muted">]</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-cyan">const</span><span class="c-muted"> </span><span class="c-gold">flat</span><span class="c-muted"> </span><span class="c-red">=</span><span class="c-muted"> </span><span class="c-gold">values</span><span class="c-muted">.</span><span class="c-gold">flat</span><span class="c-muted">(</span><span class="c-muted">)</span><span class="c-muted">;</span><span class="c-muted">
+</span><span class="c-gold">console</span><span class="c-muted">.</span><span class="c-gold">log</span><span class="c-muted">(</span><span class="c-gold">flat</span><span class="c-muted">)</span><span class="c-muted">;</span></pre></div>
+  <div class="result"><h2>OUTPUT</h2><output><i>&gt;</i> [1, 2, 3, 4, 5]</output></div>
+</article>
+<article class="card recap" style="--stage:stage5"><h1>Easy way<br><span>to remember</span></h1><p class="desc">JavaScript array methods</p><ul>
+<li style="--row:row0"><b>map()</b><em>→</em>Change items</li>
+<li style="--row:row1"><b>filter()</b><em>→</em>Select items</li>
+<li style="--row:row2"><b>reduce()</b><em>→</em>Combine items</li>
+<li style="--row:row3"><b>find()</b><em>→</em>Find one item</li>
+<li style="--row:row4"><b>flat()</b><em>→</em>Flatten arrays</li>
+</ul></article></main>
+  <script>
+
+const cards = [...document.querySelectorAll(".card")];
+const selected = new URLSearchParams(location.search).get("slide");
+let index = 0;
+function show(number) {
+  index = (number + cards.length) % cards.length;
+  document.body.classList.add("fixed");
+  cards.forEach((card, i) => card.classList.toggle("selected", i === index));
+}
+if (selected !== null) show(Math.max(1, Math.min(cards.length, Number(selected) || 1)) - 1);
+addEventListener("keydown", event => {
+  if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+  if (!document.body.classList.contains("fixed")) index = Math.max(0,cards.findIndex(card => Number(getComputedStyle(card).opacity) > .5));
+  show(index + (event.key === "ArrowLeft" ? -1 : 1));
+});
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7693826541435866388) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="476x262">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="12">
+  <meta name="motherlode:still" content="7.8">
+  <title>Violet forest starfall</title>
+  <style>
+    @property --nightfall { syntax: "<percentage>"; inherits: true; initial-value: 0%; }
+:root, [data-colorway="original"] { --sky-top: #030509; --sky-mid: #243061; --sky-edge: #5a7dfd; --dusk-top: #040305; --dusk-mid: #3e254d; --dusk-edge: #9c56fa; --star-day: #c5d9ff; --star-night: #ffc1c7; --spark-halo: #db718b; --background: #05040a; }
+[data-colorway="light"] { --sky-top: #e6d9e2; --sky-mid: #f6c7ab; --sky-edge: #ffeaaf; --dusk-top: #e4d6ed; --dusk-mid: #edbfb5; --dusk-edge: #fdd1af; --star-day: #6d567f; --star-night: #924d6b; --spark-halo: #b36769; --background: #412d43; }
+[data-colorway="dark"] { --sky-top: #040813; --sky-mid: #1b223c; --sky-edge: #4d6993; --dusk-top: #080718; --dusk-mid: #26203b; --dusk-edge: #734a77; --star-day: #bdd7ec; --star-night: #f4b9dc; --spark-halo: #ad729f; --background: #050811; }
+[data-colorway="mono"] { --sky-top: #040404; --sky-mid: #303030; --sky-edge: #8e8e8e; --dusk-top: #070707; --dusk-mid: #414141; --dusk-edge: #a1a1a1; --star-day: #dcdcdc; --star-night: #f5f5f5; --spark-halo: #999999; --background: #0a0a0a; }
+[data-colorway="ocean"] { --sky-top: #021018; --sky-mid: #135866; --sky-edge: #60cad6; --dusk-top: #020c16; --dusk-mid: #143c63; --dusk-edge: #5d94e1; --star-day: #a4f0e2; --star-night: #caddff; --spark-halo: #608fc0; --background: #02151e; }
+[data-colorway="matcha"] { --sky-top: #0a1810; --sky-mid: #35513c; --sky-edge: #a4c176; --dusk-top: #111b14; --dusk-mid: #515839; --dusk-edge: #ced38a; --star-day: #d4e7ab; --star-night: #fae1a7; --spark-halo: #a3ae75; --background: #0b190f; }
+[data-colorway="sunset"] { --sky-top: #200c22; --sky-mid: #793643; --sky-edge: #fca069; --dusk-top: #1d0c21; --dusk-mid: #803348; --dusk-edge: #ea7cac; --star-day: #fbd3a6; --star-night: #ffd5d9; --spark-halo: #f9a687; --background: #130916; }
+[data-colorway="iris"] { --sky-top: #100c25; --sky-mid: #403572; --sky-edge: #b79aed; --dusk-top: #180c25; --dusk-mid: #57376a; --dusk-edge: #d996d7; --star-day: #d4c8ff; --star-night: #f8cceb; --spark-halo: #bd8dbc; --background: #110b1d; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 476px; height: 262px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 476 262" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Violet forest starfall</title>
+    <desc id="description">A violet horizon silhouettes small trees. A loose cluster of stars travels above the treeline as the dusk colors shift.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 12000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const width = 476, height = 262;
+    const defs = element("defs", {});
+    function skyLayer(id, tokens) {
+      const gradient = element("linearGradient", {id, x1:"0%",y1:"0%",x2:"0%",y2:"100%"},defs);
+      for (const [index, offset] of [0,.39,1].entries()) {
+        element("stop",{offset,"stop-color":"var(--"+tokens[index]+")"},gradient);
+      }
+      return element("rect",{width,height,fill:"url(#"+id+")"});
+    }
+    skyLayer("twilight",["sky-top","sky-mid","sky-edge"]);
+    const late = skyLayer("late-twilight",["dusk-top","dusk-mid","dusk-edge"]);
+    late.animate([{opacity:0},{offset:.12,opacity:.02},{offset:.53,opacity:.78},
+      {offset:.82,opacity:1},{offset:.96,opacity:1},{opacity:0}],{duration,iterations:Infinity});
+
+    const stars = element("g",{fill:"var(--star-day)"});
+    for (let j=0;j<108;j++) {
+      element("circle",{cx:random()*width,cy:random()*233,r:.25+random()**3*.7,
+        opacity:.08+random()**2*.35},stars);
+    }
+    const woods = element("g",{fill:"var(--background)"});
+    const outline = [];
+    for (let x=0;x<=width+2;x+=2) {
+      const y=258.9+1.8*Math.sin(x*.025)+1.6*Math.sin(x*.053)+.8*Math.sin(x*.127)-random()*1.25;
+      outline.push([x,y]);
+    }
+    element("path",{d:pointsPath(outline)+"V262H0Z"},woods);
+    function twig(x,y,length,angle,depth,seedWidth) {
+      const dx=Math.sin(angle)*length,dy=-Math.cos(angle)*length;
+      line(woods,pointsPath([[x,y],[x+dx*.46,y+dy*.55],[x+dx,y+dy]]),"background",seedWidth,.98);
+      if(depth<=0)return;
+      twig(x+dx,y+dy,length*(.64+random()*.09),angle-.24-random()*.48,depth-1,seedWidth*.67);
+      twig(x+dx*.77,y+dy*.77,length*(.60+random()*.15),angle+.21+random()*.54,depth-1,seedWidth*.62);
+    }
+    function pine(x,y,h) {
+      element("path",{d:"M"+(x-1.4)+" "+y+"L"+(x-.35)+" "+(y-h)+"L"+(x+1.25)+" "+y+"Z"},woods);
+      for(let i=0;i<30;i++) {
+        const f=.04+i*.027;
+        const spread=h*(.035+.29*Math.sin(f*Math.PI*.97))*(.4+.62*random());
+        for(const side of [-1,1]) {
+          const bx=x+side*spread*(.71+.28*random()),by=y-h+f*h;
+          line(woods,pointsPath([[x,by+3],[bx,by-1.5-random()*2]]),"background",.65+random()*.65,.96);
+          for(let j=0;j<14;j++) {
+            const u=random()**.60,v=random();
+            element("ellipse",{cx:x+(bx-x)*u,cy:by-(2.1+v*2.2)*u+(random()-.5)*3.4,
+              rx:.5+random()*2.15,ry:.3+random()*1.3,opacity:.72+.28*random()},woods);
+          }
+        }
+      }
+    }
+    for(const [x,y,h,a] of [[8,260,13,.1],[17,260,12,.06],[225,258,13,-.22],
+      [239,258,15,-.12],[266,260,10,.18],[279,260,15,-.12],[285,258,12,.14]]) {
+      twig(x,y,h,a,5,1.6);
+    }
+    pine(2,262,46);pine(252,261,55);pine(262,260,40);
+    const route=[[319,127],[240,109],[102,114],[146,165],[260,153],[300,106],
+      [356,56],[414,69],[406,113],[300,187],[176,184],[81,141],[92,65],[248,33],
+      [339,31],[406,53],[412,99],[345,122],[208,129],[111,138],[87,171],[166,171],
+      [247,131],[306,100]];
+    function point(t) {
+      const n=route.length,u=((t%1)+1)%1*n,i=Math.floor(u),f=u-i;
+      const p=route[(i+n-1)%n],a=route[i],b=route[(i+1)%n],q=route[(i+2)%n];
+      return [0,1].map(c=>.5*(2*a[c]+(-p[c]+b[c])*f+
+        (2*p[c]-5*a[c]+4*b[c]-q[c])*f*f+(-p[c]+3*a[c]-3*b[c]+q[c])*f*f*f));
+    }
+    drawing.animate([{"--nightfall":"0%"},{offset:.26,"--nightfall":"0%"},
+      {offset:.56,"--nightfall":"100%"},{offset:.95,"--nightfall":"100%"},
+      {"--nightfall":"0%"}],{duration,iterations:Infinity});
+    const paths=[],tracks=[];
+    for(let j=0;j<9;j++) {
+      const group=element("g",{}),num=j<3?12:8;
+      paths.push(group);
+      for(let k=0;k<num;k++) {
+        const a=random()*Math.PI*2,r=random()**.8*(5+j*1.25);
+        const x=Math.cos(a)*r,y=Math.sin(a)*r*.78,size=.28+random()**3*1.38;
+        if(k%7===0)element("circle",{cx:x,cy:y,r:size*3,fill:"var(--spark-halo)",opacity:.18},group);
+        element("circle",{cx:x,cy:y,r:size,
+          fill:"color-mix(in srgb,var(--star-day),var(--star-night) var(--nightfall))",
+          opacity:.19+random()*.61},group);
+      }
+      const motion=Array.from({length:145},(_,k)=>{
+        const [x,y]=point(k/144-(j-2)*.0050);
+        return {transform:"translate("+x.toFixed(2)+"px,"+y.toFixed(2)+"px)"};
+      });
+      tracks.push(group.animate(motion,{duration,iterations:Infinity,easing:"linear"}));
+    }
+    const followers=[];
+    drawing.addEventListener("pointermove",event=>{
+      const bounds=drawing.getBoundingClientRect();
+      const x=(event.clientX-bounds.left)*width/bounds.width,y=(event.clientY-bounds.top)*height/bounds.height;
+      paths.forEach((node,i)=>{
+        const current=getComputedStyle(node).transform;
+        tracks[i].pause();followers[i]?.cancel();
+        followers[i]=node.animate([{transform:current},{transform:"translate("+x+"px,"+y+"px)"}],
+          {duration:52+i*28,easing:"ease-out",fill:"forwards"});
+      });
+    });
+    drawing.addEventListener("pointerleave",()=>{
+      followers.forEach(animation=>animation.cancel());
+      tracks.forEach(animation=>animation.play());
+    });
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7697526253246713108) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

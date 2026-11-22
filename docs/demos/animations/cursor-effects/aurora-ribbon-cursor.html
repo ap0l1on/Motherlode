@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x353">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8">
+  <meta name="motherlode:still" content="4">
+  <title>Aurora ribbon cursor</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010104; --shade: #5f245e; --violet: #9451be; --rose: #fc76cc; --cyan: #a3e5fd; --green: #b8e98c; --gold: #f4d398; --ice: #fff2fb; --mask-ink: #fff; --blend: screen; }
+[data-colorway="light"] { --background: #faf3ed; --shade: #ae839a; --violet: #875a9a; --rose: #b84780; --cyan: #4196ae; --green: #699247; --gold: #b0804f; --ice: #623e63; --mask-ink: #fff; --blend: multiply; }
+[data-colorway="dark"] { --background: #0c0d16; --shade: #4e2d52; --violet: #89739d; --rose: #d58db7; --cyan: #9fbfdf; --green: #a3c8a2; --gold: #ddc2a0; --ice: #f6ecf2; --mask-ink: #fff; --blend: screen; }
+[data-colorway="mono"] { --background: #030303; --shade: #393939; --violet: #717171; --rose: #9b9b9b; --cyan: #bcbcbc; --green: #a8a8a8; --gold: #d4d4d4; --ice: #f7f7f7; --mask-ink: #fff; --blend: screen; }
+[data-colorway="ocean"] { --background: #05141c; --shade: #1e455d; --violet: #5d86ad; --rose: #8f9dc4; --cyan: #8ee3e5; --green: #a9e1c4; --gold: #c7dba6; --ice: #eafaff; --mask-ink: #fff; --blend: screen; }
+[data-colorway="matcha"] { --background: #101910; --shade: #3b533e; --violet: #829577; --rose: #b9a4a1; --cyan: #9fc6b2; --green: #cada9a; --gold: #dbc49c; --ice: #f5f2db; --mask-ink: #fff; --blend: screen; }
+[data-colorway="sunset"] { --background: #1e101b; --shade: #71384c; --violet: #ad719c; --rose: #f194a6; --cyan: #e7b4b5; --green: #f1ba8c; --gold: #f7d18e; --ice: #fff0d7; --mask-ink: #fff; --blend: screen; }
+[data-colorway="iris"] { --background: #101023; --shade: #43335f; --violet: #9776d0; --rose: #d49dcf; --cyan: #a8b7ef; --green: #b1afe5; --gold: #dfbcda; --ice: #f4eaff; --mask-ink: #fff; --blend: screen; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 353px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 353" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Aurora ribbon cursor</title>
+    <desc id="description">Fine parallel threads turn into an aurora-colored ribbon as the pointer curls across a black field.</desc>
+  </svg>
+  <script>
+(() => {
+
+const drawing = document.querySelector('svg');
+const ns = 'http://www.w3.org/2000/svg';
+const stageWidth = drawing.viewBox.baseVal.width, stageHeight = drawing.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content) * 1000;
+const tau = Math.PI * 2;
+function make(tag, attrs = {}, parent = drawing) {
+  const node = document.createElementNS(ns, tag);
+  for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+  parent.append(node);
+  return node;
+}
+function variable(name) { return 'var(--' + name + ')'; }
+function randomStream(seed) {
+  return () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+}
+function pointString(point) { return point[0].toFixed(2) + ',' + point[1].toFixed(2); }
+function curve(points) {
+  return 'M' + pointString(points[0]) + points.slice(1).map((p,i) => {
+    const a = points[Math.max(0,i-1)], b = points[i], c = p, d = points[Math.min(points.length-1,i+2)];
+    return 'C' + pointString([b[0]+(c[0]-a[0])/6,b[1]+(c[1]-a[1])/6]) + ' ' +
+      pointString([c[0]-(d[0]-b[0])/6,c[1]-(d[1]-b[1])/6]) + ' ' + pointString(c);
+  }).join('');
+}
+function animate(node, keys, time = duration) {
+  return node.animate(keys, {duration: time, iterations: Infinity, easing: 'linear'});
+}
+function radial(parent, id, stops) {
+  const gradient = make('radialGradient',{id},parent);
+  stops.forEach(([offset,tone,opacity]) => make('stop',{offset,'stop-color':variable(tone),'stop-opacity':opacity},gradient));
+  return 'url(#'+id+')';
+}
+function mousePoint(event) {
+  const rect=drawing.getBoundingClientRect();
+  return [(event.clientX-rect.left)*stageWidth/rect.width,(event.clientY-rect.top)*stageHeight/rect.height];
+}
+
+const defs=make('defs'),clock=duration/1000;
+drawing.style.touchAction='none';
+const poses=[
+ [0,[[306,179],[316,172],[326,176],[322,185],[314,181]]],
+ [.36,[[312,181],[230,159],[106,142],[86,151],[91,193]]],
+ [.80,[[318,174],[278,155],[187,138],[133,139],[110,156],[102,190],[106,224],[140,248],[223,260],[333,261],[473,257]]],
+ [1.18,[[292,144],[182,139],[117,156],[105,215],[131,254],[237,264],[402,266],[460,251],[460,175],[453,86]]],
+ [1.75,[[140,188],[148,149],[201,119],[289,114],[404,119],[451,145],[456,193],[436,226],[370,242],[256,244],[152,231],[112,208]]],
+ [2.30,[[394,113],[310,89],[231,89],[166,112],[147,158],[150,202],[181,220],[237,181],[297,159],[332,169],[351,199]]],
+ [2.80,[[397,97],[340,85],[260,80],[192,92],[162,113],[149,154],[147,185],[162,211],[193,213],[245,183],[305,166],[333,171],[354,209],[368,247],[397,264]]],
+ [3.25,[[130,166],[182,193],[238,183],[317,177],[397,206],[452,224],[489,220],[494,199],[466,178],[408,155],[333,135],[254,111],[199,104]]],
+ [3.62,[[127,189],[122,154],[147,129],[222,115],[325,123],[439,150],[467,175],[451,202],[398,223],[309,226],[226,218],[184,220]]],
+ [4.00,[[451,130],[387,116],[308,106],[229,99],[172,105],[135,118],[124,139],[129,165],[149,190],[189,211],[252,231],[324,243],[396,246],[449,243],[455,232],[446,210],[425,187]]],
+ [4.65,[[305,106],[228,102],[163,114],[129,137],[129,160],[151,189],[201,211],[276,232],[368,246],[432,246],[451,238],[434,220],[378,198],[297,167],[201,132],[121,100],[76,83],[88,76],[132,86]]],
+ [5.08,[[307,102],[225,119],[162,149],[134,183],[130,202],[146,221],[207,236],[302,243],[402,244],[452,232],[445,215],[387,188],[294,153],[206,115],[148,93],[143,104],[161,158]]],
+ [5.64,[[398,189],[367,145],[324,111],[277,95],[226,102],[182,123],[152,151],[139,174],[155,186],[227,178],[302,174],[376,182],[414,207],[411,223],[388,239]]],
+ [6.18,[[233,232],[174,205],[143,166],[154,133],[194,113],[258,105],[327,111],[367,137],[382,173],[360,206],[302,225],[247,233],[203,223]]],
+ [6.8,[[331,185],[277,172],[219,153],[185,149],[230,130],[286,113],[335,112],[382,126],[405,151],[413,177],[398,201],[348,222],[285,232],[251,222],[237,201],[236,164]]],
+ [7.38,[[450,125],[371,118],[307,121],[258,139],[238,163],[240,194],[267,220],[303,230],[348,217],[377,187],[372,157],[345,146],[315,150]]],
+ [8,[[306,179],[316,172],[326,176],[322,185],[314,181]]]
+];
+function resample(points,count) {
+  const dense=[];
+  for(let i=0;i<points.length-1;i++){
+    const a=points[Math.max(0,i-1)],b=points[i],c=points[i+1],d=points[Math.min(points.length-1,i+2)];
+    for(let k=0;k<10;k++){const t=k/10;dense.push([0,1].map(j=>.5*(2*b[j]+(c[j]-a[j])*t+(2*a[j]-5*b[j]+4*c[j]-d[j])*t*t+(-a[j]+3*b[j]-3*c[j]+d[j])*t*t*t)));}
+  }
+  dense.push(points.at(-1));const lengths=[0];
+  for(let j=1;j<dense.length;j++)lengths.push(lengths[j-1]+Math.hypot(dense[j][0]-dense[j-1][0],dense[j][1]-dense[j-1][1]));
+  let j=0;
+  return Array.from({length:count},(_,k)=>{const target=lengths.at(-1)*k/(count-1);while(j<lengths.length-2&&lengths[j+1]<target)j++;const v=(target-lengths[j])/(lengths[j+1]-lengths[j]||1);return [dense[j][0]*(1-v)+dense[j+1][0]*v,dense[j][1]*(1-v)+dense[j+1][1]*v];});
+}
+const keys=poses.map(([t,p])=>[t,resample(p,56)]);
+function spine(t) {
+  let i=0;while(i<keys.length-2&&keys[i+1][0]<t)i++;
+  const [t0,a]=keys[i],[t1,b]=keys[i+1];let v=(t-t0)/(t1-t0);v=v*v*(3-2*v);
+  return a.map(([x,y],j)=>[x+(b[j][0]-x)*v,y+(b[j][1]-y)*v]);
+}
+function strand(points,lane,time) {
+  const phase=time*tau/clock,depth=lane/8,amplitude=.48+.52*Math.min(1,Math.max(0,Math.hypot(points[8][0]-points[36][0],points[8][1]-points[36][1])/80));
+  const pts=points.map((point,i)=>{
+    const slack=(.5+.5*Math.sin(lane*2.8))*.062, finish=(.5+.5*Math.cos(lane*1.9))*.054;
+    const q=Math.min(points.length-1.0001,(slack+(1-slack-finish)*i/(points.length-1))*(points.length-1));
+    const at=Math.floor(q),v=q-at,[x,y]=[0,1].map(k=>points[at][k]*(1-v)+points[at+1][k]*v);
+    const f=i/(points.length-1),a=points[Math.max(0,i-1)],b=points[Math.min(points.length-1,i+1)],dx=b[0]-a[0],dy=b[1]-a[1],l=Math.hypot(dx,dy)||1;
+    const widen=amplitude*(10.4+4.4*Math.sin(f*11+phase)+3.8*Math.cos(f*23-phase*.7));
+    const across=depth*widen*(.64+.36*Math.sin(Math.PI*f))+.88*Math.sin(f*21+lane*1.2+phase);
+    const drag=amplitude*depth*(2.4+5.0*Math.sin(f*8+phase*.7));
+    return [x-dy/l*across+dx/l*drag,y+dx/l*across+dy/l*drag];
+  });
+  return 'M'+pts.map(pointString).join('L');
+}
+function soft(id,r){const f=make('filter',{id,x:'-48%',y:'-75%',width:'196%',height:'250%'},defs);make('feGaussianBlur',{stdDeviation:r},f);return 'url(#'+id+')';}
+const glowWide=soft('ribbon-haze',25),glowInner=soft('ribbon-light',6),edge=soft('silk-softness',.85);
+const mask=make('mask',{id:'woven-mask',x:0,y:0,width:stageWidth,height:stageHeight,maskUnits:'userSpaceOnUse'},defs);
+const hazeMask=make('mask',{id:'halo-mask',x:0,y:0,width:stageWidth,height:stageHeight,maskUnits:'userSpaceOnUse'},defs);
+const diffuse=make('path',{fill:'none',stroke:variable('mask-ink'),'stroke-width':55,'stroke-linecap':'round',opacity:.74},hazeMask);
+const fadeInk=make('linearGradient',{id:'strand-strength',gradientUnits:'userSpaceOnUse',x1:107,y1:130,x2:449,y2:130},defs);
+for(const [offset,alpha] of [[0,.83],[.25,.86],[.62,.7],[.87,.67],[1,.49]])make('stop',{offset,'stop-color':variable('mask-ink'),'stop-opacity':alpha},fadeInk);
+const paths=[];
+for(let i=-8;i<=8;i++){
+  const specs=i===0?[11,.35]:[i%3===0?2.18:i%2===0?1.10:.62,.50+.43*(.5+.5*Math.sin(i*2.31))];
+  const p=make('path',{fill:'none',stroke:'url(#strand-strength)','stroke-width':specs[0],'stroke-linejoin':'round','stroke-linecap':'round',opacity:specs[1]},mask);
+  paths.push([i,p]);
+}
+const body=make('g',{id:'dyed-silk',mask:'url(#woven-mask)'},defs);
+const dye=make('g',{id:'ribbon-colors'},body);
+const base=make('rect',{width:stageWidth,height:stageHeight,fill:variable('violet')},dye);
+const roleKeys=[
+ [0,['violet','rose','gold','cyan','ice']],[.8,['rose','gold','green','violet','ice']],[1.8,['gold','ice','green','gold','ice']],
+ [2.8,['violet','rose','violet','shade','rose']],[3.3,['gold','rose','cyan','gold','ice']],[4,['rose','rose','cyan','rose','ice']],
+ [4.65,['rose','cyan','ice','rose','violet']],[5.6,['violet','green','cyan','rose','ice']],[6.8,['rose','gold','violet','rose','violet']],[8,['violet','rose','gold','cyan','ice']]
+];
+animate(base,roleKeys.map(([t,k])=>({offset:t/clock,fill:variable(k[0])})));
+for(const [n,x,y,rx,ry] of [[1,135,147,190,142],[2,198,216,128,91],[3,410,237,177,119],[4,156,118,77,49]]){
+  const g=make('radialGradient',{id:'pool-'+n},defs);
+  for(const [off,alpha] of [[0,.99],[.42,.77],[1,0]]){
+    const stop=make('stop',{offset:off,'stop-color':variable('ice'),'stop-opacity':n===4?alpha*.46:alpha},g);
+    animate(stop,roleKeys.map(([t,k])=>({offset:t/clock,stopColor:variable(k[n])})));
+  }
+  make('ellipse',{cx:x,cy:y,rx,ry,fill:'url(#pool-'+n+')'},dye);
+}
+const pearl=make('radialGradient',{id:'thread-reflection'},defs);
+for(const [offset,alpha] of [[0,.93],[.37,.56],[.78,.19],[1,0]]){
+  const stop=make('stop',{offset,'stop-color':variable('ice'),'stop-opacity':alpha},pearl);
+  animate(stop,roleKeys.map(([t,k])=>({offset:t/clock,stopColor:variable(k[4])})));
+}
+for(const [x,y,rx,ry] of [[155,125,32,15],[186,209,70,25],[437,236,32,24]]){
+  make('ellipse',{cx:x,cy:y,rx,ry,fill:'url(#thread-reflection)'},dye);
+}
+const visible=make('g',{style:'mix-blend-mode:var(--blend)'});
+const fog=radial(defs,'ambient-silk',[[0,'violet',.30],[.67,'shade',.15],[1,'shade',0]]);
+const atmosphere=make('ellipse',{cx:279,cy:179,rx:282,ry:173,fill:fog,opacity:.78},visible);
+const fogPaint=make('g',{filter:glowWide,opacity:.76},visible);make('use',{href:'#ribbon-colors',mask:'url(#halo-mask)'},fogPaint);
+const rough=make('filter',{id:'fibre-grain',x:'-10%',y:'-15%',width:'120%',height:'130%'},defs);
+make('feTurbulence',{type:'fractalNoise',baseFrequency:'.075 .11',numOctaves:2,seed:16,result:'wrinkle'},rough);
+make('feDisplacementMap',{in:'SourceGraphic',in2:'wrinkle',scale:2.25,xChannelSelector:'R',yChannelSelector:'G'},rough);
+
+make('use',{href:'#dyed-silk',filter:glowWide,opacity:1},visible);
+make('use',{href:'#dyed-silk',filter:glowInner,opacity:.95},visible);
+make('use',{href:'#dyed-silk',filter:'url(#fibre-grain)',opacity:.94},visible);
+const under=make('g',{opacity:.29,style:'mix-blend-mode:var(--blend)'},drawing);
+make('use',{href:'#dyed-silk',filter:glowWide},under);
+const demo=[],times=new Set(poses.map(p=>p[0]));for(let i=0;i<=64;i++)times.add(i/8);
+const moments=[...times].sort((a,b)=>a-b).map(t=>[t,spine(t)]);
+paths.push([0,diffuse]);
+for(const [lane,node] of paths){
+  const lag=lane*.008;
+  const frames=moments.map(([t,pts])=>({offset:t/clock,d:'path("'+strand(lag?spine((t+lag+clock)%clock):pts,lane,t)+'")'}));
+  node.setAttribute('d',strand(moments[0][1],lane,0));demo.push(animate(node,frames));
+}
+const cursor=make('path',{d:'M0 0v5l1.4-1.2 1.1 2 1-.5-1.1-2 1.9-.2Z',fill:variable('ice'),opacity:.67});
+animate(cursor,poses.map(([t,p])=>{const q=t===4?[258,163]:p.at(-1);return {offset:t/clock,transform:'translate('+q[0]+'px,'+q[1]+'px)'};}));
+let history=[],manual=false;
+drawing.addEventListener('pointermove',event=>{
+ const p=mousePoint(event);if(!manual){manual=true;demo.forEach(a=>a.cancel());cursor.style.visibility='hidden';history=[];}
+ history.push(p);if(history.length>46)history.shift();
+ if(history.length<2)return;
+ const line=resample(history,56),time=event.timeStamp/1000;
+ for(const [lane,node] of paths)node.setAttribute('d',strand(line,lane,time));
+});
+drawing.addEventListener('pointerleave',()=>{if(!manual)return;manual=false;history=[];demo.forEach(a=>a.play());cursor.style.visibility='';});
+
+})();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7701977616949267733) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

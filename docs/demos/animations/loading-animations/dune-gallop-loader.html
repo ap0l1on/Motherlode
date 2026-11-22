@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x325"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="3.2"><meta name="motherlode:still" content="1.65">
+<title>Dune gallop loader</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #08c9eb; --ink: #272827; --base: #eca558; --low: #875320; --high: #dfbe97; --a: #292b29; --b: #232522; --c: #76502c; --d: #a15c28; --e: #d3995b; --f: #ddb27f; --g: #1c9fc8; --h: #95b998;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:325px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 325" role="img" aria-label="A dark horse gallops across sunlit sand under a turquoise sky, throwing soft dust behind its hooves." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1908305;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+const sky=gradient('sky',[[0,'bg'],[57,'h'],[100,'base']],{x2:'0%',y2:'100%'});rect(0,0,W,230,sky);
+const soil=gradient('sand',[[0,'d'],[46,'e'],[100,'high']],{x1:'77%',y1:'0%',x2:'22%',y2:'100%'});rect(0,228,W,H-228,soil);
+const haze=soft('dust',2.6),dust=group();
+for(let i=0;i<65;i++){const x=range(218,485),y=range(251,281),r=range(1.4,7);const mote=node('ellipse',{cx:x,cy:y,rx:r*range(.65,1.5),ry:r*.55,fill:css('d'),opacity:range(.14,.41),filter:haze},dust);animate(mote,[{opacity:0,transform:'translate(-14px,3px)'},{opacity:.41,offset:.40},{opacity:0,transform:'translate(22px,-7px)'}],{duration:duration*1000/4,delay:-range(0,duration)*1000});}
+const horse=group(),backLegs=group(horse),body=group(horse),frontLegs=group(horse);
+const bodyShape='M174 139Q173 134 177 126Q184 117 189 109Q196 99 207 99L217 95L218 101L225 97L224 104Q234 107 245 118Q258 129 278 136Q294 143 308 138Q321 131 337 132Q354 128 365 139Q377 152 370 171Q367 187 353 195Q342 200 328 188L317 180Q288 191 266 192Q246 195 233 183Q224 176 227 160Q218 147 214 132Q204 135 195 139Q184 145 179 142Q175 146 174 139Z';
+path(bodyShape,{fill:css('a')},body);path('M209 105Q214 93 221 95L220 101L226 98 224 104Q231 101 235 108L237 107 243 116Q252 120 259 130L266 135Q237 127 221 115Z',{fill:css('b')},body);
+circle(191.8,122.8,1.15,css('b'),body);
+for(let i=0;i<22;i++){const y=range(127,143),end=range(420,446),p=path('',{fill:'none',stroke:css(i%4?'a':'b'),'stroke-width':range(.5,2.9),'stroke-linecap':'round'},body),poses=[];
+ for(let k=0;k<=12;k++){const t=k/12*tau,sway=Math.sin(t*2+i*.26)*3.0;poses.push('M356 148Q378 '+(127+i*.14)+' 401 '+(126+i*.35+sway)+'Q418 '+(123+i*.51-sway)+' '+end+' '+(y+sway));}tweenPath(p,poses,duration/2,i*.01);}
+const front=[[[-3,20],[-19,51],[-24,80]],[[-12,16],[-17,36],[4,51]],[[-20,6],[-28,20],[-18,39]],[[-22,3],[-29,7],[-18,24]],[[-18,12],[-32,25],[-46,56]],[[-14,23],[-29,46],[-40,77]],[[2,25],[-1,52],[-4,81]],[[12,24],[14,48],[29,70]]];
+const rear=[[[5,22],[-8,45],[-19,68]],[[-7,24],[-19,30],[-43,55]],[[-13,21],[-7,33],[-30,48]],[[-4,14],[8,24],[-7,38]],[[13,12],[24,26],[27,43]],[[20,20],[34,30],[43,65]],[[13,22],[22,49],[31,76]],[[11,24],[11,47],[2,75]]];
+function limb(ax,ay,poses,offset,tone,parent){
+ const leg=path('',{fill:css(tone),'stroke-linejoin':'round'},parent),out=[];
+ for(let j=0;j<=poses.length;j++){const [k,f,h]=poses[(j+offset)%poses.length],pts=[[ax,ay],[ax+k[0],ay+k[1]],[ax+f[0],ay+f[1]],[ax+h[0],ay+h[1]]],ww=[8.6,5.9,2.45,2.15];const sides=[[],[]];
+ for(let z=0;z<4;z++){const prev=pts[Math.max(z-1,0)],next=pts[Math.min(z+1,3)],dx=next[0]-prev[0],dy=next[1]-prev[1],l=Math.hypot(dx,dy);for(let s=0;s<2;s++){const dir=s?1:-1;sides[s].push([pts[z][0]+dir*dy/l*ww[z],pts[z][1]-dir*dx/l*ww[z]]);}}
+ const end=pts[3];out.push(shape([...sides[0],[end[0]-7,end[1]+2],[end[0]-4,end[1]+4.1],[end[0]+2.3,end[1]+2.1],...sides[1].reverse()],true));}
+ tweenPath(leg,out,duration/4);
+}
+limb(244,176,front,5,'b',backLegs);limb(335,174,rear,3,'b',backLegs);limb(232,177,front,2,'a',frontLegs);limb(345,172,rear,0,'a',frontLegs);
+animate(horse,[{transform:'translate(0,1px)'},{transform:'translate(0,-4px)',offset:.39},{transform:'translate(0,1px)'}],{duration:duration*1000/4});
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script><script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7694181956216474900) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body></html>

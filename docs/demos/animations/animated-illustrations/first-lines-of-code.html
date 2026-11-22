@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x1024">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="61">
+  <meta name="motherlode:still" content="24">
+  <title>First lines of code</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #000000; --surface: #888b8d; --rule: #dcdcdc; --text: #e5e8d4; --muted: #c9c3ae; --gold: #ffc70c; --violet: #c594ec; --green: #74d99a; --cyan: #b9d9ec; --red: #eb7870; --blue: #6ca6ef; --orange: #e8a5a0; --paper: #0b1014; --ink: #f5f3ee; --soft: #bbbfbc; --on: #020303; --panel: #0b1014; --glow: #58cce5; --ivory: #f5f3ee; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 1024px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+  </style>
+</head>
+<body>
+  <svg class="art" viewBox="0 0 576 1024" role="img" aria-labelledby="art-title art-desc" xmlns="http://www.w3.org/2000/svg"><title id="art-title">First lines of code</title><desc id="art-desc">A yellow stick figure gathers up a laptop and experiments with a few lines of code on a black stage. The text types on in small steps.</desc>
+<rect x="0" y="0" width="576" height="1024" rx="0" fill="var(--bg)" stroke="none" />
+    <g id="person">
+    <circle cx="0" cy="-59" r="20" fill="var(--gold)" stroke="none" stroke-width="1"/>
+    <path d="M0-39Q0-24-4 0" fill="none" stroke="var(--gold)" stroke-width="11" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M-1 -31Q-11 -19 -11 -19L-20 -38" fill="none" stroke="var(--gold)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" id="arm-back"/>
+    <path d="M-1 -31Q14 -3 14 -3L26 8" fill="none" stroke="var(--gold)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" id="arm-front"/>
+    <path d="M-4 0Q-6 27 -6 27L-10 67" fill="none" stroke="var(--gold)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" id="leg-back"/>
+    <path d="M-4 0Q7 27 7 27L17 65" fill="none" stroke="var(--gold)" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" id="leg-front"/>
+    </g>
+    <g id="laptop">
+    <path d="M-39 0l9-4h26l9-34h58L52 1H-35z" fill="var(--rule)" stroke="var(--muted)" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M6-5l8-27h44l-8 27z" fill="var(--muted)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
+    <circle cx="33" cy="-18" r="2.9" fill="var(--text)" stroke="none" stroke-width="1"/>
+    </g>
+    <g id="scene-0" opacity="0"><text x="288" y="174" font-family="Arial, sans-serif" font-size="20" font-weight="550" text-anchor="middle" fill="var(--text)" >How new programmers</text><text x="288" y="208" font-family="Arial, sans-serif" font-size="20" font-weight="550" text-anchor="middle" fill="var(--text)" >learn to code</text>
+    </g>
+    <g id="scene-1" opacity="0"><text x="245" y="492" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">h</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">e</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">l</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">l</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">o</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">_</tspan></text>
+    </g>
+    <g id="scene-2" opacity="0">
+    <rect x="140.6" y="337" width="142.75" height="49.53" rx="0" fill="var(--red)" stroke="none" opacity=".30"/><text x="211" y="376" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" >hello</text>
+    </g>
+    <g id="scene-3" opacity="0"><text x="284" y="429" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">_</tspan></text>
+    </g>
+    <g id="scene-4" opacity="0"><text x="256" y="429" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-5" opacity="0"><text x="260" y="433" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;&quot;</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-6" opacity="0"><text x="288" y="468" font-family="Menlo, monospace" font-size="52" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-7" opacity="0"><text x="-4" y="350" font-family="Menlo, monospace" font-size="52" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan><tspan fill="var(--text)">_</tspan></text>
+    </g>
+    <g id="scene-8" opacity="0"><text x="230" y="414" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-9" opacity="0">
+    <rect x="-20.28" y="305" width="294.85" height="49.53" rx="0" fill="var(--rule)" stroke="none" opacity=".30"/><text x="125" y="344" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" >print(&quot;hi&quot;)</text>
+    </g>
+    <g id="scene-10" opacity="0"><text x="242" y="312" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan></text><text x="242" y="365" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan></text><text x="242" y="418" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--orange)">&quot;hi&quot;</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-11" opacity="0"><text x="200" y="366" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">1</tspan></text><text x="200" y="419" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--text)">_</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-12" opacity="0"><text x="206" y="407" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">2</tspan></text><text x="206" y="460" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-13" opacity="0"><text x="204" y="359" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">3</tspan></text><text x="204" y="412" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-14" opacity="0"><text x="220" y="393" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">3</tspan><tspan fill="var(--text)">/</tspan><tspan fill="var(--text)">2</tspan></text><text x="220" y="446" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-15" opacity="0"><text x="210" y="373" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">3</tspan><tspan fill="var(--text)">/</tspan><tspan fill="var(--text)">/</tspan><tspan fill="var(--text)">2</tspan></text><text x="210" y="426" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-16" opacity="0"><text x="201" y="336" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">a</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">3</tspan><tspan fill="var(--text)">+</tspan><tspan fill="var(--text)">2</tspan></text><text x="201" y="389" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--cyan)">b</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--text)">=</tspan><tspan fill="var(--text)"> </tspan><tspan fill="var(--orange)">&quot;string&quot;</tspan></text><text x="201" y="442" font-family="Menlo, monospace" font-size="39" font-weight="400" text-anchor="middle" fill="var(--text)" ><tspan fill="var(--text)">print</tspan><tspan fill="var(--gold)">(</tspan><tspan fill="var(--cyan)">b</tspan><tspan fill="var(--gold)">)</tspan></text>
+    </g>
+    <g id="scene-17" opacity="0"><text x="283" y="780" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >hi hi hi</text>
+    </g>
+    <g id="scene-18" opacity="0"><text x="284" y="776" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >1</text>
+    </g>
+    <g id="scene-19" opacity="0"><text x="280" y="735" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >2</text>
+    </g>
+    <g id="scene-20" opacity="0"><text x="282" y="714" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >3</text>
+    </g>
+    <g id="scene-21" opacity="0"><text x="284" y="708" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >1.5</text>
+    </g>
+    <g id="scene-22" opacity="0"><text x="280" y="703" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >1</text>
+    </g>
+    <g id="scene-23" opacity="0"><text x="277" y="690" font-family="Menlo, monospace" font-size="25" font-weight="400" text-anchor="middle" fill="var(--text)" >string</text>
+    </g>
+  </svg>
+  <script>
+    const timeline = [[0, 318, 630, 0.92, 0], [3.4, 314, 630, 0.94, -4], [4.4, 330, 642, 1.0, 2], [6.3, 312, 606, 1.28, -3], [8.2, 298, 561, 1.4, 4], [10.7, 280, 656, 1.0, -4], [12.1, 257, 641, 0.95, 8], [14.3, 245, 645, 1.03, 7], [16.5, 250, 682, 1.04, 14], [18.5, 267, 662, 1.04, -7], [20.2, 272, 626, 1.14, 2], [22.6, 201, 626, 1.12, -2], [24.0, 162, 626, 1.47, -5], [24.46, 162, 626, 1.47, -5], [24.52, -125, 601, 1.4, -3], [26.6, 332, 611, 1.06, 4], [28.2, 399, 575, 1.01, 8], [30.4, 335, 697, 1.14, -19], [32.6, 386, 701, 1.14, -23], [34.8, 419, 650, 1.11, 7], [37, 467, 661, 1.06, 5], [40.1, 467, 662, 1.03, 4], [42.3, 493, 688, 1.15, 5], [46.5, 541, 694, 1.1, 5], [49.2, 527, 646, 1.0, 0], [52.2, 513, 660, 1.03, 1], [55.7, 456, 601, 1.11, -3], [58.2, 486, 596, 1.12, 2], [60, 497, 606, 1.11, 1], [61, 318, 630, 0.92, 0]];
+const duration = 61000;
+function track(id, frames) {
+  document.getElementById(id).animate(frames, {duration, iterations:Infinity, fill:"both", easing:"linear"});
+}
+track("person",timeline.map(([t,x,y,s,r]) => ({offset:t/61, transform:"translate("+x+"px,"+y+"px) scale("+s+") rotate("+r+"deg)"})));
+const limbs = [["arm-back", ["M-1 -31Q0 -30 0 -30L6 -52", "M-1 -31Q-11 -19 -11 -19L-20 -38", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-19 -21 -19 -21L-8 -37", "M-1 -31Q-19 -21 -19 -21L-8 -37", "M-1 -31Q-17 4 -17 4L-1 13", "M-1 -31Q-17 4 -17 4L-1 13", "M-1 -31Q-17 4 -17 4L-1 13", "M-1 -31Q-17 4 -17 4L-1 13", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-16 -18 -16 -18L1 -37", "M-1 -31Q-16 -18 -16 -18L1 -37", "M-1 -31Q-16 -18 -16 -18L1 -37", "M-1 -31Q-16 -18 -16 -18L1 -37", "M-1 -31Q-19 -21 -19 -21L-8 -37", "M-1 -31Q-17 4 -17 4L-1 13", "M-1 -31Q1 -5 1 -5L34 1", "M-1 -31Q1 -5 1 -5L34 1", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q-12 -8 -12 -8L11 -5", "M-1 -31Q0 -30 0 -30L6 -52"]], ["arm-front", ["M-1 -31Q16 -11 16 -11L27 -20", "M-1 -31Q14 -3 14 -3L26 8", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q20 0 20 0L11 17", "M-1 -31Q20 0 20 0L11 17", "M-1 -31Q21 0 21 0L34 8", "M-1 -31Q21 0 21 0L34 8", "M-1 -31Q21 0 21 0L34 8", "M-1 -31Q21 0 21 0L34 8", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q15 -11 15 -11L2 -3", "M-1 -31Q15 -11 15 -11L2 -3", "M-1 -31Q15 -11 15 -11L2 -3", "M-1 -31Q15 -11 15 -11L2 -3", "M-1 -31Q20 0 20 0L11 17", "M-1 -31Q21 0 21 0L34 8", "M-1 -31Q25 -8 25 -8L44 -5", "M-1 -31Q25 -8 25 -8L44 -5", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q12 -16 12 -16L26 -15", "M-1 -31Q16 -11 16 -11L27 -20"]], ["leg-back", ["M-4 0Q-4 33 -4 33L-8 61", "M-4 0Q-6 27 -6 27L-10 67", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-19 29 -19 29L-40 51", "M-4 0Q-19 29 -19 29L-40 51", "M-4 0Q-19 20 -19 20L3 28", "M-4 0Q-19 20 -19 20L3 28", "M-4 0Q-19 20 -19 20L3 28", "M-4 0Q-19 20 -19 20L3 28", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-10 29 -10 29L-15 64", "M-4 0Q-10 29 -10 29L-15 64", "M-4 0Q-10 29 -10 29L-15 64", "M-4 0Q-10 29 -10 29L-15 64", "M-4 0Q-19 29 -19 29L-40 51", "M-4 0Q-19 20 -19 20L3 28", "M-4 0Q-22 17 -22 17L-37 38", "M-4 0Q-22 17 -22 17L-37 38", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 34 -4 34L-8 66", "M-4 0Q-4 33 -4 33L-8 61"]], ["leg-front", ["M-4 0Q9 28 9 28L14 61", "M-4 0Q7 27 7 27L17 65", "M-4 0Q9 30 9 30L12 66", "M-4 0Q19 19 19 19L30 47", "M-4 0Q19 19 19 19L30 47", "M-4 0Q11 16 11 16L-4 30", "M-4 0Q11 16 11 16L-4 30", "M-4 0Q11 16 11 16L-4 30", "M-4 0Q11 16 11 16L-4 30", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q17 35 17 35L27 60", "M-4 0Q17 35 17 35L27 60", "M-4 0Q17 35 17 35L27 60", "M-4 0Q17 35 17 35L27 60", "M-4 0Q19 19 19 19L30 47", "M-4 0Q11 16 11 16L-4 30", "M-4 0Q7 18 7 18L32 24", "M-4 0Q7 18 7 18L32 24", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 30 9 30L12 66", "M-4 0Q9 28 9 28L14 61"]]];
+for (const [id, path] of limbs) track(id, path.map((d,i) => ({offset:timeline[i][0]/61, d:'path("'+d+'")'})));
+const laptop = [[0,352,686,.88],[3.4,351,686,.88],[4.4,352,625,.84],[7,370,672,1.13],[11,325,668,.96],[16.5,304,714,1.04],[20.2,281,601,1.07],[23.3,471,721,1.03],[24.46,471,721,1.03],[24.52,153,608,1.02],[26.6,307,694,1.05],[28.2,336,602,1],[30.4,321,726,1.05],[32.6,336,725,1.05],[35.8,419,629,1],[40.1,432,628,.98],[46.5,507,657,1],[49.2,493,620,1],[52.2,480,628,1],[55.7,436,585,1],[60,467,584,1],[61,352,686,.88]];
+track("laptop",laptop.map(([t,x,y,s])=>({offset:t/61, transform:"translate("+x+"px,"+y+"px) scale("+s+")"})));
+const scenes = [[0, 7.1], [3.1, 7.25], [7.25, 10.4], [10.5, 13.5], [13.5, 19.8], [19.8, 23.1], [23.1, 24.48], [24.48, 27.15], [27.15, 29.4], [29.4, 33.4], [33.4, 38.9], [39, 42.3], [42.3, 46.2], [46.2, 50.2], [50.2, 54.7], [54.7, 58.1], [58.1, 60.96], [34.5, 39.7], [41.6, 46.1], [46.7, 49.0], [49, 50.2], [50.5, 54.6], [55.2, 58.0], [59.0, 60.9]];
+for (const [i,[a,b]] of scenes.entries()) {
+  const fr=[];
+  if (a>0) fr.push({offset:0,opacity:0},{offset:Math.max(0,a-.01)/61,opacity:0});
+  fr.push({offset:a/61,opacity:1},{offset:(b-.01)/61,opacity:1},{offset:b/61,opacity:0});
+  if (b<61) fr.push({offset:1,opacity:0});
+  track("scene-"+i,fr);
+}
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7698715985607478549) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x369">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="12.5">
+  <meta name="motherlode:still" content="9.8">
+  <title>Meteor swarm cursor</title>
+  <style>
+:root, [data-colorway="original"] { --background: #010103; --shade: #1c3942; --middle: #c96d37; --bright: #60c36b; --highlight: #69bbd2; --leaf: #9b9d59; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 369px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 369" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Meteor swarm cursor</title>
+    <desc id="description">A small chain of luminous rings scatters fine multicolored streaks as it travels across a black field.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 12.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const cx=286,cy=184, colors=["middle","bright","highlight","bright"], swarm=element("g",{});
+    const centers=[[159,193],[259,222],[396,239],[228,118],[345,258],[391,297],[159,193]];
+    function at(f) {
+      f=(f%1+1)%1;const t=f*(centers.length-1),i=Math.floor(t),p=t-i,s=p*p*(3-2*p),a=centers[i],b=centers[i+1];
+      return [a[0]+(b[0]-a[0])*s,a[1]+(b[1]-a[1])*s];
+    }
+    const follow=element("g",{},swarm);
+    for(let i=0;i<15;i++){
+      const fan=element("g",{},follow),data=[[],[],[],[]];
+      for(let j=0;j<61;j++){
+        const a=tau*random(), r=6+random()**1.5*171;
+        const x=Math.cos(a)*r*1.33,y=Math.sin(a)*r*.61,len=2+random()*15;
+        data[j%4].push("M"+x.toFixed(1)+" "+y.toFixed(1)+"l"+(len*Math.cos(a)).toFixed(1)+" "+(len*Math.sin(a)).toFixed(1));
+      }
+      data.forEach((set,k)=>line(fan,set.join(""),colors[k],.74+(i%2)*.28,.42+.43*(1-i/15)));
+      const frames=Array.from({length:75},(_,j)=>{const f=j/74,p=at(f-.0035*i);return {transform:"translate("+p[0]+"px,"+p[1]+"px) rotate("+10*Math.sin(tau*f+i*.10)+"deg)"};});
+      fan.animate(frames,{duration,iterations:Infinity,easing:"linear"});
+    }
+    const head=element("g",{},follow);
+    for(let i=0;i<14;i++) {
+      const el=element("ellipse",{rx:4.8+.50*i,ry:4.1+.29*i,fill:"none",stroke:"var(--"+colors[i%4]+")",
+        "stroke-width":.68,transform:"translate("+(-i*.93)+" "+(Math.sin(i*.74)*2.8)+") rotate("+(-34+i*6)+")",opacity:.85-i*.035},head);
+    }
+    head.animate(Array.from({length:75},(_,j)=>{const p=at(j/74);return {transform:"translate("+p[0]+"px,"+p[1]+"px)"};}),{duration,iterations:Infinity,easing:"linear"});
+    drawing.addEventListener("pointermove",event=>{
+      const r=drawing.getBoundingClientRect(), p=at(((head.getAnimations()[0].currentTime||0)/duration)%1);
+      swarm.setAttribute("transform","translate("+(event.clientX-r.left-p[0])+" "+(event.clientY-r.top-p[1])+")");
+    });
+    drawing.addEventListener("pointerleave",()=>swarm.removeAttribute("transform"));
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7698271388536229140) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>

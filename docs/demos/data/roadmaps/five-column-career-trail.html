@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x918">
+  <meta name="motherlode:scale" content="1">
+  <title>Five-column career trail</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #ffffff; --surface: #f4f6fb; --rule: #393d44; --text: #15171b; --muted: #34383c; --gold: #a56600; --violet: #7532a4; --green: #136750; --cyan: #18778c; --red: #a62836; --blue: #145c9a; --orange: #ad4c14; --paper: #0b1014; --ink: #f5f3ee; --soft: #bbbfbc; --on: #ffffff; --panel: #0b1014; --glow: #58cce5; --ivory: #f5f3ee; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 918px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+  </style>
+</head>
+<body>
+  <svg class="art" viewBox="0 0 576 918" role="img" aria-labelledby="art-title art-desc" xmlns="http://www.w3.org/2000/svg"><title id="art-title">Five-column career trail</title><desc id="art-desc">Twenty-four career milestones wind across a white sheet. Each numbered node has a colored pictogram, a tinted title and a short checklist.</desc>
+<rect x="0" y="0" width="576" height="918" rx="0" fill="var(--bg)" stroke="none" />
+    <rect x="0" y="0" width="576" height="109" rx="0" fill="var(--surface)" stroke="none" opacity=".58"/>
+    <text x="288" y="67" font-family="Arial, sans-serif" font-size="30" font-weight="750" text-anchor="middle" fill="var(--text)" >Cybersecurity Career Roadmap</text>
+    <path d="M78 136L161 136" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M116.5 133l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M189 136L272 136" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M227.5 133l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M300 136L383 136" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M338.5 133l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M411 136L494 136" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M449.5 133l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M508 136H549Q568 136 568 154V279Q568 297 549 297H508" fill="none" stroke="var(--text)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M494 297L411 297" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M456.5 294l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M383 297L300 297" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M345.5 294l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M272 297L189 297" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M234.5 294l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M161 297L78 297" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M123.5 294l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M64 297H27Q8 297 8 315V440Q8 458 27 458H64" fill="none" stroke="var(--text)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M78 458L161 458" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M116.5 455l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M189 458L272 458" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M227.5 455l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M300 458L383 458" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M338.5 455l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M411 458L494 458" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M449.5 455l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M508 458H549Q568 458 568 476V601Q568 619 549 619H508" fill="none" stroke="var(--text)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M494 619L411 619" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M456.5 616l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M383 619L300 619" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M345.5 616l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M272 619L189 619" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M234.5 616l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M161 619L78 619" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M123.5 616l-5 3 5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M64 619H27Q8 619 8 637V762Q8 780 27 780H64" fill="none" stroke="var(--text)" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M78 780L161 780" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M116.5 777l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M189 780L272 780" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M227.5 777l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M300 780L383 780" fill="none" stroke="var(--text)" stroke-width="1.7"/>
+    <path d="M338.5 777l5 3-5 3" fill="none" stroke="var(--text)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <circle cx="64" cy="136" r="14" fill="var(--blue)" stroke="none" stroke-width="1"/>
+    <text x="64" y="141.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >1</text>
+    <circle cx="64" cy="174" r="20" fill="var(--blue)" opacity=".12"/>
+    <g transform="translate(50 160) scale(1.17)">
+    <path d="M12 2L22 8V18L12 23L2 18V8ZM2 8L12 14L22 8M12 14V23" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="15" y="194" width="98" height="26" rx="3" fill="var(--blue)" stroke="none" opacity=".12"/>
+    <text x="64" y="204.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Computers &amp;</text>
+    <text x="64" y="215.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >IT basics</text>
+    <text x="19" y="235" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Hardware and software</text>
+    <text x="19" y="247" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Operating a computer</text>
+    <text x="19" y="259" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Files, folders, backups</text>
+    <circle cx="175" cy="136" r="14" fill="var(--green)" stroke="none" stroke-width="1"/>
+    <text x="175" y="141.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >2</text>
+    <circle cx="175" cy="174" r="20" fill="var(--green)" opacity=".12"/>
+    <g transform="translate(161 160) scale(1.17)">
+    <path d="M8 8L3 13L8 18M16 8L21 13L16 18M14 4L10 22" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="126" y="194" width="98" height="26" rx="3" fill="var(--green)" stroke="none" opacity=".12"/>
+    <text x="175" y="204.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Network</text>
+    <text x="175" y="215.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >fundamentals</text>
+    <text x="130" y="235" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• TCP/IP and DNS</text>
+    <text x="130" y="247" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Addresses and routing</text>
+    <text x="130" y="259" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Reading a network map</text>
+    <circle cx="286" cy="136" r="14" fill="var(--orange)" stroke="none" stroke-width="1"/>
+    <text x="286" y="141.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >3</text>
+    <circle cx="286" cy="174" r="20" fill="var(--orange)" opacity=".12"/>
+    <g transform="translate(272 160) scale(1.17)">
+    <path d="M12 3C4 3 2 8 4 14C6 18 10 20 12 23C14 20 20 13 20 9C20 5 16 3 12 3ZM12 7A3 3 0 1 0 12.1 7" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="237" y="194" width="98" height="26" rx="3" fill="var(--orange)" stroke="none" opacity=".12"/>
+    <text x="286" y="204.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Operating</text>
+    <text x="286" y="215.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >systems</text>
+    <text x="241" y="235" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Linux and Windows</text>
+    <text x="241" y="247" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Users and permissions</text>
+    <text x="241" y="259" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Files and services</text>
+    <circle cx="397" cy="136" r="14" fill="var(--violet)" stroke="none" stroke-width="1"/>
+    <text x="397" y="141.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >4</text>
+    <circle cx="397" cy="174" r="20" fill="var(--violet)" opacity=".12"/>
+    <g transform="translate(383 160) scale(1.17)">
+    <path d="M3 11H21V21H3ZM7 11V8A5 5 0 0 1 17 8V11M12 14V18" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="348" y="194" width="98" height="26" rx="3" fill="var(--violet)" stroke="none" opacity=".12"/>
+    <text x="397" y="204.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Scripting &amp;</text>
+    <text x="397" y="215.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >programming</text>
+    <text x="352" y="235" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Python essentials</text>
+    <text x="352" y="247" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Shell scripting</text>
+    <text x="352" y="259" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Working with APIs</text>
+    <circle cx="508" cy="136" r="14" fill="var(--red)" stroke="none" stroke-width="1"/>
+    <text x="508" y="141.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >5</text>
+    <circle cx="508" cy="174" r="20" fill="var(--red)" opacity=".12"/>
+    <g transform="translate(494 160) scale(1.17)">
+    <path d="M3 8A9 3 0 1 0 21 8A9 3 0 1 0 3 8M3 8V18C3 22 21 22 21 18V8M3 13C3 17 21 17 21 13" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="459" y="194" width="98" height="26" rx="3" fill="var(--red)" stroke="none" opacity=".12"/>
+    <text x="508" y="204.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Security</text>
+    <text x="508" y="215.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >fundamentals</text>
+    <text x="463" y="235" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Confidentiality</text>
+    <text x="463" y="247" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Integrity and access</text>
+    <text x="463" y="259" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Evaluating common risks</text>
+    <circle cx="508" cy="297" r="14" fill="var(--blue)" stroke="none" stroke-width="1"/>
+    <text x="508" y="302.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >6</text>
+    <circle cx="508" cy="335" r="20" fill="var(--blue)" opacity=".12"/>
+    <g transform="translate(494 321) scale(1.17)">
+    <path d="M2 16C2 7 11 5 13 12C15 19 23 16 22 10M4 18L8 21M18 5L22 8" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="459" y="355" width="98" height="26" rx="3" fill="var(--blue)" stroke="none" opacity=".12"/>
+    <text x="508" y="365.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Cryptography &amp;</text>
+    <text x="508" y="376.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >key concepts</text>
+    <text x="463" y="396" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Encryption and hashing</text>
+    <text x="463" y="408" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Public and private keys</text>
+    <text x="463" y="420" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Encryption in transit</text>
+    <circle cx="397" cy="297" r="14" fill="var(--green)" stroke="none" stroke-width="1"/>
+    <text x="397" y="302.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >7</text>
+    <circle cx="397" cy="335" r="20" fill="var(--green)" opacity=".12"/>
+    <g transform="translate(383 321) scale(1.17)">
+    <path d="M2 6H9V12H2ZM15 13H22V19H15ZM5 12V16H15M9 9H18V13" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="348" y="355" width="98" height="26" rx="3" fill="var(--green)" stroke="none" opacity=".12"/>
+    <text x="397" y="365.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Cloud</text>
+    <text x="397" y="376.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >security</text>
+    <text x="352" y="396" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Account settings</text>
+    <text x="352" y="408" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Access policies</text>
+    <text x="352" y="420" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Cloud inventory</text>
+    <circle cx="286" cy="297" r="14" fill="var(--orange)" stroke="none" stroke-width="1"/>
+    <text x="286" y="302.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >8</text>
+    <circle cx="286" cy="335" r="20" fill="var(--orange)" opacity=".12"/>
+    <g transform="translate(272 321) scale(1.17)">
+    <path d="M2 12Q6 7 10 12T18 12T23 12M2 17Q6 12 10 17T18 17T23 17" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="237" y="355" width="98" height="26" rx="3" fill="var(--orange)" stroke="none" opacity=".12"/>
+    <text x="286" y="365.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Network</text>
+    <text x="286" y="376.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >security</text>
+    <text x="241" y="396" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Firewalls and zones</text>
+    <text x="241" y="408" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Traffic visibility</text>
+    <text x="241" y="420" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Secure design</text>
+    <circle cx="175" cy="297" r="14" fill="var(--violet)" stroke="none" stroke-width="1"/>
+    <text x="175" y="302.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >9</text>
+    <circle cx="175" cy="335" r="20" fill="var(--violet)" opacity=".12"/>
+    <g transform="translate(161 321) scale(1.17)">
+    <path d="M2 20L9 7L13 13L17 5L23 20ZM15 8L18 10" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="126" y="355" width="98" height="26" rx="3" fill="var(--violet)" stroke="none" opacity=".12"/>
+    <text x="175" y="365.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Application</text>
+    <text x="175" y="376.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >security</text>
+    <text x="130" y="396" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Secure foundations</text>
+    <text x="130" y="408" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Peer review</text>
+    <text x="130" y="420" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Updating dependencies</text>
+    <circle cx="64" cy="297" r="14" fill="var(--red)" stroke="none" stroke-width="1"/>
+    <text x="64" y="302.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >10</text>
+    <circle cx="64" cy="335" r="20" fill="var(--red)" opacity=".12"/>
+    <g transform="translate(50 321) scale(1.17)">
+    <path d="M3 10L12 3L21 10V21H3ZM9 21V13H15V21" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="15" y="355" width="98" height="26" rx="3" fill="var(--red)" stroke="none" opacity=".12"/>
+    <text x="64" y="365.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Security checks</text>
+    <text x="64" y="376.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >and testing</text>
+    <text x="19" y="396" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Asset inventory</text>
+    <text x="19" y="408" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Configuration reviews</text>
+    <text x="19" y="420" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Reporting findings</text>
+    <circle cx="64" cy="458" r="14" fill="var(--blue)" stroke="none" stroke-width="1"/>
+    <text x="64" y="463.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >11</text>
+    <circle cx="64" cy="496" r="20" fill="var(--blue)" opacity=".12"/>
+    <g transform="translate(50 482) scale(1.17)">
+    <path d="M2 3H22V20H2ZM5 7H8M10 7H13M3 10H21M7 13V18" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="15" y="516" width="98" height="26" rx="3" fill="var(--blue)" stroke="none" opacity=".12"/>
+    <text x="64" y="526.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Security operations</text>
+    <text x="64" y="537.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >teams</text>
+    <text x="19" y="557" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Read event records</text>
+    <text x="19" y="569" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Track alerts</text>
+    <text x="19" y="581" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Coordinate incidents</text>
+    <circle cx="175" cy="458" r="14" fill="var(--green)" stroke="none" stroke-width="1"/>
+    <text x="175" y="463.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >12</text>
+    <circle cx="175" cy="496" r="20" fill="var(--green)" opacity=".12"/>
+    <g transform="translate(161 482) scale(1.17)">
+    <path d="M3 18Q12 4 21 18M6 19Q12 9 18 19M10 20Q12 16 14 20" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="126" y="516" width="98" height="26" rx="3" fill="var(--green)" stroke="none" opacity=".12"/>
+    <text x="175" y="526.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Digital forensics &amp;</text>
+    <text x="175" y="537.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >incident response</text>
+    <text x="130" y="557" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Evidence collection</text>
+    <text x="130" y="569" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Triage and recovery</text>
+    <text x="130" y="581" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Document timelines</text>
+    <circle cx="286" cy="458" r="14" fill="var(--orange)" stroke="none" stroke-width="1"/>
+    <text x="286" y="463.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >13</text>
+    <circle cx="286" cy="496" r="20" fill="var(--orange)" opacity=".12"/>
+    <g transform="translate(272 482) scale(1.17)">
+    <path d="M3 12L9 18L21 5" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="237" y="516" width="98" height="26" rx="3" fill="var(--orange)" stroke="none" opacity=".12"/>
+    <text x="286" y="526.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Threat intelligence</text>
+    <text x="286" y="537.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >and research</text>
+    <text x="241" y="557" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Open research</text>
+    <text x="241" y="569" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Trust and evidence</text>
+    <text x="241" y="581" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Share findings</text>
+    <circle cx="397" cy="458" r="14" fill="var(--violet)" stroke="none" stroke-width="1"/>
+    <text x="397" y="463.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >14</text>
+    <circle cx="397" cy="496" r="20" fill="var(--violet)" opacity=".12"/>
+    <g transform="translate(383 482) scale(1.17)">
+    <path d="M3 4H21L16 12L21 20H3L8 12Z" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="348" y="516" width="98" height="26" rx="3" fill="var(--violet)" stroke="none" opacity=".12"/>
+    <text x="397" y="526.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Governance, risk</text>
+    <text x="397" y="537.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >and compliance</text>
+    <text x="352" y="557" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Risk management</text>
+    <text x="352" y="569" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Policy and audit</text>
+    <text x="352" y="581" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Security documentation</text>
+    <circle cx="508" cy="458" r="14" fill="var(--red)" stroke="none" stroke-width="1"/>
+    <text x="508" y="463.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >15</text>
+    <circle cx="508" cy="496" r="20" fill="var(--red)" opacity=".12"/>
+    <g transform="translate(494 482) scale(1.17)">
+    <path d="M2 6H22V18H2ZM9 22H15M12 18V22" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="459" y="516" width="98" height="26" rx="3" fill="var(--red)" stroke="none" opacity=".12"/>
+    <text x="508" y="526.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Advanced</text>
+    <text x="508" y="537.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >topics</text>
+    <text x="463" y="557" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• System architecture</text>
+    <text x="463" y="569" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Data protection</text>
+    <text x="463" y="581" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Identity management</text>
+    <circle cx="508" cy="619" r="14" fill="var(--blue)" stroke="none" stroke-width="1"/>
+    <text x="508" y="624.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >16</text>
+    <circle cx="508" cy="657" r="20" fill="var(--blue)" opacity=".12"/>
+    <g transform="translate(494 643) scale(1.17)">
+    <path d="M3 4H21V20H3ZM7 8H17M7 12H15M7 16H12" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="459" y="677" width="98" height="26" rx="3" fill="var(--blue)" stroke="none" opacity=".12"/>
+    <text x="508" y="687.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Career</text>
+    <text x="508" y="698.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >preparation</text>
+    <text x="463" y="718" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Build a portfolio</text>
+    <text x="463" y="730" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Write clear case studies</text>
+    <text x="463" y="742" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Practice interviews</text>
+    <circle cx="397" cy="619" r="14" fill="var(--green)" stroke="none" stroke-width="1"/>
+    <text x="397" y="624.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >17</text>
+    <circle cx="397" cy="657" r="20" fill="var(--green)" opacity=".12"/>
+    <g transform="translate(383 643) scale(1.17)">
+    <path d="M12 2L22 8V18L12 23L2 18V8ZM2 8L12 14L22 8M12 14V23" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="348" y="677" width="98" height="26" rx="3" fill="var(--green)" stroke="none" opacity=".12"/>
+    <text x="397" y="687.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Internships &amp;</text>
+    <text x="397" y="698.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >work experience</text>
+    <text x="352" y="718" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Join a support team</text>
+    <text x="352" y="730" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Attend a job fair</text>
+    <text x="352" y="742" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Learn with a mentor</text>
+    <circle cx="286" cy="619" r="14" fill="var(--orange)" stroke="none" stroke-width="1"/>
+    <text x="286" y="624.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >18</text>
+    <circle cx="286" cy="657" r="20" fill="var(--orange)" opacity=".12"/>
+    <g transform="translate(272 643) scale(1.17)">
+    <path d="M8 8L3 13L8 18M16 8L21 13L16 18M14 4L10 22" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="237" y="677" width="98" height="26" rx="3" fill="var(--orange)" stroke="none" opacity=".12"/>
+    <text x="286" y="687.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Real-world</text>
+    <text x="286" y="698.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >projects</text>
+    <text x="241" y="718" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Build an inventory</text>
+    <text x="241" y="730" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Document procedures</text>
+    <text x="241" y="742" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Present a case study</text>
+    <circle cx="175" cy="619" r="14" fill="var(--violet)" stroke="none" stroke-width="1"/>
+    <text x="175" y="624.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >19</text>
+    <circle cx="175" cy="657" r="20" fill="var(--violet)" opacity=".12"/>
+    <g transform="translate(161 643) scale(1.17)">
+    <path d="M12 3C4 3 2 8 4 14C6 18 10 20 12 23C14 20 20 13 20 9C20 5 16 3 12 3ZM12 7A3 3 0 1 0 12.1 7" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="126" y="677" width="98" height="26" rx="3" fill="var(--violet)" stroke="none" opacity=".12"/>
+    <text x="175" y="687.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Hands-on learning</text>
+    <text x="175" y="698.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >and practice</text>
+    <text x="130" y="718" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Use a local lab</text>
+    <text x="130" y="730" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Analyze sample logs</text>
+    <text x="130" y="742" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Write documentation</text>
+    <circle cx="64" cy="619" r="14" fill="var(--red)" stroke="none" stroke-width="1"/>
+    <text x="64" y="624.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >20</text>
+    <circle cx="64" cy="657" r="20" fill="var(--red)" opacity=".12"/>
+    <g transform="translate(50 643) scale(1.17)">
+    <path d="M3 11H21V21H3ZM7 11V8A5 5 0 0 1 17 8V11M12 14V18" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="15" y="677" width="98" height="26" rx="3" fill="var(--red)" stroke="none" opacity=".12"/>
+    <text x="64" y="687.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Professional</text>
+    <text x="64" y="698.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >certifications</text>
+    <text x="19" y="718" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Review objectives</text>
+    <text x="19" y="730" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Select a learning path</text>
+    <text x="19" y="742" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Plan an exam</text>
+    <circle cx="64" cy="780" r="14" fill="var(--blue)" stroke="none" stroke-width="1"/>
+    <text x="64" y="785.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >21</text>
+    <circle cx="64" cy="818" r="20" fill="var(--blue)" opacity=".12"/>
+    <g transform="translate(50 804) scale(1.17)">
+    <path d="M3 8A9 3 0 1 0 21 8A9 3 0 1 0 3 8M3 8V18C3 22 21 22 21 18V8M3 13C3 17 21 17 21 13" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="15" y="838" width="98" height="26" rx="3" fill="var(--blue)" stroke="none" opacity=".12"/>
+    <text x="64" y="848.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Choose a</text>
+    <text x="64" y="859.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >specialty</text>
+    <text x="19" y="879" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Cloud operations</text>
+    <text x="19" y="891" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Risk and compliance</text>
+    <text x="19" y="903" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Incident response</text>
+    <circle cx="175" cy="780" r="14" fill="var(--green)" stroke="none" stroke-width="1"/>
+    <text x="175" y="785.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >22</text>
+    <circle cx="175" cy="818" r="20" fill="var(--green)" opacity=".12"/>
+    <g transform="translate(161 804) scale(1.17)">
+    <path d="M2 16C2 7 11 5 13 12C15 19 23 16 22 10M4 18L8 21M18 5L22 8" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="126" y="838" width="98" height="26" rx="3" fill="var(--green)" stroke="none" opacity=".12"/>
+    <text x="175" y="848.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Keep</text>
+    <text x="175" y="859.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >learning</text>
+    <text x="130" y="879" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Read documentation</text>
+    <text x="130" y="891" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Join study groups</text>
+    <text x="130" y="903" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Keep technical notes</text>
+    <circle cx="286" cy="780" r="14" fill="var(--orange)" stroke="none" stroke-width="1"/>
+    <text x="286" y="785.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >23</text>
+    <circle cx="286" cy="818" r="20" fill="var(--orange)" opacity=".12"/>
+    <g transform="translate(272 804) scale(1.17)">
+    <path d="M2 6H9V12H2ZM15 13H22V19H15ZM5 12V16H15M9 9H18V13" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="237" y="838" width="98" height="26" rx="3" fill="var(--orange)" stroke="none" opacity=".12"/>
+    <text x="286" y="848.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Build your</text>
+    <text x="286" y="859.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >network</text>
+    <text x="241" y="879" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Meet your peers</text>
+    <text x="241" y="891" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Share what you learn</text>
+    <text x="241" y="903" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Attend community talks</text>
+    <circle cx="397" cy="780" r="14" fill="var(--violet)" stroke="none" stroke-width="1"/>
+    <text x="397" y="785.2" font-family="Arial, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="var(--on)" >24</text>
+    <circle cx="397" cy="818" r="20" fill="var(--violet)" opacity=".12"/>
+    <g transform="translate(383 804) scale(1.17)">
+    <path d="M2 12Q6 7 10 12T18 12T23 12M2 17Q6 12 10 17T18 17T23 17" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="348" y="838" width="98" height="26" rx="3" fill="var(--violet)" stroke="none" opacity=".12"/>
+    <text x="397" y="848.0" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >Apply for</text>
+    <text x="397" y="859.3" font-family="Arial, sans-serif" font-size="9.8" font-weight="700" text-anchor="middle" fill="var(--text)" >roles</text>
+    <text x="352" y="879" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Prepare a résumé</text>
+    <text x="352" y="891" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Ask for feedback</text>
+    <text x="352" y="903" font-family="Arial, sans-serif" font-size="8.2" font-weight="400" text-anchor="start" fill="var(--muted)" >• Practice explaining work</text>
+    <path d="M445 917l21-54 19 13 32-44 16 9 17-30 26 9v98z" fill="var(--blue)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M496 918l22-58 18 10 26-29 14 6v71z" fill="var(--green)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M550 816L550 771" fill="none" stroke="var(--text)" stroke-width="2"/>
+    <path d="M550 770q10-6 18-1l-4 6q-6-3-14 1z" fill="var(--red)" stroke="none" stroke-width="0" stroke-linejoin="round" stroke-linecap="round" />
+    <text x="530" y="892" font-family="Arial, sans-serif" font-size="9" font-weight="750" text-anchor="middle" fill="var(--on)" >BUILD A CAREER</text>
+    <text x="530" y="902" font-family="Arial, sans-serif" font-size="9" font-weight="750" text-anchor="middle" fill="var(--on)" >IN SECURITY</text>
+  </svg>
+  <script>
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+<script type="text/plain" data-notice="Motherlode source credits">
+| **Based on** | [A TikTok by @paulcodes4](https://www.tiktok.com/@paulcodes4/video/7705328611485830421) |
+</script>
+<script data-motherlode-player>
+// The library controls its sandboxed preview through messages. Standalone pages
+// manage their own interactions. The clipboard and download omit this bridge.
+(() => {
+  if (window.parent === window) return;
+  let running = null;
+  let lastPage = "";
+  function reportSlide() {
+    const page = new URLSearchParams(location.search).get("slide") || "1";
+    if (page === lastPage) return;
+    lastPage = page;
+    window.parent.postMessage({type:"motherlode-slide", slide:Number(page)}, "*");
+  }
+  window.addEventListener("message", event => {
+    if (event.source !== window.parent || event.data?.type !== "motherlode-player") return;
+    const {action, value} = event.data;
+    if (action === "pause" && running === null) {
+      running = document.getAnimations().filter(track => track.playState === "running" || track.pending);
+      running.forEach(track => track.pause());
+    } else if (action === "resume" && running !== null) {
+      running.forEach(track => { if (track.playState === "paused") track.play(); });
+      running = null;
+    } else if (action === "palette" && /^[a-z0-9-]+$/.test(value) && location.hash.slice(1) !== value) {
+      window.location.replace("#" + value);
+    }
+  });
+  window.addEventListener("load", reportSlide);
+  window.addEventListener("popstate", reportSlide);
+  for (const event of ["click","keydown"]) {
+    window.addEventListener(event, () => setTimeout(reportSlide, 0));
+  }
+})();
+</script>
+</body>
+</html>
