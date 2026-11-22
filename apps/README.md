@@ -21,7 +21,7 @@ Whole apps, sorted by what they do.
 | [Ride-hailing](ride-hailing/) | Rides and taxis |
 | [Travel](travel/) | Travel and trip planning |
 | [Booking](booking/) | Hotels, flights and reservations |
-| [Maps and navigation](maps-navigation/) | Maps and navigation · **1 design** |
+| [Maps and navigation](maps-navigation/) | Maps and navigation · **2 designs** |
 | [Health](health/) | Health and medical apps |
 | [Fitness](fitness/) | Workout and training apps |
 | [Meditation](meditation/) | Meditation and wellbeing |
