@@ -12,7 +12,7 @@ Building blocks: components, kits and design systems.
 | [Dropdowns](dropdowns/) | Dropdowns and selects |
 | [Checkboxes](checkboxes/) | Checkboxes |
 | [Radio buttons](radio-buttons/) | Radio buttons |
-| [Toggles](toggles/) | Switches and toggles · **2 designs** |
+| [Toggles](toggles/) | Switches and toggles · **3 designs** |
 | [Sliders](sliders/) | Range sliders · **1 design** |
 | [Date pickers](date-pickers/) | Date and time pickers |
 | [Color pickers](color-pickers/) | Color pickers |

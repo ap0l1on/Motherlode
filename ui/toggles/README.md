@@ -5,10 +5,10 @@ Switches and toggles.
 
 Part of [UI](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="eight-ray-day-night/"><img src="eight-ray-day-night/preview.gif" width="260" alt="Eight-ray day and night toggle"></a><br><a href="eight-ray-day-night/"><b>Eight-ray day and night toggle</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pull-cord-bulb/"><img src="pull-cord-bulb/preview.gif" width="260" alt="Pull-cord bulb"></a><br><a href="pull-cord-bulb/"><b>Pull-cord bulb</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="eight-ray-day-night/"><img src="eight-ray-day-night/preview.gif" width="260" alt="Eight-ray day and night toggle"></a><br><a href="eight-ray-day-night/"><b>Eight-ray day and night toggle</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="knurled-brass-power/"><img src="knurled-brass-power/preview.gif" width="260" alt="Knurled brass power switch"></a><br><a href="knurled-brass-power/"><b>Knurled brass power switch</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pull-cord-bulb/"><img src="pull-cord-bulb/preview.gif" width="260" alt="Pull-cord bulb"></a><br><a href="pull-cord-bulb/"><b>Pull-cord bulb</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
