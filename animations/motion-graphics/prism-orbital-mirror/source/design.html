@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x518">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="11.5">
+  <meta name="motherlode:still" content="5">
+  <title>Prism orbital mirror</title>
+  <style>
+:root, [data-colorway="original"] { --background: #0b1019; --shade: #1e3446; --middle: #33839f; --bright: #7ae6e7; --highlight: #efdee2; --leaf: #f1ba78; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 518px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 518" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Prism orbital mirror</title>
+    <desc id="description">A faceted, iridescent frame floats in a starfield while a moon and a dark swimming silhouette cross its surface.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 11.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{});
+    const night=radial(defs,"deep-space",[[0,"shade",.84],[1,"background",0]]);
+    const moon=element("radialGradient",{id:"globe",cx:".27",cy:".24",r:".75"},defs);
+    [[0,"highlight"],[.28,"bright"],[.62,"middle"],[1,"background"]].forEach(([offset,k])=>element("stop",{offset,"stop-color":"var(--"+k+")"},moon));
+    element("rect",{width:576,height:518,fill:night});
+    const stars=[[],[]];for(let i=0;i<860;i++)stars[i%9?0:1].push("M"+(576*random()).toFixed(1)+" "+(518*random()).toFixed(1)+"h.05");
+    stars.forEach((s,i)=>line(drawing,s.join(""),"highlight",i?1.5:.75,i?.89:.53));
+    const portal=element("g",{});
+    element("rect",{x:-137,y:-190,width:274,height:380,rx:11,fill:"var(--shade)",stroke:"var(--bright)","stroke-width":2},portal);
+    const colors=["shade","middle","bright","highlight","leaf"];
+    for(let edge=0;edge<4;edge++)for(let j=0;j<52;j++){
+      const p=j/52,near=(j+1)/52,t=3+random()*7;
+      let points;
+      if(edge%2===0){const sign=edge===0?-1:1;points=[[-131+262*p,sign*187],[-131+262*near,sign*187],[-131+262*(p+near)/2,sign*(187-t)]];}
+      else {const sign=edge===1?1:-1;points=[[sign*134,-184+368*p],[sign*134,-184+368*near],[sign*(134-t),-184+368*(p+near)/2]];}
+      element("path",{d:pointsPath(points,true),fill:"var(--"+colors[Math.floor(random()*5)]+")",opacity:.46+random()*.54},portal);
+    }
+    element("rect",{x:-121,y:-174,width:242,height:348,rx:6,fill:"var(--background)",stroke:"var(--middle)","stroke-width":2},portal);
+    const bronze=element("linearGradient",{id:"bronze",x1:0,y1:0,x2:1,y2:1},defs);
+    [[0,"leaf",.55],[.48,"background",.22],[1,"middle",.26]].forEach(([offset,k,alpha])=>element("stop",{offset,"stop-color":"var(--"+k+")","stop-opacity":alpha},bronze));
+    element("rect",{x:-118,y:-171,width:236,height:342,rx:5,fill:"url(#bronze)"},portal);
+    element("rect",{x:-118,y:-171,width:236,height:342,rx:5,fill:night},portal);
+    for(let i=0;i<190;i++)element("circle",{cx:-113+random()*227,cy:-166+random()*332,r:.4+random()*.85,opacity:.24+random()*.66,fill:"var(--bright)"},portal);
+    const planet=element("g",{},portal);
+    element("circle",{r:74,fill:"url(#globe)"},planet);
+    for(let i=0;i<100;i++){
+      const a=random()*tau,r=67*Math.sqrt(random());
+      element("ellipse",{cx:r*Math.cos(a),cy:r*Math.sin(a),rx:1+random()*4,ry:.8+random()*2.4,fill:"var(--shade)",opacity:.08+random()*.21},planet);
+    }
+    planet.animate([{transform:"translate(13px,-11px)"},{offset:.5,transform:"translate(51px,13px)"},{transform:"translate(13px,-11px)"}],{duration,iterations:Infinity});
+    const swimmer=element("g",{});
+    element("path",{d:"M-76-3Q-56-19-22-13Q7-10 32-1Q53 2 70-11L84-26Q85-11 75-3Q88 0 95 11Q79 9 67 4Q40 16 4 12L-19 22L-15 11Q-59 13-76-3Z",fill:"var(--shade)",stroke:"var(--bright)","stroke-width":1.2},swimmer);
+    const f=Array.from({length:37},(_,i)=>{const a=tau*i/36;return {transform:"translate("+(290+196*Math.sin(a))+"px,"+(263+60*Math.sin(a*2))+"px) rotate("+(13*Math.cos(a))+"deg) scale("+(0.88+.22*Math.cos(a))+")"};});
+    swimmer.animate(f,{duration,iterations:Infinity});
+    portal.animate(Array.from({length:37},(_,i)=>{const a=tau*i/36;return {transform:"matrix("+[(.87+.09*Math.cos(a)),.045*Math.sin(a),.08*Math.sin(a),.91+.04*Math.sin(2*a),286+12*Math.sin(a),252+5*Math.cos(a)].join(",")+")"};}),{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
