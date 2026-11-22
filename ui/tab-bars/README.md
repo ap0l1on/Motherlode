@@ -5,10 +5,11 @@ Bottom tab bars.
 
 Part of [UI](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="mint-wave-tabs/"><img src="mint-wave-tabs/preview.gif" width="260" alt="Mint wave tabs"></a><br><a href="mint-wave-tabs/"><b>Mint wave tabs</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="notched-glass-dock/"><img src="notched-glass-dock/preview.gif" width="260" alt="Notched glass dock"></a><br><a href="notched-glass-dock/"><b>Notched glass dock</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="prism-spotlight-tabs/"><img src="prism-spotlight-tabs/preview.gif" width="260" alt="Prism spotlight tabs"></a><br><a href="prism-spotlight-tabs/"><b>Prism spotlight tabs</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="honey-drop-tabs/"><img src="honey-drop-tabs/preview.gif" width="260" alt="Honey drop tabs"></a><br><a href="honey-drop-tabs/"><b>Honey drop tabs</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="mint-wave-tabs/"><img src="mint-wave-tabs/preview.gif" width="260" alt="Mint wave tabs"></a><br><a href="mint-wave-tabs/"><b>Mint wave tabs</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="notched-glass-dock/"><img src="notched-glass-dock/preview.gif" width="260" alt="Notched glass dock"></a><br><a href="notched-glass-dock/"><b>Notched glass dock</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="prism-spotlight-tabs/"><img src="prism-spotlight-tabs/preview.gif" width="260" alt="Prism spotlight tabs"></a><br><a href="prism-spotlight-tabs/"><b>Prism spotlight tabs</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
