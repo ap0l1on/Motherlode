@@ -1,0 +1,98 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="872x544">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="9">
+<meta name="motherlode:still" content="3.3">
+<title>Race garage slider</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #080808; --surface: #0D0D0C; --ink: #F9F7EA; --muted: #DDDCBB;
+  --accent: #EFDA3C; --on-accent: #242216; --second: #922C2A; --third: #83CADE;
+  --ivory: #F2D98A; --shade: #564C29; --outline: #7E783D; --good: #7A9971;
+  --hi: #FFFFFF; --lo: #010102; --clear: transparent; --photo: none;
+  --ionrove-ink: #5c5c5c; --let-s-ink: #5c5c5c; --race-ink: #757575;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.75);
+  --race-ink: #1a1a1a;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.85);
+  --ionrove-ink: #4f4f4f; --let-s-ink: #4f4f4f; --race-ink: #ffffff; --race-ink-edge: #171d25;
+  --readable-race: #ffffff; --readable-race-edge: #171d25;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+  --race-ink: #ffffff; --race-ink-edge: #898989;
+  --readable-race: #ffffff; --readable-race-edge: #898989;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+  --race-ink: #1c1c1b;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+  --race-ink: #0d0d0d;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(321deg);
+  --race-ink: #0d0d0d;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.64);
+  --race-ink: #0f0f0f;
+}
+*{box-sizing:border-box}html,body{width:872px;height:544px;overflow:hidden;margin:0}main{position:relative;width:436px;height:272px;transform:scale(2);transform-origin:0 0;overflow:hidden;background:var(--surface);font-family:Inter,sans-serif;color:var(--ink);perspective:700px}.slide{position:absolute;inset:0;overflow:hidden;background:linear-gradient(90deg,var(--tone) 0 40%,var(--bg) 40%);transform-origin:50% 100%;backface-visibility:hidden}.slide:nth-child(1){--tone:var(--accent)}.slide:nth-child(2){--tone:var(--second)}.slide:nth-child(3){--tone:var(--third)}.name{position:absolute;left:17px;top:11px;font:italic 700 8px Georgia,serif;color:var(--hi)}h1,.lets{position:absolute;left:78px;color:var(--hi);margin:0}.lets{top:45px;font:italic 17px Georgia,serif}.slide h1{top:56px;font-size:104px;letter-spacing:-8px;font-weight:790;line-height:1}.car{position:absolute;left:86px;top:111px;width:265px;height:84px}.car svg{width:100%;height:100%;overflow:hidden;filter:var(--photo)}.slide:nth-child(2) .car,.slide:nth-child(3) .car{top:107px;height:107px}
+footer{position:absolute;left:197px;right:4px;bottom:14px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:5.4px;font-weight:720}button{font:inherit;cursor:pointer}.detail{background:none;border:1px solid color-mix(in srgb,var(--muted) 42%,var(--clear));border-radius:8px;padding:3px 7px;color:var(--muted);font-size:5.1px}.menu,.index{position:absolute;right:16px;z-index:3}.menu{top:8px;display:grid;place-items:center;color:var(--muted);background:var(--bg);width:16px;height:16px;border:1px solid var(--outline);border-radius:50%;font-size:8px}.index{top:99px;display:grid;gap:5px}.index button{width:20px;height:20px;border:1px solid var(--clear);border-radius:50%;background:none;color:var(--muted);font:600 6px Inter,sans-serif}.index [aria-pressed=true]{border-color:var(--outline)}.dots{position:absolute;left:16px;bottom:13px;display:grid;gap:9px;color:var(--hi);font-size:8px}.info{position:absolute;z-index:4;left:208px;bottom:40px;margin:0;color:var(--hi);font:600 10px Inter,sans-serif}.menu:focus-visible,.index button:focus-visible,.detail:focus-visible{outline:1px solid var(--hi);outline-offset:2px}
+
+:is([data-colorway="original"], [data-colorway="dark"]) main > section.slide:nth-of-type(1) > i.name { color: var(--ionrove-ink); -webkit-text-fill-color: var(--ionrove-ink); }
+:is([data-colorway="original"], [data-colorway="dark"]) main > section.slide:nth-of-type(1) > span.lets { color: var(--let-s-ink); -webkit-text-fill-color: var(--let-s-ink); }
+:is([data-colorway="original"], [data-colorway="mono"], [data-colorway="light"], [data-colorway="dark"], [data-colorway="ember"], [data-colorway="lagoon"], [data-colorway="orchid"], [data-colorway="olive"]) main > section.slide:nth-of-type(1) > h1 { color: var(--race-ink); -webkit-text-fill-color: var(--race-ink); }
+[data-colorway="mono"] main > section.slide:nth-of-type(1) > h1 { paint-order: stroke fill; -webkit-text-stroke: .16em var(--race-ink-edge); }
+[data-colorway="dark"] main > section.slide:nth-of-type(1) > h1 { paint-order: stroke fill; -webkit-text-stroke: .16em var(--race-ink-edge); }
+
+
+[data-colorway="dark"] main > section.slide:nth-of-type(1) > h1 { color: var(--readable-race) !important; -webkit-text-fill-color: var(--readable-race) !important; --local-reading-edge: 1; paint-order: stroke fill; -webkit-text-stroke: .16em var(--readable-race-edge); }
+[data-colorway="mono"] main > section.slide:nth-of-type(1) > h1 { color: var(--readable-race) !important; -webkit-text-fill-color: var(--readable-race) !important; --local-reading-edge: 1; paint-order: stroke fill; -webkit-text-stroke: .16em var(--readable-race-edge); }
+</style></head><body><main><div class="index" aria-label="Select vehicle"></div><button class="menu" type="button" aria-label="Show or hide vehicle selection">≡</button><p class="info" hidden></p></main><script>
+const $=s=>document.querySelector(s),stage=$('main'),choices=[['Solstice R','302 MPH','0–100 KM/H','350 KW',0,0,1254,380],['Vesper Touring','136 MPH','0–60 MPH','189 KW',0,407,1254,433],['Glacier GT','228 MPH','0–100 KM/H','410 KW',0,849,1254,405]],rows=[],tabs=[],tracks=[],tour=[[0,0,0],[.07,0,0],[.42,0,0],[.50,0,1],[.54,1,0],[.66,1,0],[.73,1,1],[.77,2,0],[.90,2,0],[.96,2,1],[1,0,0]];let current=0;
+function choose(n){n=(n+3)%3;current=n;tracks.splice(0).forEach(a=>a.cancel());rows.forEach((r,i)=>{r.style.opacity=i===n?'1':'0';r.style.pointerEvents=i===n?'auto':'none';r.style.transform=i===n?'none':'translateY(-108%)';});tabs.forEach((t,i)=>t.setAttribute('aria-pressed',String(i===n)));$('.info').hidden=true;}
+choices.forEach(([name,a,b,c,x,y,w,h],i)=>{const row=document.createElement('section');row.className='slide';row.innerHTML='<i class="name">IonRove</i><span class="lets">Let’s</span><h1>RACE</h1><div class="car"><svg viewBox="'+[x,y,w,h].join(' ')+'" aria-label="'+name+'"><image x="0" y="0" width="1254" height="1254" href="original-car-atlas.webp"/></svg></div><span class="dots" aria-hidden="true">◉<br>◇<br>▸</span><footer><b>'+a+'</b><b>'+b+'</b><b>'+c+'</b><button class="detail" type="button">Discover Now →</button></footer>';stage.insertBefore(row,$('.index'));rows.push(row);row.querySelector('.detail').onclick=()=>{const info=$('.info');info.textContent=name;info.hidden=!info.hidden;};const bt=document.createElement('button');bt.type='button';bt.textContent='0'+(i+1);bt.setAttribute('aria-label','Show '+name);bt.setAttribute('aria-pressed',String(i===0));bt.onclick=()=>choose(i);$('.index').append(bt);tabs.push(bt);});
+for(let i=0;i<rows.length;i++)tracks.push(rows[i].animate(tour.map(([offset,n,leaving])=>({offset,opacity:n===i?1:0,transform:n===i?(leaving?'translateY(-92%) rotateX(12deg)':'translateY(0) rotateX(0)'):'translateY(106%) rotateX(-8deg)',easing:'ease-in-out'})),{duration:9000,iterations:Infinity}));
+$('.menu').onclick=()=>{const ix=$('.index');ix.hidden=!ix.hidden;ix.style.display=ix.hidden?'none':'grid';};addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown','ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();choose(current+(['ArrowRight','ArrowDown'].includes(e.key)?1:-1));}});let last=0;stage.onwheel=e=>{if(Date.now()-last>350){choose(current+Math.sign(e.deltaY));last=Date.now();}};if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))choose(0);
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
