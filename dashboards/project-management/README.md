@@ -3,4 +3,12 @@
 
 Projects, tasks and sprints.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="ember-studio-workspace/"><img src="ember-studio-workspace/preview.gif" width="260" alt="Ember studio workspace"></a><br><a href="ember-studio-workspace/"><b>Ember studio workspace</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
