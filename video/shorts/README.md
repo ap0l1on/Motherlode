@@ -5,10 +5,10 @@ Vertical templates for Shorts, Reels and TikTok.
 
 Part of [Video](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="phosphor-resource-console/"><img src="phosphor-resource-console/preview.gif" width="260" alt="Phosphor resource console"></a><br><a href="phosphor-resource-console/"><b>Phosphor resource console</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pocket-electronics-index/"><img src="pocket-electronics-index/preview.gif" width="260" alt="Pocket electronics index"></a><br><a href="pocket-electronics-index/"><b>Pocket electronics index</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="midnight-film-dossier/"><img src="midnight-film-dossier/preview.gif" width="260" alt="Midnight film dossier"></a><br><a href="midnight-film-dossier/"><b>Midnight film dossier</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="phosphor-resource-console/"><img src="phosphor-resource-console/preview.gif" width="260" alt="Phosphor resource console"></a><br><a href="phosphor-resource-console/"><b>Phosphor resource console</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="pocket-electronics-index/"><img src="pocket-electronics-index/preview.gif" width="260" alt="Pocket electronics index"></a><br><a href="pocket-electronics-index/"><b>Pocket electronics index</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
