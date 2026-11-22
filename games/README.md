@@ -10,7 +10,7 @@ Game art and game UI.
 | [Characters](characters/) | Game characters |
 | [Tilesets](tilesets/) | Tilesets and level pieces |
 | [Backgrounds](backgrounds/) | Game backgrounds and parallax layers |
-| [Items](items/) | Items, weapons and power-ups |
+| [Items](items/) | Items, weapons and power-ups · **1 design** |
 | [Game UI](game-ui/) | Game interfaces · **1 design** |
 | [HUD](hud/) | HUDs and health bars |
 | [Main menus](main-menus/) | Title screens and main menus |

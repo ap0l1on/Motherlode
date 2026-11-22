@@ -3,4 +3,12 @@
 
 Items, weapons and power-ups.
 
-Part of [Games](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Games](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="four-pocket-light-wands/"><img src="four-pocket-light-wands/preview.gif" width="260" alt="Four pocket light wands"></a><br><a href="four-pocket-light-wands/"><b>Four pocket light wands</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
