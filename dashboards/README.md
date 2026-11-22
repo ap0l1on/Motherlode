@@ -21,7 +21,7 @@ Dashboards for every kind of data.
 | [HR](hr/) | People, hiring and payroll |
 | [Customer support](customer-support/) | Tickets and help desks |
 | [Healthcare](healthcare/) | Patients, clinics and medical data |
-| [Fitness](fitness/) | Workouts and health tracking |
+| [Fitness](fitness/) | Workouts and health tracking · **1 design** |
 | [Education](education/) | Schools, courses and learning platforms |
 | [Student portals](student-portals/) | Student and parent portals |
 | [Social media](social-media/) | Social media stats and scheduling |

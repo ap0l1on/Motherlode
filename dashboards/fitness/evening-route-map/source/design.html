@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="900x480">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5">
+<meta name="motherlode:still" content="0.4">
+<title>Evening route map</title>
+<style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --land: #F1EEE8; --road: #FFFDFA; --roof: #FAF7F0; --face: #CAC6BF;
+  --park: #DAEBD7; --water: #C6DFE6; --route: #DF6A29; --card: #FFFEFB;
+  --ink: #211F1D; --muted: #5C5D59; --night: #101418; --night-road: #22262B;
+  --night-roof: #292D31; --night-park: #11231A; --night-water: #0A1220; --night-route: #FF9D62;
+  --night-card: #24262B; --night-ink: #F5F4F1; --night-muted: #C3C3BD; --lamp: #FFD9A6;
+  --hi: #FFFFFF; --lo: #070A10; --clear: transparent;
+}
+[data-colorway="light"] {
+  --land: #ECF2EA; --road: #FCFDF8; --roof: #F7F9EE; --face: #BBCBBA;
+  --park: #D2E5CA; --water: #C0DCE4; --route: #CE642C; --card: #FFFDF6;
+  --ink: #23382F; --muted: #536354; --night: #182126; --night-road: #303B3B;
+  --night-roof: #394442; --night-park: #172B25; --night-water: #112331; --night-route: #F6B277;
+  --night-card: #313D3D; --night-ink: #F4F9EE; --night-muted: #C3D3C4; --lamp: #FFE4AB;
+  --hi: #FFFFFF; --lo: #0A1519; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --land: #27313B; --road: #3D4954; --roof: #49505A; --face: #19242F;
+  --park: #2C4638; --water: #233C51; --route: #F5A76E; --card: #36404B;
+  --ink: #F3F4EF; --muted: #CBD2D1; --night: #0D131D; --night-road: #202934;
+  --night-roof: #29323B; --night-park: #102820; --night-water: #08192E; --night-route: #FFB47F;
+  --night-card: #252D37; --night-ink: #F7F2EB; --night-muted: #CBD1D1; --lamp: #FFDCA3;
+  --hi: #FFFFFF; --lo: #060A11; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --land: #EBEBEB; --road: #FAFAFA; --roof: #F6F6F6; --face: #C3C3C3;
+  --park: #D8D8D8; --water: #C6C6C6; --route: #5D5D5D; --card: #FCFCFC;
+  --ink: #202020; --muted: #585858; --night: #121212; --night-road: #272727;
+  --night-roof: #303030; --night-park: #232323; --night-water: #1D1D1D; --night-route: #E3E3E3;
+  --night-card: #292929; --night-ink: #F5F5F5; --night-muted: #CACACA; --lamp: #E8E8E8;
+  --hi: #FFFFFF; --lo: #080808; --clear: transparent;
+}
+[data-colorway="coast"] {
+  --land: #E6EEF0; --road: #F7FCFE; --roof: #EFF6F5; --face: #B1C7C9;
+  --park: #C7E5D5; --water: #A8D5E5; --route: #087E95; --card: #F9FDFD;
+  --ink: #173D46; --muted: #48656D; --night: #10242D; --night-road: #24404B;
+  --night-roof: #304D56; --night-park: #15392E; --night-water: #0B2B41; --night-route: #65DFDA;
+  --night-card: #233F49; --night-ink: #EEFCFE; --night-muted: #BDD6D8; --lamp: #BBF5DF;
+  --hi: #FFFFFF; --lo: #081722; --clear: transparent;
+}
+[data-colorway="terracotta"] {
+  --land: #F3E9E0; --road: #FFF9ED; --roof: #F8EEE1; --face: #D0BCAE;
+  --park: #D9E3CB; --water: #C3D5D3; --route: #B75437; --card: #FFFBF4;
+  --ink: #402C28; --muted: #715951; --night: #211B20; --night-road: #393034;
+  --night-roof: #46373B; --night-park: #253022; --night-water: #162A31; --night-route: #F5A16F;
+  --night-card: #342A2E; --night-ink: #FFF0E8; --night-muted: #DBC8BE; --lamp: #FFD0A0;
+  --hi: #FFFDF3; --lo: #110F19; --clear: transparent;
+}
+[data-colorway="pine"] {
+  --land: #E8EEE2; --road: #F9FBEF; --roof: #F2F5E9; --face: #BAC9AF;
+  --park: #C9DDBE; --water: #B7D4C9; --route: #547B36; --card: #FBFCF3;
+  --ink: #293B2A; --muted: #55634E; --night: #15221C; --night-road: #293C31;
+  --night-roof: #33453A; --night-park: #132D1B; --night-water: #10292B; --night-route: #BBDD83;
+  --night-card: #25372C; --night-ink: #F6F8E8; --night-muted: #CBD5BD; --lamp: #E9E7A3;
+  --hi: #FFFFFF; --lo: #09150E; --clear: transparent;
+}
+[data-colorway="violet"] {
+  --land: #F0EBF3; --road: #FCF9FF; --roof: #F6F1F8; --face: #C9BED1;
+  --park: #D6DFCF; --water: #CCD2E5; --route: #A05B9A; --card: #FFFCFF;
+  --ink: #392B42; --muted: #695871; --night: #221C2F; --night-road: #352D43;
+  --night-roof: #42364D; --night-park: #252C25; --night-water: #202239; --night-route: #E2A2DC;
+  --night-card: #342A40; --night-ink: #FBF1FA; --night-muted: #D6C7D8; --lamp: #FFD4BC;
+  --hi: #FFFFFF; --lo: #100C1A; --clear: transparent;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: Inter, Arial, sans-serif; color: var(--ink); }
+@property --night-progress { syntax: "<number>"; initial-value: 0; inherits: true; }
+@property --position { syntax: "<number>"; initial-value: 1; inherits: true; }
+main { width: 900px; height: 480px; position: relative; isolation: isolate; overflow: hidden;
+  --tap-x: 362px; --tap-y: 418px; --night-progress: 0; --position: 1; background: var(--land); touch-action: manipulation; }
+.library { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+.layer, .map { position: absolute; inset: 0; width: 100%; height: 100%; }
+.day { --minor-strength: .53; --ground: var(--land); --street: var(--road); --building: var(--roof); --building-side: var(--face); --grass: var(--park);
+  --river: var(--water); --map-route: var(--route); --map-label: var(--muted); --route-case: var(--road);
+  --panel: var(--card); --panel-ink: var(--ink); --panel-sub: var(--muted); }
+.night { --minor-strength: .27; --ground: var(--night); --street: var(--night-road); --building: var(--night-roof); --building-side: var(--night);
+  --grass: var(--night-park); --river: var(--night-water); --map-route: var(--night-route); --map-label: var(--night-muted); --route-case: var(--night-road);
+  --panel: var(--night-card); --panel-ink: var(--night-ink); --panel-sub: var(--night-muted); }
+.night-layer { clip-path: circle(calc(var(--night-progress) * 1150px) at var(--tap-x) var(--tap-y)); }
+.paper { fill: var(--ground); }
+.lots { fill: color-mix(in srgb,var(--ground) 85%,var(--building-side)); }
+.park { fill: var(--grass); }
+.park-path { fill: none; stroke: color-mix(in srgb,var(--grass) 66%,var(--street)); }
+.park-trees { fill: color-mix(in srgb,var(--grass) 75%,var(--building-side)); }
+.park-trees .shade { fill: color-mix(in srgb,var(--grass) 84%,var(--map-label)); }
+.pond { fill: var(--river); stroke: color-mix(in srgb,var(--grass) 73%,var(--street)); stroke-width: 4; }
+.road-minor, .road-main, .bridge, .bank, .stream { fill: none; }
+.road-minor { stroke: var(--street); stroke-width: 2.7; opacity: var(--minor-strength); }
+.road-main { stroke: var(--street); stroke-width: 8.5; }
+.bank { stroke: var(--street); stroke-width: 60; }
+.stream { stroke: var(--river); stroke-width: 47; }
+.bridge { stroke: var(--street); stroke-width: 10; }
+.wall { fill: var(--building-side); }
+.roof { fill: var(--building); stroke: color-mix(in srgb,var(--building) 82%,var(--building-side)); stroke-width: .65; }
+.roof-ridge { stroke: var(--building-side); stroke-width: .75; opacity: .65; }
+.block-shadow { fill: color-mix(in srgb,var(--building-side) 80%,var(--ground)); opacity: .45; }
+.map-title { fill: var(--map-label); font: 650 9.3px Inter, sans-serif; letter-spacing: 2.4px; }
+.route-under, .route, .glow-track { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+.route-under { stroke: var(--route-case); stroke-width: 8; }
+.route { stroke: var(--map-route); stroke-width: 3.7; }
+.glow-track { stroke: var(--night-route); stroke-width: 9; filter: blur(4px); opacity: .42; }
+.route-dot { fill: var(--map-route); stroke: var(--panel); stroke-width: 3; }
+.streetlight { opacity: clamp(0, calc((var(--night-progress) - var(--when)) * 8), 1); }
+.streetlight .glow { fill: url(#lamp-glow); }
+.streetlight .wick { fill: var(--lamp); }
+.warmth { position: absolute; inset: 0; pointer-events: none; background: var(--lamp);
+  opacity: calc(.18 * sin(var(--night-progress) * 180deg)); mix-blend-mode: multiply; }
+.summary { position: absolute; top: 23px; left: 22px; width: 423px; height: 153px; border-radius: 26px; padding: 22px 23px;
+  color: var(--panel-ink); background: color-mix(in srgb,var(--panel) 94%,var(--clear));
+  border: 1px solid color-mix(in srgb,var(--panel-ink) 9%,var(--clear));
+  box-shadow: inset 0 1.5px color-mix(in srgb,var(--hi) 72%,var(--clear)),0 6px 18px color-mix(in srgb,var(--lo) 6%,var(--clear));
+  backdrop-filter: blur(7px); }
+.night .summary { background: var(--panel); border-color: color-mix(in srgb,var(--hi) 8%,var(--clear));
+  box-shadow: inset 0 1.5px color-mix(in srgb,var(--hi) 12%,var(--clear)),0 7px 20px color-mix(in srgb,var(--lo) 18%,var(--clear)); }
+.summary header { display: flex; align-items: baseline; justify-content: space-between; }
+.summary h1 { margin: 0; font-size: 21px; font-weight: 610; line-height: 1.2; letter-spacing: -.055em; }
+.summary time { font-size: 16px; color: var(--panel-sub); }
+.measurements { display: grid; grid-template-columns: 1.1fr 1fr .73fr; margin: 20px 0 0; }
+.measurements div { display: flex; flex-direction: column-reverse; gap: 8px; }
+.measurements dt { color: var(--panel-sub); font-size: 16px; }
+.measurements dd { margin: 0; font-size: 34.5px; line-height: 1; font-weight: 515; letter-spacing: -.05em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.measurements dd small { margin-left: 3px; font-size: 15px; font-weight: 500; letter-spacing: -.04em; }
+.switch { --glass: color-mix(in srgb,var(--card),var(--night-card) calc(var(--night-progress) * 100%));
+  --control-text: color-mix(in srgb,var(--ink),var(--night-ink) calc(var(--night-progress) * 100%));
+  position: absolute; left: 23px; bottom: 21px; width: 422px; height: 91px; border-radius: 50px;
+  padding: 4px; display: grid; grid-template-columns: repeat(3,1fr); align-items: stretch; touch-action: none;
+  background: color-mix(in srgb,var(--glass) 72%,var(--clear)); backdrop-filter: blur(6px);
+  border: 1px solid color-mix(in srgb,var(--hi) calc(33% - var(--night-progress) * 20%),var(--clear));
+  box-shadow: inset 0 1.7px color-mix(in srgb,var(--hi) calc(31% - var(--night-progress)*16%),var(--clear)), 0 6px 17px color-mix(in srgb,var(--lo) 13%,var(--clear)); }
+.thumb { position: absolute; inset: 4px auto 4px 4px; width: 137px; overflow: hidden; border-radius: 46px; transform: translateX(calc(var(--position) * 137.5px));
+  background: linear-gradient(150deg,color-mix(in srgb,var(--hi) calc(50% - var(--night-progress)*29%),var(--clear)),color-mix(in srgb,var(--glass) 46%,var(--clear)) 48%,color-mix(in srgb,var(--hi) 13%,var(--clear)));
+  box-shadow: inset 1px 1.3px 2px color-mix(in srgb,var(--hi) calc(55% - var(--night-progress)*33%), var(--clear)),inset -1px -1.5px 2px color-mix(in srgb,var(--lo) 16%,var(--clear)),0 2px 7px color-mix(in srgb,var(--lo) 13%,var(--clear)); }
+.thumb::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 10px color-mix(in srgb,var(--hi) 14%,var(--clear)); }
+.lens { position: absolute; inset: 0; opacity: .40; mask: radial-gradient(ellipse closest-side,var(--clear) 52%,var(--lo) 92%); }
+.lens svg { position: absolute; width: 900px; height: 480px; top: -373px; left: calc(-28px - var(--position) * 137.5px);
+  transform: scale(1.105); transform-origin: calc(96px + var(--position) * 137.5px) 416px; }
+.lens .night { opacity: var(--night-progress); }
+.switch button { position: relative; z-index: 1; display: grid; align-content: center; justify-items: center; gap: 8px; cursor: pointer;
+  border: 0; border-radius: 42px; background: none; color: var(--control-text); font: 500 16px Inter, sans-serif; letter-spacing: -.025em; }
+.switch button:focus-visible { outline: 2px solid var(--control-text); outline-offset: -5px; }
+.switch svg.icon { width: 24px; height: 24px; overflow: visible; }
+</style>
+</head>
+<body>
+<main aria-label="Evening run activity map">
+  <svg class="library" aria-hidden="true"><defs>
+    <radialGradient id="lamp-glow"><stop style="stop-color:var(--lamp);stop-opacity:.65"/><stop offset=".23" style="stop-color:var(--lamp);stop-opacity:.35"/><stop offset=".66" style="stop-color:var(--lamp);stop-opacity:.08"/><stop offset="1" style="stop-color:var(--lamp);stop-opacity:0"/></radialGradient>
+    <linearGradient id="river-reflection" x2="0" y2="1"><stop style="stop-color:var(--lamp);stop-opacity:.64"/><stop offset="1" style="stop-color:var(--lamp);stop-opacity:0"/></linearGradient>
+    <path id="course" d="M510 341V178Q510 166 522 166H600C642 166 659 136 698 117C748 92 792 83 834 93V334Q739 353 638 347Z"/>
+    <g id="city">
+      <rect class="paper" width="900" height="480"/>
+      <g class="lots" opacity=".36"><path d="M6 13h133v63H6zM158 15h105v58H158zM273 15h124v58H273zM62 175h116v32H62zM180 235h88v37h-88zM383 75h94v51h-94zM520 25h58v45h-58zM638 216h143v52H638zM661 288h117v40H661zM42 434h64v42H42z"/></g>
+      <path class="park" d="M604 9Q611 3 623 4L823 5Q833 5 833 16L832 191Q832 199 823 199L612 198Q604 198 604 188Z"/>
+      <g class="park-path" stroke-width="2"><path d="M675 196Q689 161 720 164T771 142Q787 122 815 128M704 11Q696 47 718 64T733 102M812 12Q786 48 804 70"/></g>
+      <g id="trees" class="park-trees"></g><ellipse class="pond" cx="785" cy="152" rx="27" ry="19"/>
+      <g class="road-minor"><path d="M7 44H602M1 80H603M5 128H603M3 211H838M0 243H607M0 323H508M0 429H900M13 472H900M34 0V322M81 0V340M137 0V331M185 0V320M240 0V328M294 0V330M342 0V319M394 0V330M449 0V338M559 0V328M602 0V209M641 199V332M698 214V330M793 206V334M843 0V340M880 0V340M52 433V480M118 427V480M185 428V480M240 429V480M351 418V480M399 417V480M610 408V480M692 402V480M785 400V480M844 383V480M2 392C116 338 262 230 437 155"/><path d="M151 164v39h77M326 162v44h66M581 88h23M603 211h190v63M541 286h94v39M841 69h58M841 129h58M840 209h60M840 309h60"/></g>
+      <path class="road-main" d="M0 280C159 280 326 281 510 279S746 277 900 280M509 0V480"/>
+      <path class="bank" d="M-35 411C92 410 218 354 398 365S665 401 936 334"/>
+      <path class="stream" d="M-35 411C92 410 218 354 398 365S665 401 936 334"/>
+      <path class="bridge" d="M509 326v105"/>
+      <g id="houses"></g>
+      <text class="map-title" x="625" y="53">LANTERN PARK</text><text class="map-title" x="640" y="381">MILL RIVER</text>
+      <use href="#course" class="route-under"/><use href="#course" class="route"/>
+      <circle class="route-dot" cx="557" cy="343" r="6.6"/>
+    </g>
+  </defs></svg>
+  <div class="layer day"><svg class="map" viewBox="0 0 900 480" aria-hidden="true"><use href="#city"/></svg><section class="summary" aria-label="Run statistics"></section></div>
+  <div class="layer night night-layer" aria-hidden="true"><svg class="map" viewBox="0 0 900 480"><use href="#city"/><use href="#course" class="glow-track"/><use href="#course" class="route"/><g id="lights"></g><circle class="route-dot" cx="557" cy="343" r="6.6"/></svg><section class="summary"></section></div>
+  <div class="warmth" aria-hidden="true"></div>
+  <div class="switch" role="radiogroup" aria-label="Map appearance">
+    <div class="thumb" aria-hidden="true"><div class="lens"><svg class="day" viewBox="0 0 900 480"><use href="#city"/></svg><svg class="night" viewBox="0 0 900 480"><use href="#city"/></svg></div></div>
+    <button type="button" role="radio" aria-checked="false" tabindex="-1"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.3"/><path d="M12 2.8a9.2 9.2 0 0 1 0 18.4Z" fill="currentColor" stroke="none"/></svg>System</button>
+    <button type="button" role="radio" aria-checked="true" tabindex="0"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.4v2.1m0 17v2.1M1.4 12h2.1m17 0h2.1M4.5 4.5l1.4 1.4m12.2 12.2 1.4 1.4M4.5 19.5l1.4-1.4M18.1 5.9l1.4-1.4"/></svg>Light</button>
+    <button type="button" role="radio" aria-checked="false" tabindex="-1"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M21 14a9.1 9.1 0 0 1-11-11.4A9.4 9.4 0 1 0 21 14Z"/></svg>Dark</button>
+  </div>
+  <template id="stats"><header><h1>Evening Run</h1><time>Sat 7:12 PM</time></header><dl class="measurements"><div><dt>Distance</dt><dd>10.24<small>km</small></dd></div><div><dt>Pace</dt><dd>5:21<small>/km</small></dd></div><div><dt>Time</dt><dd>54:48</dd></div></dl></template>
+</main>
+<script>
+  const board = document.querySelector('main');
+  const controls = document.querySelector('.switch');
+  const buttons = [...controls.querySelectorAll('button')];
+  const darkPreference = matchMedia('(prefers-color-scheme: dark)');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const namespace = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll('.summary').forEach(panel => {
+    panel.append(document.querySelector('#stats').content.cloneNode(true));
+  });
+
+  function appendShape(parent, tag, attributes) {
+    const shape = document.createElementNS(namespace, tag);
+    Object.entries(attributes).forEach(([name, value]) => shape.setAttribute(name, value));
+    parent.append(shape);
+    return shape;
+  }
+
+  // Keep the geometry stable across appearance settings and animation timestamps.
+  let seed = 57;
+  function fraction() {
+    seed = (seed * 16807) % 2147483647;
+    return (seed - 1) / 2147483646;
+  }
+  const grove = document.querySelector('#trees');
+  for (let i = 0; i < 65; i++) {
+    const x = 612 + fraction() * 212;
+    const y = 12 + fraction() * 179;
+    if ((y < 62 && x < 750) || Math.hypot(x - 785, y - 152) < 29) continue;
+    const radius = 1.7 + fraction() * 3.1;
+    appendShape(grove, 'circle', {cx:x+1.1, cy:y+1.4, r:radius, class:'shade', opacity:.43});
+    appendShape(grove, 'circle', {cx:x, cy:y, r:radius});
+  }
+
+  const architecture = document.querySelector('#houses');
+  const lampList = [];
+  function addLamp(x, y, halo, core, reflection = false) { lampList.push({ x, y, halo, core, reflection }); }
+  function house(x, y, width, depth) {
+    const rise = 2.5 + fraction() * 4;
+    const group = appendShape(architecture, 'g', {transform:'translate(' + x + ' ' + y + ')'});
+    const front = depth + rise;
+    appendShape(group, 'rect', {x:3.5, y:3, width, height:front, rx:1.2, class:'block-shadow'});
+    appendShape(group, 'rect', {x:0, y:0, width, height:front, rx:.9, class:'wall'});
+    appendShape(group, 'path', {d:['M0 0','H'+width,'V'+depth,'H0Z'].join(' '), class:'roof'});
+    if (depth > 8) {
+      const ridgeY = depth * .52;
+      appendShape(group, 'path', {d:'M0 '+depth+' '+(width*.23)+' '+ridgeY+' '+(width*.74)+' '+ridgeY+' '+width+' '+depth+'Z',class:'wall',opacity:.28});
+    }
+    if (width > 13) appendShape(group, 'path', {d:'M2 '+(depth*.53)+'h'+(width-4),class:'roof-ridge'});
+    if (fraction() > .37) {
+      const count = width > 17 ? 3 : 2;
+      for (let i=0; i<count; i++) addLamp(x + 3.4 + i * 4.8, y + depth + rise * .6, 3.2, .65);
+    }
+  }
+  function terrace(start, end, y, size) {
+    let x = start;
+    while (x < end) {
+      const w = (9 + fraction() * 15) * size;
+      house(x, y + fraction() * 3.5, w, (7 + fraction() * 8) * size);
+      x += w + 5 + fraction() * 8;
+    }
+  }
+  // Riverfront cottages sit on the bank and three lanes flank the park.
+  terrace(-4,91,349,.9); terrace(3,110,334,.9); terrace(119,196,343,.9);
+  terrace(220,307,326,.9); terrace(321,419,325,.85);
+  for (const y of [119,142,166,193,218,240,291,314]) {
+    terrace(458,490,y,.78);
+    if (y !== 166 && y !== 218) terrace(521,y < 175 ? 602 : 555,y,.78);
+  }
+  for (const y of [63,86,111,135,163,192,220,248,291,314]) terrace(852,891,y,.76);
+  for (let x=14; x<900; x+=34+fraction()*12) addLamp(x,277+fraction()*8,9+fraction()*8,.64+fraction()*.4);
+  const river = document.querySelector('#city .stream');
+  const riverLength = river.getTotalLength();
+  for (let distance=27; distance < riverLength; distance+=45+fraction()*15) {
+    const point = river.getPointAtLength(distance);
+    addLamp(point.x, point.y-25, 10+fraction()*5, .9, true);
+    addLamp(point.x+13, point.y+27, 8+fraction()*5, .85);
+  }
+  for (let y=11; y<480; y+=34+fraction()*17) addLamp(507+fraction()*5,y,7.6,.88);
+  for (const [x,y] of [[685,192],[690,184],[697,175],[706,169],[720,164],[733,163],[752,162],[766,154],[769,149],[802,132],[814,127]]) addLamp(x,y,9.1,.9);
+  const lights = document.querySelector('#lights');
+  lampList.forEach(lamp => {
+    const group = appendShape(lights,'g',{class:'streetlight'});
+    if (lamp.reflection) {
+      const length = 8 + fraction()*12;
+      appendShape(group, 'path', {d:'M'+(lamp.x-1.2)+' '+(lamp.y+2)+'h2.4l-1.1 '+length+'Z', fill:'url(#river-reflection)'});
+    }
+    appendShape(group,'circle',{cx:lamp.x,cy:lamp.y,r:lamp.halo,class:'glow'});
+    appendShape(group,'circle',{cx:lamp.x,cy:lamp.y,r:lamp.core,class:'wick'});
+    lamp.node = group;
+  });
+  function placeOrigin(x,y) {
+    board.style.setProperty('--tap-x',x+'px');
+    board.style.setProperty('--tap-y',y+'px');
+    lampList.forEach(lamp => {
+      const delay = .10 + Math.hypot(lamp.x-x,lamp.y-y) / 1070 * .64;
+      lamp.node.style.setProperty('--when',delay.toFixed(3));
+    });
+  }
+
+  let movement;
+  let active = 1;
+  let interactive = false;
+  let drag = null;
+  function changing(position, darkness) {
+    return {'--position':String(position),'--night-progress':String(darkness)};
+  }
+  function write(position,darkness) {
+    Object.entries(changing(position,darkness)).forEach(([key,value]) => board.style.setProperty(key,value));
+  }
+  function hold() {
+    const style = getComputedStyle(board);
+    const position = Number(style.getPropertyValue('--position'));
+    const darkness = Number(style.getPropertyValue('--night-progress'));
+    if (movement) movement.cancel();
+    write(position,darkness);
+    return {position,darkness};
+  }
+  function systemLevel() { return darkPreference.matches ? 1 : 0; }
+  function selection(index) {
+    active = index;
+    buttons.forEach((button,i) => {
+      button.setAttribute('aria-checked',String(i === index)); button.tabIndex = i === index ? 0 : -1;
+    });
+  }
+  function select(index, animate = true) {
+    const from = hold();
+    interactive = true;
+    selection(index);
+    const darkness = index === 0 ? systemLevel() : index - 1;
+    write(index,darkness);
+    if (animate && !reducedMotion.matches) {
+      movement = board.animate([changing(from.position,from.darkness),changing(index,darkness)],
+        {duration:650,easing:'cubic-bezier(.27,.06,.19,1)'});
+    }
+  }
+  function demo() {
+    placeOrigin(365,417);
+    if (reducedMotion.matches && !new URLSearchParams(location.search).has('t')) return;
+    const stops = [[0,1,0],[.19,1,0],[.25,1.85,.12],[.38,2,1],[.64,2,1],[.72,1.18,.72],[.82,1,0],[1,1,0]];
+    movement = board.animate(stops.map(([offset,position,darkness]) => ({
+      offset,...changing(position,darkness),easing:'cubic-bezier(.35,.06,.25,1)'
+    })),{duration:5000,iterations:Infinity,fill:'both'});
+  }
+
+  function controlOrigin(index) {
+    const button=buttons[index].getBoundingClientRect();
+    const rect=board.getBoundingClientRect();
+    placeOrigin(button.left + button.width/2 - rect.left, button.top + button.height/2 - rect.top);
+  }
+  controls.addEventListener('pointerdown', event => {
+    if (!event.isPrimary || event.button !== 0) return;
+    const rect = board.getBoundingClientRect();
+    const from = hold();
+    interactive = true;
+    drag = {id:event.pointerId,x:event.clientX,position:from.position,moved:false};
+    placeOrigin(event.clientX-rect.left,event.clientY-rect.top);
+    controls.setPointerCapture(event.pointerId);
+  });
+  controls.addEventListener('pointermove', event => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const delta = event.clientX - drag.x;
+    if (Math.abs(delta) > 3) drag.moved=true;
+    if (!drag.moved) return;
+    const position = Math.max(0,Math.min(2,drag.position+delta/137.5));
+    const darkness = position > 1 ? position-1 : systemLevel()*(1-position);
+    write(position,darkness);
+  });
+  controls.addEventListener('pointerup', event => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const bounds=controls.getBoundingClientRect();
+    const index = drag.moved ? Math.round(Number(getComputedStyle(board).getPropertyValue('--position'))) :
+      Math.max(0,Math.min(2,Math.floor((event.clientX-bounds.left)/bounds.width*3)));
+    const moved = drag.moved;
+    drag=null;
+    controls.releasePointerCapture(event.pointerId);
+    select(index,!moved || !reducedMotion.matches);
+  });
+  controls.addEventListener('pointercancel',() => { drag=null; select(active); });
+  buttons.forEach((button,i) => {
+    button.addEventListener('click',event => {
+      if (event.detail === 0) { controlOrigin(i); select(i); }
+    });
+    button.addEventListener('keydown',event => {
+      const dest = {ArrowRight:(i+1)%3,ArrowLeft:(i+2)%3,Home:0,End:2}[event.key];
+      if (dest === undefined) return;
+      event.preventDefault(); controlOrigin(dest); select(dest); buttons[dest].focus();
+    });
+  });
+  darkPreference.addEventListener('change',() => {
+    if (interactive && active === 0) { controlOrigin(0); select(0); }
+  });
+  demo();
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body>
+</html>
