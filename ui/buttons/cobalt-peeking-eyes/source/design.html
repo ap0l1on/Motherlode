@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x462">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.8">
+<meta name="motherlode:still" content="1.35">
+<title>Cobalt peeking eyes</title><style>
+@font-face {
+  font-family: 'Barlow Condensed';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('fonts/barlow-condensed-bold-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #323A45; --surface: #08090B; --ink: #F8F8FA; --muted: #DFE4EF;
+  --accent: #1354E6; --on-accent: #FFFFFF; --second: #274D91; --third: #6D88BD;
+  --ivory: #F2ECE1; --shade: #465063; --outline: #1C2533; --good: #448481;
+  --hi: #FFFFFF; --lo: #030407; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+
+*{box-sizing:border-box}html,body{margin:0;width:864px;height:462px;overflow:hidden}main{width:576px;height:308px;transform:scale(1.5);transform-origin:top left;background:var(--bg);position:relative}button{position:absolute;left:186px;top:128px;width:206px;height:58px;border:0;border-radius:29px;background:var(--lo);cursor:pointer}.lid{position:absolute;inset:0;transform-origin:25px 70%;background:linear-gradient(100deg,var(--accent),color-mix(in srgb,var(--accent) 87%,var(--second)));color:var(--on-accent);border:3px solid var(--lo);border-radius:29px;display:grid;place-items:center;font:700 21px 'Barlow Condensed',sans-serif;letter-spacing:.85px;z-index:2}.eye{position:absolute;right:22px;bottom:11px;width:18px;height:18px;border-radius:50%;background:var(--hi)}.eye.second{right:48px}.eye i{position:absolute;top:2px;left:5px;width:8px;height:8px;border-radius:50%;background:var(--lo)}button:focus-visible{outline:2px solid var(--hi);outline-offset:4px}
+
+</style></head><body><main><button type="button" aria-label="Peek under button"><i class="eye"><i></i></i><i class="eye second"><i></i></i><span class="lid">Creepy Button</span></button></main><script>
+
+const $=s=>document.querySelector(s),button=$('button'),lid=$('.lid'),pupils=[...document.querySelectorAll('.eye i')],keys=[[0,0],[.14,0],[.23,-13],[.39,-13],[.45,0],[.56,-13],[.69,-13],[.77,0],[.85,-13],[.94,0],[1,0]],tracks=[lid.animate(keys.map(([offset,r])=>({offset,transform:'rotate('+r+'deg)',easing:'ease-out'})),{duration:5800,iterations:Infinity})];
+function lift(on){tracks.splice(0).forEach(t=>t.cancel());lid.style.transition='transform .23s ease-out';lid.style.transform='rotate('+(on?-13:0)+'deg)';}button.onpointerenter=button.onfocus=()=>lift(true);button.onpointerleave=button.onblur=()=>lift(false);button.onpointermove=e=>{const r=button.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;pupils.forEach(p=>p.style.transform='translate('+dx*7+'px,'+dy*6+'px)');};button.onclick=()=>{lift(true);document.querySelectorAll('.eye').forEach(a=>a.animate([{transform:'scaleY(1)'},{transform:'scaleY(.08)'},{transform:'scaleY(1)'}],{duration:240}));};if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))lift(true);
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
