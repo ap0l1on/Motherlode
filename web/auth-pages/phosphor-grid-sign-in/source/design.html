@@ -29,6 +29,7 @@
   --button-ink: #162331; --signal: #e99588; --wall: #625f67;
   --wood: #5d4b4d; --recess: #291f2a; --leaf: #465a45;
   --lamp: #d2a27d; --screen: #0c1018; --reflection: #293040;
+  --readable-username: #d6deea; --readable-password: #d6deea;
 }
 [data-colorway="mono"] {
   --bg: #252525; --surface: #323232; --text: #fafafa;
@@ -74,7 +75,9 @@
 :root{--width:528px;--height:302px}
 *{box-sizing:border-box} html,body{margin:0}body{width:var(--width);height:var(--height);overflow:hidden;background:var(--bg);color:var(--text);font:14px/1.35 Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}main{width:100%;height:100%;isolation:isolate;position:relative;overflow:hidden}.scene{position:absolute;inset:0;width:100%;height:100%;z-index:-1}button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:var(--clear)}button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.ico{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}h1,h2,p{margin:0}.a11y{position:absolute;width:1px;height:1px;clip-path:inset(50%);white-space:nowrap;overflow:hidden}
 [data-colorway="light"] {--bg: #f3eade; --surface: #fff8ed; --text: #2e2a27; --muted: #514840; --accent: #b56836; --button: #75543b; --button-ink: #f7e9d7; --wood: #9bad8b; --lamp: #c78b70; --reflection: #5f887d;}
-[data-colorway="dark"] {--bg: #1b232d; --surface: #303847; --text: #f3f5fa; --muted: #d2dbe8; --accent: #91b8e8; --button: #9bbcdc; --button-ink: #182a36; --wood: #698196; --lamp: #bb8d9c; --reflection: #6f9c9a;}
+[data-colorway="dark"] {--bg: #1b232d; --surface: #303847; --text: #f3f5fa; --muted: #d2dbe8; --accent: #91b8e8; --button: #9bbcdc; --button-ink: #182a36; --wood: #698196; --lamp: #bb8d9c; --reflection: #6f9c9a;
+  --readable-username: #d6deea; --readable-password: #d6deea;
+}
 [data-colorway="mono"] {--bg: #ddd; --surface: #f4f4f4; --text: #191919; --muted: #484848; --accent: #666; --button: #555; --button-ink: #fff; --wood: #777; --lamp: #aaa; --reflection: #909090;}
 [data-colorway="ocean"] {--bg: #c1e0e0; --surface: #e4f2ed; --text: #183c45; --muted: #3c5b62; --accent: #43869a; --button: #3a6e7e; --button-ink: #f0f7ed; --wood: #55949c; --lamp: #9bb5b1; --reflection: #6c8b9e;}
 [data-colorway="matcha"] {--bg: #d8dfc2; --surface: #eef1da; --text: #2a3c2c; --muted: #4b5a40; --accent: #698653; --button: #526c43; --button-ink: #f6f7e7; --wood: #9aab73; --lamp: #ba9e7d; --reflection: #7d9d85;}
@@ -88,6 +91,10 @@ main{background:var(--bg)}.grid-scene{position:absolute;inset:0;display:grid;gri
 :is([data-colorway="mono"], [data-colorway="light"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="berry"]) .ink-text-action { color: var(--text-action-ink); -webkit-text-fill-color: var(--text-action-ink); }
 :is([data-colorway="light"], [data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="berry"]) .ink-submit { color: var(--submit-ink); -webkit-text-fill-color: var(--submit-ink); }
 :is([data-colorway="ocean"], [data-colorway="matcha"], [data-colorway="sunset"], [data-colorway="berry"]) .ink-input-wrap::placeholder { color: var(--input-wrap-ink); -webkit-text-fill-color: var(--input-wrap-ink); }
+
+
+[data-colorway="dark"] .auth > label.field:nth-of-type(1) > span.input-wrap > input.ink-input-wrap::placeholder { color: var(--readable-username) !important; -webkit-text-fill-color: var(--readable-username) !important; }
+[data-colorway="dark"] .auth > label.field:nth-of-type(2) > span.input-wrap > input.ink-input-wrap::placeholder { color: var(--readable-password) !important; -webkit-text-fill-color: var(--readable-password) !important; }
 </style><script type="text/plain" id="font-license">Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
