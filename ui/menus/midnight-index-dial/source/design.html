@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x864">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.2">
+<meta name="motherlode:still" content="3.4">
+<title>Midnight index dial</title><style>
+
+:root, [data-colorway="original"] {
+  --bg: #181C24; --surface: #15191D; --ink: #F4F3F6; --muted: #929397;
+  --accent: #BA78E9; --on-accent: #FFFFFF; --second: #ED74A7; --third: #4B9EC4;
+  --ivory: #94D552; --shade: #432D4C; --outline: #382C48; --good: #79BE56;
+  --hi: #FFFFFF; --lo: #0C0E12; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+}
+
+@property --angle{syntax:'<angle>';inherits:true;initial-value:0deg}
+*{box-sizing:border-box}html,body{width:864px;height:864px;margin:0;overflow:hidden}main{position:relative;width:576px;height:576px;overflow:hidden;transform:scale(1.5);transform-origin:0 0;background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 77%,var(--surface)),var(--bg));color:var(--ink)}.tray{position:absolute;left:53px;top:54px;width:470px;height:470px;border-radius:50%;background:radial-gradient(circle,var(--surface) 59%,color-mix(in srgb,var(--surface) 73%,var(--bg)) 76%,var(--bg));}.rotor{position:absolute;left:101px;top:100px;width:265px;height:265px;display:grid;place-items:center;border:0;border-radius:50%;background:radial-gradient(ellipse at 65% 31%,var(--surface),var(--lo) 71%,var(--surface));box-shadow:inset 0 0 11px var(--lo),0 0 10px 2px color-mix(in srgb,var(--lo) 82%,var(--clear));cursor:pointer}.rotor:before{content:'';position:absolute;inset:11px;border:2px solid color-mix(in srgb,var(--beam) 22%,var(--surface));border-radius:50%;box-shadow:inset 0 0 10px var(--lo),0 0 7px color-mix(in srgb,var(--beam) 22%,var(--clear))}.rotor:after{content:'';position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle at 42% 18%,color-mix(in srgb,var(--bg) 80%,var(--surface)),var(--surface) 62%,color-mix(in srgb,var(--surface) 72%,var(--lo)))}.dial{position:absolute;z-index:2;inset:0;border-radius:50%;transform:rotate(var(--angle))}.dial:before{content:'';position:absolute;left:calc(50% - 4px);top:67px;width:8px;height:27px;border-radius:4px;background:var(--beam);box-shadow:0 0 12px var(--beam)}.dial:after{content:'';position:absolute;top:-8px;left:calc(50% - 52px);width:104px;height:21px;background:radial-gradient(ellipse,var(--beam),var(--clear) 72%);filter:blur(7px);opacity:.70}.item{position:absolute;left:calc(50% - 27px);top:calc(50% - 27px);width:54px;height:54px;border:0;border-radius:50%;background:none;color:var(--muted);display:grid;place-items:center;cursor:pointer}.item svg{width:32px;height:32px;stroke:currentColor;fill:none;stroke-width:2.7;stroke-linejoin:round;stroke-linecap:round}.item .solid{fill:currentColor;stroke-width:1}.item[aria-pressed=true]{color:var(--hi)}button:focus-visible{outline:2px solid var(--beam);outline-offset:2px}
+
+</style></head><body><main style="--beam:var(--accent)"><nav class="tray" aria-label="Radial commands"><button type="button" class="rotor" aria-expanded="true" aria-label="Toggle commands"><i class="dial"></i></button></nav></main><script>
+
+const $=s=>document.querySelector(s),tray=$('.tray'),main=$('main'),items=[],tour=[],labels=['Home','Search','Favorites','More','Refresh','Back'],icons=['M2 11 12 2l10 9h-3v10h-5v-7h-4v7H5V11z','M17 17l5 5m-3-12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z','m12 2 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z','M12 4h.1m-.1 8h.1m-.1 8h.1','M21 7v6h-6m5-2a8 8 0 1 0-2 8','M21 12H4m7-7-7 7 7 7'],colors=['accent','second','third','ivory','good','third'],keys=[[0,0],[.24,0],[.38,1],[.56,1],[.66,3],[.79,3],[.90,5],[1,0]];let selected=0,open=true;
+function resolveTourFrames(build) {
+  const style = getComputedStyle(document.documentElement);
+  return build(name => style.getPropertyValue('--' + name).trim());
+}
+function animateTour(target, build) {
+  const animation = target.animate(resolveTourFrames(build), { duration:7200, iterations:Infinity });
+  tour.push({ animation, build });
+}
+function refreshTourColors() {
+  for (const { animation, build } of tour) animation.effect.setKeyframes(resolveTourFrames(build));
+}
+function choose(i){tour.splice(0).forEach(({animation})=>animation.cancel());open=true;selected=(i+6)%6;main.style.setProperty('--angle',selected*60+'deg');main.style.setProperty('--beam','var(--'+colors[selected]+')');items.forEach((b,j)=>{b.hidden=false;b.style.opacity=1;b.setAttribute('aria-pressed',String(selected===j));b.style.color=selected===j?'var(--hi)':'var(--muted)';});$('.rotor').setAttribute('aria-expanded','true');}
+labels.forEach((name,i)=>{const a=(i*60-90)*Math.PI/180,b=document.createElement('button');b.className='item';b.type='button';b.setAttribute('aria-label',name);b.setAttribute('aria-pressed',String(i===0));b.style.transform='translate('+Math.cos(a)*181+'px,'+Math.sin(a)*181+'px)';b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path class="'+([0,2].includes(i)?'solid':'')+'" d="'+icons[i]+'"/></svg>';b.onclick=()=>choose(i);tray.append(b);items.push(b);animateTour(b, color => keys.map(([offset, j]) => ({
+  offset, color:color(j === i ? 'hi' : 'muted'), easing:'ease-in-out'
+})));});
+animateTour(main, color => keys.map(([offset, i]) => ({
+  offset, '--angle':i * 60 + 'deg', '--beam':color(colors[i]), easing:'ease-in-out'
+})));
+function toggle(){if(!open){choose(selected);return;}choose(selected);open=false;items.forEach(b=>{b.hidden=true;b.style.opacity=0;});$('.rotor').setAttribute('aria-expanded','false');}$('.rotor').onclick=toggle;tray.onkeydown=e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();choose(selected+(e.key==='ArrowRight'?1:-1));items[selected].focus();}if(e.key==='Escape'&&open)toggle();};if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))choose(0);
+
+</script><script>  const pick = () => {
+    document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    refreshTourColors();
+  };
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
