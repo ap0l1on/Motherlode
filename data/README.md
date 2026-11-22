@@ -6,7 +6,7 @@ Charts, infographics and diagrams.
 | Category | What goes in it |
 | --- | --- |
 | [Charts](charts/) | Charts and graphs |
-| [Infographics](infographics/) | Infographics · **2 designs** |
+| [Infographics](infographics/) | Infographics · **3 designs** |
 | [Diagrams](diagrams/) | Diagrams · **1 design** |
 | [Flowcharts](flowcharts/) | Flowcharts |
 | [Timelines](timelines/) | Timelines |
