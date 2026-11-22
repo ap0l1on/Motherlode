@@ -1,0 +1,94 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="560x590">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.5">
+<meta name="motherlode:still" content="1.55">
+<title>Ink tendril collaborate button</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #FFFCFD; --surface: #121115; --ink: #F6F5F6; --muted: #D9D8DB;
+  --accent: #363339; --on-accent: #FCFCF7; --second: #858087; --third: #575259;
+  --ivory: #EEECED; --shade: #49464C; --outline: #0E0E11; --good: #B4AEBC;
+  --hi: #FFFFFF; --lo: #09090B; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent;
+  --let-s-collaborate-ink: #1e2933; --let-s-collaborate-ink-edge: #989b9e;
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent;
+  --let-s-collaborate-ink: #212121; --let-s-collaborate-ink-edge: #919191;
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent;
+  --let-s-collaborate-ink: #402c25; --let-s-collaborate-ink-edge: #a7a09f;
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent;
+  --let-s-collaborate-ink: #1d4041; --let-s-collaborate-ink-edge: #a6b0b2;
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent;
+  --let-s-collaborate-ink: #3a2c42; --let-s-collaborate-ink-edge: #a7a1a9;
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent;
+  --let-s-collaborate-ink: #333b26; --let-s-collaborate-ink-edge: #a8aba4;
+}
+* {box-sizing:border-box;}html,body {margin:0;width:560px;height:590px;overflow:hidden;}main {width:280px;height:295px;transform:scale(2);transform-origin:top left;background:var(--bg);position:relative;overflow:hidden;color:var(--ink);font-family:Inter,sans-serif;}
+svg {position:absolute;inset:0;width:100%;height:100%;overflow:hidden;}.threads {stroke:var(--lo);stroke-linecap:round;fill:none;}.drop {fill:var(--lo);}
+button {position:absolute;left:54px;top:137px;width:172px;height:48px;border:1px solid var(--outline);border-radius:26px;background:radial-gradient(ellipse 30% 18% at 43% 16%,var(--third),var(--clear)),linear-gradient(180deg,var(--shade) 0%,var(--surface) 42%,var(--lo) 53%,var(--surface) 70%,var(--third) 97%);box-shadow:0 5px 9px color-mix(in srgb,var(--lo) 36%,var(--clear)),inset 0 1px 1.6px color-mix(in srgb,var(--hi) 44%,var(--clear));color:var(--ink);font:520 12px Inter,sans-serif;letter-spacing:-.17px;cursor:pointer;}button:focus-visible {outline:1px solid var(--shade);outline-offset:4px;}
+
+:is([data-colorway="mono"], [data-colorway="light"], [data-colorway="ember"], [data-colorway="lagoon"], [data-colorway="orchid"], [data-colorway="olive"]) .ink-let-s-collaborate { color: var(--let-s-collaborate-ink); }
+[data-colorway="mono"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+[data-colorway="light"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+[data-colorway="ember"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+[data-colorway="lagoon"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+[data-colorway="orchid"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+[data-colorway="olive"] .ink-let-s-collaborate { paint-order: stroke fill; -webkit-text-stroke: .16em var(--let-s-collaborate-ink-edge); }
+</style></head><body><main><svg viewBox="0 0 280 295" aria-hidden="true"><g class="threads"></g><g class="drops"></g><g class="hand" stroke="var(--lo)" fill="var(--hi)" stroke-width="1.45" stroke-linejoin="round"><path d="M0 1.2c0-2.5 3.4-2.6 3.4 0V7c.2-2.1 2.8-2.2 3-.2.5-1.7 2.8-1.5 3.2.3 1-1.1 2.9-.5 2.9 1.2v4.8L9 19H2.2l-4.6-6.6c-1.2-1.7.4-3.6 2.1-2.1l1.1 1.1Z"/></g></svg><button type="button" class="ink-let-s-collaborate">let’s collaborate</button></main><script>
+const ns='http://www.w3.org/2000/svg',stage=document.querySelector('main'),strands=[],tracks=[],times=[[0,155,125,.15],[.12,172,141,.13],[.20,161,139,.2],[.285,176,21,1],[.35,157,85,.48],[.43,144,179,.19],[.49,90,291,1],[.57,133,242,.61],[.65,150,183,.18],[.72,169,217,.5],[.79,126,167,.13],[.85,-45,164,.8],[.92,82,160,.28],[1,155,125,.15]];
+function d(i,x,y,force){const upper=y<163,side=x<20,startX=side?58+Math.sin(i*2)*5:104+(i*19)%72,startY=side?160+(i%7)-3:upper?141+(i%4):179-(i%4);const bend=((i*13)%18-9),reach=force*(.93+(i%6)*.014),tx=startX+(x-startX)*reach,ty=startY+(y-startY)*reach;const c1x=startX+bend,c1y=startY+(ty-startY)*.36,c2x=tx+bend*.9+Math.sin(i)*6,c2y=ty+(y<160?8:-6);return 'M'+startX.toFixed(2)+' '+startY.toFixed(2)+' C'+c1x.toFixed(2)+' '+c1y.toFixed(2)+' '+c2x.toFixed(2)+' '+c2y.toFixed(2)+' '+tx.toFixed(2)+' '+ty.toFixed(2);}
+for(let i=0;i<24;i++){const path=document.createElementNS(ns,'path');path.setAttribute('stroke-width',i%4===0?'3.1':i%3===0?'2.1':'1.3');path.setAttribute('d',d(i,155,125,.15));document.querySelector('.threads').append(path);strands.push(path);}
+const hand=document.querySelector('.hand');function tour(){hand.style.opacity='1';tracks.splice(0).forEach(a=>a.cancel());tracks.push(hand.animate(times.map(([offset,x,y])=>({offset,transform:'translate('+(x-1)+'px,'+(y-6)+'px)',easing:'ease-in-out'})),{duration:5500,iterations:Infinity}));strands.forEach((path,i)=>{tracks.push(path.animate(times.map(([offset,x,y,f])=>({offset,d:'path("'+d(i,x,y,f)+'")',easing:'ease-in-out'})),{duration:5500,iterations:Infinity}));});}
+stage.addEventListener('pointermove',event=>{hand.style.opacity='0';const box=stage.getBoundingClientRect(),x=(event.clientX-box.left)/box.width*280,y=(event.clientY-box.top)/box.height*295;tracks.splice(0).forEach(a=>a.cancel());strands.forEach((p,i)=>p.setAttribute('d',d(i,x,y,.91)));});stage.addEventListener('pointerleave',tour);document.querySelector('button').addEventListener('click',tour);tour();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks.forEach(a=>{a.pause();a.currentTime=0;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
