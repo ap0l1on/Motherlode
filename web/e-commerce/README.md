@@ -5,10 +5,10 @@ Online stores.
 
 Part of [Web](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="field-kit-clothes-rail/"><img src="field-kit-clothes-rail/preview.gif" width="260" alt="Field kit clothes rail"></a><br><a href="field-kit-clothes-rail/"><b>Field kit clothes rail</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="field-kit-clothes-rail/"><img src="field-kit-clothes-rail/preview.gif" width="260" alt="Field kit clothes rail"></a><br><a href="field-kit-clothes-rail/"><b>Field kit clothes rail</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="orbital-sneaker-catalog/"><img src="orbital-sneaker-catalog/preview.gif" width="260" alt="Orbital sneaker catalog"></a><br><a href="orbital-sneaker-catalog/"><b>Orbital sneaker catalog</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
