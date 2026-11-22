@@ -22,6 +22,7 @@
   --muted: #485671; --edge: #C3CBE1; --orange: #E19B37; --on-orange: #34200C;
   --violet: #7865A7; --mint: #3F858A; --rose: #A95B78; --sand: #AD8338;
   --hi: #FFFFFF; --lo: #1E233E; --clear: transparent;
+  --open-ink: #8e6223; --beautiful-icons-ink: #a67329;
 }
 [data-colorway="dark"] {
   --bg: #0B0D18; --head: #0E101E; --panel: #1B2032; --text: #F6F1FB;
@@ -84,8 +85,11 @@ h1 {margin:22px 0 16px;font-size:55px;line-height:1.02;letter-spacing:-.035em;fo
 .panel {position:absolute;left:22px;top:526px;width:626px;background:var(--panel);border:1px solid var(--edge);border-radius:13px;padding:19px;z-index:2;box-shadow:0 13px 30px var(--bg);}
 .panel[hidden] {display:none;}.panel header {height:auto;border:0;padding:0;background:none;justify-content:space-between;margin-bottom:11px;}.panel h2 {margin:0;font-size:16px;}.panel p {color:var(--muted);font-size:13px;}
 .grid {display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}.grid button {display:flex;align-items:center;justify-content:center;gap:7px;min-height:32px;}.grid svg {width:18px;height:18px;}
+
+[data-colorway="light"] .ink-open { color: var(--open-ink); }
+[data-colorway="light"] .ink-beautiful-icons { color: var(--beautiful-icons-ink); }
 </style></head><body><main><header><svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1" y="2" width="8" height="8" rx="2"/><circle cx="17" cy="6" r="3"/><path d="m5 13 4 7H1Zm8 3 5-4 5 5-5 5Z"/></svg><b class="wordmark">ARC ICONS</b><nav aria-label="Library"><button data-section="Icons">Icons</button><button data-section="Docs">Docs &amp; SVG</button><button data-section="License">License</button><button class="mode" aria-label="Switch light and dark colorways">☾</button></nav></header>
-  <div class="hero"><div class="tags"><span>v1.0.0</span><span class="open">◇&nbsp; Open Source · SVG</span></div><h1><span>Beautiful Icons.</span><br>Built for Your UI.</h1><p class="lead">Discover free, open-source SVG icons for modern websites and apps. Customize, copy, or download them in SVG.</p><div class="buttons"><button class="primary" data-section="Icons">View all 12 icons&nbsp; →</button><button data-section="Docs">Get Started</button></div></div>
+  <div class="hero"><div class="tags"><span>v1.0.0</span><span class="open ink-open">◇&nbsp; Open Source · SVG</span></div><h1><span class="ink-beautiful-icons">Beautiful Icons.</span><br>Built for Your UI.</h1><p class="lead">Discover free, open-source SVG icons for modern websites and apps. Customize, copy, or download them in SVG.</p><div class="buttons"><button class="primary" data-section="Icons">View all 12 icons&nbsp; →</button><button data-section="Docs">Get Started</button></div></div>
   <label class="search"><input type="search" aria-label="Search the icon library" placeholder="Search 12 icons… try “arrow”, “file” or “heart”"><kbd>Ctrl K</kbd></label>
   <div class="facts"><span><b>12</b> icons</span><i></i><span><b>3</b> categories</span><i></i><span><b>Regular · Light · Thin</b> styles</span><i></i><span><b>SVG</b> source</span></div>
   <button class="tile one" data-icon="Home" aria-label="Copy home SVG"></button><button class="tile two" data-icon="Search" aria-label="Copy search SVG"></button><button class="tile three" data-icon="Heart" aria-label="Copy heart SVG"></button>
