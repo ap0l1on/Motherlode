@@ -12,7 +12,7 @@
 | [Product renders](product-renders/) | Product renders · **1 design** |
 | [Isometric rooms](isometric-rooms/) | Isometric rooms and dioramas |
 | [Abstract](abstract/) | Abstract 3D art |
-| [3D text](3d-text/) | 3D lettering and type |
+| [3D text](3d-text/) | 3D lettering and type · **1 design** |
 | [Clay](clay/) | Clay-style renders |
 | [Low-poly](low-poly/) | Low-poly art |
 | [Voxel](voxel/) | Voxel art |

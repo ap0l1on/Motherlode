@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="464x261"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="11.75"><meta name="motherlode:still" content="8.5">
+<title>Scattered tile wordmark</title><style>
+:root, [data-colorway="original"] {
+  --bg: #b5b5bb; --ink: #303034; --shadow: #272629; --paper: #ecebed; --ash: #9b9ba2;
+  --metal: #777780; --edge: #c8c8cd; --a: #bb273a; --b: #b02530; --c: #dd8b89; --d: #8b829c; --e: #82988e; --f: #959cb5;
+}
+[data-colorway="light"] {
+  --bg: #edf2f7; --ink: #202b3d; --shadow: #29374d; --paper: #ffffff; --ash: #b8c7d5;
+  --metal: #8193a6; --edge: #dae7f1; --a: #267385; --b: #854d6d; --c: #ae702e; --d: #7462a1; --e: #459773; --f: #6482c3;
+}
+[data-colorway="dark"] {
+  --bg: #111722; --ink: #edf3ff; --shadow: #030610; --paper: #ffffff; --ash: #293243;
+  --metal: #546078; --edge: #97a7bf; --a: #65deef; --b: #fa987d; --c: #f6cd7d; --d: #c497ff; --e: #87e4ae; --f: #91acff;
+}
+[data-colorway="mono"] {
+  --bg: #161616; --ink: #f6f6f6; --shadow: #030303; --paper: #ffffff; --ash: #313131;
+  --metal: #686868; --edge: #a2a2a2; --a: #f6f6f6; --b: #aaaaaa; --c: #d6d6d6; --d: #777777; --e: #929292; --f: #bdbdbd;
+}
+[data-colorway="ocean"] {
+  --bg: #082a39; --ink: #e4fbff; --shadow: #03121e; --paper: #f3feff; --ash: #245066;
+  --metal: #34758b; --edge: #83bac9; --a: #74f5eb; --b: #6eb2f3; --c: #e0f4bb; --d: #b1b2ef; --e: #6be5b1; --f: #6ca8d2;
+}
+[data-colorway="matcha"] {
+  --bg: #21382b; --ink: #f6f7dd; --shadow: #132218; --paper: #ffffed; --ash: #4f6749;
+  --metal: #6f8965; --edge: #a9bf89; --a: #dde87b; --b: #cda076; --c: #e9cf89; --d: #a7a9cd; --e: #90d687; --f: #80b9a9;
+}
+[data-colorway="sunset"] {
+  --bg: #47243e; --ink: #fff5e6; --shadow: #241127; --paper: #fff7df; --ash: #74415d;
+  --metal: #976982; --edge: #d59ba2; --a: #ffba80; --b: #f27987; --c: #ffe19c; --d: #d699df; --e: #f4ab7b; --f: #ae96d7;
+}
+[data-colorway="berry"] {
+  --bg: #33243c; --ink: #fff1fb; --shadow: #211426; --paper: #fff2fb; --ash: #593950;
+  --metal: #854b71; --edge: #c792b2; --a: #f3a1d6; --b: #bd90e8; --c: #ffd09e; --d: #d4acf6; --e: #d8bea3; --f: #ac9cd2;
+}
+@font-face{font-family:'Outfit';src:url('fonts/outfit.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:464px;height:261px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Outfit',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+@property --scene-time{syntax:"<number>";inherits:false;initial-value:0}@property --control-x{syntax:"<number>";inherits:false;initial-value:0}@property --control-y{syntax:"<number>";inherits:false;initial-value:0}@property --choice{syntax:"<number>";inherits:false;initial-value:0}#render,#render>canvas{display:block;position:absolute;inset:0;width:100%;height:100%}#render[data-painted]{background-image:paint(motherlode-scene)}#render[data-painted]>canvas{display:none}#word{position:absolute;left:50%;top:52%;font-size:63px;font-weight:850;letter-spacing:-4px;line-height:1;font-style:italic;color:var(--metal);text-shadow:1px 1px var(--ash),2px 2px var(--ash),3px 3px var(--metal);white-space:nowrap}#word span{color:var(--a)}
+</style></head><body><main aria-label="Scattered tile wordmark"><div id="render" aria-hidden="true"><canvas width="464" height="261"></canvas></div>
+<div id="word" aria-hidden="true">phase<span>.fx</span></div>
+<script type="text/plain" id="drawing">
+const tau = Math.PI * 2;
+const clamp = (v,a=0,b=1) => Math.min(b,Math.max(a,v));
+const smooth = v => { v=clamp(v); return v*v*(3-2*v); };
+const lerp = (a,b,t) => a+(b-a)*t;
+function channels(col) {
+  const s=String(col).trim(); if(s.startsWith('#')){const h=s.slice(1);return (h.length===3?[...h].map(c=>c+c):h.match(/../g)).slice(0,3).map(v=>parseInt(v,16));}
+  const values=s.match(/[.0-9]+/g)||[0,0,0];return values.slice(0,3).map(Number);
+}
+function mix(a,b,t){const f=channels(a),s=channels(b);return 'rgb('+f.map((v,i)=>Math.round(lerp(v,s[i],clamp(t)))).join(',')+')';}
+function alpha(col,a){return 'rgba('+channels(col).join(',')+','+clamp(a)+')';}
+function ellipse(c,x,y,rx,ry,fill,rot=0){if(rx<=0||ry<=0)return;c.beginPath();c.ellipse(x,y,rx,ry,rot,0,tau);c.fillStyle=fill;c.fill();}
+function polygon(c,pts,fill,stroke,width=1){if(!pts.length)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.closePath();if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}}
+function stroke(c,pts,col,width=1){if(pts.length<2)return;c.beginPath();c.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)c.lineTo(pts[i][0],pts[i][1]);c.strokeStyle=col;c.lineWidth=width;c.stroke();}
+function glow(c,x,y,r,stops,aspect=1) {if(r<=0)return;c.save();c.translate(x,y);c.scale(1,aspect);let g=c.createRadialGradient(0,0,0,0,0,r);for(const [v,col] of stops)g.addColorStop(v,col);ellipse(c,0,0,r,r,g);c.restore();}
+function segment(t,points){if(t<=points[0][0])return points[0][1];for(let i=1;i<points.length;i++){if(t<=points[i][0])return lerp(points[i-1][1],points[i][1],smooth((t-points[i-1][0])/(points[i][0]-points[i-1][0])));}return points.at(-1)[1];}
+function number(i){const s=Math.sin(i*127.1+311.7)*43758.5453123;return s-Math.floor(s);}
+function rotate(v,axis,a){const [x,y,z]=v,s=Math.sin(a),c=Math.cos(a);if(axis==='x')return [x,y*c-z*s,y*s+z*c];if(axis==='y')return [x*c+z*s,y,-x*s+z*c];return [x*c-y*s,x*s+y*c,z];}
+function project(v,yaw,pitch,x,y,scale,eye=0){const q=rotate(rotate(v,'y',yaw),'x',pitch),k=eye?eye/(eye-q[2]):1;return [x+q[0]*k*scale,y+q[1]*k*scale,q[2]];}
+
+function draw(c,w,h,t,p,ctl){
+ const bg=t>10?mix(p.bg,p.shadow,segment(t,[[10,0],[10.71,.97],[11.75,1]])):p.bg;c.fillStyle=bg;c.fillRect(0,0,w,h);
+ const cx=w*.5,cy=h*.587;const gain=segment(t,[[0,0],[.59,.17],[1.37,.57],[3,.77],[4.97,1.15],[5.8,1.4],[6.43,1.6],[7.3,.32],[8.1,0],[11.75,0]]);
+ if(gain>.001){const list=[];for(let j=-12;j<=12;j++)for(let i=-14;i<=14;i++){
+  const rr=Math.hypot(i*.9,j);if(rr>13.4)continue;const n=number((i+20)*35+j+20),a=Math.atan2(j,i),rj=rr*(.64+.36*smooth(t*.7));
+  let xx=i*9.2,zz=j*8.3;const wave=(2+Math.sin(rr*.62-t*2.4)*3.8+Math.cos(rr*.37+a)*3.5)*Math.exp(-rr*.04);
+  const burst=segment(t,[[0,0],[5.45,0],[6.55,1],[7.12,.38],[7.97,0]]);
+  const rise=wave+burst*(17+number(i*233+j+431)*118);xx+=burst*Math.sin(a*.9)*29;zz+=burst*Math.cos(a)*26;
+  const pos=[xx*gain,-rise*gain,zz*gain],s=(3.0+n*2.0)*gain,rev=burst*(n*4.1+t*1.2),pitch=.39+burst*.24;
+  const frame=[[-s,0,-s],[s,0,-s],[s,0,s],[-s,0,s]].map(q=>{const u=rotate(rotate(q,'x',rev),'z',rev*.55);return project([pos[0]+u[0],pos[1]+u[1],pos[2]+u[2]],-.12*t,pitch,cx,cy,1);});list.push([frame[0][2],frame,n]);}
+  list.sort((a,b)=>a[0]-b[0]);for(const [,poly,n] of list){polygon(c,poly,mix(p.edge,p.metal,n*.86),alpha(p.metal,.35),.35);stroke(c,[poly[0],poly[1]],alpha(p.paper,.65),.57);}
+ }
+ const active=segment(t,[[0,1],[6.7,1],[8.1,.5],[9,.85],[9.7,1.1],[10,.6],[11.75,.6]]);
+ const by=segment(t,[[0,cy-3],[.35,cy-17],[.8,cy],[4.9,cy],[5.7,cy-51],[6.65,cy-128],[7.7,cy-46],[8.2,cy-32],[8.9,cy-46],[9.8,cy-37],[10.5,cy-42],[11.75,cy-54]]);
+ const bx=segment(t,[[0,cx],[7.9,cx],[8.7,cx+42],[9.7,cx+105],[10.5,cx+143],[11.75,w*.8]]);
+ const pts=[[-7,-7],[7,-7],[7,7],[-7,7]].map(([x,y])=>{let u=rotate([x*active,y*active,0],'z',t*1.1);return [bx+u[0],by+u[1]];});polygon(c,pts,p.a);
+}
+</script></main>
+<script>
+const stage = document.querySelector('main');
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+const motion = [];
+function animate(target, keys, options = {}) {
+  if (typeof target === 'string') target = document.querySelector(target);
+  const list = keys.map(([time, value]) => ({ offset: time / duration, ...value }));
+  const effect = target.animate(list, { duration: duration * 1000, iterations: Infinity, fill: 'both', easing: 'linear', ...options });
+  motion.push(effect);
+  return effect;
+}
+function hold(seconds) {
+  for (const effect of motion) { effect.pause(); effect.currentTime = Math.max(0,Math.min(duration - .001,seconds)) * 1000; }
+}
+function replay() {
+  for (const effect of motion) { effect.currentTime = 0; effect.play(); }
+}
+function bind(element, callback) {
+  element.addEventListener('click', callback);
+  element.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); callback(event); }
+  });
+}
+
+const picture = document.querySelector('#render');
+const source = document.querySelector('#drawing').textContent;
+const names = ['bg','ink','shadow','paper','ash','metal','edge','a','b','c','d','e','f',];
+const clock = animate(picture, [[0,{'--scene-time':0}],[duration,{'--scene-time':duration}]]);
+const props = ['--scene-time','--control-x','--control-y','--choice', ...names.map(v=>'--'+v)];
+const readColors = getter => Object.fromEntries(names.map(name=>[name,String(getter('--'+name)).trim()]));
+const readControls = getter => ['--control-x','--control-y','--choice'].map(name=>Number(String(getter(name)).trim()) || 0);
+const paintFallback = new Function(source+';return draw;')();
+const fallback = () => {
+  const styles = getComputedStyle(picture), get = key=>styles.getPropertyValue(key), ctx=picture.querySelector('canvas').getContext('2d');
+  ctx.save();paintFallback(ctx,464,261,Number(get('--scene-time'))||0,readColors(get),readControls(get));ctx.restore();
+};
+document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';
+fallback();
+if (CSS.paintWorklet) {
+  const definition = source + '\nregisterPaint("motherlode-scene",class { static get inputProperties() { return '+JSON.stringify(props)+'; } paint(ctx,size,styles) { const colors = {}; for(const key of '+JSON.stringify(names)+') colors[key]=String(styles.get("--"+key)).trim(); const controls=["--control-x","--control-y","--choice"].map(key=>Number(String(styles.get(key)).trim())||0); draw(ctx,size.width,size.height,Number(String(styles.get("--scene-time")).trim())||0,colors,controls); } });';
+  const url=URL.createObjectURL(new Blob([definition],{type:'text/javascript'}));
+  CSS.paintWorklet.addModule(url).then(()=>{picture.dataset.painted='';URL.revokeObjectURL(url);}).catch(()=>{URL.revokeObjectURL(url);setInterval(fallback,1000/24);});
+} else { setInterval(fallback,1000/24); }
+animate('#word',[[0,{opacity:0,transform:'translate(-50%,-40%) scale(.84)'}],[7.58,{opacity:0,transform:'translate(-50%,-40%) scale(.84)'}],[8.1,{opacity:1,transform:'translate(-50%,-50%) scale(1)'}],[9.76,{opacity:1,transform:'translate(-50%,-50%) scale(1.15)'}],[10.86,{opacity:1,transform:'translate(-113%,-34%) scale(3.3) rotate(-18deg)'}],[11.5,{opacity:0,transform:'translate(-157%,-23%) scale(5) rotate(-18deg)'}],[duration,{opacity:0}]]);stage.addEventListener('click',replay);
+
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>
