@@ -10,7 +10,7 @@ Websites and web pages.
 | [SaaS sites](saas-sites/) | SaaS and product marketing sites |
 | [App sites](app-sites/) | Websites for mobile apps |
 | [Agency sites](agency-sites/) | Agency and studio sites |
-| [Portfolios](portfolios/) | Creative portfolio sites · **1 design** |
+| [Portfolios](portfolios/) | Creative portfolio sites · **2 designs** |
 | [Personal sites](personal-sites/) | Personal websites |
 | [Blogs](blogs/) | Blogs and article pages |
 | [News sites](news-sites/) | News and magazine sites |

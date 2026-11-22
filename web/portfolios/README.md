@@ -5,10 +5,10 @@ Creative portfolio sites.
 
 Part of [Web](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="paper-project-reel/"><img src="paper-project-reel/preview.gif" width="260" alt="Paper project reel"></a><br><a href="paper-project-reel/"><b>Paper project reel</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="azure-foldout-portfolio/"><img src="azure-foldout-portfolio/preview.gif" width="260" alt="Azure foldout portfolio"></a><br><a href="azure-foldout-portfolio/"><b>Azure foldout portfolio</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="paper-project-reel/"><img src="paper-project-reel/preview.gif" width="260" alt="Paper project reel"></a><br><a href="paper-project-reel/"><b>Paper project reel</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
