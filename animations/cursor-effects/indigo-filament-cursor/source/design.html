@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="500x264"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="4.8"><meta name="motherlode:still" content="1.6">
+<title>Indigo filament cursor</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #030e1b; --ink: #e0e7ed; --base: #071522; --low: #010b16; --high: #94b3fc; --a: #4250ff; --b: #6284ff; --c: #c0e4ff; --d: #2838ad; --e: #6e5dd9; --f: #9f83ef; --g: #2c4383; --h: #f7fbff;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:500px;height:264px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 500 264" role="img" aria-label="A blue filament folds around the moving pointer inside a fine, pale rectangular frame." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1581167;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+rect(0,0,W,H,css('bg'));
+rect(6,5,W-13,H-12,'none',stage,{rx:1,stroke:css('ink'),'stroke-width':2.1});
+const sheen=gradient('depth',[[0,'base',.28],[100,'low',.18]],{x2:'85%',y2:'85%'});
+rect(9,8,W-19,H-18,sheen);
+const glow=soft('glow',2.9);
+const filament=group(), pointer=group();
+const keys=[[340,149],[251,145],[161,155],[94,140],[105,112],[115,91],[145,69],[224,49],[333,58],[414,104],[399,166],[281,191],[188,168],[143,138],[212,121],[304,140]];
+function position(p) {
+  p=((p%1+1)%1)*keys.length;
+  const i=Math.floor(p),t=p-i;
+  return [0,1].map(axis=>{
+    const [a,b,c,d]=[-1,0,1,2].map(k=>keys[(i+k+keys.length)%keys.length][axis]);
+    return .5*(2*b+(-a+c)*t+(2*a-5*b+4*c-d)*t*t+(-a+3*b-3*c+d)*t*t*t);
+  });
+}
+function tail(p,layer) {
+  const pts=[];for(let j=0;j<=28;j++) {
+    const u=j/28,[x,y]=position(p-(1-u)*(.293-layer*.010));
+    pts.push([x+Math.sin(u*Math.PI)*Math.cos(p*tau*5+layer)*layer*1.1,y+Math.sin(u*Math.PI)*Math.sin(p*tau*4+layer*1.3)*layer*.9]);
+  }return shape(pts);
+}
+const streaks=[];
+for(const [i,tone,width,opacity] of [[0,'a',6,.50],[1,'a',3.3,.95],[2,'b',2,.76],[3,'c',1.4,.97]]) {
+  const strand=path('',{fill:'none',stroke:css(tone),'stroke-width':width,'stroke-linecap':'round',opacity},filament);
+  if(!i)strand.setAttribute('filter',glow);
+  tweenPath(strand,Array.from({length:81},(_,k)=>tail(k/80,i)));
+  streaks.push(strand);
+}
+const nib=path('M0 0 1.2 8 3.4 5.9 6.4 6.2Z',{fill:css('ink'),'fill-opacity':.79},pointer);
+animate(pointer,Array.from({length:81},(_,k)=>{const [x,y]=position(k/80);return {transform:'translate('+(x+13)+'px,'+(y-4)+'px)'};}));
+const trace=group();const live=streaks.map(s=>path('',{fill:'none',stroke:s.getAttribute('stroke'),'stroke-width':s.getAttribute('stroke-width'),'stroke-linecap':'round',opacity:s.getAttribute('opacity')},trace));
+let pointerTrail=[],vanish;
+stage.addEventListener('pointermove',e=>{
+  const [x,y]=at(e);pointerTrail.push([x,y]);pointerTrail=pointerTrail.slice(-31);
+  if(pointerTrail.length<2)return;
+  filament.style.visibility='hidden';pointer.style.visibility='hidden';
+  live.forEach((s,i)=>s.setAttribute('d',shape(pointerTrail.slice(i))));
+  if(vanish)vanish.cancel();
+  vanish=trace.animate([{opacity:1},{opacity:1,offset:.28},{opacity:0}],{duration:700,fill:'forwards'});
+});
+stage.addEventListener('pointerleave',()=>{pointerTrail=[];filament.style.visibility='';pointer.style.visibility='';});
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script></body></html>
