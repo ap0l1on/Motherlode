@@ -18,7 +18,7 @@ Building blocks: components, kits and design systems.
 | [Color pickers](color-pickers/) | Color pickers |
 | [File uploads](file-uploads/) | File upload areas · **1 design** |
 | [Search bars](search-bars/) | Search bars |
-| [Forms](forms/) | Full form layouts · **1 design** |
+| [Forms](forms/) | Full form layouts · **2 designs** |
 | [Cards](cards/) | Cards and tiles · **2 designs** |
 | [Lists](lists/) | Lists and list items |
 | [Tables](tables/) | Data tables |
