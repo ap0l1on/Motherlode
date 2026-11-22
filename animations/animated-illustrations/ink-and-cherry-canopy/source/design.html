@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x336">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="7.5">
+  <meta name="motherlode:still" content="6.95">
+  <title>Ink and cherry canopy</title>
+  <style>
+:root, [data-colorway="original"] { --background: #fffefd; --shade: #2d201d; --middle: #3b2a2a; --bright: #cf7895; --highlight: #f1a8bc; --leaf: #b55f82; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 336px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 336" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Ink and cherry canopy</title>
+    <desc id="description">An ink trunk splits into crooked, tapered branches against white. A cluster of small rose blossoms spreads through the canopy.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 7.5 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let seed = 77216;
+    function random() {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      return seed / 4294967296;
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+
+    const roots=element("g",{}),tips=[];
+    function grow(x,y,len,angle,depth,start,thick){
+      const crooked=(random()-.5)*.43, a=angle+crooked, ax=Math.sin(a),ay=-Math.cos(a);
+      const end=[x+len*ax,y+len*ay];
+      const mid=[x+len*.46*Math.sin(angle),y-len*.46*Math.cos(angle)];
+      const d="M"+x+" "+y+"Q"+mid.join(" ")+" "+end.join(" ");
+      const path=line(roots,d,depth<2?"middle":"shade",thick,.96);
+      const at=Math.min(.65,start);
+      path.setAttribute("pathLength",1);path.setAttribute("stroke-dasharray","1 1");
+      path.animate([{offset:0,strokeDashoffset:1},{offset:at,strokeDashoffset:1},
+        {offset:at+.12,strokeDashoffset:0},{offset:.98,strokeDashoffset:0},{offset:1,strokeDashoffset:1}],{duration,iterations:Infinity});
+      if(depth<1){tips.push(end);return;}
+      grow(end[0],end[1],len*(.68+random()*.13),a-.25-random()*.38,depth-1,start+.066,thick*.67);
+      grow(end[0],end[1],len*(.67+random()*.16),a+.23+random()*.49,depth-1,start+.067,thick*.61);
+      if(depth===3)grow(end[0],end[1],len*.58,a+.33*(random()-.5),depth-1,start+.078,thick*.46);
+    }
+    grow(279,316,72,.24,5,.005,12);
+    grow(293,248,51,-.73,4,.10,7.7);
+    grow(301,238,61,.53,5,.13,7.2);
+    for(let j=0;j<tips.length;j++){
+      const [x,y]=tips[j], cluster=element("g",{opacity:0});
+      for(let k=0;k<18;k++){const xx=x+(random()-.5)*25,yy=y+(random()-.5)*18,r=1.1+random()*3.3;
+        element("ellipse",{cx:xx,cy:yy,rx:r,ry:r*.78,fill:"var(--"+(k%4===0?"highlight":k%3?"bright":"leaf")+")",opacity:.5+random()*.45,
+          transform:"rotate("+(random()*120)+" "+xx+" "+yy+")"},cluster);}
+      const at=.54+.29*(j/tips.length)+random()*.075;
+      cluster.animate([{offset:0,opacity:0},{offset:at,opacity:0},{offset:at+.05,opacity:.96},{offset:.985,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    }
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
