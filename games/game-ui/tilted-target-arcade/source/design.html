@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x262"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="11.25"><meta name="motherlode:still" content="5.45">
+<title>Tilted target arcade</title><style>
+:root, [data-colorway="original"] {
+  --bg: #222222; --ink: #faf8ea; --shadow: #141416; --paper: #fff9f0; --ash: #393a36;
+  --metal: #565952; --edge: #b9b9b0; --a: #a7b653; --b: #f48552; --c: #ffd326; --d: #c78877; --e: #ecde9a; --f: #878c7c;
+}
+[data-colorway="light"] {
+  --bg: #edf2f7; --ink: #202b3d; --shadow: #29374d; --paper: #ffffff; --ash: #b8c7d5;
+  --metal: #8193a6; --edge: #dae7f1; --a: #267385; --b: #854d6d; --c: #ae702e; --d: #7462a1; --e: #459773; --f: #6482c3;
+}
+[data-colorway="dark"] {
+  --bg: #111722; --ink: #edf3ff; --shadow: #030610; --paper: #ffffff; --ash: #293243;
+  --metal: #546078; --edge: #97a7bf; --a: #65deef; --b: #fa987d; --c: #f6cd7d; --d: #c497ff; --e: #87e4ae; --f: #91acff;
+}
+[data-colorway="mono"] {
+  --bg: #161616; --ink: #f6f6f6; --shadow: #030303; --paper: #ffffff; --ash: #313131;
+  --metal: #686868; --edge: #a2a2a2; --a: #f6f6f6; --b: #aaaaaa; --c: #d6d6d6; --d: #777777; --e: #929292; --f: #bdbdbd;
+}
+[data-colorway="ocean"] {
+  --bg: #082a39; --ink: #e4fbff; --shadow: #03121e; --paper: #f3feff; --ash: #245066;
+  --metal: #34758b; --edge: #83bac9; --a: #74f5eb; --b: #6eb2f3; --c: #e0f4bb; --d: #b1b2ef; --e: #6be5b1; --f: #6ca8d2;
+}
+[data-colorway="matcha"] {
+  --bg: #21382b; --ink: #f6f7dd; --shadow: #132218; --paper: #ffffed; --ash: #4f6749;
+  --metal: #6f8965; --edge: #a9bf89; --a: #dde87b; --b: #cda076; --c: #e9cf89; --d: #a7a9cd; --e: #90d687; --f: #80b9a9;
+}
+[data-colorway="sunset"] {
+  --bg: #47243e; --ink: #fff5e6; --shadow: #241127; --paper: #fff7df; --ash: #74415d;
+  --metal: #976982; --edge: #d59ba2; --a: #ffba80; --b: #f27987; --c: #ffe19c; --d: #d699df; --e: #f4ab7b; --f: #ae96d7;
+}
+[data-colorway="berry"] {
+  --bg: #33243c; --ink: #fff1fb; --shadow: #211426; --paper: #fff2fb; --ash: #593950;
+  --metal: #854b71; --edge: #c792b2; --a: #f3a1d6; --b: #bd90e8; --c: #ffd09e; --d: #d4acf6; --e: #d8bea3; --f: #ac9cd2;
+}
+@font-face{font-family:'Outfit';src:url('fonts/outfit.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:576px;height:262px;overflow:hidden}body{background:var(--bg);color:var(--ink);font-family:'Outfit',Arial,sans-serif;-webkit-font-smoothing:antialiased}main{position:relative;width:100%;height:100%;overflow:hidden;isolation:isolate}svg{display:block;overflow:visible}#art{width:100%;height:100%;overflow:hidden}button{font:inherit;color:inherit;cursor:pointer}[role=button]{cursor:pointer}:focus-visible{outline:2px solid var(--a);outline-offset:-2px}
+
+</style></head><body><main aria-label="Tilted target arcade"><svg id="art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 262" width="576" height="262" aria-hidden="true"><defs><filter id="trace" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.25"></feGaussianBlur></filter><linearGradient id="stripe"><stop offset="0%" stop-color="var(--a)"></stop><stop offset="52%" stop-color="var(--c)"></stop><stop offset="100%" stop-color="var(--e)"></stop></linearGradient></defs>
+<rect x="0" y="0" width="576" height="262" rx="0" fill="var(--bg)"></rect><g transform="translate(547 156) rotate(-43)"><ellipse cx="0" cy="0" rx="26" ry="17" fill="var(--paper)"></ellipse><ellipse cx="0" cy="0.4" rx="18" ry="12" fill="var(--b)"></ellipse><ellipse cx="0" cy="0.4" rx="11.5" ry="7.8" fill="var(--paper)"></ellipse><ellipse cx="0" cy="0.4" rx="6.2" ry="4.7" fill="var(--b)"></ellipse></g><g id="caster" style="transform-origin:0 0"><path d="M-21-16Q8-15 22 17" fill="none" stroke="var(--a)" stroke-width="1.7" stroke-linecap="round"></path><path d="M-21-16-6 13 22 17" fill="none" stroke="var(--edge)" stroke-width="1.05"></path><circle cx="-21" cy="-16" r="1.35" fill="var(--e)"></circle><circle cx="22" cy="17" r="1.35" fill="var(--e)"></circle></g><path d="M28 157 Q200 97 523 150" fill="none" stroke="var(--metal)" stroke-width="1.2" opacity="0.44" stroke-dasharray="550" stroke-dashoffset="550" id="trail"></path><g id="spark"><path d="M-8 0H9m-2-2 3 2-3 2" fill="none" stroke="var(--edge)" stroke-width="1.2"></path><circle cx="9" cy="0" r="1" fill="var(--c)"></circle></g><g id="message0"><g transform="rotate(-4)"><text x="0" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(-7 0 0)">M</text><text x="27.09" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(2 27.09 0)">I</text><text x="40.85" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(5 40.85 0)">S</text><text x="67.94" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(-2 67.94 0)">S</text><text x="95.03" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(-7 95.03 0)"> </text><text x="108.79" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(2 108.79 0)">Y</text><text x="135.88" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(5 135.88 0)">O</text><text x="162.97" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(-2 162.97 0)">U</text><text x="190.06" y="0" font-size="43" fill="var(--edge)" font-weight="900" transform="rotate(-7 190.06 0)">!</text></g></g><g id="message1"><g transform="rotate(7)"><text x="0" y="0" font-size="52" fill="var(--c)" font-weight="900" transform="rotate(-7 0 0)">H</text><text x="32.76" y="0" font-size="52" fill="var(--c)" font-weight="900" transform="rotate(2 32.76 0)">I</text><text x="49.4" y="0" font-size="52" fill="var(--c)" font-weight="900" transform="rotate(5 49.4 0)">T</text><text x="82.16" y="0" font-size="52" fill="var(--c)" font-weight="900" transform="rotate(-2 82.16 0)">!</text></g></g><g id="message2"><g transform="rotate(-3)"><text x="0" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(-7 0 0)">L</text><text x="26.46" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(2 26.46 0)">O</text><text x="52.92" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(5 52.92 0)">V</text><text x="79.38" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(-2 79.38 0)">E</text><text x="105.84" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(-7 105.84 0)"> </text><text x="119.28" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(2 119.28 0)">Y</text><text x="145.74" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(5 145.74 0)">O</text><text x="172.2" y="0" font-size="42" fill="var(--b)" font-weight="900" transform="rotate(-2 172.20000000000002 0)">U</text></g></g>
+</svg></main>
+<script>
+const stage = document.querySelector('main');
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+const motion = [];
+function animate(target, keys, options = {}) {
+  if (typeof target === 'string') target = document.querySelector(target);
+  const list = keys.map(([time, value]) => ({ offset: time / duration, ...value }));
+  const effect = target.animate(list, { duration: duration * 1000, iterations: Infinity, fill: 'both', easing: 'linear', ...options });
+  motion.push(effect);
+  return effect;
+}
+function hold(seconds) {
+  for (const effect of motion) { effect.pause(); effect.currentTime = Math.max(0,Math.min(duration - .001,seconds)) * 1000; }
+}
+function replay() {
+  for (const effect of motion) { effect.currentTime = 0; effect.play(); }
+}
+function bind(element, callback) {
+  element.addEventListener('click', callback);
+  element.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); callback(event); }
+  });
+}
+
+animate("#caster", [[0,{"transform":"translate(28px,157px) rotate(4deg)"}],[0.7,{"transform":"translate(28px,157px) rotate(15deg)"}],[1.15,{"transform":"translate(28px,157px) rotate(40deg)"}],[1.55,{"transform":"translate(28px,157px) rotate(4deg)"}],[2,{"transform":"translate(28px,157px) rotate(34deg)"}],[2.55,{"transform":"translate(28px,157px) rotate(2deg)"}],[4.08,{"transform":"translate(28px,157px) rotate(17deg)"}],[5.0,{"transform":"translate(28px,157px) rotate(38deg)"}],[5.38,{"transform":"translate(28px,157px) rotate(1deg)"}],[6.24,{"transform":"translate(28px,157px) rotate(34deg)"}],[7.0,{"transform":"translate(28px,157px) rotate(8deg)"}],[7.77,{"transform":"translate(28px,157px) rotate(5deg)"}],[8.25,{"transform":"translate(28px,157px) rotate(39deg)"}],[8.75,{"transform":"translate(28px,157px) rotate(-8deg)"}],[10.14,{"transform":"translate(28px,157px) rotate(28deg)"}],[11.25,{"transform":"translate(28px,157px) rotate(4deg)"}]]);
+animate("#message0", [[0,{"opacity":0,"transform":"translate(168px,155px) scale(.5)"}],[2.43,{"opacity":0,"transform":"translate(168px,155px) scale(.5)"}],[2.66,{"opacity":1,"transform":"translate(168px,143px) scale(1.08)"}],[2.83,{"opacity":1,"transform":"translate(168px,143px) scale(1)"}],[3.58,{"opacity":1,"transform":"translate(168px,143px) scale(1)"}],[3.74,{"opacity":0,"transform":"translate(168px,133px) scale(.94)"}],[11.25,{"opacity":0}]]);
+animate("#message1", [[0,{"opacity":0,"transform":"translate(296px,146px) scale(.5)"}],[4.39,{"opacity":0,"transform":"translate(296px,146px) scale(.5)"}],[4.62,{"opacity":1,"transform":"translate(296px,134px) scale(1.08)"}],[4.79,{"opacity":1,"transform":"translate(296px,134px) scale(1)"}],[6.04,{"opacity":1,"transform":"translate(296px,134px) scale(1)"}],[6.2,{"opacity":0,"transform":"translate(296px,124px) scale(.94)"}],[11.25,{"opacity":0}]]);
+animate("#message2", [[0,{"opacity":0,"transform":"translate(161px,131px) scale(.5)"}],[9.34,{"opacity":0,"transform":"translate(161px,131px) scale(.5)"}],[9.57,{"opacity":1,"transform":"translate(161px,119px) scale(1.08)"}],[9.74,{"opacity":1,"transform":"translate(161px,119px) scale(1)"}],[10.79,{"opacity":1,"transform":"translate(161px,119px) scale(1)"}],[10.95,{"opacity":0,"transform":"translate(161px,109px) scale(.94)"}],[11.25,{"opacity":0}]]);
+animate("#spark", [[0,{"opacity":0,"transform":"translate(28px,157px)"}],[0.68,{"opacity":0,"transform":"translate(28px,157px)"}],[0.6900000000000001,{"opacity":1,"transform":"translate(28px,157px)"}],[0.9500000000000001,{"opacity":1,"transform":"translate(263px,126px)"}],[1.26,{"opacity":1,"transform":"translate(560px,98px)"}],[1.3,{"opacity":0,"transform":"translate(560px,98px)"}],[1.79,{"opacity":0,"transform":"translate(28px,157px)"}],[1.8,{"opacity":1,"transform":"translate(28px,157px)"}],[2.06,{"opacity":1,"transform":"translate(263px,126px)"}],[2.37,{"opacity":1,"transform":"translate(528px,141px)"}],[2.41,{"opacity":0,"transform":"translate(528px,141px)"}],[3.91,{"opacity":0,"transform":"translate(28px,157px)"}],[3.92,{"opacity":1,"transform":"translate(28px,157px)"}],[4.18,{"opacity":1,"transform":"translate(263px,126px)"}],[4.49,{"opacity":1,"transform":"translate(550px,152px)"}],[4.53,{"opacity":0,"transform":"translate(550px,152px)"}],[6.69,{"opacity":0,"transform":"translate(28px,157px)"}],[6.7,{"opacity":1,"transform":"translate(28px,157px)"}],[6.960000000000001,{"opacity":1,"transform":"translate(263px,126px)"}],[7.2700000000000005,{"opacity":1,"transform":"translate(547px,148px)"}],[7.3100000000000005,{"opacity":0,"transform":"translate(547px,148px)"}],[8.75,{"opacity":0,"transform":"translate(28px,157px)"}],[8.76,{"opacity":1,"transform":"translate(28px,157px)"}],[9.02,{"opacity":1,"transform":"translate(263px,126px)"}],[9.33,{"opacity":1,"transform":"translate(548px,153px)"}],[9.37,{"opacity":0,"transform":"translate(548px,153px)"}],[11.25,{"opacity":0}]]);
+animate("#trail", [[0,{"strokeDashoffset":"550","opacity":0}],[0.68,{"strokeDashoffset":"550","opacity":0}],[0.7300000000000001,{"strokeDashoffset":"520","opacity":0.3}],[1.26,{"strokeDashoffset":"0","opacity":0.29}],[1.7000000000000002,{"strokeDashoffset":"0","opacity":0}],[1.79,{"strokeDashoffset":"550","opacity":0}],[1.84,{"strokeDashoffset":"520","opacity":0.3}],[2.37,{"strokeDashoffset":"0","opacity":0.29}],[2.81,{"strokeDashoffset":"0","opacity":0}],[3.91,{"strokeDashoffset":"550","opacity":0}],[3.96,{"strokeDashoffset":"520","opacity":0.3}],[4.49,{"strokeDashoffset":"0","opacity":0.29}],[4.93,{"strokeDashoffset":"0","opacity":0}],[6.69,{"strokeDashoffset":"550","opacity":0}],[6.74,{"strokeDashoffset":"520","opacity":0.3}],[7.2700000000000005,{"strokeDashoffset":"0","opacity":0.29}],[7.710000000000001,{"strokeDashoffset":"0","opacity":0}],[8.75,{"strokeDashoffset":"550","opacity":0}],[8.8,{"strokeDashoffset":"520","opacity":0.3}],[9.33,{"strokeDashoffset":"0","opacity":0.29}],[9.77,{"strokeDashoffset":"0","opacity":0}],[11.25,{"opacity":0}]]);
+let attempt=0;function launch(){attempt++;hold([.69,3.92,8.76][(attempt-1)%3]);motion.forEach(a=>a.play());}stage.tabIndex=0;stage.setAttribute('role','button');stage.setAttribute('aria-label','Send an arcade spark');bind(stage,launch);
+</script>
+<script>
+const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+pick();
+addEventListener("hashchange", pick);
+const t = new URLSearchParams(location.search).get("t");
+if (t !== null) {
+  const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+  freeze();
+  addEventListener("load", freeze);
+}
+</script></body></html>

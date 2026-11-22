@@ -11,7 +11,7 @@ Game art and game UI.
 | [Tilesets](tilesets/) | Tilesets and level pieces |
 | [Backgrounds](backgrounds/) | Game backgrounds and parallax layers |
 | [Items](items/) | Items, weapons and power-ups |
-| [Game UI](game-ui/) | Game interfaces |
+| [Game UI](game-ui/) | Game interfaces · **1 design** |
 | [HUD](hud/) | HUDs and health bars |
 | [Main menus](main-menus/) | Title screens and main menus |
 | [Inventories](inventories/) | Inventory screens |

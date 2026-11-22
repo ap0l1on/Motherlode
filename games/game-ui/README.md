@@ -3,4 +3,12 @@
 
 Game interfaces.
 
-Part of [Games](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Games](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="tilted-target-arcade/"><img src="tilted-target-arcade/preview.gif" width="260" alt="Tilted target arcade"></a><br><a href="tilted-target-arcade/"><b>Tilted target arcade</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
