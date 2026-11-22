@@ -1,0 +1,117 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="1152x628">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="5.6">
+<meta name="motherlode:still" content="0.18">
+<title>Obsidian film deck</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #0C0E13; --surface: #15171C; --ink: #F2F1F1; --muted: #D0D1D5;
+  --accent: #E4A55C; --on-accent: #262020; --second: #558BA2; --third: #8B9975;
+  --ivory: #F7D7A5; --shade: #75665E; --outline: #383C45; --good: #D75580;
+  --hi: #FCFBF8; --lo: #05060B; --clear: transparent; --photo: none;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.65);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.85);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.32);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(18deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(310deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.62);
+}
+* {box-sizing:border-box;}html,body {width:1152px;height:628px;margin:0;overflow:hidden;}
+main {position:relative;isolation:isolate;width:1152px;height:628px;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif;perspective:1350px;}
+button {background:none;color:inherit;font:inherit;cursor:pointer;border:0;}button:focus-visible {outline:2px solid var(--accent);outline-offset:3px;}
+.backdrop,.wall {position:absolute;inset:0;width:100%;height:100%;}.wall {width:0;height:0;overflow:visible;}.deck {position:absolute;inset:0;perspective:1200px;pointer-events:none;}
+.card {position:absolute;left:426px;top:83px;width:300px;height:411px;overflow:hidden;isolation:isolate;transform-origin:50% 53%;border:1px solid color-mix(in srgb,var(--outline) 77%,var(--ink));border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 9px 27px color-mix(in srgb,var(--lo) 60%,var(--clear)),inset 0 1px color-mix(in srgb,var(--hi) 30%,var(--clear));cursor:pointer;pointer-events:auto;}
+.poster,.mini,.full svg {filter:var(--photo);} .poster {position:absolute;inset:0;width:100%;height:70%;}.fade {position:absolute;inset:19% 0 0;background:linear-gradient(180deg,var(--clear),var(--surface) 57%,var(--surface));}
+.card header,.card footer {position:absolute;left:15px;right:15px;display:flex;align-items:center;justify-content:space-between;}.card header {top:11px;}.card header button {font-size:9px;border-radius:14px;padding:4px 8px;background:color-mix(in srgb,var(--lo) 52%,var(--clear));color:var(--hi);}
+.story {position:absolute;left:16px;right:15px;bottom:13px;text-align:left;}.story h2 {font-size:17px;letter-spacing:-.5px;margin:0;line-height:23px;}.story .number {float:right;font-size:9px;color:var(--muted);font-weight:550;}.story p {font-size:10px;line-height:15px;color:var(--muted);margin:3px 0 8px;}
+.details {font-size:9px;line-height:14px;padding-top:7px;color:var(--muted);border-top:1px solid var(--outline);}.card.side .story p,.card.side .details,.card.side .number,.card.side header {visibility:hidden;}.card.side h2 {font-size:15px;}.card.side .story {bottom:25px;}.card.side {filter:brightness(.82);}
+.rail,.controls {position:absolute;z-index:20;display:flex;align-items:center;justify-content:space-around;border:1px solid var(--outline);border-radius:23px;background:color-mix(in srgb,var(--surface) 92%,var(--clear));box-shadow:inset 0 1px color-mix(in srgb,var(--hi) 12%,var(--clear)),0 6px 15px var(--lo);backdrop-filter:blur(8px);}
+.rail {left:20px;top:287px;width:49px;height:244px;flex-direction:column;z-index:21;}.rail button,.controls button {font-size:15px;min-width:28px;min-height:25px;padding:3px;}.favorite.active {color:var(--good);}.controls {left:382px;bottom:32px;width:389px;height:50px;gap:3px;padding:4px 11px;}.mini {width:30px;height:30px;border-radius:50%;stroke:var(--outline);}.caption {text-align:left;flex:1;min-width:0;margin-left:4px;}.caption strong {font-size:10px;display:block;line-height:14px;}.caption small {font-size:8px;line-height:12px;color:var(--muted);}.rate {color:var(--accent);font-size:8px;}
+.full {position:absolute;z-index:26;inset:36px 212px 37px;padding:24px;background:var(--surface);border:1px solid var(--outline);border-radius:20px;box-shadow:0 12px 40px var(--lo);}
+.full[hidden] {display:none;}.full svg {width:55%;height:100%;border-radius:12px;float:left;margin-right:22px;}.full button {position:absolute;right:16px;top:13px;font-size:23px;}.full h2 {padding-top:115px;font-size:28px;letter-spacing:-1px;}.full p {font-size:14px;line-height:1.65;color:var(--muted);}
+.alternate {position:absolute;left:85px;right:54px;display:none;pointer-events:none;align-items:center;gap:6px;}.alternate .mini {flex:none;}.controls.touring .alternate {display:flex;}.controls.touring>.mini,.controls.touring>.caption {visibility:hidden;}
+:root[data-colorway="mono"] { filter: grayscale(1); }
+</style></head><body><main>
+<svg class="backdrop" viewBox="0 0 1152 628" aria-hidden="true"><defs><linearGradient id="slate" x1="0" y1="0" x2="1" y2="1"><stop style="stop-color:var(--bg)"/><stop offset=".53" style="stop-color:var(--surface)"/><stop offset="1" style="stop-color:var(--lo)"/></linearGradient></defs><rect width="1152" height="628" fill="url(#slate)"/><image href="original-film-atlas.webp" x="-3456" y="-628" width="4608" height="1256" preserveAspectRatio="none" opacity=".29"/><g class="shards"></g></svg>
+<svg class="wall" aria-hidden="true"><defs>
+<symbol id="orbit" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-0" y="-0" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="city" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-300" y="-0" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="water" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-600" y="-0" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="rain" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-900" y="-0" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="tower" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-0" y="-280" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="mesa" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-300" y="-280" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+<symbol id="dune" viewBox="0 0 300 280"><image href="original-film-atlas.webp" x="-600" y="-280" width="1200" height="560" preserveAspectRatio="none"/></symbol>
+</defs></svg><section class="deck" aria-label="Film studies"></section><aside class="rail"><button type="button" data-do="expand" aria-label="Expand selected film">◇</button><button class="favorite active" data-do="favorite" aria-label="Favorite selected film">♥</button><button type="button" data-do="next" aria-label="Next film">♧</button><button type="button" data-do="play" aria-label="Play film deck">▷</button><button type="button" data-do="first" aria-label="First film">⌘</button></aside>
+<div class="controls"><button data-do="prev" aria-label="Previous film">‹</button><button data-do="play" aria-label="Play automated tour">▷</button><svg class="mini" viewBox="0 0 300 280"><use href="#orbit"/></svg><div class="caption"><strong>The Last Orbit &nbsp;<span class="rate">★ 8.7</span></strong><small>A ring of sunlight on the edge of the unknown.</small></div><button class="favorite active" data-do="favorite" aria-label="Favorite selected film">♥</button><button data-do="next" aria-label="Next film">›</button></div>
+<article class="full" hidden><button aria-label="Close film details">×</button><svg viewBox="0 0 300 280"><use href="#orbit"/></svg><h2></h2><p></p></article>
+</main><script>
+const ns='http://www.w3.org/2000/svg',get=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];
+function tag(type,attrs){const el=document.createElementNS(ns,type);for(const [name,value] of Object.entries(attrs))el.setAttribute(name,value);return el;}
+for(let i=0;i<28;i++){const x=(i*187)%1190-80,y=(i*71)%660-80,w=94+(i*57)%240;get('.shards').append(tag('path',{d:'M'+x+' '+y+'l'+w+' 42 '+(-w*.45)+' 93 '+(-w*.68)+' -41Z',fill:i%3?'var(--surface)':'var(--lo)',opacity:.15+(i%4)*.08,stroke:'var(--outline)','stroke-width':1}));}
+const films=[['orbit','The Last Orbit','A ring of sunlight on the edge of the unknown.','A crew of surveyors follows a broken signal to the curved edge of a distant star.'],['city','North Elevation','A city built from the corners of a dream.','Seven intersections repeat across a glass city. An architect searches for the street that connects them.'],['water','Blue Current','A diver follows a luminous school of fish.','In a deep coastal trench, a diver traces the migrations of a fish that returns once every thirty years.'],['rain','After the Rain','The lights of an empty city reappear.','A night courier crosses the waterfront as the skyline comes back to life after a summer storm.'],['tower','The Observatory','A silent instrument hidden in the hills.','Two researchers restore a weather station and find its still-running record of a century of changing skies.'],['mesa','Red Divide','A journey to the far side of sandstone.','A cartographer enters a red canyon to finish the trail her mentor left off the map.'],['dune','Quiet Sand','The desert keeps its own calendar.','Wind and shifting dunes tell the story of a traveling settlement on the rim of an ancient lake.']];
+const deck=get('.deck'),cards=[],favorites=new Set([0]);let index=0,tracks=[],live=false;
+films.forEach(([id,title,line,desc],i)=>{const el=document.createElement('article');el.className='card';el.tabIndex=0;el.setAttribute('aria-label','Select '+title);el.innerHTML='<svg class="poster" viewBox="0 0 300 280" preserveAspectRatio="xMidYMid slice"><use href="#'+id+'"/></svg><div class="fade"></div><header><button type="button">↗ &nbsp;Expand</button><button type="button" aria-label="Save '+title+'">···</button></header><div class="story"><h2><span class="number">'+(i+1)+' / 7</span>'+title+'</h2><p>'+desc+'</p><div class="details">◈ &nbsp;Original film study · Studio collection<br>↳ &nbsp;Atmosphere &nbsp; · &nbsp; Field notes &nbsp; · &nbsp; Short fiction</div></div>';el.addEventListener('click',event=>{if(event.target.closest('header button')){focus(i);if(event.target===el.querySelector('button'))openFull();else favorite();}else focus(i);});el.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target===el){focus(i);openFull();}});cards.push(el);deck.append(el);});
+function pose(i,active){const d=(i-active+10)%7-3,k=Math.abs(d),dir=-Math.sign(d);return {transform:'translate3d('+(dir*[0,220,393,539][k])+'px,'+([0,9,12,18][k])+'px,'+(-k*55)+'px) rotateY('+(-dir*[0,16,29,42][k])+'deg) scale('+[1,.88,.74,.64][k]+')',opacity:[1,.94,.80,.62][k],zIndex:9-k};}
+function text(i){const f=films[i];get('.caption strong').innerHTML=f[1]+' &nbsp;<span class="rate">★ 8.'+((7+i)%10)+'</span>';get('.caption small').textContent=f[2];get('.mini use').setAttribute('href','#'+f[0]);all('.favorite').forEach(b=>b.classList.toggle('active',favorites.has(i)));}
+function focus(i){get('.controls').classList.remove('touring');live=true;tracks.forEach(t=>t.cancel());tracks=[];index=(i+7)%7;cards.forEach((card,j)=>{Object.assign(card.style,pose(j,index));card.style.transition='transform .38s ease,opacity .38s ease';card.classList.toggle('side',j!==index);});text(index);}
+function openFull(){const f=films[index];get('.full').hidden=false;get('.full use').setAttribute('href','#'+f[0]);get('.full h2').textContent=f[1];get('.full p').textContent=f[3];get('.full button').focus();}
+function favorite(){if(favorites.has(index))favorites.delete(index);else favorites.add(index);text(index);}
+const sequence=[0,0,1,2,2,3,4,5,3,2,1,0],times=[0,.10,.18,.26,.36,.44,.54,.64,.73,.82,.91,1];
+const captions=films.map((f,i)=>{const row=document.createElement('div');row.className='alternate';row.innerHTML='<svg class="mini" viewBox="0 0 300 280"><use href="#'+f[0]+'"/></svg><div class="caption"><strong>'+f[1]+' <span class="rate">★ 8.'+((7+i)%10)+'</span></strong><small>'+f[2]+'</small></div>';get('.controls').append(row);return row;});
+function tour(){get('.controls').classList.add('touring');tracks.forEach(t=>t.cancel());tracks=[];live=false;index=0;get('.full').hidden=true;text(0);captions.forEach((cap,i)=>tracks.push(cap.animate(sequence.map((active,k)=>({offset:times[k],opacity:active===i?1:0})),{duration:5600,iterations:Infinity,easing:'linear'})));cards.forEach((card,i)=>{card.removeAttribute('style');card.classList.remove('side');const opts={duration:5600,iterations:Infinity,easing:'linear'};tracks.push(card.animate(sequence.map((active,k)=>({offset:times[k],...pose(i,active)})),opts));for(const part of card.querySelectorAll('.story p,.details,.number,header'))tracks.push(part.animate(sequence.map((active,k)=>({offset:times[k],opacity:active===i?1:0})),opts));});}
+function current(){if(live||!tracks.length)return index;const t=(tracks[0].currentTime%5600)/5600;return sequence[times.reduce((p,v,i)=>Math.abs(v-t)<Math.abs(times[p]-t)?i:p,0)];}
+all('[data-do]').forEach(b=>b.addEventListener('click',()=>{const action=b.dataset.do,from=current();if(action==='play'){tour();return;}if(action==='next'||action==='prev'||action==='first'){focus(action==='first'?0:from+(action==='next'?1:-1));return;}focus(from);if(action==='expand')openFull();else favorite();}));
+get('.full button').addEventListener('click',()=>get('.full').hidden=true);document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();focus(current()+(e.key==='ArrowRight'?1:-1));}if(e.key==='Escape')get('.full').hidden=true;});tour();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))focus(0);
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
