@@ -1,0 +1,133 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="816x874">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="4">
+<meta name="motherlode:still" content="2.45">
+<title>Midnight icon library</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #030719; --head: #040719; --panel: #10192D; --text: #F8FAFE;
+  --muted: #B1BDD3; --edge: #383654; --orange: #FF941F; --on-orange: #33200C;
+  --violet: #B49DF4; --mint: #90E3E1; --rose: #F899B8; --sand: #FFE181;
+  --hi: #FFFFFF; --lo: #010411; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #F3F5FC; --head: #FAFBFE; --panel: #E4E9F4; --text: #1E2441;
+  --muted: #485671; --edge: #C3CBE1; --orange: #E19B37; --on-orange: #34200C;
+  --violet: #7865A7; --mint: #3F858A; --rose: #A95B78; --sand: #AD8338;
+  --hi: #FFFFFF; --lo: #1E233E; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #0B0D18; --head: #0E101E; --panel: #1B2032; --text: #F6F1FB;
+  --muted: #C3BCD1; --edge: #45435C; --orange: #F6A55C; --on-orange: #342111;
+  --violet: #B09BE0; --mint: #8BC9C4; --rose: #E6A2B6; --sand: #EACE8B;
+  --hi: #FFFFFF; --lo: #060711; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #0C0C0C; --head: #121212; --panel: #202020; --text: #F7F7F7;
+  --muted: #C1C1C1; --edge: #424242; --orange: #E0E0E0; --on-orange: #1C1C1C;
+  --violet: #AAAAAA; --mint: #DDDDDD; --rose: #BDBDBD; --sand: #EEEEEE;
+  --hi: #FFFFFF; --lo: #060606; --clear: transparent;
+}
+[data-colorway="ember"] {
+  --bg: #200D14; --head: #200D15; --panel: #39202A; --text: #FFF4E8;
+  --muted: #E5C8C3; --edge: #70484A; --orange: #FFAC69; --on-orange: #3D2315;
+  --violet: #D1A3D3; --mint: #A9CFB3; --rose: #F398AA; --sand: #E8CE8A;
+  --hi: #FFFCF4; --lo: #160910; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --bg: #071A22; --head: #071A20; --panel: #18323A; --text: #F1FAF5;
+  --muted: #B4D0CD; --edge: #37555B; --orange: #91DBBD; --on-orange: #14392D;
+  --violet: #99BAE4; --mint: #84DBD4; --rose: #E7A9BA; --sand: #E9CF91;
+  --hi: #FFFFFF; --lo: #07131A; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --bg: #1A1124; --head: #180F20; --panel: #302239; --text: #FAF1FC;
+  --muted: #DAC6E0; --edge: #55405F; --orange: #E6A1DE; --on-orange: #421F3E;
+  --violet: #B9A1EC; --mint: #91CEC2; --rose: #EFABBC; --sand: #F1CF90;
+  --hi: #FFFFFF; --lo: #100A18; --clear: transparent;
+}
+[data-colorway="pine"] {
+  --bg: #101D17; --head: #111D17; --panel: #20372A; --text: #F4F9EC;
+  --muted: #C7D4C5; --edge: #465A44; --orange: #BBD482; --on-orange: #283A16;
+  --violet: #B5AEC4; --mint: #92C6A7; --rose: #E4AAA1; --sand: #E9D197;
+  --hi: #FFFFFF; --lo: #0A140F; --clear: transparent;
+}
+* { box-sizing:border-box; }html,body { margin:0; }body,button,input {font-family:Inter,Arial,sans-serif;}button {cursor:pointer;color:inherit;}
+main {position:relative;isolation:isolate;width:816px;height:874px;overflow:hidden;color:var(--text);background:radial-gradient(ellipse 49% 42% at 49% 19%,color-mix(in srgb,var(--violet) 16%,var(--bg)),var(--clear) 100%),radial-gradient(ellipse 24% 27% at 48% 89%,color-mix(in srgb,var(--violet) 15%,var(--bg)),var(--clear)),var(--bg);}
+header {height:61px;display:flex;align-items:center;padding:0 25px;gap:12px;background:var(--head);border-bottom:1px solid var(--edge);}
+.wordmark {font-size:16px;font-weight:760;letter-spacing:.075em;}.brand-icon {width:23px;height:23px;color:var(--rose);}
+nav {margin-left:auto;display:flex;align-items:center;gap:29px;}nav button {background:none;border:0;font-size:13px;font-weight:610;padding:3px 0;}
+.mode {width:30px;height:30px;border:1px solid var(--edge);background:var(--panel);border-radius:5px;display:grid;place-items:center;font-size:16px;}
+.hero {position:absolute;top:133px;left:22px;right:22px;}
+.tags {display:flex;gap:9px;align-items:center;}.tags span {display:inline-block;padding:5px 9px;border-radius:5px;background:var(--panel);border:1px solid var(--edge);color:var(--text);font-size:11px;font-weight:650;}
+.tags .open {color:var(--orange);background:color-mix(in srgb,var(--orange) 13%,var(--head));border-color:color-mix(in srgb,var(--orange) 35%,var(--head));}
+h1 {margin:22px 0 16px;font-size:55px;line-height:1.02;letter-spacing:-.035em;font-weight:785;}h1 {width:max-content;scale:1.065 1;transform-origin:left center;}h1 span {color:var(--orange);}
+.lead {max-width:550px;margin:0;color:var(--muted);font-size:17.2px;line-height:1.51;letter-spacing:-.22px;}
+.buttons {display:flex;gap:12px;margin-top:23px;}.buttons button {height:43px;border-radius:9px;border:1px solid var(--edge);font-size:12px;font-weight:680;padding:0 23px;background:var(--panel);}
+.buttons .primary {background:var(--orange);color:var(--on-orange);border-color:var(--orange);box-shadow:0 0 16px color-mix(in srgb,var(--orange) 23%,var(--clear));}
+.search {position:absolute;top:459px;left:22px;width:626px;height:59px;display:flex;align-items:center;gap:12px;padding:0 13px 0 21px;background:var(--panel);border:1px solid var(--edge);border-radius:12px;}
+.search input {flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font-size:16px;}.search input::placeholder {color:var(--muted);}
+.search:focus-within {outline:2px solid var(--orange);outline-offset:2px;}kbd {color:var(--muted);background:color-mix(in srgb,var(--edge) 47%,var(--panel));padding:5px 7px;border-radius:4px;font:10px Inter,sans-serif;}
+.facts {position:absolute;top:547px;left:22px;display:flex;align-items:center;gap:19px;color:var(--muted);font-size:13px;}.facts b {color:var(--text);}.facts i {height:13px;width:1px;background:var(--edge);}
+.tile {position:absolute;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--edge) 76%,var(--clear));background:var(--panel);border-radius:13px;color:var(--violet);}
+.tile svg {width:26px;height:26px;}.tile.one {width:60px;height:60px;left:165px;top:652px;}.tile.two {width:62px;height:62px;left:584px;top:625px;color:var(--rose);}.tile.three {width:152px;height:146px;left:330px;top:762px;color:var(--rose);box-shadow:0 0 38px color-mix(in srgb,var(--violet) 15%,var(--clear));}.tile.three svg {width:67px;height:67px;}
+.swarm {position:absolute;inset:0;pointer-events:none;}.swarm svg {position:absolute;width:19px;height:22px;stroke:var(--hi);stroke-width:1;filter:drop-shadow(0 2px 2px color-mix(in srgb,var(--lo) 41%,var(--clear)));}
+.tour {position:absolute;left:50%;bottom:17px;transform:translateX(-50%);width:550px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--panel) 87%,var(--lo));color:var(--text);border:1px solid var(--edge);display:flex;align-items:center;justify-content:center;gap:16px;font-size:11px;box-shadow:0 4px 17px color-mix(in srgb,var(--lo) 41%,var(--clear));}
+.tour .line {width:48px;height:3px;background:linear-gradient(90deg,var(--mint) 36%,var(--edge) 36%);}.tour button,.panel button {background:var(--panel);color:var(--text);border:1px solid var(--edge);border-radius:5px;padding:4px 8px;font-size:11px;}
+.panel {position:absolute;left:22px;top:526px;width:626px;background:var(--panel);border:1px solid var(--edge);border-radius:13px;padding:19px;z-index:2;box-shadow:0 13px 30px var(--bg);}
+.panel[hidden] {display:none;}.panel header {height:auto;border:0;padding:0;background:none;justify-content:space-between;margin-bottom:11px;}.panel h2 {margin:0;font-size:16px;}.panel p {color:var(--muted);font-size:13px;}
+.grid {display:grid;grid-template-columns:repeat(4,1fr);gap:5px;}.grid button {display:flex;align-items:center;justify-content:center;gap:7px;min-height:32px;}.grid svg {width:18px;height:18px;}
+</style></head><body><main><header><svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="1" y="2" width="8" height="8" rx="2"/><circle cx="17" cy="6" r="3"/><path d="m5 13 4 7H1Zm8 3 5-4 5 5-5 5Z"/></svg><b class="wordmark">ARC ICONS</b><nav aria-label="Library"><button data-section="Icons">Icons</button><button data-section="Docs">Docs &amp; SVG</button><button data-section="License">License</button><button class="mode" aria-label="Switch light and dark colorways">☾</button></nav></header>
+  <div class="hero"><div class="tags"><span>v1.0.0</span><span class="open">◇&nbsp; Open Source · SVG</span></div><h1><span>Beautiful Icons.</span><br>Built for Your UI.</h1><p class="lead">Discover free, open-source SVG icons for modern websites and apps. Customize, copy, or download them in SVG.</p><div class="buttons"><button class="primary" data-section="Icons">View all 12 icons&nbsp; →</button><button data-section="Docs">Get Started</button></div></div>
+  <label class="search"><input type="search" aria-label="Search the icon library" placeholder="Search 12 icons… try “arrow”, “file” or “heart”"><kbd>Ctrl K</kbd></label>
+  <div class="facts"><span><b>12</b> icons</span><i></i><span><b>3</b> categories</span><i></i><span><b>Regular · Light · Thin</b> styles</span><i></i><span><b>SVG</b> source</span></div>
+  <button class="tile one" data-icon="Home" aria-label="Copy home SVG"></button><button class="tile two" data-icon="Search" aria-label="Copy search SVG"></button><button class="tile three" data-icon="Heart" aria-label="Copy heart SVG"></button>
+  <div class="swarm" aria-hidden="true"></div><div class="tour"><b>12 pointers</b><span>50 / 593 layers</span><span>scroll to keep building</span><i class="line"></i><button class="replay">Tour</button><span>1×</span><button class="hide" aria-label="Hide tour">×</button></div>
+  <section class="panel" hidden><header><h2>Icons</h2><button aria-label="Close">×</button></header><div class="results"></div></section>
+</main><script>
+  const stage=document.querySelector('main'),search=document.querySelector('input'),panel=document.querySelector('.panel'),results=panel.querySelector('.results');
+  const shapes={Home:'M3 11 12 3l9 8v10h-6v-7H9v7H3Z',Search:'M16 16l5 5M10 17a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z',Heart:'M12 21 3.5 12C-1 5 6.5 0 12 6c5-6 13-1 8.5 6Z',Arrow:'M3 12h16m-6-6 6 6-6 6',File:'M5 2h9l5 5v15H5Zm9 0v6h5',Folder:'M2 6h8l2 2h10v12H2Z',Check:'m3 12 6 6L21 5',Star:'m12 2 3 6.5 7 .9-5.2 5 1.2 7L12 18l-6 3.4 1.2-7-5.2-5 7-.9Z',Clock:'M12 2a10 10 0 1 1-.1 0ZM12 6v7l4 2',Play:'m7 3 14 9-14 9Z',Mail:'M2 5h20v15H2Zm0 1 10 8L22 6',Plus:'M12 3v18M3 12h18'};
+  function drawing(name) { return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="'+shapes[name]+'"/></svg>'; }
+  document.querySelectorAll('.tile').forEach(el=>el.innerHTML=drawing(el.dataset.icon));
+  function show(section) {
+    panel.hidden=false;panel.querySelector('h2').textContent=section;results.replaceChildren();
+    if(section!=='Icons'){const p=document.createElement('p');p.textContent=section==='Docs'?'Choose an icon to copy its inline SVG markup. The viewBox scales to any size and currentColor inherits the surrounding text color.':'These original interface glyphs are included with the design source.';results.append(p);return;}
+    const grid=document.createElement('div');grid.className='grid';
+    Object.keys(shapes).filter(n=>n.toLowerCase().includes(search.value.toLowerCase())).forEach(name=>{const b=document.createElement('button');b.dataset.icon=name;b.innerHTML=drawing(name)+name;grid.append(b);});
+    results.append(grid);if(!grid.children.length){const p=document.createElement('p');p.textContent='No matching icons.';results.append(p);}
+  }
+  search.addEventListener('input',()=>show('Icons'));search.addEventListener('focus',()=>show('Icons'));
+  panel.querySelector('header button').addEventListener('click',()=>{panel.hidden=true;});
+  stage.addEventListener('click',async e=>{const button=e.target.closest('button');if(!button)return;
+    if(button.dataset.section)show(button.dataset.section);
+    if(button.dataset.icon){const markup=drawing(button.dataset.icon);try{await navigator.clipboard.writeText(markup);panel.hidden=false;panel.querySelector('h2').textContent=button.dataset.icon;results.textContent='SVG copied.';}catch{panel.hidden=false;panel.querySelector('h2').textContent=button.dataset.icon;const box=document.createElement('textarea');box.value=markup;box.setAttribute('aria-label','SVG markup');results.replaceChildren(box);box.select();}}
+  });
+  document.querySelector('.mode').addEventListener('click',()=>{location.hash=document.documentElement.dataset.colorway==='light'?'dark':'light';});
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();search.focus();}if(e.key==='Escape')panel.hidden=true;});
+  const tracks=[],swarm=document.querySelector('.swarm');const places=[[138,180],[290,226],[663,214],[403,368],[450,457],[194,627],[159,427],[273,681],[333,610],[118,690],[515,543],[697,322]];
+  function tour() {tracks.splice(0).forEach(a=>a.cancel());swarm.replaceChildren();document.querySelector('.tour').style.display='';
+    places.forEach(([x,y],i)=>{const el=document.createElementNS('http://www.w3.org/2000/svg','svg');el.setAttribute('viewBox','0 0 18 20');el.innerHTML='<path d="m2 1 13 7-6 2-3 7Z"/>';el.style.fill='var(--'+['rose','mint','violet','sand'][i%4]+')';swarm.append(el);
+      const at=(a,b)=>'translate('+a+'px,'+b+'px) rotate('+((i%5-2)*9)+'deg)';
+      tracks.push(el.animate([{offset:0,transform:at(401+(i%3)*14,425+(i%4)*14)},{offset:.27,transform:at(x-49,y+29),easing:'ease-out'},{offset:.65,transform:at(x+25,y-8)},{offset:.85,transform:at(x+17,y+15)},{offset:1,transform:at(401+(i%3)*14,425+(i%4)*14)}],{duration:4000,iterations:Infinity}));});
+    for(const [k,el] of [...document.querySelectorAll('.hero,.search,.facts,.tile')].entries()) {const start=.025+k*.014;tracks.push(el.animate([{offset:0,opacity:.23},{offset:start,opacity:.23},{offset:start+.13,opacity:1},{offset:.93,opacity:1},{offset:1,opacity:.23}],{duration:4000,iterations:Infinity}));}
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks.forEach(a=>{a.pause();a.currentTime=2450;});
+  }
+  document.querySelector('.replay').addEventListener('click',tour);document.querySelector('.hide').addEventListener('click',()=>{tracks.splice(0).forEach(a=>a.cancel());swarm.replaceChildren();document.querySelector('.tour').style.display='none';});tour();
+</script><script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script></body></html>
