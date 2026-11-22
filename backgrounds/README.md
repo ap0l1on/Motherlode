@@ -11,7 +11,7 @@ Backgrounds, patterns and textures.
 | [Geometric](geometric/) | Geometric backgrounds |
 | [Textures](textures/) | Paper, grain, noise and fabric textures |
 | [Grunge](grunge/) | Grunge and distressed textures |
-| [Shapes](shapes/) | Blobs, waves and section dividers |
+| [Shapes](shapes/) | Blobs, waves and section dividers · **1 design** |
 | [Frames](frames/) | Frames and borders |
 | [Ornaments](ornaments/) | Flourishes and ornaments |
 | [Glassmorphism](glassmorphism/) | Frosted glass backgrounds |

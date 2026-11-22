@@ -3,4 +3,12 @@
 
 Blobs, waves and section dividers.
 
-Part of [Backgrounds](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Backgrounds](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="floating-rose-hearts/"><img src="floating-rose-hearts/preview.gif" width="260" alt="Floating rose hearts"></a><br><a href="floating-rose-hearts/"><b>Floating rose hearts</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
