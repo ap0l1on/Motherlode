@@ -3,4 +3,12 @@
 
 Full form layouts.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="briefcase-webinar-registration/"><img src="briefcase-webinar-registration/preview.gif" width="260" alt="Briefcase webinar registration"></a><br><a href="briefcase-webinar-registration/"><b>Briefcase webinar registration</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
