@@ -17,7 +17,7 @@ Dashboards for every kind of data.
 | [E-commerce](e-commerce/) | Store sales and orders |
 | [Inventory](inventory/) | Stock and warehouses |
 | [Logistics](logistics/) | Shipping and fleet tracking |
-| [Project management](project-management/) | Projects, tasks and sprints · **1 design** |
+| [Project management](project-management/) | Projects, tasks and sprints · **2 designs** |
 | [HR](hr/) | People, hiring and payroll |
 | [Customer support](customer-support/) | Tickets and help desks |
 | [Healthcare](healthcare/) | Patients, clinics and medical data |

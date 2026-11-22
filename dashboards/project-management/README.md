@@ -5,10 +5,10 @@ Projects, tasks and sprints.
 
 Part of [Dashboards](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="ember-studio-workspace/"><img src="ember-studio-workspace/preview.gif" width="260" alt="Ember studio workspace"></a><br><a href="ember-studio-workspace/"><b>Ember studio workspace</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="ember-studio-workspace/"><img src="ember-studio-workspace/preview.gif" width="260" alt="Ember studio workspace"></a><br><a href="ember-studio-workspace/"><b>Ember studio workspace</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="lilac-team-room/"><img src="lilac-team-room/preview.gif" width="260" alt="Lilac team room"></a><br><a href="lilac-team-room/"><b>Lilac team room</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
