@@ -31,7 +31,7 @@ Websites and web pages.
 | [Waitlists](waitlists/) | Waitlist and early access pages |
 | [Link in bio](link-in-bio/) | Link-in-bio pages |
 | [Event sites](event-sites/) | Event and conference sites |
-| [Restaurant sites](restaurant-sites/) | Restaurant and cafe sites |
+| [Restaurant sites](restaurant-sites/) | Restaurant and cafe sites · **1 design** |
 | [Real estate sites](real-estate-sites/) | Real estate and property sites |
 | [Nonprofit sites](nonprofit-sites/) | Nonprofit and charity sites |
 | [Course sites](course-sites/) | Online course and school sites |
