@@ -10,7 +10,7 @@ Dashboards for every kind of data.
 | [SaaS metrics](saas-metrics/) | Revenue, churn and growth metrics |
 | [Sales and CRM](sales-crm/) | Sales pipelines and CRMs · **4 designs** |
 | [Marketing](marketing/) | Campaign and ad performance |
-| [Finance](finance/) | Finance and accounting · **1 design** |
+| [Finance](finance/) | Finance and accounting · **2 designs** |
 | [Banking](banking/) | Banking and money management · **2 designs** |
 | [Crypto](crypto/) | Crypto portfolios and exchanges |
 | [Trading](trading/) | Stock trading and markets |

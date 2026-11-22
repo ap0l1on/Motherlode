@@ -5,10 +5,10 @@ Finance and accounting.
 
 Part of [Dashboards](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="clover-lending-desk/"><img src="clover-lending-desk/preview.gif" width="260" alt="Clover lending desk"></a><br><a href="clover-lending-desk/"><b>Clover lending desk</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="clover-lending-desk/"><img src="clover-lending-desk/preview.gif" width="260" alt="Clover lending desk"></a><br><a href="clover-lending-desk/"><b>Clover lending desk</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="primrose-channel-overview/"><img src="primrose-channel-overview/preview.png" width="260" alt="Primrose channel overview"></a><br><a href="primrose-channel-overview/"><b>Primrose channel overview</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
