@@ -5,10 +5,10 @@ Bottom tab bars.
 
 Part of [UI](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="mint-wave-tabs/"><img src="mint-wave-tabs/preview.gif" width="260" alt="Mint wave tabs"></a><br><a href="mint-wave-tabs/"><b>Mint wave tabs</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="mint-wave-tabs/"><img src="mint-wave-tabs/preview.gif" width="260" alt="Mint wave tabs"></a><br><a href="mint-wave-tabs/"><b>Mint wave tabs</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="prism-spotlight-tabs/"><img src="prism-spotlight-tabs/preview.gif" width="260" alt="Prism spotlight tabs"></a><br><a href="prism-spotlight-tabs/"><b>Prism spotlight tabs</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
