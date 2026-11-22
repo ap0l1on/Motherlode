@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="motherlode:size" content="576x314"><meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6.8"><meta name="motherlode:still" content="3.6">
+<title>Palm midnight letterworks</title>
+<style>
+:root, [data-colorway="original"] {
+  --bg: #030704; --ink: #e1dcba; --base: #030503; --low: #010302; --high: #24251e; --a: #6cad42; --b: #4b84dd; --c: #ce68da; --d: #e872ab; --e: #d56e43; --f: #a99734; --g: #64a7a8; --h: #efe9d7;
+}
+[data-colorway="light"] {
+  --bg: #f7f4ec; --ink: #17253b; --base: #f1e9d9; --low: #c6c0b4; --high: #ffffff; --a: #3756a5; --b: #166e8a; --c: #28725b; --d: #876920; --e: #a15c30; --f: #a2345f; --g: #70509a; --h: #36496b;
+}
+[data-colorway="dark"] {
+  --bg: #0e111c; --ink: #f0f3ff; --base: #22283b; --low: #12172a; --high: #b1bdd4; --a: #7290ee; --b: #64bee0; --c: #69d0ac; --d: #e0c97a; --e: #e5a272; --f: #e689a9; --g: #b895ef; --h: #cee4ff;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --ink: #f2f2f2; --base: #252525; --low: #090909; --high: #c8c8c8; --a: #949494; --b: #bababa; --c: #e4e4e4; --d: #a4a4a4; --e: #808080; --f: #6e6e6e; --g: #c6c6c6; --h: #f6f6f6;
+}
+[data-colorway="ocean"] {
+  --bg: #031b2b; --ink: #e3f8ff; --base: #0d334d; --low: #071725; --high: #8ccfdf; --a: #467dc5; --b: #48b2d6; --c: #54d5b7; --d: #9bd89c; --e: #c1dcd8; --f: #929de2; --g: #6376bf; --h: #d7f4fa;
+}
+[data-colorway="matcha"] {
+  --bg: #16251e; --ink: #eff5de; --base: #2a3f2e; --low: #102319; --high: #c2d0a0; --a: #70a99a; --b: #7ab384; --c: #adbc74; --d: #d9ca70; --e: #e2a66a; --f: #c38b83; --g: #b4b588; --h: #deefd1;
+}
+[data-colorway="sunset"] {
+  --bg: #29172a; --ink: #fff3de; --base: #452237; --low: #21182a; --high: #e8b5a1; --a: #9e79ba; --b: #cb729d; --c: #e58089; --d: #f0a277; --e: #f6c57a; --f: #da7667; --g: #b36e9b; --h: #f9ddbb;
+}
+[data-colorway="berry"] {
+  --bg: #271124; --ink: #fcebf4; --base: #43213d; --low: #211329; --high: #e9b0c9; --a: #9b69ca; --b: #bf75c3; --c: #dd73ad; --d: #e58c96; --e: #eda1aa; --f: #ca75a4; --g: #8e5cad; --h: #f3d4ec;
+}
+* {box-sizing:border-box}
+html,body {margin:0;width:576px;height:314px;overflow:hidden;background:var(--bg);color:var(--ink)}
+svg {width:100%;height:100%;display:block;isolation:isolate;overflow:hidden}
+svg:focus-visible {outline:2px solid var(--ink);outline-offset:-3px}
+
+</style>
+</head><body>
+<svg viewBox="0 0 576 314" role="img" aria-label="Slender palms stand against a near-black coast while rising rockets burst into colorful New Year letters." xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
+<script>
+const ns = 'http://www.w3.org/2000/svg';
+const stage = document.querySelector('svg');
+const defs = stage.querySelector('defs');
+const W = stage.viewBox.baseVal.width, H = stage.viewBox.baseVal.height;
+const duration = Number(document.querySelector('[name="motherlode:loop"]').content);
+let seed = 1713580;
+function random() {
+  seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+  return seed / 4294967296;
+}
+const range = (a,b) => a + (b-a)*random();
+const polar = (x,y,r,angle) => [x+r*Math.cos(angle),y+r*Math.sin(angle)];
+const tau = Math.PI*2;
+const css = name => 'var(--'+name+')';
+function node(type, attrs={}, parent=stage) {
+  const element = document.createElementNS(ns,type);
+  for (const [name,value] of Object.entries(attrs)) element.setAttribute(name,value);
+  parent.append(element);
+  return element;
+}
+const group = (parent=stage,attrs={}) => node('g',attrs,parent);
+const path = (d,attrs={},parent=stage) => node('path',{d,...attrs},parent);
+const circle = (cx,cy,r,fill,parent=stage,attrs={}) => node('circle',{cx,cy,r,fill,...attrs},parent);
+const rect = (x,y,width,height,fill,parent=stage,attrs={}) => node('rect',{x,y,width,height,fill,...attrs},parent);
+const line = (x1,y1,x2,y2,stroke,width=1,parent=stage,attrs={}) => node('line',{x1,y1,x2,y2,stroke,'stroke-width':width,...attrs},parent);
+function words(content, x,y, attrs={},parent=stage) {
+  const text = node('text',{x,y,...attrs},parent);
+  text.textContent=content;
+  return text;
+}
+function gradient(id, stops, attrs={}, radial=false) {
+  const grad = node(radial?'radialGradient':'linearGradient', {id,...attrs},defs);
+  for (const [offset,tone,opacity=1] of stops) node('stop',{offset:offset+'%','stop-color':css(tone),'stop-opacity':opacity},grad);
+  return 'url(#'+id+')';
+}
+function soft(id, radius) {
+  const filter=node('filter',{id,x:'-50%',y:'-50%',width:'200%',height:'200%'},defs);
+  node('feGaussianBlur',{stdDeviation:radius},filter);
+  return 'url(#'+id+')';
+}
+function shape(points,closed=false) {
+  return points.map(([x,y],i)=>(i?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)).join(' ')+(closed?'Z':'');
+}
+const animations=[];
+function animate(element,frames,options={}) {
+  const motion=element.animate(frames,{duration:duration*1000,iterations:Infinity,easing:'linear',...options});
+  animations.push(motion);
+  return motion;
+}
+function tweenPath(element, outlines, period=duration, offset=0) {
+  element.setAttribute('d',outlines[0]);
+  animate(element,outlines.map(d=>({d:'path("'+d+'")'})),{duration:period*1000,delay:-offset*1000});
+}
+function origin(element,x,y) {element.style.transformOrigin=x+'px '+y+'px';}
+function at(event){
+  const bounds=stage.getBoundingClientRect();
+  return [(event.clientX-bounds.left)*W/bounds.width,(event.clientY-bounds.top)*H/bounds.height];
+}
+
+
+const night=gradient('midnight',[[0,'base'],[100,'bg']],{x2:'0%',y2:'100%'});rect(0,0,W,H,night);
+const crowns=group(),sparkles=group(),letters=group();
+const locations=[[86,179,-3],[112,130,15],[144,117,-9],[180,119,11],[225,173,-4],[272,88,-11],[299,163,9],[336,134,-17],[376,157,7],[421,132,11],[456,105,-8],[493,127,-16],[492,167,10]];
+for(const [i,[x,y,bend]] of locations.entries()){
+ const foot=x+bend;path('M'+(foot-3)+' 316Q'+(x+bend*.18)+' '+(y+82)+' '+x+' '+y+'Q'+(x+bend*.48)+' '+(y+85)+' '+(foot+1.4)+' 316Z',{fill:css('high'),'fill-opacity':.88},crowns);
+ for(let f=0;f<12;f++){
+  const angle=-Math.PI*1.01+f*Math.PI/10.7+range(-.12,.12),length=range(41,69),bendDown=range(22,52);
+  const endX=x+Math.cos(angle)*length,endY=y+Math.sin(angle)*length+bendDown*.41;
+  const midX=x+Math.cos(angle-.13)*length*.54,midY=y+Math.sin(angle-.13)*length*.62-5;
+  path('M'+x+' '+y+'Q'+midX+' '+midY+' '+endX+' '+endY,{fill:'none',stroke:css('high'),'stroke-width':1.05},crowns);
+  for(let k=1;k<12;k++){
+   const t=k/12,s=1-t,px=s*s*x+2*s*t*midX+t*t*endX,py=s*s*y+2*s*t*midY+t*t*endY;
+   for(const side of [-1,1]){
+    const q=8.2*(.85+Math.sin(t*Math.PI))*(1-t*.72),ang=angle+side*(.47+.68*(1-t));
+    path('M'+px+' '+py+'q'+Math.cos(ang)*q*.52+' '+(Math.sin(ang)*q*.54+.6)+' '+Math.cos(ang+.14)*q+' '+(Math.sin(ang)*q+2.8),{fill:'none',stroke:css('high'),'stroke-width':.93,opacity:.81},crowns);
+   }
+  }
+ }
+}
+const message=['HAPPY','NEW','YEAR'];const colors=['a','g','b','c','h','d','e','f'];
+for(const [wordIndex,word] of message.entries()) {
+ const starts=[.00,.31,.58];for(const [j,char] of [...word].entries()){
+  const px=75+j*(426/Math.max(word.length-1,1))+range(-7,7),py=110+Math.cos(j*1.4+wordIndex)*28;
+  const tone=colors[(j+wordIndex*2)%colors.length];const burst=group(letters),timing=starts[wordIndex]+j*.020;
+  const trails=group(burst);for(let k=0;k<20;k++){const a=range(0,tau),r=range(9,21);line(...polar(0,0,r*.3,a),...polar(0,0,r,a),css(tone),.67,trails,{opacity:range(.24,.72)});}
+  words(char,0,0,{'text-anchor':'middle','dominant-baseline':'middle','font-size':30,'font-family':'Georgia, serif','font-weight':700,fill:css(tone)},burst);
+  const wrap=group(sparkles);path('M'+(px-1)+' 314Q'+(px+5)+' '+(py+91)+' '+px+' '+py,{fill:'none',stroke:css('ink'),'stroke-width':.69,opacity:.56},wrap);
+  const t=Math.min(timing,.86);animate(burst,[{opacity:0,transform:'translate('+px+'px,'+(py+30)+'px) scale(.12)'},{opacity:0,transform:'translate('+px+'px,'+(py+30)+'px) scale(.12)',offset:t},{opacity:1,transform:'translate('+px+'px,'+py+'px) scale(1.05)',offset:t+.07},{opacity:.84,transform:'translate('+px+'px,'+(py-3)+'px) scale(1)',offset:t+.125},{opacity:0,transform:'translate('+px+'px,'+(py+2)+'px) scale(1.32)',offset:Math.min(.996,t+.19)},{opacity:0}]);
+  animate(wrap,[{opacity:0},{opacity:0,offset:t},{opacity:.8,offset:t+.026},{opacity:0,offset:t+.09},{opacity:0}]);
+ }
+}
+
+</script><script>
+const pick = () => {document.documentElement.dataset.colorway = location.hash.slice(1) || 'original';};
+pick();
+addEventListener('hashchange',pick);
+const time = new URLSearchParams(location.search).get('t');
+if (time !== null || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const seconds=time !== null ? Number(time) : Number(document.querySelector('[name="motherlode:still"]').content);
+  function freeze() {for (const animation of document.getAnimations()) {animation.pause();animation.currentTime=seconds*1000;}}
+  freeze();
+  addEventListener('load', freeze);
+}
+</script></body></html>

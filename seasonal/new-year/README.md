@@ -5,10 +5,10 @@ New Year designs.
 
 Part of [Seasonal](../).
 
-## Designs (2)
+## Designs (3)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="balloon-year-rollover/"><img src="balloon-year-rollover/preview.gif" width="260" alt="Balloon year rollover"></a><br><a href="balloon-year-rollover/"><b>Balloon year rollover</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ribbon-gift-reveal/"><img src="ribbon-gift-reveal/preview.gif" width="260" alt="Ribbon gift reveal"></a><br><a href="ribbon-gift-reveal/"><b>Ribbon gift reveal</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="balloon-year-rollover/"><img src="balloon-year-rollover/preview.gif" width="260" alt="Balloon year rollover"></a><br><a href="balloon-year-rollover/"><b>Balloon year rollover</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="palm-midnight-letterworks/"><img src="palm-midnight-letterworks/preview.gif" width="260" alt="Palm midnight letterworks"></a><br><a href="palm-midnight-letterworks/"><b>Palm midnight letterworks</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="ribbon-gift-reveal/"><img src="ribbon-gift-reveal/preview.gif" width="260" alt="Ribbon gift reveal"></a><br><a href="ribbon-gift-reveal/"><b>Ribbon gift reveal</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
