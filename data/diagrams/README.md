@@ -5,10 +5,10 @@ Diagrams.
 
 Part of [Data](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="mast-linework-study/"><img src="mast-linework-study/preview.png" width="260" alt="Mast linework study"></a><br><a href="mast-linework-study/"><b>Mast linework study</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="mast-linework-study/"><img src="mast-linework-study/preview.png" width="260" alt="Mast linework study"></a><br><a href="mast-linework-study/"><b>Mast linework study</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="three-node-web-stack/"><img src="three-node-web-stack/preview.png" width="260" alt="Three-node web stack"></a><br><a href="three-node-web-stack/"><b>Three-node web stack</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).

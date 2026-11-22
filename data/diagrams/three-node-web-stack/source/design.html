@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="501x324">
+  <meta name="motherlode:scale" content="1">
+  <title>Three-node web stack</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #ffffff; --surface: #f4f6fb; --rule: #393d44; --text: #15171b; --muted: #34383c; --gold: #a56600; --violet: #7532a4; --green: #136750; --cyan: #18778c; --red: #a62836; --blue: #145c9a; --orange: #ad4c14; --paper: #0b1014; --ink: #f5f3ee; --soft: #bbbfbc; --on: #ffffff; --panel: #0b1014; --glow: #58cce5; --ivory: #f5f3ee; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #eeeee6; --ink: #16231f; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #1a2633; --ink: #f0f3f7; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #1d1d1d; --ink: #f8f8f8; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #0e293b; --ink: #ecfbfa; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #203629; --ink: #eef5de; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #37231b; --ink: #fff1de; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #2a203c; --ink: #f7efff; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 501px; height: 324px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+  </style>
+</head>
+<body>
+  <svg class="art" viewBox="0 0 501 324" role="img" aria-labelledby="art-title art-desc" xmlns="http://www.w3.org/2000/svg"><title id="art-title">Three-node web stack</title><desc id="art-desc">A compact row of people, servers and storage shows how a web application connects, centered on a white landscape canvas.</desc>
+<rect x="0" y="0" width="501" height="324" rx="0" fill="var(--bg)" stroke="none" />
+    <g transform="translate(122 125) scale(0.78)">
+    <circle cx="0" cy="0" r="10" fill="var(--bg)" stroke="var(--text)" stroke-width="3"/>
+    <path d="M-18 28Q-17 11 0 11T18 28v1h-36z" fill="var(--bg)" stroke="var(--text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <g transform="translate(155 125) scale(0.78)">
+    <circle cx="0" cy="0" r="10" fill="var(--bg)" stroke="var(--text)" stroke-width="3"/>
+    <path d="M-18 28Q-17 11 0 11T18 28v1h-36z" fill="var(--bg)" stroke="var(--text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <g transform="translate(140 146) scale(1.0)">
+    <circle cx="0" cy="0" r="10" fill="var(--bg)" stroke="var(--text)" stroke-width="3"/>
+    <path d="M-18 28Q-17 11 0 11T18 28v1h-36z" fill="var(--bg)" stroke="var(--text)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <rect x="224" y="119" width="53" height="17" rx="5" fill="var(--text)" stroke="none" />
+    <rect x="230" y="122" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="240" y="122" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="250" y="122" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <circle cx="269" cy="126" r="1.5" fill="var(--bg)" stroke="none" stroke-width="1"/>
+    <rect x="224" y="141" width="53" height="17" rx="5" fill="var(--text)" stroke="none" />
+    <rect x="230" y="144" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="240" y="144" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="250" y="144" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <circle cx="269" cy="148" r="1.5" fill="var(--bg)" stroke="none" stroke-width="1"/>
+    <rect x="224" y="163" width="53" height="17" rx="5" fill="var(--text)" stroke="none" />
+    <rect x="230" y="166" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="240" y="166" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <rect x="250" y="166" width="5" height="10" rx="1" fill="var(--bg)" stroke="none" />
+    <circle cx="269" cy="170" r="1.5" fill="var(--bg)" stroke="none" stroke-width="1"/>
+    <path d="M183 153L214 153" fill="none" stroke="var(--muted)" stroke-width="0.8"/>
+    <path d="M211 151l4 2-4 2" fill="none" stroke="var(--muted)" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M284 153L315 153" fill="none" stroke="var(--muted)" stroke-width="0.8"/>
+    <path d="M312 151l4 2-4 2" fill="none" stroke="var(--muted)" stroke-width="0.8" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M347 116q19-9 34 0l13 11v26q0 15-20 24h-13q-19-7-22-24v-25z" fill="var(--blue)" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M349 132q17 11 34 0" fill="none" stroke="var(--on)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M349 142q17 11 34 0" fill="none" stroke="var(--on)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M349 152q17 11 34 0" fill="none" stroke="var(--on)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M349 132q0-8 17-8t17 8v19q0 11-17 11t-17-11z" fill="none" stroke="var(--on)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
+    <text x="141" y="196" font-family="Georgia, serif" font-size="9" font-weight="400" text-anchor="middle" fill="var(--text)" >Users</text>
+    <text x="251" y="196" font-family="Georgia, serif" font-size="9" font-weight="400" text-anchor="middle" fill="var(--text)" >Web server</text>
+    <text x="366" y="196" font-family="Georgia, serif" font-size="9" font-weight="400" text-anchor="middle" fill="var(--text)" >Database</text>
+    <text x="251" y="215" font-family="Georgia, serif" font-size="12" font-weight="400" text-anchor="middle" fill="var(--text)" >Simple Web Application</text>
+  </svg>
+  <script>
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
