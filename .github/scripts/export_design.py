@@ -372,28 +372,36 @@ def run_command(command, timeout):
 def make_gif(frames, output):
     """Use a shared palette and cumulative GIF ticks to preserve loop timing."""
     paths = sorted(p for p in frames.glob("frame-*") if p.suffix in (".png", ".jpg"))
+
+    def sample(index, width):
+        with Image.open(paths[index]) as image:
+            size = (width, max(1, round(image.height * width / image.width)))
+            image.draft("RGB", size)
+            return image.convert("RGB").resize(size, Image.Resampling.LANCZOS)
+
     # Start at 12 fps/600px; reduce palette, frame rate, then width if necessary.
     for width, step, colors in [(600, 2, 256), (600, 2, 128), (600, 3, 128),
                                 (600, 4, 64), (480, 4, 64), (360, 4, 64), (240, 6, 32)]:
         indices = list(range(0, len(paths), step))
-        samples = []
-        for index in indices:
-            with Image.open(paths[index]) as image:
-                size = (width, max(1, round(image.height * width / image.width)))
-                image.draft("RGB", size)
-                samples.append(image.convert("RGB").resize(size, Image.Resampling.LANCZOS))
         # Train on samples spread across the whole loop, not just the first frame.
-        palette_sheet = Image.new("RGB", (128 * min(16, len(samples)), 128))
-        for cell in range(min(16, len(samples))):
-            sample = samples[round(cell * (len(samples) - 1) / max(1, min(16, len(samples)) - 1))]
-            palette_sheet.paste(ImageOps.fit(sample, (128, 128)), (cell * 128, 0))
+        cells = min(16, len(indices))
+        palette_sheet = Image.new("RGB", (128 * cells, 128))
+        for cell in range(cells):
+            index = indices[round(cell * (len(indices) - 1) / max(1, cells - 1))]
+            with sample(index, width) as frame:
+                palette_sheet.paste(ImageOps.fit(frame, (128, 128)), (cell * 128, 0))
         palette = palette_sheet.quantize(colors=colors)
-        quantized = [sample.quantize(palette=palette, dither=Image.Dither.FLOYDSTEINBERG) for sample in samples]
+        # A long phone animation can have hundreds of large RGB previews.
+        # Retain only indexed frames while Pillow assembles the GIF.
+        quantized = []
+        for index in indices:
+            with sample(index, width) as frame:
+                quantized.append(frame.quantize(palette=palette, dither=Image.Dither.FLOYDSTEINBERG))
         boundaries = [round(index / FPS * 100) for index in [*indices, len(paths)]]
         durations = [(b - a) * 10 for a, b in zip(boundaries, boundaries[1:])]
         quantized[0].save(output, save_all=True, append_images=quantized[1:], duration=durations,
                           loop=0, disposal=2, optimize=False)
-        for image in [*samples, *quantized, palette_sheet, palette]:
+        for image in [*quantized, palette_sheet, palette]:
             image.close()
         if output.stat().st_size < GIF_LIMIT:
             return
