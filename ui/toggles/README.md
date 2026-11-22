@@ -3,4 +3,12 @@
 
 Switches and toggles.
 
-Part of [UI](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [UI](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="eight-ray-day-night/"><img src="eight-ray-day-night/preview.gif" width="260" alt="Eight-ray day and night toggle"></a><br><a href="eight-ray-day-night/"><b>Eight-ray day and night toggle</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
