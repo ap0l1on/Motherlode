@@ -1,0 +1,91 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="844x746">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.4">
+<meta name="motherlode:still" content="1">
+<title>Prismatic trainer picker</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #E6D7F4; --surface: #F7EDF5; --ink: #29484A; --muted: #3D5861;
+  --accent: #DCA8E9; --on-accent: #20383B; --second: #FCB0F5; --third: #A0D9F4;
+  --ivory: #F7E8F4; --shade: #998FDB; --outline: #DDC7E3; --good: #3E797C;
+  --hi: #FFFFFF; --lo: #182F36; --clear: transparent; --photo: none;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.74);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.84);
+  --arc-air-runner-ink: #1b1b1b; --sizes-ink: #0f0f0e; --content-caption-ink: #737371; --add-ink: #737371;
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(321deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.63);
+}
+*{box-sizing:border-box}html,body{width:844px;height:746px;margin:0;overflow:hidden}main{width:422px;height:373px;position:relative;transform:scale(2);transform-origin:0 0;overflow:hidden;background:radial-gradient(ellipse at 4% 26%,var(--second) 0 20%,var(--clear) 60%),radial-gradient(ellipse at 53% 108%,var(--third) 0 19%,var(--clear) 55%),linear-gradient(130deg,var(--accent),var(--ivory) 49%,var(--bg));font-family:Inter,sans-serif;color:var(--ink)}
+article,.thumb{background:color-mix(in srgb,var(--surface) 34%,var(--clear));border:1px solid color-mix(in srgb,var(--hi) 20%,var(--clear));backdrop-filter:blur(8px)}article{position:absolute;left:91px;top:36px;width:254px;height:288px;border-radius:20px;box-shadow:6px 9px 19px color-mix(in srgb,var(--shade) 10%,var(--clear));text-align:center}h1{margin:47px 0 0 16px;font-size:15px;font-weight:760;color:var(--ink)}.thumbs{position:absolute;left:55px;top:64px;display:grid;gap:5px}.thumb{width:73px;height:74px;border-radius:19px;display:grid;place-items:center}.shoe{background-image:url(original-trainer-atlas.webp);background-size:300% 100%;background-position:var(--pos) center;filter:var(--photo);pointer-events:none}.thumb i{width:58px;height:58px}.display{position:absolute;left:129px;top:121px;width:197px;height:111px;cursor:zoom-in;isolation:isolate}.display .shoe{position:absolute;width:165px;height:165px;left:17px;top:-36px;transform-origin:48% 55%}.display:focus-visible{outline:1px solid var(--ink)}
+.sizes{position:absolute;left:145px;top:251px;display:flex;align-items:center;gap:5px;font-size:12px;font-weight:640}.sizes span{margin-right:2px}.sizes button{border:0;background:var(--hi);color:var(--ink);width:22px;height:23px;border-radius:3px;font:710 10px Inter,sans-serif}.sizes button[aria-checked=true]{box-shadow:0 2px 5px color-mix(in srgb,var(--muted) 30%,var(--clear));transform:translateY(-3px)}button{cursor:pointer}.add{position:absolute;left:172px;top:306px;width:112px;height:39px;border:0;border-radius:20px;background:var(--hi);color:var(--ink);font:520 10px Inter,sans-serif}.thumb:focus-visible,.sizes button:focus-visible,.add:focus-visible{outline:1px solid var(--ink);outline-offset:2px}
+
+[data-colorway="dark"] .ink-arc-air-runner { color: var(--arc-air-runner-ink); }
+[data-colorway="dark"] .ink-sizes { color: var(--sizes-ink); }
+[data-colorway="dark"] main > div.sizes > button:nth-of-type(1),
+[data-colorway="dark"] main > div.sizes > button:nth-of-type(2),
+[data-colorway="dark"] main > div.sizes > button:nth-of-type(3),
+[data-colorway="dark"] main > div.sizes > button:nth-of-type(4) { color: var(--content-caption-ink); }
+[data-colorway="dark"] .ink-add { color: var(--add-ink); }
+</style></head><body><main><article><h1 class="ink-arc-air-runner">Arc Air Runner</h1></article><div class="thumbs" aria-label="Color options"></div><div class="display" tabindex="0" role="img" aria-label="Current trainer"></div><div class="sizes" role="radiogroup" aria-label="Shoe size"><span class="ink-sizes">Size</span></div><button type="button" class="add ink-add">Add To Cart</button></main><script>
+const $=s=>document.querySelector(s),names=['Citrus tide','Lime foam','Mint flare'],ordering=[1,0,2],motions=[],stages=[[0,0,0],[.20,0,0],[.27,2,0],[.40,2,0],[.46,0,0],[.56,0,1],[.64,0,1],[.70,2,1],[.79,2,0],[.83,1,0],[.91,1,0],[.95,0,0],[1,0,0]],shoes=[];let current=0,cart=0,manual=false;
+function bg(el,i){el.style.setProperty('--pos',i*50+'%');}
+function zoom(on){shoes.forEach(s=>s.style.transform=on?'rotate(-13deg) scale(1.36)':'none');}
+function selectShoe(i){manual=true;motions.splice(0).forEach(a=>a.cancel());current=i;shoes.forEach((el,n)=>el.style.opacity=n===i?'1':'0');$('.display').setAttribute('aria-label',names[i]);$('.add').textContent='Add To Cart';}
+ordering.forEach(i=>{const b=document.createElement('button');b.className='thumb';b.type='button';b.setAttribute('aria-label',names[i]);b.innerHTML='<i class="shoe"></i>';bg(b.firstChild,i);b.onpointerenter=()=>selectShoe(i);b.onclick=()=>selectShoe(i);b.onfocus=()=>selectShoe(i);$('.thumbs').append(b);});
+for(let i=0;i<3;i++){const el=document.createElement('span');el.className='shoe';bg(el,i);$('.display').append(el);shoes.push(el);motions.push(el.animate(stages.map(([offset,idx,z])=>({offset,opacity:idx===i?1:0,transform:z?'rotate(-13deg) scale(1.36)':'rotate(0deg) scale(1)',easing:'ease-in-out'})),{duration:7400,iterations:Infinity}));}
+const sizes=$('.sizes');[7,8,9,10].forEach((n,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('role','radio');b.setAttribute('aria-checked',String(i===3));b.textContent=n;b.onclick=()=>{sizes.querySelectorAll('button').forEach(v=>v.setAttribute('aria-checked',String(v===b)));$('.add').textContent='Add To Cart';};sizes.append(b);});
+const display=$('.display');display.onpointerenter=display.onfocus=()=>{selectShoe(current);zoom(true);};display.onpointerleave=display.onblur=()=>zoom(false);$('.add').onclick=e=>{e.target.textContent='Added · '+(++cart);};if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))selectShoe(0);
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
