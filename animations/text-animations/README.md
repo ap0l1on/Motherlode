@@ -3,4 +3,12 @@
 
 Animated text.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="ember-ink-type-reveal/"><img src="ember-ink-type-reveal/preview.gif" width="260" alt="Ember ink type reveal"></a><br><a href="ember-ink-type-reveal/"><b>Ember ink type reveal</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

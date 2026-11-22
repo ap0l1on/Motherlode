@@ -1,0 +1,147 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="576x342">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.5">
+<meta name="motherlode:still" content="2.9">
+<title>Ember ink type reveal</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #FCFCFC; --surface: #192733; --ink: #121212; --muted: #DDCFC4;
+  --accent: #ED953E; --on-accent: #241712; --second: #EDAD4B; --third: #526444;
+  --ivory: #F6CD86; --shade: #393E30; --outline: #829485; --good: #82916A;
+  --hi: #FFFFFF; --lo: #081015; --clear: transparent;
+}
+[data-colorway="light"] {
+  --bg: #fcf6f1; --surface: #a13955; --ink: #111111; --muted: #ffffff;
+  --accent: #b85a76; --on-accent: #78253d; --second: #e39394; --third: #2a6651;
+  --ivory: #e39394; --shade: #78253d; --outline: #2a6651; --good: #2a6651;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --bg: #111322; --surface: #b75086; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #ea899f; --on-accent: #6b3f70; --second: #ffcfb6; --third: #83ab97;
+  --ivory: #ffcfb6; --shade: #6b3f70; --outline: #83ab97; --good: #83ab97;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --bg: #121212; --surface: #878787; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #bebebe; --on-accent: #505050; --second: #f1f1f1; --third: #9d9d9d;
+  --ivory: #f1f1f1; --shade: #505050; --outline: #9d9d9d; --good: #9d9d9d;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="sunset"] {
+  --bg: #21101f; --surface: #b95161; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #ec825d; --on-accent: #723355; --second: #ffdd9e; --third: #ab9976;
+  --ivory: #ffdd9e; --shade: #723355; --outline: #ab9976; --good: #ab9976;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="ocean"] {
+  --bg: #071824; --surface: #348eab; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #5bc8d4; --on-accent: #204e70; --second: #c5f1e6; --third: #65b5a6;
+  --ivory: #c5f1e6; --shade: #204e70; --outline: #65b5a6; --good: #65b5a6;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="iris"] {
+  --bg: #121026; --surface: #7758bf; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #ac9eff; --on-accent: #4b3d76; --second: #eee0ff; --third: #7ea1b5;
+  --ivory: #eee0ff; --shade: #4b3d76; --outline: #7ea1b5; --good: #7ea1b5;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+[data-colorway="matcha"] {
+  --bg: #101c15; --surface: #71916a; --ink: #f3f1f4; --muted: #ffffff;
+  --accent: #b4c989; --on-accent: #3e563d; --second: #eaf2c7; --third: #91b395;
+  --ivory: #eaf2c7; --shade: #3e563d; --outline: #91b395; --good: #91b395;
+  --hi: #ffffff; --lo: #000000; --clear: transparent;
+}
+
+* { box-sizing:border-box; }
+html,body { margin:0; width:576px; height:342px; overflow:hidden; }
+body { background:var(--surface); font-family:Inter,Arial,sans-serif; }
+.scene { position:relative; display:block; padding:0; border:0; width:576px; height:342px; transform:none; transform-origin:top left; overflow:hidden; color:var(--ink); background:linear-gradient(115deg,color-mix(in srgb,var(--third) 18%,var(--lo)),var(--surface) 86%); font:inherit; cursor:pointer; }
+.scene > svg { display:block; width:100%; height:100%; }
+.paper-title { fill:var(--ink); font-family:Inter,Arial,sans-serif; font-size:105px; font-weight:760; letter-spacing:-3px; }
+.message { font-family:Inter,Arial,sans-serif; font-size:29px; font-weight:820; letter-spacing:-.9px; }
+.sub { fill:var(--muted); font-family:Inter,Arial,sans-serif; font-size:13px; }
+.scene:focus-visible { outline:2px solid var(--accent); outline-offset:-3px; }
+:root[data-colorway="mono"] { filter:grayscale(1); }
+
+</style></head><body>
+<button class="scene" type="button" aria-label="Replay Magic paper burn"><svg viewBox="0 0 576 342" role="img" aria-label="The word Magic burns away to reveal an editorial message">
+<defs><linearGradient id="lit-letter"><stop stop-color="var(--accent)"/><stop offset=".7" stop-color="var(--second)"/><stop offset="1" stop-color="var(--ivory)"/></linearGradient>
+<filter id="inverse-alpha" filterUnits="userSpaceOnUse" x="0" y="0" width="576" height="342"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -1 1"/></filter>
+<filter id="smoke-soft" x="-75%" y="-75%" width="250%" height="250%"><feGaussianBlur stdDeviation="12"/></filter>
+<filter id="cinder-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4"/></filter>
+<mask id="paper-still" maskUnits="userSpaceOnUse" x="0" y="0" width="576" height="342" style="mask-type:alpha"><g filter="url(#inverse-alpha)"><g class="holes"/></g></mask>
+</defs><g class="message-page"><text x="288" y="198" text-anchor="middle" font-size="92" font-weight="800" fill="var(--lo)" opacity=".16">Magic</text><text class="message" x="288" y="152" textLength="402" lengthAdjust="spacingAndGlyphs" text-anchor="middle" fill="url(#lit-letter)">We build what people feel</text><text class="sub" x="288" y="190" text-anchor="middle">Not just sites. Full experiences.</text></g>
+<g class="paper" mask="url(#paper-still)"><rect width="576" height="342" fill="var(--bg)"/><g class="smudge" filter="url(#smoke-soft)"></g><text class="paper-title" x="288" y="200" text-anchor="middle" textLength="294" lengthAdjust="spacingAndGlyphs">Magic</text><g class="soot" fill="var(--shade)" stroke="var(--shade)" stroke-width="29" filter="url(#smoke-soft)"></g><g class="rim" fill="var(--lo)" stroke="var(--lo)" stroke-width="14" filter="url(#cinder-soft)"></g><g class="coal" fill="var(--lo)" stroke="var(--lo)" stroke-width="4"></g><g class="embers" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-dasharray="14 49 2 12 1 21 7 34"></g><g class="gold" fill="none" stroke="var(--ivory)" stroke-width="1.15" stroke-dasharray="4 81 2 47 1 15"></g></g>
+</svg></button><script>
+
+const svgNS='http://www.w3.org/2000/svg';
+const tracks=[];
+const clipTime=7500;
+const make=(tag,attributes)=>{const element=document.createElementNS(svgNS,tag);Object.entries(attributes).forEach(([name,value])=>element.setAttribute(name,value));return element;};
+function outline(rx,ry,seed){
+ const coords=[];
+ for(let i=0;i<128;i++){
+   const a=i/128*Math.PI*2;
+   const wave=1+.113*Math.sin(3*a+seed*.73)+.083*Math.cos(5*a+seed*.14)+.043*Math.sin(9*a+seed*.31)+.022*Math.cos(15*a-.25*seed)+.012*Math.sin(28*a+seed);
+   coords.push((rx*wave*Math.cos(a)).toFixed(2)+','+(ry*wave*Math.sin(a)).toFixed(2));
+ }
+ return 'M'+coords.join(' L')+'Z';
+}
+const spots=[
+ {x:438,y:38,rx:160,ry:90,seed:3,route:[[0,.001],[1.7,.001],[2.04,.18],[2.45,.62],[2.9,1.04],[3.52,1.91],[4.1,2.8],[4.6,5.2],[7.5,5.2]]},
+ {x:177,y:247,rx:97,ry:71,seed:19,route:[[0,.001],[3.04,.001],[3.23,.30],[3.55,1.48],[3.91,1.65],[4.6,4.9],[7.5,4.9]]},
+ {x:587,y:276,rx:81,ry:72,seed:10,route:[[0,.001],[3.10,.001],[3.41,.39],[3.71,1.09],[4.1,1.28],[4.58,4],[7.5,4]]},
+ {x:22,y:357,rx:73,ry:45,seed:8,route:[[0,.001],[3.02,.001],[3.49,.32],[3.79,1.53],[4.65,4.2],[7.5,4.2]]},
+ {x:-20,y:65,rx:58,ry:49,seed:16,route:[[0,.001],[3.22,.001],[3.79,.34],[4.08,1.04],[4.54,3.2],[7.5,3.2]]},
+ {x:411,y:328,rx:69,ry:47,seed:23,route:[[0,.001],[3.6,.001],[3.82,.36],[4.17,.89],[4.55,3],[7.5,3]]}
+];
+const layers=['holes','soot','rim','coal','embers','gold'];
+for(const spot of spots){
+ const pathData=outline(spot.rx,spot.ry,spot.seed);
+ for(const layer of layers){
+   const position=make('g',{transform:'translate('+spot.x+' '+spot.y+')'}), scaler=make('g',{}), path=make('path',{d:pathData,'vector-effect':'non-scaling-stroke'});
+   if(layer==='holes')path.setAttribute('fill','var(--ink)');
+   else if(layer==='embers'||layer==='gold')path.setAttribute('stroke-dashoffset',spot.seed*13);
+   position.append(scaler);scaler.append(path);document.querySelector('.'+layer).append(position);
+   const keys=spot.route.map(([seconds,s])=>({offset:seconds/7.5,transform:'scale('+s+')',opacity:s<.005?0:1,easing:'cubic-bezier(.35,0,.55,1)'}));
+   tracks.push(scaler.animate(keys,{duration:clipTime,iterations:Infinity,fill:'both'}));
+ }
+}
+const smokeSpots=[
+ [427,96,37,31,13,0,1.60],[450,117,32,27,21,.18,1.67],[406,72,29,23,7,.23,1.72],[383,32,22,37,34,.28,1.72],
+ [164,265,54,57,11,2.3,2.88],[136,259,40,43,28,2.38,2.99],[107,252,39,24,8,2.37,3.02],[83,270,25,11,63,2.68,3.31],
+ [205,255,40,34,31,2.45,3.10],[278,273,32,28,29,2.43,3.20],[15,339,60,27,4,2.26,3.04],[585,273,20,19,10,2.75,3.4],
+ [23,47,29,45,71,3.12,3.85],[426,310,38,28,70,3.5,4.11]
+];
+for(const [x,y,rx,ry,seed,begin,end] of smokeSpots){
+ const position=make('g',{transform:'translate('+x+' '+y+')'}),shape=make('path',{d:outline(rx,ry,seed),fill:[11,28,4,13,21].includes(seed)?'var(--lo)':seed%3?'var(--shade)':'var(--third)'});
+ position.append(shape);document.querySelector('.smudge').append(position);
+ const mid=(begin+end)/2;
+ const states=[[0,0,.12],[begin,0,.18],[mid,.28,.68],[end,.91,1.19],[Math.min(6.5,end+.6),.98,1.82],[7.5,.98,1.82]];
+ tracks.push(shape.animate(states.map(([time,opacity,scale])=>({offset:time/7.5,opacity,transform:'scale('+scale+')',easing:'ease-in-out'})),{duration:clipTime,iterations:Infinity,fill:'both'}));
+}
+const scene=document.querySelector('.scene');
+const reset=make('g',{'aria-hidden':'true',opacity:0});
+reset.append(make('rect',{width:576,height:342,fill:'var(--bg)'}));
+const title=document.querySelector('.paper-title').cloneNode(true);reset.append(title);scene.querySelector('svg').append(reset);
+tracks.push(reset.animate([{offset:0,opacity:0},{offset:.93,opacity:0},{offset:1,opacity:1}],{duration:clipTime,iterations:Infinity,fill:'both'}));
+scene.addEventListener('click',()=>tracks.forEach(animation=>{animation.currentTime=0;animation.play();}));
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))tracks.forEach(animation=>{animation.pause();animation.currentTime=0;});
+
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

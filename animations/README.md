@@ -14,7 +14,7 @@ Animation for screens, the web and beyond.
 | [Success animations](success-animations/) | Checkmarks, confetti and celebrations |
 | [Onboarding animations](onboarding-animations/) | Animated onboarding and walkthroughs |
 | [Cursor effects](cursor-effects/) | Cursor trails and effects · **10 designs** |
-| [Text animations](text-animations/) | Animated text |
+| [Text animations](text-animations/) | Animated text · **1 design** |
 | [Logo animations](logo-animations/) | Animated logos for apps and websites |
 | [Lottie](lottie/) | Lottie files |
 | [Rive](rive/) | Rive animations |
