@@ -1,0 +1,122 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x600">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="7.6">
+<meta name="motherlode:still" content="3">
+<title>Rocket download</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --sky: #FCFDFB; --haze: #FDE8E9; --wash: #E99291; --hot: #BF0E10;
+  --floor: #941C23; --ink: #160C0C; --muted: #4A1C1D; --tile: #FFFCF9;
+  --tile-ink: #251816; --hull: #CCD4D4; --steel: #6B7477; --glass: #34474A;
+  --fin: #382C2C; --flame: #FF8A12; --flame-hi: #FFF8AB; --done: #087643;
+  --hi: #FFFFFF; --lo: #241216; --clear: transparent;
+}
+[data-colorway="light"] {
+  --sky: #FFFDF9; --haze: #FFF1EB; --wash: #F2BDAD; --hot: #D26C57;
+  --floor: #AD554F; --ink: #2D1918; --muted: #54322C; --tile: #FFFFFC;
+  --tile-ink: #34211D; --hull: #CAD2D4; --steel: #697477; --glass: #284651;
+  --fin: #663E35; --flame: #FF932F; --flame-hi: #FFF6B0; --done: #197348;
+  --hi: #FFFFFF; --lo: #291714; --clear: transparent;
+}
+[data-colorway="dark"] {
+  --sky: #242332; --haze: #292839; --wash: #4B3651; --hot: #702F49;
+  --floor: #512B45; --ink: #FFF3EC; --muted: #F4D5D9; --tile: #ECE3E2;
+  --tile-ink: #322332; --hull: #BCCDD1; --steel: #657781; --glass: #335163;
+  --fin: #93566E; --flame: #FF964C; --flame-hi: #FFF4AB; --done: #85E6AB;
+  --hi: #FFFFFF; --lo: #12101A; --clear: transparent;
+}
+[data-colorway="mono"] {
+  --sky: #FAFAFA; --haze: #EAEAEA; --wash: #B6B6B6; --hot: #888888;
+  --floor: #646464; --ink: #121212; --muted: #292929; --tile: #FEFEFE;
+  --tile-ink: #131313; --hull: #CCCCCC; --steel: #787878; --glass: #424242;
+  --fin: #393939; --flame: #999999; --flame-hi: #EBEBEB; --done: #343434;
+  --hi: #FFFFFF; --lo: #171717; --clear: transparent;
+}
+[data-colorway="tangerine"] {
+  --sky: #FFFCF0; --haze: #FFECCD; --wash: #F4C081; --hot: #D9863E;
+  --floor: #B36329; --ink: #2E2115; --muted: #553419; --tile: #FFFBED;
+  --tile-ink: #33251A; --hull: #D9D4C7; --steel: #898275; --glass: #514D46;
+  --fin: #6B4931; --flame: #FF8C22; --flame-hi: #FFF4A7; --done: #276B41;
+  --hi: #FEFFFF; --lo: #302015; --clear: transparent;
+}
+[data-colorway="lagoon"] {
+  --sky: #F1FFFB; --haze: #D5F7F4; --wash: #8AD8D1; --hot: #3AA8A8;
+  --floor: #17828F; --ink: #102B31; --muted: #234C54; --tile: #F1FFFC;
+  --tile-ink: #14383E; --hull: #D1DED8; --steel: #698682; --glass: #265C61;
+  --fin: #315A57; --flame: #FFAB55; --flame-hi: #FFF3AA; --done: #175C3C;
+  --hi: #FFFFFF; --lo: #132B32; --clear: transparent;
+}
+[data-colorway="orchid"] {
+  --sky: #FDF9FF; --haze: #F4E9FB; --wash: #D8B3E4; --hot: #AB7BBE;
+  --floor: #816392; --ink: #2B1632; --muted: #512D58; --tile: #FFF9FF;
+  --tile-ink: #412649; --hull: #DED1E1; --steel: #87758F; --glass: #513A62;
+  --fin: #715477; --flame: #FF9B64; --flame-hi: #FFF2BA; --done: #287550;
+  --hi: #FFFFFF; --lo: #2A192F; --clear: transparent;
+}
+[data-colorway="pine"] {
+  --sky: #F9FDF3; --haze: #EAF3D6; --wash: #C4D2A0; --hot: #93AA72;
+  --floor: #728852; --ink: #1E2C18; --muted: #35442B; --tile: #FEFFF2;
+  --tile-ink: #283823; --hull: #D6DFCD; --steel: #727F6B; --glass: #3D5544;
+  --fin: #4B664C; --flame: #F9A84E; --flame-hi: #FFF0A8; --done: #1D5F3A;
+  --hi: #FFFFF8; --lo: #17271A; --clear: transparent;
+}
+@property --amount { syntax:'<integer>'; inherits:false; initial-value:0; }
+* { box-sizing:border-box; }
+html,body { margin:0; width:864px; height:600px; overflow:hidden; }
+main { position:relative; width:576px; height:400px; transform:scale(1.5); transform-origin:top left; overflow:hidden; font-family:Inter,sans-serif; color:var(--ink); background:
+  radial-gradient(ellipse 34% 29% at 70% 76%,color-mix(in srgb,var(--wash) 64%,var(--clear)),var(--clear) 93%),
+  linear-gradient(180deg,var(--sky) 3%,var(--haze) 38%,var(--wash) 59%,var(--hot) 77%,var(--floor) 100%); }
+.copy { position:absolute; top:190px; left:39px; width:360px; text-align:center; }
+h1 { margin:0; font-size:24px; line-height:32px; font-weight:900; letter-spacing:-.45px; text-align:center;transform:scaleX(1.055); }
+p { margin:5px 0; font-size:9.6px; line-height:15px; color:var(--muted); font-weight:540; }
+.count { display:block; font-size:13px; font-weight:860; color:var(--ink); counter-reset:progress var(--amount); animation:count 7.6s linear infinite; }
+.count::after { content:counter(progress) '%'; }
+@keyframes count { 0%,30%{--amount:0;opacity:0} 32%{--amount:0;opacity:1} 39.5%{--amount:13} 79%{--amount:80} 89%,96%{--amount:100;opacity:1} 99%,100%{--amount:100;opacity:0} }
+.launch { position:absolute; left:172px; top:277px; width:114px; height:35px; border:0; border-radius:2px; padding:0; color:var(--tile-ink); background:var(--tile); font:700 11px Inter,sans-serif; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:5px; animation:button-face 7.6s linear infinite; }
+.launch svg,.dock svg { width:13px; height:13px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.launch:focus-visible { outline:2px solid var(--ink); outline-offset:4px; }
+@keyframes button-face { 0%,23%{opacity:1} 29%{opacity:1;color:var(--clear)} 34%,96%{opacity:0;color:var(--clear)} 100%{opacity:1} }
+.dock { position:absolute; top:12px; left:471px; width:24px; height:24px; color:var(--tile-ink); border-radius:4px; border:1px solid color-mix(in srgb,var(--tile-ink) 9%,var(--clear)); display:grid; place-items:center; background:color-mix(in srgb,var(--tile) 60%,var(--clear)); }
+.dock svg { grid-area:1/1; animation:tray 7.6s linear infinite; }
+.dock .check { width:24px; height:24px; color:var(--done); stroke-width:3; animation:done 7.6s linear infinite; }
+@keyframes tray { 0%,84%,100%{opacity:1} 89%,96%{opacity:0} } @keyframes done { 0%,86%,100%{opacity:0;transform:scale(.6)} 90%,96%{opacity:1;transform:scale(1)} }
+.rocket { position:absolute; left:181px; top:276px; width:90px; height:34px; transform-origin:62% 50%; pointer-events:none; animation:flight 7.6s linear infinite; filter:drop-shadow(0 1px 2px color-mix(in srgb,var(--lo) 44%,var(--clear))); }
+@keyframes flight {
+  0%,22%{opacity:0;transform:translate(0,0) scale(.77)}
+  26%{opacity:1;transform:translate(0,0) scale(.86)} 32%{transform:translate(18px,3px) scale(.9)}
+  39.5%{transform:translate(123px,7px) rotate(0deg)} 47%{transform:translate(193px,-1px) rotate(-21deg)}
+  55%{transform:translate(239px,-39px) rotate(-64deg)} 61%{transform:translate(246px,-91px) rotate(-89deg)}
+  73%{transform:translate(246px,-187px) rotate(-90deg)} 81%{opacity:1;transform:translate(246px,-251px) rotate(-90deg) scale(.76)}
+  85%,100%{opacity:0;transform:translate(246px,-270px) rotate(-90deg) scale(.31)} }
+</style></head><body><main aria-label="Rocket download demonstration">
+<div class="copy"><h1>Download Now</h1><p>Get the latest version of Orbit — fast, secure and free.</p><span class="count" aria-hidden="true"></span></div>
+<span class="dock"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v4h16v-4"/></svg><svg class="check" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 12 5 5L20 5"/></svg></span>
+<button class="launch" type="button" aria-label="Replay download launch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 15v4h16v-4"/></svg>Download</button>
+<svg class="rocket" viewBox="0 0 96 34" aria-hidden="true"><defs>
+<linearGradient id="body" x2="0" y2="1"><stop style="stop-color:var(--steel)"/><stop offset=".28" style="stop-color:var(--hi)"/><stop offset=".57" style="stop-color:var(--hull)"/><stop offset="1" style="stop-color:var(--steel)"/></linearGradient>
+<radialGradient id="jet" cx=".8" cy=".5" r=".8"><stop style="stop-color:var(--hi)"/><stop offset=".37" style="stop-color:var(--flame-hi)"/><stop offset=".69" style="stop-color:var(--flame)"/><stop offset="1" style="stop-color:var(--flame);stop-opacity:0"/></radialGradient>
+</defs><path d="m0 17 14-5-3-3 18 2 5-4 7 10-7 10-4-4-17 2 4-4Z" fill="url(#jet)"/><path d="m36 9 12-8 13 1 4 8m-29 14 12 9 13-1 4-9" fill="var(--fin)"/>
+<path d="M37 8q27-3 40 1l12 8-12 8q-19 4-40 0l-5-8Z" fill="url(#body)" stroke="var(--steel)" stroke-width=".7"/><path d="M76 9q8 1 16 8-8 7-16 8 6-8 0-16" fill="var(--glass)"/><circle cx="66" cy="16" r="4.3" fill="var(--steel)"/><circle cx="66" cy="16" r="2.8" fill="var(--glass)"/>
+<rect x="36" y="8" width="4" height="17" rx="1.2" fill="var(--fin)"/></svg>
+</main><script>
+const tracks=()=>document.getAnimations();const fixed=new URLSearchParams(location.search).has('t');
+function restart(){tracks().forEach(track=>{track.currentTime=0;track.play();});}
+document.querySelector('button').addEventListener('click',restart);
+document.querySelector('main').addEventListener('click',event=>{if(!event.target.closest('button'))restart();});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!fixed)tracks().forEach(track=>{track.pause();track.currentTime=0;});
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>
