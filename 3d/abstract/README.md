@@ -3,4 +3,12 @@
 
 Abstract 3D art.
 
-Part of [3D](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [3D](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="nebula-glass-planetoid/"><img src="nebula-glass-planetoid/preview.gif" width="260" alt="Nebula glass planetoid"></a><br><a href="nebula-glass-planetoid/"><b>Nebula glass planetoid</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
