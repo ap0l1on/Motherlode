@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="488x322">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="8">
+  <meta name="motherlode:still" content="1.1">
+  <title>Copper spiral galaxy</title>
+  <style>
+:root, [data-colorway="original"] { --background: #0c080d; --shade: #512839; --middle: #a64b49; --bright: #ec834d; --highlight: #ffca76; --leaf: #95656f; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 488px; height: 322px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 488 322" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Copper spiral galaxy</title>
+    <desc id="description">Copper starlight sweeps through curved spiral arms as the view dives toward an incandescent galactic core.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 8 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    let state = 154723;
+    function random() {
+      state = (Math.imul(1664525, state) + 1013904223) >>> 0;
+      return state / 4294967296;
+    }
+    const normal = () => Math.sqrt(-2 * Math.log(Math.max(0.00001, random()))) *
+                         Math.cos(2 * Math.PI * random());
+    const colors = ["shade", "middle", "bright", "highlight"];
+    const stars = colors.map(() => [[], [], []]);
+    // The broad dusty lanes and fine core use different radial distributions.
+    for (let i = 0; i < 41000; i++) {
+      const fraction = random();
+      const radius = fraction < 0.35 ? 0.87 * random() ** 1.75 : 1.06 * Math.sqrt(random());
+      const scattered = random() < 0.35;
+      const arm = Math.floor(random() * 3);
+      const theta = scattered ? random() * 2 * Math.PI :
+        arm * 2 * Math.PI / 3 + 5.7 * Math.pow(radius, 0.77) + 0.18 * normal();
+      const spread = scattered ? 5 : 3.4 + 9 * radius;
+      const x = Math.cos(theta) * radius * 206 + normal() * spread;
+      const y = Math.sin(theta) * radius * 206 + normal() * spread;
+      const brilliance = random();
+      const tone = radius < 0.14 && brilliance > 0.24 ? 3 :
+                   (!scattered && radius < 0.68 && brilliance > 0.65 ? 2 :
+                    (brilliance > (scattered ? 0.91 : 0.55) ? 1 : 0));
+      const size = brilliance > 0.993 ? 2 : brilliance > 0.76 ? 1 : 0;
+      stars[tone][size].push("M" + x.toFixed(1) + " " + y.toFixed(1) + "h.02");
+    }
+    const center = element("g", {transform: "translate(244 161)"});
+    const orbit = element("g", {}, center);
+    const definitions = element("defs", {});
+    const core = element("radialGradient", {id: "core"}, definitions);
+    for (const [offset, color, strength] of [[0,"highlight",0.57],[0.12,"bright",0.33],
+        [0.36,"middle",0.19],[1,"shade",0]]) {
+      element("stop", {offset, "stop-color": "var(--" + color + ")", "stop-opacity": strength}, core);
+    }
+    const haze = element("filter", {id: "dust", x: "-40%", y: "-40%", width: "180%", height: "180%"}, definitions);
+    element("feGaussianBlur", {stdDeviation: 3.8}, haze);
+    for (let arm = 0; arm < 3; arm++) {
+      const d = [];
+      for (let k = 1; k <= 140; k++) {
+        const r = k / 140;
+        const angle = arm * 2 * Math.PI / 3 + 5.7 * r ** .77;
+        d.push((k === 1 ? "M" : "L") + (Math.cos(angle)*206*r).toFixed(2) + " " + (Math.sin(angle)*206*r).toFixed(2));
+      }
+      element("path", {d: d.join(" "), stroke: "var(--middle)", "stroke-width": 7.8,
+        opacity: .45, filter: "url(#dust)", fill: "none"}, orbit);
+      element("path", {d: d.join(" "), stroke: "var(--bright)", "stroke-width": 1.2,
+        opacity: .13, fill: "none"}, orbit);
+    }
+    element("circle", {r: 97, fill: "url(#core)"}, orbit);
+    for (let tone = 0; tone < colors.length; tone++) for (let size = 0; size < 3; size++) {
+      if (!stars[tone][size].length) continue;
+      element("path", {d: stars[tone][size].join(""), stroke: "var(--" + colors[tone] + ")",
+        "stroke-width": [0.82, 1.36, 2.12][size], "stroke-linecap": "round",
+        opacity: [0.71, 0.83, 0.94, 0.99][tone], fill: "none"}, orbit);
+    }
+    // Keep the motion continuous through the dive and between the two wide shots.
+    const stops = [[0, 0.66, 0.92, -0.52], [.19, 1.30, .92, -.05],
+      [.43, 2.34, .67, .42], [.60, 2.78, .32, .78], [.77, 1.63, .62, .45],
+      [1, .66, .92, -.52]];
+    const poses = [];
+    for (let i = 0; i <= 48; i++) {
+      const t = i / 48;
+      const b = stops.findIndex(s => s[0] >= t && s[0] !== 0);
+      const a = stops[b-1], c = stops[b];
+      let f = (t - a[0]) / (c[0] - a[0]);
+      f = f*f*(3-2*f);
+      const lerp = k => a[k] + (c[k] - a[k])*f;
+      const scale=lerp(1), tilt=lerp(2), angle=lerp(3);
+      const co = Math.cos(angle), si = Math.sin(angle);
+      poses.push({transform: "matrix(" + [scale*co,scale*tilt*si,-scale*si,scale*tilt*co,0,0].join(",") + ")"});
+    }
+    orbit.animate(poses, {duration, iterations: Infinity, easing: "linear"});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>

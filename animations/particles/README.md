@@ -5,10 +5,10 @@ Particle effects.
 
 Part of [Animations](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="carmine-particle-heart/"><img src="carmine-particle-heart/preview.gif" width="260" alt="Carmine particle heart"></a><br><a href="carmine-particle-heart/"><b>Carmine particle heart</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="carmine-particle-heart/"><img src="carmine-particle-heart/preview.gif" width="260" alt="Carmine particle heart"></a><br><a href="carmine-particle-heart/"><b>Carmine particle heart</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="copper-spiral-galaxy/"><img src="copper-spiral-galaxy/preview.gif" width="260" alt="Copper spiral galaxy"></a><br><a href="copper-spiral-galaxy/"><b>Copper spiral galaxy</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
