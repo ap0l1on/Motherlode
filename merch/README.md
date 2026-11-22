@@ -9,7 +9,7 @@ Branded products and apparel.
 | [Hoodies](hoodies/) | Hoodies and sweatshirts |
 | [Hats](hats/) | Caps, beanies and hats |
 | [Socks](socks/) | Socks |
-| [Mugs](mugs/) | Mugs |
+| [Mugs](mugs/) | Mugs · **1 design** |
 | [Drinkware](drinkware/) | Tumblers and water bottles |
 | [Tote bags](tote-bags/) | Tote bags |
 | [Phone cases](phone-cases/) | Phone cases |

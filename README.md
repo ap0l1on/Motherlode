@@ -3,7 +3,7 @@
 
 **The mother of all design libraries.**
 
-Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 41 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
+Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 42 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
 ## What's inside
 
@@ -94,7 +94,7 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 
 | Section | Categories |
 | --- | --- |
-| [**Merch**](merch/) | [T-shirts](merch/t-shirts/) · [Hoodies](merch/hoodies/) · [Hats](merch/hats/) · [Socks](merch/socks/) · [Mugs](merch/mugs/) · [Drinkware](merch/drinkware/) · [Tote bags](merch/tote-bags/) · [Phone cases](merch/phone-cases/) · [Laptop skins](merch/laptop-skins/) · [Desk mats](merch/desk-mats/) · [Notebooks](merch/notebooks/) · [Pins](merch/pins/) · [Patches](merch/patches/) · [Keychains](merch/keychains/) · [Skateboards](merch/skateboards/) · [Scarves](merch/scarves/) · [Wristbands](merch/wristbands/) |
+| [**Merch**](merch/)<br><sub>1 design</sub> | [T-shirts](merch/t-shirts/) · [Hoodies](merch/hoodies/) · [Hats](merch/hats/) · [Socks](merch/socks/) · [Mugs](merch/mugs/) · [Drinkware](merch/drinkware/) · [Tote bags](merch/tote-bags/) · [Phone cases](merch/phone-cases/) · [Laptop skins](merch/laptop-skins/) · [Desk mats](merch/desk-mats/) · [Notebooks](merch/notebooks/) · [Pins](merch/pins/) · [Patches](merch/patches/) · [Keychains](merch/keychains/) · [Skateboards](merch/skateboards/) · [Scarves](merch/scarves/) · [Wristbands](merch/wristbands/) |
 | [**Events**](events/) | [Invitations](events/invitations/) · [Save the dates](events/save-the-dates/) · [RSVP cards](events/rsvp-cards/) · [Tickets](events/tickets/) · [Name badges](events/name-badges/) · [Programs](events/programs/) · [Stage backdrops](events/stage-backdrops/) · [Photo booth frames](events/photo-booth-frames/) · [Seating charts](events/seating-charts/) · [Place cards](events/place-cards/) · [Table numbers](events/table-numbers/) · [Welcome signs](events/welcome-signs/) · [Thank you cards](events/thank-you-cards/) · [Weddings](events/weddings/) · [Birthdays](events/birthdays/) · [Baby showers](events/baby-showers/) · [Graduations](events/graduations/) · [Conferences](events/conferences/) |
 | [**Sports**](sports/) | [Team logos](sports/team-logos/) · [Kits](sports/kits/) · [Match day](sports/match-day/) · [Lineups](sports/lineups/) · [Fixtures](sports/fixtures/) · [Scoreboards](sports/scoreboards/) · [Player cards](sports/player-cards/) · [Brackets](sports/brackets/) · [Esports](sports/esports/) · [Race bibs](sports/race-bibs/) · [Medals](sports/medals/) |
 | [**Fashion**](fashion/) | [Clothing](fashion/clothing/) · [Streetwear](fashion/streetwear/) · [Sportswear](fashion/sportswear/) · [Swimwear](fashion/swimwear/) · [Kidswear](fashion/kidswear/) · [Uniforms](fashion/uniforms/) · [Costumes](fashion/costumes/) · [Shoes](fashion/shoes/) · [Bags](fashion/bags/) · [Jewelry](fashion/jewelry/) · [Eyewear](fashion/eyewear/) · [Accessories](fashion/accessories/) · [Textile prints](fashion/textile-prints/) · [Fashion flats](fashion/fashion-flats/) · [Tech packs](fashion/tech-packs/) · [Lookbooks](fashion/lookbooks/) |
