@@ -3,4 +3,12 @@
 
 Animated illustrations.
 
-Part of [Animations](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Animations](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="amethyst-branch-canopy/"><img src="amethyst-branch-canopy/preview.gif" width="260" alt="Amethyst branch canopy"></a><br><a href="amethyst-branch-canopy/"><b>Amethyst branch canopy</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
