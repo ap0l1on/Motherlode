@@ -1,0 +1,77 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="motherlode:size" content="864x1338">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="6">
+<meta name="motherlode:still" content="2.2">
+<title>Blue spore voice panel</title><style>
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('fonts/inter-latin.woff2') format('woff2');
+}
+:root, [data-colorway="original"] {
+  --bg: #04113C; --surface: #092448; --ink: #E3EBFD; --muted: #CBD8EC;
+  --accent: #6CA7F9; --on-accent: #112746; --second: #2A72F5; --third: #5043C9;
+  --ivory: #AFF3FF; --shade: #14224C; --outline: #4967A7; --good: #4BCCF4;
+  --hi: #FFFFFF; --lo: #080D29; --clear: transparent; --photo: none;
+}
+[data-colorway="light"] {
+  --bg: #F5F7FA; --surface: #FFFFFF; --ink: #1E2933; --muted: #4F5B68;
+  --accent: #396D97; --on-accent: #FFFFFF; --second: #CE8C62; --third: #9EBACF;
+  --ivory: #F2D3A8; --shade: #7C7064; --outline: #BBC6CE; --good: #33704C;
+  --hi: #FFFFFF; --lo: #1A2228; --clear: transparent; --photo: saturate(.75);
+}
+[data-colorway="dark"] {
+  --bg: #171D25; --surface: #252C38; --ink: #F5F5F1; --muted: #CED5DD;
+  --accent: #A6C8EA; --on-accent: #203348; --second: #DCA487; --third: #8E9EC0;
+  --ivory: #DDC2A5; --shade: #75675E; --outline: #526171; --good: #A1DDB8;
+  --hi: #FFFFFF; --lo: #0B1018; --clear: transparent; --photo: brightness(.85);
+}
+[data-colorway="mono"] {
+  --bg: #EDEDED; --surface: #FCFCFC; --ink: #212121; --muted: #515151;
+  --accent: #454545; --on-accent: #FFFFFF; --second: #858585; --third: #B3B3B3;
+  --ivory: #D6D6D6; --shade: #737373; --outline: #B7B7B7; --good: #555555;
+  --hi: #FFFFFF; --lo: #181818; --clear: transparent; --photo: grayscale(1);
+}
+[data-colorway="ember"] {
+  --bg: #F9EFE7; --surface: #FFF8EE; --ink: #402C25; --muted: #665047;
+  --accent: #A95134; --on-accent: #FFFFFF; --second: #E3A24B; --third: #C38175;
+  --ivory: #F4CD9B; --shade: #95685A; --outline: #D5B7A8; --good: #487544;
+  --hi: #FFFCF7; --lo: #291A1C; --clear: transparent; --photo: sepia(.2);
+}
+[data-colorway="lagoon"] {
+  --bg: #EAF7F3; --surface: #F7FFFB; --ink: #1D4041; --muted: #466463;
+  --accent: #246A72; --on-accent: #FFFFFF; --second: #77BCA9; --third: #5B95AD;
+  --ivory: #E4D4A5; --shade: #6B8272; --outline: #ABCCC1; --good: #347657;
+  --hi: #FFFFFF; --lo: #10292D; --clear: transparent; --photo: hue-rotate(15deg);
+}
+[data-colorway="orchid"] {
+  --bg: #F5EDF8; --surface: #FEF9FF; --ink: #3A2C42; --muted: #605168;
+  --accent: #78528A; --on-accent: #FFFFFF; --second: #D09CA3; --third: #A18BC1;
+  --ivory: #EDD1B7; --shade: #856D81; --outline: #CCB9D2; --good: #466C52;
+  --hi: #FFFFFF; --lo: #281C2C; --clear: transparent; --photo: hue-rotate(321deg);
+}
+[data-colorway="olive"] {
+  --bg: #F1F2E5; --surface: #FDFBEF; --ink: #333B26; --muted: #57604B;
+  --accent: #58673C; --on-accent: #FFFFFF; --second: #B89B63; --third: #9AAE74;
+  --ivory: #E4D6A5; --shade: #7C795D; --outline: #BEC3A6; --good: #406B42;
+  --hi: #FFFFF7; --lo: #20291C; --clear: transparent; --photo: saturate(.64);
+}
+*{box-sizing:border-box}html,body{width:864px;height:1338px;margin:0;overflow:hidden}main{position:relative;width:576px;height:892px;transform:scale(1.5);transform-origin:0 0;overflow:hidden;background:radial-gradient(ellipse at 48% 0%,var(--third),var(--bg) 36%);color:var(--ink);font-family:Inter,sans-serif}.forest,.veil{position:absolute;inset:0}.forest{background-image:url(original-spore-forest.webp);background-repeat:no-repeat;background-size:102% 66%;background-position:center bottom;mask-image:linear-gradient(180deg,var(--clear) 28%,var(--lo) 57%);opacity:.72;filter:var(--photo)}.veil{background:linear-gradient(180deg,var(--bg),color-mix(in srgb,var(--bg) 22%,var(--clear)) 37%,color-mix(in srgb,var(--bg) 18%,var(--clear)) 73%,color-mix(in srgb,var(--bg) 72%,var(--clear)));}.dialog{position:absolute;left:76px;top:147px;width:418px;height:604px;border-radius:33px;background:linear-gradient(130deg,color-mix(in srgb,var(--surface) 72%,var(--clear)),color-mix(in srgb,var(--bg) 77%,var(--clear)) 72%,color-mix(in srgb,var(--surface) 79%,var(--clear)));backdrop-filter:blur(12px);border:1.4px solid color-mix(in srgb,var(--accent) 58%,var(--clear));box-shadow:inset 0 0 26px color-mix(in srgb,var(--second) 9%,var(--clear)),0 0 16px color-mix(in srgb,var(--third) 14%,var(--clear))}.dialog p{position:absolute;left:64px;top:59px;width:228px;margin:0;font-size:16px;line-height:28px;letter-spacing:-.48px;color:var(--muted);font-weight:430}.dialog strong{color:var(--ink);font-weight:660}button{cursor:pointer;font:inherit;color:inherit;border:0}.close{position:absolute;right:22px;top:23px;border-radius:50%;width:45px;height:45px;background:color-mix(in srgb,var(--accent) 11%,var(--clear));border:1px solid color-mix(in srgb,var(--accent) 24%,var(--clear));font-size:22px;font-weight:310}.waves{position:absolute;left:62px;top:215px;width:292px;height:163px;overflow:visible}.waves path{fill:none;stroke-linecap:round}.mic{position:absolute;left:50%;bottom:77px;transform:translateX(-50%);width:83px;height:83px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,var(--ivory),var(--accent) 43%,var(--second) 81%);box-shadow:0 0 23px color-mix(in srgb,var(--accent) 58%,var(--clear)),inset 0 0 8px color-mix(in srgb,var(--hi) 47%,var(--clear));color:var(--hi)}.mic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}.reopen{bottom:92px;display:none}.compact .dialog{display:none}.compact .reopen{display:grid}button:focus-visible{outline:2px solid var(--ivory);outline-offset:3px}
+</style></head><body><main><div class="forest"></div><div class="veil"></div><section class="dialog" aria-label="Voice assistant"><button type="button" class="close" aria-label="Close voice assistant">×</button><p>Hey, Ada, I need your help<br>on one of my new projects<br>that’s about the<br><strong>organizing...</strong></p><svg class="waves" viewBox="0 0 292 163" role="img" aria-label="Animated audio waveforms"></svg><button type="button" class="mic primary" aria-label="Pause voice visualization" aria-pressed="true"></button></section><button type="button" class="mic reopen" aria-label="Open voice assistant"></button></main><script>
+const $=s=>document.querySelector(s),wave=$('.waves'),tracks=[],ns='http://www.w3.org/2000/svg',icon='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="2.6" width="6" height="13" rx="3"/><path d="M6 11q0 8 6 8t6-8m-6 8v3m-3 0h6"/></svg>';document.querySelectorAll('.mic').forEach(b=>b.innerHTML=icon);
+function curve(n,phase){const pts=[];for(let x=0;x<=292;x+=4){const q=x/292,envelope=Math.pow(Math.sin(Math.PI*q),1.6),s=Math.sin(q*Math.PI*4.5+phase+n*.99),amplitude=(45+n*4)*(1+.17*Math.sin(phase+n));pts.push((x?'L':'M')+x+' '+(82+envelope*amplitude*s).toFixed(2));}return pts.join(' ');}
+for(let i=0;i<4;i++){const p=document.createElementNS(ns,'path');p.style.stroke=i===0?'var(--ivory)':i===1?'var(--accent)':'var(--muted)';p.style.strokeWidth=i===0?'1.9':'1.25';p.style.opacity=[1,.73,.47,.38][i];p.style.filter='drop-shadow(0 0 3px var(--accent))';p.setAttribute('d',curve(i,0));wave.append(p);const frames=[];for(let j=0;j<=24;j++)frames.push({offset:j/24,d:'path("'+curve(i,j*Math.PI/12)+'")'});tracks.push(p.animate(frames,{duration:6000,iterations:Infinity}));}
+let active=true;function toggle(){active=!active;tracks.forEach(t=>active?t.play():t.pause());$('.primary').setAttribute('aria-pressed',String(active));$('.primary').setAttribute('aria-label',active?'Pause voice visualization':'Resume voice visualization');}
+$('.primary').onclick=toggle;$('.close').onclick=()=>{$('main').classList.add('compact');$('.reopen').focus();};$('.reopen').onclick=()=>{$('main').classList.remove('compact');$('.primary').focus();};if(matchMedia('(prefers-reduced-motion: reduce)').matches&&!new URLSearchParams(location.search).has('t'))toggle();
+</script><script>  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }</script></body></html>

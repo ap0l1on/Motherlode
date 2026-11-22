@@ -3,4 +3,12 @@
 
 AI chat and assistant apps.
 
-Part of [Apps](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Apps](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="blue-spore-voice-panel/"><img src="blue-spore-voice-panel/preview.gif" width="260" alt="Blue spore voice panel"></a><br><a href="blue-spore-voice-panel/"><b>Blue spore voice panel</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

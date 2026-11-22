@@ -8,7 +8,7 @@ Whole apps, sorted by what they do.
 | [Social](social/) | Social networks |
 | [Messaging](messaging/) | Messaging and chat apps |
 | [Dating](dating/) | Dating apps |
-| [AI assistants](ai-assistants/) | AI chat and assistant apps |
+| [AI assistants](ai-assistants/) | AI chat and assistant apps · **1 design** |
 | [Productivity](productivity/) | Productivity and to-do apps |
 | [Notes](notes/) | Note-taking apps |
 | [Calendars](calendars/) | Calendar and scheduling apps |
