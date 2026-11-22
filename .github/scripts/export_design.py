@@ -199,7 +199,18 @@ class Chrome:
             self.log.close()
 
     def receive(self, deadline):
-        while b"\0" not in self.buffer:
+        # Screenshots can be several MB. Keep pipe fragments separately until
+        # the terminator instead of copying the whole PNG on each short read.
+        parts = []
+        chunk = self.buffer
+        while True:
+            end = chunk.find(b"\0")
+            if end >= 0:
+                parts.append(chunk[:end])
+                self.buffer = chunk[end + 1:]
+                return json.loads(b"".join(parts))
+            if chunk:
+                parts.append(chunk)
             remaining = deadline - time.monotonic()
             if remaining <= 0 or not self.selector.select(remaining):
                 raise RuntimeError("Chrome timed out; check page assets or increase --timeout")
@@ -207,9 +218,6 @@ class Chrome:
             if not chunk:
                 log = (self.directory / "chrome.log").read_text(errors="replace")[-3000:]
                 raise RuntimeError(f"Chrome closed the DevTools pipe:\n{log}")
-            self.buffer += chunk
-        message, self.buffer = self.buffer.split(b"\0", 1)
-        return json.loads(message)
 
     def call(self, method, params=None):
         self.sequence += 1
@@ -280,6 +288,22 @@ class Chrome:
             raise ValueError(f"Page did not select #{colorway}; include the hash/colorway script from AGENTS.md")
         if (state["width"], state["height"]) != (self.design.width, self.design.height):
             raise RuntimeError(f"Unexpected Chrome viewport: {state}")
+        self.capture(output)
+
+    def seek(self, seconds, output):
+        """Seek existing CSS/WAAPI tracks in a document whose assets are ready."""
+        self.evaluate("""(() => {
+            const t = TIME;
+            const url = new URL(location.href);
+            url.searchParams.set('t', String(t));
+            history.replaceState(history.state, '', url);
+            for (const animation of document.getAnimations()) {
+                animation.pause(); animation.currentTime = t * 1000;
+            }
+        })()""".replace("TIME", json.dumps(seconds)))
+        self.capture(output)
+
+    def capture(self, output):
         screenshot = self.call("Page.captureScreenshot", {"format": "png", "fromSurface": True,
             "captureBeyondViewport": False})
         output.write_bytes(base64.b64decode(screenshot["data"], validate=True))
@@ -368,7 +392,11 @@ def export(folder, args):
                 with Chrome(chrome, directory, design, args.timeout) as browser:
                     browser.render(name, design.still, exports / f"{name}.png", args.wait_ms)
                     for index in range(design.frames):
-                        browser.render(name, index / FPS, frames / f"frame-{index:06d}.png", args.wait_ms)
+                        path = frames / f"frame-{index:06d}.png"
+                        if args.reuse_page:
+                            browser.seek(index / FPS, path)
+                        else:
+                            browser.render(name, index / FPS, path, args.wait_ms)
                 if design.loop:
                     run_command([str(encoder), str(frames), str(exports / f"{name}.mp4"), str(FPS)],
                                 max(120, design.frames * 2))
@@ -396,16 +424,18 @@ def export(folder, args):
                 original.resize(tuple(max(1, round(side * ratio)) for side in original.size),
                                 Image.Resampling.LANCZOS).save(work / preview)
         make_grid(exports, design.colorways, work / "colorways.png")
-        products = [*exports.iterdir(), work / preview, work / "colorways.png"]
+        extensions = ("png", "mp4") if design.loop else ("png",)
+        media = [exports / f"{name}.{ext}" for name in design.colorways for ext in extensions]
+        products = [*media, work / preview, work / "colorways.png"]
         for product in products:
             if product.stat().st_size >= FILE_LIMIT:
                 raise RuntimeError(f"{product.name} exceeds 50 MB; reduce scale or loop duration")
         destination = folder / "exports"
         destination.mkdir(exist_ok=True)
-        expected = {product.name for product in exports.iterdir()}
+        expected = {product.name for product in media}
         stale = sorted(path.name for path in destination.iterdir()
                        if path.suffix.lower() in {".png", ".mp4"} and path.name not in expected)
-        for product in exports.iterdir():
+        for product in media:
             product.replace(destination / product.name)
         for name in (preview, "colorways.png"):
             (work / name).replace(folder / name)
@@ -423,6 +453,7 @@ def main():
     parser.add_argument("--chrome", type=Path, default=CHROME, help="Chrome executable")
     parser.add_argument("--timeout", type=float, default=60, help="Seconds allowed per browser operation (default: 60)")
     parser.add_argument("--wait-ms", type=int, default=100, help="Asset settling time per frame (default: 100 ms)")
+    parser.add_argument("--reuse-page", action="store_true", help="Seek already-loaded CSS/WAAPI tracks for faster loops. Omit for designs that build different content on page load for each ?t= value.")
     args = parser.parse_args()
     if args.jobs < 1 or not math.isfinite(args.timeout) or args.timeout <= 0 or args.wait_ms < 0:
         parser.error("jobs and timeout must be positive; wait-ms must be nonnegative")
