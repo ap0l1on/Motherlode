@@ -3,4 +3,12 @@
 
 Boards, pieces and boxes.
 
-Part of [Games](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Games](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="turning-color-cube/"><img src="turning-color-cube/preview.gif" width="260" alt="Turning color cube"></a><br><a href="turning-color-cube/"><b>Turning color cube</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
