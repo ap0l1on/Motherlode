@@ -337,9 +337,9 @@ class Chrome:
         """Seek existing CSS/WAAPI tracks in a document whose assets are ready."""
         changed = self.evaluate("""(() => {
             const t = TIME;
-            const url = new URL(location.href);
+            const url = new globalThis.URL(globalThis.location.href);
             url.searchParams.set('t', String(t));
-            history.replaceState(history.state, '', url);
+            globalThis.history.replaceState(globalThis.history.state, '', url);
             const animations = document.getAnimations();
             for (const animation of animations) {
                 animation.pause(); animation.currentTime = t * 1000;
