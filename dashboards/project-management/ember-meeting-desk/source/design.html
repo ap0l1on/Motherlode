@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" data-colorway="original">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440, initial-scale=1">
+<meta name="motherlode:size" content="1440x846">
+<meta name="motherlode:scale" content="2">
+<meta name="motherlode:loop" content="2.125">
+<meta name="motherlode:still" content="1.6">
+<title>Ember meeting desk</title>
+<style>
+:root, [data-colorway="original"] {
+  --outer: #e9e6e8; --bg: #f2eff1; --paper: #fffefd; --soft: #f5f2f3; --ink: #242224; --muted: #575152; --rail: #1b191a; --nav: #fffbf4; --accent: #f08345; --pale: #f4d7c9; --deep: #ad502d; --on-accent: #39190d; --blue: #8c9cab; --copper: #ad899d; --mint: #83a58f; --gold: #d7ab72;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="light"] {
+  --outer: #f6f4f1; --bg: #f6f2ec; --paper: #fffdfa; --soft: #f3eee8; --ink: #2a2421; --muted: #62584e; --rail: #45372e; --nav: #fff8ed; --accent: #c89974; --pale: #f0ddc5; --deep: #865c42; --on-accent: #2e1d13; --blue: #7d92a3; --copper: #b47367; --mint: #72917a; --gold: #afa06c;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="dark"] {
+  --outer: #0d1119; --bg: #1c202b; --paper: #2a3040; --soft: #363b4b; --ink: #f5effa; --muted: #d1c9d6; --rail: #11151d; --nav: #f6f2ff; --accent: #bd9eec; --pale: #564867; --deep: #846ba5; --on-accent: #261b35; --blue: #8dace3; --copper: #e8a1a1; --mint: #95cdb4; --gold: #d5c187;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="mono"] {
+  --outer: #f8f8f8; --bg: #eaeaea; --paper: #fdfdfd; --soft: #eeeeee; --ink: #1c1c1c; --muted: #535353; --rail: #202020; --nav: #fafafa; --accent: #a6a6a6; --pale: #d8d8d8; --deep: #777777; --on-accent: #191919; --blue: #858585; --copper: #999999; --mint: #ababab; --gold: #bdbdbd;
+  --photo-filter: grayscale(1);
+}
+[data-colorway="lagoon"] {
+  --outer: #e5f1ed; --bg: #e6efec; --paper: #f7fcf9; --soft: #dfebe7; --ink: #172e2a; --muted: #415b52; --rail: #183b37; --nav: #f0fbf5; --accent: #66b8aa; --pale: #c3e8df; --deep: #337b70; --on-accent: #103c34; --blue: #78a6b5; --copper: #b58b77; --mint: #83b696; --gold: #c6b47b;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="apricot"] {
+  --outer: #f6e9df; --bg: #f6ecdf; --paper: #fff9f1; --soft: #f2e6d8; --ink: #33251c; --muted: #66503d; --rail: #49362a; --nav: #fff5e7; --accent: #eaa873; --pale: #f2d3b1; --deep: #a76d42; --on-accent: #3f2511; --blue: #859faa; --copper: #ba7c68; --mint: #8fac85; --gold: #c4a36a;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="cobalt"] {
+  --outer: #e4eaf5; --bg: #e9edf9; --paper: #fafbff; --soft: #e5e9f6; --ink: #1c2744; --muted: #465372; --rail: #1f2b49; --nav: #edf4ff; --accent: #84a0e5; --pale: #cdd9f3; --deep: #526fb5; --on-accent: #152745; --blue: #8196bc; --copper: #b386a4; --mint: #85aca7; --gold: #bead77;
+  --photo-filter: saturate(.88);
+}
+[data-colorway="orchid"] {
+  --outer: #f0e5ee; --bg: #f4edf5; --paper: #fffbfe; --soft: #eee3ee; --ink: #34283b; --muted: #615067; --rail: #402c42; --nav: #fbf3fc; --accent: #ca96c2; --pale: #ebd0e6; --deep: #8d628b; --on-accent: #3a1d37; --blue: #9c93be; --copper: #c18491; --mint: #8bb3a1; --gold: #bfad89;
+  --photo-filter: saturate(.88);
+}
+:root {--edge:color-mix(in srgb,var(--ink) 8%,transparent);--shadow:color-mix(in srgb,var(--ink) 11%,transparent);--faint:color-mix(in srgb,var(--muted) 19%,var(--paper));--ink-accent:color-mix(in srgb,var(--ink) 65%,var(--deep));--skin:color-mix(in srgb,var(--paper) 66%,var(--copper));--hair:color-mix(in srgb,var(--ink) 79%,var(--copper));--portrait-bg-0:color-mix(in srgb,var(--pale) 64%,var(--copper));--portrait-bg-1:color-mix(in srgb,var(--paper) 67%,var(--mint));--portrait-bg-2:color-mix(in srgb,var(--paper) 63%,var(--blue));}
+@font-face {font-family:'Outfit';src:url('fonts/outfit-latin.woff2') format('woff2');font-style:normal;font-weight:100 900;font-display:block;}
+* {box-sizing:border-box;} html,body {width:1440px;height:846px;overflow:hidden;margin:0;}
+body {font-family:'Outfit',sans-serif;background:var(--outer);}
+#art {display:block;width:1440px;height:846px;font-family:'Outfit',sans-serif;}
+.screen,.active-mark {opacity:0;visibility:hidden;} .bar-grow {transform-box:fill-box;transform-origin:center bottom;}
+.action {cursor:pointer;} .action:focus-visible {outline:1px solid var(--accent);outline-offset:1px;}
+
+</style></head><body>
+<svg id="art" role="group" aria-label="Ember meeting desk" viewBox="0 0 576 338" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+<defs><symbol id="i-bell" viewBox="0 0 24 24"><path d="M4 17h16l-2.2-3.7V9a5.8 5.8 0 0 0-11.6 0v4.3z M9 20q3 3 6 0"/></symbol>
+<symbol id="i-bolt" viewBox="0 0 24 24"><path d="M14 2 5 14h6l-1 8 9-13h-6z"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 4h16v13H9l-5 4v-4H3V5z M7 8h10M7 12h7"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 7.5 13 5q3.5-3.5 6.8-.2t-.4 6.6l-3 3 M13.5 16.5 11 19q-3.7 3.4-6.7.3t.3-6.8l3-3 M8.5 15.5l7-7"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 6l9 7 9-7"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><path d="M10 3a7 7 0 1 0 0 14 7 7 0 0 0 0-14z M15.6 15.6 21 21"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M2.5 3.5 22 11l-7.5 3-3 7-2-7-7-10.5z M9.5 14 22 11"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3 6 0 .8 2.6 2 .9 2.5-.8 2 4-2 1.7v2l2 1.7-2 4-2.5-.7-2 .9L15 22H9l-.8-2.7-2-.9-2.5.7-2-4 2-1.7v-2L1.7 9.7l2-4 2.5.8 2-.9z M12 9a3.2 3.2 0 1 0 0 6.4A3.2 3.2 0 0 0 12 9"/></symbol>
+<symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10 M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2m0-16-2 2M6 18l-2 2"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M5 18 18 5 M9 5h9v9"/></symbol>
+
+<linearGradient id="amber" x1="0" y1="0" x2="1" y2=".8"><stop offset="0" stop-color="var(--accent)" stop-opacity="1"/><stop offset="0.75" stop-color="var(--accent)" stop-opacity="0.94"/><stop offset="1" stop-color="var(--deep)" stop-opacity="0.82"/></linearGradient></defs>
+<rect x="0" y="0" width="576" height="338" rx="0" fill="var(--outer)"/><rect x="23" y="3" width="530" height="339" rx="13" fill="var(--bg)"/><g class="action" role="button" tabindex="0" aria-label="Replay meeting dashboard" data-replay="">
+<rect x="44" y="16" width="13" height="13" rx="4.03" fill="var(--pale)"/><svg x="47.25" y="19.25" width="6.5" height="6.5" viewBox="0 0 24 24" fill="none" stroke="var(--deep)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bolt"/></svg><text x="60" y="25" font-size="7.8" font-weight="570" fill="var(--ink)">Ember</text>
+</g><rect x="136" y="12" width="257" height="20" rx="10" fill="var(--paper)"/><rect x="137" y="14" width="44" height="16" rx="8" fill="var(--rail)"/><text x="159" y="23.502" font-size="4.55" font-weight="600" fill="var(--nav)" text-anchor="middle">Dashboard</text><text x="191" y="24" font-size="4.45" font-weight="550" fill="var(--ink)">Project          Clients         Quotes       Meeting Schedule       Notes</text><circle cx="435" cy="22" r="8.5" fill="var(--rail)"/><svg x="452" y="19" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-sun"/></svg><svg x="471" y="18" width="6.4" height="6.4" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-bell"/></svg><svg x="497" y="18" width="6.3" height="6.3" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-settings"/></svg><g>
+<circle cx="527" cy="21" r="9.3" fill="var(--paper)"/><circle cx="527" cy="21" r="8.75" fill="var(--portrait-bg-0)"/><path d="M520.025 26.859 Q527 20.628 533.975 26.859 Q527 31.23 520.025 26.859Z" fill="var(--accent)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><circle cx="527" cy="19.233" r="3.441" fill="var(--skin)"/><path d="M523.466 19.698 q-0.465 -5.766 5.394 -4.185 q2.046 0.651 1.86 3.813 q-2.79 -0.558 -3.534 -2.232 q-0.93 1.674 -3.72 2.604Z" fill="var(--hair)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" />
+</g><g class="screen" data-panel="0" aria-label="Project and meeting dashboard">
+<g class="enter" data-lag="0.02">
+<text x="45" y="63" font-size="16.1" font-weight="525" fill="var(--ink)">Search something…</text><circle cx="242" cy="58" r="8.4" fill="var(--paper)"/><svg x="239" y="55" width="6" height="6" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-search"/></svg><text x="273" y="50" font-size="4.8" font-weight="495" fill="var(--muted)">Total Project Deal</text><text x="273" y="72" font-size="16.9" font-weight="530" fill="var(--ink)" data-counter="1368" data-prefix="" data-suffix="" data-digits="0" data-delay="0.02" data-length="0.98">1,368</text><rect x="314" y="59" width="14" height="7" rx="3.5" fill="var(--mint)"/><text x="321" y="63.721" font-size="3.7" font-weight="600" fill="var(--on-accent)" text-anchor="middle">↗</text><text x="363" y="50" font-size="4.8" font-weight="495" fill="var(--muted)">Total Clients</text><text x="363" y="72" font-size="16.9" font-weight="530" fill="var(--ink)" data-counter="593" data-prefix="" data-suffix="" data-digits="0" data-delay="0.03" data-length="0.98">593</text><rect x="404" y="59" width="14" height="7" rx="3.5" fill="var(--copper)"/><text x="411" y="63.721" font-size="3.7" font-weight="600" fill="var(--on-accent)" text-anchor="middle">↗</text><text x="453" y="50" font-size="4.8" font-weight="495" fill="var(--muted)">Total Quotes</text><text x="453" y="72" font-size="16.9" font-weight="530" fill="var(--ink)" data-counter="960" data-prefix="" data-suffix="" data-digits="0" data-delay="0.04" data-length="0.98">960</text><rect x="494" y="59" width="14" height="7" rx="3.5" fill="var(--mint)"/><text x="501" y="63.721" font-size="3.7" font-weight="600" fill="var(--on-accent)" text-anchor="middle">↗</text><rect x="39" y="85" width="204" height="136" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="47" y="98" font-size="6.15" font-weight="595" fill="var(--ink)">Integrations Tools</text><circle cx="225" cy="102" r="6.1" fill="var(--soft)"/><svg x="222.5" y="99.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-plus"/></svg><text x="48" y="140" font-size="4.6" font-weight="495" fill="var(--muted)">Avg Response Time</text><text x="48" y="160" font-size="13.2" font-weight="550" fill="var(--ink)">368</text><rect x="87" y="148" width="20" height="8" rx="4" fill="var(--mint)"/><text x="97" y="153.304" font-size="3.95" font-weight="600" fill="var(--on-accent)" text-anchor="middle">↗  Figure</text><path d="M139 170a40 40 0 0 1 82 0" fill="none" stroke="var(--soft)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" /><path d="M139 170a40 40 0 0 1 57-38" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" class="draw" pathLength="100" stroke-dasharray="100"/><path d="M168 165l11-13-2 15-4-4z" fill="var(--rail)" stroke="none" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round" /><rect x="50" y="196" width="11" height="11" rx="3.41" fill="var(--paper)"/><svg x="52.75" y="198.75" width="5.5" height="5.5" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chat"/></svg><circle cx="70" cy="193" r="3.7" fill="var(--copper)"/><rect x="87" y="196" width="11" height="11" rx="3.41" fill="var(--paper)"/><svg x="89.75" y="198.75" width="5.5" height="5.5" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-send"/></svg><circle cx="107" cy="193" r="3.7" fill="var(--copper)"/><rect x="124" y="196" width="11" height="11" rx="3.41" fill="var(--paper)"/><svg x="126.75" y="198.75" width="5.5" height="5.5" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-mail"/></svg><circle cx="144" cy="193" r="3.7" fill="var(--copper)"/><rect x="152" y="191" width="13" height="13" rx="4.03" fill="var(--accent)"/><svg x="155.25" y="194.25" width="6.5" height="6.5" viewBox="0 0 24 24" fill="none" stroke="var(--on-accent)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-link"/></svg><text x="170" y="198" font-size="4.5" font-weight="495" fill="var(--muted)">Team applications</text><rect x="249" y="85" width="83" height="137" rx="9" fill="url(#amber)"/><text x="258" y="103" font-size="9" font-weight="520" fill="var(--on-accent)">Manage</text><text x="258" y="114" font-size="9" font-weight="520" fill="var(--on-accent)">Quotes</text><rect x="258" y="124" width="50" height="14" rx="7" fill="var(--paper)"/><text x="283" y="132.584" font-size="4.8" font-weight="600" fill="var(--ink)" text-anchor="middle">⊕  Create New</text><text x="258" y="212" font-size="22.1" font-weight="490" fill="var(--on-accent)">127</text><rect x="338" y="85" width="84" height="137" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="347" y="102" font-size="8.7" font-weight="530" fill="var(--ink)">Meeting</text><text x="347" y="113" font-size="8.7" font-weight="530" fill="var(--ink)">Notes</text><circle cx="406" cy="102" r="6.5" fill="var(--soft)"/><svg x="403.5" y="99.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-plus"/></svg><rect x="346" y="153" width="68" height="62" rx="7" fill="var(--soft)"/><rect x="351" y="151" width="57" height="3" rx="1.5" fill="var(--rail)"/><text x="351" y="171" font-size="4.1" font-weight="495" fill="var(--muted)">◷  2h ago</text><text x="351" y="183" font-size="5.05" font-weight="540" fill="var(--ink)">Brainstorming for</text><text x="351" y="190" font-size="5.05" font-weight="540" fill="var(--ink)">Product Development</text><text x="351" y="206" font-size="3.8" font-weight="495" fill="var(--muted)">◈  Studio project</text><rect x="428" y="85" width="109" height="137" rx="7" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="437" y="102" font-size="8.4" font-weight="535" fill="var(--ink)">Most Clients by</text><text x="437" y="112" font-size="8.4" font-weight="535" fill="var(--ink)">Country</text><path d="M430 116q-7 29 0 67m-5-61q15 8 28 0" fill="none" stroke="var(--faint)" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M455 116q-7 29 0 67m-5-61q15 8 28 0" fill="none" stroke="var(--faint)" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M480 116q-7 29 0 67m-5-61q15 8 28 0" fill="none" stroke="var(--faint)" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" /><path d="M505 116q-7 29 0 67m-5-61q15 8 28 0" fill="none" stroke="var(--faint)" stroke-width="0.7" stroke-linecap="round" stroke-linejoin="round" /><circle cx="490" cy="131" r="7.8" fill="var(--blue)"/><rect x="485" y="127" width="9.5" height="0.9" rx="0.4" fill="var(--paper)"/><rect x="485" y="129.1" width="9.5" height="0.9" rx="0.4" fill="var(--paper)"/><rect x="485" y="131.2" width="9.5" height="0.9" rx="0.4" fill="var(--paper)"/><rect x="485" y="133.3" width="9.5" height="0.9" rx="0.4" fill="var(--paper)"/><circle cx="451" cy="200" r="9" fill="var(--accent)"/><text x="451" y="202.97" font-size="5.67" font-weight="630" fill="var(--on-accent)" text-anchor="middle">ES</text><text x="466" y="205" font-size="12.9" font-weight="550" fill="var(--ink)">48</text><circle cx="514" cy="200" r="6.5" fill="var(--rail)"/><svg x="511.5" y="197.5" width="5" height="5" viewBox="0 0 24 24" fill="none" stroke="var(--nav)" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-up"/></svg><rect x="39" y="230" width="204" height="129" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="47" y="243" font-size="6.15" font-weight="595" fill="var(--ink)">Project Deals</text><text x="47" y="252" font-size="4.45" font-weight="495" fill="var(--muted)">Deals over the last seven months</text><rect x="64.669" y="300.86" width="15.234" height="28.14" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0"/><rect x="89.24" y="288.13" width="15.234" height="40.87" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0.025"/><rect x="113.811" y="292.82" width="15.234" height="36.18" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0.05"/><rect x="138.383" y="272.05" width="15.234" height="56.95" rx="5" fill="var(--accent)" class="bar-grow" data-lag="0.075"/><rect x="162.954" y="304.88" width="15.234" height="24.12" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0.1"/><rect x="187.526" y="290.14" width="15.234" height="38.86" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0.125"/><rect x="212.097" y="296.84" width="15.234" height="32.16" rx="5" fill="var(--soft)" class="bar-grow" data-lag="0.15"/><rect x="250" y="230" width="287" height="129" rx="8" fill="var(--paper)" stroke="var(--edge)" stroke-width="0.5"/><text x="258" y="243" font-size="6.15" font-weight="595" fill="var(--ink)">Meeting Schedule</text><text x="258" y="252" font-size="4.45" font-weight="495" fill="var(--muted)">October 2026</text><text x="263" y="267" font-size="4.5" font-weight="495" fill="var(--muted)">‹       Tue 20       Wed 21       Thu 22        Fri 23       Sat 24       Sun 25</text><circle cx="291" cy="291" r="11" fill="var(--accent)" opacity="0.7"/><circle cx="321" cy="305" r="11" fill="var(--pale)" opacity="0.7"/><circle cx="351" cy="291" r="11" fill="var(--accent)" opacity="0.7"/><circle cx="381" cy="305" r="11" fill="var(--pale)" opacity="0.7"/><circle cx="411" cy="291" r="11" fill="var(--accent)" opacity="0.7"/><circle cx="441" cy="305" r="11" fill="var(--pale)" opacity="0.7"/><circle cx="471" cy="291" r="11" fill="var(--accent)" opacity="0.7"/><circle cx="501" cy="305" r="11" fill="var(--pale)" opacity="0.7"/><rect x="371" y="280" width="114" height="75" rx="8" fill="var(--rail)"/><text x="379" y="294" font-size="7.5" font-weight="540" fill="var(--nav)">Upcoming Today’s</text><text x="379" y="303" font-size="7.5" font-weight="540" fill="var(--nav)">Meeting</text><rect x="378" y="312" width="43" height="9" rx="4.5" fill="var(--accent)"/><text x="399.5" y="317.82" font-size="4" font-weight="600" fill="var(--on-accent)" text-anchor="middle">Project sync</text>
+</g>
+</g><g aria-label="Ember theme">
+<rect x="251" y="312" width="76" height="18" rx="9" fill="var(--rail)"/><rect x="289" y="314" width="37" height="14" rx="7" fill="var(--paper)"/><text x="307.5" y="322.551" font-size="4.7" font-weight="600" fill="var(--ink)" text-anchor="middle">✦  Ember</text><text x="270" y="323" font-size="4.4" font-weight="500" fill="var(--nav)" text-anchor="middle">●  Fluente</text>
+</g>
+</svg>
+<script>
+const duration=2.125, moments=[1.6], windows=[[0, 2.125]], navWindows=[[0, 2.125]];
+
+function track(el, keys) {
+  return el.animate(keys.map(([t,properties])=>({...properties,offset:Math.min(1,Math.max(0,t/duration))})),{duration:duration*1000,iterations:Infinity,fill:'both'});
+}
+function enter(el,t,len,a,b,ease='cubic-bezier(.2,.7,.25,1)') {
+  return track(el,[[0,a],[t,{...a,easing:ease}],[t+len,b],[duration,b]]);
+}
+function windowFor(el,start,end,fade=.18,first=false) {
+  const hidden={visibility:'hidden',opacity:0};
+  const shown={visibility:'visible',opacity:1};
+  const keys=[[0,hidden]];
+  if(start>0)keys.push([start-.001,hidden]);
+  keys.push([start,{visibility:'visible',opacity:first?1:0}],[start+fade,shown],[Math.max(start+fade,end-fade),shown]);
+  if(end<duration)keys.push([end,hidden],[duration,hidden]);else keys.push([end,shown]);
+  return track(el,keys);
+}
+function prepareNumber(el,start) {
+  const ns='http://www.w3.org/2000/svg', value=Number(el.dataset.counter), steps=16;
+  const formatter=new Intl.NumberFormat('en-US',{minimumFractionDigits:+el.dataset.digits,maximumFractionDigits:+el.dataset.digits});
+  const parent=document.createElementNS(ns,'g'); parent.setAttribute('aria-label',el.textContent);
+  el.replaceWith(parent);
+  const t=start+Number(el.dataset.delay), len=Number(el.dataset.length);
+  for(let i=0;i<=steps;i++) {
+    const step=el.cloneNode(false); step.removeAttribute('data-counter'); step.setAttribute('aria-hidden','true');
+    step.textContent=el.dataset.prefix+formatter.format(value*(1-(1-i/steps)**2))+el.dataset.suffix;
+    parent.append(step);
+    const a=Math.min(duration,t+len*i/steps), b=Math.min(duration,t+len*(i+1)/steps);
+    const off={opacity:0}, on={opacity:1};
+    const frames=i===0?[[0,on],[Math.max(0,b-.0001),on],[b,off],[duration,off]]:i===steps?[[0,off],[Math.max(0,a-.0001),off],[a,on],[duration,on]]:[[0,off],[Math.max(0,a-.0001),off],[a,on],[Math.max(a,b-.0001),on],[b,off],[duration,off]];
+    track(step,frames);
+  }
+}
+for(const pan of document.querySelectorAll('[data-panel]')) {
+  const i=Number(pan.dataset.panel),[start,end]=windows[i];
+  windowFor(pan,start,end,Math.min(.19,(end-start)/3));
+  pan.querySelectorAll('.enter').forEach(el=>enter(el,start+Number(el.dataset.lag),.28,{opacity:0,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}));
+  pan.querySelectorAll('[data-counter]').forEach(el=>prepareNumber(el,start));
+  pan.querySelectorAll('.bar-grow').forEach(el=>enter(el,start+.25+Number(el.dataset.lag||0),.60,{transform:'scaleY(0)'},{transform:'scaleY(1)'}));
+  pan.querySelectorAll('.draw').forEach((el,n)=>enter(el,start+.30+n*.035,.8,{strokeDashoffset:'100'},{strokeDashoffset:'0'}));
+}
+for(const mark of document.querySelectorAll('[data-highlight]')){const i=+mark.dataset.highlight;windowFor(mark,navWindows[i][0],navWindows[i][1],.025,i===0);}
+function selectView(i) { for(const a of document.getAnimations()){a.pause();a.currentTime=moments[i]*1000;} }
+function activate(el,fn){el.addEventListener('click',fn);el.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();fn();}});}
+for(const control of document.querySelectorAll('[data-view]')) activate(control,()=>selectView(+control.dataset.view));
+for(const control of document.querySelectorAll('[data-replay]')) activate(control,()=>{for(const a of document.getAnimations()){a.currentTime=0;a.play();}});
+if(!location.search&&matchMedia('(prefers-reduced-motion:reduce)').matches)selectView(0);
+
+
+</script>
+<script>
+  const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+  pick();
+  addEventListener("hashchange", pick);
+  const t = new URLSearchParams(location.search).get("t");
+  if (t !== null) {
+    const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = t * 1000; });
+    freeze();
+    addEventListener("load", freeze);
+  }
+</script>
+</body></html>
