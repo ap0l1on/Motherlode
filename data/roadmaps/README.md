@@ -3,4 +3,12 @@
 
 Roadmaps.
 
-Part of [Data](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Data](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="four-column-learning-path/"><img src="four-column-learning-path/preview.png" width="260" alt="Four-column learning path"></a><br><a href="four-column-learning-path/"><b>Four-column learning path</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

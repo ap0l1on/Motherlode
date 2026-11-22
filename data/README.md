@@ -10,7 +10,7 @@ Charts, infographics and diagrams.
 | [Diagrams](diagrams/) | Diagrams · **1 design** |
 | [Flowcharts](flowcharts/) | Flowcharts |
 | [Timelines](timelines/) | Timelines |
-| [Roadmaps](roadmaps/) | Roadmaps |
+| [Roadmaps](roadmaps/) | Roadmaps · **1 design** |
 | [Gantt charts](gantt-charts/) | Gantt charts |
 | [Maps](maps/) | Data maps |
 | [Heatmaps](heatmaps/) | Heatmaps |
