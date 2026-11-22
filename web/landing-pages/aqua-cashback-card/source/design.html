@@ -25,6 +25,7 @@
   --card: #467A75; --card-ink: #F1FFF6; --strip: #D0EAE1; --strip-ink: #234D46;
   --pop: #F2B5CB; --pop-ink: #482536; --lo: #183030; --hi: #FFFFFF;
   --clear: transparent;
+  --stat-ink: #486b64;
 }
 [data-colorway="dark"] {
   --bg: #102C32; --ink: #E2FCF2; --muted: #A8D1C8; --highlight: #1E4949;
@@ -95,6 +96,8 @@ footer { position: absolute; left: 0; right: 0; bottom: 0; height: 144px; displa
 .stat { display: grid; justify-items: center; gap: 7px; }
 .stat b { font-size: 35px; letter-spacing: -.055em; font-weight: 730; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 14px; color: color-mix(in srgb, var(--strip-ink) 76%, var(--strip)); }
+
+[data-colorway="light"] .ink-stat { color: var(--stat-ink); }
 </style>
 </head>
 <body>
@@ -107,7 +110,7 @@ footer { position: absolute; left: 0; right: 0; bottom: 0; height: 144px; displa
   <div class="card" aria-label="Illustrated debit card ending in 6693"><span class="card-name">cove</span><i class="chip"></i><span class="number"><span>••••</span>6693</span></div>
   <svg class="glint" viewBox="0 0 50 50" aria-hidden="true"><path d="M25 0C27 18 31 22 50 25C31 28 27 32 25 50C22 32 18 28 0 25C18 22 22 18 25 0Z"/></svg>
   <span class="rebate"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 0 2.5 8.9L24 12l-9.5 2.4L12 24l-2.6-9.6L0 12l9.4-3.1Z"/></svg>4% back on everything</span>
-  <footer><div class="stat"><b>0</b><span>hidden fees</span></div><div class="stat"><b>150</b><span>currencies</span></div><div class="stat"><b>4.8★</b><span>app rating</span></div><div class="stat"><b>2 min</b><span>to sign up</span></div></footer>
+  <footer><div class="stat"><b>0</b><span class="ink-stat">hidden fees</span></div><div class="stat"><b>150</b><span class="ink-stat">currencies</span></div><div class="stat"><b>4.8★</b><span class="ink-stat">app rating</span></div><div class="stat"><b>2 min</b><span class="ink-stat">to sign up</span></div></footer>
 </main>
 <script>
   const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
