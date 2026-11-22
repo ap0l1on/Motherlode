@@ -5,10 +5,11 @@ Top navigation bars.
 
 Part of [UI](../).
 
-## Designs (3)
+## Designs (4)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="acid-green-indicator-navbar/"><img src="acid-green-indicator-navbar/preview.gif" width="260" alt="Acid-green indicator navbar"></a><br><a href="acid-green-indicator-navbar/"><b>Acid-green indicator navbar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="prismatic-liquid-tab-bar/"><img src="prismatic-liquid-tab-bar/preview.gif" width="260" alt="Prismatic liquid tab bar"></a><br><a href="prismatic-liquid-tab-bar/"><b>Prismatic liquid tab bar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="sunlit-services-megamenu/"><img src="sunlit-services-megamenu/preview.gif" width="260" alt="Sunlit services megamenu"></a><br><a href="sunlit-services-megamenu/"><b>Sunlit services megamenu</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="acid-green-indicator-navbar/"><img src="acid-green-indicator-navbar/preview.gif" width="260" alt="Acid-green indicator navbar"></a><br><a href="acid-green-indicator-navbar/"><b>Acid-green indicator navbar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="apricot-liquid-navbar/"><img src="apricot-liquid-navbar/preview.gif" width="260" alt="Apricot liquid navbar"></a><br><a href="apricot-liquid-navbar/"><b>Apricot liquid navbar</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="prismatic-liquid-tab-bar/"><img src="prismatic-liquid-tab-bar/preview.gif" width="260" alt="Prismatic liquid tab bar"></a><br><a href="prismatic-liquid-tab-bar/"><b>Prismatic liquid tab bar</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="sunlit-services-megamenu/"><img src="sunlit-services-megamenu/preview.gif" width="260" alt="Sunlit services megamenu"></a><br><a href="sunlit-services-megamenu/"><b>Sunlit services megamenu</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
