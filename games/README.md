@@ -19,7 +19,7 @@ Game art and game UI.
 | [Loading screens](loading-screens/) | Loading screens |
 | [Level maps](level-maps/) | Level and world maps |
 | [VFX](vfx/) | Particles and visual effects |
-| [Card games](card-games/) | Card game designs |
+| [Card games](card-games/) | Card game designs · **1 design** |
 | [Board games](board-games/) | Boards, pieces and boxes · **1 design** |
 | [Tabletop RPG](tabletop-rpg/) | Maps, character sheets and tokens for tabletop RPGs |
 | [Game logos](game-logos/) | Game logos |
