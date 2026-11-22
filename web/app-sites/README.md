@@ -3,4 +3,12 @@
 
 Websites for mobile apps.
 
-Part of [Web](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Web](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="petal-document-toolkit/"><img src="petal-document-toolkit/preview.png" width="260" alt="Petal document toolkit"></a><br><a href="petal-document-toolkit/"><b>Petal document toolkit</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).

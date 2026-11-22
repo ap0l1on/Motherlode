@@ -8,7 +8,7 @@ Websites and web pages.
 | [Landing pages](landing-pages/) | Landing pages · **10 designs** |
 | [Homepages](homepages/) | Website homepages |
 | [SaaS sites](saas-sites/) | SaaS and product marketing sites |
-| [App sites](app-sites/) | Websites for mobile apps |
+| [App sites](app-sites/) | Websites for mobile apps · **1 design** |
 | [Agency sites](agency-sites/) | Agency and studio sites |
 | [Portfolios](portfolios/) | Creative portfolio sites · **2 designs** |
 | [Personal sites](personal-sites/) | Personal websites |
