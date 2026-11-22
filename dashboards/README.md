@@ -28,7 +28,7 @@ Dashboards for every kind of data.
 | [Smart home](smart-home/) | Smart home and IoT controls |
 | [Energy](energy/) | Energy and utilities |
 | [DevOps](devops/) | Servers, deploys and monitoring |
-| [Security](security/) | Security and threat monitoring |
+| [Security](security/) | Security and threat monitoring · **1 design** |
 | [AI and ML](ai-ml/) | AI usage and model monitoring |
 | [Real estate](real-estate/) | Property and rental management · **2 designs** |
 | [Sports](sports/) | Sports stats and scores |

@@ -3,4 +3,12 @@
 
 Security and threat monitoring.
 
-Part of [Dashboards](../). Each design gets its own folder here. See [Adding a design](../../README.md#adding-a-design).
+Part of [Dashboards](../).
+
+## Designs (1)
+
+<table>
+<tr><td align="center" valign="top" width="33%"><a href="obsidian-verification-console/"><img src="obsidian-verification-console/preview.gif" width="260" alt="Obsidian verification console"></a><br><a href="obsidian-verification-console/"><b>Obsidian verification console</b></a><br><sub>8 colorways</sub></td></tr>
+</table>
+
+Adding one? See [Adding a design](../../README.md#adding-a-design).
