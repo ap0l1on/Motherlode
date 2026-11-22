@@ -9,7 +9,7 @@
   <meta name="motherlode:still" content="1.1">
   <title>Copper spiral galaxy</title>
   <style>
-:root, [data-colorway="original"] { --background: #0c080d; --shade: #512839; --middle: #a64b49; --bright: #ec834d; --highlight: #ffca76; --leaf: #95656f; }
+:root, [data-colorway="original"] { --background: #0a080c; --shade: #782b45; --middle: #e35335; --bright: #fc7829; --highlight: #ffbb62; --leaf: #fd91a7; }
 [data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
 [data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
 [data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
@@ -47,59 +47,58 @@
     }
     const normal = () => Math.sqrt(-2 * Math.log(Math.max(0.00001, random()))) *
                          Math.cos(2 * Math.PI * random());
-    const colors = ["shade", "middle", "bright", "highlight"];
+    const colors = ["shade", "middle", "bright", "highlight", "leaf"];
     const stars = colors.map(() => [[], [], []]);
-    // The broad dusty lanes and fine core use different radial distributions.
-    for (let i = 0; i < 41000; i++) {
-      const fraction = random();
-      const radius = fraction < 0.35 ? 0.87 * random() ** 1.75 : 1.06 * Math.sqrt(random());
-      const scattered = random() < 0.35;
+    // Wide, diffuse lanes contain brighter filaments. The field grows redder
+    // outside the core and breaks into blush-coloured knots at the arm tips.
+    for (let i = 0; i < 48500; i++) {
+      const radius = random() < .29 ? .93 * random() ** 1.5 : 1.08 * Math.sqrt(random());
       const arm = Math.floor(random() * 3);
-      const theta = scattered ? random() * 2 * Math.PI :
-        arm * 2 * Math.PI / 3 + 5.7 * Math.pow(radius, 0.77) + 0.18 * normal();
-      const spread = scattered ? 5 : 3.4 + 9 * radius;
+      const scattered = random() < .43;
+      const filament = !scattered && random() < .27;
+      const theta = (scattered ? random() * 2 * Math.PI :
+        arm * 2 * Math.PI / 3 + .44 + 5.6 * radius ** .80 +
+        .04 * Math.sin(radius * 15 + arm) + (filament ? .028 : .16) * normal());
+      const spread = scattered ? 3.6 + radius * 5.2 : filament ? 1.4 : 3.4 + radius * 11;
       const x = Math.cos(theta) * radius * 206 + normal() * spread;
       const y = Math.sin(theta) * radius * 206 + normal() * spread;
       const brilliance = random();
-      const tone = radius < 0.14 && brilliance > 0.24 ? 3 :
-                   (!scattered && radius < 0.68 && brilliance > 0.65 ? 2 :
-                    (brilliance > (scattered ? 0.91 : 0.55) ? 1 : 0));
-      const size = brilliance > 0.993 ? 2 : brilliance > 0.76 ? 1 : 0;
-      stars[tone][size].push("M" + x.toFixed(1) + " " + y.toFixed(1) + "h.02");
+      const core = (radius < .012 && brilliance > .22) || (radius < .042 && brilliance > .94);
+      const flare = radius > .39 && !scattered && brilliance > (filament ? .61 : .88);
+      const tone = core ? 3 : flare ? 4 : radius < .28 && brilliance > .32 ? 2 :
+        (!scattered && brilliance > .54 || scattered && brilliance > .92) ? 1 : 0;
+      const size = brilliance > .990 ? 2 : brilliance > .69 ? 1 : 0;
+      stars[tone][size].push("M" + x.toFixed(1) + " " + y.toFixed(1) + "h.03");
     }
-    const center = element("g", {transform: "translate(244 161)"});
+    const center = element("g", {transform: "translate(242 163)"});
     const orbit = element("g", {}, center);
     const definitions = element("defs", {});
-    const core = element("radialGradient", {id: "core"}, definitions);
-    for (const [offset, color, strength] of [[0,"highlight",0.57],[0.12,"bright",0.33],
-        [0.36,"middle",0.19],[1,"shade",0]]) {
-      element("stop", {offset, "stop-color": "var(--" + color + ")", "stop-opacity": strength}, core);
-    }
-    const haze = element("filter", {id: "dust", x: "-40%", y: "-40%", width: "180%", height: "180%"}, definitions);
-    element("feGaussianBlur", {stdDeviation: 3.8}, haze);
-    for (let arm = 0; arm < 3; arm++) {
-      const d = [];
-      for (let k = 1; k <= 140; k++) {
-        const r = k / 140;
-        const angle = arm * 2 * Math.PI / 3 + 5.7 * r ** .77;
-        d.push((k === 1 ? "M" : "L") + (Math.cos(angle)*206*r).toFixed(2) + " " + (Math.sin(angle)*206*r).toFixed(2));
+    function glow(id, stops) {
+      const gradient = element("radialGradient", {id}, definitions);
+      for (const [offset, color, strength] of stops) {
+        element("stop", {offset, "stop-color": "var(--" + color + ")", "stop-opacity": strength}, gradient);
       }
-      element("path", {d: d.join(" "), stroke: "var(--middle)", "stroke-width": 7.8,
-        opacity: .45, filter: "url(#dust)", fill: "none"}, orbit);
-      element("path", {d: d.join(" "), stroke: "var(--bright)", "stroke-width": 1.2,
-        opacity: .13, fill: "none"}, orbit);
+      return "url(#" + id + ")";
     }
-    element("circle", {r: 97, fill: "url(#core)"}, orbit);
+    const dust = glow("dust-disk", [[0,"bright",.31], [.14,"middle",.35],
+      [.37,"middle",.29], [.57,"shade",.24], [.82,"shade",.13], [1,"shade",0]]);
+    element("circle", {r:215, fill:dust}, orbit);
+    const coreGlow = glow("core", [[0,"highlight",.60],[.12,"bright",.49],
+      [.46,"middle",.29],[1,"middle",0]]);
+    element("circle", {r:43,fill:coreGlow}, orbit);
     for (let tone = 0; tone < colors.length; tone++) for (let size = 0; size < 3; size++) {
       if (!stars[tone][size].length) continue;
-      element("path", {d: stars[tone][size].join(""), stroke: "var(--" + colors[tone] + ")",
-        "stroke-width": [0.82, 1.36, 2.12][size], "stroke-linecap": "round",
-        opacity: [0.71, 0.83, 0.94, 0.99][tone], fill: "none"}, orbit);
+      element("path", {d: stars[tone][size].join(""), stroke:"var(--" + colors[tone] + ")",
+        "stroke-width":[.89,1.42,2.06][size], "stroke-linecap":"round",
+        opacity:[.71,.86,.89,.96,.86][tone], fill:"none"}, orbit);
     }
-    // Keep the motion continuous through the dive and between the two wide shots.
-    const stops = [[0, 0.66, 0.92, -0.52], [.19, 1.30, .92, -.05],
-      [.43, 2.34, .67, .42], [.60, 2.78, .32, .78], [.77, 1.63, .62, .45],
-      [1, .66, .92, -.52]];
+
+    // In the footage the camera moves in quickly, stays among the stars,
+    // dips toward the disk, then eases back to the opening framing.
+    const stops = [[0,.65,.92,-.48], [.065,.93,.91,-.38], [.13,1.34,.82,-.24],
+      [.205,1.77,.64,-.16], [.31,1.94,.62,-.07], [.56,1.99,.61,.13],
+      [.66,2.12,.41,.33], [.73,2.22,.37,.54], [.83,1.52,.80,.68],
+      [.925,.83,.95,.11], [1,.65,.92,-.48]];
     const poses = [];
     for (let i = 0; i <= 48; i++) {
       const t = i / 48;
@@ -113,6 +112,33 @@
       poses.push({transform: "matrix(" + [scale*co,scale*tilt*si,-scale*si,scale*tilt*co,0,0].join(",") + ")"});
     }
     orbit.animate(poses, {duration, iterations: Infinity, easing: "linear"});
+    // Nearby dust moves faster than the disk under perspective. Slightly
+    // soft edges keep the larger particles legible during the low fly-by.
+    const flecks = [[], [], []];
+    for (let i = 0; i < 6400; i++) {
+      const x = normal() * 139, y = normal() * 77 + 11;
+      if (x * x + y * y < 33 * 33) continue;
+      const depth = Math.floor(random() * 3);
+      const side = (.34 + random() ** 7 * (depth === 2 ? 2.0 : 1.55)) * (1 + depth * .22);
+      flecks[depth].push("M" + x.toFixed(1) + " " + y.toFixed(1) + "h" + side.toFixed(1) +
+        "v" + side.toFixed(1) + "h-" + side.toFixed(1) + "Z");
+    }
+    for (let depth = 0; depth < flecks.length; depth++) {
+      const mote = element("path", {d:flecks[depth].join(""), fill:"var(--" + ["middle","shade","leaf"][depth] + ")"},center);
+      const flight = stops.map(([offset, magnification, tilt, angle]) => {
+        const scale = magnification * (.79 + depth*.09) ** 2;
+        const strength = Math.max(0,Math.min(1,(magnification-.82)/1.15));
+        const x = (-angle * depth * 7).toFixed(1);
+        const y = (strength * depth * 4).toFixed(1);
+        return {
+          offset,
+          transform: `translate(${x}px, ${y}px) rotate(${angle * 34}deg) scale(${scale})`,
+          opacity: strength * [.53, .39, .83][depth],
+          easing: "ease-in-out"
+        };
+      });
+      mote.animate(flight,{duration,iterations:Infinity});
+    }
 
     })();
   </script>

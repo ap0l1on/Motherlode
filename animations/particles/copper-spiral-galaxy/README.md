@@ -25,4 +25,4 @@ Copper starlight sweeps through curved spiral arms as the view dives toward an i
 
 ## Changing it
 
-A seeded field of stars follows three spiral arms and a diffuse central bulge. The Web Animations camera varies orbit, inclination and magnification. Each color token lives in the palette blocks at the top of the HTML. Run `python3 .github/scripts/export_design.py animations/particles/copper-spiral-galaxy` to refresh the media.
+A seeded particle field traces three copper arms with pink filaments and a compact amber core. The camera moves into the disk, holds among the stars and lowers toward the rim. Three foreground layers move across the spiral at different speeds. Each color token lives in the palette blocks at the top of the HTML. Run `python3 .github/scripts/export_design.py animations/particles/copper-spiral-galaxy` to refresh the media.
