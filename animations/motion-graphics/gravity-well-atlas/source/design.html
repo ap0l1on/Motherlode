@@ -5,18 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="motherlode:size" content="576x475">
   <meta name="motherlode:scale" content="1">
-  <meta name="motherlode:loop" content="15">
-  <meta name="motherlode:still" content="7">
+  <meta name="motherlode:loop" content="16">
+  <meta name="motherlode:still" content="7.5">
   <title>Gravity well atlas</title>
   <style>
-:root, [data-colorway="original"] { --background: #090d1b; --shade: #294a75; --middle: #a14994; --bright: #7da7c8; --highlight: #fff5d7; --leaf: #f3b379; }
-[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
-[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
-[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
-[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
-[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
-[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
-[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+:root, [data-colorway="original"] { --background: #090d1b; --shade: #294a75; --middle: #a14994; --bright: #7da7c8; --highlight: #fff6e8; --leaf: #ecc295; --nebula: #a84e9c; --blue-gas: #3979a6; --hole: #020207; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; --nebula: #af6487; --blue-gas: #8298ad; --hole: #443640; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; --nebula: #804c80; --blue-gas: #4c76a5; --hole: #070912; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; --nebula: #909090; --blue-gas: #707070; --hole: #040404; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; --nebula: #4fb6b6; --blue-gas: #267986; --hole: #031018; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; --nebula: #91ad78; --blue-gas: #617c61; --hole: #0a100c; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; --nebula: #ad5576; --blue-gas: #996375; --hole: #170c13; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; --nebula: #9a62c7; --blue-gas: #645b9f; --hole: #110c1b; }
 
     * { box-sizing: border-box; }
     html, body { margin: 0; width: 576px; height: 475px; overflow: hidden; background: var(--background); }
@@ -31,7 +31,7 @@
   <script>
     (() => {
     const drawing = document.querySelector("svg");
-    const duration = 15 * 1000;
+    const duration = 16000;
 
     function element(tag, attributes, parent = drawing) {
       const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -66,58 +66,233 @@
     }
 
     const defs = element("defs", {});
-    const cloud = radial(defs, "nebula", [[0,"middle",.65],[.32,"middle",.19],[1,"shade",0]]);
-    const blueGas = radial(defs, "gas", [[0,"shade",.85],[.65,"shade",.22],[1,"middle",0]]);
-    const cloudFx=element("filter",{id:"nebula-texture",x:"-25%",y:"-25%",width:"150%",height:"150%"},defs);
-    element("feTurbulence",{type:"fractalNoise",baseFrequency:".026 .039",numOctaves:3,seed:12,result:"grain"},cloudFx);
-    element("feDisplacementMap",{in:"SourceGraphic",in2:"grain",scale:46,xChannelSelector:"R",yChannelSelector:"B"},cloudFx);
-    const clouds=element("g",{filter:"url(#nebula-texture)",opacity:.88});
-    for (let i = 0; i < 125; i++) {
-      const x = random()*590, y = 139 + 70*Math.sin(x/91) + (random()-.5)*280;
-      element("ellipse",{cx:x,cy:y,rx:19+random()*81,ry:17+random()*51,fill:i%3?cloud:blueGas},clouds);
+    const halo = radial(defs,"star-glow",[[0,"highlight",1],[.22,"highlight",.98],
+      [.37,"leaf",.68],[.64,"middle",.16],[1,"middle",0]]);
+    const pin = radial(defs,"far-star",[[0,"highlight",1],[.16,"highlight",.91],
+      [.45,"bright",.18],[1,"bright",0]]);
+    const cloud = radial(defs,"ion-cloud",[[0,"nebula",.88],[.39,"middle",.47],[1,"middle",0]]);
+    const gas = radial(defs,"blue-cloud",[[0,"blue-gas",.94],[.48,"shade",.65],[1,"shade",0]]);
+    const turbulence = element("filter",{id:"cloud-fray",x:"-15%",y:"-20%",width:"130%",height:"145%"},defs);
+    element("feTurbulence",{type:"fractalNoise",baseFrequency:".010 .014",numOctaves:4,seed:32,result:"noise"},turbulence);
+    element("feDisplacementMap",{in:"SourceGraphic",in2:"noise",scale:53,xChannelSelector:"R",yChannelSelector:"G"},turbulence);
+    const sky = element("g",{});
+    const vapour = element("g",{filter:"url(#cloud-fray)"},sky);
+    for(let i=0;i<172;i++) {
+      const x=random()*870-145;
+      const y=random()*690-132+.35*x+46*Math.sin(x/79);
+      const dens=.48+.5*Math.sin(x*.031+y*.014)**2;
+      element("ellipse",{cx:x,cy:y,rx:22+random()*63,ry:15+random()*40,
+        fill:i%5<2 ? cloud : gas,opacity:dens},vapour);
     }
-    const starDots = [[],[],[]];
-    for (let i=0; i<3700; i++) {
-      const k=Math.floor(random()**2.8*3);
-      starDots[k].push("M"+(random()*576).toFixed(1)+" "+(random()*475).toFixed(1)+"h.04");
+    const fixed = element("g",{});
+    const dust=[[],[],[],[]];
+    for(let i=0;i<7800;i++) {
+      const rank=Math.floor(random()**3.4*4);
+      dust[rank].push("M"+(random()*636-30).toFixed(1)+" "+(random()*535-30).toFixed(1)+"h.02");
     }
-    starDots.forEach((d,i)=>line(drawing,d.join(""),i===2?"highlight":"bright",[.56,.9,1.5][i],[.51,.7,.9][i]));
-    const grid=element("g",{});
-    const stops=[[0,-.18,.69],[.21,-.04,.14],[.47,.45,.95],[.71,.77,.21],[.84,.29,.13],[1,-.18,.69]];
-    function camera(t) {
-      const i=Math.max(1,stops.findIndex(s=>s[0]>=t));
-      const a=stops[i-1],b=stops[i];
-      let f=(t-a[0])/(b[0]-a[0]); f=f*f*(3-2*f);
+    dust.forEach((row,k)=>line(fixed,row.join(""),k>1?"highlight":"bright",[.54,.91,1.48,2.12][k],[.55,.72,.90,.99][k]));
+    for(let i=0;i<155;i++) {
+      const x=random()*636-30,y=random()*535-30,r=1.9+random()**2*4.2;
+      element("circle",{cx:x,cy:y,r,fill:pin,opacity:.56+random()*.43},fixed);
+    }
+
+    // Seconds, primary and secondary centers, viewing angle, yaw, projected
+    // depth of either well, nebula visibility and apparent primary radius.
+    const views=[
+      [0,334,304,-180,550,.58,-.34,78,170,.72,1.04],
+      [.5,337,309,-175,550,.47,-.22,83,155,.78,1.06],
+      [1,328,324,-170,550,.29,-.03,91,140,.90,1.05],
+      [1.5,286,358,-165,555,.13,.12,106,145,.98,1.16],
+      [2.5,231,341,-160,550,.15,.25,103,150,.92,1.13],
+      [3.5,263,320,-160,540,.13,.39,105,145,.96,1.01],
+      [4.5,310,323,-100,565,.12,.44,112,143,1,1.02],
+      [5,330,334,-50,570,.27,.36,100,145,.81,1.01],
+      [5.5,332,296,20,610,.47,.15,83,131,.53,1.01],
+      [6.5,305,318,104,620,.82,-.32,51,92,.23,1.08],
+      [7,283,322,142,611,.94,-.47,43,78,.18,1.09],
+      [7.5,242,280,145,552,.94,-.56,38,73,.14,1.03],
+      [8,244,286,147,487,.91,-.59,42,77,.13,.97],
+      [8.5,239,323,134,439,.82,-.49,52,83,.19,1.0],
+      [9,131,366,155,377,.82,-.38,61,91,.19,.97],
+      [9.5,25,361,190,401,.72,-.13,76,106,.26,.90],
+      [10,-21,329,184,410,.48,.07,94,134,.43,.84],
+      [10.5,-12,301,188,427,.28,.14,102,165,.67,.75],
+      [11,58,263,194,442,.16,.21,62,196,.92,.66],
+      [11.5,129,254,195,441,.12,.30,54,203,1,.64],
+      [12,207,243,240,437,.11,.33,49,202,1,.57],
+      [12.5,269,249,233,432,.13,.35,43,205,.98,.55],
+      [13,351,248,309,415,.13,.37,38,196,.93,.51],
+      [13.5,367,212,396,485,.15,.39,26,217,.87,.44],
+      [14,368,193,398,507,.18,.34,22,223,.78,.36],
+      [14.5,295,181,263,498,.21,.29,20,208,.88,.31],
+      [15,215,151,259,428,.20,.24,19,192,.95,.29],
+      [15.45,215,151,259,428,.20,.24,19,192,.95,.29],
+      [16,334,304,-180,550,.58,-.34,78,170,.72,1.04]];
+    function camera(time) {
+      const t=Math.min(16,Math.max(0,time));
+      let idx=views.findIndex(v=>v[0]>=t);idx=Math.max(1,idx);
+      const a=views[idx-1],b=views[idx];let f=(t-a[0])/(b[0]-a[0]);f=f*f*(3-2*f);
+      const v=a.map((x,k)=>x+(b[k]-x)*f);
+      const [,ax,ay,bx,by,pitch,yaw,depthA,depthB,clouds,size]=v;
+      const base=ay-depthA;
+      const bv=(by-depthB-base)/Math.max(.115,pitch);
+      return {ax,ay,bx,by,pitch,yaw,depthA,depthB,clouds,size,base,bv,
+        bu:bx-ax,cos:Math.cos(yaw),sin:Math.sin(yaw),time:t};
+    }
+    const poses=Array.from({length:65},(_,index)=>camera(index*.25));
+    const skyFade=element("linearGradient",{id:"galactic-latitude",gradientUnits:"userSpaceOnUse",x1:0,x2:0,y1:0,y2:475},defs);
+    for (const [offset,early] of [[0,1],[.36,.97],[.58,.10],[1,.045]]) {
+      const stop=element("stop",{offset,"stop-color":"var(--highlight)","stop-opacity":early},skyFade);
+      stop.animate(poses.map(p=>({stopOpacity:early+(1-early)*Math.min(1,Math.max(0,(p.time-9.8)/2))*
+        Math.min(1,(16-p.time)*2)})),{duration,iterations:Infinity});
+    }
+    const skyMask=element("mask",{id:"sky-region",maskUnits:"userSpaceOnUse",x:-150,y:-140,
+      width:900,height:780,style:"mask-type:alpha"},defs);
+    element("rect",{x:-180,y:-140,width:945,height:755,fill:"url(#galactic-latitude)"},skyMask);
+    vapour.setAttribute("mask","url(#sky-region)");
+    sky.animate(poses.map(p=>({opacity:p.clouds,
+      transform:"translate("+(-p.yaw*94).toFixed(1)+"px,"+((p.pitch-.4)*57).toFixed(1)+"px)"})),{duration,iterations:Infinity});
+    fixed.animate(poses.map(p=>({transform:"translate("+(-p.yaw*18).toFixed(1)+"px,"+((p.pitch-.40)*14).toFixed(1)+"px)"})),
+      {duration,iterations:Infinity});
+    const sheet=element("g",{});
+    const satelliteRoute=[[0,-170,70],[1,-90,131],[2,-147,46],[3,-131,85],
+      [4,-169,-52],[4.5,-147,-50],[5,-117,43],[5.5,-155,35],[6,-117,-69],
+      [6.5,-79,-131],[7,9,-145],[7.5,164,61],[8,121,96],[8.5,82,92],
+      [9,-61,55],[10,-104,33],[12,-115,-56],[15,-153,93],[16,-170,70]];
+    function satellite(p) {
+      const at=Math.max(1,satelliteRoute.findIndex(row=>row[0]>=p.time));
+      const a=satelliteRoute[at-1],b=satelliteRoute[at],u=(p.time-a[0])/(b[0]-a[0]);
+      const f=u*u*(3-2*u);
       return [a[1]+(b[1]-a[1])*f,a[2]+(b[2]-a[2])*f];
     }
-    function project(x,z,t) {
-      const [yaw,pitch]=camera(t),depth=182*Math.exp(-(x*x+z*z)/13000);
-      const u=x*Math.cos(yaw)-z*Math.sin(yaw),v=x*Math.sin(yaw)+z*Math.cos(yaw);
-      const perspective=740/(790+v*.50);
-      const pan=(1-Math.cos(t*tau))*.5;
-      return [291-52*pan+u*perspective,230-39*pan+(v*Math.sin(pitch)+depth*Math.cos(pitch))*perspective];
+    function surface(p,x,z) {
+      const planarX=p.cos*x-p.sin*z,planarDepth=p.sin*x+p.cos*z;
+      const focal=660+480*p.pitch*p.pitch;
+      const perspective=1/Math.max(.23,1-planarDepth/focal);
+      const u=planarX*perspective,v=planarDepth*perspective;
+      const rA2=u*u+v*v,rB2=(u-p.bu)**2+(v-p.bv)**2;
+      const [su,sv]=satellite(p),rC2=(u-su)**2+(v-sv)**2;
+      const main=p.depthA*Math.exp(-rA2/7100);
+      const deep=p.depthB*Math.exp(-rB2/5150);
+      const moon=(20+22*(1-p.pitch))*Math.exp(-rC2/1600);
+      const depth=Math.max(main,deep)+moon;
+      return [p.ax+u,p.base+v*p.pitch+depth];
     }
-    for (let axis=0;axis<2;axis++) {
-      const path=line(grid,"","bright",.77,.61);
-      animatePath(path,t=>{
-        const segments=[];
-        for(let fixed=-20;fixed<=20;fixed++){
-          const pts=[];for(let i=0;i<=38;i++){
-            const free=-400+i*800/38,q=fixed*24;
-            pts.push(axis?project(free,q,t):project(q,free,t));
+    // The finite mesh extends well behind the luminous material. A shallow
+    // camera compresses its far rows while the two central funnels stay open.
+    const fades=element("linearGradient",{id:"grid-depth",x1:"0%",x2:"0%",y1:"0%",y2:"100%"},defs);
+    for(const [offset,alpha] of [[0,0],[.14,.91],[.58,1],[.81,.70],[1,0]]) {
+      element("stop",{offset,"stop-color":"var(--highlight)","stop-opacity":alpha},fades);
+    }
+    const surfaceMask=element("mask",{id:"plane-range",maskUnits:"userSpaceOnUse",x:-2,y:-2,
+      width:580,height:480,style:"mask-type:alpha"},defs);
+    const band=element("rect",{x:0,y:0,width:576,height:1,fill:"url(#grid-depth)"},surfaceMask);
+    band.animate(poses.map(p=>{
+      const far=p.base-27-435*p.pitch**1.40,near=p.base+55+610*p.pitch**1.65;
+      return {transform:"translateY("+far.toFixed(2)+"px) scaleY("+(near-far).toFixed(2)+")"};
+    }),{duration,iterations:Infinity});
+    const aperture=radial(defs,"near-well",[[0,"highlight",.84],[.56,"highlight",.62],[1,"highlight",0]]);
+    for(const secondary of [false,true]){
+      const visible=element("circle",{r:111,fill:aperture},surfaceMask);
+      visible.animate(poses.map(p=>({transform:"translate("+(secondary?p.bx:p.ax)+"px,"+
+        (secondary?p.by:p.ay)+"px)"})),{duration,iterations:Infinity});
+    }
+    sheet.setAttribute("mask","url(#plane-range)");
+    const fabric=element("path",{fill:"var(--blue-gas)",opacity:.22},sheet);
+    fabric.animate(poses.map(p=>{
+      const edge=[];
+      for(let i=0;i<=24;i++)edge.push(surface(p,-760+i*1520/24,-700));
+      for(let i=0;i<=24;i++)edge.push(surface(p,760,-700+i*1400/24));
+      for(let i=24;i>=0;i--)edge.push(surface(p,-760+i*1520/24,700));
+      for(let i=24;i>=0;i--)edge.push(surface(p,-760,-700+i*1400/24));
+      return {d:"path('"+pointsPath(edge,true)+"')",opacity:.11+p.pitch*.23};
+    }),{duration,iterations:Infinity});
+    for(const axis of [0,1]) {
+      const path=line(sheet,"","bright",.76,.66);
+      const keys=poses.map(p=>{
+        const parts=[];
+        for(let index=-36;index<=36;index++) {
+          const fixed=index*20.5;const points=[];
+          for(let j=0;j<=66;j++) {
+            const free=-740+j*1480/66;
+            points.push(axis ? surface(p,free,fixed) : surface(p,fixed,free));
           }
-          segments.push(pointsPath(pts));
-        } return segments.join("");
-      },36);
+          parts.push(pointsPath(points));
+        }
+        return {d:"path('"+parts.join("")+"')"};
+      });
+      path.animate(keys,{duration,iterations:Infinity,easing:"linear"});
     }
-    const halo=radial(defs,"gravity-light",[[0,"highlight",1],[.20,"highlight",1],[.32,"leaf",.97],[.48,"leaf",.76],[1,"leaf",0]]);
-    const mass=element("g",{});
-    element("circle",{r:53,fill:halo},mass);
-    const core=element("circle",{r:15.5,fill:"var(--background)"},mass);
-    core.animate([{offset:0,opacity:0},{offset:.55,opacity:0},{offset:.72,opacity:1},{offset:.88,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
-    const trajectory=Array.from({length:49},(_,i)=>{const p=project(0,0,i/48);return {transform:"translate("+p[0]+"px,"+p[1]+"px)"};});
-    mass.animate(trajectory,{duration,iterations:Infinity});
-
+    const ringGlow=radial(defs,"accretion",[[0,"highlight",1],[.24,"highlight",.99],[.36,"leaf",.91],
+      [.55,"leaf",.57],[.78,"middle",.23],[1,"middle",0]]);
+    // Moving fine dust gives the chart a three-dimensional rim, with brighter
+    // violet clumps and white pinpoints following the curved surface.
+    for(const hole of [false,true]) for(let layer=0;layer<15;layer++) {
+      const group=element("g",{});const stroke=[[],[],[]];const baseR=19+layer*(hole?7.3:9.8);
+      for(let i=0;i<412;i++) {
+        const angle=random()*tau,r=baseR+(random()+random()-1)*15;
+        const x=r*Math.cos(angle),y=r*Math.sin(angle);
+        stroke[i%3].push("M"+x.toFixed(1)+" "+y.toFixed(1)+"h.025");
+      }
+      stroke.forEach((dots,k)=>{
+        const flecks=line(group,dots.join(""),["bright","middle","highlight"][k],
+          [.87,1.26,1.83][k],[.79,.84,1][k]);
+        flecks.setAttribute("vector-effect","non-scaling-stroke");
+      });
+      group.animate(poses.map(p=>{
+        const radius=hole?baseR*.83:baseR,depth=hole?p.depthB:p.depthA;
+        const uplift=.82*depth*(1-Math.exp(-radius*radius/(hole?5150:7100)));
+        const q=p.yaw+(hole?-.44:.4)+p.time*(hole?.06:.08);
+        const sx=Math.cos(q),sy=Math.sin(q);
+        const size=hole?.89:1;
+        return {transform:"matrix("+[size*sx,p.pitch*size*sy,-size*sy,p.pitch*size*sx,
+          hole?p.bx:p.ax,(hole?p.by:p.ay)-uplift].map(v=>v.toFixed(4)).join(",")+")",
+          opacity:hole?Math.min(1,Math.max(0,(p.time-7.3)*1.8))*Math.min(1,(16-p.time)*1.9):.85};
+      }),{duration,iterations:Infinity});
+    }
+    const light=element("g",{});
+    element("circle",{r:78,fill:halo},light);
+    element("circle",{r:19,fill:"var(--highlight)",opacity:.99},light);
+    light.animate(poses.map(p=>({transform:"translate("+p.ax+"px,"+p.ay+"px) scale("+p.size+")",
+      opacity:p.time>13 && p.time<15.55 ? .36 : 1})),{duration,iterations:Infinity});
+    const swirl=element("g",{});
+    const swirlDust=[[],[],[]];
+    for(let arm=0;arm<3;arm++) {
+      const ridge=[];
+      for(let k=0;k<=64;k++) {
+        const r=(k+.5)*1.50,theta=arm*tau/3+.045*r;
+        ridge.push([r*Math.cos(theta),r*Math.sin(theta)]);
+        for(let j=0;j<9;j++) {
+          const da=(random()-.5)*(.43+.002*r),dr=(random()+random()-1)*(4+.18*r);
+          const x=(r+dr)*Math.cos(theta+da),y=(r+dr)*Math.sin(theta+da);
+          swirlDust[j%3].push("M"+x.toFixed(1)+" "+y.toFixed(1)+"h.01");
+        }
+      }
+      line(swirl,pointsPath(ridge),"bright",8.4,.075);
+      line(swirl,pointsPath(ridge),"middle",4.15,.20);
+      line(swirl,pointsPath(ridge),"highlight",1.12,.19);
+    }
+    swirlDust.forEach((d,j)=>line(swirl,d.join(""),["blue-gas","middle","highlight"][j],
+      [2.2,1.6,.96][j],[.49,.52,.73][j]));
+    swirl.animate(poses.map(p=>{
+      const [u,v]=satellite(p),angle=p.time*.27,cs=Math.cos(angle),sn=Math.sin(angle);
+      const height=Math.max(.17,p.pitch);
+      return {transform:"matrix("+[cs,height*sn,-sn,height*cs,p.ax+u,p.base+v*p.pitch+20+22*(1-p.pitch)].map(n=>n.toFixed(4)).join(",")+")",
+        opacity:Math.min(1,.16+p.pitch*.89)};
+    }),{duration,iterations:Infinity});
+    const companion=element("g",{});
+    element("circle",{r:6.5,fill:"var(--shade)"},companion);
+    element("path",{d:"M2 -6.2A6.6 6.6 0 0 0 -1.8 6.3A6.4 6.4 0 0 1 2 -6.2Z",fill:"var(--highlight)"},companion);
+    companion.animate(poses.map(p=>{
+      const [u,v]=satellite(p);const y=p.base+v*p.pitch+20+22*(1-p.pitch);
+      return {transform:"translate("+(p.ax+u)+"px,"+y+"px)"};
+    }),{duration,iterations:Infinity});
+    const black=element("g",{});
+    element("ellipse",{rx:84,ry:51,fill:ringGlow},black);
+    element("circle",{r:26,fill:halo},black);
+    element("circle",{r:16.2,fill:"var(--hole)",stroke:"var(--highlight)","stroke-width":2.4},black);
+    black.animate(poses.map(p=>({transform:"translate("+p.bx+"px,"+p.by+"px) rotate("+(-.07-p.yaw*.13)+"rad)",
+      opacity:Math.min(1,Math.max(0,(p.time-7.55)*2.8))*Math.min(1,(16-p.time)*2)})),{duration,iterations:Infinity});
     })();
   </script>
   <script>
