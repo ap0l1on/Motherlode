@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x358">
+  <meta name="motherlode:scale" content="1">
+  <meta name="motherlode:loop" content="7">
+  <meta name="motherlode:still" content="4.5">
+  <title>Ruby spiral fir</title>
+  <style>
+:root, [data-colorway="original"] { --background: #030a10; --shade: #0a171a; --middle: #8b242b; --bright: #de595d; --highlight: #f9e5c4; --leaf: #a6a195; }
+[data-colorway="light"] { --background: #fcf6f1; --shade: #78253d; --middle: #a13955; --bright: #b85a76; --highlight: #e39394; --leaf: #2a6651; }
+[data-colorway="dark"] { --background: #111322; --shade: #6b3f70; --middle: #b75086; --bright: #ea899f; --highlight: #ffcfb6; --leaf: #83ab97; }
+[data-colorway="mono"] { --background: #121212; --shade: #505050; --middle: #878787; --bright: #bebebe; --highlight: #f1f1f1; --leaf: #9d9d9d; }
+[data-colorway="ocean"] { --background: #071824; --shade: #204e70; --middle: #348eab; --bright: #5bc8d4; --highlight: #c5f1e6; --leaf: #65b5a6; }
+[data-colorway="matcha"] { --background: #101c15; --shade: #3e563d; --middle: #71916a; --bright: #b4c989; --highlight: #eaf2c7; --leaf: #91b395; }
+[data-colorway="sunset"] { --background: #21101f; --shade: #723355; --middle: #b95161; --bright: #ec825d; --highlight: #ffdd9e; --leaf: #ab9976; }
+[data-colorway="iris"] { --background: #121026; --shade: #4b3d76; --middle: #7758bf; --bright: #ac9eff; --highlight: #eee0ff; --leaf: #7ea1b5; }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 576px; height: 358px; overflow: hidden; background: var(--background); }
+    svg { display: block; width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+  <svg viewBox="0 0 576 358" role="img" aria-labelledby="art-title description" xmlns="http://www.w3.org/2000/svg">
+    <title id="art-title">Ruby spiral fir</title>
+    <desc id="description">A tapering helix of small ruby lights rises from the dark and ends in an outlined star.</desc>
+  </svg>
+  <script>
+    (() => {
+    const drawing = document.querySelector("svg");
+    const duration = 7 * 1000;
+
+    function element(tag, attributes, parent = drawing) {
+      const result = document.createElementNS("http://www.w3.org/2000/svg", tag);
+      for (const [key, value] of Object.entries(attributes)) result.setAttribute(key, value);
+      parent.append(result);
+      return result;
+    }
+
+    const tau = 2 * Math.PI;
+    function pointsPath(points, close = false) {
+      return points.length ? "M" + points.map(p => p[0].toFixed(2) + " " + p[1].toFixed(2)).join("L") + (close ? "Z" : "") : "";
+    }
+    function line(parent, data, color, width = 1, opacity = 1) {
+      return element("path", {d: data, fill: "none", stroke: "var(--" + color + ")",
+        "stroke-width": width, "stroke-linejoin": "round", "stroke-linecap": "round", opacity}, parent);
+    }
+    function radial(defs, id, stops) {
+      const gradient = element("radialGradient", {id}, defs);
+      for (const [offset, color, opacity] of stops) element("stop", {
+        offset, "stop-color": "var(--" + color + ")", "stop-opacity": opacity}, gradient);
+      return "url(#" + id + ")";
+    }
+
+    const defs=element("defs",{}),cx=287;
+    const night=radial(defs,"night",[[0,"shade",.42],[1,"background",0]]);
+    element("ellipse",{cx,cy:183,rx:255,ry:233,fill:night});
+    const glow=radial(defs,"red-glow",[[0,"highlight",1],[.2,"bright",.95],[.5,"middle",.35],[1,"middle",0]]);
+    for(let i=0;i<58;i++){
+      const u=i/57,a=tau*4.10*u+.52;
+      const r=(1-u)**1.18*69+1,x=cx+Math.cos(a)*r,y=301-254*u+8*Math.sin(a)*(1-u);
+      const lamp=element("g",{transform:"translate("+x+" "+y+")"}),spark=element("g",{},lamp);
+      const sz=1.42+2.95*(1-u)*(.58+.42*Math.cos(a));
+      element("circle",{r:sz*2.9,fill:glow,opacity:.77},spark);
+      element("circle",{r:sz*.92,fill:"var(--"+(i%6===0?"highlight":"bright")+")"},spark);
+      const on=.015+u*.41;
+      spark.animate([{offset:0,opacity:0},{offset:on,opacity:0},{offset:on+.04,opacity:.96},
+        {offset:.60+(i%8)*.013,opacity:.73},{offset:.84,opacity:.98},{offset:.977,opacity:.83},{offset:1,opacity:0}],{duration,iterations:Infinity});
+    }
+    const star=[];
+    for(let i=0;i<10;i++){const a=-Math.PI/2+i*tau/10,r=i%2?5:10;star.push([cx+r*Math.cos(a)*.74,39+r*Math.sin(a)]);}
+    const cap=line(drawing,pointsPath(star,true),"highlight",1.36);
+    cap.animate([{offset:0,opacity:0},{offset:.39,opacity:0},{offset:.48,opacity:1},{offset:.96,opacity:1},{offset:1,opacity:0}],{duration,iterations:Infinity});
+
+    })();
+  </script>
+  <script>
+    const pick = () => (document.documentElement.dataset.colorway = location.hash.slice(1) || "original");
+    pick();
+    addEventListener("hashchange", pick);
+    const t = new URLSearchParams(location.search).get("t");
+    if (t !== null) {
+      const freeze = () => document.getAnimations().forEach((a) => { a.pause(); a.currentTime = Number(t) * 1000; });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
