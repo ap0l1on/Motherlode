@@ -5,10 +5,10 @@ Comparison tables.
 
 Part of [Data](../).
 
-## Designs (1)
+## Designs (2)
 
 <table>
-<tr><td align="center" valign="top" width="33%"><a href="cable-spectrum-table/"><img src="cable-spectrum-table/preview.png" width="260" alt="Cable spectrum table"></a><br><a href="cable-spectrum-table/"><b>Cable spectrum table</b></a><br><sub>8 colorways</sub></td></tr>
+<tr><td align="center" valign="top" width="33%"><a href="cable-spectrum-table/"><img src="cable-spectrum-table/preview.png" width="260" alt="Cable spectrum table"></a><br><a href="cable-spectrum-table/"><b>Cable spectrum table</b></a><br><sub>8 colorways</sub></td><td align="center" valign="top" width="33%"><a href="studio-tool-pairings/"><img src="studio-tool-pairings/preview.png" width="260" alt="Studio tool pairings"></a><br><a href="studio-tool-pairings/"><b>Studio tool pairings</b></a><br><sub>8 colorways</sub></td></tr>
 </table>
 
 Adding one? See [Adding a design](../../README.md#adding-a-design).
