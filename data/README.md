@@ -14,7 +14,7 @@ Charts, infographics and diagrams.
 | [Gantt charts](gantt-charts/) | Gantt charts |
 | [Maps](maps/) | Data maps |
 | [Heatmaps](heatmaps/) | Heatmaps |
-| [Mind maps](mind-maps/) | Mind maps |
+| [Mind maps](mind-maps/) | Mind maps · **1 design** |
 | [Org charts](org-charts/) | Org charts |
 | [Family trees](family-trees/) | Family trees |
 | [Venn diagrams](venn-diagrams/) | Venn diagrams |

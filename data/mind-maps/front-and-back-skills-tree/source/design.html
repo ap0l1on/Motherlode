@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="motherlode:size" content="576x780">
+  <meta name="motherlode:scale" content="1">
+  <title>Front and back skills tree</title>
+  <style>
+:root, [data-colorway="original"] { --bg: #020202; --surface: #0b1014; --rule: #898989; --text: #fafafa; --muted: #d5d5d5; --gold: #f4d34d; --violet: #c594ec; --green: #74d99a; --cyan: #58cce5; --red: #eb7870; --blue: #6ca6ef; --orange: #e9a265; --paper: #fffefe; --ink: #12100f; --soft: #bbbfbc; --on: #020303; --panel: #0b1014; --glow: #58cce5; --ivory: #f5f3ee; --caption: #f5f3ee; --clear: transparent; }
+[data-colorway="light"] { --bg: #faf8f1; --surface: #eeeee6; --rule: #b8b9b3; --text: #16231f; --muted: #3e5049; --gold: #805300; --violet: #75357c; --green: #30683a; --cyan: #145f72; --red: #963d40; --blue: #2b548a; --orange: #8b492a; --paper: #16231f; --ink: #faf8f1; --soft: #3e5049; --on: #faf8f1; --panel: #eeeee6; --glow: #145f72; --ivory: #16231f; --caption: #16231f; --clear: transparent; }
+[data-colorway="dark"] { --bg: #101824; --surface: #1a2633; --rule: #43516a; --text: #f0f3f7; --muted: #b2c7d4; --gold: #eacc78; --violet: #d6a2f3; --green: #94d29f; --cyan: #8adbe1; --red: #f1a599; --blue: #96b8fe; --orange: #ecc196; --paper: #f0f3f7; --ink: #101824; --soft: #b2c7d4; --on: #101824; --panel: #1a2633; --glow: #8adbe1; --ivory: #f0f3f7; --caption: #f0f3f7; --clear: transparent; }
+[data-colorway="mono"] { --bg: #111111; --surface: #1d1d1d; --rule: #494949; --text: #f8f8f8; --muted: #b6b6b6; --gold: #dadada; --violet: #aaaaaa; --green: #c6c6c6; --cyan: #eeeeee; --red: #b3b3b3; --blue: #dddddd; --orange: #a6a6a6; --paper: #f8f8f8; --ink: #111111; --soft: #b6b6b6; --on: #111111; --panel: #1d1d1d; --glow: #eeeeee; --ivory: #f8f8f8; --caption: #f8f8f8; --clear: transparent; }
+[data-colorway="ocean"] { --bg: #061825; --surface: #0e293b; --rule: #305064; --text: #ecfbfa; --muted: #b4d6de; --gold: #f3cb84; --violet: #b2a4e4; --green: #7ad7b7; --cyan: #6bd2e3; --red: #efad9d; --blue: #80bafa; --orange: #c5d9a5; --paper: #ecfbfa; --ink: #061825; --soft: #b4d6de; --on: #061825; --panel: #0e293b; --glow: #6bd2e3; --ivory: #ecfbfa; --caption: #ecfbfa; --clear: transparent; }
+[data-colorway="matcha"] { --bg: #12231a; --surface: #203629; --rule: #455e49; --text: #eef5de; --muted: #bccdb0; --gold: #ead188; --violet: #cab2da; --green: #9acd8a; --cyan: #81cebf; --red: #e6adab; --blue: #a2c6cf; --orange: #e4b188; --paper: #eef5de; --ink: #12231a; --soft: #bccdb0; --on: #12231a; --panel: #203629; --glow: #81cebf; --ivory: #eef5de; --caption: #eef5de; --clear: transparent; }
+[data-colorway="copper"] { --bg: #241710; --surface: #37231b; --rule: #64493b; --text: #fff1de; --muted: #d0baa4; --gold: #ffcf85; --violet: #d9a2c7; --green: #b8cb8d; --cyan: #8ed3c3; --red: #f59b88; --blue: #a9bbd5; --orange: #f1b456; --paper: #fff1de; --ink: #241710; --soft: #d0baa4; --on: #241710; --panel: #37231b; --glow: #8ed3c3; --ivory: #fff1de; --caption: #fff1de; --clear: transparent; }
+[data-colorway="iris"] { --bg: #1a1529; --surface: #2a203c; --rule: #504365; --text: #f7efff; --muted: #cfc0db; --gold: #f6d89c; --violet: #d3a2ed; --green: #a5d5a1; --cyan: #97d8e9; --red: #f1a0b2; --blue: #acb6f5; --orange: #f1bc90; --paper: #f7efff; --ink: #1a1529; --soft: #cfc0db; --on: #1a1529; --panel: #2a203c; --glow: #97d8e9; --ivory: #f7efff; --caption: #f7efff; --clear: transparent; }
+    * { box-sizing: border-box; }
+    html, body { width: 576px; height: 780px; margin: 0; overflow: hidden; }
+    body { background: var(--bg); color: var(--text); font-family: Arial, sans-serif; }
+    svg.art { display: block; width: 100%; height: 100%; }
+    button { color: inherit; font: inherit; }
+
+  </style>
+</head>
+<body>
+  <svg class="art" viewBox="0 0 576 780" role="img" aria-labelledby="art-title art-desc" xmlns="http://www.w3.org/2000/svg"><title id="art-title">Front and back skills tree</title><desc id="art-desc">A fine gray tree branches from a developer at a desk into five skill families. A white headline strip anchors the black diagram.</desc>
+<rect x="0" y="0" width="576" height="780" rx="0" fill="var(--bg)" stroke="none" />
+    <rect x="0" y="0" width="576" height="137" rx="0" fill="var(--paper)" stroke="none" />
+    <text x="288" y="83" font-family="Arial, sans-serif" font-size="29.2" font-weight="750" text-anchor="middle" fill="var(--ink)" >WEB DEV Skills You Must Learn</text>
+    <g transform="translate(22 393) scale(1.3)">
+    <circle cx="18" cy="11" r="7" fill="none" stroke="var(--muted)" stroke-width="1.3"/>
+    <path d="M8 33q0-14 10-14 12 0 13 14M5 30h28l-4 14H2zM0 45h38M14 36l-3 2 3 2m6-4 3 2-3 2" fill="none" stroke="var(--muted)" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="47" y="480" font-family="Arial, sans-serif" font-size="12" font-weight="650" text-anchor="middle" fill="var(--text)" >Web</text>
+    <text x="47" y="496" font-family="Arial, sans-serif" font-size="12" font-weight="650" text-anchor="middle" fill="var(--text)" >development</text>
+    <path d="M63 450h36m0 0V320h14m-14 130v162h14" fill="none" stroke="var(--rule)" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" />
+    <text x="114" y="324" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="var(--text)" >Front end</text>
+    <g transform="translate(171 312) scale(0.58)">
+    <path d="M2 6H22V18H2ZM9 22H15M12 18V22" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="114" y="615" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="start" fill="var(--text)" >Back end</text>
+    <g transform="translate(172 602) scale(0.59)">
+    <path d="M3 8A9 3 0 1 0 21 8A9 3 0 1 0 3 8M3 8V18C3 22 21 22 21 18V8M3 13C3 17 21 17 21 13" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M190 320H211M211 208V371" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M211 208L223 208" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M211 292L223 292" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M211 371L223 371" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M190 612H211M211 512V686" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M211 512L223 512" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M211 605L223 605" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M211 686L223 686" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="230" y="213" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >Language</text>
+    <g transform="translate(291 200) scale(0.64)">
+    <path d="M12 3C4 3 2 8 4 14C6 18 10 20 12 23C14 20 20 13 20 9C20 5 16 3 12 3ZM12 7A3 3 0 1 0 12.1 7" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 208H326M326 160V236" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M326 160L338 160" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 196L338 196" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 236L338 236" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="347" y="164" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >HTML</text>
+    <g transform="translate(379.4 150) scale(0.82)">
+    <path d="M12 2L22 8V18L12 23L2 18V8ZM2 8L12 14L22 8M12 14V23" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="200" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >CSS</text>
+    <g transform="translate(372.3 186) scale(0.82)">
+    <path d="M8 8L3 13L8 18M16 8L21 13L16 18M14 4L10 22" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="240" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >JavaScript</text>
+    <g transform="translate(422.0 226) scale(0.82)">
+    <path d="M12 3C4 3 2 8 4 14C6 18 10 20 12 23C14 20 20 13 20 9C20 5 16 3 12 3ZM12 7A3 3 0 1 0 12.1 7" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="230" y="297" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >Framework</text>
+    <g transform="translate(291 284) scale(0.64)">
+    <path d="M3 11H21V21H3ZM7 11V8A5 5 0 0 1 17 8V11M12 14V18" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 292H408M408 265V327" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M408 265L420 265" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M408 296L420 296" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M408 327L420 327" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="429" y="269" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Components</text>
+    <g transform="translate(504.0 255) scale(0.82)">
+    <path d="M3 11H21V21H3ZM7 11V8A5 5 0 0 1 17 8V11M12 14V18" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="429" y="300" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Templates</text>
+    <g transform="translate(496.9 286) scale(0.82)">
+    <path d="M3 8A9 3 0 1 0 21 8A9 3 0 1 0 3 8M3 8V18C3 22 21 22 21 18V8M3 13C3 17 21 17 21 13" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="429" y="331" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Modules</text>
+    <g transform="translate(482.7 317) scale(0.82)">
+    <path d="M2 16C2 7 11 5 13 12C15 19 23 16 22 10M4 18L8 21M18 5L22 8" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="230" y="376" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >Libraries</text>
+    <g transform="translate(291 363) scale(0.64)">
+    <path d="M3 8A9 3 0 1 0 21 8A9 3 0 1 0 3 8M3 8V18C3 22 21 22 21 18V8M3 13C3 17 21 17 21 13" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 371H326M326 335V406" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M326 335L338 335" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 370L338 370" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 406L338 406" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="347" y="339" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >UI functions</text>
+    <g transform="translate(436.2 325) scale(0.82)">
+    <path d="M2 6H9V12H2ZM15 13H22V19H15ZM5 12V16H15M9 9H18V13" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="374" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Utility styles</text>
+    <g transform="translate(437 360) scale(0.82)">
+    <path d="M2 12Q6 7 10 12T18 12T23 12M2 17Q6 12 10 17T18 17T23 17" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="410" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Grid system</text>
+    <g transform="translate(429.1 396) scale(0.82)">
+    <path d="M2 20L9 7L13 13L17 5L23 20ZM15 8L18 10" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="230" y="517" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >Language</text>
+    <g transform="translate(291 504) scale(0.64)">
+    <path d="M2 16C2 7 11 5 13 12C15 19 23 16 22 10M4 18L8 21M18 5L22 8" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 512H326M326 446V584" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M326 446L338 446" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 480L338 480" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 515L338 515" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 551L338 551" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 584L338 584" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="347" y="450" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >JavaScript runtime</text>
+    <g transform="translate(437 436) scale(0.82)">
+    <path d="M3 10L12 3L21 10V21H3ZM9 21V13H15V21" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="484" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Python</text>
+    <g transform="translate(393.6 470) scale(0.82)">
+    <path d="M2 3H22V20H2ZM5 7H8M10 7H13M3 10H21M7 13V18" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="519" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >PHP</text>
+    <g transform="translate(372.3 505) scale(0.82)">
+    <path d="M3 18Q12 4 21 18M6 19Q12 9 18 19M10 20Q12 16 14 20" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="555" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Ruby</text>
+    <g transform="translate(379.4 541) scale(0.82)">
+    <path d="M3 12L9 18L21 5" fill="none" stroke="var(--red)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="588" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Java</text>
+    <g transform="translate(379.4 574) scale(0.82)">
+    <path d="M3 4H21L16 12L21 20H3L8 12Z" fill="none" stroke="var(--orange)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="230" y="610" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >Database</text>
+    <g transform="translate(291 597) scale(0.64)">
+    <path d="M2 6H9V12H2ZM15 13H22V19H15ZM5 12V16H15M9 9H18V13" fill="none" stroke="var(--cyan)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 605H408M408 568V646" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M408 568L420 568" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M408 609L420 609" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M408 646L420 646" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="429" y="572" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Relational</text>
+    <g transform="translate(504.0 558) scale(0.82)">
+    <path d="M3 12L9 18L21 5" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="429" y="613" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Documents</text>
+    <g transform="translate(496.9 599) scale(0.82)">
+    <path d="M3 4H21L16 12L21 20H3L8 12Z" fill="none" stroke="var(--green)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="429" y="650" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >SQL storage</text>
+    <g transform="translate(511.1 636) scale(0.82)">
+    <path d="M2 6H22V18H2ZM9 22H15M12 18V22" fill="none" stroke="var(--blue)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="230" y="691" font-family="Arial, sans-serif" font-size="12.3" font-weight="650" text-anchor="start" fill="var(--text)" >API</text>
+    <g transform="translate(291 678) scale(0.64)">
+    <path d="M2 12Q6 7 10 12T18 12T23 12M2 17Q6 12 10 17T18 17T23 17" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <path d="M312 686H326M326 661V721" fill="none" stroke="var(--rule)" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" />
+    <path d="M326 661L338 661" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <path d="M326 721L338 721" fill="none" stroke="var(--rule)" stroke-width="1.3"/>
+    <text x="347" y="665" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >REST</text>
+    <g transform="translate(379.4 651) scale(0.82)">
+    <path d="M3 4H21V20H3ZM7 8H17M7 12H15M7 16H12" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+    <text x="347" y="725" font-family="Arial, sans-serif" font-size="12.5" font-weight="500" text-anchor="start" fill="var(--text)" >Graph query</text>
+    <g transform="translate(429.1 711) scale(0.82)">
+    <path d="M12 2L22 8V18L12 23L2 18V8ZM2 8L12 14L22 8M12 14V23" fill="none" stroke="var(--violet)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" />
+    </g>
+  </svg>
+  <script>
+
+    const pick = () => document.documentElement.dataset.colorway = location.hash.slice(1) || "original";
+    pick();
+    addEventListener("hashchange", pick);
+    const time = new URLSearchParams(location.search).get("t");
+    if (time !== null) {
+      const freeze = () => document.getAnimations().forEach(animation => {
+        animation.pause();
+        animation.currentTime = Number(time) * 1000;
+      });
+      freeze();
+      addEventListener("load", freeze);
+    }
+  </script>
+</body>
+</html>
