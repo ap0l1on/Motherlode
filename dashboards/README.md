@@ -8,7 +8,7 @@ Dashboards for every kind of data.
 | [Analytics](analytics/) | Web and product analytics |
 | [Admin panels](admin-panels/) | Admin panels and back offices |
 | [SaaS metrics](saas-metrics/) | Revenue, churn and growth metrics |
-| [Sales and CRM](sales-crm/) | Sales pipelines and CRMs · **1 design** |
+| [Sales and CRM](sales-crm/) | Sales pipelines and CRMs · **2 designs** |
 | [Marketing](marketing/) | Campaign and ad performance |
 | [Finance](finance/) | Finance and accounting |
 | [Banking](banking/) | Banking and money management · **1 design** |
