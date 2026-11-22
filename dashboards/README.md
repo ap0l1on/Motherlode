@@ -5,7 +5,7 @@ Dashboards for every kind of data.
 
 | Category | What goes in it |
 | --- | --- |
-| [Analytics](analytics/) | Web and product analytics · **2 designs** |
+| [Analytics](analytics/) | Web and product analytics · **3 designs** |
 | [Admin panels](admin-panels/) | Admin panels and back offices |
 | [SaaS metrics](saas-metrics/) | Revenue, churn and growth metrics |
 | [Sales and CRM](sales-crm/) | Sales pipelines and CRMs · **10 designs** |
