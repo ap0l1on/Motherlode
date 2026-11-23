@@ -5,12 +5,14 @@ Run python3 -B .github/scripts/build_site.py after editing library sources or ex
 The site is published from docs/. Edit docs/prompts.json to update the designer guide.
 """
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 from pathlib import Path
 from tempfile import TemporaryDirectory
 import filecmp
 import json
 import re
 import shutil
+import subprocess
 
 from PIL import Image, ImageStat
 
@@ -74,6 +76,25 @@ def build_design(folder, stage):
             "credits":[{"handle":handle,"url":url} for url,handle in credits.items()]}
 
 
+def added_dates():
+    """When each design first landed in git, in UTC, keyed by its folder. Uncommitted designs are left out."""
+    try:
+        log = subprocess.run(["git", "-C", str(ROOT), "log", "--diff-filter=A", "--format=%x00%aI", "--name-only",
+                              "--", "*/source/design.html"], capture_output=True, text=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        return {}
+    dates = {}
+    for block in log.split("\x00")[1:]:
+        lines = [line.strip() for line in block.splitlines() if line.strip()]
+        if not lines:
+            continue
+        when = datetime.fromisoformat(lines[0]).astimezone(timezone.utc).isoformat(timespec="seconds")
+        for path in lines[1:]:
+            if path.endswith("/source/design.html"):
+                # The log runs newest first, so the oldest add wins.
+                dates[path[:-len("/source/design.html")]] = when
+    return dates
+
 def synchronize(source, destination):
     destination.parent.mkdir(parents=True, exist_ok=True)
     if not destination.is_file() or not filecmp.cmp(source, destination, shallow=False):
@@ -92,6 +113,11 @@ def main():
         stage = Path(tmp)
         with ThreadPoolExecutor(max_workers=4) as pool:
             designs = list(pool.map(lambda folder: build_design(folder, stage), folders))
+        # The website lists the newest designs first. A design that isn't committed yet counts as new.
+        dates = added_dates()
+        now = datetime.now(timezone.utc).isoformat(timespec="seconds")
+        for row in designs:
+            row["added"] = dates.get(row["id"], now)
         manifest = {"sections":sections, "designs":designs}
         (stage / "catalog.json").write_text(json.dumps(manifest, ensure_ascii=False, separators=(",", ":"))+"\n", encoding="utf-8")
         for file in stage.rglob("*"):

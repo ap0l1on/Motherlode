@@ -2,64 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f3eb">
-  <meta name="description" content="Browse Motherlode’s editable design library. Try live designs, explore colorways, copy the source and use designer prompts.">
-  <title>Design library · Motherlode</title>
-  <link rel="icon" href="./assets/mark.svg?v=2" type="image/svg+xml">
-  <link rel="preload" href="./assets/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Motherlode · The mother of all design libraries</title>
+  <meta name="description" content="Hundreds of live designs you can play with, recolor and copy as code: landing pages, dashboards, UI, animations and more, each in 8+ colorways.">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta name="color-scheme" content="dark">
+  <link rel="icon" href="./assets/mark.svg?v=3" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Motherlode">
+  <meta property="og:title" content="Motherlode · The mother of all design libraries">
+  <meta property="og:description" content="Hundreds of live designs you can play with, recolor and copy as code.">
+  <meta property="og:url" content="https://ap0l1on.github.io/Motherlode/">
+  <meta property="og:image" content="https://ap0l1on.github.io/Motherlode/assets/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400..600&display=swap">
   <link rel="preload" href="./assets/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="./assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./library.css?v=2">
-  <link rel="stylesheet" href="./mineral.css?v=2.1">
-  <script src="./library.js?v=2" type="module"></script>
+  <link rel="stylesheet" href="./site.css?v=3">
+  <script src="./app.js?v=3" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  <header class="topbar">
-    <a class="brand" href="#library" aria-label="Motherlode home"><img src="./assets/mark.svg?v=2" alt="" width="42" height="42"><span>Motherlode</span></a>
-    <nav class="topnav" aria-label="Main navigation">
-      <a href="#library" id="nav-library">Library</a>
-      <a href="#prompts" id="nav-prompts" aria-label="Designer prompts"><span class="nav-long">Designer prompts</span><span class="nav-short">Prompts</span></a>
-    </nav>
-    <div class="header-tools">
-      <form class="search-box" id="search-form" role="search">
-        <svg class="icon" aria-hidden="true"><use href="./assets/icons.svg#search"/></svg>
-        <input id="search-designs" type="search" placeholder="Search designs…" aria-label="Search designs" autocomplete="off">
-        <kbd aria-hidden="true">/</kbd>
-      </form>
-      <a class="repo-link" href="https://github.com/ap0l1on/Motherlode" target="_blank" rel="noopener" aria-label="Motherlode on GitHub"><svg class="icon" aria-hidden="true"><use href="./assets/icons.svg#github"/></svg><span>GitHub</span></a>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#/" aria-label="Motherlode home">
+        <img src="./assets/mark.svg?v=3" alt="" width="30" height="30">
+        <span>Motherlode</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#/all" data-nav="library">Library</a>
+        <a href="#/categories" data-nav="categories">Categories</a>
+        <a href="#/prompts" data-nav="prompts">Prompts</a>
+      </nav>
+      <div class="nav-tools">
+        <button class="search-trigger" type="button" data-search aria-label="Search designs">
+          <svg class="i" width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          <span class="st-label">Search designs</span>
+          <kbd class="st-kbd" aria-hidden="true">⌘K</kbd>
+        </button>
+        <a class="nav-icon nav-gh" href="https://github.com/ap0l1on/Motherlode" target="_blank" rel="noopener" aria-label="Motherlode on GitHub">
+          <svg width="19" height="19" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+        <button class="nav-icon nav-menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu">
+          <svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
-  <section id="masthead" class="masthead" aria-labelledby="archive-title" data-mineral="carnelian" hidden>
-    <div class="mineral-scene" aria-hidden="true">
-      <img id="mineral-image" data-src="./assets/carnelian.webp" alt="" width="1872" height="624" decoding="async" fetchpriority="high">
-      <canvas id="mineral-canvas"></canvas>
-    </div>
-    <div class="mast-shade" aria-hidden="true"></div>
-    <div class="mast-copy">
-      <h1 id="archive-title">Design <em>library.</em></h1>
-      <p>Explore <strong id="archive-total"></strong> working designs. Try the motion, switch the colors, and take the code.</p>
-      <button type="button" class="browse-archive" id="browse-archive"><svg class="icon" aria-hidden="true" width="17" height="17"><use href="./assets/icons.svg#grid"/></svg>Browse designs</button>
-    </div>
-    <button type="button" class="mineral-surface" aria-label="Bend the mineral. Move the pointer, tap, or press the arrow keys." aria-describedby="mineral-tip"></button>
-    <div class="mineral-dock" aria-label="Masthead material">
-      <span class="material-name" id="material-name" aria-live="polite">Carnelian</span>
-      <div class="material-choices" role="group" aria-label="Choose a mineral">
-        <button type="button" data-stone="carnelian" aria-label="Carnelian" aria-pressed="true" title="Carnelian"><i></i></button>
-        <button type="button" data-stone="malachite" aria-label="Malachite" aria-pressed="false" title="Malachite"><i></i></button>
-        <button type="button" data-stone="lapis" aria-label="Lapis" aria-pressed="false" title="Lapis"><i></i></button>
-      </div>
-      <button class="mineral-motion" type="button" id="mineral-motion" aria-label="Pause background motion" title="Pause background motion"><svg class="icon" width="15" height="15" aria-hidden="true"><use href="./assets/icons.svg#pause"/></svg></button>
-    </div>
-    <span class="mineral-tip" id="mineral-tip"><span class="pointer-tip">Move to bend the stone</span><span class="touch-tip">Touch to bend the stone</span></span>
-  </section>
-  <div class="shell">
-    <button class="sidebar-shade" type="button" aria-label="Close navigation" hidden></button>
-    <aside id="sidebar" aria-label="Library navigation"></aside>
-    <main id="main-content" tabindex="-1"><p class="loading">Loading the design library…</p></main>
+
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Menu">
+      <a href="#/">Home</a>
+      <a href="#/all">Library</a>
+      <a href="#/categories">Categories</a>
+      <a href="#/prompts">Prompts</a>
+      <a href="https://github.com/ap0l1on/Motherlode" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
   </div>
-  <div id="notice" class="notice" role="status" aria-live="polite"></div>
-  <noscript>Enable JavaScript to try live designs and switch colorways. <a href="https://github.com/ap0l1on/Motherlode">Browse the catalog on GitHub</a>.</noscript>
+
+  <main id="main" tabindex="-1">
+    <div class="boot" aria-live="polite"><span class="boot-mark"></span></div>
+  </main>
+
+  <footer class="footer" id="footer"></footer>
+
+  <div class="search" id="search" hidden>
+    <div class="search-scrim" data-close></div>
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search">
+      <label class="search-field">
+        <svg class="i" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="search-input" type="search" placeholder="Search designs, categories and prompts" autocomplete="off" spellcheck="false" aria-controls="search-results" aria-autocomplete="list">
+        <button type="button" class="search-esc" data-close aria-label="Close search">Esc</button>
+      </label>
+      <div class="search-results" id="search-results" role="listbox" aria-label="Results"></div>
+      <div class="search-foot" aria-hidden="true"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>↵</kbd> open</span><span><kbd>esc</kbd> close</span></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">Motherlode needs JavaScript to show its live designs. <a href="https://github.com/ap0l1on/Motherlode">Browse the library on GitHub</a>.</p></noscript>
 </body>
 </html>
