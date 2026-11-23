@@ -5,6 +5,8 @@
 
 Every kind of design, for everything, in one place: 50 sections and 867 categories, from logos and landing pages to dashboards, Mac menu bar apps, album covers, worksheets and tattoo designs. 306 designs so far, each in several colorways. Make something once, drop it here, and nobody has to make it again.
 
+**[Browse it live →](https://ap0l1on.github.io/Motherlode/)** Play with every design, flip through its colorways and copy the code.
+
 ## What's inside
 
 ### Identity
@@ -113,16 +115,18 @@ Every kind of design, for everything, in one place: 50 sections and 867 categori
 Every design gets its own folder inside a category, named in lowercase with dashes:
 
 ```text
-social/
-└── linkedin-posts/
-    └── launch-announcement/
-        ├── README.md     what it is, where it's used, which fonts and colors it needs
-        ├── preview.png   what people see when they browse
-        ├── source/       the editable file (.fig, .psd, .ai, .aep, .html …)
-        └── exports/      ready-to-use files (.png, .svg, .mp4, .pdf …)
+dashboards/
+└── analytics/
+    └── neon-glass/
+        ├── README.md         what it is, its colorways, fonts and credits
+        ├── preview.png       the original colorway, shown on the category page
+        ├── colorways.png     every colorway in one image
+        ├── source/
+        │   └── design.html   the design itself, with every colorway built in
+        └── exports/          one file per colorway: original.png, light.png, dark.png …
 ```
 
-`preview.png` matters most. It's how people find the right design without opening every file.
+Every design comes in several colorways. Its colors live in CSS variables, so a new colorway is just a new palette. After adding a design, run `python3 .github/scripts/build_catalog.py` to put it on its category page.
 
 ## Big files
 

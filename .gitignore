@@ -14,3 +14,6 @@ Adobe After Effects Auto-Save/
 
 # Web projects
 node_modules/
+
+# TikToks and reference frames for Codex. Never commit these.
+_inbox/
