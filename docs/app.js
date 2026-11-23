@@ -79,7 +79,16 @@
     });
     const sectionMap = new Map(sections.map((s) => [s.id, s]));
     const designs = [];
+    // Only trust catalog values that look like what build_site.py writes.
+    const color = (v) => (/^#[0-9a-f]{3,8}$/i.test(v) ? v : "#18181b");
+    const SAFE_ID = /^[a-z0-9-]+\/[a-z0-9-]+\/[a-z0-9-]+$/;
+    const TIKTOK = /^https:\/\/(www\.)?tiktok\.com\/@[\w.]+\/(video|photo)\/\d+$/;
     for (const raw of catalog.designs) {
+      if (!SAFE_ID.test(raw.id)) continue;
+      raw.mat = color(raw.mat);
+      raw.palettes = (raw.palettes || []).filter((p) => /^[a-z0-9-]+$/.test(p[0])).map(([name, hex]) => [name, color(hex)]);
+      raw.credits = (raw.credits || []).filter((c) => TIKTOK.test(c.url));
+      if (!raw.palettes.length) raw.palettes = [["original", raw.mat]];
       const [secId, catId, slug] = raw.id.split("/");
       const sec = sectionMap.get(secId);
       const cat = sec && sec.catMap.get(catId);
