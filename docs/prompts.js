@@ -30,7 +30,7 @@ export function showPrompts(main, sidebar, data, id, {sidebarHeader}) {
   sidebar.querySelector("#guide-search").addEventListener("input",ev=>filterGuides(ev.target.value));
   const options=groups.map(group=>`<optgroup label="${e(group)}">${data.guides.filter(g=>g.group===group).map(g=>`<option value="${g.id}" ${g===guide?"selected":""}>${e(g.title)}</option>`).join("")}</optgroup>`).join("");
   main.innerHTML=`<div class="page prompt-page">${mobileBrowse("Browse prompts")}
-    <div class="page-heading"><h1>Designer prompts</h1><p>Start with the universal brief. Add a specialty for the work in front of you.</p></div>
+    <div class="page-heading"><h1>Designer <em>prompts.</em></h1><p>Start with the universal brief. Add a specialty for the work in front of you.</p></div>
     <div class="prompt-picker"><label for="guide-select">Choose a prompt</label><div class="select-wrap">${icon("book",17)}<select id="guide-select"><option value="universal" ${universal?"selected":""}>Universal design prompt</option>${options}</select>${icon("chev-d",14)}</div></div>
     <article class="prompt-document"><div class="prompt-heading"><div class="prompt-kind">${icon(universal?"book":"stack",16)}${e(universal?"Universal brief":guide.group)}</div>
     <h2>${e(guide.title)}</h2><p>${e(guide.summary)}</p><div class="prompt-actions">

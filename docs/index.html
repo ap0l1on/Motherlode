@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fbfbf9">
+  <meta name="theme-color" content="#f6f3eb">
   <meta name="description" content="Browse Motherlode’s editable design library. Try live designs, explore colorways, copy the source and use designer prompts.">
   <title>Design library · Motherlode</title>
-  <link rel="icon" href="./assets/mark.svg" type="image/svg+xml">
+  <link rel="icon" href="./assets/mark.svg?v=2" type="image/svg+xml">
+  <link rel="preload" href="./assets/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./assets/dm-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="./library.css">
-  <script src="./library.js" type="module"></script>
+  <link rel="stylesheet" href="./library.css?v=2">
+  <link rel="stylesheet" href="./mineral.css">
+  <script src="./library.js?v=2" type="module"></script>
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
-    <a class="brand" href="#library" aria-label="Motherlode home"><img src="./assets/mark.svg" alt="" width="32" height="32">Motherlode</a>
+    <a class="brand" href="#library" aria-label="Motherlode home"><img src="./assets/mark.svg?v=2" alt="" width="42" height="42"><span>Motherlode</span></a>
     <nav class="topnav" aria-label="Main navigation">
       <a href="#library" id="nav-library">Library</a>
       <a href="#prompts" id="nav-prompts" aria-label="Designer prompts"><span class="nav-long">Designer prompts</span><span class="nav-short">Prompts</span></a>
@@ -28,6 +31,29 @@
       <a class="repo-link" href="https://github.com/ap0l1on/Motherlode" target="_blank" rel="noopener" aria-label="Motherlode on GitHub"><svg class="icon" aria-hidden="true"><use href="./assets/icons.svg#github"/></svg><span>GitHub</span></a>
     </div>
   </header>
+  <section id="masthead" class="masthead" aria-labelledby="archive-title" data-mineral="carnelian" hidden>
+    <div class="mineral-scene" aria-hidden="true">
+      <img id="mineral-image" data-src="./assets/carnelian.webp" alt="" width="1872" height="624" decoding="async" fetchpriority="high">
+      <canvas id="mineral-canvas"></canvas>
+    </div>
+    <div class="mast-shade" aria-hidden="true"></div>
+    <div class="mast-copy">
+      <h1 id="archive-title">Design <em>library.</em></h1>
+      <p>Explore <strong id="archive-total"></strong> working designs. Try the motion, switch the colors, and take the code.</p>
+      <button type="button" class="browse-archive" id="browse-archive"><svg class="icon" aria-hidden="true" width="17" height="17"><use href="./assets/icons.svg#grid"/></svg>Browse designs</button>
+    </div>
+    <button type="button" class="mineral-surface" aria-label="Bend the mineral. Move the pointer, tap, or press the arrow keys." aria-describedby="mineral-tip"></button>
+    <div class="mineral-dock" aria-label="Masthead material">
+      <span class="material-name" id="material-name" aria-live="polite">Carnelian</span>
+      <div class="material-choices" role="group" aria-label="Choose a mineral">
+        <button type="button" data-stone="carnelian" aria-label="Carnelian" aria-pressed="true" title="Carnelian"><i></i></button>
+        <button type="button" data-stone="malachite" aria-label="Malachite" aria-pressed="false" title="Malachite"><i></i></button>
+        <button type="button" data-stone="lapis" aria-label="Lapis" aria-pressed="false" title="Lapis"><i></i></button>
+      </div>
+      <button class="mineral-motion" type="button" id="mineral-motion" aria-label="Pause background motion" title="Pause background motion"><svg class="icon" width="15" height="15" aria-hidden="true"><use href="./assets/icons.svg#pause"/></svg></button>
+    </div>
+    <span class="mineral-tip" id="mineral-tip"><span class="pointer-tip">Move to bend the stone</span><span class="touch-tip">Touch to bend the stone</span></span>
+  </section>
   <div class="shell">
     <button class="sidebar-shade" type="button" aria-label="Close navigation" hidden></button>
     <aside id="sidebar" aria-label="Library navigation"></aside>

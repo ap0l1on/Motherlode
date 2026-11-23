@@ -1,6 +1,8 @@
 import {repo, escapeHTML as e, icon, routeLink, designLink, mobileBrowse} from "./ui.js";
 import {showDesign} from "./design.js";
-import {showPrompts, matchingGuide} from "./prompts.js";
+import {showPrompts, matchingGuide} from "./prompts.js?v=2";
+import {showMasthead} from "./mineral.js";
+import {enableCardPreviews} from "./card-previews.js";
 
 const main = document.querySelector("#main-content");
 const sidebar = document.querySelector("#sidebar");
@@ -15,8 +17,8 @@ const features = [
   {id:"animations/animated-illustrations/ink-and-cherry-canopy", art:"ink-and-cherry-canopy", background:"#fffdfc", light:true}
 ];
 const opening = [
-  "dashboards/e-commerce/sage-store-console", "ui/tab-bars/honey-drop-tabs", "3d/product-renders/ruby-wing-coupe",
-  "web/product-pages/color-block-beetle-specimens", "device-screens/smart-displays/amber-glass-tube-clock",
+  "web/product-pages/color-block-beetle-specimens", "ui/tab-bars/honey-drop-tabs", "3d/product-renders/ruby-wing-coupe",
+  "dashboards/e-commerce/sage-store-console", "device-screens/smart-displays/amber-glass-tube-clock",
   "web/landing-pages/alpine-destination-carousel", "ui/segmented-controls/liquid-focus-controls",
   "print/posters/think-freely-crowd", "games/board-games/turning-color-cube",
   "web/landing-pages/violet-sleep-sphere", "social/instagram-carousels/four-design-directions",
@@ -66,8 +68,15 @@ function editFilter(changes, replace = false) {
   const filter = {...(currentView === "library" ? currentFilter : {}), page:1, ...changes};
   const url = libraryHref(filter);
   if (replace && currentView === "library") {
+    const tools = main.querySelector(".collection-tools");
+    const toolbarTop = tools?.getBoundingClientRect().top;
     history.replaceState(null,"",url);
     renderRoute(false);
+    if (toolbarTop !== undefined && ("type" in changes || "sort" in changes)) {
+      const top = main.querySelector(".collection-tools").getBoundingClientRect().top;
+      const header = document.querySelector(".topbar").getBoundingClientRect().height;
+      window.scrollBy({top:top-Math.max(header+8,toolbarTop),behavior:"instant"});
+    }
   } else if (location.hash !== url) {
     location.hash = url;
   }
@@ -92,7 +101,7 @@ function railLibrary(filter, revealSelected = true) {
     return `<li><div class="section-row ${active ? "active" : ""}"><a href="${e(sectionUrl)}" ${active && !filter.category?'aria-current="page"':""}>${icon(symbols[s.id]||"stack",17)}<span>${e(s.name)}</span><small>${s.count}</small></a><button class="disclose" type="button" data-expand="${s.id}" aria-label="${open ? "Collapse" : "Expand"} ${e(s.name)} categories" aria-expanded="${open}">${icon(open ? "chev-d" : "chev-r",13)}</button></div>${children}</li>`;
   }).join("");
   const hasSelection = Boolean(filter.section || filter.category);
-  sidebar.innerHTML = `${sidebarHeader("Browse library")}<a class="rail-all ${!hasSelection?"active":""}" href="${e(libraryHref({...filter,section:"",category:"",page:1}))}" ${!hasSelection?'aria-current="page"':""}>${icon("grid",17)}<span>All designs</span><small>${designs.length}</small></a>
+  sidebar.innerHTML = `${sidebarHeader("Category index")}<a class="rail-all ${!hasSelection?"active":""}" href="${e(libraryHref({...filter,section:"",category:"",page:1}))}" ${!hasSelection?'aria-current="page"':""}>${icon("grid",17)}<span>All designs</span><small>${designs.length}</small></a>
     <div class="rail-caption">Sections</div><ul class="section-list">${rows}</ul>
     <label class="empty-switch"><input type="checkbox" id="empty-sections" ${emptySections?"checked":""}> Include empty categories</label>`;
 }
@@ -100,11 +109,10 @@ function card(d) {
   const [sec,cat] = d.id.split("/");
   const href = designLink(d.id);
   const sampled = [d.palettes[0], ...d.palettes.slice(4)].slice(0,3);
-  return `<article class="card">
-    <a class="card-main" href="${href}">
-      <div class="card-image" style="--mat:${d.mat}"><img loading="lazy" decoding="async" src="./posters/${d.id}.webp" alt="" width="${d.width}" height="${d.height}">
-      ${d.loop ? `<span class="motion-mark" title="Animated design">${icon("motion",15)}<span class="sr-only">Animated</span></span>`:""}</div>
-      <h3>${e(d.name)}</h3></a>
+  return `<article class="card" data-design="${e(d.id)}">
+    <div class="card-image" style="--mat:${d.mat}"><img loading="lazy" decoding="async" src="./posters/${d.id}.webp" alt="" width="${d.width}" height="${d.height}"></div>
+    <h3><a class="card-main" href="${href}">${e(d.name)}</a></h3>
+    ${d.loop ? `<button class="motion-mark" type="button" aria-label="Preview ${e(d.name)}" aria-pressed="false" title="Play preview">${icon("play",15)}</button>`:""}
     <div class="card-bottom"><span class="card-category">${e(categoryName(sec,cat))}</span>
     <div class="mini-palettes" aria-label="Colorways">${sampled.map(([name,color]) => `<a class="mini-swatch" href="${designLink(d.id,name)}" aria-label="${e(d.name)}, ${e(name)} colorway" title="${e(name)}" style="--swatch:${color}"></a>`).join("")}<a class="more-colors" href="${href}" aria-label="See all ${d.palettes.length} colorways for ${e(d.name)}">+${d.palettes.length-sampled.length}</a></div></div>
     </article>`;
@@ -115,7 +123,7 @@ function feature() {
   featureIndex = (featureIndex+eligible.length)%eligible.length;
   const item = eligible[featureIndex], d = designMap.get(item.id), [sec,cat] = d.id.split("/");
   return `<section class="spotlight ${item.light?"light-cover":""}" aria-label="Collection spotlight" style="--cover:${item.background}">
-    <div class="spotlight-art"><img src="./assets/${item.art}.webp" alt="" fetchpriority="high"></div>
+    <div class="spotlight-art"><img src="./assets/${item.art}.webp" alt="" loading="lazy" decoding="async"></div>
     <div class="spotlight-copy"><span class="spotlight-label">${icon("spark",14)} Collection spotlight</span>
     <h2>${e(d.name)}</h2><p>${e(categoryName(sec,cat))}<span aria-hidden="true"> · </span>${d.palettes.length} colorways</p>
     <a class="cover-cta" href="${designLink(d.id)}">${icon("frame",15)}Explore design</a></div>
@@ -145,15 +153,18 @@ function renderLibrary(params) {
     section ? `${itemLabel(section.count)} across ${section.counts.size} populated categories` :
     `${itemLabel(designs.length)} to explore, try and make your own.`;
   const shown = Math.min(filter.page*perPage,list.length);
+  const cards = list.slice(0,shown).map(card);
+  if (unfiltered && cards.length >= 6) cards.splice(6,0,`<div id="feature-mount">${feature()}</div>`);
+  showMasthead(unfiltered,designs.length);
   const noResults = `<div class="empty-state">${icon("search",27)}<h3>${filter.q?"No matching designs":"This shelf is empty"}</h3><p>${filter.q?"Try another search term or clear your filters.":"Browse another category or open its designer prompt."}</p><div><a href="#library" class="quiet-button">Browse all designs</a>${section?`<a class="quiet-button" href="#prompts/${matchingGuide(guideData,section.id,filter.category).id}">Designer prompt</a>`:""}</div></div>`;
-  main.innerHTML = `<div class="page library-page">${mobileBrowse()}<div class="page-heading"><h1>${e(heading)}</h1><p>${e(sub)}</p></div>
-    ${unfiltered?`<div id="feature-mount">${feature()}</div>`:""}
-    <section class="collection"><div class="collection-tools"><h2>${unfiltered?"All designs":"Designs"} <span class="result-count">${list.length}</span></h2>
+  main.innerHTML = `<div class="page library-page${unfiltered?" archive-index":""}">${mobileBrowse()}${unfiltered?"":`<div class="page-heading"><h1>${e(heading)}</h1><p>${e(sub)}</p></div>`}
+    <section class="collection" aria-label="Design collection" tabindex="-1"><div class="collection-tools"><h2>${unfiltered?'The <em>collection.</em>':"Designs"} <span class="result-count">${list.length}</span></h2>
     <div class="filter-tools"><div class="segmented" aria-label="Design type">${[["","All"],["animated","Animated"],["static","Static"]].map(([key,label])=>`<button type="button" data-type="${key}" aria-pressed="${key===filter.type}">${label}</button>`).join("")}</div>
     <label class="select-wrap">${icon("sort",16)}<span class="sr-only">Sort designs</span><select id="sort-designs"><option value="">Curated</option><option value="az" ${filter.sort==="az"?"selected":""}>A–Z</option><option value="za" ${filter.sort==="za"?"selected":""}>Z–A</option></select>${icon("chev-d",12)}</label></div></div>
-    ${list.length?`<div class="card-grid">${list.slice(0,shown).map(card).join("")}</div><div class="list-end"><span>${shown} of ${itemLabel(list.length)}</span>${shown<list.length?'<button type="button" class="quiet-button" id="load-more">Show more designs</button>':""}</div>`:noResults}
+    ${list.length?`<div class="card-grid">${cards.join("")}</div><div class="list-end"><span>${shown} of ${itemLabel(list.length)}</span>${shown<list.length?'<button type="button" class="quiet-button" id="load-more">Show more designs</button>':""}</div>`:noResults}
     </section></div>`;
   document.title = `${heading} · Motherlode`;
+  pageCleanup = enableCardPreviews(main.querySelector(".card-grid"), designMap);
 }
 function notFound() {
   main.innerHTML = `<div class="page"><div class="empty-state"><h1>Page unavailable</h1><p>This library link does not match a current entry.</p><a class="quiet-button" href="#library">Browse the library</a></div></div>`;
@@ -176,6 +187,7 @@ function renderRoute(scroll = true) {
     if (active) link.setAttribute("aria-current","page"); else link.removeAttribute("aria-current");
   }
   if(next!=="library") search.value="";
+  if(path!=="library") showMasthead(false);
   if(next==="library" && path==="library") renderLibrary(params);
   else if(next==="design") {
     const d=designMap.get(path.slice(7));
@@ -209,6 +221,9 @@ function boot(catalog,prompts) {
   renderRoute();
 }
 document.addEventListener("click", ev=>{
+  if (ev.target.closest(".brand,#nav-library") && (location.hash==="#library" || !location.hash)) {
+    window.scrollTo({top:0,behavior:"instant"});
+  }
   if(ev.target.closest(".browse-mobile")) openSidebar();
   if(ev.target.closest(".drawer-close")||ev.target===shade) closeSidebar(true);
   if (ev.target.closest("#sidebar a") && document.body.classList.contains("sidebar-open")) {
@@ -260,7 +275,11 @@ document.addEventListener("change",ev=>{
 document.querySelector("#search-form").addEventListener("submit",ev=>{
   ev.preventDefault();editFilter({q:search.value.trim()},currentView==="library");search.blur();closeSidebar();
 });
-search.addEventListener("input",()=>{if(currentView==="library") editFilter({q:search.value},true);});
+search.addEventListener("input",()=>{
+  if (currentView!=="library") return;
+  editFilter({q:search.value},true);
+  window.scrollTo({top:0,behavior:"instant"});
+});
 document.addEventListener("keydown",ev=>{
   if(ev.key==="/" && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !ev.target.closest("input,textarea,select,[contenteditable]")) {
     ev.preventDefault();search.focus();search.select();
