@@ -51,7 +51,7 @@
 
 .mast-shade {
   z-index:-2;
-  background:linear-gradient(90deg, color-mix(in srgb,var(--ground) 85%,transparent), color-mix(in srgb,var(--ground) 58%,transparent) 25%, transparent 53%),
+  background:linear-gradient(90deg, color-mix(in srgb,var(--ground) 89%,transparent), color-mix(in srgb,var(--ground) 73%,transparent) 37%, transparent 62%),
              linear-gradient(0deg,rgba(15,5,9,.44),transparent 20%);
 }
 
@@ -206,7 +206,11 @@
   .mast-copy { width:44%; margin-left:30px; }
   .mast-copy h1 { font-size:clamp(78px,10vw,104px); }
   .mast-copy p { font-size:16px; }
-  .mineral-scene { --anchor-x:.48; }
+  .mineral-scene { --anchor-x:.32; }
+  .mast-shade {
+    background:linear-gradient(90deg,var(--ground),color-mix(in srgb,var(--ground) 74%,transparent) 47%,transparent 72%),
+               linear-gradient(0deg,rgba(15,5,9,.44),transparent 20%);
+  }
 }
 
 @media (max-width:620px) {
